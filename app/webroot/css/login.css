@@ -1,0 +1,82 @@
+.body-login{
+    background-color: #475665;
+    margin: 0px;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+}
+
+.sign_up {
+    width: 440px;
+    margin: 0 auto;
+    padding: 90px 0;
+}
+
+.sign_up h1 img{
+    width: 200px;
+    height: auto;
+}
+
+.sign_up h1 {
+    padding: 20px 0 35px;
+    text-align: center;
+}
+
+.sign_up dt {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.sign_up dd {
+    margin-bottom: 30px;
+}
+
+.sign_up .box {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    background: #374350;
+    padding: 40px 0 30px 0;
+    color: #d2d5d9;
+}
+
+.sign_up .set {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.sign_up .set input {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 370px;
+    height: 45px;
+    border: none;
+    padding: 0 5px;
+    line-height: 45px;
+    background: #fff;
+    font-size: 25px;
+    color: #555;
+}
+
+/* submit button */
+
+.sign_up .btn_submit a, .sign_up .btn_submit button {
+    display: block;
+    width: 380px;
+    height: 62px;
+    text-align: center;
+    line-height: 62px;
+    font-size: 20px;
+    color: #fff;
+    background: url("../img/login/btn_pink_signup.png") no-repeat top left;
+}
+
+.sign_up .button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+}

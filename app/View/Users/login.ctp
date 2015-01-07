@@ -11,7 +11,7 @@
                 </a>
             </h1>
             <div class="box">
-                <form name="form">
+                <?php echo $this->Form->create('User', array('Controller' => 'Users', 'action' => 'login')) ?>
                     <dl class="set">
                         <dt>Email</dt>
                         <dd>
@@ -22,19 +22,22 @@
                             <?php echo $this->Form->input('password', array('div' => false, 'label' => false, 'type' => 'password')) ?>
                         </dd>
                     </dl>
-                    <p>
-                        <!-- <button type="submit">Login</button> -->
-                        <?php echo $this->Form->submit('Login', array('class' => 'btn_submit')) ?>
+
+                    <p class="btn_submit inner_s top">
+                        <button type="submit">ログイン</button>
+                         <!-- <?php //echo $this->Form->submit('Login', array('div' => false)) ?> -->
                     </p>
 
                     <div class="social_login">
                         <p class="btn_facebook"><a href="https://stores.jp/auth/facebook">Facebookログイン</a></p>
                     </div>
-                </form>
+                <?php echo $this->Form->end() ?>
             </div>
             <ul class="link">
-                <li><a href="https://stores.jp/">ストアを開設する場合はこちら</a></li>
-                <li><a href="https://stores.jp/forgot_password">パスワードを忘れた場合はこちら</a></li>
+                <li><a href="#">ストアを開設する場合はこちら</a></li>
+                <li>
+                    <?php echo $this->Html->link('Forgot password', array('controller' => 'Users', 'action' => 'forgotPassword')) ?>
+                </li>
             </ul>
         </div>
     </body>

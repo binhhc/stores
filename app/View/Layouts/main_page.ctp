@@ -32,7 +32,6 @@
     echo $this->fetch('meta');
 
     echo $this->Html->css(array('bootstrap.min', 'bootstrap-theme.min')); /* for core */
-     echo $this->Html->css(array('main_page'));
     echo $this->fetch('css');
     ?>
 

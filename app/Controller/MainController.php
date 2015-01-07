@@ -21,6 +21,8 @@ class MainController extends AppController {
 
     	$this->layout = "main_page";
     	$this->set('title_for_layout', 'Main Page');
-
+    }
+    public function item_management() {
+    	$this->layout = false;
     }
 }

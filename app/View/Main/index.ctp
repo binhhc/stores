@@ -1,3 +1,4 @@
+<?php echo $this->Html->css(array('main_page'));?>
 <div class="main social_login">
 	<div class="social_login">
 		<h1>

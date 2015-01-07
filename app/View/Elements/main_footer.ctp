@@ -4,39 +4,39 @@
 			<a href="/welcome">STORES</a>
 		</li>
 		<li>
-			<a href="/features">Function Introduction</a>
+			<a href="/features">Chức năng</a>
 		</li>
 		<li>
 			<a href="/price">Charge</a>
 		</li>
 		<li>
-			<a href="/support">Operation Support</a>
+			<a href="/support">Hỗ trợ</a>
 		</li>
 		<li>
-			<a href="/interview">Interview</a>
+			<a href="/interview">Phỏng vấn</a>
 		</li>
 		<li>
 			<a href="/faq">FAQ</a>
 		</li>
 		<li>
-			<a href="/login">Login</a>
+			<a href="/login">Đăng nhập</a>
 		</li>
 	</ul>
 	<ul id="foot_navi">
 		<li>
-			<a target="_blank" href="/">Management Company</a>
+			<a target="_blank" href="/">Công ty</a>
 		</li>
 		<li>
-			<a href="/contact">Contact</a>
+			<a href="/contact">Liên hệ</a>
 		</li>
 		<li>
-			<a href="/terms">Terms</a>
+			<a href="/terms">Điều khoản sử dụng</a>
 		</li>
 		<li>
-			<a href="/tokushoho">Specific Trade and Sales Method</a>
+			<a href="/tokushoho">Thương mại và an toàn</a>
 		</li>
 		<li>
-			<a href="/privacy_policy">Privacy Policy</a>
+			<a href="/privacy_policy">Chính sách</a>
 		</li>
 	</ul>
 	<ul id="social">

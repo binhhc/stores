@@ -40,12 +40,13 @@
 
     <script type="text/javascript">BASE = '<?php echo Router::url('/', true) ?>';</script>
     <?php echo $this->Html->script('jquery.min.js'); ?>
+    <?php echo $this->Html->script('bootstrap.min.js'); ?>
+    <?php echo $this->Html->script('main_page.js');?>
   </head>
 
   <body>
     <?php echo $this->Element('main_header'); ?>
 
-    <div class="container">
         <?php echo $this->Session->flash(); ?>
 
         <!--[if lt IE 7]>
@@ -59,7 +60,6 @@
         <?php echo $this->fetch('content'); ?>
 
         <?php //echo $this->Element('backtotop'); ?>
-    </div> <!-- /container -->
 
     <?php echo $this->Element('main_footer'); ?>
     <?php

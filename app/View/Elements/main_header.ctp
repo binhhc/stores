@@ -4,7 +4,7 @@
 			STORES
 		</p>
 		<p class="login">
-			<a href="/login">Login</a>
+			<a href="/login">Đăng nhập</a>
 		</p>
 		<div class="header_social">
 			<ul>

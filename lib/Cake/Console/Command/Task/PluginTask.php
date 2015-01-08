@@ -2,18 +2,17 @@
 /**
  * The Plugin Task handles creating an empty plugin, ready to be used
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 1.2
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('AppShell', 'Console/Command');
@@ -64,9 +63,8 @@ class PluginTask extends AppShell {
 				$this->out(__d('cake_console', 'Plugin: %s already exists, no action taken', $plugin));
 				$this->out(__d('cake_console', 'Path: %s', $pluginPath));
 				return false;
-			} else {
-				$this->_interactive($plugin);
 			}
+			$this->_interactive($plugin);
 		} else {
 			return $this->_interactive();
 		}
@@ -75,7 +73,7 @@ class PluginTask extends AppShell {
 /**
  * Interactive interface
  *
- * @param string $plugin
+ * @param string $plugin The plugin name.
  * @return void
  */
 	protected function _interactive($plugin = null) {
@@ -92,7 +90,7 @@ class PluginTask extends AppShell {
  * Bake the plugin, create directories and files
  *
  * @param string $plugin Name of the plugin in CamelCased format
- * @return boolean
+ * @return bool
  */
 	public function bake($plugin) {
 		$pathOptions = App::path('plugins');
@@ -106,28 +104,35 @@ class PluginTask extends AppShell {
 
 		$looksGood = $this->in(__d('cake_console', 'Look okay?'), array('y', 'n', 'q'), 'y');
 
-		if (strtolower($looksGood) == 'y') {
+		if (strtolower($looksGood) === 'y') {
 			$Folder = new Folder($this->path . $plugin);
 			$directories = array(
 				'Config' . DS . 'Schema',
-				'Model' . DS . 'Behavior',
-				'Model' . DS . 'Datasource',
 				'Console' . DS . 'Command' . DS . 'Task',
+				'Console' . DS . 'Templates',
 				'Controller' . DS . 'Component',
 				'Lib',
-				'View' . DS . 'Helper',
+				'Locale' . DS . 'eng' . DS . 'LC_MESSAGES',
+				'Model' . DS . 'Behavior',
+				'Model' . DS . 'Datasource',
 				'Test' . DS . 'Case' . DS . 'Controller' . DS . 'Component',
-				'Test' . DS . 'Case' . DS . 'View' . DS . 'Helper',
+				'Test' . DS . 'Case' . DS . 'Lib',
 				'Test' . DS . 'Case' . DS . 'Model' . DS . 'Behavior',
+				'Test' . DS . 'Case' . DS . 'Model' . DS . 'Datasource',
+				'Test' . DS . 'Case' . DS . 'View' . DS . 'Helper',
 				'Test' . DS . 'Fixture',
-				'Vendor',
-				'webroot'
+				'View' . DS . 'Elements',
+				'View' . DS . 'Helper',
+				'View' . DS . 'Layout',
+				'webroot' . DS . 'css',
+				'webroot' . DS . 'js',
+				'webroot' . DS . 'img',
 			);
 
 			foreach ($directories as $directory) {
 				$dirPath = $this->path . $plugin . DS . $directory;
 				$Folder->create($dirPath);
-				$File = new File($dirPath . DS . 'empty', true);
+				new File($dirPath . DS . 'empty', true);
 			}
 
 			foreach ($Folder->messages() as $message) {
@@ -145,15 +150,17 @@ class PluginTask extends AppShell {
 			$controllerFileName = $plugin . 'AppController.php';
 
 			$out = "<?php\n\n";
+			$out .= "App::uses('AppController', 'Controller');\n\n";
 			$out .= "class {$plugin}AppController extends AppController {\n\n";
-			$out .= "}\n\n";
+			$out .= "}\n";
 			$this->createFile($this->path . $plugin . DS . 'Controller' . DS . $controllerFileName, $out);
 
 			$modelFileName = $plugin . 'AppModel.php';
 
 			$out = "<?php\n\n";
+			$out .= "App::uses('AppModel', 'Model');\n\n";
 			$out .= "class {$plugin}AppModel extends AppModel {\n\n";
-			$out .= "}\n\n";
+			$out .= "}\n";
 			$this->createFile($this->path . $plugin . DS . 'Model' . DS . $modelFileName, $out);
 
 			$this->_modifyBootstrap($plugin);
@@ -184,16 +191,18 @@ class PluginTask extends AppShell {
 /**
  * find and change $this->path to the user selection
  *
- * @param array $pathOptions
+ * @param array $pathOptions The list of paths to look in.
  * @return void
  */
 	public function findPath($pathOptions) {
 		$valid = false;
 		foreach ($pathOptions as $i => $path) {
 			if (!is_dir($path)) {
-				array_splice($pathOptions, $i, 1);
+				unset($pathOptions[$i]);
 			}
 		}
+		$pathOptions = array_values($pathOptions);
+
 		$max = count($pathOptions);
 		while (!$valid) {
 			foreach ($pathOptions as $i => $option) {
@@ -201,7 +210,7 @@ class PluginTask extends AppShell {
 			}
 			$prompt = __d('cake_console', 'Choose a plugin path from the paths above.');
 			$choice = $this->in($prompt, null, 1);
-			if (intval($choice) > 0 && intval($choice) <= $max) {
+			if ((int)$choice > 0 && (int)$choice <= $max) {
 				$valid = true;
 			}
 		}
@@ -209,18 +218,21 @@ class PluginTask extends AppShell {
 	}
 
 /**
- * get the option parser for the plugin task
+ * Gets the option parser instance and configures it.
  *
- * @return void
+ * @return ConsoleOptionParser
  */
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
-		return $parser->description(__d('cake_console',
-			'Create the directory structure, AppModel and AppController classes for a new plugin. ' .
-			'Can create plugins in any of your bootstrapped plugin paths.'
-		))->addArgument('name', array(
+
+		$parser->description(
+			__d('cake_console',	'Create the directory structure, AppModel and AppController classes for a new plugin. ' .
+			'Can create plugins in any of your bootstrapped plugin paths.')
+		)->addArgument('name', array(
 			'help' => __d('cake_console', 'CamelCased name of the plugin to create.')
 		));
+
+		return $parser;
 	}
 
 }

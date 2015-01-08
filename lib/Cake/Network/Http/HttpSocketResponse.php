@@ -2,18 +2,17 @@
 /**
  * HTTP Response from HttpSocket.
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 2.0.0
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
@@ -54,7 +53,7 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * Response code
  *
- * @var integer
+ * @var int
  */
 	public $code = 0;
 
@@ -83,7 +82,7 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * Constructor
  *
- * @param string $message
+ * @param string $message Message to parse.
  */
 	public function __construct($message = null) {
 		if ($message !== null) {
@@ -103,8 +102,8 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * Get header in case insensitive
  *
- * @param string $name Header name
- * @param array $headers
+ * @param string $name Header name.
+ * @param array $headers Headers to format.
  * @return mixed String if header exists or null
  */
 	public function getHeader($name, $headers = null) {
@@ -125,19 +124,19 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * If return is 200 (OK)
  *
- * @return boolean
+ * @return bool
  */
 	public function isOk() {
-		return $this->code == 200;
+		return in_array($this->code, array(200, 201, 202, 203, 204, 205, 206));
 	}
 
 /**
  * If return is a valid 3xx (Redirection)
  *
- * @return boolean
+ * @return bool
  */
 	public function isRedirect() {
-		return in_array($this->code, array(301, 302, 303, 307)) && !is_null($this->getHeader('Location'));
+		return in_array($this->code, array(301, 302, 303, 307)) && $this->getHeader('Location') !== null;
 	}
 
 /**
@@ -160,10 +159,12 @@ class HttpSocketResponse implements ArrayAccess {
 		$this->raw = $message;
 		$this->body = (string)substr($message, strlen($match[0]));
 
-		if (preg_match("/(.+) ([0-9]{3}) (.+)\r\n/DU", $statusLine, $match)) {
+		if (preg_match("/(.+) ([0-9]{3})(?:\s+(\w.+))?\s*\r\n/DU", $statusLine, $match)) {
 			$this->httpVersion = $match[1];
 			$this->code = $match[2];
-			$this->reasonPhrase = $match[3];
+			if (isset($match[3])) {
+				$this->reasonPhrase = $match[3];
+			}
 		}
 
 		$this->headers = $this->_parseHeader($header);
@@ -185,7 +186,7 @@ class HttpSocketResponse implements ArrayAccess {
  * 'body' and 'header' or false on failure.
  *
  * @param string $body A string containing the body to decode.
- * @param string|boolean $encoding Can be false in case no encoding is being used, or a string representing the encoding.
+ * @param string|bool $encoding Can be false in case no encoding is being used, or a string representing the encoding.
  * @return mixed Array of response headers and body or false.
  */
 	protected function _decodeBody($body, $encoding = 'chunked') {
@@ -220,35 +221,29 @@ class HttpSocketResponse implements ArrayAccess {
 		$chunkLength = null;
 
 		while ($chunkLength !== 0) {
-			if (!preg_match('/^([0-9a-f]+) *(?:;(.+)=(.+))?(?:\r\n|\n)/iU', $body, $match)) {
-				throw new SocketException(__d('cake_dev', 'HttpSocket::_decodeChunkedBody - Could not parse malformed chunk.'));
+			if (!preg_match('/^([0-9a-f]+)[ ]*(?:;(.+)=(.+))?(?:\r\n|\n)/iU', $body, $match)) {
+				// Handle remaining invalid data as one big chunk.
+				preg_match('/^(.*?)\r\n/', $body, $invalidMatch);
+				$length = isset($invalidMatch[1]) ? strlen($invalidMatch[1]) : 0;
+				$match = array(
+					0 => '',
+					1 => dechex($length)
+				);
 			}
-
 			$chunkSize = 0;
 			$hexLength = 0;
-			$chunkExtensionName = '';
-			$chunkExtensionValue = '';
 			if (isset($match[0])) {
 				$chunkSize = $match[0];
 			}
 			if (isset($match[1])) {
 				$hexLength = $match[1];
 			}
-			if (isset($match[2])) {
-				$chunkExtensionName = $match[2];
-			}
-			if (isset($match[3])) {
-				$chunkExtensionValue = $match[3];
-			}
 
-			$body = substr($body, strlen($chunkSize));
 			$chunkLength = hexdec($hexLength);
-			$chunk = substr($body, 0, $chunkLength);
-			if (!empty($chunkExtensionName)) {
-				// @todo See if there are popular chunk extensions we should implement
-			}
-			$decodedBody .= $chunk;
-			if ($chunkLength !== 0) {
+			$body = substr($body, strlen($chunkSize));
+
+			$decodedBody .= substr($body, 0, $chunkLength);
+			if ($chunkLength) {
 				$body = substr($body, $chunkLength + strlen("\r\n"));
 			}
 		}
@@ -298,7 +293,6 @@ class HttpSocketResponse implements ArrayAccess {
  *
  * @param array $header Header array containing one ore more 'Set-Cookie' headers.
  * @return mixed Either false on no cookies, or an array of cookies received.
- * @todo Make this 100% RFC 2965 confirm
  */
 	public function parseCookies($header) {
 		$cookieHeader = $this->getHeader('Set-Cookie', $header);
@@ -338,10 +332,9 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * Unescapes a given $token according to RFC 2616 (HTTP 1.1 specs)
  *
- * @param string $token Token to unescape
- * @param array $chars
+ * @param string $token Token to unescape.
+ * @param array $chars Characters to unescape.
  * @return string Unescaped token
- * @todo Test $chars parameter
  */
 	protected function _unescapeToken($token, $chars = null) {
 		$regex = '/"([' . implode('', $this->_tokenEscapeChars(true, $chars)) . '])"/';
@@ -352,10 +345,9 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * Gets escape chars according to RFC 2616 (HTTP 1.1 specs).
  *
- * @param boolean $hex true to get them as HEX values, false otherwise
- * @param array $chars
+ * @param bool $hex True to get them as HEX values, false otherwise.
+ * @param array $chars Characters to uescape.
  * @return array Escape chars
- * @todo Test $chars parameter
  */
 	protected function _tokenEscapeChars($hex = true, $chars = null) {
 		if (!empty($chars)) {
@@ -380,8 +372,8 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * ArrayAccess - Offset Exists
  *
- * @param string $offset
- * @return boolean
+ * @param string $offset Offset to check.
+ * @return bool
  */
 	public function offsetExists($offset) {
 		return in_array($offset, array('raw', 'status', 'header', 'body', 'cookies'));
@@ -390,7 +382,7 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * ArrayAccess - Offset Get
  *
- * @param string $offset
+ * @param string $offset Offset to get.
  * @return mixed
  */
 	public function offsetGet($offset) {
@@ -427,8 +419,8 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * ArrayAccess - Offset Set
  *
- * @param string $offset
- * @param mixed $value
+ * @param string $offset Offset to set.
+ * @param mixed $value Value.
  * @return void
  */
 	public function offsetSet($offset, $value) {
@@ -437,7 +429,7 @@ class HttpSocketResponse implements ArrayAccess {
 /**
  * ArrayAccess - Offset Unset
  *
- * @param string $offset
+ * @param string $offset Offset to unset.
  * @return void
  */
 	public function offsetUnset($offset) {

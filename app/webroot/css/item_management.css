@@ -4,6 +4,24 @@ ul {
 ul li {
 	display: inline-block;
 }
+h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+    line-height: 1;
+}
+h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+    line-height: 1;
+}
+h1, h2, h3, h4, h5, h6, p, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6, p, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
 .clearfix:after {
     clear: both;
     content: ".";
@@ -12,6 +30,15 @@ ul li {
     visibility: hidden;
 }
 
+body {
+    background-color: #f0f0f0;
+}
+
+a {
+    color: #217fbe;
+    outline: medium none;
+    text-decoration: none;
+}
 h2.heading {
     color: #333;
     font-size: 27px;
@@ -25,6 +52,12 @@ h2.heading {
     position: relative;
     margin: 50px auto 0;
     width: 780px;
+}
+img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
 }
 
 #select_item {
@@ -70,7 +103,7 @@ h2.heading {
 }
 
 .list_items .title .sz_xs, #news .list_news .title .sz_xs {
-    width: 60px;
+    width: 75px;
 }
 .list_items .title dd, #news .list_news .title dd, .list_items .lists dd, #news .list_news .lists dd {
     display: inline-block;
@@ -102,4 +135,137 @@ h2.heading {
     height: 15px;
     text-indent: -9999px;
     width: 30px;
+}
+
+
+.list_items .items .move, #news .list_news .items .move {
+    cursor: move;
+}
+.list_items .items .lists, #news .list_news .items .lists {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #ccc;
+    float: right;
+    height: 62px;
+    padding: 13px 0 0 10px;
+    position: relative;
+    width: 730px;
+}
+
+.list_items .items .lists dd.sz_xs, #news .list_news .items .lists dd.sz_xs {
+    width: 50px;
+}
+.list_items .title dd, #news .list_news .title dd, .list_items .lists dd, #news .list_news .lists dd {
+    display: inline-block;
+    letter-spacing: normal;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+.list_items .sz_xs, #news .list_news .sz_xs {
+    width: 50px;
+}
+.list_items .tc, #news .list_news .tc {
+    text-align: center;
+}
+.list_items .sz_l, #news .list_news .sz_l {
+    width: 340px;
+}
+.list_items .sz_s, #news .list_news .sz_s {
+    width: 100px;
+}
+.list_items .tr, #news .list_news .tr {
+    text-align: right;
+}
+
+.switch {
+    height: 25px;
+    position: relative;
+    width: 80px;
+}
+
+.list_items .status, #news .list_news .status {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 26px;
+    text-align: center;
+    width: 80px;
+}
+.switch .status {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 26px;
+    text-align: center;
+    width: 80px;
+}
+.switch .active, .switch .deactive {
+    background: url("/img/main_page/btn_status.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    cursor: pointer;
+    height: 25px;
+    left: 0;
+    line-height: 25px;
+    position: absolute;
+    text-align: left;
+    text-indent: 1em;
+    top: 0;
+    width: 80px;
+}
+
+.list_items .items .move .switch .grip, #news .list_news .items .move .switch .grip {
+    left: 57px;
+}
+.switch .grip {
+    background: url("/img/main_page/btn_grip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 25px;
+    left: 2px;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    z-index: 100;
+}
+
+.list_items .items .navi, #news .list_news .items .navi {
+    width: 26px;
+}
+.list_items .navi, #news .list_news .navi {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+}
+
+.list_items .items .navi .navi_delete a, #news .list_news .items .navi .navi_delete a, .list_items .items .navi .navi_edit a, #news .list_news .items .navi .navi_edit a {
+    background: url("/img/main_page/btn_mini.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 0;
+    line-height: 2em;
+    overflow: hidden;
+    padding-top: 25px;
+    width: 26px;
+}
+
+.list_items .items .navi .navi_edit a, #news .list_news .items .navi .navi_edit a {
+    background-position: 0 -25px;
+}
+
+.list_items .items .navi .navi_share .navi_share_btn, #news .list_news .items .navi .navi_share .navi_share_btn {
+    background: url("/img/main_page/btn_mini.png") no-repeat scroll -26px -50px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 0;
+    line-height: 2em;
+    overflow: hidden;
+    padding-top: 25px;
+    width: 26px;
+}
+
+.list_items .items, #news .list_news .items {
+    height: 100px;
+}
+.switch .deactive {
+    background: url("/img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    text-indent: 1em;
 }

@@ -40,8 +40,7 @@
 		</li>
 	</ul>
 	<ul id="social">
-		<li class="tw">Twitter</li>
-		<li class="fb">Facebook</li>
+		<div class="addthis_native_toolbox"></div>
 	</ul>
 	<address>Copyright© 2015 Leverages, Inc All Rights Reserved</address>
 </div>

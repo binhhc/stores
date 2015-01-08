@@ -17,6 +17,25 @@ class StoresController extends AppController {
 	}
     
     /**
+     * Save store layout
+     *
+     * @author Nguyen Hoang
+     * @since 2015-01-08
+     *
+     * @return void
+     */
+	public function save() {
+        $this->autoRender = false;
+        if($this->request->is('ajax')){
+            $data = $this->request->input('json_decode', true);
+           
+            echo 'Vào file edit_store.js dòng 8307 để đóng alert này ';
+             pr($data);
+        }
+		
+	}
+    
+    /**
      * Load items
      *
      * @author Nguyen Hoang

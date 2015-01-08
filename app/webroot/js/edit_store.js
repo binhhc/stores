@@ -8283,7 +8283,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         _.isFunction(v) || (data[k] = v)
                     });
                     var d = data;
-                    $scope.styles.logo || (d.logo = null), $http.post("/store_style", {
+                    $scope.styles.logo || (d.logo = null), $http.post("/stores/save", {
                         authenticity_token: AUTH_TOKEN,
                         store: {
                             name: d.name,
@@ -8303,8 +8303,11 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                                 store_text_color: d.text_color.store
                             }
                         }
-                    }).success(function() {
-                        $(window).off("beforeunload"), location.href = "/"
+                    }).success(function(data, status, headers, config) {
+                        alert(data);
+                        //$(window).off("beforeunload"), location.href = "/"
+                    }).error(function(data, status, headers, config) {
+                        alert('errot' + data);
                     })
                 }
             }

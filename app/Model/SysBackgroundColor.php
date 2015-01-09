@@ -1,0 +1,10 @@
+<?php
+/**
+ * Description of SysBackgroundColor
+ *
+ * @author sangpm
+ */
+App::uses('AppModel', 'Model');
+class SysBackgroundColor extends AppModel{
+    //put your code here
+}

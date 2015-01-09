@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 class StoresController extends AppController {
-
+    public $components = array('Store');
 	public $uses = array();
 
     /**
@@ -46,6 +46,9 @@ class StoresController extends AppController {
 	public function items($status = '') {
         $this->autoRender = false;
         $this->response->type('json');
+        
+        //Lay data từ DB => Fields nào cần thêm PM Sang thêm vào DB cho
+        //$items = ClassRegistry::init('UserItem')->getItemByUserIdWithQuantity($this->Store->getUserId());
         
         $items = array();
         $item = array(
@@ -92,35 +95,37 @@ class StoresController extends AppController {
 	public function styles() {
         $this->autoRender = false;
         $this->response->type('json');
-        $style = array(
-            'name' => 'hoangnn001',
-            'store_font' => array
-            (
-                'style' => "'Allerta', sans-serif",
-                'type' => 'google',
-                'weight' => '400',
-                'size' => '54',
-            ),
-            'layout' => 'layout_a',
-            'background' => array
-            (
-                'color' => '#fff',
-                'repeat' => '',
-                'image' => '',
-            ),
-            'text_color' => array
-            (
-                'item' => '#000',
-                'store' => '#000'
-            ),
-            'display' => array
-            (
-                'frame' => 1,
-                'item' => 1
-            ),
-            'shipping_fee' => 0,
-            'logo' => ''
-        );
+        $style = Configure::read('sys.store_style');
+        $style['name']  =  'hoangnn001';  
+//                array(
+//            'name' => 'hoangnn001',
+//            'store_font' => array
+//            (
+//                'style' => "'Allerta', sans-serif",
+//                'type' => 'google',
+//                'weight' => '400',
+//                'size' => '54',
+//            ),
+//            'layout' => 'layout_a',
+//            'background' => array
+//            (
+//                'color' => '#fff',
+//                'repeat' => '',
+//                'image' => '',
+//            ),
+//            'text_color' => array
+//            (
+//                'item' => '#000',
+//                'store' => '#000'
+//            ),
+//            'display' => array
+//            (
+//                'frame' => 1,
+//                'item' => 1
+//            ),
+//            'shipping_fee' => 0,
+//            'logo' => ''
+//        );
         
 		if($this->request->is('ajax')){
             $json = json_encode($style);
@@ -139,16 +144,19 @@ class StoresController extends AppController {
 	public function categories() {
         $this->autoRender = false;
         $this->response->type('json');
-        $categories = array(
-            array(
-                'id' => 1,
-                'name' => 'Điện máy'
-            ),
-            array(
-                'id' => 2,
-                'name' => 'Thời trang'
-            )
-        );
+        
+        $categories = ClassRegistry::init('UserCategory')->getAllByUserId($this->Store->getUserId());
+                
+//        $categories = array(
+//            array(
+//                'id' => 1,
+//                'name' => 'Điện máy'
+//            ),
+//            array(
+//                'id' => 2,
+//                'name' => 'Thời trang'
+//            )
+//        );
         
 		if($this->request->is('ajax')){
             $json = json_encode($categories);

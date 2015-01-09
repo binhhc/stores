@@ -136,3 +136,33 @@ Configure::write('sys.fonts', array(
     'Rye',
     'Vast+Shadow',
 ));
+
+Configure::write('sys.store_style', array(
+            'name' => '',
+            'store_font' => array
+            (
+                'style' => "'Allerta', sans-serif",
+                'type' => 'google',
+                'weight' => '400',
+                'size' => '54',
+            ),
+            'layout' => 'layout_a',
+            'background' => array
+            (
+                'color' => '#fff',
+                'repeat' => '',
+                'image' => '',
+            ),
+            'text_color' => array
+            (
+                'item' => '#000',
+                'store' => '#000'
+            ),
+            'display' => array
+            (
+                'frame' => 1,
+                'item' => 1
+            ),
+            'shipping_fee' => 0,
+            'logo' => ''
+));

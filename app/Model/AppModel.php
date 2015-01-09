@@ -30,4 +30,55 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    public $actsAs  = array('Basic');
+    public function getFullFields(){
+        return array();
+    }
+    
+    
+    /**
+     * add modified information before udpate.
+     *
+     *
+     * @author          save logical fields.
+     * @since           2015/01/09
+     * @modified by     
+     * @modified date   
+     */
+    public function updateAll($fields, $conditions = true) {
+        $userId = 1;
+//        if (class_exists('AuthComponent')) {
+//            $userId = AuthComponent::user('staff_cd') ? AuthComponent::user('staff_cd') : 'SYSTEM';
+//        }
+        $fields['modified_date'] = 'NOW()';
+        $fields['modified_by'] = "'{$userId}'";
+    
+        return parent::updateAll($fields, $conditions);
+    }    
+    
+    /**
+     * save logical fields.
+     *
+     *
+     * @author  Sang PM
+     * @since   2015/01/09
+     */
+    public function beforeSave($options = array()) {
+        $userId = 1;
+//        if (class_exists('AuthComponent')) {
+//            $userId = AuthComponent::user('staff_cd') ? AuthComponent::user('staff_cd') : 'SYSTEM';
+//        }
+    
+        $currentTime = $this->getDataSource()->expression('NOW()');
+    
+        if( $this->exists() ){
+            $this->data[$this->alias]['modified'] = $currentTime;
+            $this->data[$this->alias]['modified_user'] = $userId;
+        } else {
+            $this->data[$this->alias]['created'] = $currentTime;
+            $this->data[$this->alias]['created_user'] = $userId;
+        }
+    }
+    
 }
+

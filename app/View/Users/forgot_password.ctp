@@ -14,7 +14,7 @@
             <div class="box">
                 <?php echo $this->Form->create('User', array('controller'=>'Users', 'action'=>'forgotPassword')) ?>
                     <dl class="set">
-                        <dt>Please enter the email address you have registered</dt>
+                        <dt>登録したメールアドレスを入力してください</dt>
                         <dd>
                             <?php echo $this->Form->input('email', array('div'=>false, 'label'=>false)) ?>
                         </dd>

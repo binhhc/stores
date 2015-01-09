@@ -1,7 +1,7 @@
 .body-login{
     background-color: #475665;
     margin: 0px;
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
 }
 
 .sign_up {
@@ -10,20 +10,30 @@
     padding: 90px 0;
 }
 
+.sign_up h1 {
+    padding: 20px 0 35px;
+    text-align: center;
+    line-height: 1;
+    font-size: 13px;
+    margin: 0;
+}
+
 .sign_up h1 img{
     width: 200px;
     height: auto;
 }
 
-.sign_up h1 {
-    padding: 20px 0 35px;
-    text-align: center;
+.sign_up p {
+    line-height: 1.5;
+    margin: 0;
 }
 
 .sign_up dt {
     font-size: 16px;
     font-weight: normal;
     margin-bottom: 15px;
+    line-height: 1;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
 }
 
 .sign_up dd {
@@ -49,7 +59,7 @@
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    width: 370px;
+    width: 380px;
     height: 45px;
     border: none;
     padding: 0 5px;
@@ -82,10 +92,6 @@
     padding-top: 10px;
 }
 
-.sign_up p {
-    line-height: 1.5;
-}
-
 .sign_up .button {
     border: none;
     margin: 0;
@@ -94,6 +100,7 @@
     outline: none;
     cursor: pointer;
 }
+
 
 .sign_up .social_login .btn_facebook a:hover {
     background-color:#526da9;
@@ -110,6 +117,7 @@
     margin: 23px auto 0 auto;
     padding-top: 25px;
     background: url("../img/login/line_dark.png") repeat-x top left;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
 }
 
 .sign_up .social_login .btn_facebook a {
@@ -124,6 +132,7 @@
     color:#fff;
     text-align:center;
     line-height:52px;
+    text-decoration: none;
 }
 
 .sign_up .social_login .btn_facebook a:hover {
@@ -132,19 +141,26 @@
 }
 
 .sign_up .link {
-    margin-top: 30px;
-    text-align: center;
+    margin-top:30px;
+    text-align:center;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
 }
 
 .sign_up .link li a {
-    color: #d2d5d9;
+    color:#d2d5d9;
 }
 
 .sign_up ul {
     list-style: none;
 }
 
+
+
+
 /* responsive */
+
+
+
 
 @media screen and (max-width: 1024px) {
     .sign_up {
@@ -176,6 +192,10 @@
         color:#d2d5d9;
         margin-bottom:15px;
         padding:0 10px;
+    }
+
+    .sign_up dd {
+        margin-bottom: 20px;
     }
 
     .sign_up .box {
@@ -330,23 +350,6 @@
         color:#d2d5d9;
     }
 
-    .sign_up .cancel a {
-        -moz-border-radius:50px;
-        -webkit-border-radius:50px;
-        border-radius:50px;
-        display:block;
-        width:100px;
-        background-color:#596775;
-        color:#d2d5d9;
-        text-align:center;
-        margin:30px auto 0;
-        padding:8px 40px;
-    }
-
-    .sign_up .cancel a:hover {
-        background-color:#536170;
-        text-decoration:none;
-    }
 
     .sign_up .finish {
         text-align:left;
@@ -516,7 +519,7 @@
         width:100%;
         height:44px;
         padding-left:30px;
-        /*background:url("../img/login/icon_fb.png") no-repeat 45px center transparent;*/
+        background:url("../img/login/icon_fb.png") no-repeat 45px center #39579a;
         background-size:11px auto;
         font-size:16px;
         font-weight:700;

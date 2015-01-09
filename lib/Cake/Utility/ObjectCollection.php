@@ -1,24 +1,25 @@
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
- * Deals with Collections of objects.  Keeping registries of those objects,
+ * Deals with Collections of objects. Keeping registries of those objects,
  * loading and constructing new objects and triggering callbacks. Each subclass needs
  * to implement its own load() functionality.
  *
  * All core subclasses of ObjectCollection by convention loaded objects are stored
- * in `$this->_loaded`. Enabled objects are stored in `$this->_enabled`.  In addition
- * the all support an `enabled` option that controls the enabled/disabled state of the object
+ * in `$this->_loaded`. Enabled objects are stored in `$this->_enabled`. In addition,
+ * they all support an `enabled` option that controls the enabled/disabled state of the object
  * when loaded.
  *
  * @package       Cake.Utility
@@ -61,7 +62,7 @@ abstract class ObjectCollection {
 
 /**
  * Trigger a callback method on every object in the collection.
- * Used to trigger methods on objects in the collection.  Will fire the methods in the
+ * Used to trigger methods on objects in the collection. Will fire the methods in the
  * order they were attached.
  *
  * ### Options
@@ -70,7 +71,7 @@ abstract class ObjectCollection {
  *    Can either be a scalar value, or an array of values to break on. Defaults to `false`.
  *
  * - `break` Set to true to enabled breaking. When a trigger is broken, the last returned value
- *    will be returned.  If used in combination with `collectReturn` the collected results will be returned.
+ *    will be returned. If used in combination with `collectReturn` the collected results will be returned.
  *    Defaults to `false`.
  *
  * - `collectReturn` Set to true to collect the return of each object into an array.
@@ -81,8 +82,7 @@ abstract class ObjectCollection {
  *    Any non-null value will modify the parameter index indicated.
  *    Defaults to false.
  *
- *
- * @param string $callback|CakeEvent Method to fire on all the objects. Its assumed all the objects implement
+ * @param string|CakeEvent $callback Method to fire on all the objects. Its assumed all the objects implement
  *   the method you are calling. If an instance of CakeEvent is provided, then then Event name will parsed to
  *   get the callback name. This is done by getting the last word after any dot in the event name
  *   (eg. `Model.afterSave` event will trigger the `afterSave` callback)
@@ -112,14 +112,11 @@ abstract class ObjectCollection {
 			$parts = explode('.', $event->name());
 			$callback = array_pop($parts);
 		}
-		$options = array_merge(
-			array(
-				'break' => false,
-				'breakOn' => false,
-				'collectReturn' => false,
-				'modParams' => false
-			),
-			$options
+		$options += array(
+			'break' => false,
+			'breakOn' => false,
+			'collectReturn' => false,
+			'modParams' => false
 		);
 		$collected = array();
 		$list = array_keys($this->_enabled);
@@ -132,8 +129,7 @@ abstract class ObjectCollection {
 			if ($options['collectReturn'] === true) {
 				$collected[] = $result;
 			}
-			if (
-				$options['break'] && ($result === $options['breakOn'] ||
+			if ($options['break'] && ($result === $options['breakOn'] ||
 				(is_array($options['breakOn']) && in_array($result, $options['breakOn'], true)))
 			) {
 				return $result;
@@ -164,7 +160,7 @@ abstract class ObjectCollection {
  * Provide isset access to _loaded
  *
  * @param string $name Name of object being checked.
- * @return boolean
+ * @return bool
  */
 	public function __isset($name) {
 		return isset($this->_loaded[$name]);
@@ -174,7 +170,7 @@ abstract class ObjectCollection {
  * Enables callbacks on an object or array of objects
  *
  * @param string|array $name CamelCased name of the object(s) to enable (string or array)
- * @param boolean Prioritize enabled list after enabling object(s)
+ * @param bool $prioritize Prioritize enabled list after enabling object(s)
  * @return void
  */
 	public function enable($name, $prioritize = true) {
@@ -215,7 +211,7 @@ abstract class ObjectCollection {
  * @param string|array $name CamelCased name of the object(s) to enable (string or array)
  * 	If string the second param $priority is used else it should be an associative array
  * 	with keys as object names and values as priorities to set.
- * @param integer|null Integer priority to set or null for default
+ * @param int|null $priority Integer priority to set or null for default
  * @return void
  */
 	public function setPriority($name, $priority = null) {
@@ -224,7 +220,7 @@ abstract class ObjectCollection {
 		}
 		foreach ($name as $object => $objectPriority) {
 			if (isset($this->_loaded[$object])) {
-				if (is_null($objectPriority)) {
+				if ($objectPriority === null) {
 					$objectPriority = $this->defaultPriority;
 				}
 				$this->_loaded[$object]->settings['priority'] = $objectPriority;
@@ -237,7 +233,7 @@ abstract class ObjectCollection {
 	}
 
 /**
- * Disables callbacks on a object or array of objects.  Public object methods are still
+ * Disables callbacks on an object or array of objects. Public object methods are still
  * callable as normal.
  *
  * @param string|array $name CamelCased name of the objects(s) to disable (string or array)
@@ -252,7 +248,7 @@ abstract class ObjectCollection {
 /**
  * Gets the list of currently-enabled objects, or, the current status of a single objects
  *
- * @param string $name Optional.  The name of the object to check the status of.  If omitted,
+ * @param string $name Optional. The name of the object to check the status of. If omitted,
  *   returns an array of currently-enabled object
  * @return mixed If $name is specified, returns the boolean status of the corresponding object.
  *   Otherwise, returns an array of all enabled objects.
@@ -267,12 +263,25 @@ abstract class ObjectCollection {
 /**
  * Gets the list of attached objects, or, whether the given object is attached
  *
- * @param string $name Optional.  The name of the behavior to check the status of.  If omitted,
- *   returns an array of currently-attached behaviors
- * @return mixed If $name is specified, returns the boolean status of the corresponding behavior.
- *    Otherwise, returns an array of all attached behaviors.
+ * @param string $name Optional. The name of the object to check the status of. If omitted,
+ *   returns an array of currently-attached objects
+ * @return mixed If $name is specified, returns the boolean status of the corresponding object.
+ *    Otherwise, returns an array of all attached objects.
+ * @deprecated 3.0.0 Will be removed in 3.0. Use loaded instead.
  */
 	public function attached($name = null) {
+		return $this->loaded($name);
+	}
+
+/**
+ * Gets the list of loaded objects, or, whether the given object is loaded
+ *
+ * @param string $name Optional. The name of the object to check the status of. If omitted,
+ *   returns an array of currently-loaded objects
+ * @return mixed If $name is specified, returns the boolean status of the corresponding object.
+ *    Otherwise, returns an array of all loaded objects.
+ */
+	public function loaded($name = null) {
 		if (!empty($name)) {
 			return isset($this->_loaded[$name]);
 		}

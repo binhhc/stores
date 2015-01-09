@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php echo $this->Html->css(array('login', 'bootstrap.min')); ?>
+        <?php echo $this->Html->css(array('bootstrap.min', 'login')); ?>
     </head>
     <body class="body-login">
         <div class="sign_up">
@@ -13,11 +13,11 @@
             <div class="box">
                 <?php echo $this->Form->create('User', array('Controller' => 'Users', 'action' => 'login')) ?>
                     <dl class="set">
-                        <dt>Email</dt>
+                        <dt>メールアドレス</dt>
                         <dd>
                             <?php echo $this->Form->input('email', array('div' => false, 'label' => false)) ?>
                         </dd>
-                        <dt>Password</dt>
+                        <dt>パスワード</dt>
                         <dd>
                             <?php echo $this->Form->input('password', array('div' => false, 'label' => false, 'type' => 'password')) ?>
                         </dd>
@@ -33,8 +33,10 @@
                     </div>
                 <?php echo $this->Form->end() ?>
             </div>
-            <ul class="link">
-                <li><a href="#">ストアを開設する場合はこちら</a></li>
+            <ul class="link" style="padding-left:0px">
+                <li>
+                    <a href="#">ストアを開設する場合はこちら</a>
+                </li>
                 <li>
                     <?php echo $this->Html->link('Forgot password', array('controller' => 'Users', 'action' => 'forgotPassword')) ?>
                 </li>

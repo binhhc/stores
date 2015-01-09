@@ -4,6 +4,9 @@ ul {
 ul li {
 	display: inline-block;
 }
+ul li img {
+    vertical-align: middle;
+}
 h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
     line-height: 1;
 }
@@ -267,5 +270,337 @@ img {
 }
 .switch .deactive {
     background: url("/img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
-    text-indent: 1em;
+    text-indent: 2em;
+}
+
+.box_wht {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 40px;
+    padding: 0 10px;
+}
+
+.form_basic .cols {
+    background: url("/img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
+    letter-spacing: -0.35em;
+    padding: 25px 20px;
+}
+.no_border {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.form_basic .cols dt {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: normal;
+    line-height: 150%;
+    vertical-align: middle;
+    width: 220px;
+}
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: middle;
+}
+.form_basic .cols dd {
+    line-height: 150%;
+    width: auto;
+}
+.form_basic .cols ul, .form_basic .cols x:-moz-any-link {
+    letter-spacing: -0.3em;
+}
+.form_basic .cols li {
+    line-height: 150%;
+    padding-right: 10px;
+}
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: middle;
+}
+.form_basic .big {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 200%;
+}
+
+.btn_low_m a {
+    background: url("/img/main_page/btn_bg_grey_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 140px;
+}
+.store_content.form_basic .btn_domain {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    display: block;
+    margin-top: 20px;
+    padding: 15px 50px;
+    position: relative;
+    text-align: center;
+}
+
+.store_content.form_basic .btn_domain .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.store_content.form_basic .btn_domain .text {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.store_content.form_basic .btn_domain a {
+    background-image: url("/img/main_page/btn_bg_blue_domain.png");
+    margin: 0 auto;
+    width: 200px;
+}
+.btn_high_m a {
+    background: url("/img/main_page/btn_bg_blue_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 140px;
+}
+
+.form_basic .cols {
+    background: url("/img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
+    letter-spacing: -0.35em;
+    padding: 25px 20px;
+}
+
+.btn_ribbon {
+    position: relative;
+}
+.form_basic .cols dd.horizon p {
+    display: inline-block;
+    letter-spacing: normal;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+.btn_high_l a {
+    background: url("/img/main_page/btn_bg_blue_l.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    text-align: left;
+    text-decoration: none;
+    width: 170px;
+}
+.ribbon {
+    position: absolute;
+    right: 9px;
+    top: -1px;
+}
+#sipping_title {
+    display: block;
+    float: left;
+    padding-top: 5px;
+}
+#sipping_contents {
+    display: block;
+    margin-left: 220px;
+}
+#shipping_select #shipping_fix, #over_age #shipping_fix {
+    float: left;
+    padding: 25px 0;
+    position: relative;
+}
+#shipping_select .box_wht, #over_age .box_wht {
+    background-color: #e9e9e9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: 15px 0 15px 15px;
+    width: 460px;
+}
+
+.form_basic .cols input[type="text"], .form_basic .cols input[type="password"] {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5px;
+}
+.form_basic .sz_s {
+    width: 120px;
+}
+#shipping_select ul.shipping_free_wrapper, #over_age ul.shipping_free_wrapper {
+    height: 44px;
+    margin: 1.5em 0;
+}
+
+#sipping_contents .styled_checkbox {
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+.styled_checkbox {
+    display: block;
+    height: 20px;
+    position: relative;
+    width: 20px;
+}
+
+.styled_checkbox input {
+    -moz-appearance: none;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+#shipping_select dl.btn_pair, #over_age dl.btn_pair {
+    margin: 0;
+    padding: 0 !important;
+}
+.form_basic .btn_pair {
+    padding-top: 25px;
+}
+.btn_pair {
+    clear: both;
+    letter-spacing: -0.35em;
+    margin: 0 auto;
+    width: 361px;
+}
+
+#shipping_select dl.btn_pair dd, #over_age dl.btn_pair dd {
+    padding: 0 10px 0 0;
+}
+
+.btn_low button {
+    background: url("/img/main_page/btn_bg_grey.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 15px;
+    height: 40px;
+    text-decoration: none;
+    vertical-align: text-top;
+    width: 160px;
+}
+button {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+}
+
+.btn_high button {
+    background: url("/img/main_page/btn_bg_blue.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 15px;
+    height: 40px;
+    text-decoration: none;
+    vertical-align: text-top;
+    width: 160px;
+}
+#modal-win {
+    position: absolute;
+    width: 100%;
+}
+#modal-bg {
+    background: url("/img/main_page/fancybox_overlay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+#modal-win-inner {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+    z-index: 101;
+}
+.modal_slide {
+    height: 530px;
+    padding: 30px 20px;
+    text-align: center;
+    width: 500px;
+}
+.modal_contents {
+    display: none;
+}
+.modal_slide .modal_title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.modal_slide .modal_text {
+    font-size: 14px;
+    line-height: 180%;
+    margin-top: 10px;
+}
+.modal_slide .modal_note {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+.modal_contents .modal_nav {
+    text-align: left;
+}
+.modal_contents .modal_nav .modal_nav_next, .modal_contents .modal_nav .modal_nav_back {
+    height: 31px;
+    position: absolute;
+    right: 15px;
+    width: 16px;
+}
+.modal_slide .modal_nav_next, .modal_slide .modal_contents .modal_nav .modal_nav_back, .modal_contents .modal_nav .modal_slide .modal_nav_back, .modal_slide .modal_nav_back {
+    top: 258px;
+}
+.modal_slide .modal_footer {
+    bottom: 30px;
+    left: 120px;
+    position: absolute;
+}
+.btn_high_big a {
+    background: url("/img/main_page/btn_bg_blue_big.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    width: 300px;
+}
+.modal_contents .modal_page {
+    margin-top: 20px;
+}
+.modal_contents .modal_page li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.modal_contents .btn_modal_close {
+    position: absolute;
+    right: -15px;
+    top: -15px;
 }

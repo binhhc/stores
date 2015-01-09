@@ -112,3 +112,27 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+Configure::write('sys.fonts', array(
+    'Allerta',
+    'Montserrat:700',
+    'Oswald:700',
+    'Radley',
+    'Lora',
+    'Marko+One',
+    'Arvo:700',
+    'Limelight',
+    'Lobster',
+    'Monoton',
+    'Codystar',
+    'Ribeye+Marrow',
+    'Special+Elite',
+    'Rock+Salt',
+    'Permanent+Marker',
+    'Great+Vibes',
+    'Quicksand:700',
+    'Play',
+    'Fugaz+One',
+    'Rye',
+    'Vast+Shadow',
+));

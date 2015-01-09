@@ -24,27 +24,12 @@
     };
     //]]>
 </script>
-<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Radley' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Marko+One' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Arvo:700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Limelight' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Ribeye+Marrow' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Vast+Shadow' rel='stylesheet' type='text/css'>
+<?php 
+$fonts = Configure::read('sys.fonts');
+foreach($fonts as $font){
+?>
+    <link href='http://fonts.googleapis.com/css?family=<?php echo $font?>' rel='stylesheet' type='text/css'>
+<?php }?>
 <style rel="stylesheet" id="dynamic_font_css"></style>
 <style rel="stylesheet" id="select_font_css"></style>
 </head>

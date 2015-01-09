@@ -137,6 +137,7 @@ Configure::write('sys.fonts', array(
     'Vast+Shadow',
 ));
 
+
 /**
  * Social Network Types
  */
@@ -156,3 +157,34 @@ define('OPENSOCIAL_ERR_MISSING_CREDENTIALS', 4);
 define('OPENSOCIAL_ERR_AUTH_FAILED', 5);
 define('OPENSOCIAL_ERR_USER_IGNORED', 6);
 define('OPENSOCIAL_ERR_CONNECTION', 7);
+
+Configure::write('sys.store_style', array(
+            'name' => '',
+            'store_font' => array
+            (
+                'style' => "'Allerta', sans-serif",
+                'type' => 'google',
+                'weight' => '400',
+                'size' => '54',
+            ),
+            'layout' => 'layout_a',
+            'background' => array
+            (
+                'color' => '#fff',
+                'repeat' => '',
+                'image' => '',
+            ),
+            'text_color' => array
+            (
+                'item' => '#000',
+                'store' => '#000'
+            ),
+            'display' => array
+            (
+                'frame' => 1,
+                'item' => 1
+            ),
+            'shipping_fee' => 0,
+            'logo' => ''
+));
+

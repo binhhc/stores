@@ -15,7 +15,7 @@ class StoresController extends AppController {
 	public function edit() {
 		$this->layout = 'store_edit';
 	}
-    
+
     /**
      * Save store layout
      *
@@ -28,13 +28,13 @@ class StoresController extends AppController {
         $this->autoRender = false;
         if($this->request->is('ajax')){
             $data = $this->request->input('json_decode', true);
-           
+
             echo 'Vào file edit_store.js dòng 8307 để đóng alert này ';
              pr($data);
         }
-		
+
 	}
-    
+
     /**
      * Load items
      *
@@ -46,7 +46,7 @@ class StoresController extends AppController {
 	public function items($status = '') {
         $this->autoRender = false;
         $this->response->type('json');
-        
+
         $items = array();
         $item = array(
             'id' => '54ade2be86b1889a7900144f',
@@ -72,16 +72,16 @@ class StoresController extends AppController {
 
             ),
             'sticker' => ''
-            
+
         );
         $items[] = $item;
-        
+
 		if($this->request->is('ajax')){
             $json = json_encode($items);
             $this->response->body($json);
         }
 	}
-    
+
     /**
      * Load user style
      *
@@ -121,14 +121,14 @@ class StoresController extends AppController {
             'shipping_fee' => 0,
             'logo' => ''
         );
-        
+
 		if($this->request->is('ajax')){
             $json = json_encode($style);
             $this->response->body($json);
         }
-    
+
     }
-    
+
     /**
      * Load user categories
      *
@@ -149,13 +149,13 @@ class StoresController extends AppController {
                 'name' => 'Thời trang'
             )
         );
-        
+
 		if($this->request->is('ajax')){
             $json = json_encode($categories);
             $this->response->body($json);
         }
     }
-    
+
     /**
      * Load user about
      *
@@ -167,13 +167,13 @@ class StoresController extends AppController {
         $this->autoRender = false;
         $this->response->type('json');
         $about = '';
-        
+
 		if($this->request->is('ajax')){
             $json = json_encode($about);
             $this->response->body($json);
         }
     }
-    
+
      /**
      * Upload temp image
      *
@@ -184,12 +184,12 @@ class StoresController extends AppController {
 	public function upload_image() {
         $this->autoRender = false;
         if(!empty($_FILES['image'])){
-            
+
             $file_name = time();
             $dir = APP . WEBROOT_DIR . DS . '_temp_files' . DS . $file_name.'.jpeg';
             move_uploaded_file($_FILES['image']['tmp_name'], $dir);
             $size = getimagesize($dir);
-            
+
             $logo = array(
                 'name' => $file_name.'.jpeg',
                 'src' => '/_temp_files/'.$file_name,
@@ -199,5 +199,29 @@ class StoresController extends AppController {
             );
             echo json_encode($logo);
         }
+    }
+    /**
+     * Store setting
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_setting() {
+    	$this->layout = false;
+    }
+ 	/**
+     * Set payment method for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function payment_method() {
+    	$this->layout = false;
+    }
+	/**
+     * Set payment method for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_url() {
+    	$this->layout = false;
     }
 }

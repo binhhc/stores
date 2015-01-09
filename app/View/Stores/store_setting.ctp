@@ -14,7 +14,7 @@
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
-								<a ng-href="#!/url" href="#!/url">Thay đổi</a>
+								<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_url")); ?>">Thay đổi</a>
 							</p>
 						</li>
 					</ul>
@@ -24,7 +24,7 @@
 						</p>
 						<p class="text">Với URL ngắn gọn và dễ nhớ, dễ quảng bá bán hàng</p>
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">
-							<a href="#!/domain">Sử dụng tên miền của tôi</a>
+							<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "setting_domain")); ?>">Sử dụng tên miền của tôi</a>
 						</p>
 
 					</div>
@@ -60,13 +60,13 @@
 				<dt>Mô tả cửa hàng</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasAbout">
-						<a ng-href="#!/about" href="#!/about">Đăng ký</a>
+						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a ng-href="#!/about" href="#!/about">Chỉnh sửa</a>
+						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Chỉnh sửa</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a ng-click="destroy_about()" href="">Xoá</a>
+						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Xoá</a>
 					</p>
 					<p class="memo" ng-show="showProfileSettingAlert()" style="display: none;">Cảm ơn bạn đã đăng ký</p>
 				</dd>
@@ -75,13 +75,13 @@
 				<dt>Những chú thích về luật thương mại cụ thể</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasTokushoho">
-						<a ng-href="#!/tokushoho" href="#!/tokushoho">Đăng ký</a>
+						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a ng-href="#!/tokushoho" href="#!/tokushoho">Chỉnh sửa</a>
+						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Chỉnh sửa</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a ng-click="destroy_tokushoho()" href="">Xoá</a>
+						<a  href="">Xoá</a>
 					</p>
 				</dd>
 			</dl>
@@ -89,7 +89,7 @@
 				<dt>Thiết lập các phương thức thanh toán</dt>
 				<dd class="horizon">
 					<p class="btn_low_m">
-						<a ng-href="#!/store/payment_method" href="#!/store/payment_method">Chỉnh sửa</a>
+						<a href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'payment_method')); ?>">Chỉnh sửa</a>
 					</p>
 				</dd>
 			</dl>
@@ -450,6 +450,9 @@
 			$('#modal-win-inner').hide();
 			$('.modal_slide').hide();
 			$(modal).show();
+		});
+		$('a.modal-close').on('click', function(){
+			$('#modal-win').hide();
 		});
 	});
 </script>

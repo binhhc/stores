@@ -208,4 +208,52 @@ class StoresController extends AppController {
             echo json_encode($logo);
         }
     }
+    /**
+     * Store setting
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_setting() {
+    	$this->layout = false;
+    }
+ 	/**
+     * Set payment method for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function payment_method() {
+    	$this->layout = false;
+    }
+	/**
+     * Set url for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_url() {
+    	$this->layout = false;
+    }
+	/**
+     * Set domain for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function setting_domain() {
+    	$this->layout = false;
+    }
+	/**
+     * About stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_about() {
+    	$this->layout = false;
+    }
+	/**
+     * About commercial law
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function commercial_law() {
+    	$this->layout = false;
+    }
 }

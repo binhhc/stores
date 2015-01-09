@@ -10,9 +10,7 @@ class MainController extends AppController {
     public function item_management() {
         $this->layout = false;
     }
-    public function store_setting() {
-    	$this->layout = false;
-    }
+
 
 
 }

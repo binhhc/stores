@@ -50,7 +50,7 @@
 				<dt>Publish</dt>
 				<dd>
 					<div id="switch_open" class="switch" ng-click="toggle_closed()">
-						<p class="status active hide" ng-hide="closed" style="display: none;">Publish</p>
+						<p class="status active hide" ng-hide="closed" style="display: block!important;">Publish</p>
 						<p class="status deactive hide" ng-show="closed">Riêng</p>
 						<p class="grip" style="left: 2px;"></p>
 					</div>
@@ -72,7 +72,7 @@
 				</dd>
 			</dl>
 			<dl class="cols">
-				<dt>Những chú thích về luật thương mại cụ thể</dt>
+				<dt>Luật giao dịch thương mại</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasTokushoho">
 						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Đăng ký</a>
@@ -86,7 +86,7 @@
 				</dd>
 			</dl>
 			<dl class="cols">
-				<dt>Thiết lập các phương thức thanh toán</dt>
+				<dt>Phương thức thanh toán</dt>
 				<dd class="horizon">
 					<p class="btn_low_m">
 						<a href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'payment_method')); ?>">Chỉnh sửa</a>
@@ -140,14 +140,14 @@
 				<dt>
 					Theo dõi
 					<span class="info">
-						<a class="modal" href="#follow_modal1">
+					<a class="modal" href="#follow_modal1">
 						<img alt="Information" src="/img/main_page/icon_help.png">
 					</a>
 					</span>
 				</dt>
 				<dd class="ng-scope" addon="follow" sp-grip="">
 					<div class="switch" ng-click="toggleAddon()">
-						<p class="status active" ng-show="isEnableAddon()">ON</p>
+						<p class="status active" ng-hide="closed" style="display: block!important;">ON</p>
 						<p class="status deactive" ng-hide="isEnableAddon()" style="display: none;">OFF</p>
 						<p class="grip" style="left: 57px;"></p>
 					</div>
@@ -166,16 +166,12 @@
 				<dd>
 					<ul>
 						<li id="form_promotion">
-							<a class="modal" ng-click="promotion_click()" href="#promotion_modal1">
 								<div class="switch" ng-hide="promotion_config" style="">
 									<p class="status active" ng-show="promotion" style="display: none;">ON</p>
 									<p class="status deactive" ng-hide="promotion" style="">OFF</p>
 									<p class="grip" style="left: 2px;"></p>
 								</div>
-							</a>
-						<div class="switch" ng-show="promotion_config" ng-click="toggle_promotion()" style="display: none;">
 						</li>
-						<li ng-show="promotion" style="font-size: 12px; display: none;">
 					</ul>
 				</dd>
 			</dl>

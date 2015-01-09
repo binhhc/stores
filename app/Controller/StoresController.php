@@ -206,7 +206,7 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function store_setting() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
  	/**
      * Set payment method for stores
@@ -214,7 +214,7 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function payment_method() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
 	/**
      * Set url for stores
@@ -222,7 +222,7 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function store_url() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
 	/**
      * Set domain for stores
@@ -230,7 +230,7 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function setting_domain() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
 	/**
      * About stores
@@ -238,7 +238,7 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function store_about() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
 	/**
      * About commercial law
@@ -246,6 +246,6 @@ class StoresController extends AppController {
      * @since 2015-01-09
      */
   	public function commercial_law() {
-    	$this->layout = false;
+    	$this->layout = 'layout';
     }
 }

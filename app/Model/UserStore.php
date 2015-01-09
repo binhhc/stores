@@ -6,5 +6,19 @@
  */
 App::uses('AppModel', 'Model');
 class UserStore extends AppModel{
-    //put your code here
+    /**
+    * Defined list fields
+    *
+    * @author       SangPM
+    * @create date  2015/01/09
+    */
+    public function getFullFields(){
+        return array(
+            'UserStore.id',
+            'UserStore.user_id',
+            'UserStore.domain',
+            'UserStore.public_flg',
+            'UserStore.settings',           
+        );
+    }
 }

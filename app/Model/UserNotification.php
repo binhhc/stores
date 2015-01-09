@@ -6,5 +6,17 @@
  */
 App::uses('AppModel', 'Model');
 class UserNotification extends AppModel{
-    //put your code here
+    /**
+    * Defined list fields
+    *
+    * @author       SangPM
+    * @create date  2015/01/09
+    */
+    public function getFullFields(){
+        return array(
+            'UserNotification.id',
+            'UserNotification.user_id',
+            'UserNotification.mail_notify',                 
+        );
+    }
 }

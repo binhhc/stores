@@ -217,11 +217,35 @@ class StoresController extends AppController {
     	$this->layout = false;
     }
 	/**
-     * Set payment method for stores
+     * Set url for stores
      * @author OanhHa
      * @since 2015-01-09
      */
   	public function store_url() {
+    	$this->layout = false;
+    }
+	/**
+     * Set domain for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function setting_domain() {
+    	$this->layout = false;
+    }
+	/**
+     * About stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_about() {
+    	$this->layout = false;
+    }
+	/**
+     * About
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+  	public function store_about() {
     	$this->layout = false;
     }
 }

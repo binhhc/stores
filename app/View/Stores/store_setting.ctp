@@ -75,13 +75,13 @@
 				<dt>Những chú thích về luật thương mại cụ thể</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasTokushoho">
-						<a ng-href="#!/tokushoho" href="#!/tokushoho">Đăng ký</a>
+						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a ng-href="#!/tokushoho" href="#!/tokushoho">Chỉnh sửa</a>
+						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Chỉnh sửa</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a ng-click="destroy_tokushoho()" href="">Xoá</a>
+						<a  href="">Xoá</a>
 					</p>
 				</dd>
 			</dl>
@@ -89,7 +89,7 @@
 				<dt>Thiết lập các phương thức thanh toán</dt>
 				<dd class="horizon">
 					<p class="btn_low_m">
-						<a ng-href="#!/store/payment_method" href="#!/store/payment_method">Chỉnh sửa</a>
+						<a href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'payment_method')); ?>">Chỉnh sửa</a>
 					</p>
 				</dd>
 			</dl>

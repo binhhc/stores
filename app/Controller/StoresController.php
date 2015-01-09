@@ -241,11 +241,11 @@ class StoresController extends AppController {
     	$this->layout = false;
     }
 	/**
-     * About
+     * About commercial law
      * @author OanhHa
      * @since 2015-01-09
      */
-  	public function store_about() {
+  	public function commercial_law() {
     	$this->layout = false;
     }
 }

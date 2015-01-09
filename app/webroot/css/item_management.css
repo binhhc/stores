@@ -784,3 +784,15 @@ p.error {
 .form_basic.form_multi ul {
 	width: 385px;
 }
+.form_basic .cols_single {
+    padding: 0 20px 20px;
+}
+.form_basic .cols_single textarea {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: 70px;
+    line-height: 1.6em;
+    padding: 5px;
+    width: 718px;
+}

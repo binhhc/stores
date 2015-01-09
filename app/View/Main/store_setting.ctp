@@ -182,7 +182,7 @@
 	</dl>
 </div>
 <div id="dummy_modal" class="ng-scope">
-	<div id="modal-win" style="top: 622px;">
+	<div id="modal-win" style="top: 622px; display: none">
 		<div id="modal-bg" style="opacity: 1;"></div>
 		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
 			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
@@ -214,35 +214,214 @@
 					</li>
 				</ul>
 				<div class="modal_footer">
-				<p class="btn_high_big" ng-hide="promotion" style="">
-				<a class="modal-close" ng-click="toggle_promotion()" ng-hide="promotion" style="" href="#">プロモーション機能をONにする</a>
-				</p>
-				<ul class="modal_page">
-				<li>
-				<a class="modal-move" href="#promotion_modal1">
-				<img alt="1" src="/img/main_page/btn_modal_on.png">
-				</a>
-				</li>
-				<li>
-				<a class="modal-move" href="#promotion_modal2">
-				<img alt="2" src="/img/main_page/btn_modal_off.png">
-				</a>
-				</li>
-				<li>
-				<a class="modal-move" href="#promotion_modal3">
-				<img alt="3" src="/img/main_page/btn_modal_off.png">
-				</a>
-				</li>
-				</ul>
+					<p class="btn_high_big" ng-hide="promotion" style="">
+						<a class="modal-close" ng-click="toggle_promotion()" ng-hide="promotion" style="" href="#">プロモーション機能をONにする</a>
+					</p>
+					<ul class="modal_page">
+						<li>
+							<a class="modal-move" href="#promotion_modal1">
+								<img alt="1" src="/img/main_page/btn_modal_on.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal2">
+								<img alt="2" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal3">
+								<img alt="3" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+					</ul>
 				</div>
 				<p class="btn_modal_close">
-				<a class="modal-close" href="#">
-				<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
-				</a>
+					<a class="modal-close" href="#">
+						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+					</a>
+				</p>
+			</div>
+		</div>
+
+		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
+			<div id="promotion_modal2" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+				<p class="modal_title">提携メディア一覧</p>
+				<p style="padding-bottom:10px;">以下のメディアに商品が掲載されます。提携メディアは随時増える予定です。</p>
+				<div ng-hide="data.via == 'toranoana'">
+					<p class="promotion_logo_special">
+						<a target="_blank" href="http://market.zozo.jp/">
+							<img height="26" alt="ZOZOMARKET" src="/img/main_page/store_setting/logo_zozomarket.png">
+						</a>
+						<a target="_blank" href="http://market.pass-the-baton.com/">
+							<img height="26" alt="PASS THE BATON MARKET" src="/img/main_page/store_setting/logo_passthebaton.png">
+						</a>
+					</p>
+					<p class="promotion_logo_special">
+						<a target="_blank" href="http://market.stores.jp/yuzawaya">
+							<img height="26" style="padding:10px 10px 0 0;" alt="ユザワヤマーケット" src="/img/main_page/store_setting//logo_yuzawaya.png">
+						</a>
+						<a target="_blank" href="http://exmarket.exblog.jp">
+							<img height="40" alt="エキサイトブログマーケット" src="/img/main_page/store_setting/logo_exblog.png">
+						</a>
+					</p>
+					<p class="promotion_logo_special">
+						<a target="_blank" href="http://market.village-v.co.jp/">
+							<img width="270" style="padding:0 10px 0 0;" alt="ヴィレッジヴァンガードマーケット" src="/img/main_page/store_setting/logo_village.png">
+						</a>
+						<a target="_blank" href="http://www.mbok.jp">
+							<img height="26" alt="モバオク" src="/img/main_page/store_setting/logo_mbok.png">
+						</a>
+					</p>
+					<table id="promotion_logo" align="center">
+						<tbody>
+							<tr>
+								<td>
+									<a target="_blank" href="http://www.itempost.jp/">
+										<img alt="アイテムポスト" src="/img/main_page/tore_setting/logo_itempost.png">
+									</a>
+								</td>
+								<td>
+									<a target="_blank" href="http://ecnavi.jp/">
+										<img alt="ECナビ" src="/img/main_page/store_setting/logo_ecnavi.png">
+									</a>
+								</td>
+								<td>
+									<a target="_blank" href="http://market.amifa.jp/">
+										<img alt="アミファ" src="/img/main_page/store_setting/logo_amifa.png">
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a target="_blank" href="https://www.valuecommerce.ne.jp/index.cfm">
+										<img alt="バリューコマース" src="/img/main_page/store_setting/logo_valuecommerce.png">
+									</a>
+									</td>
+									<td>
+										<a target="_blank" href="http://www.coneco.net/">
+											<img alt="コネコネット" src="/img/main_page/store_setting/logo_coneco.png">
+										</a>
+									</td>
+									<td>
+										<a target="_blank" href="http://park.jp/">
+											<img alt="パーク" src="/img/main_page/store_setting/logo_park.png">
+										</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="modal_note">
+				※掲載にお時間を頂く場合があります。また、商品により掲載が出来ない場合があります。
+				<br>
+				※販売に至った場合のみ、手数料が10%発生します。（ユザワヤマーケットは除く）
+				<br>
+				※
+				<a target="_blank" href="/dashboard#!/faq/promotion">よくある質問はこちら</a>
+				をご覧ください。
+				</p>
+				<ul class="modal_nav">
+					<li class="modal_nav_next">
+						<a class="modal-move" href="#promotion_modal2">
+							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+						</a>
+					</li>
+				</ul>
+				<div class="modal_footer">
+					<p class="btn_high_big" ng-hide="promotion" style="">
+						<a class="modal-close" ng-click="toggle_promotion()" ng-hide="promotion" style="" href="#">プロモーション機能をONにする</a>
+					</p>
+					<ul class="modal_page">
+						<li>
+							<a class="modal-move" href="#promotion_modal1">
+								<img alt="1" src="/img/main_page/btn_modal_on.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal2">
+								<img alt="2" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal3">
+								<img alt="3" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+					</ul>
+				</div>
+				<p class="btn_modal_close">
+					<a class="modal-close" href="#">
+						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+					</a>
+				</p>
+			</div>
+		</div>
+
+		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
+			<div id="promotion_modal3" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+				<p class="modal_title">費用について</p>
+				<p class="modal_image">
+				<img alt="料金" src="/img/main_page/image_fee.png">
+				</p>
+				<div class="modal_text">
+				<p>
+				プロモーション機能を経由して、提携メディアに商品が掲載され
+				<br>
+				販売に至った場合のみ、販売手数料として販売価格の10%を
+				<br>
+				お支払い頂くかたちとなります。（ユザワヤマーケットは除く）
+				</p>
+				<p>
+				もちろん、ストアオーナー様ご自身で集客した注文による
+				<br>
+				手数料は一切発生いたしません。
+				</p>
+				</div>
+				<p class="modal_note">
+				※掲載にお時間を頂く場合があります。また、商品により掲載が出来ない場合があります。
+				<br>
+				※
+				<a target="_blank" href="/dashboard#!/faq/promotion">よくある質問はこちら</a>
+				をご覧ください。
+				</p>
+				<ul class="modal_nav">
+					<li class="modal_nav_next">
+						<a class="modal-move" href="#promotion_modal2">
+							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+						</a>
+					</li>
+				</ul>
+				<div class="modal_footer">
+					<p class="btn_high_big" ng-hide="promotion" style="">
+						<a class="modal-close" ng-click="toggle_promotion()" ng-hide="promotion" style="" href="#">プロモーション機能をONにする</a>
+					</p>
+					<ul class="modal_page">
+						<li>
+							<a class="modal-move" href="#promotion_modal1">
+								<img alt="1" src="/img/main_page/btn_modal_on.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal2">
+								<img alt="2" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+						<li>
+							<a class="modal-move" href="#promotion_modal3">
+								<img alt="3" src="/img/main_page/btn_modal_off.png">
+							</a>
+						</li>
+					</ul>
+				</div>
+				<p class="btn_modal_close">
+					<a class="modal-close" href="#">
+						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+					</a>
 				</p>
 			</div>
 		</div>
 	</div>
+
 </div>
 <script>
 	$(document).ready(function(){
@@ -257,5 +436,9 @@
 		$('button.cancel_button').on('click', function(){
 			$('#shipping_select').hide();
 		})
+		$('#form_promotion').on('click', function(){
+			$('#modal-win').show();
+
+		});
 	});
 </script>

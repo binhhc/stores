@@ -125,14 +125,14 @@
     -webkit-border-radius:3px;
     border-radius:3px;
     display:block;
-    width:380px;
+    /*width:360px;*/
+    height:50px;
     padding-left:20px;
     background:url("../img/login/icon_fb.png") no-repeat 90px center #39579a;
     font-size:18px;
     color:#fff;
     text-align:center;
     line-height:52px;
-    text-decoration: none;
 }
 
 .sign_up .social_login .btn_facebook a:hover {
@@ -140,10 +140,16 @@
     text-decoration:none;
 }
 
-.sign_up .link {
-    margin-top:30px;
+.sign_up .link { /* local */
+    padding-left:0px;
+    margin-top:27px;
     text-align:center;
+    font-size: 13px;
     font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+}
+
+.sign_up .link li{
+    margin-bottom:10px;
 }
 
 .sign_up .link li a {
@@ -155,11 +161,7 @@
 }
 
 
-
-
 /* responsive */
-
-
 
 
 @media screen and (max-width: 1024px) {

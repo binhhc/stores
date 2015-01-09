@@ -71,10 +71,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
+		'host' => '192.168.1.220',
+		'login' => 'release',
+		'password' => 'release',
+		'database' => 'release_stores_vn',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

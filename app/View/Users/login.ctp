@@ -24,7 +24,7 @@
                     </dl>
 
                     <p class="btn_submit inner_s top">
-                        <button type="submit">ログイン</button>
+                        <button type="submit" style="padding-top:0px">ログイン</button>
                          <!-- <?php //echo $this->Form->submit('Login', array('div' => false)) ?> -->
                     </p>
 
@@ -33,12 +33,12 @@
                     </div>
                 <?php echo $this->Form->end() ?>
             </div>
-            <ul class="link" style="padding-left:0px">
+            <ul class="link">
                 <li>
                     <a href="#">ストアを開設する場合はこちら</a>
                 </li>
                 <li>
-                    <?php echo $this->Html->link('Forgot password', array('controller' => 'Users', 'action' => 'forgotPassword')) ?>
+                    <?php echo $this->Html->link('パスワードを忘れた場合はこちら', array('controller' => 'Users', 'action' => 'forgotPassword')) ?>
                 </li>
             </ul>
         </div>

@@ -69,7 +69,7 @@
 	      }
 	      var slider = new Slider($('.slide_wrap'),$('.slide_navi'));
 	      slider.init();
-	      var slider2 = new Slider($('.slide_interviews_wrap'),$('.slide_interviews_navi'));
+	      var slider2 = new Slider($('#modal-win'),$('.modal_nav_next'));
 	      slider2.init();
-	      $('[data-toggle="tooltip"]').tooltip();
+	      //$('[data-toggle="tooltip"]').tooltip();
 	});

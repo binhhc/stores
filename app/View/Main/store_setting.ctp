@@ -1,5 +1,6 @@
 <?php echo $this->Html->css(array('item_management')); ?>
 <?php echo $this->Html->script(array('jquery.min.js'))?>
+<?php echo $this->Html->script(array('main_page'))?>
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">
@@ -185,7 +186,7 @@
 	<div id="modal-win" style="top: 622px; display: none">
 		<div id="modal-bg" style="opacity: 1;"></div>
 		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
-			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+			<div id="promotion_modal" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">Những chức năng khuyến mãi</p>
 				<p class="modal_image">
 					<img alt="" src="/img/main_page/image_switch.png">
@@ -243,8 +244,8 @@
 			</div>
 		</div>
 
-		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
-			<div id="promotion_modal2" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+		<div id="modal-win-inner" >
+			<div id="promotion_modal2" class="modal_slide ng-scope modal_contents" style="display: none; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">提携メディア一覧</p>
 				<p style="padding-bottom:10px;">以下のメディアに商品が掲載されます。提携メディアは随時増える予定です。</p>
 				<div ng-hide="data.via == 'toranoana'">
@@ -322,8 +323,13 @@
 				</p>
 				<ul class="modal_nav">
 					<li class="modal_nav_next">
-						<a class="modal-move" href="#promotion_modal2">
+						<a class="modal-move" href="#promotion_modal3">
 							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+						</a>
+					</li>
+					<li class="modal_nav_back">
+						<a class="modal-move" href="#promotion_modal1">
+							<img alt="戻る" src="/img/main_page/btn_modal_back.png">
 						</a>
 					</li>
 				</ul>
@@ -334,12 +340,12 @@
 					<ul class="modal_page">
 						<li>
 							<a class="modal-move" href="#promotion_modal1">
-								<img alt="1" src="/img/main_page/btn_modal_on.png">
+								<img alt="1" src="/img/main_page/btn_modal_off.png">
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal2">
-								<img alt="2" src="/img/main_page/btn_modal_off.png">
+								<img alt="2" src="/img/main_page/btn_modal_on.png">
 							</a>
 						</li>
 						<li>
@@ -357,8 +363,8 @@
 			</div>
 		</div>
 
-		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
-			<div id="promotion_modal3" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+		<div id="modal-win-inner" >
+			<div id="promotion_modal3" class="modal_slide ng-scope modal_contents" style="display: none; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">費用について</p>
 				<p class="modal_image">
 				<img alt="料金" src="/img/main_page/image_fee.png">
@@ -385,9 +391,9 @@
 				をご覧ください。
 				</p>
 				<ul class="modal_nav">
-					<li class="modal_nav_next">
+					<li class="modal_nav_back">
 						<a class="modal-move" href="#promotion_modal2">
-							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+							<img alt="次へ" src="/img/main_page/btn_modal_back.png">
 						</a>
 					</li>
 				</ul>
@@ -398,7 +404,7 @@
 					<ul class="modal_page">
 						<li>
 							<a class="modal-move" href="#promotion_modal1">
-								<img alt="1" src="/img/main_page/btn_modal_on.png">
+								<img alt="1" src="/img/main_page/btn_modal_off.png">
 							</a>
 						</li>
 						<li>
@@ -408,7 +414,7 @@
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal3">
-								<img alt="3" src="/img/main_page/btn_modal_off.png">
+								<img alt="3" src="/img/main_page/btn_modal_on.png">
 							</a>
 						</li>
 					</ul>
@@ -438,7 +444,12 @@
 		})
 		$('#form_promotion').on('click', function(){
 			$('#modal-win').show();
-
+		});
+		$('a.modal-move').on('click', function() {
+			var modal = $(this).attr('href');
+			$('#modal-win-inner').hide();
+			$('.modal_slide').hide();
+			$(modal).show();
 		});
 	});
 </script>

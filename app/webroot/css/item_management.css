@@ -604,3 +604,13 @@ button {
     right: -15px;
     top: -15px;
 }
+
+.modal_contents .modal_nav .modal_nav_back {
+    left: 15px;
+}
+.modal_contents .modal_nav .modal_nav_next, .modal_contents .modal_nav .modal_nav_back {
+    height: 31px;
+    position: absolute;
+    right: 15px;
+    width: 16px;
+}

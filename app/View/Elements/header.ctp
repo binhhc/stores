@@ -6,6 +6,10 @@
       <ul class="nav">
         <li class="nav_design"><a href="/stores/54af378aef3377fa7f001697" title="Store design"></a></li>
         <li class="nav_items"><a href="#!/items" title="Items management"></a></li>
+        <li class="nav_store"><a href="#!/store" title="Store"></a></li>
+        <!-- TODO -->
+        <li class="nav_account"><a href="#!/account" title="Account"></a></li>
+        <li class="nav_faq"><a href="#!/faq" title="FAQ"></a></li>
       </ul>
       <!-- /Nav -->
     </div>

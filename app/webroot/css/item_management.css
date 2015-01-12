@@ -973,3 +973,19 @@ p.error {
 #header .nav .nav_faq {
     background: url("/img/main_page/icon_main_nav_faq.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
+
+.btn_low button:hover {
+    background-position: center bottom;
+}
+.btn_high button:hover {
+    background-position: center bottom;
+}
+.btn_high_m a:hover {
+    background-position: center bottom;
+}
+.btn_low_m a:hover {
+    background-position: center bottom;
+}
+.btn_high_l a:hover {
+    background-position: center bottom;
+}

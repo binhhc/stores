@@ -141,3 +141,8 @@
 		</dl>
 	</span>
 </div>
+<style>
+.switch .active, .switch .deactive {
+	text-indent: 1em!important;
+}
+</style>

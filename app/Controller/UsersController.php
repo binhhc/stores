@@ -16,22 +16,18 @@ class UsersController extends AppController {
     }
 
     public function accountSetting(){
-        
+        $this->layout = false;
     }
 
     public function forgotPassword() {
         $this->layout = false;
     }
 
-
-
     public function social($page = '') {
         //if no provided social network
         if (empty($page)) {
             return $this->redirect('/');
         }
-
-// echo $page;exit;
 
         $page = trim(strtolower($page));
         $sns_type = SOCIAL_TYPE_UNKNOWN;

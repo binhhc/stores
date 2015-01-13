@@ -11,5 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@showWelcome');
-Route::get('/main', 'MainController@main');
+Route::get('/welcome', 'HomeController@showWelcome');
+
+Route::get('/login', 'UserController@showLogin');
+Route::get('/doLogin', 'UserController@doLogin');
+
+Route::get('/forgetPassword', 'UserController@showForgetPassword');

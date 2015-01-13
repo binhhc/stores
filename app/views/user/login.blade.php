@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        {{HTML::style('css/bootstrap.min')}}
-        {{HTML::style('css/login')}}
+        {{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/login.css')}}
     </head>
     <body class="body-login">
         <div class="sign_up">
@@ -17,26 +17,23 @@
                     <dl class="set">
                         <dt>Email</dt>
                         <dd>
-                            {{Form::text('email', null, array('class' => 'form-control span6'))}}
+                            {{Form::text('email')}}
                             <font style="color:red;">{{ $errors->first('email') }}</font>
                         </dd>
-                        <dt>Password</dt>
+                        <dt>Mật khẩu</dt>
                         <dd>
-                            {{Form::password('password', array('class' => 'form-control span6'))}}
+                            {{Form::password('password')}}
                             <font style="color:red;">{{ $errors->first('password') }}</font>
                         </dd>
                     </dl>
 
                     <p class="btn_submit inner_s top">
-                        <button type="submit" style="padding-top:0px">Login</button>
+                        <button type="submit" style="padding-top:0px">Đăng nhập</button>
                          <!-- <?php //echo $this->Form->submit('Login', array('div' => false)) ?> -->
                     </p>
 
                     <div class="social_login">
                         <p class="btn_facebook">
-                            <!-- <a href="https://stores.jp/auth/facebook">Facebookログイン</a> -->
-
-                            ?>
                             {{HTML::link('/social', 'Facebook', array('class' => ''))}}
                         </p>
                     </div>
@@ -44,10 +41,10 @@
             </div>
             <ul class="link">
                 <li>
-                    <a href="#">ストアを開設する場合はこちら</a>
+                    <a href="#">Quay lại trang chủ</a>
                 </li>
                 <li>
-                    {{HTML::link('/forgetPassword', 'Forget password', array('class' => ''))}}
+                    {{HTML::link('/forgetPassword', 'Quên mật khẩu', array('class' => ''))}}
                 </li>
             </ul>
         </div>

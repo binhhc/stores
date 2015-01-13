@@ -2,28 +2,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <?php echo $this->Html->css(array('login', 'bootstrap.min')) ?>
+        {{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/login.css')}}
     </head>
     <body class="body-login">
         <div class="sign_up">
             <h1>
                 <a href="#">
-                    <?php echo $this->Html->image('login/logo_white.png', array('alt' => 'STORES.vn')) ?>
+                    {{HTML::image('img/login/logo_white.png', 'STORES.vn')}}
                 </a>
             </h1>
             <div class="box">
-                <?php echo $this->Form->create('User', array('controller'=>'Users', 'action'=>'forgotPassword')) ?>
+                {{Form::open(array('url' => 'forgotPassword', 'method' => 'post'))}}
                     <dl class="set">
-                        <dt>登録したメールアドレスを入力してください</dt>
+                        <dt>Vui lòng điền email bạn đã đăng kí</dt>
                         <dd>
-                            <?php echo $this->Form->input('email', array('div'=>false, 'label'=>false)) ?>
+                            {{Form::text('email')}}
                         </dd>
                     </dl>
                     <p class="btn_submit" ng-hide="pending">
-                        <button type="submit">Send email</button>
+                        <button type="submit">Gởi email</button>
                     </p>
                     <p class="btn_wait" ng-show="pending" style="display: none;">送信中</p>
-                </form>
+                {{Form::close()}}
 
                 <div class="finish" style="display: none;">
                     <h2>The password reset message confirms we have received</h2>
@@ -41,7 +42,7 @@
                     <dl class="set">
                         <dt>新しいパスワードを入力してください</dt>
                         <dd>
-                            <?php echo $this->Form->input('password', array('div'=>false, 'label'=>false)) ?>
+                            {{Form::password('password')}}
                         </dd>
                     </dl>
                     <p class="btn_submit" ng-hide="pending">

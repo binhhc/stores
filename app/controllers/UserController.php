@@ -20,18 +20,31 @@ class UserController extends BaseController {
     }
 
     /**
-     * Display the specified resource.
+     * Display login page.
      *
-     * @param  string $name Tag name
+     * @param  null
      * @return Response
+     * @author BinhHoang
      */
-    public function login(){
-        // $this->layout->content = false;
-        // echo 1;exit;
-
-        // $this->layout->content = View::make('user.login');
+    public function showLogin(){
         return View::make('user.login');
     }
+
+    /**
+     * Display login page.
+     *
+     * @param  null
+     * @return Response
+     */
+    public function doLogin(){
+        echo 1;exit;
+    }
+
+
+    public function showForgetPassword(){
+        return View::make('user.forgot_password');
+    }
+
 
 
 

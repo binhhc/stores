@@ -13,4 +13,7 @@
 
 Route::get('/welcome', 'HomeController@showWelcome');
 
-Route::get('/login', 'UserController@login');
+Route::get('/login', 'UserController@showLogin');
+Route::get('/doLogin', 'UserController@doLogin');
+
+Route::get('/forgetPassword', 'UserController@showForgetPassword');

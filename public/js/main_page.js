@@ -1,4 +1,11 @@
 	$(document).ready(function(){
+
+			$('#btn_menu').on('click', function(){
+	    	  if($('ul#mobile_nav').css('display') !== 'none')
+	    		  $('ul#mobile_nav').hide();
+	    	  else  $('ul#mobile_nav').show();
+	      });
+
 	      var Slider = function(trg,btn){
 	        this.$slide = trg;
 	        this.$control = btn;
@@ -69,6 +76,7 @@
 	      }
 	      var slider = new Slider($('.slide_wrap'),$('.slide_navi'));
 	      slider.init();
+
 	      var slider2 = new Slider($('#modal-win'),$('.modal_nav_next'));
 	      slider2.init();
 	      //$('[data-toggle="tooltip"]').tooltip();

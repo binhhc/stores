@@ -43,7 +43,7 @@
 					)
 				); ?>
 			</div>
-			<button class="btn_submit" ng-hide="status == 'pending'" type="submit">Đăng nhập</button>
+			<button class="btn_submit" ng-hide="status == 'pending'" type="submit">Tạo cửa hàng</button>
 			<p class="text">
 				<span>Hoặc</span>
 			</p>
@@ -248,6 +248,9 @@
 					  </ul>
 					</div>
 			    </div>
+			    <p class="sp_category_more">
+					<a href="/category">Phân loại</a>
+				</p>
 			</div>
 		</div>
 	</div>

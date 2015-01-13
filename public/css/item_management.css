@@ -653,7 +653,7 @@ button {
     z-index: 2;
 }
 .styled_checkbox span {
-    background: url("/img/main_page/checkbox_normal.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("/img/main_page/checkbox_normal_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     box-sizing: border-box;
     display: block;
     height: 100%;
@@ -672,7 +672,7 @@ button {
     vertical-align: middle;
 }
 .styled_checkbox span.checked-true {
-    background: url("/img/main_page/checkbox_checked.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("/img/main_page/checkbox_checked_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
 }
 
 #form_payment_method .payment_select .cash_on_delivery_option {

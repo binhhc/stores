@@ -13,7 +13,6 @@
                 </a>
             </h1>
             <div class="box">
-                <?php //echo $this->Form->create('User', array('Controller' => 'Users', 'action' => 'login')) ?>
                 {{Form::open(array('url' => 'login', 'method' => 'post'))}}
                     <dl class="set">
                         <dt>Email</dt>
@@ -36,10 +35,7 @@
                     <div class="social_login">
                         <p class="btn_facebook">
                             <!-- <a href="https://stores.jp/auth/facebook">Facebookログイン</a> -->
-                            <?php
-                               // $band = 'Facebook';
-                                //echo $this->Html->link('Facebook', array('controller' => 'Users', 'action' => 'social', $band), array('class' => '', 'escape' => false)
-                            );
+
                             ?>
                             {{HTML::link('/social', 'Facebook', array('class' => ''))}}
                         </p>

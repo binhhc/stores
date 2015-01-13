@@ -7,10 +7,10 @@
 			{{HTML::image('img/main_page/logo_gray.png')}}
 		</p>
 		<p id="btn_menu">
-			<img alt="メニュー" src="/img/main_page/btn_menu.png">
+            {{HTML::image('img/main_page/btn_menu.png')}}
 		</p>
 		<p class="login">
-			<a href="/login">Đăng nhập</a>
+			<a href="{{URL::asset('/login')}}">Đăng nhập</a>
 		</p>
 		<div class="header_social">
 			<div class="addthis_native_toolbox"></div>

@@ -82,7 +82,7 @@ img {
 }
 
 .btn_high a {
-    background: url("/img/main_page/btn_bg_blue.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_blue.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 15px;
@@ -100,7 +100,7 @@ img {
     padding-left: 50px;
 }
 .list_items .title, #news .list_news .title, .list_items .lists, #news .list_news .lists {
-    background: url("/img/main_page/border_dot.gif") repeat-x scroll center bottom rgba(0, 0, 0, 0);
+    background: url("../img/main_page/border_dot.gif") repeat-x scroll center bottom rgba(0, 0, 0, 0);
     letter-spacing: -0.35em;
     padding: 10px;
 }
@@ -127,11 +127,11 @@ img {
     cursor: default;
 }
 .list_items .items .sort .up, #news .list_news .items .sort .up {
-    background: url("/img/main_page/btn_sort_up.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_sort_up.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
 }
 
 .list_items .items .sort .down, #news .list_news .items .sort .down {
-    background: url("/img/main_page/btn_sort_down.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_sort_down.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
 }
 .list_items .items .sort li, #news .list_news .items .sort li {
     cursor: pointer;
@@ -204,7 +204,7 @@ img {
     width: 80px;
 }
 .switch .active, .switch .deactive {
-    background: url("/img/main_page/btn_status.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_status.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     cursor: pointer;
     height: 25px;
@@ -221,7 +221,7 @@ img {
     left: 57px;
 }
 .switch .grip {
-    background: url("/img/main_page/btn_grip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_grip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     cursor: pointer;
     height: 25px;
     left: 2px;
@@ -242,7 +242,7 @@ img {
 }
 
 .list_items .items .navi .navi_delete a, #news .list_news .items .navi .navi_delete a, .list_items .items .navi .navi_edit a, #news .list_news .items .navi .navi_edit a {
-    background: url("/img/main_page/btn_mini.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_mini.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     display: block;
     height: 0;
     line-height: 2em;
@@ -256,7 +256,7 @@ img {
 }
 
 .list_items .items .navi .navi_share .navi_share_btn, #news .list_news .items .navi .navi_share .navi_share_btn {
-    background: url("/img/main_page/btn_mini.png") no-repeat scroll -26px -50px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_mini.png") no-repeat scroll -26px -50px rgba(0, 0, 0, 0);
     cursor: pointer;
     height: 0;
     line-height: 2em;
@@ -269,7 +269,7 @@ img {
     height: 100px;
 }
 .switch .deactive {
-    background: url("/img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
     text-indent: 2em;
 }
 
@@ -281,7 +281,7 @@ img {
 }
 
 .form_basic .cols {
-    background: url("/img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
     letter-spacing: -0.35em;
     padding: 25px 20px;
 }
@@ -326,7 +326,7 @@ img {
 }
 
 .btn_low_m a {
-    background: url("/img/main_page/btn_bg_grey_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_grey_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 15px;
@@ -359,12 +359,12 @@ img {
 }
 
 .store_content.form_basic .btn_domain a {
-    background-image: url("/img/main_page/btn_bg_blue_domain.png");
+    background-image: url("../img/main_page/btn_bg_blue_domain.png");
     margin: 0 auto;
     width: 200px;
 }
 .btn_high_m a {
-    background: url("/img/main_page/btn_bg_blue_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_blue_m.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 15px;
@@ -376,7 +376,7 @@ img {
 }
 
 .form_basic .cols {
-    background: url("/img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
     letter-spacing: -0.35em;
     padding: 25px 20px;
 }
@@ -392,7 +392,7 @@ img {
 }
 
 .btn_high_l a {
-    background: url("/img/main_page/btn_bg_blue_l.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_blue_l.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 15px;
@@ -491,7 +491,7 @@ img {
 }
 
 .btn_low button {
-    background: url("/img/main_page/btn_bg_grey.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_grey.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     font-size: 15px;
     height: 40px;
@@ -509,7 +509,7 @@ button {
 }
 
 .btn_high button {
-    background: url("/img/main_page/btn_bg_blue.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_blue.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     font-size: 15px;
     height: 40px;
@@ -522,7 +522,7 @@ button {
     width: 100%;
 }
 #modal-bg {
-    background: url("/img/main_page/fancybox_overlay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: url("../img/main_page/fancybox_overlay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     cursor: pointer;
     height: 100%;
     left: 0;
@@ -582,7 +582,7 @@ button {
     position: absolute;
 }
 .btn_high_big a {
-    background: url("/img/main_page/btn_bg_blue_big.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_blue_big.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 15px;
@@ -653,7 +653,7 @@ button {
     z-index: 2;
 }
 .styled_checkbox span {
-    background: url("/img/main_page/checkbox_normal_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/checkbox_normal_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     box-sizing: border-box;
     display: block;
     height: 100%;
@@ -672,7 +672,7 @@ button {
     vertical-align: middle;
 }
 .styled_checkbox span.checked-true {
-    background: url("/img/main_page/checkbox_checked_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/checkbox_checked_min.png") no-repeat scroll left center rgba(0, 0, 0, 0);
 }
 
 #form_payment_method .payment_select .cash_on_delivery_option {
@@ -725,7 +725,7 @@ p.error {
 
 
 .border_top {
-    background: url("/img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
 }
 
 .wrapper.domain p.main_image {
@@ -799,7 +799,7 @@ p.error {
 
 
 #footer {
-    background: url("/img/main_page/bg_footer.gif") repeat-x scroll center top #2e3740;
+    background: url("../img/main_page/bg_footer.gif") repeat-x scroll center top #2e3740;
     clear: both;
     height: 300px;
     margin-top: 60px;
@@ -818,7 +818,7 @@ p.error {
 
 
 #footer .referral_banner a, #footer .support_banner a {
-    background: url("/img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #f90;
+    background: url("../img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #f90;
     border-radius: 5px;
     color: #fff;
     display: block;
@@ -832,7 +832,7 @@ p.error {
     text-decoration: none;
 }
 #footer .support_banner a {
-    background: url("/img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #0569af;
+    background: url("../img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #0569af;
 }
 #footer #foot_navi {
     letter-spacing: -0.35em;
@@ -881,7 +881,7 @@ p.error {
 }
 
 #header .btn_store {
-    background: url("/img/main_page/btn_header_store.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_header_store.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     height: 40px;
@@ -893,7 +893,7 @@ p.error {
 }
 
 #header .btn_store a {
-    background: url("/img/main_page/icon_store.png") no-repeat scroll 10px 9px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_store.png") no-repeat scroll 10px 9px rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     font-size: 14px;
@@ -914,7 +914,7 @@ p.error {
 }
 
 #header .nav .nav_design {
-    background: url("/img/main_page/icon_main_nav_design.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_design.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 #header .nav li {
     float: left;
@@ -923,7 +923,7 @@ p.error {
     width: 44px;
 }
 #header .nav .nav_items {
-    background: url("/img/main_page/icon_main_nav_items.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_items.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 
 .newsbox a {
@@ -938,11 +938,11 @@ p.error {
     text-decoration: none;
 }
 #footer .referral_banner a:hover, #footer .support_banner a:hover {
-    background: url("/img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #ffa700;
+    background: url("../img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #ffa700;
     text-decoration: none;
 }
 #footer .support_banner a:hover {
-    background: url("/img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #0779c9;
+    background: url("../img/main_page/icon_arrow_white.png") no-repeat scroll 96% center #0779c9;
 }
 #header .btn_store:hover {
     background-position: center bottom;
@@ -959,19 +959,19 @@ p.error {
     text-decoration: none;
 }
 #header .nav .nav_store {
-    background: url("/img/main_page/icon_main_nav_store.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_store.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 
 #header .nav .nav_account {
-    background: url("/img/main_page/icon_main_nav_account.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_account.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 
 #header .nav .nav_orders {
-    background: url("/img/main_page/icon_main_nav_orders.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_orders.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 
 #header .nav .nav_faq {
-    background: url("/img/main_page/icon_main_nav_faq.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_main_nav_faq.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 
 .btn_low button:hover {
@@ -1020,17 +1020,17 @@ p.error {
     font-size: 12px;
 }
 .dashboard_wrapper .dashboard li .dashboard_items {
-    background: url("/img/main_page/icon_big_items.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_big_items.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
 }
 .dashboard_wrapper .dashboard li .dashboard_store {
-    background: url("/img/main_page/icon_big_store.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_big_store.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
 }
 .dashboard_wrapper .dashboard li .dashboard_account {
-    background: url("/img/main_page/icon_big_account.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_big_account.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
 }
 
 .dashboard_wrapper .dashboard li {
-    background: url("/img/main_page/btn_bg_dashboard.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/main_page/btn_bg_dashboard.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     float: left;
     height: 220px;
     margin: 0 33px 33px 0;
@@ -1048,5 +1048,5 @@ p.error {
 }
 
 .dashboard_wrapper .dashboard li .dashboard_design {
-    background: url("/img/main_page/icon_big_design.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+    background: url("../img/main_page/icon_big_design.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
 }

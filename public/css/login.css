@@ -1,0 +1,604 @@
+.body-login{
+    background-color: #475665;
+    margin: 0px;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
+}
+
+.sign_up {
+    width: 440px;
+    margin: 0 auto;
+    padding: 90px 0;
+}
+
+.sign_up h1 {
+    padding: 20px 0 35px;
+    text-align: center;
+    line-height: 1;
+    font-size: 13px;
+    margin: 0;
+}
+
+.sign_up h1 img{
+    width: 200px;
+    height: auto;
+}
+
+.sign_up p {
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sign_up dt {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    line-height: 1;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+}
+
+.sign_up dd {
+    margin-bottom: 30px;
+}
+
+.sign_up .box {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    background: #374350;
+    padding: 40px 0 30px 0;
+    color: #d2d5d9;
+}
+
+.sign_up .set {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.sign_up .set input {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 380px;
+    height: 45px;
+    border: none;
+    padding: 0 5px;
+    line-height: 45px;
+    background: #fff;
+    font-size: 25px;
+    color: #555;
+}
+
+/* submit button */
+
+.sign_up .btn_submit a, .sign_up .btn_submit button {
+    display: block;
+    border: none;
+    width: 380px;
+    height: 62px;
+    text-align: center;
+    line-height: 62px;
+    font-size: 20px;
+    color: #fff;
+    background: url("../img/login/btn_pink_signup.png") no-repeat top left;
+}
+
+.sign_up .btn_submit {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.inner_s.top {
+    padding-top: 10px;
+}
+
+.sign_up .button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.sign_up .social_login .btn_facebook a:hover {
+    background-color:#526da9;
+    text-decoration:none;
+}
+
+.sign_up .btn_submit a:hover,.sign_up .btn_submit button:hover,.store_name .box .btn_create_store a:hover {
+    background-position:bottom;
+    text-decoration:none;
+}
+
+.sign_up .social_login {
+    width: 380px;
+    margin: 23px auto 0 auto;
+    padding-top: 25px;
+    background: url("../img/login/line_dark.png") repeat-x top left;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+}
+
+.sign_up .social_login .btn_facebook a {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    display:block;
+    /*width:360px;*/
+    height:50px;
+    padding-left:20px;
+    background:url("../img/login/icon_fb.png") no-repeat 90px center #39579a;
+    font-size:18px;
+    color:#fff;
+    text-align:center;
+    line-height:52px;
+}
+
+.sign_up .social_login .btn_facebook a:hover {
+    background-color:#526da9;
+    text-decoration:none;
+}
+
+.sign_up .link { /* local */
+    padding-left:0px;
+    margin-top:27px;
+    text-align:center;
+    font-size: 13px;
+    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+}
+
+.sign_up .link li{
+    margin-bottom:10px;
+}
+
+.sign_up .link li a {
+    color:#d2d5d9;
+}
+
+.sign_up ul {
+    list-style: none;
+}
+
+
+/* responsive */
+
+
+@media screen and (max-width: 1024px) {
+    .sign_up {
+        width:94%;
+        margin:0 auto;
+        padding:20px 0;
+    }
+
+    .sign_up h1 img {
+        width:150px;
+        height:auto;
+    }
+
+    .sign_up h2 {
+        text-align:center;
+        font-weight:400;
+        color:#d2d5d9;
+        margin-bottom:20px;
+        font-size:16px;
+    }
+
+    .sign_up input:focus {
+        outline:none;
+    }
+
+    .sign_up .head_text {
+        text-align:center;
+        font-size:14px;
+        color:#d2d5d9;
+        margin-bottom:15px;
+        padding:0 10px;
+    }
+
+    .sign_up dd {
+        margin-bottom: 20px;
+    }
+
+    .sign_up .box {
+        position:relative;
+        background:#374350;
+        color:#d2d5d9;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        border-radius:6px;
+        padding:20px 0;
+    }
+
+    .sign_up .badge {
+        position:absolute;
+        top:-35px;
+        right:-35px;
+    }
+
+    .sign_up .badge img {
+        width:90px;
+        height:auto;
+    }
+
+    .sign_up dt {
+        font-size:16px;
+        font-weight:400;
+        margin-bottom:15px;
+    }
+
+    .sign_up .set input {
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        border-radius:5px;
+        width:370px;
+        height:45px;
+        border:none;
+        line-height:45px;
+        background:#fff;
+        font-size:25px;
+        color:#555;
+        padding:0 5px;
+    }
+
+    .sign_up .set .domain {
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        border-radius:5px;
+        width:380px;
+        letter-spacing:-.35em;
+        background-color:#fff;
+    }
+
+    .sign_up .set .domain input {
+        width:190px;
+        border:none;
+    }
+
+    .sign_up .set .domain li {
+        vertical-align:auto;
+        zoom:1;
+        display:inline;
+        letter-spacing:normal;
+        height:40px;
+        line-height:40px;
+        font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+        font-size:20px;
+        color:#ccc;
+    }
+
+    .sign_up .set .domain .d1 {
+        width:60px;
+        padding-right:5px;
+        padding-left:10px;
+        text-align:right;
+    }
+
+    .sign_up .set .domain .d3 {
+        width:90px;
+        padding-left:5px;
+        text-align:left;
+    }
+
+    .sign_up .error {
+        margin-top:12px;
+        color:#d2615e;
+    }
+
+    .sign_up .styled_checkbox {
+        display:inline-block;
+        margin-right:5px;
+        vertical-align:middle;
+        position:relative;
+        width:20px;
+        height:20px;
+    }
+
+    .sign_up .btn_submit a,.sign_up .btn_submit button {
+        display:block;
+        width:380px;
+        height:62px;
+        text-align:center;
+        line-height:62px;
+        font-size:20px;
+        color:#fff;
+        background:url(/images/common/btn_pink_signup.png) no-repeat top left;
+    }
+
+    .sign_up .btn_wait {
+        width:380px;
+        height:62px;
+        text-align:center;
+        line-height:62px;
+        background:url(/images/common/btn_gray_signup.png) no-repeat top left;
+        font-size:20px;
+        color:#fff;
+        margin:0 auto;
+    }
+
+    .sign_up .social_login {
+        width:380px;
+        padding-top:25px;
+        background:url("../img/login/line_dark.png") repeat-x top left;
+        margin:23px auto 0;
+    }
+
+    .sign_up .social_login .btn_facebook a {
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        display:block;
+        width:360px;
+        height:50px;
+        padding-left:20px;
+        background:url("../img/login/icon_fb.png") no-repeat 90px center #39579a;
+        font-size:18px;
+        color:#fff;
+        text-align:center;
+        line-height:52px;
+    }
+
+    .sign_up .social_login .btn_facebook a:hover {
+        background-color:#526da9;
+        text-decoration:none;
+    }
+
+    .sign_up .link {
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .sign_up .link li a {
+        color:#d2d5d9;
+    }
+
+
+    .sign_up .finish {
+        text-align:left;
+        padding:0 5%;
+    }
+
+    .sign_up .finish h2,.sign_up .finish h3 {
+        font-weight:700;
+        font-size:16px;
+        text-align:left;
+        line-height:1.6;
+        margin:30px 0 20px;
+    }
+
+    .sign_up .finish h2.activate,.sign_up .finish h3.activate {
+        line-height:1.8;
+        font-size:16px;
+    }
+
+    .sign_up .finish p {
+        margin-bottom:15px;
+        line-height:1.8;
+        font-size:14px;
+    }
+
+    .sign_up .about {
+        text-align:center;
+        color:#d2d5d9;
+        margin-bottom:20px;
+        padding:0 5%;
+    }
+
+    .sign_up .about h2 {
+        margin-bottom:10px;
+        font-size:16px;
+        line-height:1.6;
+    }
+
+
+    .sign_up .box .badge {
+        top:-23px;
+        right:-8px;
+    }
+
+    .sign_up .box .badge img {
+        width:60px;
+        height:auto;
+    }
+
+    .sign_up .box form {
+        width:90%;
+        margin:0 auto;
+    }
+
+    .sign_up .box form .set dt {
+        margin-bottom:10px;
+        line-height:1.5;
+        font-size:14px;
+    }
+
+    .sign_up .box form .set dd .domain {
+        width:100%;
+        height:45px;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    }
+
+    .sign_up .box form .set dd .domain li {
+        height:45px;
+        line-height:45px;
+        vertical-align:top;
+        font-size:14px;
+    }
+
+    .sign_up .box form .set dd .domain li.d1 {
+        width:20%;
+        text-align:left;
+    }
+
+    .sign_up .box form .set dd .domain li.d2 {
+        width:45%;
+    }
+
+    .sign_up .box form .set dd .domain li.d2 input {
+        height:45px;
+    }
+
+    .sign_up .box form .set dd .domain li.d3 {
+        width:25%;
+        padding-right:0;
+        text-align:right;
+    }
+
+    .sign_up .box form .set input {
+        width:100%;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    }
+
+    .sign_up .box form .btn_submit {
+        width:100%;
+        padding:0;
+    }
+
+    .sign_up .box form .btn_submit button {
+        border:solid 1px #ce5b4f;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        background-size:100%;
+        background-image:linear-gradient(#e5675c,#d7615b);
+        color:#fff;
+        text-align:center;
+        width:100%;
+        height:44px;
+        font-size:18px;
+        font-weight:700;
+        line-height:44px;
+    }
+
+    .sign_up .box form .btn_wait {
+        width:100%;
+        height:44px;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        line-height:44px;
+        font-size:18px;
+        font-weight:700;
+        border:solid 1px gray;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        background-size:100%;
+        background-image:linear-gradient(#aaaaaa2%,#7878783%,#818181);
+        color:#fff;
+        text-align:center;
+    }
+
+    .sign_up .box form .social_login {
+        width:100%;
+        padding-top:20px;
+        margin:18px auto 0;
+    }
+
+    .sign_up .box form .social_login .btn_facebook {
+        height:44px;
+        border:solid 1px #2b4583;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        background:0;
+    }
+
+    .sign_up .box form .social_login .btn_facebook a {
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        width:100%;
+        height:44px;
+        padding-left:30px;
+        background:url("../img/login/icon_fb.png") no-repeat 45px center #39579a;
+        background-size:11px auto;
+        font-size:16px;
+        font-weight:700;
+        line-height:44px;
+    }
+
+    .sign_up .finish img {
+        width:30px;
+        height:auto;
+    }
+
+    .sign_up .finish .inner_m.top {
+        padding-top:10px;
+        text-align:center;
+    }
+
+    .sign_up .mail_finish h2 {
+        margin-bottom:10px;
+        font-size:14px;
+        text-align:center;
+        line-height:1.6;
+    }
+
+    .sign_up .mail_finish .btn_submit {
+        width:90%;
+        padding:0;
+    }
+
+    .sign_up .mail_finish .btn_submit a {
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        display:block;
+        border:solid 1px #ce5b4f;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        background-size:100%;
+        background-image:linear-gradient(#e5675c,#d7615b);
+        color:#fff;
+        text-align:center;
+        width:100%;
+        height:44px;
+        font-size:18px;
+        font-weight:700;
+        line-height:44px;
+    }
+
+    #nodata p img,#nodata .box_wht .btn_high a,.sign_up .set .domain .d2 {
+        width:200px;
+    }
+
+    #nodata .box_wht img,.sign_up .box form .set {
+        width:100%;
+    }
+
+    .sign_up h1,.sign_up .agree {
+        text-align:center;
+        padding:0 0 20px;
+    }
+
+    .sign_up .set,.sign_up .btn_submit {
+        width:380px;
+        margin:0 auto;
+    }
+
+    .sign_up .agree a,.sign_up .about p a {
+        text-decoration:underline;
+        color:#d2d5d9;
+    }
+
+    .sign_up .agree a:hover,.sign_up .about p a:hover,.store_name .box form .btn_create_store a:hover {
+        text-decoration:none;
+    }
+
+    .sign_up .btn_submit a:hover,.sign_up .btn_submit button:hover,.store_name .box .btn_create_store a:hover {
+        background-position:bottom;
+        text-decoration:none;
+    }
+}

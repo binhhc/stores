@@ -1,0 +1,367 @@
+.setting{
+    background:#fff;
+    color:#333;
+    font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    background-color:#f0f0f0;
+    margin:0;
+    padding:0;
+}
+
+.wrapper {
+    width:780px;
+    position:relative;
+    margin:50px auto 0;
+}
+
+.wrapper.premium_lp {
+width:100%;
+background-color:#fff;
+margin:0;
+}
+
+.wrapper #content {
+margin-bottom:-60px;
+}
+
+.wrapper.account .cols dd {
+width:490px;
+word-wrap:break-word;
+word-break:break-all;
+}
+
+.wrapper.account .cols strong {
+display:inline-block;
+max-width:320px;
+font-size:16px;
+font-weight:700;
+line-height:1.6;
+}
+
+.wrapper.account .profile_image_fileup .fileup img,.wrapper.account .profile_image_fileup .profile_image img {
+-moz-border-radius:50px;
+-webkit-border-radius:50px;
+border-radius:50px;
+}
+
+.wrapper.domain {
+width:746px;
+}
+
+.wrapper.domain p.main_image {
+text-align:center;
+margin:40px auto;
+}
+
+.wrapper.domain ul.feature {
+margin-left:-18px;
+}
+
+.wrapper.domain ul.feature li {
+float:left;
+width:350px;
+line-height:1.6;
+margin:10px 0 10px 27px;
+}
+
+.wrapper.domain ul.feature li h3 {
+font-size:22px;
+margin:1em 0 .5em;
+}
+
+.wrapper.domain #search_domain {
+width:600px;
+margin:40px auto 0;
+padding:0;
+}
+
+.wrapper.domain #search_domain h1 {
+text-align:center;
+padding:20px 0 60px;
+}
+
+.wrapper.domain #search_domain .box {
+border:1px solid #efefef;
+border-bottom:1px solid #ccc;
+background:#fff;
+padding:30px 50px;
+}
+
+.wrapper.domain #search_domain ul.caution {
+padding:1em 0 1em 18px;
+}
+
+.wrapper.domain #search_domain ul.caution li {
+padding-bottom:5px;
+list-style:disc;
+font-size:12px;
+line-height:1.4;
+}
+
+.wrapper.domain #search_domain .form_basic .cols.url dt {
+width:335px;
+margin-top:0;
+}
+
+.wrapper.domain #search_domain .form_basic .cols.url_confirm dt {
+width:100px;
+margin-right:20px;
+font-weight:400;
+}
+
+.wrapper.domain #search_domain dt {
+margin-bottom:10px;
+font-size:15px;
+font-weight:700;
+line-height:150%;
+}
+
+.wrapper.domain #search_domain .btn_high.search {
+margin-bottom:0;
+text-align:center;
+}
+
+.wrapper.domain #search_domain .set input {
+width:100%;
+height:38px;
+border:solid 1px #ccc;
+background:#fff;
+font-size:25px;
+color:#333;
+line-height:38px;
+padding:0;
+}
+
+.wrapper.domain #search_domain .set .domain_name {
+width:490px;
+border:solid 1px #ccc;
+margin-bottom:15px;
+letter-spacing:-.35em;
+}
+
+.wrapper.domain #search_domain .set .domain_name input {
+border:none;
+margin-left:10px;
+outline:none;
+}
+
+.wrapper.domain #search_domain .set .domain_name li {
+vertical-align:auto;
+zoom:1;
+display:inline;
+letter-spacing:normal;
+height:40px;
+font-family:sans-serif;
+font-size:20px;
+color:#ccc;
+line-height:40px;
+}
+
+.wrapper.domain #search_domain .set .domain_name .d1 {
+width:60px;
+padding-right:5px;
+padding-left:10px;
+text-align:right;
+}
+
+.wrapper.domain #search_domain .set .domain_name .d2 {
+width:350px;
+}
+
+.wrapper.domain #search_domain .set .domain_name .d3 {
+width:50px;
+padding-right:10px;
+padding-left:5px;
+text-align:left;
+}
+
+.wrapper.domain #search_domain .agree {
+padding:0 0 20px;
+}
+
+.margin_top_18,.wrapper.domain #search_domain .form_basic .cols.url:first-child {
+margin-top:18px;
+}
+
+.margin_top_40,.wrapper.domain .form_basic dt {
+margin-top:40px;
+}
+
+.clearfix {
+zoom:1;
+}
+
+.clearfix:after,#content:after {
+content:".";
+display:block;
+clear:both;
+height:0;
+visibility:hidden;
+}
+
+.heading_box p {
+margin-top:-7px;
+}
+
+
+h2.heading {
+margin-bottom:40px;
+font-size:27px;
+color:#333;
+/*font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
+}
+
+h3.heading {
+margin-bottom:20px;
+padding-left:10px;
+font-size:17px;
+}
+
+#functions h2.heading img {
+margin-left:10px;
+vertical-align:middle;
+}
+
+.jspHorizontalBar .jspCap,.fl_l {
+    float:left;
+}
+
+.box_wht {
+border-bottom:1px solid #ccc;
+margin-bottom:40px;
+background:#fff;
+padding:0 10px;
+}
+
+.premium_tab_content .box_wht {
+width:960px;
+border:1px solid #ccc;
+background:#fff;
+padding:0 10px;
+}
+
+#nodata .box_wht,#nodata.box_wht {
+padding:10px 0 30px;
+}
+
+#nodata .box_wht .text,#nodata.box_wht .text {
+font-size:16px;
+line-height:1.8;
+margin:20px 0;
+}
+
+/* form_basic */
+
+.form_basic .cols {
+    padding: 25px 20px;
+    background: url("../img/login/border_dot.gif") repeat-x top;
+    letter-spacing: -0.35em;
+}
+
+.no_border {
+    background: none !important;
+}
+
+.form_basic .cols dt {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+    width: 220px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.wrapper.account .cols dd {
+    width: 490px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.form_basic .cols dd.horizon {
+    letter-spacing: -0.35em;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.form_basic .cols dd {
+    width: auto;
+    line-height: 150%;
+}
+
+.form_basic .cols ul {
+    letter-spacing: -0.35em;
+}
+
+.form_basic ul {
+    list-style: none;
+}
+
+.wrapper.account .cols dd {
+    width: 490px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.form_basic .cols li {
+    padding-right: 10px;
+    line-height: 150%;
+}
+
+.wrapper.account .cols strong {
+    display: inline-block;
+    max-width: 320px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.form_basic .cols li {
+    padding-right: 10px;
+    line-height: 150%;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.form_basic li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.form_basic dl{
+    margin-bottom: 0px;
+}
+
+.form_basic h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+margin: 0;
+padding: 0;
+font-size: 13px;
+line-height: 1.5;
+}
+
+
+.btn_low_m a {
+    display: block;
+    width: 140px;
+    height: 30px;
+    color: #fff;
+    text-decoration: none;
+    background: url("../img/login/btn_bg_grey_m.jpg") no-repeat top;
+    font-size: 15px;
+    text-align: center;
+    line-height: 30px;
+}
+

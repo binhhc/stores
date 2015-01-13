@@ -36,7 +36,7 @@
 				<dl class="lists move">
 					<dd class="sz_xs tc count ng-binding">1</dd>
 					<dd class="sz_i">
-						<img width="50" height="50" alt=""  src="/img/main_page/oanh.jpg">
+						{{HTML::image('img/main_page/oanh.jpg')}}
 					</dd>
 					<dd class="sz_l">
 						<a class="ng-binding" ng-click="edit(item)" href="">item 3</a>
@@ -74,7 +74,7 @@
 				<dl class="lists move">
 					<dd class="sz_xs tc count ng-binding">2</dd>
 					<dd class="sz_i">
-						<img width="50" height="50" alt=""  src="/img/main_page/oanh.jpg">
+						{{HTML::image('img/main_page/oanh.jpg')}}
 					</dd>
 					<dd class="sz_l">
 						<a class="ng-binding" ng-click="edit(item)" href="">item 3</a>
@@ -112,7 +112,7 @@
 				<dl class="lists move">
 					<dd class="sz_xs tc count ng-binding">3</dd>
 					<dd class="sz_i">
-						<img width="50" height="50" alt=""  src="/img/main_page/oanh.jpg">
+						{{HTML::image('img/main_page/oanh.jpg')}}
 					</dd>
 					<dd class="sz_l">
 						<a class="ng-binding" ng-click="edit(item)" href="">item 3</a>

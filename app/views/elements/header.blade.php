@@ -1,6 +1,8 @@
   <div id="header" class="row" ng-controller="DashboardsController" ng-init="index()">
     <div class="wrap">
-    		<h1><a href="/"><img src="/img/main_page/logo.png" alt="STORES.jp"></a></h1>
+    		<h1><a href="/">
+    			{{HTML::image('img/main_page/logo.png')}}
+    		</a></h1>
 		      <p class="btn_store"><a href="https://vngt.stores.jp/preview?store_private_token=3bea6e986c992aa49004565199e51bd96d074579485a3a96c61ee624d110ea60b73444352c09adf6013b0d5f57ab1a1481f97db6b4a371cf48088b0aff4a6a76" target="_blank">Cửa hàng của tôi</a></p>
 		      <ul class="nav" style="cursor: pointer">
 		        <li class="nav_design"><a href="/stores/54af378aef3377fa7f001697" title="Store design"></a></li>

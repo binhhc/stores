@@ -20,16 +20,18 @@
 		</p>
 	</div>
 	<p class="main_image">
-		<img width="746" height="420" alt="STORES.jpの独自ドメインについて" src="/img/main_page/main.png">
+		{{HTML::image('img/main_page/main.png', 'fea_1',array( 'width' => 746, 'height' => 420 )) }}
+
 	</p>
 	<ul class="feature clearfix">
 		<li>
-			<img width="350" height="160" alt="初期費用・維持費用ゼロ円" src="/img/main_page/fea_1.png">
+			{{HTML::image('img/main_page/fea_1.png', 'fea_1',array( 'width' => 350, 'height' => 160) ) }}
 			<h3>初期費用・維持費用0円</h3>
 			通常、取得・利用費用として950円／年が発生しますが、STORES.jpのプレミアムサービス利用のストアオーナー様は無料でご利用可能です。ご設定頂いた独自ドメインは変更することが出来ません。予めご了承ください。
 		</li>
 		<li>
-			<img width="350" height="160" alt="「.com」と「.net」から選択" src="/img/main_page/fea_2.png">
+			{{HTML::image('img/main_page/fea_2.png', 'fea_1', array( 'width' => 350, 'height' => 160) ) }}
+
 			<h3>「.com」と「.net」から選択</h3>
 			独自ドメインは「.com」と「.net」のどちらかよりお選び頂けます。既に存在するドメインをご登録することはできません。まずは検索して、利用が可能かどうかをお確かめください。
 		</li>

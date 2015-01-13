@@ -4,7 +4,7 @@
 <div id="header">
 	<div class="contents">
 		<p class="logo">
-			<img alt="オンラインストア／ネットショップ開設なら、STORES.jp" src="/img/main_page/logo_gray.png">
+			{{HTML::image('img/main_page/logo_gray.png')}}
 		</p>
 		<p id="btn_menu">
 			<img alt="メニュー" src="/img/main_page/btn_menu.png">

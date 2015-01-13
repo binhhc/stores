@@ -13,7 +13,7 @@
 						Phương thức thanh toán
 						<span class="info">
 							<a target="_blank" href="#!/faq/payment/cc">
-								<img alt="Information" src="/img/main_page/icon_help.png">
+								{{HTML::image('img/main_page/icon_help.png')}}
 							</a>
 						</span>
 						</dt>
@@ -21,7 +21,7 @@
 						<ul class="payment_select_wrapper">
 							<li class="payment_select">
 								<p class="checked">
-									<img alt="選択済" src="/img/main_page/icon_check_simple.png">
+								{{HTML::image('img/main_page/icon_check_simple.png')}}
 								</p>
 								<label>Thẻ tín dụng</label>
 							</li>

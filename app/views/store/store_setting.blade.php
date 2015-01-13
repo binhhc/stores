@@ -22,7 +22,8 @@
 					</ul>
 					<div class="btn_domain" ng-show="data.url[4] == 's'" style="">
 						<p class="icon">
-							<img alt="Premium" src="/img/main_page/icon_premium.png">
+						{{HTML::image('img/main_page/icon_premium.png') }}
+
 						</p>
 						<p class="text">Với URL ngắn gọn và dễ nhớ, dễ quảng bá bán hàng</p>
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">

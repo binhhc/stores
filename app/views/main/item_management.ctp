@@ -1,6 +1,3 @@
-<?php echo $this->Html->css(array('item_management'));?>
-<?php echo $this->Html->script('jquery.min.js');?>
-<?php echo $this->Html->script('item_management.js');?>
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		<h2 class="heading fl_l">Danh sách mặt hàng</h2>

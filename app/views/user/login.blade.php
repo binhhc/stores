@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php echo $this->Html->css(array('bootstrap.min', 'login')); ?>
+        <meta charset="UTF-8">
+        {{HTML::style('css/bootstrap.min')}}
+        {{HTML::style('css/login')}}
     </head>
     <body class="body-login">
         <div class="sign_up">
             <h1>
                 <a href="#">
-                    <?php echo $this->Html->image('login/logo_white.png', array('alt' => 'STORES.vn')) ?>
+                    {{HTML::image('img/login/logo_white.png', 'STORES.vn')}}
                 </a>
             </h1>
             <div class="box">
-                <?php echo $this->Form->create('User', array('Controller' => 'Users', 'action' => 'login')) ?>
+                <?php //echo $this->Form->create('User', array('Controller' => 'Users', 'action' => 'login')) ?>
+                {{Form::open(array('url' => 'login', 'method' => 'post'))}}
                     <dl class="set">
                         <dt>Email</dt>
                         <dd>
-                            <?php echo $this->Form->input('email', array('div' => false, 'label' => false)) ?>
+                            {{Form::text('email', null, array('class' => 'form-control span6'))}}
+                            <font style="color:red;">{{ $errors->first('email') }}</font>
                         </dd>
                         <dt>Password</dt>
                         <dd>
-                            <?php echo $this->Form->input('password', array('div' => false, 'label' => false, 'type' => 'password')) ?>
+                            {{Form::password('password', array('class' => 'form-control span6'))}}
+                            <font style="color:red;">{{ $errors->first('password') }}</font>
                         </dd>
                     </dl>
 
@@ -32,20 +37,21 @@
                         <p class="btn_facebook">
                             <!-- <a href="https://stores.jp/auth/facebook">Facebookログイン</a> -->
                             <?php
-                                $band = 'Facebook';
-                                echo $this->Html->link('Facebookログイン', array('controller' => 'Users', 'action' => 'social', $band), array('class' => '', 'escape' => false)
+                               // $band = 'Facebook';
+                                //echo $this->Html->link('Facebook', array('controller' => 'Users', 'action' => 'social', $band), array('class' => '', 'escape' => false)
                             );
                             ?>
+                            {{HTML::link('/social', 'Facebook', array('class' => ''))}}
                         </p>
                     </div>
-                <?php echo $this->Form->end() ?>
+                {{ Form::close() }}
             </div>
             <ul class="link">
                 <li>
                     <a href="#">ストアを開設する場合はこちら</a>
                 </li>
                 <li>
-                    <?php echo $this->Html->link('パスワードを忘れた場合はこちら', array('controller' => 'Users', 'action' => 'forgotPassword')) ?>
+                    {{HTML::link('/forgetPassword', 'Forget password', array('class' => ''))}}
                 </li>
             </ul>
         </div>

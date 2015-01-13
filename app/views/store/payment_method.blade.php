@@ -1,4 +1,8 @@
-<?php echo $this->Html->css(array('item_management'));?>
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        {{HTML::script('js/jquery.min.js')}}
+         {{HTML::script('js/main_page.js')}}
+        @include('elements.header')
 <div class="wrapper ng-scope" ng-init="payment_method()">
 	<h2 class="heading">Thiết lập các phương thức thanh toán</h2>
 	<form class="ng-pristine ng-valid" novalidate="" ng-submit="submit()" name="form">
@@ -61,15 +65,13 @@
 					</dd>
 				</dl>
 			</dd>
-			<dd class="border_top">
-				<dl class="btn_pair" ng-hide="pending">
-					<dd class="btn_low">
-						<button onclick="history.back()" type="button">Quay lại</button>
-					</dd>
-					<dd class="btn_high">
-						<button type="submit">Lưu</button>
-					</dd>
-				</dl>
-			</dd>
-		</dl>
+<dl class="btn_pair" ng-hide="pending">
+		<dd class="btn_low">
+			<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
+		</dd>
+		<dd class="btn_high">
+			<a href="/store_setting"><button type="submit">Lưu</button></a>
+		</dd>
+	</dl>
 </div>
+@include('elements.footer')

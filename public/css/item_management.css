@@ -148,7 +148,7 @@ img {
     background: none repeat scroll 0 0 #fff;
     border-bottom: 1px solid #ccc;
     float: right;
-    height: 62px;
+    height: 78px;
     padding: 13px 0 0 10px;
     position: relative;
     width: 730px;
@@ -988,4 +988,65 @@ p.error {
 }
 .btn_high_l a:hover {
     background-position: center bottom;
+}
+
+.dashboard_wrapper {
+    margin: 0 auto;
+    width: 980px;
+}
+.dashboard_wrapper .dashboard {
+    margin: 50px -33px 0 0;
+    width: 1013px;
+}
+.dashboard_wrapper .dashboard li .dashboard_design {
+    background: url("/image/main_page/icon_big_design.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+.dashboard_wrapper .dashboard li a {
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    height: 60px;
+    padding-top: 160px;
+    width: 220px;
+}
+.dashboard_wrapper .dashboard li a h2 {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 12px;
+}
+.dashboard_wrapper .dashboard li a {
+    color: #fff;
+    font-size: 12px;
+}
+.dashboard_wrapper .dashboard li .dashboard_items {
+    background: url("/img/main_page/icon_big_items.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+.dashboard_wrapper .dashboard li .dashboard_store {
+    background: url("/img/main_page/icon_big_store.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+.dashboard_wrapper .dashboard li .dashboard_account {
+    background: url("/img/main_page/icon_big_account.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+
+.dashboard_wrapper .dashboard li {
+    background: url("/img/main_page/btn_bg_dashboard.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    float: left;
+    height: 220px;
+    margin: 0 33px 33px 0;
+    position: relative;
+    text-align: center;
+    width: 220px;
+}
+.dashboard_wrapper .dashboard li:hover {
+    background-position: center bottom;
+
+}
+.dashboard_wrapper .dashboard li a:hover {
+	text-decoration: none
+
+}
+
+.dashboard_wrapper .dashboard li .dashboard_design {
+    background: url("/img/main_page/icon_big_design.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
 }

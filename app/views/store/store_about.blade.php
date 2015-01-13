@@ -1,13 +1,16 @@
-<?php echo $this->Html->css(array('item_management')); ?>
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        {{HTML::script('js/jquery.min.js')}}
+         {{HTML::script('js/main_page.js')}}
+        @include('elements.header')
 <div class="wrapper ng-scope">
-	<h2 class="heading">ストアURL</h2>
-	<form class="ng-pristine ng-valid" ng-submit="submit()" name="form">
+	<h2 class="heading">Thay đổi địa chỉ URL</h2>
 		<dl class="form_basic form_multi">
 			<dd>
 				<dl class="cols">
 					<dt>Mô tả</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid" ng-model="data.detail" placeholder="ストアの説明をご記入ください" style="width:500px; height:200px;"></textarea>
+						<textarea class="ng-pristine ng-valid" ng-model="data.detail" placeholder="Mô tả cửa hàng" style="width:500px; height:200px;"></textarea>
 					</dd>
 				</dl>
 			</dd>
@@ -29,7 +32,7 @@
 							</li>
 						</ul>
 						<ul style="margin: 0;">
-							<li class="sz_fix">ホームページ</li>
+							<li class="sz_fix">Trang chủ</li>
 							<li>
 								<input class="ng-pristine ng-valid" type="text" ng-model="data.links.website" placeholder="http://www.stores.jp/">
 							</li>
@@ -37,16 +40,13 @@
 					</dd>
 				</dl>
 			</dd>
-			<dd class="border_top">
-				<dl class="btn_pair" ng-hide="pending">
-					<dd class="btn_low">
-						<button onclick="history.back()" type="button">Quay lại</button>
+			<dl class="btn_pair" ng-hide="pending">
+				<dd class="btn_low">
+						<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 					</dd>
 					<dd class="btn_high">
-						<button type="submit">Lưu</button>
-					</dd>
-				</dl>
-			</dd>
-		</dl>
-	</form>
+						<a href="/store_setting"><button type="submit">Lưu</button></a>
+				</dd>
+			</dl>
 </div>
+@include('elements.footer')

@@ -1,4 +1,8 @@
-<?php echo $this->Html->css(array('item_management')); ?>
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        {{HTML::script('js/jquery.min.js')}}
+         {{HTML::script('js/main_page.js')}}
+        @include('elements.header')
 <div class="wrapper domain">
 	<div class="heading_box clearfix">
 		<h2 class="heading">STORES.jpの独自ドメインについて</h2>
@@ -36,3 +40,4 @@
 		</p>
 	</div>
 </div>
+@include('elements.footer')

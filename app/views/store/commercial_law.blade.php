@@ -1,5 +1,7 @@
-<?php echo $this->Html->css(array('item_management'))?>
-<div id="store_cart" class="wrapper ng-scope">
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        @include('elements.header')
+<div id="store_cart" class="wrapper row">
 	<div class="height_fix">
 		<div id="header_basic">
 		<h1 id="store_logo" ng-style="styles.store_logo">
@@ -8,7 +10,7 @@
 			</a>
 		</h1>
 		</div>
-		<h2 class="heading">「特定商取引法に関する表記」の登録</h2>
+		<h2 class="heading">Luật thương mại</h2>
 	</div>
 	<div class="box_wht" ng-hide="accepted">
 		<dl class="form_basic" style="padding-top:20px;">
@@ -56,10 +58,11 @@
 	</div>
 	<dl class="btn_pair" ng-hide="pending">
 		<dd class="btn_low">
-			<button onclick="history.back()" type="button">Quay lại</button>
+			<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 		</dd>
 		<dd class="btn_high">
-			<button type="submit">Lưu</button>
+			<a href="/store_setting"><button type="submit">Lưu</button></a>
 		</dd>
 	</dl>
 </div>
+@include('elements.footer')

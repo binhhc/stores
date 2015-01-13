@@ -1,6 +1,8 @@
-<?php echo $this->Html->css(array('item_management')); ?>
-<?php echo $this->Html->script(array('jquery.min.js'))?>
-<?php echo $this->Html->script(array('main_page'))?>
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        {{HTML::script('js/jquery.min.js')}}
+         {{HTML::script('js/main_page.js')}}
+        @include('elements.header')
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">
@@ -14,7 +16,7 @@
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
-								<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_url")); ?>">Thay đổi</a>
+								<a href="/store_url">Thay đổi</a>
 							</p>
 						</li>
 					</ul>
@@ -24,7 +26,7 @@
 						</p>
 						<p class="text">Với URL ngắn gọn và dễ nhớ, dễ quảng bá bán hàng</p>
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">
-							<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "setting_domain")); ?>">Sử dụng tên miền của tôi</a>
+							<a href="setting_domain"">Sử dụng tên miền của tôi</a>
 						</p>
 
 					</div>
@@ -60,13 +62,13 @@
 				<dt>Mô tả cửa hàng</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasAbout">
-						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Đăng ký</a>
+						<a href="store_about"">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Chỉnh sửa</a>
+						<a href="store_about">Chỉnh sửa</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a href="<?php echo $this->Html->url(array("controller" => "Stores","action" => "store_about")); ?>">Xoá</a>
+						<a href="store_about">Xoá</a>
 					</p>
 					<p class="memo" ng-show="showProfileSettingAlert()" style="display: none;">Cảm ơn bạn đã đăng ký</p>
 				</dd>
@@ -75,10 +77,10 @@
 				<dt>Luật giao dịch thương mại</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasTokushoho">
-						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Đăng ký</a>
+						<a  href="commercial_law">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a  href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'commercial_law')); ?>">Chỉnh sửa</a>
+						<a  href="commercial_law">Chỉnh sửa</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
 						<a  href="">Xoá</a>
@@ -89,7 +91,7 @@
 				<dt>Phương thức thanh toán</dt>
 				<dd class="horizon">
 					<p class="btn_low_m">
-						<a href="<?php echo $this->Html->url(array('controller' => 'Stores', 'action' => 'payment_method')); ?>">Chỉnh sửa</a>
+						<a href="payment_method">Chỉnh sửa</a>
 					</p>
 				</dd>
 			</dl>
@@ -425,6 +427,7 @@
 	</div>
 
 </div>
+@include('elements.footer')
 <script>
 	$(document).ready(function(){
 		$('#open_shipping_select').on('click', function(event){

@@ -22,7 +22,7 @@ class StoreController extends BaseController {
     public function edit() {
         $this->layout = 'store_edit';
     }
-    
+
     /**
      * Save store layout
      *
@@ -35,13 +35,13 @@ class StoreController extends BaseController {
         $this->autoRender = false;
         if($this->request->is('ajax')){
             $data = $this->request->input('json_decode', true);
-           
+
             echo 'Vào file edit_store.js dòng 8307 để đóng alert này ';
              pr($data);
         }
-        
+
     }
-    
+
     /**
      * Load items
      *
@@ -53,10 +53,10 @@ class StoreController extends BaseController {
     public function items($status = '') {
         $this->autoRender = false;
         $this->response->type('json');
-        
+
         //Lay data từ DB => Fields nào cần thêm PM Sang thêm vào DB cho
         //$items = ClassRegistry::init('UserItem')->getItemByUserIdWithQuantity($this->Store->getUserId());
-        
+
         $items = array();
         $item = array(
             'id' => '54ade2be86b1889a7900144f',
@@ -82,16 +82,16 @@ class StoreController extends BaseController {
 
             ),
             'sticker' => ''
-            
+
         );
         $items[] = $item;
-        
+
         if($this->request->is('ajax')){
             $json = json_encode($items);
             $this->response->body($json);
         }
     }
-    
+
     /**
      * Load user style
      *
@@ -103,7 +103,7 @@ class StoreController extends BaseController {
         $this->autoRender = false;
         $this->response->type('json');
         $style = Configure::read('sys.store_style');
-        $style['name']  =  'hoangnn001';  
+        $style['name']  =  'hoangnn001';
 //                array(
 //            'name' => 'hoangnn001',
 //            'store_font' => array
@@ -133,14 +133,14 @@ class StoreController extends BaseController {
 //            'shipping_fee' => 0,
 //            'logo' => ''
 //        );
-        
+
         if($this->request->is('ajax')){
             $json = json_encode($style);
             $this->response->body($json);
         }
-    
+
     }
-    
+
     /**
      * Load user categories
      *
@@ -151,9 +151,9 @@ class StoreController extends BaseController {
     public function categories() {
         $this->autoRender = false;
         $this->response->type('json');
-        
+
         $categories = ClassRegistry::init('UserCategory')->getAllByUserId($this->Store->getUserId());
-                
+
 //        $categories = array(
 //            array(
 //                'id' => 1,
@@ -164,13 +164,13 @@ class StoreController extends BaseController {
 //                'name' => 'Thời trang'
 //            )
 //        );
-        
+
         if($this->request->is('ajax')){
             $json = json_encode($categories);
             $this->response->body($json);
         }
     }
-    
+
     /**
      * Load user about
      *
@@ -182,13 +182,13 @@ class StoreController extends BaseController {
         $this->autoRender = false;
         $this->response->type('json');
         $about = '';
-        
+
         if($this->request->is('ajax')){
             $json = json_encode($about);
             $this->response->body($json);
         }
     }
-    
+
      /**
      * Upload temp image
      *
@@ -199,12 +199,12 @@ class StoreController extends BaseController {
     public function upload_image() {
         $this->autoRender = false;
         if(!empty($_FILES['image'])){
-            
+
             $file_name = time();
             $dir = APP . WEBROOT_DIR . DS . '_temp_files' . DS . $file_name.'.jpeg';
             move_uploaded_file($_FILES['image']['tmp_name'], $dir);
             $size = getimagesize($dir);
-            
+
             $logo = array(
                 'name' => $file_name.'.jpeg',
                 'src' => '/_temp_files/'.$file_name,
@@ -221,7 +221,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_setting() {
-        $this->layout = 'layout';
+    	return View::make('store.store_setting');
     }
     /**
      * Set payment method for stores
@@ -229,7 +229,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function payment_method() {
-        $this->layout = 'layout';
+    	return View::make('store.payment_method');
     }
     /**
      * Set url for stores
@@ -237,7 +237,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_url() {
-        $this->layout = 'layout';
+    	return View::make('store.store_url');
     }
     /**
      * Set domain for stores
@@ -245,7 +245,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function setting_domain() {
-        $this->layout = 'layout';
+    	return View::make('store.setting_domain');
     }
     /**
      * About stores
@@ -253,7 +253,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_about() {
-        $this->layout = 'layout';
+    	return View::make('store.store_about');
     }
     /**
      * About commercial law
@@ -261,8 +261,25 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function commercial_law() {
-        $this->layout = 'layout';
+    	return View::make('store.commercial_law');
     }
+ 	/**
+     * About commercial law
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+    public function item_management() {
+    	return View::make('store.item_management');
+    }
+    /**
+     * About commercial law
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+    public function dashboard() {
+    	return View::make('store.dashboard');
+    }
+
 
 
 }

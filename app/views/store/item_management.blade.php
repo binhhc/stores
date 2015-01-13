@@ -1,3 +1,8 @@
+{{HTML::style('css/bootstrap.min.css')}}
+        {{HTML::style('css/item_management.css')}}
+        {{HTML::script('js/jquery.min.js')}}
+         {{HTML::script('js/main_page.js')}}
+        @include('elements.header')
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		<h2 class="heading fl_l">Danh sách mặt hàng</h2>
@@ -138,6 +143,7 @@
 		</dl>
 	</span>
 </div>
+@include('elements.footer')
 <style>
 .switch .active, .switch .deactive {
 	text-indent: 1em!important;

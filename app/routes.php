@@ -26,6 +26,8 @@ Route::get('/store_url', 'StoreController@store_url');
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard', 'StoreController@dashboard');
 
+//edit store
+Route::get('/edit', 'StoreController@edit');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));

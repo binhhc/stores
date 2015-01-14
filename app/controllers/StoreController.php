@@ -12,15 +12,14 @@ class StoreController extends BaseController {
     public $uses = array();
 
     /**
-     * Displays a store for edit
      *
-     * @author Nguyen Hoang
-     * @since 2015-01-08
+     * @author  Le Nhan Hau
+     * @since   2015/01/14
      *
      * @return void
      */
     public function edit() {
-        $this->layout = 'store_edit';
+        return View::make('store.edit');
     }
 
     /**

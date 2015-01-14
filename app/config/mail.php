@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'oanhht@leverages.jp', 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -120,5 +120,9 @@ return array(
 	*/
 
 	'pretend' => false,
+	'mailgun' => array(
+	    'domain' => 'oanhht@leverages.jp',
+	    'secret' => 'oanh90tb',
+	),
 
 );

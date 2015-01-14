@@ -87,23 +87,22 @@ class UserController extends BaseController {
 	            'msg' => 'Regiter fail',
 	        	);
 	        } else {
+	        	$created = $modified = strtotime('now');
+	        	$user = new User;
+	        	$user->email = $email;
+        	 	$user->password  = Hash::make($password);
+        	 	$user->account_token = $account_token;
+        	 	$user->created = $created;
+        	 	$user->modified = $modified;
 	        	$user_data = array('email' => $email, 'password' => $password);
-	        	 //if (Auth::attempt($user_data)) {
-	        	 	$created = $modified = strtotime('now');
-	        	 	$user = new User;
-	        	 	$user->email = $email;
-	        	 	$user->password = $password;
-	        	 	$user->account_token = $account_token;
-	        	 	$user->created = $created;
-	        	 	$user->modified = $modified;
-
-	        	 	if($user->save()) {
+	        	if($user->save()) {
+	        	    if (Auth::attempt($user_data)) {
 	        	 		Session::put('user', $user_data);
 						//Input::flashOnly('email', $email);
             			return Redirect::to('/dashboard');
 	        	 	}
 
-	        	 //}
+	        	 }
             // validation successful!
 
 	        	$response = array(
@@ -115,9 +114,25 @@ class UserController extends BaseController {
 
         	return Response::json( $response );
 	    }
-
-
     }
+
+
+    /**
+     * send email to register
+     */
+	    public function send_email() {
+	    	 if(Request::ajax()) {
+	    	 	if(Mail::send('emails.register', array('key' => 'value'), function($message)
+				{
+				    $message->to('oanhht53@gmail.com', 'John Smith')->subject('Welcome!');
+				})) {
+					return Response::json(array('a' => 'ddd'));
+				}
+	    	 }
+
+
+
+	    }
 
 
 

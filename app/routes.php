@@ -34,6 +34,7 @@ Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'us
 Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'user|csrf'));
 
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));
+Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserController@send_email'));
 
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');

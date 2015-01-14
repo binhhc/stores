@@ -1,3 +1,12 @@
+ <div class="activate" style="display: block">
+	<div class="wrap">
+		<p class="text">Chúng tôi gửi một xác nhận e-mail đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>
+		<p class="btn">
+		<a class="send_email">Gửi email</a>
+		</p>
+		<p class="btn" id="sending_email" ng-show="pending" style="display: none;">Đang gửi</p>
+	</div>
+</div>
   <div id="header" class="row" ng-controller="DashboardsController" ng-init="index()">
     <div class="wrap">
     		<h1><a href="/">
@@ -23,4 +32,23 @@
 
     </div>
     	<!-- <p class="newsbox"><a href="#!/referral">ご紹介キャンペーンでプレミアム料金無料！</a></p> -->
-  </div>
+  <script>
+  	$(document).ready(function(){
+  		 $('.send_email').on('click', function(e) {
+         	e.preventDefault();
+         	 $.ajax({
+                  type: "POST",
+                  url: "/send_email",
+                  data: {
+                  },
+                  global: true,
+                  dataType: 'json',
+                  success: function(response) {
+                 	 alert(response.aa);
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  }
+              });
+         });
+  	  });
+  </script>

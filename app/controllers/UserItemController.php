@@ -12,7 +12,11 @@ class UserItemController extends BaseController {
      * @since 2015/01/14
      */
     public function item_management() {
-    	return View::make('userItem.item_management');
+    	$items = UserItem::all()->toArray();
+    	return View::make('userItem.item_management', $items);
+    }
+    public function set_status() {
+
     }
 
 

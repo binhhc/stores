@@ -12,15 +12,14 @@ class StoreController extends BaseController {
     public $uses = array();
 
     /**
-     * Displays a store for edit
      *
-     * @author Nguyen Hoang
-     * @since 2015-01-08
+     * @author  Le Nhan Hau
+     * @since   2015/01/14
      *
      * @return void
      */
     public function edit() {
-        $this->layout = 'store_edit';
+        return View::make('store.edit');
     }
 
     /**
@@ -101,9 +100,40 @@ class StoreController extends BaseController {
      */
     public function styles() {
         $this->autoRender = false;
-        $this->response->type('json');
-        $style = Configure::read('sys.store_style');
-        $style['name']  =  'hoangnn001';
+        $this->layout = false;
+        
+        $style = array(
+            'name' => 'hoangnn001',
+            'store_font' => array
+            (
+                'style' => "'Allerta', sans-serif",
+                'type' => 'google',
+                'weight' => '400',
+                'size' => '54',
+            ),
+            'layout' => 'layout_a',
+            'background' => array
+            (
+                'color' => '#fff',
+                'repeat' => '',
+                'image' => '',
+            ),
+            'text_color' => array
+            (
+                'item' => '#000',
+                'store' => '#000'
+            ),
+            'display' => array
+            (
+                'frame' => 1,
+                'item' => 1
+            ),
+            'shipping_fee' => 0,
+            'logo' => ''
+        );
+        //$this->response->type('json');
+        //$style = Configure::read('sys.store_style');
+        //$style['name']  =  'hoangnn001';
 //                array(
 //            'name' => 'hoangnn001',
 //            'store_font' => array
@@ -134,11 +164,18 @@ class StoreController extends BaseController {
 //            'logo' => ''
 //        );
 
-        if($this->request->is('ajax')){
+        /*if($this->request->is('ajax')){
             $json = json_encode($style);
             $this->response->body($json);
+        }*/
+        $json = json_encode($style);
+        if (Request::ajax())
+        {
+            $json = json_encode($style);
+            return $json;
         }
 
+        echo json_encode($style);
     }
 
     /**
@@ -263,14 +300,7 @@ class StoreController extends BaseController {
     public function commercial_law() {
     	return View::make('store.commercial_law');
     }
- 	/**
-     * About commercial law
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function item_management() {
-    	return View::make('store.item_management');
-    }
+
     /**
      * About commercial law
      * @author OanhHa

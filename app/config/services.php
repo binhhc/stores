@@ -15,12 +15,12 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'oanhht@leverages.jp',
+		'secret' => 'oanh90tb',
 	),
 
 	'mandrill' => array(
-		'secret' => '',
+		'secret' => 'oanh90tb',
 	),
 
 	'stripe' => array(

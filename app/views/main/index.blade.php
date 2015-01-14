@@ -4,13 +4,13 @@
         {{HTML::script('js/main_page.js')}}
         @include('main.header')
 <div class="main social_login">
-	<div id="panel_error" ng-show="invalid()" style="">
-		<p ng-show="!facebook_error && mail_form.email.$invalid" style="">メールアドレスを入力してください</p>
-		<p ng-show="!facebook_error && mail_form.password.$invalid" style="">6文字以上のパスワードを入力してください</p>
-		<p ng-show="!valid_email">正しいメールアドレスを入力してください</p>
-		<p class="ng-binding" ng-bind="errors.error_message"></p>
+	<div id="panel_error" ng-show="invalid()" style="display:none">
+		<p class="email_pass_error"  style="display:none">Vui lòng nhập địa chỉ email, password của bạn</p>
+		<p class="pass_error"  style="display:none">Vui lòng nhập một mật khẩu ít nhất 6 ký tự</p>
+		<p class="valid_email"  style="display:none">Xin vui lòng nhập một địa chỉ email hợp lệ</p>
+		<p class="unique_email"  style="display:none">Email của bạn đã được đăng ký</p>
 		<p class="close" ng-click="clicked_submit = false">
-			<img alt="閉じる" src="/images/top/icon_close.png">
+			{{HTML::image('img/main_page/icon_close.png', 'Đóng')}}
 		</p>
 	</div>
 	<div class="social_login">
@@ -19,15 +19,15 @@
 			<br />Tôi có thể tạo cửa hàng của mình
 		</h1>
 		<div class="form">
-		{{Form::open(array('url' => 'register', 'method' => 'post'))}}
+		{{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
 			<h2><strong>Miễn phí</strong> tạo cửa hàng!</h2>
 			<div class="email">
-				<input type="text" placeholder="Email" />
+				{{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
 			</div>
 			<div class="password">
-				<input type="text" placeholder="Password" />
+				{{Form::text('password', '', array('placeholder' => 'Mật khẩu', 'name' => 'pass'))}}
 			</div>
-				<a href="/dashboard"><button class="btn_submit" ng-hide="status == 'pending'" type="submit">Tạo cửa hàng</button></a>
+				<button class="btn_submit" type="submit">Tạo cửa hàng</button>
 			<p class="text">
 				<span>Hoặc</span>
 			</p>

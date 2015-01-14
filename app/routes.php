@@ -26,9 +26,13 @@ Route::get('/store_url', 'StoreController@store_url');
 Route::get('/item_management', 'StoreController@item_management');
 Route::get('/dashboard', 'StoreController@dashboard');
 
+
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));
 Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'user|csrf'));
+
+Route::get('/register', 'UserController@register');
+
 
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');

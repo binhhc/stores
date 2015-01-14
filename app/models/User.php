@@ -46,7 +46,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->password;
     }
 
-
     /**
      * Validate
      *
@@ -59,6 +58,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         );
 
         return Validator::make($input, $rules);
+    }
+
+	/**
+     * @author      Oanh Ha
+     * @since       2015/01/14
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getAccountToken($str){
+        return $str;
     }
 
 }

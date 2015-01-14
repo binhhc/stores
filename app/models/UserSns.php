@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class UserSns extends Eloquent{
+class UserSns extends Model{
     protected $table  = 'user_sns';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

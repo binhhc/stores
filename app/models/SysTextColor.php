@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class SysTextColor extends Eloquent{
+class SysTextColor extends Model{
     protected $table  = 'sys_text_colors';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

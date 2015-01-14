@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class SysBackgroundImage extends Eloquent{
+class SysBackgroundImage extends Model{
     protected $table  = 'sys_background_images';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

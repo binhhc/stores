@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class SysBackgroundColor extends Eloquent{
+class SysBackgroundColor extends Model{
     protected $table  = 'sys_background_colors';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

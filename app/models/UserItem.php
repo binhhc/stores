@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class UserItem extends Eloquent{
+class UserItem extends Model{
     protected $table  = 'user_items';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

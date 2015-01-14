@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class UserCategory extends Eloquent{
+class UserCategory extends Model{
     protected $table  = 'user_categories';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

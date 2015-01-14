@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class SysLayout extends Eloquent{
+class SysLayout extends Model{
     protected $table  = 'sys_layouts';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

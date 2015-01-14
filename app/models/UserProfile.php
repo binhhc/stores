@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class UserProfile extends Eloquent{
+class UserProfile extends Model{
     protected $table  = 'user_profiles';
-	protected $hidden = array('created','created_user','modified','modified_user');
+	
 }

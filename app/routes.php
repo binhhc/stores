@@ -25,4 +25,4 @@ Route::get('/login', 'UserController@showLogin');
 Route::get('/doLogin', 'UserController@doLogin');
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
-
+Route::get('/edit', 'StoreController@edit');

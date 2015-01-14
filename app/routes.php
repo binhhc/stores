@@ -23,6 +23,7 @@ Route::get('/welcome', 'HomeController@showWelcome');
 
 Route::get('/login', 'UserController@showLogin');
 Route::get('/doLogin', 'UserController@doLogin');
+Route::get('/register', 'UserController@register');
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
 

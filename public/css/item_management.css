@@ -7,23 +7,15 @@ ul li {
 ul li img {
     vertical-align: middle;
 }
-h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
-    line-height: 1;
-}
-h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
-    line-height: 1;
-}
+
 h1, h2, h3, h4, h5, h6, p, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
     font-size: 13px;
     line-height: 1.5;
     margin: 0;
     padding: 0;
 }
-h1, h2, h3, h4, h5, h6, p, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
+h1, h2, h3, h4, h5, h6, li, dt, dd, pre, blockquote, ul, ol, dl, dd, form {
+    line-height: 1;
 }
 .clearfix:after {
     clear: both;
@@ -106,7 +98,11 @@ img {
 }
 
 .list_items .title .sz_xs, #news .list_news .title .sz_xs {
-    width: 75px;
+    width: 50px;
+}
+
+.list_items .sz_s.publish, #news .list_news .sz_s.publish {
+	width: 80px;
 }
 .list_items .title dd, #news .list_news .title dd, .list_items .lists dd, #news .list_news .lists dd {
     display: inline-block;
@@ -151,7 +147,7 @@ img {
     height: 76px;
     padding: 13px 0 0 10px;
     position: relative;
-    width: 730px;
+    width: 740px;
 }
 
 .list_items .items .lists dd.sz_xs, #news .list_news .items .lists dd.sz_xs {
@@ -163,6 +159,10 @@ img {
     line-height: 1.5;
     vertical-align: middle;
 }
+.list_items .title, #news .list_news .title {
+	padding-left: 50px;
+	background: none;
+}
 .list_items .sz_xs, #news .list_news .sz_xs {
     width: 50px;
 }
@@ -170,7 +170,7 @@ img {
     text-align: center;
 }
 .list_items .sz_l, #news .list_news .sz_l {
-    width: 340px;
+    width: 280px;
 }
 .list_items .sz_s, #news .list_news .sz_s {
     width: 100px;
@@ -951,7 +951,7 @@ p.error {
     background-color: #38434d;
 }
 .nav > li > a:hover, .nav > li > a:focus {
-    background-color: #38434d!important;
+    background-color: transparent;
     text-decoration: none;
 }
 #footer #foot_navi li.logout a:hover {
@@ -1049,4 +1049,30 @@ p.error {
 
 .dashboard_wrapper .dashboard li .dashboard_design {
     background: url("../img/main_page/icon_big_design.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+
+.sz_xs.tc.product_quantity{
+	width: 100px !important;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#header .nav li a {
+    display: block;
+    height: 0;
+    line-height: 2;
+    overflow: hidden;
+    padding-top: 50px;
+    width: 44px;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.wrapper {
+    position: relative;
+}
+.wrapper {
+    margin: 50px auto 0;
+    width: 780px;
 }

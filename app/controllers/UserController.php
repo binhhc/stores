@@ -46,6 +46,17 @@ class UserController extends BaseController {
     }
 
 
+    /**
+     * Register user
+     * @author OanhHa
+     * @since 2015-01-14
+     *
+     */
+    public function register() {
+
+    }
+
+
 
 
 }

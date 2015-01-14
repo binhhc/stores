@@ -4,12 +4,22 @@
         {{HTML::script('js/main_page.js')}}
         @include('main.header')
 <div class="main social_login">
+	<div id="panel_error" ng-show="invalid()" style="">
+		<p ng-show="!facebook_error && mail_form.email.$invalid" style="">メールアドレスを入力してください</p>
+		<p ng-show="!facebook_error && mail_form.password.$invalid" style="">6文字以上のパスワードを入力してください</p>
+		<p ng-show="!valid_email">正しいメールアドレスを入力してください</p>
+		<p class="ng-binding" ng-bind="errors.error_message"></p>
+		<p class="close" ng-click="clicked_submit = false">
+			<img alt="閉じる" src="/images/top/icon_close.png">
+		</p>
+	</div>
 	<div class="social_login">
 		<h1>
 			Vô cùng đơn giản, trong vòng 2 phút
 			<br />Tôi có thể tạo cửa hàng của mình
 		</h1>
 		<div class="form">
+		{{Form::open(array('url' => 'register', 'method' => 'post'))}}
 			<h2><strong>Miễn phí</strong> tạo cửa hàng!</h2>
 			<div class="email">
 				<input type="text" placeholder="Email" />
@@ -34,6 +44,7 @@
 					</p>
 				</div>
 			</div>
+			{{ Form::close() }}
 		</div>
 		<p class="store_num">
 			<img alt="Huy chương" src="/img/main_page/badge_num_l.png">

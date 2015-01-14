@@ -73,10 +73,49 @@ class UserController extends BaseController {
      *
      */
     public function register() {
-    	$input = Input::all();
-    	$email = trim(Input::get('email'));
-    	$password = trim(Input::get('password'));
-    	echo 1;exit;
+	    if(Request::ajax())
+	    {
+	        $input = Input::all();
+	    	$email = trim(Input::get('email'));
+	    	$account_token = md5($email);
+	    	$password = trim(Input::get('password'));
+		    $v = User::validate_register(Input::all());
+
+	        if($v->fails()){
+	        	$response = array(
+	            'status' => 'fail',
+	            'msg' => 'Regiter fail',
+	        	);
+	        } else {
+	        	$user_data = array('email' => $email, 'password' => $password);
+	        	 //if (Auth::attempt($user_data)) {
+	        	 	$created = $modified = strtotime('now');
+	        	 	$user = new User;
+	        	 	$user->email = $email;
+	        	 	$user->password = $password;
+	        	 	$user->account_token = $account_token;
+	        	 	$user->created = $created;
+	        	 	$user->modified = $modified;
+
+	        	 	if($user->save()) {
+	        	 		Session::put('user', $user_data);
+						//Input::flashOnly('email', $email);
+            			return Redirect::to('/dashboard');
+	        	 	}
+
+	        	 //}
+            // validation successful!
+
+	        	$response = array(
+	            'status' => 'fail',
+	            'msg' => 'Regiter fail',
+	        	);
+	        }
+
+
+        	return Response::json( $response );
+	    }
+
 
     }
 

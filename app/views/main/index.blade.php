@@ -8,6 +8,7 @@
 		<p class="email_pass_error"  style="display:none">Vui lòng nhập địa chỉ email, password của bạn</p>
 		<p class="pass_error"  style="display:none">Vui lòng nhập một mật khẩu ít nhất 6 ký tự</p>
 		<p class="valid_email"  style="display:none">Xin vui lòng nhập một địa chỉ email hợp lệ</p>
+		<p class="unique_email"  style="display:none">Email của bạn đã được đăng ký</p>
 		<p class="close" ng-click="clicked_submit = false">
 			{{HTML::image('img/main_page/icon_close.png', 'Đóng')}}
 		</p>

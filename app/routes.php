@@ -23,7 +23,7 @@ Route::get('/payment_method', 'StoreController@payment_method');
 Route::get('/setting_domain', 'StoreController@setting_domain');
 Route::get('/store_about', 'StoreController@store_about');
 Route::get('/store_url', 'StoreController@store_url');
-Route::get('/item_management', 'StoreController@item_management');
+Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard', 'StoreController@dashboard');
 
 
@@ -31,8 +31,7 @@ Route::get('/dashboard', 'StoreController@dashboard');
 Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));
 Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'user|csrf'));
 
-Route::get('/register', 'UserController@register');
-
+Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));
 
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');

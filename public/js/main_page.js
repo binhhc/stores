@@ -91,7 +91,9 @@
 	    	    var dotpos = x.lastIndexOf(".");
 	    	    if (pass.length <= 0 || x.length <=0) {
 	    	    	$(div_err).show();
+	    	    	$(p_err).show();
 	    	    	$(e_p).show();
+	    	    	$(em_err).show();
 	    	    	return false;
 	    	    } else {
 	    	    	$(e_p).hide();
@@ -124,16 +126,21 @@
 	    		  // Send data to server and ....
 	    		  $.ajax({
 	                  type: "POST",
-	                  url: '/register',
+	                  url: "/register",
 	                  data: {
 	                     email: x,
 	    		  		 password: pass
 	                  },
 	                  global: true,
 	                  dataType: 'json',
-	                  success: function(obj) {
-	                	  alert('aaa');
-
+	                  success: function(response) {
+	                	  if(response.status == 'fail') {
+	                		  $(div_err).show();
+	                		  $('p.unique_email').show();
+	                		  return false;
+	                	  } else {
+	                		  alert(response.aa);
+	                	  }
 	                  },
 	                  error: function(XMLHttpRequest, textStatus, errorThrown) {
 	                  }

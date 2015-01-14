@@ -13,7 +13,8 @@ class UserItemController extends BaseController {
      */
     public function item_management() {
     	$items = UserItem::all()->toArray();
-    	return View::make('userItem.item_management', $items);
+    	$data['item'] = $items;
+    	return View::make('userItem.item_management', $data);
     }
     public function set_status() {
 

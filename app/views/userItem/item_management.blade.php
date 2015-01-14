@@ -27,9 +27,8 @@
 				</dl>
 			</dd>
 		</dl>
-		@if (count($items) === 0)
+		@if (count($item) === 0)
 		@else
-		    @foreach ($users as $user)
 				<dl id="list_public" data-a="1" class="list_items ng-pristine ng-valid ui-sortable" ng-model="items_shown" ui-sortable="items_sortable_options">
 					<dd class="items ng-scope" ng-hide="item.animate" ng-repeat="item in items_shown">
 						<ul class="sort">
@@ -68,7 +67,6 @@
 						</dl>
 					</dd>
 				</dl>
-			@endforeach
 		@endif
 
 

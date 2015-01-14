@@ -33,6 +33,7 @@
     </div>
     	<!-- <p class="newsbox"><a href="#!/referral">ご紹介キャンペーンでプレミアム料金無料！</a></p> -->
   <script>
+  var register = "<?php echo isset($register_email) ? $register_email : ''?>"
   	$(document).ready(function(){
   		 $('.send_email').on('click', function(e) {
          	e.preventDefault();
@@ -40,6 +41,12 @@
                   type: "POST",
                   url: "/send_email",
                   data: {
+                      email: register,
+                  },
+                  beforeSend: function() {
+                      // setting a timeout
+                      $('.send_email').hide();
+                      $('#sending_email').show();
                   },
                   global: true,
                   dataType: 'json',
@@ -47,7 +54,10 @@
                  	 alert(response.aa);
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) {
-                  }
+                  },
+                  complete: function() {
+                      $('.activate').hide();
+                  },
               });
          });
   	  });

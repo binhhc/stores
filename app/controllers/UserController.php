@@ -98,8 +98,8 @@ class UserController extends BaseController {
 	        	if($user->save()) {
 	        	    if (Auth::attempt($user_data)) {
 	        	 		Session::put('user', $user_data);
-						//Input::flashOnly('email', $email);
-            			return Redirect::to('/dashboard');
+						Input::flashOnly('register_email', $email);
+            			return Redirect::to('/dashboard')->withInput();
 	        	 	}
 
 	        	 }

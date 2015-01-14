@@ -56,5 +56,5 @@
 </div>
 @include('elements.footer')
 <script>
-	var register = "<?php echo isset($register) ? $register : ''?>"
+
 </script>

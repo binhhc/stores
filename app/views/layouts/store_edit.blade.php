@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html ng-app="StoresJp::EditStore">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,6 +8,22 @@
 
         {{HTML::style('css/application.css')}}
         {{HTML::script('js/edit_store.js')}}
+        
+        <script type="text/javascript">
+        //<![CDATA[
+            AUTH_TOKEN = "123456"; 
+            STORE_ID = '123'; 
+            USER_NAME = 'hoangnn001';
+        //]]>
+        </script>
+        <script type="text/javascript">
+        //<![CDATA[
+            STORES_JP = {
+            	    "FILE_SERVER_URL":"<?php echo Request::url();?>",
+            	    //"enable_addons":["follow"]
+            	    };
+        //]]>
+        </script>
         
         <link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>

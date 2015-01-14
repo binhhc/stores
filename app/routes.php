@@ -28,6 +28,7 @@ Route::get('/dashboard', 'StoreController@dashboard');
 
 //edit store
 Route::get('/edit', 'StoreController@edit');
+Route::get('/styles', 'StoreController@styles');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));

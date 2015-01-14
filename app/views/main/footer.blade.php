@@ -1,7 +1,7 @@
 <div id="footer">
 	<ul id="foot_navi_main">
 		<li>
-			<a href="/welcome">STORES</a>
+			<a href="{{URL::asset('/')}}">STORES</a>
 		</li>
 		<li>
 			<a href="/features">Chức năng</a>

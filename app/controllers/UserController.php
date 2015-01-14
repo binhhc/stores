@@ -37,12 +37,43 @@ class UserController extends BaseController {
      * @return Response
      */
     public function doLogin(){
-        echo 1;exit;
+        $v = User::validate(Input::all());
+
+        if($v->fails()){
+            return Redirect::to('/login')->withErrors($v)->withInput(Input::except('password'));
+        }
+
+        $userdata = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
+
+        if (Auth::attempt($userdata)) {
+            // validation successful!
+            Session::put('user', $userdata);
+            return Redirect::to('/dashboard');
+        } else {
+            // validation not successful, send back to form
+            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Login fail.'));
+        }
+
+
     }
 
 
     public function showForgetPassword(){
         return View::make('user.forgot_password');
+    }
+
+
+    /**
+     * Register user
+     * @author OanhHa
+     * @since 2015-01-14
+     *
+     */
+    public function register() {
+
     }
 
 

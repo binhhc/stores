@@ -5,7 +5,9 @@
 	    		  $('ul#mobile_nav').hide();
 	    	  else  $('ul#mobile_nav').show();
 	      });
-
+			$('#panel_error .close').on('click', function(){
+				$('#panel_error').hide();
+		  });
 	      var Slider = function(trg,btn){
 	        this.$slide = trg;
 	        this.$control = btn;
@@ -77,7 +79,70 @@
 	      var slider = new Slider($('.slide_wrap'),$('.slide_navi'));
 	      slider.init();
 
-	      var slider2 = new Slider($('#modal-win'),$('.modal_nav_next'));
-	      slider2.init();
-	      //$('[data-toggle="tooltip"]').tooltip();
+	      // Validate register user
+	      var div_err = $('#panel_error');
+	      var em_err= $('p.valid_email');
+	      var p_err = $('p.pass_error');
+	      var e_p = $('p.email_pass_error');
+	      function validateForm() {
+	    	  	var pass = document.forms["myForm"]["pass"].value;
+	    	  	var x = document.forms["myForm"]["email"].value;
+	    	    var atpos = x.indexOf("@");
+	    	    var dotpos = x.lastIndexOf(".");
+	    	    if (pass.length <= 0 || x.length <=0) {
+	    	    	$(div_err).show();
+	    	    	$(e_p).show();
+	    	    	return false;
+	    	    } else {
+	    	    	$(e_p).hide();
+	    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+		    	    	$(div_err).show();
+		    	    	$(em_err).show();
+		    	    	return false;
+		    	    } else {
+		    	    	$(em_err).hide();
+		    	    	if (pass.length < 6) {
+			    	    	$(div_err).show();
+			    	    	$(p_err).show();
+			    	    	return false;
+			    	    } else {
+			    	    	$(p_err).hide();
+			    	    }
+
+		    	    }
+
+	    	    }
+
+	    	    $(div_err).hide();
+	    	    return true;
+	    }
+	      $('button.btn_submit').on('click', function(e) {
+	    	  e.preventDefault();
+	    	  if (validateForm()) {
+	    		  var pass = document.forms["myForm"]["pass"].value;
+		    	  var x = document.forms["myForm"]["email"].value;
+	    		  // Send data to server and ....
+	    		  $.ajax({
+	                  type: "POST",
+	                  url: '/register',
+	                  data: {
+	                     email: x,
+	    		  		 password: pass
+	                  },
+	                  global: true,
+	                  dataType: 'json',
+	                  success: function(obj) {
+	                	  alert('aaa');
+
+	                  },
+	                  error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                  }
+	              });
+	    	  } else {
+	    		  return false;
+
+	    	  }
+	      })
+
+
 	});

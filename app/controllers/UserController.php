@@ -53,6 +53,10 @@ class UserController extends BaseController {
      *
      */
     public function register() {
+    	$input = Input::all();
+    	$email = trim(Input::get('email'));
+    	$password = trim(Input::get('password'));
+    	echo 1;exit;
 
     }
 

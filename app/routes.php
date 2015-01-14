@@ -31,6 +31,9 @@ Route::get('/dashboard', 'StoreController@dashboard');
 Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));
 Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'user|csrf'));
 
+//account setting
+Route::get('/account_setting', 'UserController@accountSetting');
+
 Route::get('/register', 'UserController@register');
 
 

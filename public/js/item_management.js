@@ -15,7 +15,13 @@ $(document).ready(function(){
         } else {
             row.insertAfter(row.next());
         }
+        if (register !== '') {
+        	$('.activate').show();
+        }
 
+        $('#start_with_store').on('click', function() {
+        	$('.fancybox-overlay.fancybox-overlay-fixed').hide();
+        });
         //list.focus();
     }
 

@@ -4,11 +4,11 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-// use Illuminate\Validation\ValidationServiceProvider;
+use Mmanos\Social\SocialTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-    use UserTrait, RemindableTrait;
+    use UserTrait, RemindableTrait, SocialTrait;
 
     /**
      * The database table used by the model.
@@ -54,7 +54,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public static function validate($input){
         $rules = array(
             'email' => 'required|email',
-            'password' => 'required|AlphaNum|min:3|max:32'
+            'password' => 'required|AlphaNum|min:6|max:30'
         );
 
         return Validator::make($input, $rules);
@@ -63,12 +63,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	/**
      * @author      Oanh Ha
      * @since       2015/01/14
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function getAccountToken($str){
         return $str;
+    }
+ 	/**
+     * Validate
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_register($input){
+        $rules = array(
+            'email' => 'required|email|unique:users',
+            'password' => 'required|AlphaNum|min:6|max:32'
+        );
+
+        return Validator::make($input, $rules);
     }
 
 }

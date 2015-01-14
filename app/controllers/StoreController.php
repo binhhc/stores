@@ -300,14 +300,7 @@ class StoreController extends BaseController {
     public function commercial_law() {
     	return View::make('store.commercial_law');
     }
- 	/**
-     * About commercial law
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function item_management() {
-    	return View::make('store.item_management');
-    }
+
     /**
      * About commercial law
      * @author OanhHa

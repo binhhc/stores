@@ -37,7 +37,7 @@ $(document).ready(function(){
               global: true,
               dataType: 'json',
               success: function(response) {
-             	 alert(response);
+             	 //alert(response);
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
               },

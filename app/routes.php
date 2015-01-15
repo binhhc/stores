@@ -31,6 +31,7 @@ Route::get('/sort_item', 'UserItemController@sort_item');
 Route::get('/set_status', 'UserItemController@set_status');
 
 Route::get('/list_item_ajax', 'UserItemController@list_item_ajax');
+Route::get('/send_email', 'UserController@send_email');
 Route::get('/update_sort/{$id}/{$order}', 'UserItemController@update_sort');
 
 //edit store

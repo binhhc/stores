@@ -1,4 +1,3 @@
-
 {{HTML::style('css/account_setting.css')}}
 
 @include('elements.header')
@@ -55,12 +54,6 @@
                         <dd class="horizon">
                             <p class="btn_low_m">
                                 <a href="#!/account/credit_card/edit">登録する</a>
-                            </p>
-                            <p class="btn_low_m" style="display: none;">
-                                <a href="#!/account/credit_card">編集する</a>
-                            </p>
-                            <p class="btn_low_m" style="display: none;">
-                                <a href="">削除する</a>
                             </p>
                         </dd>
                     </dl>

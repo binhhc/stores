@@ -43,7 +43,7 @@
 								<a href="#!/premium">Giới thiệu phí bảo hiểm</a>
 							</p>
 							<p class="ribbon" ng-show="data.plan == 'free'" style="">
-								<img alt="" src="/img/main_page/ribbon.png">
+								{{HTML::image('img/main_page/ribbon.png') }}
 							</p>
 						</li>
 					</ul>
@@ -144,7 +144,7 @@
 					Theo dõi
 					<span class="info">
 					<a class="modal" href="#follow_modal1">
-						<img alt="Information" src="/img/main_page/icon_help.png">
+						{{HTML::image('img/main_page/icon_help.png', 'Information') }}
 					</a>
 					</span>
 				</dt>
@@ -162,7 +162,7 @@
 					Khuyến mãi
 					<span class="info">
 						<a class="modal" ng-click="promotion_click()" href="#promotion_modal1">
-							<img alt="Information" src="/img/main_page/icon_help.png">
+							{{HTML::image('img/main_page/icon_help.png', 'Information') }}
 						</a>
 					</span>
 				</dt>
@@ -184,11 +184,11 @@
 <div id="dummy_modal" class="ng-scope">
 	<div id="modal-win" style="top: 622px; display: none">
 		<div id="modal-bg" style="opacity: 1;"></div>
-		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
-			<div id="promotion_modal" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+		<div id="modal-win-inner">
+			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">Những chức năng khuyến mãi</p>
 				<p class="modal_image">
-					<img alt="" src="/img/main_page/image_switch.png">
+					{{HTML::image('img/main_page/image_switch.png', 'Switch') }}
 				</p>
 				<p class="modal_text">
 					Đơn giản chỉ cần chuyển sang ON
@@ -209,7 +209,7 @@
 				<ul class="modal_nav">
 					<li class="modal_nav_next">
 						<a class="modal-move" href="#promotion_modal2">
-							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+							{{HTML::image('img/main_page/btn_modal_next.png', 'Tiếp theo') }}
 						</a>
 					</li>
 				</ul>
@@ -220,24 +220,24 @@
 					<ul class="modal_page">
 						<li>
 							<a class="modal-move" href="#promotion_modal1">
-								<img alt="1" src="/img/main_page/btn_modal_on.png">
+								{{HTML::image('img/main_page/btn_modal_on.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal2">
-								<img alt="2" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal3">
-								<img alt="3" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 					</ul>
 				</div>
 				<p class="btn_modal_close">
 					<a class="modal-close" href="#">
-						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+						{{HTML::image('img/main_page/btn_modal_close.png', 'Information') }}
 					</a>
 				</p>
 			</div>
@@ -250,26 +250,26 @@
 				<div ng-hide="data.via == 'toranoana'">
 					<p class="promotion_logo_special">
 						<a target="_blank" href="http://market.zozo.jp/">
-							<img height="26" alt="ZOZOMARKET" src="/img/main_page/store_setting/logo_zozomarket.png">
+							{{HTML::image('img/main_page/store_setting/logo_zozomarket.png', 'Information', array('height' => 26)) }}
 						</a>
 						<a target="_blank" href="http://market.pass-the-baton.com/">
-							<img height="26" alt="PASS THE BATON MARKET" src="/img/main_page/store_setting/logo_passthebaton.png">
+							{{HTML::image('img/main_page/store_setting/logo_passthebaton.png', 'Information', array('height' => 26)) }}
 						</a>
 					</p>
 					<p class="promotion_logo_special">
 						<a target="_blank" href="http://market.stores.jp/yuzawaya">
-							<img height="26" style="padding:10px 10px 0 0;" alt="ユザワヤマーケット" src="/img/main_page/store_setting//logo_yuzawaya.png">
+							{{HTML::image('img/main_page/store_setting/logo_yuzawaya.png', 'Information', array('height' => 26, 'style' => 'padding:10px 10px 0 0;')) }}
 						</a>
 						<a target="_blank" href="http://exmarket.exblog.jp">
-							<img height="40" alt="エキサイトブログマーケット" src="/img/main_page/store_setting/logo_exblog.png">
+						{{HTML::image('img/main_page/store_setting/logo_exblog.png', 'Information', array('height' => 40)) }}
 						</a>
 					</p>
 					<p class="promotion_logo_special">
 						<a target="_blank" href="http://market.village-v.co.jp/">
-							<img width="270" style="padding:0 10px 0 0;" alt="ヴィレッジヴァンガードマーケット" src="/img/main_page/store_setting/logo_village.png">
+						{{HTML::image('img/main_page/store_setting/logo_village.png', 'Information', array('width' => 270, 'style' => 'padding:0px 10px 0 0;')) }}
 						</a>
 						<a target="_blank" href="http://www.mbok.jp">
-							<img height="26" alt="モバオク" src="/img/main_page/store_setting/logo_mbok.png">
+							{{HTML::image('img/main_page/store_setting/logo_mbok.png', 'Information', array('height' => 26)) }}
 						</a>
 					</p>
 					<table id="promotion_logo" align="center">
@@ -277,34 +277,34 @@
 							<tr>
 								<td>
 									<a target="_blank" href="http://www.itempost.jp/">
-										<img alt="アイテムポスト" src="/img/main_page/tore_setting/logo_itempost.png">
+										{{HTML::image('img/main_page/store_setting/logo_itempost.png', 'Information') }}
 									</a>
 								</td>
 								<td>
 									<a target="_blank" href="http://ecnavi.jp/">
-										<img alt="ECナビ" src="/img/main_page/store_setting/logo_ecnavi.png">
+										{{HTML::image('img/main_page/store_setting/logo_ecnavi.png', 'Information') }}
 									</a>
 								</td>
 								<td>
 									<a target="_blank" href="http://market.amifa.jp/">
-										<img alt="アミファ" src="/img/main_page/store_setting/logo_amifa.png">
+									{{HTML::image('img/main_page/store_setting/logo_amifa.png', 'Information') }}
 									</a>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<a target="_blank" href="https://www.valuecommerce.ne.jp/index.cfm">
-										<img alt="バリューコマース" src="/img/main_page/store_setting/logo_valuecommerce.png">
+									{{HTML::image('img/main_page/store_setting/logo_valuecommerce.png', 'Information') }}
 									</a>
 									</td>
 									<td>
 										<a target="_blank" href="http://www.coneco.net/">
-											<img alt="コネコネット" src="/img/main_page/store_setting/logo_coneco.png">
+											{{HTML::image('img/main_page/store_setting/logo_coneco.png', 'Information') }}
 										</a>
 									</td>
 									<td>
 										<a target="_blank" href="http://park.jp/">
-											<img alt="パーク" src="/img/main_page/store_setting/logo_park.png">
+										{{HTML::image('img/main_page/store_setting/logo_park.png', 'Information') }}
 										</a>
 								</td>
 							</tr>
@@ -323,12 +323,12 @@
 				<ul class="modal_nav">
 					<li class="modal_nav_next">
 						<a class="modal-move" href="#promotion_modal3">
-							<img alt="次へ" src="/img/main_page/btn_modal_next.png">
+							{{HTML::image('img/main_page/btn_modal_next.png', 'Information') }}
 						</a>
 					</li>
 					<li class="modal_nav_back">
 						<a class="modal-move" href="#promotion_modal1">
-							<img alt="戻る" src="/img/main_page/btn_modal_back.png">
+							{{HTML::image('img/main_page/btn_modal_back.png', 'Information') }}
 						</a>
 					</li>
 				</ul>
@@ -339,24 +339,24 @@
 					<ul class="modal_page">
 						<li>
 							<a class="modal-move" href="#promotion_modal1">
-								<img alt="1" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal2">
-								<img alt="2" src="/img/main_page/btn_modal_on.png">
+								{{HTML::image('img/main_page/btn_modal_on.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal3">
-								<img alt="3" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 					</ul>
 				</div>
 				<p class="btn_modal_close">
 					<a class="modal-close" href="#">
-						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+						{{HTML::image('img/main_page/btn_modal_close.png', 'Information') }}
 					</a>
 				</p>
 			</div>
@@ -366,7 +366,7 @@
 			<div id="promotion_modal3" class="modal_slide ng-scope modal_contents" style="display: none; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">費用について</p>
 				<p class="modal_image">
-				<img alt="料金" src="/img/main_page/image_fee.png">
+					{{HTML::image('img/main_page/image_fee.png', 'Information') }}
 				</p>
 				<div class="modal_text">
 				<p>
@@ -392,7 +392,7 @@
 				<ul class="modal_nav">
 					<li class="modal_nav_back">
 						<a class="modal-move" href="#promotion_modal2">
-							<img alt="次へ" src="/img/main_page/btn_modal_back.png">
+							{{HTML::image('img/main_page/btn_modal_back.png', 'Information') }}
 						</a>
 					</li>
 				</ul>
@@ -403,30 +403,29 @@
 					<ul class="modal_page">
 						<li>
 							<a class="modal-move" href="#promotion_modal1">
-								<img alt="1" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal2">
-								<img alt="2" src="/img/main_page/btn_modal_off.png">
+								{{HTML::image('img/main_page/btn_modal_off.png', 'Information') }}
 							</a>
 						</li>
 						<li>
 							<a class="modal-move" href="#promotion_modal3">
-								<img alt="3" src="/img/main_page/btn_modal_on.png">
+								{{HTML::image('img/main_page/btn_modal_on.png', 'Information') }}
 							</a>
 						</li>
 					</ul>
 				</div>
 				<p class="btn_modal_close">
 					<a class="modal-close" href="#">
-						<img alt="閉じる" src="/img/main_page/btn_modal_close.png">
+						{{HTML::image('img/main_page/btn_modal_close.png', 'Information') }}
 					</a>
 				</p>
 			</div>
 		</div>
 	</div>
-
 </div>
 @include('elements.footer')
 <script>
@@ -447,6 +446,7 @@
 		});
 		$('a.modal-move').on('click', function() {
 			var modal = $(this).attr('href');
+			alert(modal);
 			$('#modal-win-inner').hide();
 			$('.modal_slide').hide();
 			$(modal).show();

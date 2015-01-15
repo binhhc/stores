@@ -240,12 +240,19 @@ img {
     border-width: 1px;
     color: #333;
     font-size: 18px;
-    height: 45px;
+    height: 50px;
     line-height: 28px;
     padding: 10px;
     width: 205px;
 }
+.main .social_login .form .btn_submit:hover {
+    background-position: center bottom;
+}
 
+.main .social_login .form .btn_facebook a:hover {
+    background-position: center bottom;
+    text-decoration: none;
+}
 .main .social_login .form .btn_submit {
     background: url("../img/main_page/btn_pink_110_50.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;

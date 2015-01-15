@@ -101,7 +101,7 @@ class StoreController extends BaseController {
     public function styles() {
         $this->autoRender = false;
         $this->layout = false;
-        
+
         $style = array(
             'name' => 'hoangnn001',
             'store_font' => array
@@ -306,10 +306,20 @@ class StoreController extends BaseController {
      * @author OanhHa
      * @since 2015-01-09
      */
-    public function dashboard() {
-    	return View::make('store.dashboard');
+    public function dashboard($id=null) {
+    	$first = isset($id) ? intval($id) : 0;
+    	$data['first'] = $first;
+    	return View::make('store.dashboard', $data );
     }
 
+    /**
+     * About commercial law
+     * @author  Sang PM
+     * @since   2015-01-15
+     */
+    public function addon() {
+    	return View::make('store.addon');
+    }
 
 
 }

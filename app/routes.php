@@ -25,6 +25,7 @@ Route::get('/store_about', 'StoreController@store_about');
 Route::get('/store_url', 'StoreController@store_url');
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard', 'StoreController@dashboard');
+Route::get('/addon', 'StoreController@addon');
 
 //edit store
 Route::get('/edit', 'StoreController@edit');

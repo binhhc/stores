@@ -310,6 +310,14 @@ class StoreController extends BaseController {
     	return View::make('store.dashboard');
     }
 
+    /**
+     * About commercial law
+     * @author  Sang PM
+     * @since   2015-01-15
+     */
+    public function addon() {
+    	return View::make('store.addon');
+    }
 
 
 }

@@ -2,8 +2,8 @@
 
 			$('#btn_menu').on('click', function(){
 	    	  if($('ul#mobile_nav').css('display') !== 'none')
-	    		  $('ul#mobile_nav').hide();
-	    	  else  $('ul#mobile_nav').show();
+	    		  $('ul#mobile_nav').slideUp();
+	    	  else  $('ul#mobile_nav').slideDown();
 	      });
 			$('#panel_error .close').on('click', function(){
 				$('#panel_error').hide();

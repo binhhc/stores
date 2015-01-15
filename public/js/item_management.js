@@ -21,12 +21,13 @@ $(document).ready(function(){
     	$('.modal_dashboard').hide();
     });
     $('.send_email').on('click', function(e) {
+    	var email=$('#email_user').val();
      	e.preventDefault();
      	 $.ajax({
               type: "POST",
               url: "/send_email",
               data: {
-                  email: register,
+                  email: email,
               },
               beforeSend: function() {
                   // setting a timeout
@@ -36,7 +37,7 @@ $(document).ready(function(){
               global: true,
               dataType: 'json',
               success: function(response) {
-             	 alert(response.aa);
+             	 alert(response);
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
               },
@@ -62,7 +63,7 @@ $(document).ready(function(){
             global: true,
             dataType: 'json',
             success: function(response) {
-           	 	//$('.items_contents').html(response.html);
+           	 	$('.items_contents').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -86,7 +87,7 @@ $(document).ready(function(){
             global: true,
             dataType: 'json',
             success: function(response) {
-           	 	//$('.items_contents').html(response.html);
+           	 	$('.items_contents').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },

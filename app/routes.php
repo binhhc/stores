@@ -13,9 +13,6 @@
 Route::resource('user', 'UserController');
 Route::model('user', 'User');
 
-//demo
-Route::get('/welcome', 'HomeController@showWelcome');
-
 Route::get('/', 'MainController@main');
 Route::get('/commercial_law', 'StoreController@commercial_law');
 Route::get('/store_setting', 'StoreController@store_setting');
@@ -67,3 +64,4 @@ Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserControlle
 
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
+Route::post('/forgetPassword', 'UserController@doForgetPassword');

@@ -184,8 +184,8 @@
 <div id="dummy_modal" class="ng-scope">
 	<div id="modal-win" style="top: 622px; display: none">
 		<div id="modal-bg" style="opacity: 1;"></div>
-		<div id="modal-win-inner" style="opacity: 1; width: 540px; height: 590px;">
-			<div id="promotion_modal" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+		<div id="modal-win-inner">
+			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">Những chức năng khuyến mãi</p>
 				<p class="modal_image">
 					{{HTML::image('img/main_page/image_switch.png', 'Switch') }}
@@ -426,7 +426,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 @include('elements.footer')
 <script>
@@ -447,6 +446,7 @@
 		});
 		$('a.modal-move').on('click', function() {
 			var modal = $(this).attr('href');
+			alert(modal);
 			$('#modal-win-inner').hide();
 			$('.modal_slide').hide();
 			$(modal).show();

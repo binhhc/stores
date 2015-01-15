@@ -25,7 +25,7 @@
 				{{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
 			</div>
 			<div class="password">
-				{{Form::text('password', '', array('placeholder' => 'Mật khẩu', 'name' => 'pass'))}}
+				{{Form::password('password', '', array('placeholder' => 'Mật khẩu', 'name' => 'password'))}}
 			</div>
 				<button class="btn_submit" type="submit">Tạo cửa hàng</button>
 			<p class="text">

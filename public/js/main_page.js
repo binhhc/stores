@@ -85,7 +85,7 @@
 	      var p_err = $('p.pass_error');
 	      var e_p = $('p.email_pass_error');
 	      function validateForm() {
-	    	  	var pass = document.forms["myForm"]["pass"].value;
+	    	  	var pass = document.forms["myForm"]["password"].value;
 	    	  	var x = document.forms["myForm"]["email"].value;
 	    	    var atpos = x.indexOf("@");
 	    	    var dotpos = x.lastIndexOf(".");
@@ -121,7 +121,7 @@
 	      $('button.btn_submit').on('click', function(e) {
 	    	  e.preventDefault();
 	    	  if (validateForm()) {
-	    		  var pass = document.forms["myForm"]["pass"].value;
+	    		  var pass = document.forms["myForm"]["password"].value;
 		    	  var x = document.forms["myForm"]["email"].value;
 	    		  // Send data to server and ....
 	    		  $.ajax({
@@ -139,7 +139,7 @@
 	                		  $('p.unique_email').show();
 	                		  return false;
 	                	  } else {
-	                		  alert(response.aa);
+	                		  window.location.href = "/dashboard";
 	                	  }
 	                  },
 	                  error: function(XMLHttpRequest, textStatus, errorThrown) {

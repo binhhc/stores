@@ -83,7 +83,7 @@ class UserController extends BaseController {
 
 	        if($v->fails()){
 	        	$response = array(
-	            'status' => 'fail',
+	            'status' => 'fail validate',
 	            'msg' => 'Regiter fail',
 	        	);
 	        } else {
@@ -99,16 +99,27 @@ class UserController extends BaseController {
 	        	    if (Auth::attempt($user_data)) {
 	        	 		Session::put('user', $user_data);
 						Input::flashOnly('register_email', $email);
-            			return Redirect::to('/dashboard')->withInput();
+            			//return Redirect::to('/dashboard')->withInput();
+            			$response = array(
+				            'status' => 'success',
+				            'msg' => 'Success',
+				        	);
+	        	 	} else {
+						$response = array(
+			            'status' => 'faila',
+			            'msg' => 'Regiter fail',
+			        	);
 	        	 	}
 
+	        	 } else {
+	        	 	$response = array(
+			            'status' => 'fail',
+			            'msg' => 'Regiter fail',
+			        	);
 	        	 }
             // validation successful!
 
-	        	$response = array(
-	            'status' => 'fail',
-	            'msg' => 'Regiter fail',
-	        	);
+
 	        }
 
 

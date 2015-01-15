@@ -446,7 +446,6 @@
 		});
 		$('a.modal-move').on('click', function() {
 			var modal = $(this).attr('href');
-			alert(modal);
 			$('#modal-win-inner').hide();
 			$('.modal_slide').hide();
 			$(modal).show();

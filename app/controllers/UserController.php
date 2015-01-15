@@ -113,8 +113,6 @@ class UserController extends BaseController {
 	        	$user->email = $email;
         	 	$user->password  = Hash::make($password);
         	 	$user->account_token = $account_token;
-        	 	$user->created = $created;
-        	 	$user->modified = $modified;
 	        	$user_data = array('email' => $email, 'password' => $password);
 	        	if($user->save()) {
 	        	    if (Auth::attempt($user_data)) {

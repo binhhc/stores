@@ -25,7 +25,7 @@
 				{{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
 			</div>
 			<div class="password">
-				{{Form::text('password', '', array('placeholder' => 'Mật khẩu', 'name' => 'pass'))}}
+				<input type="password" name="password" placeholder="Mật khẩu" />
 			</div>
 				<button class="btn_submit" type="submit">Tạo cửa hàng</button>
 			<p class="text">
@@ -39,7 +39,7 @@
 					<p class="left">Để xác nhận, đăng nhập qua Facebook</p>
 					<p class="right">
 						<a data-toggle="tooltip" data-placement="top" data-html="true" data-template='<div class="abc">Hồ sơ của bạn, tôi sẽ sử dụng danh sách bạn bè, địa chỉ e-mail. Hãy yên tâm rằng nó không được đăng trên Timeline.</div>' title="Hồ sơ của bạn, tôi sẽ sử dụng danh sách bạn bè, địa chỉ e-mail. Hãy yên tâm rằng nó không được đăng trên Timeline." href="#">
-							<img alt="help" src="/img/main_page/icon_help.png">
+							{{HTML::image('img/main_page/icon_help.png', 'Help')}}
 						</a>
 					</p>
 				</div>
@@ -47,7 +47,7 @@
 			{{ Form::close() }}
 		</div>
 		<p class="store_num">
-			<img alt="Huy chương" src="/img/main_page/badge_num_l.png">
+			{{HTML::image('img/main_page/badge_num_l.png', 'Huy chương')}}
 		</p>
 	</div>
 	<p class="pv pc">
@@ -251,7 +251,7 @@
 		</div>
 </div>
 <p class="medias pc">
-	<img alt="掲載メディア" src="/img/main_page/media_marks.png">
+	{{HTML::image('img/main_page/media_marks.png', 'Media marks')}}
 </p>
 <p id="footer_copy">
 	<strong>Dễ dàng mở một cửa hàng trực tuyến với stores</strong>

@@ -1,4 +1,5 @@
- <div class="activate" style="display: block">
+ <?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+ <div class="activate" style="<?php echo $str?>">
 	<div class="wrap">
 		<p class="text">Chúng tôi gửi một xác nhận e-mail đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>
 		<p class="btn">
@@ -32,33 +33,3 @@
 
     </div>
     	<!-- <p class="newsbox"><a href="#!/referral">ご紹介キャンペーンでプレミアム料金無料！</a></p> -->
-  <script>
-  var register = "<?php echo isset($register_email) ? $register_email : ''?>"
-  	$(document).ready(function(){
-  		 $('.send_email').on('click', function(e) {
-         	e.preventDefault();
-         	 $.ajax({
-                  type: "POST",
-                  url: "/send_email",
-                  data: {
-                      email: register,
-                  },
-                  beforeSend: function() {
-                      // setting a timeout
-                      $('.send_email').hide();
-                      $('#sending_email').show();
-                  },
-                  global: true,
-                  dataType: 'json',
-                  success: function(response) {
-                 	 alert(response.aa);
-                  },
-                  error: function(XMLHttpRequest, textStatus, errorThrown) {
-                  },
-                  complete: function() {
-                      $('.activate').hide();
-                  },
-              });
-         });
-  	  });
-  </script>

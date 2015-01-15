@@ -15,14 +15,35 @@ $(document).ready(function(){
         } else {
             row.insertAfter(row.next());
         }
-        if (register !== '') {
-        	$('.activate').show();
-        }
-
-        $('#start_with_store').on('click', function() {
-        	$('.fancybox-overlay.fancybox-overlay-fixed').hide();
-        });
-        //list.focus();
     }
+    $('#start_with_store').on('click', function(e) {
+    	e.preventDefault();
+    	$('.modal_dashboard').hide();
+    });
+    $('.send_email').on('click', function(e) {
+     	e.preventDefault();
+     	 $.ajax({
+              type: "POST",
+              url: "/send_email",
+              data: {
+                  email: register,
+              },
+              beforeSend: function() {
+                  // setting a timeout
+                  $('.send_email').hide();
+                  $('#sending_email').show();
+              },
+              global: true,
+              dataType: 'json',
+              success: function(response) {
+             	 alert(response.aa);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+              },
+              complete: function() {
+                  $('.activate').hide();
+              },
+          });
+     });
 
 });

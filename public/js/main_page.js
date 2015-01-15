@@ -139,7 +139,7 @@
 	                		  $('p.unique_email').show();
 	                		  return false;
 	                	  } else {
-	                		  window.location.href = "/dashboard";
+	                		  window.location.href = "/dashboard/1";
 	                	  }
 	                  },
 	                  error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -1,7 +1,9 @@
-<?php
-    echo $this->Html->css(array('bootstrap.min', 'account_setting', 'item_management'));
-?>
-<?php echo $this->element('header') ?>
+
+{{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/account_setting.css')}}
+{{HTML::style('css/item_management.css')}}
+
+@include('main.header')
 <div class="setting">
     <div class="wrapper account">
         <div class="heading_box clearfix">
@@ -44,7 +46,7 @@
                         <dt>
                             Shipping<span class="info">
                                 <a href="#" target="_blank">
-                                    <?php echo $this->Html->image('login/icon_help.png', array('alt'=>'Information')) ?>
+                                    {{HTML::image('img/login/icon_help.png', 'Information')}}
                                 </a></span>
                         </dt>
                         <dd class="horizon">
@@ -117,4 +119,4 @@
     </div>
 </div>
 
-<?php echo $this->element('footer') ?>
+@include('main.footer')

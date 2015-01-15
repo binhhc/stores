@@ -24,17 +24,20 @@ class UserController extends BaseController {
      *
      * @param  null
      * @return Response
-     * @author BinhHoang
+     * @author Binh Hoang
+     * @since 2014.10.14
      */
     public function showLogin(){
         return View::make('user.login');
     }
 
     /**
-     * Display login page.
+     * Progess login.
      *
      * @param  null
      * @return Response
+     * @author Binh Hoang
+     * @since 2014.10.14
      */
     public function doLogin(){
         $v = User::validate(Input::all());
@@ -57,12 +60,30 @@ class UserController extends BaseController {
             return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Login fail.'));
         }
 
-
     }
 
-
+    /**
+     * Display forget password page.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2014.10.14
+     */
     public function showForgetPassword(){
         return View::make('user.forgot_password');
+    }
+
+    /**
+     * Display setting account.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2014.10.14
+     */
+    public function accountSetting(){
+        return View::make('user.account_setting');
     }
 
 

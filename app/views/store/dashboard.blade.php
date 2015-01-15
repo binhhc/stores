@@ -24,7 +24,7 @@
 			</a>
 		</li>
 		<li>
-			<a class="dashboard_account"  href="/accout_setting">
+			<a class="dashboard_account"  href="{{URL::asset('/account_setting')}}">
 			<h2>Cài đặt tài khoản</h2>
 			<span>Sửa thông tin cá nhân</span>
 			</a>

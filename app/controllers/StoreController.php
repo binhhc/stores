@@ -317,8 +317,10 @@ class StoreController extends BaseController {
      * @author  Sang PM
      * @since   2015-01-15
      */
-    public function addon() {
-    	return View::make('store.addon');
+    public function addon() {       
+        $data['addons'] = SysAddon::getAllSysData();
+        
+    	return View::make('store.addon',$data);
     }
 
 

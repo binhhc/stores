@@ -150,6 +150,9 @@
 
 	    	  }
 	      })
-
-
 	});
+	/*$( window ).resize(function() {
+		if( $( window ).width() >= 1024) {
+			$('.slide_cols.pc').css('left', '880px');
+		}
+	}).trigger('resize');

@@ -27,8 +27,8 @@ return array(
 	| the Mailgun mail service which will provide reliable deliveries.
 	|
 	*/
-
-	'host' => 'smtp.mailgun.org',
+	'host' => '192.168.1.220',
+//'host' => 'smtp.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -40,8 +40,8 @@ return array(
 	| stay compatible with the Mailgun e-mail application by default.
 	|
 	*/
-
-	'port' => 587,
+	'port' => 25,
+	//'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'oanhht@leverages.jp', 'name' => null),
+	'from' => array('address' => 'info@lev-vn.dev', 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'info@lev-vn.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'lev-vn',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -119,10 +119,10 @@ return array(
 	|
 	*/
 
-	'pretend' => false,
+	'pretend' => true,
 	'mailgun' => array(
-	    'domain' => 'oanhht@leverages.jp',
-	    'secret' => '',
+	    'domain' => 'lev-vn.dev',
+	    'secret' => 'lev-vn',
 	),
 
 );

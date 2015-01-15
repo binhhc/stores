@@ -226,16 +226,18 @@ class UserController extends BaseController {
      * send email to register
      */
 	    public function send_email() {
+	    	 $response = array('sucess' => 'fail');
 	    	 if(Request::ajax()) {
-	    	 	if(Mail::send('emails.register', array('key' => 'value'), function($message)
+	    	 	$response = array('sucess' => '3333');
+	    	 	$status = Mail::send('emails.register', array('key' => 'value'), function($message)
 				{
-				    $message->to('oanhht53@gmail.com', 'John Smith')->subject('Welcome!');
-				})) {
-					return Response::json(array('a' => 'ddd'));
-				}
+				    $message->to('oanhht@leverages.jp', 'John Smith')->subject('Welcome!');
+
+				});
+				$response = array('sucess' => $status);
 	    	 }
 
-
+		return Response::json( $response );
 
 	    }
 

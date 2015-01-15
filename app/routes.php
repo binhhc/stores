@@ -38,8 +38,8 @@ Route::get('/edit', 'StoreController@edit');
 Route::get('/styles', 'StoreController@styles');
 
 //Login
-Route::get('/login', array('uses' => 'UserController@showLogin', 'before' => 'user'));
-Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'user|csrf'));
+Route::get('/login', 'UserController@showLogin');
+Route::post('/login', 'UserController@doLogin');
 
 //account setting
 Route::get('/account_setting', 'UserController@accountSetting');

@@ -31,16 +31,20 @@
                         <button type="submit" style="padding-top:0px">Đăng nhập</button>
                     </p>
 
+                    @if($message = Session::get('message'))
+                        <div class="message_login">{{ $message }}</div>
+                    @endif
+
                     <div class="social_login">
                         <p class="btn_facebook">
-                            {{HTML::link('/social', 'Facebook', array('class' => ''))}}
+                            {{HTML::link('#', 'Facebook', array('class' => ''))}}
                         </p>
                     </div>
                 {{ Form::close() }}
             </div>
             <ul class="link">
                 <li>
-                    <a href="#">Quay lại trang chủ</a>
+                    <a href="{{URL::asset('/')}}">Quay lại trang chủ</a>
                 </li>
                 <li>
                     {{HTML::link('/forgetPassword', 'Quên mật khẩu', array('class' => ''))}}

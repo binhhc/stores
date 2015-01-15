@@ -57,7 +57,7 @@ class UserController extends BaseController {
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form
-            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Login fail.'));
+            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Email hoặc mật khẩu không đúng.'));
         }
 
     }

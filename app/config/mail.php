@@ -122,7 +122,7 @@ return array(
 	'pretend' => false,
 	'mailgun' => array(
 	    'domain' => 'oanhht@leverages.jp',
-	    'secret' => 'oanh90tb',
+	    'secret' => '',
 	),
 
 );

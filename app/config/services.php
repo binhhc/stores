@@ -16,11 +16,11 @@ return array(
 
 	'mailgun' => array(
 		'domain' => 'oanhht@leverages.jp',
-		'secret' => 'oanh90tb',
+		'secret' => '',
 	),
 
 	'mandrill' => array(
-		'secret' => 'oanh90tb',
+		'secret' => '',
 	),
 
 	'stripe' => array(

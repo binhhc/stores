@@ -375,12 +375,6 @@ img {
     width: 140px;
 }
 
-.form_basic .cols {
-    background: url("../img/main_page/border_dot.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
-    letter-spacing: -0.35em;
-    padding: 25px 20px;
-}
-
 .btn_ribbon {
     position: relative;
 }
@@ -431,15 +425,6 @@ img {
     width: 460px;
 }
 
-.form_basic .cols input[type="text"], .form_basic .cols input[type="password"] {
-    background: none repeat scroll 0 0 #fff;
-    border: 1px solid #ccc;
-    color: #333;
-    font-size: 20px;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 5px;
-}
 .form_basic .sz_s {
     width: 120px;
 }

@@ -46,4 +46,53 @@ $(document).ready(function(){
           });
      });
 
+    //$('li.sort_item').on('click', function(){
+    $(document).on('click', 'li.sort_item', function(){
+    	var item_id = $(this).attr('item_id');
+    	var order_value = $(this).attr('order_value');
+    	$.ajax({
+            type: "GET",
+            url: "/sort_item",
+            data: {
+                item_id: item_id,
+                order_value: order_value
+            },
+            beforeSend: function() {
+            },
+            global: true,
+            dataType: 'json',
+            success: function(response) {
+           	 	//$('.items_contents').html(response.html);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            },
+            complete: function() {
+            },
+        });
+    });
+
+    $(document).on('click', '.switch p.status', function(){
+    	var item_id = $(this).attr('item_id');
+    	var public_flg = $(this).attr('public_flg');
+    	$.ajax({
+            type: "GET",
+            url: "/set_status",
+            data: {
+                item_id: item_id,
+                public_flg: public_flg
+            },
+            beforeSend: function() {
+            },
+            global: true,
+            dataType: 'json',
+            success: function(response) {
+           	 	//$('.items_contents').html(response.html);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            },
+            complete: function() {
+            },
+        });
+    });
+
 });

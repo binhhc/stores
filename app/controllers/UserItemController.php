@@ -32,16 +32,15 @@ class UserItemController extends BaseController {
 		// public
 		if($flg == 0) {
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 1, 'order' => 0,  'updated_user' => 1));
+					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => 1));
 
 			//$item = UserItem::get($id);
 		} else {
 			// private
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 0, 'order' => -1, 'updated_user' => 1));
+					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => 1));
 			//$item = UserItem::get($id);
 		}
-	echo $id; die;
 
 	}
 	/**

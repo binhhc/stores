@@ -234,7 +234,7 @@
 					</div>
 			    </div>
 			    <p class="sp_category_more">
-					<a href="/category">Phân loại</a>
+					<a href="">Phân loại</a>
 				</p>
 			</div>
 		</div>

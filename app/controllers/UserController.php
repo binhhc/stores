@@ -25,7 +25,7 @@ class UserController extends BaseController {
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2014.10.14
+     * @since 2015.01.14
      */
     public function showLogin(){
         return View::make('user.login');
@@ -37,7 +37,7 @@ class UserController extends BaseController {
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2014.10.14
+     * @since 2015.01.14
      */
     public function doLogin(){
         $v = User::validate(Input::all());
@@ -68,7 +68,7 @@ class UserController extends BaseController {
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2014.10.14
+     * @since 2015.10.14
      */
     public function showForgetPassword(){
         return View::make('user.forgot_password');
@@ -80,12 +80,59 @@ class UserController extends BaseController {
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2014.10.14
+     * @since 2015.01.14
      */
     public function accountSetting(){
         return View::make('user.account_setting');
     }
 
+    /**
+     * Display change email.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.15
+     */
+    public function changeEmail(){
+        return View::make('user.change_email');
+    }
+
+    /**
+     * Display change password.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.15
+     */
+    public function changePassword(){
+        return View::make('user.change_password');
+    }
+
+    /**
+     * Display change profile.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.15
+     */
+    public function changeProfile(){
+        return View::make('user.change_profile');
+    }
+
+    /**
+     * Display change shipping.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.15
+     */
+    public function changeShipping(){
+        return View::make('user.change_shipping');
+    }
 
     /**
      * Register user

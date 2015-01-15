@@ -1,9 +1,7 @@
 
-{{HTML::style('css/bootstrap.min.css')}}
 {{HTML::style('css/account_setting.css')}}
-{{HTML::style('css/item_management.css')}}
 
-@include('main.header')
+@include('elements.header')
 <div class="setting">
     <div class="wrapper account">
         <div class="heading_box clearfix">
@@ -13,51 +11,42 @@
             <dl>
                 <dd class="form_basic">
                     <dl class="cols no_border">
-                        <dt>Email address</dt>
+                        <dt>Địa chỉ email</dt>
                         <dd class="horizon">
                             <ul>
                                 <li><strong class="ng-binding">hcbinh@gmail.com</strong></li>
                                 <li class="btn_low_m">
-                                    <a href="#!/account/email">変更する</a>
+                                    <a href="{{URL::asset('/change_email')}}">Thay đổi</a>
                                 </li>
                             </ul>
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt>Password</dt>
+                        <dt>Mật khẩu</dt>
                         <dd class="horizon">
                             <p class="btn_low_m">
-                                <a href="#!/account/password">変更する</a>
+                                <a href="{{URL::asset('/change_password')}}">Thay đổi</a>
                             </p>
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt>Profile</dt>
+                        <dt>Hồ sơ</dt>
                         <dd class="horizon">
                             <p class="btn_low_m">
-                                <a href="#!/account/profile">登録する</a>
-                            </p>
-                            <p class="btn_low_m" ng-show="account_info.has_profile" style="display: none;">
-                                <a href="#!/account/profile">編集する</a>
+                                <a href="{{URL::asset('/change_profile')}}">Thay đổi</a>
                             </p>
                         </dd>
                     </dl>
                     <dl id="faq_address" class="cols">
                         <dt>
-                            Shipping<span class="info">
+                            Giao hàng<span class="info">
                                 <a href="#" target="_blank">
                                     {{HTML::image('img/login/icon_help.png', 'Information')}}
                                 </a></span>
                         </dt>
                         <dd class="horizon">
                             <p class="btn_low_m" >
-                                <a href="#!/account/address">登録する</a>
-                            </p>
-                            <p class="btn_low_m" style="display: none;">
-                                <a href="#!/account/address">編集する</a>
-                            </p>
-                            <p class="btn_low_m" style="display: none;">
-                                <a href="">削除する</a>
+                                <a href="{{URL::asset('/change_shipping')}}">Thay đổi</a>
                             </p>
                         </dd>
                     </dl>
@@ -119,4 +108,4 @@
     </div>
 </div>
 
-@include('main.footer')
+@include('elements.footer')

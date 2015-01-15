@@ -39,6 +39,21 @@ Route::post('/login', array('uses' => 'UserController@doLogin', 'before' => 'use
 //account setting
 Route::get('/account_setting', 'UserController@accountSetting');
 
+//change email
+Route::get('/change_email', 'UserController@changeEmail');
+//change password
+Route::get('/change_password', 'UserController@changePassword');
+//change profile
+Route::get('/change_profile', 'UserController@changeProfile');
+//change profile
+Route::get('/change_shipping', 'UserController@changeShipping');
+//change profile
+Route::get('/change_credit_card', 'UserController@changeCreaditCard');
+//change profile
+Route::get('/change_destination_account', 'UserController@changeProfile');
+
+
+
 Route::get('/register', 'UserController@register');
 
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));

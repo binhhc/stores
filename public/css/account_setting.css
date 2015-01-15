@@ -24,9 +24,9 @@ margin-bottom:-60px;
 }
 
 .wrapper.account .cols dd {
-width:490px;
-word-wrap:break-word;
-word-break:break-all;
+    width:490px;
+    word-wrap:break-word;
+    word-break:break-all;
 }
 
 .wrapper.account .cols strong {
@@ -80,10 +80,10 @@ padding:20px 0 60px;
 }
 
 .wrapper.domain #search_domain .box {
-border:1px solid #efefef;
-border-bottom:1px solid #ccc;
-background:#fff;
-padding:30px 50px;
+    border:1px solid #efefef;
+    border-bottom:1px solid #ccc;
+    background:#fff;
+    padding:30px 50px;
 }
 
 .wrapper.domain #search_domain ul.caution {
@@ -91,28 +91,28 @@ padding:1em 0 1em 18px;
 }
 
 .wrapper.domain #search_domain ul.caution li {
-padding-bottom:5px;
-list-style:disc;
-font-size:12px;
-line-height:1.4;
+    padding-bottom:5px;
+    list-style:disc;
+    font-size:12px;
+    line-height:1.4;
 }
 
 .wrapper.domain #search_domain .form_basic .cols.url dt {
-width:335px;
-margin-top:0;
+    width:335px;
+    margin-top:0;
 }
 
 .wrapper.domain #search_domain .form_basic .cols.url_confirm dt {
-width:100px;
-margin-right:20px;
-font-weight:400;
+    width:100px;
+    margin-right:20px;
+    font-weight:400;
 }
 
 .wrapper.domain #search_domain dt {
-margin-bottom:10px;
-font-size:15px;
-font-weight:700;
-line-height:150%;
+    margin-bottom:10px;
+    font-size:15px;
+    font-weight:700;
+    line-height:150%;
 }
 
 .wrapper.domain #search_domain .btn_high.search {
@@ -121,39 +121,39 @@ text-align:center;
 }
 
 .wrapper.domain #search_domain .set input {
-width:100%;
-height:38px;
-border:solid 1px #ccc;
-background:#fff;
-font-size:25px;
-color:#333;
-line-height:38px;
-padding:0;
+    width:100%;
+    height:38px;
+    border:solid 1px #ccc;
+    background:#fff;
+    font-size:25px;
+    color:#333;
+    line-height:38px;
+    padding:0;
 }
 
 .wrapper.domain #search_domain .set .domain_name {
-width:490px;
-border:solid 1px #ccc;
-margin-bottom:15px;
-letter-spacing:-.35em;
+    width:490px;
+    border:solid 1px #ccc;
+    margin-bottom:15px;
+    letter-spacing:-.35em;
 }
 
 .wrapper.domain #search_domain .set .domain_name input {
-border:none;
-margin-left:10px;
-outline:none;
+    border:none;
+    margin-left:10px;
+    outline:none;
 }
 
 .wrapper.domain #search_domain .set .domain_name li {
-vertical-align:auto;
-zoom:1;
-display:inline;
-letter-spacing:normal;
-height:40px;
-font-family:sans-serif;
-font-size:20px;
-color:#ccc;
-line-height:40px;
+    vertical-align:auto;
+    zoom:1;
+    display:inline;
+    letter-spacing:normal;
+    height:40px;
+    font-family:sans-serif;
+    font-size:20px;
+    color:#ccc;
+    line-height:40px;
 }
 
 .wrapper.domain #search_domain .set .domain_name .d1 {
@@ -251,11 +251,11 @@ margin:20px 0;
 
 /* form_basic */
 
-.form_basic .cols {
+/*.form_basic .cols {
     padding: 25px 20px;
     background: url("../img/login/border_dot.gif") repeat-x top;
     letter-spacing: -0.35em;
-}
+}*/
 
 .no_border {
     background: none !important;
@@ -269,12 +269,6 @@ margin:20px 0;
     font-size: 15px;
     font-weight: bold;
     line-height: 150%;
-}
-
-.wrapper.account .cols dd {
-    width: 490px;
-    word-wrap: break-word;
-    word-break: break-all;
 }
 
 .form_basic .cols dd.horizon {
@@ -298,12 +292,6 @@ margin:20px 0;
 
 .form_basic ul {
     list-style: none;
-}
-
-.wrapper.account .cols dd {
-    width: 490px;
-    word-wrap: break-word;
-    word-break: break-all;
 }
 
 .form_basic .cols li {
@@ -364,4 +352,114 @@ line-height: 1.5;
     text-align: center;
     line-height: 30px;
 }
+
+
+
+/***  change_email ***/
+
+.fl_r {
+    float: right;
+}
+
+.btn_low a {
+    display: block;
+    width: 160px;
+    height: 40px;
+    color: #fff;
+    text-decoration: none;
+    background: url("../img/main_page/btn_bg_grey.png") no-repeat top;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+}
+.btn_low a:hover{
+    text-decoration: none;
+    color: #FFF;
+    background-position: center bottom;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.wrapper.account .profile_image_fileup .fileup, .wrapper.account .profile_image_fileup .profile_image {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wrapper.account .profile_image_fileup .profile_image img {
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.wrapper.account .profile_image_fileup .fileup {
+    margin-right: 40px;
+}
+
+
+.form_basic .cols dd, .form_basic .cols li {
+display: inline-block;
+vertical-align: middle;
+letter-spacing: normal;
+}
+
+.form_basic .sz_sm {
+width: 160px;
+}
+
+.styled_select_thick {
+display: block;
+position: relative;
+height: 44px;
+cursor: pointer;
+}
+
+.styled_select_thick select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.select_m .easy-select-box{
+    width:180px
+}
+.select_m .easy-select-box ul{
+    width:178px
+}
+
+.styled_select_thick span {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    border-bottom: 1px #999 solid;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0 40px 0 20px;
+    background: url("../img/login/select_arrow.png") no-repeat right center #fff;
+    background: url("../img/login/select_arrow.png") no-repeat right center,-webkit-linear-gradient(top, #fff, #eee);
+    background: url("../img/login/select_arrow.png") no-repeat right center,-moz-linear-gradient(top, #fff, #eee);
+    background: url("../img/login/select_arrow.png") no-repeat right center,linear-gradient(to bottom, #ffffff,#eeeeee);
+    font-size: 14px;
+    line-height: 44px;
+    cursor: pointer;
+}
+
 

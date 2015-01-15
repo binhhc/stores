@@ -29,7 +29,6 @@
 
                     <p class="btn_submit inner_s top">
                         <button type="submit" style="padding-top:0px">Đăng nhập</button>
-                         <!-- <?php //echo $this->Form->submit('Login', array('div' => false)) ?> -->
                     </p>
 
                     <div class="social_login">

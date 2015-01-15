@@ -1,0 +1,142 @@
+ul li img {
+    vertical-align: middle;
+}
+.addon .header {
+    background: url("/img/addon/bg_header.png") repeat-x scroll center center rgba(0, 0, 0, 0);
+    height: 250px;
+    width: 100%;
+}
+.addon .header h2 {
+    margin: 0 auto;
+    padding-top: 55px;
+    text-align: center;
+    width: 780px;
+}
+.wrapper {
+    position: relative;
+}
+.wrapper {
+    margin: 50px auto 0;
+    width: 780px;
+}
+.addon .addon_list .lists {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #ccc;
+    height: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 780px;
+}
+.addon .addon_list .lists a {
+    background: url("/img/common/icon_link.png") no-repeat scroll 755px center rgba(0, 0, 0, 0);
+    color: #333;
+    display: block;
+}
+.addon .addon_list .lists.comingsoon, .addon .addon_list .lists a {
+    background-position: 720px center;
+    display: block;
+    height: 80px;
+    width: 780px;
+}
+
+.addon .addon_list .lists.comingsoon .icon, .addon .addon_list .lists a .icon {
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 60px;
+}
+.addon .addon_list .lists.comingsoon .text, .addon .addon_list .lists a .text {
+    left: 90px;
+    position: absolute;
+    top: 20px;
+}
+.addon .addon_list .lists.comingsoon .text h3, .addon .addon_list .lists a .text h3 {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.addon .addon_list .lists.comingsoon .text p, .addon .addon_list .lists a .text p {
+    color: #868686;
+    font-size: 14px;
+}
+
+.addon .addon_list .lists .switch .active, .addon .addon_list .lists .switch .deactive {
+    background: url("/img/setting/button/btn_status.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    text-indent: -1em;
+}
+.addon .addon_list .lists .switch .deactive {
+    background: url("/img/setting/button/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    text-indent: 1em;
+}
+.addon .addon_list .lists .switch .status {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 26px;
+    text-align: center;
+    width: 80px;
+}
+.switch .status {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 26px;
+    text-align: center;
+    width: 80px;
+}
+.switch .deactive {
+    background: url("/img/setting/button/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    text-indent: 1em;
+}
+.switch .active, .switch .deactive {
+    background: url("/img/setting/button/btn_status.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    cursor: pointer;
+    height: 25px;
+    left: 0;
+    line-height: 25px;
+    position: absolute;
+    text-align: left;
+    text-indent: -1em;
+    top: 0;
+    width: 80px;
+}
+.addon .addon_list .lists.comingsoon .premium, .addon .addon_list .lists a .premium {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.addon .addon_list .lists .switch {
+    position: absolute;
+    right: 100px;
+    top: 28px;
+}
+.switch {
+    height: 25px;
+    position: relative;
+    width: 80px;
+}
+.addon .header h2 {
+    margin: 0 auto;
+    padding-top: 55px;
+    text-align: center;
+    width: 780px;
+}
+.addon .addon_list .lists.comingsoon .icon_comingsoon {
+    border: 2px solid #aaa;
+    border-radius: 3px;
+    color: #aaa;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 26px;
+    position: absolute;
+    right: 48px;
+    text-align: center;
+    top: 24px;
+    width: 130px;
+}
+

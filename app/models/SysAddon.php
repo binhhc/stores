@@ -6,6 +6,7 @@
  */
 class SysAddon extends Model{
     protected $table  = 'sys_addons';
+    public    $imgurl = "/img/addon/";
     /**
      * @author      Sang PM
      * @since       2015/01/15

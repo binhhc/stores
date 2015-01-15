@@ -6,7 +6,19 @@
  */
 class Model extends Eloquent{
     protected $table  = '';
+    public    $imgurl="";
 	protected $hidden = array('created','created_user','modified','modified_user');
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/01/15
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getImageURL($obj){        
+        return $obj->imgurl.$obj->image_url;
+    }
     
     /**
      * @author      Sang PM

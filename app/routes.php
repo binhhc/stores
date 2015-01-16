@@ -38,6 +38,7 @@ Route::get('/styles', 'StoreController@styles');
 //Login
 Route::get('/login', 'UserController@showLogin');
 Route::post('/login', 'UserController@doLogin');
+Route::get('/logout', 'UserController@doLogout');
 
 //account setting
 Route::get('/account_setting', 'UserController@accountSetting');

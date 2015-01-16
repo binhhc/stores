@@ -240,8 +240,10 @@ class UserController extends BaseController {
 		return Response::json( $response );
 
 	    }
-
-
-
+        
+        public function doLogout(){
+            Session::flush();
+            return Redirect::to('/');
+        }
 
 }

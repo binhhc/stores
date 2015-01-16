@@ -218,7 +218,8 @@ class UserController extends BaseController {
 	        	$user_data = array('email' => $email, 'password' => $password);
 	        	if($user->save()) {
 	        	    if (Auth::attempt($user_data)) {
-	        	 		Session::put('user', $user_data);
+	        	    	$user_data = User::where('email', '=', $email)->get()->toArray();
+	        	 		Session::put('user', $user_data[0]);
 						Input::flashOnly('register_email', $email);
             			//return Redirect::to('/dashboard')->withInput();
             			$response = array(
@@ -267,8 +268,10 @@ class UserController extends BaseController {
 		return Response::json( $response );
 
 	    }
-
-
-
+        
+        public function doLogout(){
+            Session::flush();
+            return Redirect::to('/');
+        }
 
 }

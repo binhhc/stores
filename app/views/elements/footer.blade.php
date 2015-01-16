@@ -11,6 +11,5 @@
         <li><a href="http://leverages.vn/" target="_blank">Công ty</a></li>
         <li class="logout"><a href="/logout">Đăng xuất</a></li>
     </ul>
-    <p>Copyright&copy; 2015 Bracket, Inc All Rights Reserved</p>
 </div>
 <!-- /Footer -->

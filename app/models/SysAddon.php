@@ -15,6 +15,6 @@ class SysAddon extends Model{
      * @modified by
      **/
     public static function getAllSysData(){
-        return self::where('active_flg', '=', 0)->get();
+        return self::where('active_flg', '=', 1)->get();
     }
 }

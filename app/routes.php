@@ -23,7 +23,7 @@ Route::get('/store_url', 'StoreController@store_url');
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard/', 'StoreController@dashboard');
 Route::get('/dashboard/{id}', 'StoreController@dashboard');
-Route::get('/addon', 'StoreController@addon');
+Route::get('/addon', 'AddonController@addon');
 Route::get('/sort_item', 'UserItemController@sort_item');
 Route::get('/set_status', 'UserItemController@set_status');
 
@@ -38,6 +38,7 @@ Route::get('/styles', 'StoreController@styles');
 //Login
 Route::get('/login', 'UserController@showLogin');
 Route::post('/login', 'UserController@doLogin');
+Route::get('/logout', 'UserController@doLogout');
 
 //account setting
 Route::get('/account_setting', 'UserController@accountSetting');
@@ -57,7 +58,6 @@ Route::get('/change_destination_account', 'UserController@changeProfile');
 
 
 
-Route::get('/register', 'UserController@register');
 
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));
 Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserController@send_email'));

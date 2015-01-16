@@ -309,17 +309,12 @@ class StoreController extends BaseController {
     public function dashboard($id=null) {
     	$first = isset($id) ? intval($id) : 0;
     	$data['first'] = $first;
+    	$user= Session::get('user');
+    	if(empty($user)) {
+    		return  Redirect::to('/');
+    	}
     	return View::make('store.dashboard', $data );
     }
 
-    /**
-     * About commercial law
-     * @author  Sang PM
-     * @since   2015-01-15
-     */
-    public function addon() {
-    	return View::make('store.addon');
-    }
-
-
+    
 }

@@ -27,7 +27,8 @@
 			<div class="password">
 				<input type="password" name="password" placeholder="Mật khẩu" />
 			</div>
-				<button class="btn_submit" type="submit">Tạo cửa hàng</button>
+				<button class="btn_submit" type="button">Tạo cửa hàng</button>
+				<p class="btn_wait" style="display: none">Đang tạo...</p>
 			<p class="text">
 				<span>Hoặc</span>
 			</p>

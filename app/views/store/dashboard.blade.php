@@ -59,5 +59,5 @@
 		</div>
 	</div>
 </div>
-<input type="hiden" value="<?php echo $email?>" id="email_user" />
+<input type="hidden" value="<?php echo $email?>" id="email_user" />
 @include('elements.footer')

@@ -11,305 +11,24 @@
   <div class="wrapper">
     <ul class="addon_list">
 
-      <!-- イオン連携：受取方法/ -->
-      <!-- ngIf: user_info.mall == 'aeon' -->
-      <!-- /イオン連携：受取方法 -->
-
-      <!-- メールマガジン/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_newsletter" href="#popup_newsletter">
-          <p class="icon"><img alt="メールマガジン" src="/img/addon/icon_newsletter.png"></p>
-          <div class="text">
-            <h3>メールマガジン</h3>
-            <p>購入者とフォロワーに対して、メールマガジンを配信することができます。</p>
-          </div>
-        </a>
-        <div addon="mail_magazine" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /メールマガジン -->
-
-      <!-- 倉庫サービス/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_storages" href="#popup_storages">
-          <p class="icon"><img alt="倉庫サービス" src="/img/addon/icon_storages.png"></p>
-          <div class="text">
-            <h3>倉庫サービス</h3>
-            <p>在庫商品をSTORES.jpの倉庫に送るだけで、保管・発送業務を代行します。</p>
-          </div>
-        </a>
-        <div addon="storages" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /倉庫サービス -->
-
-      <!-- ダウンロード販売/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_digital" href="#popup_digital">
-          <p class="icon"><img alt="ダウンロード販売" src="/img/addon/icon_digital.png"></p>
-          <div class="text">
-            <h3>ダウンロード販売</h3>
-            <p>音楽や動画などのデジタルコンテンツを販売することができます。</p>
-          </div>
-        </a>
-        <div addon="digital" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /ダウンロード販売 -->
-
-      <!-- 送料詳細設定/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_shipping" href="#popup_shipping">
-          <p class="icon"><img alt="送料詳細設定" src="/img/addon/icon_shipping.png"></p>
-          <div class="text">
-            <h3>送料詳細設定</h3>
-            <p>発送手段を自由に作成し、より詳細な送料設定をすることができます。</p>
-          </div>
-        </a>
-        <div addon="detail_shipping_fee" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /送料詳細設定 -->
-
-      <!-- 英語対応/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_english" href="#popup_english">
-          <p class="icon"><img alt="英語対応" src="/img/addon/icon_english.png"></p>
-          <div class="text">
-            <h3>英語対応</h3>
-            <p>ストアが自動的に英語に切り替わり、海外販売ができるようになります。</p>
-          </div>
-        </a>
-        <div addon="english" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active">ON</p><p ng-hide="isEnableAddon()" class="status deactive" style="display: none;">OFF</p><p class="grip" style="left: 57px;"></p></div></div>
-      </li>
-      <!-- /英語対応 -->
-
-      <!-- ブログパーツ/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_blog" href="#popup_blog">
-          <p class="icon"><img alt="ブログパーツ" src="/img/addon/icon_blog.png"></p>
-          <div class="text">
-            <h3>ブログパーツ</h3>
-            <p>エキサイトブログにブログパーツを設置することができます。</p>
-          </div>
-        </a>
-        <div addon="blog_parts" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /ブログパーツ -->
-
-      <!-- WEAR連携/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_secret" href="#popup_wear">
-          <p class="icon"><img alt="WEAR連携" src="/img/addon/icon_wear.png"></p>
-          <div class="text">
-            <h3>WEAR連携</h3>
-            <p>ファッションコーディネートアプリ「WEAR」とストアを連携できます。</p>
-          </div>
-        </a>
-        <div addon="wear" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /WEAR連携 -->
-
-      <!-- アクセス解析/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_analytics" href="#popup_analytics">
-          <p class="icon"><img alt="アクセス解析" src="/img/addon/icon_analytics.png"></p>
-          <div class="text">
-            <h3>アクセス解析</h3>
-            <p>ストアの訪問者数などをシンプルな画面で確認できます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="analytics" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /アクセス解析 -->
-
-      <!-- クーポン/ -->
-      <!-- ngIf: user_info.mall != 'parco' --><li ng-if="user_info.mall != 'parco'" class="lists ng-scope">
-        <a class="fancybox" id="get_coupon" href="#popup_coupon">
-          <p class="icon"><img alt="クーポン" src="/img/addon/icon_coupon.png"></p>
-          <div class="text">
-            <h3>クーポン</h3>
-            <p>セール用の割引クーポンなどを発行することができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="coupon" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li><!-- end ngIf: user_info.mall != 'parco' -->
-      <!-- /クーポン -->
-
-      <!-- アイテム画像追加/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_images" href="#popup_images">
-          <p class="icon"><img alt="アイテム画像追加" src="/img/addon/icon_item_images.png"></p>
-          <div class="text">
-            <h3>アイテム画像追加</h3>
-            <p>アイテム画像を12枚まで増やすことができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="item_image_limit" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /アイテム画像追加 -->
-
-      <!-- 納品書PDF出力/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_pdf" href="#popup_pdf">
-          <p class="icon"><img alt="納品書PDF出力" src="/img/addon/icon_pdf.png"></p>
-          <div class="text">
-            <h3>納品書PDF出力</h3>
-            <p>納品書をPDFでダウンロードできます。（PC限定）</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="delivery_note" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /納品書PDF出力 -->
-
-      <!-- シール/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_seal" href="#popup_seal">
-          <p class="icon"><img alt="シール" src="/img/addon/icon_seal.png"></p>
-          <div class="text">
-            <h3>シール</h3>
-            <p>注目アイテムをアピールするためのシールを貼ることができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="sticker" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /シール -->
-
-      <!-- ニュース/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_news" href="#popup_news">
-          <p class="icon"><img alt="ニュース" src="/img/addon/icon_news.png"></p>
-          <div class="text">
-            <h3>ニュース</h3>
-            <p>ストアからのお知らせページを作成することができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="news" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /ニュース -->
-
-      <!-- オーダーCSV出力/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_csv" href="#popup_csv">
-          <p class="icon"><img alt="オーダーCSV出力" src="/img/addon/icon_csv.png"></p>
-          <div class="text">
-            <h3>オーダーCSV出力</h3>
-            <p>オーダー情報をCSV出力できるので管理が簡単になります。（PC限定）</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="order_csv" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /オーダーCSV出力 -->
-
-      <!-- 年齢制限/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_limit" href="#popup_limit">
-          <p class="icon"><img alt="年齢制限" src="/img/addon/icon_age_limit.png"></p>
-          <div class="text">
-            <h3>年齢制限</h3>
-            <p>お酒や成人向け商品など年齢制限の確認ページを追加することができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="r18" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /年齢制限 -->
-
-      <!-- レビュー/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_review" href="#popup_review">
-          <p class="icon"><img alt="レビュー" src="/img/addon/icon_review.png"></p>
-          <div class="text">
-            <h3>レビュー</h3>
-            <p>購入者に商品レビューを書いてもらうことができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="review" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /レビュー -->
-
-      <!-- ギフトフォーム/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_gift" href="#popup_gift">
-          <p class="icon"><img alt="ギフトフォーム" src="/img/addon/icon_gift.png"></p>
-          <div class="text">
-            <h3>ギフトフォーム</h3>
-            <p>ギフト発送用に、お届け先住所フォームを追加できます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="gift_form" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /ギフトフォーム -->
-
-      <!-- 再入荷お知らせ/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_restock" href="#popup_restock">
-          <p class="icon"><img alt="再入荷お知らせ" src="/img/addon/icon_restock.png"></p>
-          <div class="text">
-            <h3>再入荷お知らせ</h3>
-            <p>アイテムの再入荷お知らせメールを配信することができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="restock_notification" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /再入荷お知らせ -->
-
-      <!-- シークレット/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_secret" href="#popup_secret">
-          <p class="icon"><img alt="シークレット" src="/img/addon/icon_secret.png"></p>
-          <div class="text">
-            <h3>シークレット</h3>
-            <p>ストアにパスワードを設定することができます。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="secret" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /シークレット -->
-
-      <!-- Google アナリティクス/ -->
-      <li class="lists">
-        <a class="fancybox" id="get_ga" href="#popup_ga">
-          <p class="icon"><img alt="Google アナリティクス" src="/img/addon/icon_ga.png"></p>
-          <div class="text">
-            <h3>Google アナリティクス</h3>
-            <p>あなたのストアに訪れたユーザーのアクセス情報をより詳しく分析。</p>
-          </div>
-          <p class="premium"><img alt="Premium" src="/img/addon/premium.png"></p>
-        </a>
-        <div premium="true" addon="google_analytics" sp-grip="" class="ng-scope"><div ng-click="toggleAddon()" class="switch"><p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p><p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p></div></div>
-      </li>
-      <!-- /Google アナリティクス -->
-
-      <!-- トップページ/ -->
-      <li class="lists comingsoon">
-        <p class="icon"><img alt="トップページ" src="/img/addon/icon_toppage.png"></p>
-        <div class="text">
-          <h3>トップページ</h3>
-          <p>様々な情報を掲載したトップページを付けることができます。</p>
-        </div>
-        <p class="icon_comingsoon">COMING SOON</p>
-      </li>
-      <!-- /トップページ -->
-
-
-      <!-- HTML編集/ -->
-      <li class="lists comingsoon">
-        <p class="icon"><img alt="HTML編集" src="/img/addon/icon_html.png"></p>
-        <div class="text">
-          <h3>HTML編集</h3>
-          <p>HTMLを編集して、ストアのデザインをカスタマイズすることができます。</p>
-        </div>
-        <p class="icon_comingsoon">COMING SOON</p>
-      </li>
-      <!-- /HTML編集 -->
+        @foreach ($addons as $ad)              
+            <li class="lists">
+                <a class="fancybox" id="get_newsletter" href="#{{$ad['popup']}}">
+                    <p class="icon"><img alt="{{$ad['name']}}" src="{{SysAddon::getImageURL($ad)}}"></p>
+                    <div class="text">
+                        <h3>{{$ad['name']}}</h3>
+                        <p>{{$ad['intro']}}。</p>
+                    </div>
+                </a>
+                <div addon="mail_magazine" sp-grip="" class="ng-scope">
+                    <div ng-click="toggleAddon()" class="switch">
+                        <p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p>
+                        <p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p>
+                    </div>
+                </div>
+            </li>         
+        @endforeach
+        
     </ul>
   </div>
 </div><span class="ng-scope">
@@ -914,5 +633,18 @@
 		$('a.modal-close').on('click', function(){
 			$('#modal-win').hide();
 		});
+        
+        $('.switch p.status' ).click(function(){
+            var _class = $(this).attr('class');
+            if(_class.match(/deactive/)) {
+                $(this).parent().find('.active').show();
+                $(this).parent().find('.deactive').hide();
+                $(this).parent().find('.grip').css({'left':'57px'});
+            } else {
+                $(this).parent().find('.deactive').show();
+                $(this).parent().find('.active').hide();
+                $(this).parent().find('.grip').css({'left':'2px'});
+            }
+        });
 	});
 </script>

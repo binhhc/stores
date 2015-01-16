@@ -51,11 +51,22 @@ $(document).ready(function(){
     $(document).on('click', 'li.sort_item', function(){
     	var item_id = $(this).attr('item_id');
     	var order_value = $(this).attr('order_value');
+    	var list_public_item = $('li.sort_item.up');
+    	var items_array = [];
+    	$.each( list_public_item, function(index, item){
+    		var id = $(item).attr('item_id');
+    		var order = $(item).attr('order_value');
+    		items_array.push([id, order]);
+    		//items.push({id:order});
+    	});
+    	//console.log(items);
+    	//return;
     	$.ajax({
             type: "GET",
             url: "/sort_item",
             data: {
                 item_id: item_id,
+                items_array: items_array,
                 order_value: order_value
             },
             beforeSend: function() {

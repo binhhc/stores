@@ -13,11 +13,14 @@ class MainController extends BaseController {
      * @return Response
      */
     public function main(){
-    //     $this->layout->content = false;
-        // echo 1;exit;
+    	$user= Session::get('user');
+    	//if(!empty($user)) {
+    	//	return Redirect::to('/dashboard');
+    	//} else {
+    		return View::make('main.index');
+    	//}
 
-        //Example -
-        return View::make('main.index');
+
         // View::make('user.login');
     }
 

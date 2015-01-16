@@ -66,3 +66,6 @@ Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserControlle
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
 Route::post('/forgetPassword', 'UserController@doForgetPassword');
+
+
+// Route::post('/checkEmailJson', 'UserController@checkEmailJson');

@@ -71,35 +71,62 @@ class UserController extends BaseController {
      * @since 2015.10.14
      */
     public function showForgetPassword(){
-        return View::make('user.forgot_password');
+        $input = Input::all();
+
+
+        //check email, token
+        if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
+            $user = DB::table('users')
+                ->where('email', '=', $input['email'])
+                ->where('account_token', '=', $input['token'])
+                ->first();
+
+            if(!empty($user)){
+                //reset password
+                return View::make('user.forgot_password');
+                // return View::make('user.reset_password');
+            }else{
+                return Redirect::to('/');
+            }
+
+        }else{
+            return View::make('user.forgot_password');
+        }
     }
 
     /**
      * Progress forget password page.
      *
      * @param  null
-     * @return Response
+     * @return $result
      * @author Binh Hoang
      * @since 2015.10.15
      */
     public function doForgetPassword(){
-        $v = User::validate_forget_password(Input::all());
+        $email = Input::get('email');
+        $result = array('result' => 0);
+        if(!empty($email)){
+            $user = DB::table('users')
+                ->where('email', '=', $email)
+                ->first();
+            if (!empty($user)) {
+                $send_email = 1;
+                $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
+                //send email
+                if ($send_email) {
+                    // reset token
 
-        if($v->fails()){
-            return Redirect::to('/login')->withErrors($v)->withInput(Input::except('email'));
+                    $result = array('result' => 1);
+                }
+            }
         }
+        return json_encode($result);
+    }
 
-        $userdata = array(
-            'email' => Input::get('email'),
-        );
+    public function checkEmailJson(){
+        $i = Input::get('email');
 
-        if (Auth::attempt($userdata)) {
-            // validation successful!
-            return Redirect::to('/dashboard');
-        } else {
-            // validation not successful, send back to form
-            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Email hoặc mật khẩu không đúng.'));
-        }
+        return 1;
     }
 
     /**

@@ -17,13 +17,13 @@
                     <dl class="set">
                         <dt>Email</dt>
                         <dd>
-                            {{Form::text('email')}}
-                            <font style="color:red;">{{ $errors->first('email') }}</font>
+                            {{Form::text('email', null, array('class' => 'input_login'))}}
+                            <font class="message_error">{{ $errors->first('email') }}</font>
                         </dd>
                         <dt>Mật khẩu</dt>
                         <dd>
-                            {{Form::password('password')}}
-                            <font style="color:red;">{{ $errors->first('password') }}</font>
+                            {{Form::password('password', array('class' => 'input_login'))}}
+                            <font class="message_error">{{ $errors->first('password') }}</font>
                         </dd>
                     </dl>
 

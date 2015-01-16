@@ -13,17 +13,17 @@
                 </a>
             </h1>
             <div class="box">
-                {{Form::open(array('url' => 'forgotPassword', 'method' => 'post'))}}
+                {{Form::open(array('url' => 'forgetPassword', 'method' => 'post'))}}
                     <dl class="set">
                         <dt>Vui lòng điền email bạn đã đăng kí</dt>
                         <dd>
                             {{Form::text('email')}}
                         </dd>
                     </dl>
-                    <p class="btn_submit" ng-hide="pending">
+                    <p class="btn_submit">
                         <button type="submit">Gởi email</button>
                     </p>
-                    <p class="btn_wait" ng-show="pending" style="display: none;">送信中</p>
+                    <p class="btn_wait" style="display: none;">送信中</p>
                 {{Form::close()}}
 
                 <div class="finish" style="display: none;">

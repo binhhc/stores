@@ -75,6 +75,34 @@ class UserController extends BaseController {
     }
 
     /**
+     * Progress forget password page.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.10.15
+     */
+    public function doForgetPassword(){
+        $v = User::validate_forget_password(Input::all());
+
+        if($v->fails()){
+            return Redirect::to('/login')->withErrors($v)->withInput(Input::except('email'));
+        }
+
+        $userdata = array(
+            'email' => Input::get('email'),
+        );
+
+        if (Auth::attempt($userdata)) {
+            // validation successful!
+            return Redirect::to('/dashboard');
+        } else {
+            // validation not successful, send back to form
+            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Email hoặc mật khẩu không đúng.'));
+        }
+    }
+
+    /**
      * Display setting account.
      *
      * @param  null

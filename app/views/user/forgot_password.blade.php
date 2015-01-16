@@ -9,7 +9,7 @@
     <body class="body-login">
         <div class="sign_up">
             <h1>
-                <a href="#">
+                <a href="{{URL::asset('/')}}">
                     {{HTML::image('img/login/logo_white.png', 'STORES.vn')}}
                 </a>
             </h1>

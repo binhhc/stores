@@ -258,7 +258,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_setting() {
-    	$this->checkLogin();
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.store_setting');
     }
     /**
@@ -267,6 +269,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function payment_method() {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.payment_method');
     }
     /**
@@ -275,6 +280,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_url() {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.store_url');
     }
     /**
@@ -283,6 +291,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function setting_domain() {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.setting_domain');
     }
     /**
@@ -291,6 +302,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_about() {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.store_about');
     }
     /**
@@ -299,6 +313,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function commercial_law() {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.commercial_law');
     }
 
@@ -308,12 +325,11 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function dashboard($id=null) {
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	$first = isset($id) ? intval($id) : 0;
     	$data['first'] = $first;
-    	$user= Session::get('user');
-    	if(empty($user)) {
-    		return  Redirect::to('/');
-    	}
     	return View::make('store.dashboard', $data );
     }
 

@@ -57,11 +57,11 @@
 </div>
 <div id="stores" class="contents">
 	<div class="wrapper">
-		<h3 class="heading">Miễn phí lưu trữ hàng online</h3>
+		<h3 class="heading">Miễn phí lưu trữ hàng hoá trực tuyến</h3>
 		<div class="slide">
 			<ul class="slide_navi">
-				<li class="prev">PREV</li>
-				<li class="next">NEXT</li>
+				<li class="prev">Trước</li>
+				<li class="next">Sau<li>
 			</ul>
 			<div class="slide_mask">
 				<div class="slide_wrap">

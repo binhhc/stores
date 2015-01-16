@@ -3,6 +3,9 @@
         {{HTML::script('js/jquery.min.js')}}
          {{HTML::script('js/item_management.js')}}
         @include('elements.header')
+<div id="alert_panel" class="success" style="display: none; opacity: 0; top: -10px;">
+	<p>Đã xoá thành công!</p>
+</div>
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		 <h2 class="heading fl_l">Danh sách mặt hàng</h2>
@@ -19,7 +22,7 @@
 	<span ng-hide="items.length">
 		<div id="nodata" ng-hide="orders.length">
 			<p>
-				{{HTML::image('img/main_page/icon_nodata.png', '', array('width' => 301, 'height' => 297))}}
+				{{HTML::image('img/main_page/icon_nodata1.png', '', array('width' => 301, 'height' => 297))}}
 			</p>
 			<h3>Không có thông tin mặt hàng</h3>
 		</div>

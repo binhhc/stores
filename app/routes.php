@@ -33,8 +33,8 @@ Route::get('/delete_item', 'UserItemController@delete_item');
 Route::get('/update_sort/{$id}/{$order}', 'UserItemController@update_sort');
 
 //edit store
-Route::get('/edit', 'StoreController@edit');
-Route::get('/styles', 'StoreController@styles');
+Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
+Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
 
 //Login
 Route::get('/login', 'UserController@showLogin');
@@ -42,23 +42,21 @@ Route::post('/login', 'UserController@doLogin');
 Route::get('/logout', 'UserController@doLogout');
 
 //account setting
-Route::get('/account_setting', 'UserController@accountSetting');
+Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));
 
 //change email
-Route::get('/change_email', 'UserController@changeEmail');
+Route::get('/change_email', array('before' => 'auth', 'uses' => 'UserController@changeEmail'));
 //change password
-Route::get('/change_password', 'UserController@changePassword');
+Route::get('/change_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
 //change profile
-Route::get('/change_profile', 'UserController@changeProfile');
+Route::get('/change_profile', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
 //change profile
-Route::get('/change_shipping', 'UserController@changeShipping');
+Route::get('/change_shipping', array('before' => 'auth', 'uses' => 'UserController@changeShipping'));
 //change profile
-Route::get('/change_credit_card', 'UserController@changeCreaditCard');
+Route::get('/change_credit_card', array('before' => 'auth', 'uses' => 'UserController@changeCreaditCard'));
 //change profile
-Route::get('/change_destination_account', 'UserController@changeProfile');
+Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
 
-//logout
-Route::post('/logout', 'UserController@doLogout');
 
 
 

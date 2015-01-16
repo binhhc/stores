@@ -1,8 +1,5 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/main_page.js')}}
-        @include('elements.header')
+@include('elements.header')
+{{HTML::script('js/main_page.js')}}
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">
@@ -27,9 +24,8 @@
 						</p>
 						<p class="text">Với URL ngắn gọn và dễ nhớ, dễ quảng bá bán hàng</p>
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">
-							<a href="setting_domain"">Sử dụng tên miền của tôi</a>
+							<a href="setting_domain">Sử dụng tên miền của tôi</a>
 						</p>
-
 					</div>
 				</dd>
 			</dl>
@@ -63,7 +59,7 @@
 				<dt>Mô tả cửa hàng</dt>
 				<dd class="horizon">
 					<p class="btn_low_m" ng-hide="hasAbout">
-						<a href="store_about"">Đăng ký</a>
+						<a href="store_about">Đăng ký</a>
 					</p>
 					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
 						<a href="store_about">Chỉnh sửa</a>

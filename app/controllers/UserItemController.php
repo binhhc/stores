@@ -17,6 +17,7 @@ class UserItemController extends BaseController {
 		$items = UserItem::where('user_id', '=', ''.$user_id)
 					->orderBy('public_flg', 'asc')
 					->orderBy('order', 'asc')
+					->orderBy('updated_at', 'desc')
 					->get();
 		$data['items'] = $items;
 		$queries = DB::getQueryLog();
@@ -37,14 +38,11 @@ class UserItemController extends BaseController {
 		// public
 		if($flg == 0) {
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
-
-			//$item = UserItem::get($id);
+					->update(array('public_flg' => 1, 'order' => 0,  'updated_user' => $user_id));
 		} else {
 			// private
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
-			//$item = UserItem::get($id);
+					->update(array('public_flg' => 0, 'order' => -1, 'updated_user' => $user_id));
 		}
 
 	}
@@ -60,11 +58,16 @@ class UserItemController extends BaseController {
 		$order_value = intval($order_value);
 		$id_item = intval($id);
 		if($up_down == 'up') {
+			UserItem::where('order', $order_value -1)
+			->update(array('order' => $order_value,  'updated_user' => $user_id));
 			UserItem::where('id', $id_item)
-			->update(array('order' => $order_value-2,  'updated_user' => $user_id));
+			->update(array('order' => $order_value-1,  'updated_user' => $user_id));
+
 		} else {
+			UserItem::where('order', $order_value + 1)
+			->update(array('order' => $order_value,  'updated_user' => $user_id));
 			UserItem::where('id', $id_item)
-			->update(array('order' => $order_value + 2,  'updated_user' => $user_id));
+			->update(array('order' => $order_value + 1,  'updated_user' => $user_id));
 		}
 
 
@@ -79,10 +82,10 @@ class UserItemController extends BaseController {
 		$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'asc')
 					->orderBy('order', 'asc')
+					->orderBy('updated_at', 'desc')
 					->get();
 		$data['items'] = $items;
 
-		//return View::make('elements.list_item_ajax', $data);
 		$view =  View::make('elements.list_item_ajax', $data)->render();
 		$response = array(
 					'status' => 'success',
@@ -131,7 +134,7 @@ class UserItemController extends BaseController {
 	 * @author OanhHa
 	 * @since 2015/01/16
 	 */
-	/*public function update_all_order ($data = array()) {
+	public function update_all_order ($data = array()) {
 		$user_id = $this->getUserId();
 		foreach($data as $item) {
 			$id = $item[0];
@@ -139,7 +142,7 @@ class UserItemController extends BaseController {
 			UserItem::where('id' ,  $id)
 					->update(array('order' => $order,  'updated_user' => $user_id));
 		}
-	}*/
+	}
 
 
 

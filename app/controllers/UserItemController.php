@@ -12,12 +12,18 @@ class UserItemController extends BaseController {
 	 * @since 2015/01/14
 	 */
 	public function item_management() {
-		$items = UserItem::orderBy('public_flg', 'asc')
-					->orderBy('order', 'desc')
-					->get();
-		$data['items'] = $items;
-
-		return View::make('userItem.item_management', $data);
+		$user= Session::get('user');
+		if(empty($user)) {
+			return Redirect::to('/');
+		} else {
+			$user_id = $user['id'];
+			$items = UserItem::where('user_id', '=', ''.$user_id)
+						->orderBy('public_flg', 'asc')
+						->orderBy('order', 'desc')
+						->get();
+			$data['items'] = $items;
+			return View::make('userItem.item_management', $data);
+		}
 	}
 	/**
 	 * update public flag
@@ -88,6 +94,9 @@ class UserItemController extends BaseController {
 			 $input = Input::all();
 			 $item_id = trim(Input::get('item_id'));
 	    	 $up_down = trim(Input::get('order_value'));
+	    	 $items_array = Input::get('items_array');
+	    	 var_dump($items_array);
+	    	 die();
 	    	 $this->update_sort($item_id, $up_down);
 	    	 $response = $this->list_item_ajax();
 			 return Response::json($response);
@@ -110,6 +119,18 @@ class UserItemController extends BaseController {
 	    	 $response = $this->list_item_ajax();
 	    	 return Response::json($response);
 	    }
+	}
+	/**
+	 * Update order for all items in user_items table
+	 * @author OanhHa
+	 * @since 2015/01/16
+	 */
+	public function update_all_order ($data = array()) {
+		foreach($data as $item) {
+			$id = $item[0];
+			$order = $item[1];
+
+		}
 
 	}
 

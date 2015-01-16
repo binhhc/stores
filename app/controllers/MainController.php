@@ -14,11 +14,11 @@ class MainController extends BaseController {
      */
     public function main(){
     	$user= Session::get('user');
-    	if(!empty($user)) {
-    		return Redirect::to('/dashboard');
-    	} else {
+    	//if(!empty($user)) {
+    	//	return Redirect::to('/dashboard');
+    	//} else {
     		return View::make('main.index');
-    	}
+    	//}
 
 
         // View::make('user.login');

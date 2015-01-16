@@ -37,6 +37,7 @@ $(document).ready(function(){
               global: true,
               dataType: 'json',
               success: function(response) {
+            	  $('.activate').hide();
              	 //alert(response);
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -51,6 +52,7 @@ $(document).ready(function(){
     $(document).on('click', 'li.sort_item', function(){
     	var item_id = $(this).attr('item_id');
     	var order_value = $(this).attr('order_value');
+    	var up_down = $(this).attr('up_down');
     	var list_public_item = $('li.sort_item.up');
     	var items_array = [];
     	$.each( list_public_item, function(index, item){
@@ -67,7 +69,8 @@ $(document).ready(function(){
             data: {
                 item_id: item_id,
                 items_array: items_array,
-                order_value: order_value
+                order_value: order_value,
+                up_down:up_down
             },
             beforeSend: function() {
             },

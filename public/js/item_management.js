@@ -51,6 +51,15 @@ $(document).ready(function(){
     $(document).on('click', 'li.sort_item', function(){
     	var item_id = $(this).attr('item_id');
     	var order_value = $(this).attr('order_value');
+    	var list_public_item = $('li.sort_item.up');
+    	var item = [];
+    	$.each( list_public_item, function(index, item){
+    		var id = $(item).attr('item_id');
+    		var order = $(item).attr('order_value');
+    		item.push([id, order]);
+    	    });
+    	console.log(item);
+    	return;
     	$.ajax({
             type: "GET",
             url: "/sort_item",

@@ -60,7 +60,6 @@ Route::get('/change_destination_account', 'UserController@changeProfile');
 
 
 
-Route::get('/register', 'UserController@register');
 
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));
 Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserController@send_email'));

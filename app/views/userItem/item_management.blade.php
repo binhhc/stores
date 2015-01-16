@@ -44,8 +44,8 @@
 					<dd class="items ng-scope" ng-hide="item.animate" ng-repeat="item in items_shown">
 					@if ($item['public_flg'] == 0)
 						<ul class="sort">
-							<li class="sort_item up" order_value="1" item_id="{{$item['id']}}">UP</li>
-							<li class="sort_item down" order_value="0" item_id="{{$item['id']}}">DOWN</li>
+							<li class="sort_item up" up_down="up" order_value="<?php echo $stt;?>" item_id="{{$item['id']}}">UP</li>
+							<li class="sort_item down" up_down="down" order_value="<?php echo $stt;?>" item_id="{{$item['id']}}">DOWN</li>
 						</ul>
 					@endif
 						<dl class="lists move">

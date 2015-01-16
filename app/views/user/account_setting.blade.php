@@ -1,6 +1,5 @@
-{{HTML::style('css/account_setting.css')}}
-
 @include('elements.header')
+{{HTML::style('css/account_setting.css')}}
 <div class="setting">
     <div class="wrapper account">
         <div class="heading_box clearfix">

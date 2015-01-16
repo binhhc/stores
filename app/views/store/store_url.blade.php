@@ -1,8 +1,4 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/main_page.js')}}
-        @include('elements.header')
+@include('elements.header')
 <div class="wrapper ng-scope">
 		<h2 class="heading">Thay đổi địa chỉ URL</h2>
 		<dl class="form_basic">

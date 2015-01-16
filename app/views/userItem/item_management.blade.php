@@ -1,9 +1,5 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/item_management.js')}}
-        @include('elements.header')
-<div id="alert_panel" class="success" style="display: none; opacity: 0; top: -10px;">
+@include('elements.header')
+<div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
 	<p>Đã xoá thành công!</p>
 </div>
 <div class="wrapper">

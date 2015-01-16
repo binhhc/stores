@@ -428,30 +428,3 @@
 	</div>
 </div>
 @include('elements.footer')
-<script>
-	$(document).ready(function(){
-		$('#open_shipping_select').on('click', function(event){
-			 event.preventDefault();
-			if ($('#shipping_select').css('display') == 'none') {
-				$('#shipping_select').show();
-			} else {
-				$('#shipping_select').hide();
-			}
-		});
-		$('button.cancel_button').on('click', function(){
-			$('#shipping_select').hide();
-		})
-		$('#form_promotion').on('click', function(){
-			$('#modal-win').show();
-		});
-		$('a.modal-move').on('click', function() {
-			var modal = $(this).attr('href');
-			$('#modal-win-inner').hide();
-			$('.modal_slide').hide();
-			$(modal).show();
-		});
-		$('a.modal-close').on('click', function(){
-			$('#modal-win').hide();
-		});
-	});
-</script>

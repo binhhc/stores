@@ -67,7 +67,7 @@ return array(
 	|
 	*/
 
-	'encryption' => 'tls',
+	'encryption' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return array(
 	|
 	*/
 
-	'pretend' => true,
+	'pretend' => false,
 	'mailgun' => array(
 	    'domain' => 'lev-vn.dev',
 	    'secret' => 'lev-vn',

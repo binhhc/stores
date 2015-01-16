@@ -80,7 +80,6 @@ class UserController extends BaseController {
                 ->where('account_token', '=', $input['token'])
                 ->get()->toArray();
 
-            var_dump($user);exit;
             if(!empty($user)){
                 //reset password
                 return View::make('user.forgot_password');
@@ -208,7 +207,7 @@ class UserController extends BaseController {
                 $user = new User;
                 $user->email = $email;
                 $user->password  = Hash::make($password);
-                $user->account_token = $account_token;
+                $user->account_token = User::createAccountToken();
                 $user_data = array('email' => $email, 'password' => $password);
                 if($user->save()) {
                     if (Auth::attempt($user_data)) {
@@ -243,17 +242,22 @@ class UserController extends BaseController {
      * send email to register
      */
     public function send_email() {
-         $response = array('sucess' => 'fail');
-         if(Request::ajax()) {
-         	$email = trim(Input::get('email'));
-            $response = array('sucess' => '3333');
-            $status = Mail::send('emails.register', array('mail' => $email), function($message)
-            {
-                $message->to($email, 'John Smith')->subject('Welcome!');
-
-            });
-            $response = array('sucess' => $status);
-         }
+        $response = array('sucess' => 'fail');
+        $user_id = Session::get('user.id');
+        $email   = Session::get('user.email');
+        $token   = User::createAccountToken();
+      
+        User::where('id',$user_id)
+                ->update(array(
+                    'account_token' => $token,
+                    'updated_user'  => $user_id));
+        
+//        if(Request::ajax()) {         	            
+//            $status = Mail::send('emails.register', array(), function($message) use($email) {
+//                $message->to($email, 'Thành viên mới')->subject('Đăng ký Store thành công');
+//            });
+//            $response = array('sucess' => $status);
+//        } 
 
     return Response::json( $response );
 

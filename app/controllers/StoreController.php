@@ -312,16 +312,5 @@ class StoreController extends BaseController {
     	return View::make('store.dashboard', $data );
     }
 
-    /**
-     * About commercial law
-     * @author  Sang PM
-     * @since   2015-01-15
-     */
-    public function addon() {       
-        $data['addons'] = SysAddon::getAllSysData();
-        
-    	return View::make('store.addon',$data);
-    }
-
-
+    
 }

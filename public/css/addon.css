@@ -140,3 +140,6 @@ ul li img {
     width: 130px;
 }
 
+.addon .addon_list .lists a:hover{
+    text-decoration: none;
+}

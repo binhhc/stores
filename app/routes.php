@@ -14,51 +14,49 @@ Route::resource('user', 'UserController');
 Route::model('user', 'User');
 
 Route::get('/', 'MainController@main');
-Route::get('/commercial_law', 'StoreController@commercial_law');
-Route::get('/store_setting', 'StoreController@store_setting');
-Route::get('/payment_method', 'StoreController@payment_method');
-Route::get('/setting_domain', 'StoreController@setting_domain');
-Route::get('/store_about', 'StoreController@store_about');
-Route::get('/store_url', 'StoreController@store_url');
-Route::get('/item_management', 'UserItemController@item_management');
-Route::get('/dashboard/', 'StoreController@dashboard');
-Route::get('/dashboard/{id}', 'StoreController@dashboard');
-Route::get('/addon', 'AddonController@addon');
-Route::get('/sort_item', 'UserItemController@sort_item');
+Route::get('/commercial_law', array('before' => 'auth', 'StoreController@commercial_law'));
+Route::get('/store_setting', array('before' => 'auth', 'StoreController@store_setting'));
+Route::get('/payment_method', array('before' => 'auth', 'StoreController@payment_method'));
+Route::get('/setting_domain', array('before' => 'auth', 'StoreController@setting_domain'));
+Route::get('/store_about', array('before' => 'auth', 'StoreController@store_about'));
+Route::get('/store_url', array('before' => 'auth', 'StoreController@store_url'));
+Route::get('/item_management', array('before' => 'auth', 'UserItemController@item_management'));
+Route::get('/dashboard/', array('before' => 'auth', 'StoreController@dashboard'));
+Route::get('/dashboard/{id}', array('before' => 'auth', 'StoreController@dashboard'));
+Route::get('/addon', array('before' => 'auth', 'AddonController@addon'));
+Route::get('/sort_item', array('before' => 'auth', 'UserItemController@sort_item'));
 Route::get('/set_status', 'UserItemController@set_status');
 
-Route::get('/list_item_ajax', 'UserItemController@list_item_ajax');
-Route::get('/send_email', 'UserController@send_email');
-Route::get('/update_sort/{$id}/{$order}', 'UserItemController@update_sort');
+Route::get('/list_item_ajax', array('before' => 'auth', 'UserItemController@list_item_ajax'));
+Route::get('/send_email', array('before' => 'auth', 'UserController@send_email'));
+Route::get('/update_sort/{$id}/{$order}', array('before' => 'auth', 'UserItemController@update_sort'));
 
 //edit store
-Route::get('/edit', 'StoreController@edit');
-Route::get('/styles', 'StoreController@styles');
+Route::get('/edit', array('before' => 'auth', 'StoreController@edit'));
+Route::get('/styles', array('before' => 'auth', 'StoreController@styles'));
 
 //Login
 Route::get('/login', 'UserController@showLogin');
 Route::post('/login', 'UserController@doLogin');
-Route::get('/logout', 'UserController@doLogout');
-
-//account setting
-Route::get('/account_setting', 'UserController@accountSetting');
-
-//change email
-Route::get('/change_email', 'UserController@changeEmail');
-//change password
-Route::get('/change_password', 'UserController@changePassword');
-//change profile
-Route::get('/change_profile', 'UserController@changeProfile');
-//change profile
-Route::get('/change_shipping', 'UserController@changeShipping');
-//change profile
-Route::get('/change_credit_card', 'UserController@changeCreaditCard');
-//change profile
-Route::get('/change_destination_account', 'UserController@changeProfile');
 
 //logout
 Route::post('/logout', 'UserController@doLogout');
 
+//account setting
+Route::get('/account_setting', array('before' => 'auth', 'UserController@accountSetting'));
+
+//change email in account setting
+Route::get('/change_email', array('before' => 'auth', 'UserController@changeEmail'));
+//change password in account setting
+Route::get('/change_password', array('before' => 'auth', 'UserController@changePassword'));
+//change profile
+Route::get('/change_profile', array('before' => 'auth', 'UserController@changeProfile'));
+//change profile
+Route::get('/change_shipping', array('before' => 'auth', 'UserController@changeShipping'));
+//change profile
+Route::get('/change_credit_card', array('before' => 'auth', 'UserController@changeCreaditCard'));
+//change profile
+Route::get('/change_destination_account', array('before' => 'auth', 'UserController@changeProfile'));
 
 
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));

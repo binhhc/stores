@@ -249,7 +249,7 @@ class UserController extends BaseController {
     public function send_email() {
          $response = array('sucess' => 'fail');
          if(Request::ajax()) {
-         	$email = trim(Input::get('email');
+         	$email = trim(Input::get('email'));
             $response = array('sucess' => '3333');
             $status = Mail::send('emails.register', array('mail' => $email), function($message)
             {

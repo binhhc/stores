@@ -1,8 +1,4 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/item_management.js')}}
-        @include('elements.header')
+@include('elements.header')
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		 <h2 class="heading fl_l">Danh sách mặt hàng</h2>

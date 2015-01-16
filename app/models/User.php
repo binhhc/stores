@@ -24,8 +24,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     protected $hidden = array('password', 'remember_token');
 
-    public $timestamps = false;
-
     /**
      * Get the unique identifier for the user.
      *
@@ -77,6 +75,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return Validator::make($input, $rules);
     }
 
+	/**
+     * @author      Oanh Ha
+     * @since       2015/01/14
+     *
+     * @modified
+     * @modified by
+     **/
+    public static function createAccountToken(){
+        return md5(time());
+    }
  	/**
      * Validate
      *	@author OanhHa

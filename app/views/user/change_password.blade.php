@@ -1,7 +1,5 @@
-{{HTML::style('css/account_setting.css')}}
-
 @include('elements.header')
-
+{{HTML::style('css/account_setting.css')}}
 <div class="wrapper account">
     <div class="heading_box clearfix">
         <h2 class="heading fl_l">Thay đổi mật khẩu</h2>

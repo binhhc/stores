@@ -61,13 +61,15 @@
 					</dd>
 				</dl>
 			</dd>
-<dl class="btn_pair" ng-hide="pending">
-		<dd class="btn_low">
-			<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
-		</dd>
-		<dd class="btn_high">
-			<a href="/store_setting"><button type="submit">Lưu</button></a>
-		</dd>
-	</dl>
+		</dl>
+		<dl class="btn_pair" ng-hide="pending">
+			<dd class="btn_low">
+				<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
+			</dd>
+			<dd class="btn_high">
+				<a href="/store_setting"><button type="submit">Lưu</button></a>
+			</dd>
+		</dl>
+	</form>
 </div>
 @include('elements.footer')

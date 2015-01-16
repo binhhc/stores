@@ -17,7 +17,6 @@
 	</div>
 	<p class="main_image">
 		{{HTML::image('img/main_page/main.png', 'fea_1',array( 'width' => 746, 'height' => 420 )) }}
-
 	</p>
 	<ul class="feature clearfix">
 		<li>

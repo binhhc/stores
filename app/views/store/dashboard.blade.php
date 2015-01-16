@@ -1,6 +1,6 @@
 @include('elements.header')
- <?php $user= Session::get('user'); $email = $user['email']; ?>
- <?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+<?php $user= Session::get('user'); $email = $user['email']; ?>
+<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
 <div class="dashboard_wrapper ng-scope">
 	<ul class="dashboard">
 		<li>
@@ -55,5 +55,4 @@
 		</div>
 	</div>
 </div>
-<input type="hidden" value="<?php echo $email?>" id="email_user" />
 @include('elements.footer')

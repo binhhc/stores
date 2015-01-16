@@ -314,7 +314,7 @@ $(document).ready(function(){
                     success: function(response) {
                     	if(response.success=1) {
                     		$('.items_contents').html(response.html.html);
-                    		$('#alert_panel').fadeIn('slow').delay(5000).fadeOut('slow');
+                    		$('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
                     	} else {
                     		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
                     		return;

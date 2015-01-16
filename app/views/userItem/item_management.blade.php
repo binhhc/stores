@@ -89,6 +89,7 @@
 	</div>
 	@endif
 </div>
+<div class="loading ng-scope" ng-show="state == 'wait'" style="display: none;"></div>
 @include('elements.footer')
 <style>
 .switch .active, .switch .deactive {

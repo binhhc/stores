@@ -14,5 +14,31 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	/**
+	 * Check login function
+	 * @author OanhHa
+	 * @since 2015/01/16
+	 */
+	public function checkLogin() {
+		$user = Session::get('user');
+		if(empty($user)) {
+    		return Redirect::to('/');
+    	} else {
+    		return $user;
+    	}
+	}
+	/**
+	 * Get id of login user
+	 * @author OanhHa
+	 * @since 2015/01/16
+	 */
+	public function getUserId() {
+		$user = Session::get('user');
+		if(empty($user)) {
+    		return Redirect::to('/');
+    	} else {
+    		return $user['id'];
+    	}
+	}
 
 }

@@ -118,7 +118,7 @@
 	    	    $(div_err).hide();
 	    	    return true;
 	    }
-	      $('button.btn_submit').on('click', function(e) {
+	      $(document).on('click', 'button.btn_submit', function(e){
 	    	  e.preventDefault();
 	    	  if (validateForm()) {
 	    		  var pass = document.forms["myForm"]["password"].value;
@@ -133,17 +133,32 @@
 	                  },
 	                  global: true,
 	                  dataType: 'json',
+	                  beforeSend: function() {
+	                	  $('button.btn_submit').hide();
+	                	  $('.btn_wait').show();
+	                  },
 	                  success: function(response) {
-	                	  if(response.status == 'fail') {
+	                	  if(response.status == 'fail validate') {
 	                		  $(div_err).show();
 	                		  $('p.unique_email').show();
 	                		  return false;
 	                	  } else {
-	                		  window.location.href = "/dashboard/1";
+	                		  if(response.status== "success") {
+	                			  window.location.href = "/dashboard/1";
+	                		  } else {
+	                			  $(div_err).show();
+	                			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
+		                		  $('p.unique_email').show();
+	                		  }
+
 	                	  }
 	                  },
 	                  error: function(XMLHttpRequest, textStatus, errorThrown) {
-	                  }
+	                  },
+	                  complete: function() {
+	                	  $('button.btn_submit').show();
+	                	  $('.btn_wait').hide();
+	                  },
 	              });
 	    	  } else {
 	    		  return false;

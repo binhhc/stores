@@ -1,8 +1,9 @@
 {{HTML::script('/js/jquery.min.js')}}
+{{HTML::script('/js/common.js')}}
 {{HTML::script('/js/jquery.tipsy.js')}}
-
-{{HTML::style('/css/jquery.tipsy.css')}}
 {{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/style.css')}}
+{{HTML::style('css/jquery.tipsy.css')}}
 {{HTML::style('css/item_management.css')}}
 
 <?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>

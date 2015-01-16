@@ -54,7 +54,7 @@ class UserController extends BaseController {
         if (Auth::attempt($userdata)) {
             // validation successful!
             $user = User::where('email', '=', $userdata['email'])->get()->toArray();
-            Session::put('user', $user[0]);
+            Session::put('user', reset($user));
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form
@@ -76,10 +76,9 @@ class UserController extends BaseController {
 
         //check email, token
         if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
-            $user = DB::table('users')
-                ->where('email', '=', $input['email'])
+            $user = User::where('email', '=', $input['email'])
                 ->where('account_token', '=', $input['token'])
-                ->first();
+                ->get()->toArray();
 
             if(!empty($user)){
                 //reset password
@@ -106,18 +105,18 @@ class UserController extends BaseController {
         $email = Input::get('email');
         $result = array('result' => 0);
         if(!empty($email)){
-            $user = DB::table('users')
-                ->where('email', '=', $email)
-                ->first();
+            $user = User::where('email', '=', $email)->get()->toArray();
+
+            var_dump($user);exit;
             if (!empty($user)) {
-                $send_email = 1;
+
                 $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
                 //send email
-                if ($send_email) {
+                // if ($send_email) {
                     // reset token
 
-                    $result = array('result' => 1);
-                }
+                $result = array('result' => 1);
+                // }
             }
         }
         return json_encode($result);
@@ -132,10 +131,7 @@ class UserController extends BaseController {
      * @since 2015.01.14
      */
     public function accountSetting(){
-        if(Session::has('user'))
-            return View::make('user.account_setting');
-        else
-            return Redirect::to('/');
+        return View::make('user.account_setting');
     }
 
     /**
@@ -147,10 +143,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeEmail(){
-        if(Session::has('user'))
-            return View::make('user.account_setting');
-        else
-            return View::make('user.change_email');
+        return View::make('user.change_email');
     }
 
     /**
@@ -162,10 +155,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changePassword(){
-        if(Session::has('user'))
-            return View::make('user.account_setting');
-        else
-            return View::make('user.change_password');
+        return View::make('user.change_password');
     }
 
     /**
@@ -177,10 +167,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeProfile(){
-        if(Session::has('user'))
-            return View::make('user.account_setting');
-        else
-            return View::make('user.change_profile');
+        return View::make('user.change_profile');
     }
 
     /**
@@ -192,10 +179,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeShipping(){
-        if(Session::has('user'))
-            return View::make('user.account_setting');
-        else
-            return View::make('user.change_shipping');
+        return View::make('user.change_shipping');
     }
 
     /**
@@ -208,7 +192,8 @@ class UserController extends BaseController {
         if(Request::ajax())
         {
             $input = Input::all();
-            $email = trim(Input::get('email'));            
+            $email = trim(Input::get('email'));
+            $account_token = md5($email);
             $password = trim(Input::get('password'));
             $v = User::validate_register(Input::all());
 

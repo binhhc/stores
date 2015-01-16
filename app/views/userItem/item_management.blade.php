@@ -1,8 +1,4 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/item_management.js')}}
-        @include('elements.header')
+@include('elements.header')
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		 <h2 class="heading fl_l">Danh sách mặt hàng</h2>
@@ -70,13 +66,13 @@
 							</dd>
 							<dd class="navi">
 								<ul>
-									<li class="navi_delete">
-										<a ng-click="delete(item, '削除してもよろしいですか？')" href="">Xoá</a>
+									<li class="navi_delete" >
+										<a item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
 									</li>
-									<li class="navi_edit">
+									<li class="navi_edit" item_id="{{$item['id']}}">
 										<a ng-click="edit(item)" href="">Sửa</a>
 									</li>
-									<li class="navi_share">
+									<li class="navi_share" item_id="{{$item['id']}}">
 										<p class="navi_share_btn" ng-class="item_share(item)">Xem</p>
 									</li>
 								</ul>

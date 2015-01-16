@@ -152,6 +152,20 @@ img {
     width: 740px;
 }
 
+
+.loading {
+    background: url("../img/main_page/loading.gif") no-repeat scroll center center #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+}
+.payment_select_wrapper li label {
+	white-space: nowrap;
+}
 .list_items .items .lists dd.sz_xs, #news .list_news .items .lists dd.sz_xs {
     width: 50px;
 }

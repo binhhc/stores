@@ -70,13 +70,13 @@
 							</dd>
 							<dd class="navi">
 								<ul>
-									<li class="navi_delete">
-										<a ng-click="delete(item, '削除してもよろしいですか？')" href="">Xoá</a>
+									<li class="navi_delete" >
+										<a item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
 									</li>
-									<li class="navi_edit">
+									<li class="navi_edit" item_id="{{$item['id']}}">
 										<a ng-click="edit(item)" href="">Sửa</a>
 									</li>
-									<li class="navi_share">
+									<li class="navi_share" item_id="{{$item['id']}}">
 										<p class="navi_share_btn" ng-class="item_share(item)">Xem</p>
 									</li>
 								</ul>
@@ -89,6 +89,7 @@
 	</div>
 	@endif
 </div>
+<div class="loading ng-scope" ng-show="state == 'wait'" style="display: none;"></div>
 @include('elements.footer')
 <style>
 .switch .active, .switch .deactive {

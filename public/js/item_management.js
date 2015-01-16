@@ -66,6 +66,7 @@ $(document).ready(function(){
             url: "/sort_item",
             data: {
                 item_id: item_id,
+                items: items
                 order_value: order_value
             },
             beforeSend: function() {

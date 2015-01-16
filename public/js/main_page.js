@@ -89,31 +89,40 @@
 	    	  	var x = document.forms["myForm"]["email"].value;
 	    	    var atpos = x.indexOf("@");
 	    	    var dotpos = x.lastIndexOf(".");
-	    	    if (pass.length <= 0 || x.length <=0) {
+	    	    if (pass.length <= 0 && x.length <=0) {
 	    	    	$(div_err).show();
 	    	    	$(p_err).show();
 	    	    	$(e_p).show();
 	    	    	$(em_err).show();
 	    	    	return false;
 	    	    } else {
-	    	    	$(e_p).hide();
-	    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+	    	        if (pass.length <= 0 || x.length <=0) {
+	    	        	$(p_err).hide();
+		    	    	$(em_err).hide();
 		    	    	$(div_err).show();
-		    	    	$(em_err).show();
+		    	    	$(e_p).show();
 		    	    	return false;
 		    	    } else {
-		    	    	$(em_err).hide();
-		    	    	if (pass.length < 6) {
+		    	    	$(e_p).hide();
+		    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
 			    	    	$(div_err).show();
-			    	    	$(p_err).show();
+			    	    	$(em_err).show();
 			    	    	return false;
 			    	    } else {
-			    	    	$(p_err).hide();
+			    	    	$(em_err).hide();
+			    	    	if (pass.length < 6) {
+				    	    	$(div_err).show();
+				    	    	$(p_err).show();
+				    	    	return false;
+				    	    } else {
+				    	    	$(p_err).hide();
+				    	    }
+
 			    	    }
 
 		    	    }
-
 	    	    }
+
 
 	    	    $(div_err).hide();
 	    	    return true;

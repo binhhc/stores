@@ -8,6 +8,7 @@ class Model extends Eloquent{
     protected $table  = '';
     public    $imgurl="";
 	protected $hidden = array('created','created_user','modified','modified_user');
+    public    $timestamps = true;
     
     /**
      * @author      Sang PM

@@ -56,7 +56,7 @@ $(document).ready(function(){
     	$.each( list_public_item, function(index, item){
     		var id = $(item).attr('item_id');
     		var order = $(item).attr('order_value');
-    		item.push([id, order]);
+    		$(item).push([id, order]);
     	    });
     	console.log(item);
     	return;

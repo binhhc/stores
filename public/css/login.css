@@ -10,6 +10,19 @@
     padding: 90px 0;
 }
 
+.input_login{
+    margin-bottom: 5px;
+}
+
+.message_error{
+    color: #df3650;
+    margin-top:5px;
+}
+
+.display_none{
+    display: none;
+}
+
 .sign_up h1 {
     padding: 20px 0 35px;
     text-align: center;
@@ -48,6 +61,18 @@
     background: #374350;
     padding: 40px 0 30px 0;
     color: #d2d5d9;
+}
+
+.sign_up .btn_wait {
+    width: 380px;
+    margin: 0 auto;
+    width: 380px;
+    height: 62px;
+    text-align: center;
+    line-height: 62px;
+    background: url("../img/login/btn_gray_signup.png") no-repeat top left;
+    font-size: 20px;
+    color: #fff;
 }
 
 .sign_up .set {

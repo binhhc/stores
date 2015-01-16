@@ -9,7 +9,9 @@
         <li><a href="/tokushoho" target="_blank">Luật thương mại</a></li>
         <li><a href="/privacy_policy" target="_blank">Chính sách</a></li>
         <li><a href="http://leverages.vn/" target="_blank">Công ty</a></li>
-        <li class="logout"><a href="/logout">Đăng xuất</a></li>
+        <li class="logout">
+            <a href="{{URL::asset('/logout')}}">Đăng xuất</a>
+        </li>
     </ul>
 </div>
 <!-- /Footer -->

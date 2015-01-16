@@ -56,6 +56,8 @@ Route::get('/change_credit_card', 'UserController@changeCreaditCard');
 //change profile
 Route::get('/change_destination_account', 'UserController@changeProfile');
 
+//logout
+Route::post('/logout', 'UserController@doLogout');
 
 
 
@@ -66,3 +68,6 @@ Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserControlle
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
 Route::post('/forgetPassword', 'UserController@doForgetPassword');
+
+
+// Route::post('/checkEmailJson', 'UserController@checkEmailJson');

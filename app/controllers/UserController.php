@@ -53,7 +53,8 @@ class UserController extends BaseController {
 
         if (Auth::attempt($userdata)) {
             // validation successful!
-            Session::put('user', $userdata);
+            $user = User::where('email', '=', $userdata['email'])->get()->toArray();
+            Session::put('user', $user[0]);
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form
@@ -71,35 +72,55 @@ class UserController extends BaseController {
      * @since 2015.10.14
      */
     public function showForgetPassword(){
-        return View::make('user.forgot_password');
+        $input = Input::all();
+
+        //check email, token
+        if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
+            $user = DB::table('users')
+                ->where('email', '=', $input['email'])
+                ->where('account_token', '=', $input['token'])
+                ->first();
+
+            if(!empty($user)){
+                //reset password
+                return View::make('user.forgot_password');
+                // return View::make('user.reset_password');
+            }else{
+                return Redirect::to('/');
+            }
+
+        }else{
+            return View::make('user.forgot_password');
+        }
     }
 
     /**
      * Progress forget password page.
      *
      * @param  null
-     * @return Response
+     * @return $result
      * @author Binh Hoang
      * @since 2015.10.15
      */
     public function doForgetPassword(){
-        $v = User::validate_forget_password(Input::all());
+        $email = Input::get('email');
+        $result = array('result' => 0);
+        if(!empty($email)){
+            $user = DB::table('users')
+                ->where('email', '=', $email)
+                ->first();
+            if (!empty($user)) {
+                $send_email = 1;
+                $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
+                //send email
+                if ($send_email) {
+                    // reset token
 
-        if($v->fails()){
-            return Redirect::to('/login')->withErrors($v)->withInput(Input::except('email'));
+                    $result = array('result' => 1);
+                }
+            }
         }
-
-        $userdata = array(
-            'email' => Input::get('email'),
-        );
-
-        if (Auth::attempt($userdata)) {
-            // validation successful!
-            return Redirect::to('/dashboard');
-        } else {
-            // validation not successful, send back to form
-            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Email hoặc mật khẩu không đúng.'));
-        }
+        return json_encode($result);
     }
 
     /**
@@ -111,7 +132,10 @@ class UserController extends BaseController {
      * @since 2015.01.14
      */
     public function accountSetting(){
-        return View::make('user.account_setting');
+        if(Session::has('user'))
+            return View::make('user.account_setting');
+        else
+            return Redirect::to('/');
     }
 
     /**
@@ -123,7 +147,10 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeEmail(){
-        return View::make('user.change_email');
+        if(Session::has('user'))
+            return View::make('user.account_setting');
+        else
+            return View::make('user.change_email');
     }
 
     /**
@@ -135,7 +162,10 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changePassword(){
-        return View::make('user.change_password');
+        if(Session::has('user'))
+            return View::make('user.account_setting');
+        else
+            return View::make('user.change_password');
     }
 
     /**
@@ -147,7 +177,10 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeProfile(){
-        return View::make('user.change_profile');
+        if(Session::has('user'))
+            return View::make('user.account_setting');
+        else
+            return View::make('user.change_profile');
     }
 
     /**
@@ -159,7 +192,10 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeShipping(){
-        return View::make('user.change_shipping');
+        if(Session::has('user'))
+            return View::make('user.account_setting');
+        else
+            return View::make('user.change_shipping');
     }
 
     /**
@@ -169,82 +205,90 @@ class UserController extends BaseController {
      *
      */
     public function register() {
-	    if(Request::ajax())
-	    {
-	        $input = Input::all();
-	    	$email = trim(Input::get('email'));
-	    	$account_token = md5($email);
-	    	$password = trim(Input::get('password'));
-		    $v = User::validate_register(Input::all());
+        if(Request::ajax())
+        {
+            $input = Input::all();
+            $email = trim(Input::get('email'));
+            $account_token = md5($email);
+            $password = trim(Input::get('password'));
+            $v = User::validate_register(Input::all());
 
-	        if($v->fails()){
-	        	$response = array(
-	            'status' => 'fail validate',
-	            'msg' => 'Regiter fail',
-	        	);
-	        } else {
-	        	$created = $modified = strtotime('now');
-	        	$user = new User;
-	        	$user->email = $email;
-        	 	$user->password  = Hash::make($password);
-        	 	$user->account_token = $account_token;
-	        	$user_data = array('email' => $email, 'password' => $password);
-	        	if($user->save()) {
-	        	    if (Auth::attempt($user_data)) {
-	        	    	$user_data = User::where('email', '=', $email)->get()->toArray();
-	        	 		Session::put('user', $user_data[0]);
-						Input::flashOnly('register_email', $email);
-            			//return Redirect::to('/dashboard')->withInput();
-            			$response = array(
-				            'status' => 'success',
-				            'msg' => 'Success',
-				        	);
-	        	 	} else {
-						$response = array(
-			            'status' => 'faila',
-			            'msg' => 'Regiter fail',
-			        	);
-	        	 	}
+            if($v->fails()){
+                $response = array(
+                'status' => 'fail validate',
+                'msg' => 'Regiter fail',
+                );
+            } else {
+                $created = $modified = strtotime('now');
+                $user = new User;
+                $user->email = $email;
+                $user->password  = Hash::make($password);
+                $user->account_token = $account_token;
+                $user_data = array('email' => $email, 'password' => $password);
+                if($user->save()) {
+                    if (Auth::attempt($user_data)) {
+                        $user_data = User::where('email', '=', $email)->get()->toArray();
+                        Session::put('user', $user_data[0]);
+                        Input::flashOnly('register_email', $email);
+                        //return Redirect::to('/dashboard')->withInput();
+                        $response = array(
+                            'status' => 'success',
+                            'msg' => 'Success',
+                            );
+                    } else {
+                        $response = array(
+                        'status' => 'faila',
+                        'msg' => 'Regiter fail',
+                        );
+                    }
 
-	        	 } else {
-	        	 	$response = array(
-			            'status' => 'fail',
-			            'msg' => 'Regiter fail',
-			        	);
-	        	 }
+                 } else {
+                    $response = array(
+                        'status' => 'fail',
+                        'msg' => 'Regiter fail',
+                        );
+                 }
             // validation successful!
 
 
-	        }
+            }
 
 
-        	return Response::json( $response );
-	    }
+            return Response::json( $response );
+        }
     }
-
 
     /**
      * send email to register
      */
-	    public function send_email() {
-	    	 $response = array('sucess' => 'fail');
-	    	 if(Request::ajax()) {
-	    	 	$response = array('sucess' => '3333');
-	    	 	$status = Mail::send('emails.register', array('key' => 'value'), function($message)
-				{
-				    $message->to('oanhht@leverages.jp', 'John Smith')->subject('Welcome!');
+    public function send_email() {
+         $response = array('sucess' => 'fail');
+         if(Request::ajax()) {
+            $response = array('sucess' => '3333');
+            $status = Mail::send('emails.register', array('key' => 'value'), function($message)
+            {
+                $message->to('oanhht@leverages.jp', 'John Smith')->subject('Welcome!');
 
-				});
-				$response = array('sucess' => $status);
-	    	 }
+            });
+            $response = array('sucess' => $status);
+         }
 
-		return Response::json( $response );
+    return Response::json( $response );
 
-	    }
-        
-        public function doLogout(){
-            Session::flush();
-            return Redirect::to('/');
-        }
+    }
+
+    /**
+     * Logout
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang, SangPM
+     * @since 2015.01.15
+     */
+    public function doLogout(){
+        // Auth::logout();
+        Session::flush();
+        return Redirect::to('/');
+    }
 
 }

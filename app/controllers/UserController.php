@@ -234,11 +234,7 @@ class UserController extends BaseController {
                         );
                  }
             // validation successful!
-
-
             }
-
-
             return Response::json( $response );
         }
     }

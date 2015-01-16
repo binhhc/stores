@@ -89,36 +89,45 @@
 	    	  	var x = document.forms["myForm"]["email"].value;
 	    	    var atpos = x.indexOf("@");
 	    	    var dotpos = x.lastIndexOf(".");
-	    	    if (pass.length <= 0 || x.length <=0) {
+	    	    if (pass.length <= 0 && x.length <=0) {
 	    	    	$(div_err).show();
 	    	    	$(p_err).show();
 	    	    	$(e_p).show();
 	    	    	$(em_err).show();
 	    	    	return false;
 	    	    } else {
-	    	    	$(e_p).hide();
-	    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+	    	        if (pass.length <= 0 || x.length <=0) {
+	    	        	$(p_err).hide();
+		    	    	$(em_err).hide();
 		    	    	$(div_err).show();
-		    	    	$(em_err).show();
+		    	    	$(e_p).show();
 		    	    	return false;
 		    	    } else {
-		    	    	$(em_err).hide();
-		    	    	if (pass.length < 6) {
+		    	    	$(e_p).hide();
+		    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
 			    	    	$(div_err).show();
-			    	    	$(p_err).show();
+			    	    	$(em_err).show();
 			    	    	return false;
 			    	    } else {
-			    	    	$(p_err).hide();
+			    	    	$(em_err).hide();
+			    	    	if (pass.length < 6) {
+				    	    	$(div_err).show();
+				    	    	$(p_err).show();
+				    	    	return false;
+				    	    } else {
+				    	    	$(p_err).hide();
+				    	    }
+
 			    	    }
 
 		    	    }
-
 	    	    }
+
 
 	    	    $(div_err).hide();
 	    	    return true;
 	    }
-	      $('button.btn_submit').on('click', function(e) {
+	      $(document).on('click', 'button.btn_submit', function(e){
 	    	  e.preventDefault();
 	    	  if (validateForm()) {
 	    		  var pass = document.forms["myForm"]["password"].value;
@@ -133,17 +142,32 @@
 	                  },
 	                  global: true,
 	                  dataType: 'json',
+	                  beforeSend: function() {
+	                	  $('button.btn_submit').hide();
+	                	  $('.btn_wait').show();
+	                  },
 	                  success: function(response) {
-	                	  if(response.status == 'fail') {
+	                	  if(response.status == 'fail validate') {
 	                		  $(div_err).show();
 	                		  $('p.unique_email').show();
 	                		  return false;
 	                	  } else {
-	                		  window.location.href = "/dashboard/1";
+	                		  if(response.status== "success") {
+	                			  window.location.href = "/dashboard/1";
+	                		  } else {
+	                			  $(div_err).show();
+	                			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
+		                		  $('p.unique_email').show();
+	                		  }
+
 	                	  }
 	                  },
 	                  error: function(XMLHttpRequest, textStatus, errorThrown) {
-	                  }
+	                  },
+	                  complete: function() {
+	                	  $('button.btn_submit').show();
+	                	  $('.btn_wait').hide();
+	                  },
 	              });
 	    	  } else {
 	    		  return false;

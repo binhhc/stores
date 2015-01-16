@@ -52,19 +52,21 @@ $(document).ready(function(){
     	var item_id = $(this).attr('item_id');
     	var order_value = $(this).attr('order_value');
     	var list_public_item = $('li.sort_item.up');
-    	var item = [];
+    	var items = [];
     	$.each( list_public_item, function(index, item){
     		var id = $(item).attr('item_id');
     		var order = $(item).attr('order_value');
-    		$(item).push([id, order]);
-    	    });
-    	console.log(item);
-    	return;
+    		items.push([id, order]);
+    		//items.push({id:order});
+    	});
+    	//console.log(items);
+    	//return;
     	$.ajax({
             type: "GET",
             url: "/sort_item",
             data: {
                 item_id: item_id,
+                items: items
                 order_value: order_value
             },
             beforeSend: function() {

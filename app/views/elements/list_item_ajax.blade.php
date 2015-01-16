@@ -28,7 +28,7 @@
 								<a class="ng-binding" ng-click="edit(item)" href="">{{$item['name']}}</a>
 							</dd>
 							<dd class="sz_s tr ng-binding">{{$item['price']}}</dd>
-							<dd class="sz_xs tc product_quantity">2</dd>
+							<dd class="sz_xs tc product_quantity">{{$item['quantity']}}</dd>
 							<dd class="sz_s">
 								<div class="switch">
 									@if ($item['public_flg'] == 0)

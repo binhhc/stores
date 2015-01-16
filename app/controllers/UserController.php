@@ -107,8 +107,10 @@ class UserController extends BaseController {
         if(!empty($email)){
             $user = User::where('email', '=', $email)->get()->toArray();
 
-            var_dump($user);exit;
             if (!empty($user)) {
+                Mail::send('emails.demo', $data, function($message){
+                    $message->to('jane@example.com', 'Jane Doe')->subject('This is a demo!');
+                });
 
                 $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
                 //send email

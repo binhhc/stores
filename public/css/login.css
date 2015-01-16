@@ -15,12 +15,14 @@
 }
 
 .message_error{
-    color: #df3650;
+    color: #d2615e;
     margin-top:5px;
 }
 
-.display_none{
-    display: none;
+.message_login{
+    text-align: center;
+    padding-top: 15px;
+    color: #d2615e;
 }
 
 .sign_up h1 {
@@ -92,12 +94,6 @@
     background: #fff;
     font-size: 25px;
     color: #555;
-}
-
-.message_login{
-    text-align: center;
-    padding-top: 15px;
-    color: #df3650;
 }
 
 /* submit button */

@@ -19,6 +19,17 @@ class UserItemController extends BaseController {
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
+			if(empty($item_quantity)) {
+				$value['quantity'] = 0;
+			} else {
+				$value['quantity'] = 0;
+				foreach($item_quantity as $i_q) {
+					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
+				}
+			}
+		}
 		$data['items'] = $items;
 		/*$queries = DB::getQueryLog();
 		var_dump($queries);*/
@@ -84,8 +95,18 @@ class UserItemController extends BaseController {
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
+			if(empty($item_quantity)) {
+				$value['quantity'] = 0;
+			} else {
+				$value['quantity'] = 0;
+				foreach($item_quantity as $i_q) {
+					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
+				}
+			}
+		}
 		$data['items'] = $items;
-
 		$view =  View::make('elements.list_item_ajax', $data)->render();
 		$response = array(
 					'status' => 'success',

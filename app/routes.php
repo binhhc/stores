@@ -56,6 +56,8 @@ Route::get('/change_credit_card', 'UserController@changeCreaditCard');
 //change profile
 Route::get('/change_destination_account', 'UserController@changeProfile');
 
+//logout
+Route::post('/logout', 'UserController@doLogout');
 
 
 

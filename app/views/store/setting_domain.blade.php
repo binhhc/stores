@@ -1,8 +1,5 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/main_page.js')}}
-        @include('elements.header')
+@include('elements.header')
+{{HTML::script('js/main_page.js')}}
 <div class="wrapper domain">
 	<div class="heading_box clearfix">
 		<h2 class="heading">STORES.jpの独自ドメインについて</h2>
@@ -21,7 +18,6 @@
 	</div>
 	<p class="main_image">
 		{{HTML::image('img/main_page/main.png', 'fea_1',array( 'width' => 746, 'height' => 420 )) }}
-
 	</p>
 	<ul class="feature clearfix">
 		<li>

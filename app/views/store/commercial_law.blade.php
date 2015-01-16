@@ -1,6 +1,4 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        @include('elements.header')
+@include('elements.header')
 <div id="store_cart" class="wrapper row">
 	<div class="height_fix">
 		<div id="header_basic">

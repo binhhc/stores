@@ -54,7 +54,7 @@ class UserController extends BaseController {
         if (Auth::attempt($userdata)) {
             // validation successful!
             $user = User::where('email', '=', $userdata['email'])->get()->toArray();
-            Session::put('user', $user[0]);
+            Session::put('user', reset($user));
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form

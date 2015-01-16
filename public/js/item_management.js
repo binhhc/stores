@@ -1,21 +1,4 @@
 $(document).ready(function(){
-	 //move items up/down for reordering setting items
-    window.orderList = function(list_id, go_up) {
-    	var click = $(this);
-    	var row = $(this).parent().parent().parent();
-
-    	//console.log(row);
-
-        var index = row.attr('data-a');
-        //alert(index);
-        if (go_up) {
-            if (index == 0)
-                return;
-            row.insertBefore(row.prev());
-        } else {
-            row.insertAfter(row.next());
-        }
-    }
     $('#start_with_store').on('click', function(e) {
     	e.preventDefault();
     	$('.modal_dashboard').hide();
@@ -97,6 +80,7 @@ $(document).ready(function(){
                 public_flg: public_flg
             },
             beforeSend: function() {
+            	$('.loading').show();
             },
             global: true,
             dataType: 'json',
@@ -106,8 +90,46 @@ $(document).ready(function(){
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
             complete: function() {
+            	$('.loading').hide();
             },
         });
+    });
+    	$(document).on('click', 'a.delete_item', function(e){
+    		e.preventDefault();
+    		var conf = confirm('Bạn chắc chắn muốn xoá mặt hàng này?');
+    		if(conf) {
+    			var item_id = $(this).attr('item_id');
+            	$.ajax({
+                    type: "GET",
+                    url: "/delete_item",
+                    data: {
+                        item_id: item_id,
+                    },
+                    beforeSend: function() {
+                    	$('.loading').show();
+                    },
+                    global: true,
+                    dataType: 'json',
+                    success: function(response) {
+                    	if(response.success=1) {
+                    		$('.items_contents').html(response.html.html);
+                    	} else {
+                    		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                    		return;
+                    	}
+
+
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    },
+                    complete: function() {
+                    	$('.loading').hide();
+                    },
+                });
+    		} else {
+    			return;
+    		}
+
     });
 
 });

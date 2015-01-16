@@ -49,7 +49,7 @@
 						</ul>
 					@endif
 						<dl class="lists move">
-							<dd class="sz_xs tc count ng-binding"><?php echo $stt;?></dd>
+							<dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 0)<?php echo $stt;?> @endif</dd>
 							<dd class="sz_i">
 							</dd>
 							<dd class="sz_l">
@@ -63,15 +63,15 @@
 									 	<p class="status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
 										<p class="grip"></p>
 									@else
-										<p class="status deactive" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
-										<p class="grip"></p>
+										<p class="status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="grip gripdeactive"></p>
 									@endif
 								</div>
 							</dd>
 							<dd class="navi">
 								<ul>
 									<li class="navi_delete" >
-										<a item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
+										<a class="delete_item" item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
 									</li>
 									<li class="navi_edit" item_id="{{$item['id']}}">
 										<a ng-click="edit(item)" href="">Sửa</a>

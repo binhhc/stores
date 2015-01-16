@@ -35,20 +35,20 @@
 									 	<p class="status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
 										<p class="grip"></p>
 									@else
-										<p class="status deactive" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
-										<p class="grip"></p>
+										<p class="status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="grip gripdeactive"></p>
 									@endif
 								</div>
 							</dd>
 							<dd class="navi">
 								<ul>
-									<li class="navi_delete">
-										<a ng-click="delete(item, '削除してもよろしいですか？')" href="">Xoá</a>
+									<li class="navi_delete" >
+										<a class="delete_item" item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
 									</li>
-									<li class="navi_edit">
+									<li class="navi_edit" item_id="{{$item['id']}}">
 										<a ng-click="edit(item)" href="">Sửa</a>
 									</li>
-									<li class="navi_share">
+									<li class="navi_share" item_id="{{$item['id']}}">
 										<p class="navi_share_btn" ng-class="item_share(item)">Xem</p>
 									</li>
 								</ul>

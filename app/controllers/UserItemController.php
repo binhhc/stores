@@ -38,11 +38,11 @@ class UserItemController extends BaseController {
 		// public
 		if($flg == 0) {
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 1, 'order' => 0,  'updated_user' => $user_id));
+					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
 		} else {
 			// private
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 0, 'order' => -1, 'updated_user' => $user_id));
+					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
 		}
 
 	}
@@ -143,8 +143,22 @@ class UserItemController extends BaseController {
 					->update(array('order' => $order,  'updated_user' => $user_id));
 		}
 	}
-
-
-
-
+	/**
+	 * delete item
+	 * @author OanhHa
+	 * @since 2015/01/15
+	 */
+	public function delete_item() {
+		if(Request::ajax())
+	    {
+			 $item_id = trim(Input::get('item_id'));
+			 $success = 0;
+			 if(UserItem::where('id', $item_id)->delete()){
+				$success = 1;
+			 }
+	    	 $html = $this->list_item_ajax();
+	    	 $response = array('sucess' => $success, 'html' => $html);
+			 return Response::json($response);
+	    }
+	}
 }

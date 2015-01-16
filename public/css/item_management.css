@@ -236,6 +236,9 @@ img {
 .list_items .items .move .switch .grip, #news .list_news .items .move .switch .grip {
     left: 57px;
 }
+.list_items .items .move .switch .grip.gripdeactive, #news .list_news .items .move .switch .grip.gripdeactive {
+    left: 2px;
+}
 .switch .grip {
     background: url("../img/main_page/btn_grip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     cursor: pointer;

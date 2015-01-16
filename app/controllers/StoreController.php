@@ -258,6 +258,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_setting() {
+    	$this->checkLogin();
     	return View::make('store.store_setting');
     }
     /**
@@ -316,5 +317,5 @@ class StoreController extends BaseController {
     	return View::make('store.dashboard', $data );
     }
 
-    
+
 }

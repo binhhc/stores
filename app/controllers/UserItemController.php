@@ -20,8 +20,8 @@ class UserItemController extends BaseController {
 					->orderBy('updated_at', 'desc')
 					->get();
 		$data['items'] = $items;
-		$queries = DB::getQueryLog();
-		var_dump($queries);
+		/*$queries = DB::getQueryLog();
+		var_dump($queries);*/
 		return View::make('userItem.item_management', $data);
 	}
 	/**

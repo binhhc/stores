@@ -350,7 +350,9 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+    	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
+    	var_dump($user_store);
+
     	return View::make('store.store_domain');
     }
     /**

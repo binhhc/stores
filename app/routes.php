@@ -12,6 +12,7 @@
 */
 Route::resource('user', 'UserController');
 Route::model('user', 'User');
+Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/commercial_law', array('before' => 'auth', 'uses' => 'StoreController@commercial_law'));
@@ -36,15 +37,16 @@ Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'))
 Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
 
 //Login
-Route::get('/login', 'UserController@showLogin');
-Route::post('/login', 'UserController@doLogin');
+Route::get('/login', array('uses' => 'UserController@showLogin'));
+Route::post('/login', array('uses' => 'UserController@doLogin'));
 
-//login facebook
-Route::get('/facebook_login', 'UserController@loginFacebook');
-Route::post('/facebook', 'UserController@doLoginFacebook');
+/*login facebook */
+Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));
+Route::get('login/fb/callback', array('uses' => 'UserController@facebookCallback'));
+/* end login facebook */
 
 //logout
-Route::get('/logout', 'UserController@doLogout');
+Route::get('/logout', array('uses' => 'UserController@doLogout'));
 
 //account setting
 Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));

@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"mmanos/laravel-social": "dev-master"
+		"facebook/php-sdk": "dev-master",
+		"fideloper/proxy": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

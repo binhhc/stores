@@ -8,18 +8,6 @@ class UserController extends BaseController {
     protected $layout = 'layouts.master';
 
     /**
-     * Display the specified resource.
-     *
-     * @param  string $name Tag name
-     * @return Response
-     */
-    public function index(){
-        // $this->layout->content = View::make('user.login');
-        //Example -
-        // View::make('user.login');
-    }
-
-    /**
      * Display login page.
      *
      * @param  null
@@ -53,8 +41,8 @@ class UserController extends BaseController {
 
         if (Auth::attempt($userdata)) {
             // validation successful!
-            $user = User::where('email', '=', $userdata['email'])->get()->toArray();
-            Session::put('user', reset($user));
+            $user = User::where('email', '=', $userdata['email'])->first()->toArray();
+            Session::put('user', $user);
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form
@@ -72,20 +60,76 @@ class UserController extends BaseController {
      * @since 2015.01.16
      */
     public function loginFacebook(){
-        $service = Social::service('facebook');
-        return Redirect::to((string) $service->getAuthorizationUri());
+        $facebook = new Facebook(Config::get('facebook'));
+        $params = array(
+            'redirect_uri' => url('/login/fb/callback'),
+            'scope' => 'email',
+        );
+
+        return Redirect::to($facebook->getLoginUrl($params));
     }
 
     /**
-     * Login facebook.
+     * Facebook callback.
      *
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2015.01.16
+     * @since 2015.01.19
      */
-    public function doLoginFacebook(){
-        echo 1;exit;
+    public function facebookCallback(){
+        $code = Input::get('code');
+        if (strlen($code) == 0)
+            return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
+
+        $facebook = new Facebook(Config::get('facebook'));
+        $uid = $facebook->getUser();
+
+        if ($uid == 0)
+            return Redirect::to('/')->with('message', 'Lỗi kết nối!');
+
+        $me = $facebook->api('/me');
+
+        $usersns = UserSns::where('sns_id', '=', $uid)->first();
+
+        $user = User::where('email', '=', $me['email'])->first()->toArray();
+
+        //check email exist in database
+        if (empty($user)) {
+            $user = new User;
+            $user->email = $me['email'];
+            $user->account_token = User::createAccountToken();
+            $user->save();
+
+            //get last insert id
+            $lastInsertId = $user->id;
+
+            $usersns = new UserSns();
+            $usersns->user_id = $lastInsertId;
+            $usersns->sns_type = '1';
+            $usersns->sns_id = $uid;
+            $usersns = $user->usersns()->save($usersns);
+        }else{ //user exist
+            if(empty($usersns)){
+                $usersns = new UserSns();
+                $usersns->user_id = $user['id'];
+                $usersns->sns_type = '1';
+                $usersns->sns_id = $uid;
+                $usersns->save();
+            }
+        }
+
+        $usersns->authen_token = $facebook->getAccessToken();
+
+        $usersns->save();
+
+        $user = $usersns->user;
+        $session_user = $user->toArray();
+        //save to session
+        Session::put('user', $session_user);
+        Auth::login($user);
+
+        return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
 
     /**

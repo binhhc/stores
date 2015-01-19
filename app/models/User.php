@@ -4,11 +4,10 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Mmanos\Social\SocialTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-    use UserTrait, RemindableTrait, SocialTrait;
+    use UserTrait, RemindableTrait;
 
     /**
      * The database table used by the model.
@@ -97,6 +96,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         );
 
         return Validator::make($input, $rules);
+    }
+
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail(){
+        return $this->email;
+    }
+
+    public function usersns(){
+        return $this->hasMany('UserSns');
     }
 
 }

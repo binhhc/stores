@@ -37,7 +37,7 @@
 
                     <div class="social_login">
                         <p class="btn_facebook">
-                            <a href="{{URL::asset('/facebook_login')}}">
+                            <a href="{{url('login/fb')}}">
                                 Facebook
                             </a>
                         </p>

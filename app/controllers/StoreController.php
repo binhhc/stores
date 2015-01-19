@@ -399,7 +399,7 @@ class StoreController extends BaseController {
         if($v->fails()){
             return Redirect::to('/store_domain')->withErrors($v)->withInput();
         } else {
-        	$domain = Input::get('domain');
+        	$domain = Input::all();
         	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)

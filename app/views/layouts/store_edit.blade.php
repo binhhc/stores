@@ -5,6 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>Chỉnh sửa giao diện cửa hàng</title>
+        <link media="all" type="text/css" rel="stylesheet" href="http://stores.local.srv/public/css/application.css">
+        <script type="text/javascript">
+        var editStore_Layouts = <?php echo json_encode($sysLayouts);?>;
+        var editStore_TextColor = <?php echo json_encode($sysTextColor);?>;
+        var editStore_BackgroundColor = <?php echo json_encode($sysBackgroundColor);?>;
+        var editStore_BackgroundPatterns = <?php echo json_encode($sysBackgroundImage);?>;
 
         {{HTML::style('css/application.css')}}
         {{HTML::script('js/edit_store.js')}}
@@ -19,7 +25,7 @@
         <script type="text/javascript">
         //<![CDATA[
             STORES_JP = {
-            	    "FILE_SERVER_URL":"<?php echo Request::url();?>",
+            	    "FILE_SERVER_URL":"/public",
             	    //"enable_addons":["follow"]
             	    };
         //]]>

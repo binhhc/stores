@@ -10,6 +10,10 @@
     padding: 90px 0;
 }
 
+.display_none{
+    display: none;
+}
+
 .input_login{
     margin-bottom: 5px;
 }

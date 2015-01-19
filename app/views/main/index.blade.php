@@ -29,7 +29,7 @@
 				<span>Hoặc</span>
 			</p>
 			<p class="btn_facebook">
-				<a ng-click="click_facebook()" href="">Đăng nhập Facebook</a>
+				<a href="{{url('login/fb')}}">Đăng nhập Facebook</a>
 			</p>
 			<div class="facebook_help">
 				<div class="box">

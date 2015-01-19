@@ -92,7 +92,7 @@ class UserController extends BaseController {
 
         $usersns = UserSns::where('sns_id', '=', $uid)->first();
 
-        $user = User::where('email', '=', $me['email'])->first()->toArray();
+        $user = User::where('email', '=', $me['email'])->first();
 
         //check email exist in database
         if (empty($user)) {
@@ -147,17 +147,18 @@ class UserController extends BaseController {
         if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
             $user = User::where('email', '=', $input['email'])
                 ->where('account_token', '=', $input['token'])
-                ->get()->toArray();
+                ->first()->toArray();
 
             if(!empty($user)){
                 //reset password
-                return View::make('user.forgot_password');
-                // return View::make('user.reset_password');
+                // return View::make('user.forgot_password');
+                return View::make('user.reset_password');
             }else{
                 return Redirect::to('/');
             }
 
         }else{
+
             return View::make('user.forgot_password');
         }
     }

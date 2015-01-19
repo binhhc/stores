@@ -1,4 +1,7 @@
 @include('elements.header')
+<div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
+	<p>Đã xoá thành công!</p>
+</div>
 <div class="wrapper">
 	<div class="heading_box clearfix">
 		 <h2 class="heading fl_l">Danh sách mặt hàng</h2>
@@ -15,7 +18,7 @@
 	<span ng-hide="items.length">
 		<div id="nodata" ng-hide="orders.length">
 			<p>
-				{{HTML::image('img/main_page/icon_nodata.png', '', array('width' => 301, 'height' => 297))}}
+				{{HTML::image('img/main_page/icon_nodata1.png', '', array('width' => 301, 'height' => 297))}}
 			</p>
 			<h3>Không có thông tin mặt hàng</h3>
 		</div>
@@ -45,29 +48,29 @@
 						</ul>
 					@endif
 						<dl class="lists move">
-							<dd class="sz_xs tc count ng-binding"><?php echo $stt;?></dd>
+							<dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 0)<?php echo $stt;?> @endif</dd>
 							<dd class="sz_i">
 							</dd>
 							<dd class="sz_l">
 								<a class="ng-binding" ng-click="edit(item)" href="">{{$item['name']}}</a>
 							</dd>
 							<dd class="sz_s tr ng-binding">{{$item['price']}}</dd>
-							<dd class="sz_xs tc product_quantity">2</dd>
+							<dd class="sz_xs tc product_quantity">{{$item['quantity']}}</dd>
 							<dd class="sz_s">
 								<div class="switch">
 									@if ($item['public_flg'] == 0)
 									 	<p class="status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
 										<p class="grip"></p>
 									@else
-										<p class="status deactive" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
-										<p class="grip"></p>
+										<p class="status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="grip gripdeactive"></p>
 									@endif
 								</div>
 							</dd>
 							<dd class="navi">
 								<ul>
 									<li class="navi_delete" >
-										<a item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
+										<a class="delete_item" item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
 									</li>
 									<li class="navi_edit" item_id="{{$item['id']}}">
 										<a ng-click="edit(item)" href="">Sửa</a>

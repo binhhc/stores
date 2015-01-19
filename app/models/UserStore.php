@@ -7,10 +7,24 @@
 class UserStore extends Model{
     protected $table  = 'user_stores';
 
+     /**
+     * Validate
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_domain($input){
+        $rules = array(
+            'domain' => 'required|unique:user_stores',
+        );
+
+        return Validator::make($input, $rules);
+    }
+
+
     /*
      * @author      Le Nhan Hau
      * @since       2015/01/16
-     * 
+     *
      * get user_store by user_id
      */
     public static function getUserStoreByUserId() {
@@ -22,5 +36,5 @@ class UserStore extends Model{
             ->first();
         return !empty($userStores) ? $userStores : array();
     }
-	
+
 }

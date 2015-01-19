@@ -1,5 +1,4 @@
 @include('elements.header')
-{{HTML::script('js/main_page.js')}}
 <div class="wrapper ng-scope" ng-init="payment_method()">
 	<h2 class="heading">Thiết lập các phương thức thanh toán</h2>
 	<form class="ng-pristine ng-valid" novalidate="" ng-submit="submit()" name="form">
@@ -68,7 +67,7 @@
 				<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 			</dd>
 			<dd class="btn_high">
-				<a href="/store_setting"><button type="submit">Lưu</button></a>
+				<button type="submit">Lưu</button>
 			</dd>
 		</dl>
 	</form>

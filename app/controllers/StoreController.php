@@ -355,6 +355,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_setting() {
+	if(!$this->checkLogin()) {
+		return Redirect::to('/');
+	}
     	return View::make('store.store_setting');
     }
     /**
@@ -363,6 +366,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function payment_method() {
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
     	return View::make('store.payment_method');
     }
     /**
@@ -371,6 +377,14 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_url() {
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
+		$v = UserStore::validate_domain(Input::all());
+		if($v->fails()){
+			return Redirect::to('/store_url')->withErrors($v)->withInput();
+		} else {
+		}
     	return View::make('store.store_url');
     }
     /**
@@ -379,6 +393,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function setting_domain() {
+		if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	return View::make('store.setting_domain');
     }
     /**
@@ -387,7 +404,13 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_about() {
-    	return View::make('store.store_about');
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
+    	$user_id = $this->getUserId();
+    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
+    	$data['setting_intros'] = $user_store['	setting_intros'];
+    	return View::make('store.store_about', $data);
     }
     /**
      * About commercial law
@@ -395,7 +418,10 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function commercial_law() {
-    	return View::make('store.commercial_law');
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
+		return View::make('store.commercial_law');
     }
 
     /**
@@ -404,14 +430,86 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function dashboard($id=null) {
+		if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
     	$first = isset($id) ? intval($id) : 0;
     	$data['first'] = $first;
-    	$user= Session::get('user');
-    	if(empty($user)) {
-    		return  Redirect::to('/');
-    	}
     	return View::make('store.dashboard', $data );
     }
+	
+	/**
+     * Set url for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+    public function store_domain(){
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
+    	$user_id = $this->getUserId();
+    	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
+    	$data['domain'] = $user_store['domain'];
 
+    	return View::make('store.store_domain', $data);
+    }
+    /**
+     * Save change domain
+     * @author OanhHa
+     * @since 2015-01-19
+     */
+    public function save_domain(){
+    	$v = UserStore::validate_domain(Input::all());
+    	$user_id = $this->getUserId();
+
+        if($v->fails()){
+            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+        } else {
+        	$domain = Input::get('domain');
+        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	if(!empty($user_store)) {
+        		UserStore::where('user_id', $user_id)
+        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+        	} else {
+        		$user = new UserStore;
+        		$user->user_id = $user_id;
+        		$user->domain = $domain;
+        		$user->created_user = $user_id;
+        		$user->save();
+        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
+        		return Redirect::to('/store_setting')->withInput();
+        	}
+
+        }
+    }
+    /**
+     * Save change store about
+     * @author OanhHa
+     * @since 2015-01-19
+     */
+    public function save_store_about(){
+    	//$v = UserStore::validate_domain(Input::all());
+    	$user_id = $this->getUserId();
+
+        if($v->fails()){
+            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+        } else {
+        	$domain = Input::all();
+        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	if(!empty($user_store)) {
+        		UserStore::where('user_id', $user_id)
+        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+        	} else {
+        		$user = new UserStore;
+        		$user->user_id = $user_id;
+        		$user->domain = $domain;
+        		$user->created_user = $user_id;
+        		$user->save();
+        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
+        		return Redirect::to('/store_setting')->withInput();
+        	}
+
+        }
+    }
     
 }

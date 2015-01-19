@@ -6,6 +6,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Mmanos\Social\SocialTrait;
 
+use Carbon\Carbon;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
     use UserTrait, RemindableTrait, SocialTrait;
@@ -98,5 +99,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return Validator::make($input, $rules);
     }
-
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/01/19
+     *
+     * @modified
+     * @modified by
+     **/
+     public static function checkExpiredTime($obj){
+        $created = new Carbon($obj->updated_at);
+        $now = Carbon::now();
+        $difference = ($created->diff($now));       
+        if($difference->days > 0) return false;
+        if($difference->h > 0) return false;
+        return ($difference->i <= 30);
+    }    
+    
 }

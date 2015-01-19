@@ -55,4 +55,4 @@ class Model extends Eloquent{
         return self::get();
     }
     
-}
+    }

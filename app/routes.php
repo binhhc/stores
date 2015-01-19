@@ -70,6 +70,7 @@ Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'U
 Route::post('/register' , array('as' => 'register', 'uses' => 'UserController@register'));
 Route::post('/send_email' , array('as' => 'send_email', 'uses' => 'UserController@send_email'));
 
+Route::get('/active/{token}' , array('as' => 'active', 'uses' => 'UserController@active'));
 
 
 Route::get('/forgetPassword', 'UserController@showForgetPassword');

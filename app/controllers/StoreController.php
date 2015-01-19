@@ -20,6 +20,8 @@ class StoreController extends BaseController {
      * get information store
      */
     public function edit() {
+        //get user login
+        $userInfos = User::getNameStore();
         //sys_colors
         $sysLayouts = array();
         $tmpSysLayouts= SysLayout::getSysLayouts();
@@ -65,6 +67,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'userInfos' => $userInfos,
             'sysLayouts' => $sysLayouts,
             'sysTextColor' => $sysTextColor,
             'sysBackgroundColor' => $sysBackgroundColor,
@@ -96,17 +99,17 @@ class StoreController extends BaseController {
             //get background color id
             $background_color_code = $data['store']['store_style']['background_color'];
             $systemBackgroundColors = SysBackgroundColor::getSysBackgroundColorIdByColorCode($background_color_code);
-            $systemBackgroundColorId = $systemBackgroundColors->id;
+            $systemBackgroundColorId = !empty($systemBackgroundColors) ? $systemBackgroundColors->id : '';
 
             //get item_text_color
             $item_text_color_code = $data['store']['store_style']['item_text_color'];
             $itemTextColors = SysTextColor::getSysTextColorIdByColorCode($item_text_color_code);
-            $itemTextColorId = $itemTextColors->id;
+            $itemTextColorId = !empty($itemTextColors) ? $itemTextColors->id : '';
 
             //get store_text_color
             $store_text_color_code = $data['store']['store_style']['store_text_color'];
             $storeTextColors = SysTextColor::getSysTextColorIdByColorCode($store_text_color_code);
-            $storeTextColors = $storeTextColors->id;
+            $storeTextColors = !empty($storeTextColors) ? $storeTextColors->id : '';
 
             //embed data
             $data['store']['store_style']['layout_id'] = $layoutId;
@@ -114,10 +117,13 @@ class StoreController extends BaseController {
             $data['store']['store_style']['item_text_color_id'] = $itemTextColorId;
             $data['store']['store_style']['store_text_color_id'] = $storeTextColors;
 
+            //get user login
+            $userInfos = User::getNameStore();
             //copy file upload
             $file_name = $data['store']['store_style']['logo_image'];
             $tmpPath = public_path() . '/_temp_files/'. $file_name;
-            $folder_user = public_path() . '/files/hoangnn001';
+            //$folder_user = public_path() . '/files/hoangnn001';
+            $folder_user = public_path() . '/files/'.$userInfos['USER_NAME'];
             if(!is_dir($folder_user)){
                 mkdir($folder_user);
             }

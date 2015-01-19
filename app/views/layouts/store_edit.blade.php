@@ -17,7 +17,7 @@
         //<![CDATA[
             AUTH_TOKEN = "123456";
             STORE_ID = '123';
-            USER_NAME = 'hoangnn001';
+            USER_NAME = "<?php echo $userInfos['USER_NAME'];?>";
         //]]>
         </script>
         <script type="text/javascript">

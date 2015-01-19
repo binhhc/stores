@@ -64,6 +64,31 @@ class UserController extends BaseController {
     }
 
     /**
+     * Login facebook.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.16
+     */
+    public function loginFacebook(){
+        $service = Social::service('facebook');
+        return Redirect::to((string) $service->getAuthorizationUri());
+    }
+
+    /**
+     * Login facebook.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.16
+     */
+    public function doLoginFacebook(){
+        echo 1;exit;
+    }
+
+    /**
      * Display forget password page.
      *
      * @param  null

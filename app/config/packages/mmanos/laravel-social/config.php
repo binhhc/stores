@@ -38,8 +38,8 @@ return array(
 	'providers' => array(
 
 		'facebook' => array(
-			'client_id'       => '',
-			'client_secret'   => '',
+			'client_id'       => '290319794422864',
+			'client_secret'   => '523f360f13cb75fa2c4a30102589f177',
 			'scope'           => array('email'),
 			'fetch_user_info' => function ($service) {
 				$result = json_decode($service->request('/me'), true);

@@ -26,4 +26,21 @@ class UserItem extends Model{
         }
         return $result; 
     }
+
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/01/14
+     * 
+     * get user item from user_id
+     */
+    public static function getUserItemFromUserId() {
+        //$userId = Session::get('user.id');
+        $userId = 1;
+        $userItems = DB::table('user_items')
+            ->leftJoin('user_item_quatities', 'user_items.id', '=', 'user_item_quatities.item_id')
+            ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_item_quatities.quantity')
+            ->where('user_items.user_id', '=', $userId)->get();
+        return !empty($userItems) ? $userItems : array();
+    }
 }

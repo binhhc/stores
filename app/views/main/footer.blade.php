@@ -7,7 +7,7 @@
 			<a href="/features">Chức năng</a>
 		</li>
 		<li>
-			<a href="/price">Charge</a>
+			<a href="/price">Giá cả</a>
 		</li>
 		<li>
 			<a href="/support">Hỗ trợ</a>

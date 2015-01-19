@@ -1,8 +1,4 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/main_page.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-        {{HTML::script('js/main_page.js')}}
-        @include('main.header')
+@include('main.header')
 <div class="main social_login">
 	<div id="panel_error" ng-show="invalid()" style="display:none">
 		<p class="email_pass_error"  style="display:none">Vui lòng nhập địa chỉ email, password của bạn</p>
@@ -57,11 +53,11 @@
 </div>
 <div id="stores" class="contents">
 	<div class="wrapper">
-		<h3 class="heading">Miễn phí lưu trữ hàng online</h3>
+		<h3 class="heading">Miễn phí lưu trữ hàng hoá trực tuyến</h3>
 		<div class="slide">
 			<ul class="slide_navi">
-				<li class="prev">PREV</li>
-				<li class="next">NEXT</li>
+				<li class="prev">Trước</li>
+				<li class="next">Sau<li>
 			</ul>
 			<div class="slide_mask">
 				<div class="slide_wrap">

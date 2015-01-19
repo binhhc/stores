@@ -19,6 +19,17 @@ class UserItemController extends BaseController {
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
+			if(empty($item_quantity)) {
+				$value['quantity'] = 0;
+			} else {
+				$value['quantity'] = 0;
+				foreach($item_quantity as $i_q) {
+					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
+				}
+			}
+		}
 		$data['items'] = $items;
 		/*$queries = DB::getQueryLog();
 		var_dump($queries);*/
@@ -38,11 +49,11 @@ class UserItemController extends BaseController {
 		// public
 		if($flg == 0) {
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 1, 'order' => 0,  'updated_user' => $user_id));
+					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
 		} else {
 			// private
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 0, 'order' => -1, 'updated_user' => $user_id));
+					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
 		}
 
 	}
@@ -84,8 +95,18 @@ class UserItemController extends BaseController {
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
+			if(empty($item_quantity)) {
+				$value['quantity'] = 0;
+			} else {
+				$value['quantity'] = 0;
+				foreach($item_quantity as $i_q) {
+					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
+				}
+			}
+		}
 		$data['items'] = $items;
-
 		$view =  View::make('elements.list_item_ajax', $data)->render();
 		$response = array(
 					'status' => 'success',
@@ -143,8 +164,22 @@ class UserItemController extends BaseController {
 					->update(array('order' => $order,  'updated_user' => $user_id));
 		}
 	}
-
-
-
-
+	/**
+	 * delete item
+	 * @author OanhHa
+	 * @since 2015/01/15
+	 */
+	public function delete_item() {
+		if(Request::ajax())
+	    {
+			 $item_id = trim(Input::get('item_id'));
+			 $success = 0;
+			 if(UserItem::where('id', $item_id)->delete()){
+				$success = 1;
+			 }
+	    	 $html = $this->list_item_ajax();
+	    	 $response = array('sucess' => $success, 'html' => $html);
+			 return Response::json($response);
+	    }
+	}
 }

@@ -5,6 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+use Carbon\Carbon;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
     use UserTrait, RemindableTrait;
@@ -100,7 +101,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     /**
      * Get the e-mail address where password reminders are sent.
-     *
+     * @author Binh Hoang
      * @return string
      */
     public function getReminderEmail(){
@@ -110,5 +111,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function usersns(){
         return $this->hasMany('UserSns');
     }
-
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/01/19
+     *
+     * @modified
+     * @modified by
+     **/
+     public static function checkExpiredTime($obj){
+        $created = new Carbon($obj->updated_at);
+        $now = Carbon::now();
+        $difference = ($created->diff($now));       
+        if($difference->days > 0) return false;
+        if($difference->h > 0) return false;
+        return ($difference->i <= 30);
+    }    
 }

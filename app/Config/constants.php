@@ -1,5 +1,7 @@
 <?php
 return array(
+    'domain' => 'stores.dev.srv',
+    'contact_email' => 'sangpm@leverages.jp',
     'item_samples' => array(
         array(
             'id' => 1,

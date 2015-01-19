@@ -9,9 +9,9 @@
 				<dd>
 					<div class="big url">
 						<span class="first">https://</span>
-						 {{Form::text('domain', null, array('class' => 'input_login'))}}
-						  <font class="message_error">{{ $errors->first('domain') }}</font>
+						 {{Form::text('domain', null, array('class' => ''))}}
 						<span class="second">.stores.jp</span>
+						<div class="message_error">{{ $errors->first('domain') }}</div>
 					</div>
 				</dd>
 			</dl>
@@ -22,7 +22,7 @@
 						<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 					</dd>
 					<dd class="btn_high">
-						<button type="submit">Lưu</button>
+						<button type="submit" class="save_domain">Lưu</button>
 				</dd>
 			</dl>
 		</dd>

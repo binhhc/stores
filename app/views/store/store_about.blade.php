@@ -1,5 +1,4 @@
 @include('elements.header')
-{{HTML::script('js/main_page.js')}}
 <div class="wrapper ng-scope">
 	<h2 class="heading">Thay đổi địa chỉ URL</h2>
 	<dl class="form_basic form_multi">
@@ -42,7 +41,7 @@
 				<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 			</dd>
 			<dd class="btn_high">
-				<a href="/store_setting"><button type="submit">Lưu</button></a>
+				<button type="submit">Lưu</button>
 		</dd>
 	</dl>
 </div>

@@ -19,6 +19,7 @@ Route::get('/store_setting', 'StoreController@store_setting');
 Route::get('/payment_method', 'StoreController@payment_method');
 Route::get('/setting_domain', 'StoreController@setting_domain');
 Route::get('/store_about', 'StoreController@store_about');
+Route::post('/store_about', 'StoreController@save_store_about');
 Route::get('/store_domain', 'StoreController@store_domain');
 Route::post('/store_domain', 'StoreController@save_domain');
 Route::get('/item_management', 'UserItemController@item_management');

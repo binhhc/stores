@@ -312,7 +312,10 @@ class StoreController extends BaseController {
     	if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
-    	return View::make('store.store_about');
+    	$user_id = $this->getUserId();
+    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
+    	$data['setting_intros'] = $user_store['	setting_intros'];
+    	return View::make('store.store_about', $data);
     }
     /**
      * About commercial law
@@ -351,22 +354,69 @@ class StoreController extends BaseController {
     	}
     	$user_id = $this->getUserId();
     	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
-    	var_dump($user_store);
+    	$data['domain'] = $user_store['domain'];
 
-    	return View::make('store.store_domain');
+    	return View::make('store.store_domain', $data);
     }
     /**
      * Save change domain
+     * @author OanhHa
+     * @since 2015-01-19
      */
     public function save_domain(){
     	$v = UserStore::validate_domain(Input::all());
+    	$user_id = $this->getUserId();
 
         if($v->fails()){
             return Redirect::to('/store_domain')->withErrors($v)->withInput();
         } else {
+        	$domain = Input::get('domain');
+        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	if(!empty($user_store)) {
+        		UserStore::where('user_id', $user_id)
+        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+        	} else {
+        		$user = new UserStore;
+        		$user->user_id = $user_id;
+        		$user->domain = $domain;
+        		$user->created_user = $user_id;
+        		$user->save();
+        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
+        		return Redirect::to('/store_setting')->withInput();
+        	}
 
         }
     }
+    /**
+     * Save change store about
+     * @author OanhHa
+     * @since 2015-01-19
+     */
+    public function save_store_about(){
+    	//$v = UserStore::validate_domain(Input::all());
+    	$user_id = $this->getUserId();
+
+        if($v->fails()){
+            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+        } else {
+        	$domain = Input::get('domain');
+        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	if(!empty($user_store)) {
+        		UserStore::where('user_id', $user_id)
+        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+        	} else {
+        		$user = new UserStore;
+        		$user->user_id = $user_id;
+        		$user->domain = $domain;
+        		$user->created_user = $user_id;
+        		$user->save();
+        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
+        		return Redirect::to('/store_setting')->withInput();
+        	}
+
+        }
+    }
+
 
 
 }

@@ -219,14 +219,19 @@ class UserController extends BaseController {
         if(Request::ajax())
         {
             $input = Input::all();
-            $email = trim(Input::get('email'));           
+            $email = trim(Input::get('email'));
             $password = trim(Input::get('password'));
             $v = User::validate_register(Input::all());
 
             if($v->fails()){
+            	$mss = '';
+            	foreach ($v->messages()->getMessages() as $field_name => $messages)
+    			{
+       				 $mss = $messages;// messages are retrieved (publicly)
+   				}
                 $response = array(
                 'status' => 'fail validate',
-                'msg' => 'Regiter fail',
+                'msg' => $mss,
                 );
             } else {
                 $created = $modified = strtotime('now');
@@ -272,26 +277,26 @@ class UserController extends BaseController {
         $user_id = Session::get('user.id');
         $email   = Session::get('user.email');
         $token   = User::createAccountToken();
-      
+
         User::where('id',$user_id)
                 ->update(array('account_token' => $token));
-        
+
         $data = array(
             'domain' => Config::get('constants.domain'),
             'token'  => $token,
             'contact_email' => Config::get('constants.contact_email'),
         );
-        
-        if(Request::ajax()) {         	 
+
+        if(Request::ajax()) {
             $status = Mail::send('emails.register', $data, function($message) use($email) {
                 $message->to($email, 'Thành viên mới')->subject('Đăng ký Store thành công');
             });
             $response = array('sucess' => $status);
-        } 
+        }
         return Response::json( $response );
 
     }
-    
+
      /**
      * Logout
      *
@@ -301,8 +306,8 @@ class UserController extends BaseController {
      * @since   2015.01.19
      */
     public function active($token = null){
-        $user_info = User::where('account_token',$token)->first(); 
-       
+        $user_info = User::where('account_token',$token)->first();
+
         if(User::checkExpiredTime($user_info) == true){
             $user_info->account_token = "";
             $user_info->save();
@@ -312,7 +317,7 @@ class UserController extends BaseController {
         echo "Token không tồn tại";
         exit();
     }
-    
+
     /**
      * Logout
      *

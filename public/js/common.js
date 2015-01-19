@@ -80,25 +80,39 @@
 		slider_home.init();
 	}).trigger('resize');
 
-      // Validate register user
-      var div_err = $('#panel_error');
-      var em_err= $('p.valid_email');
-      var p_err = $('p.pass_error');
-      var e_p = $('p.email_pass_error');
-      function validateForm() {
-    	  	var pass = document.forms["myForm"]["password"].value;
-    	  	var x = document.forms["myForm"]["email"].value;
-    	    var atpos = x.indexOf("@");
-    	    var dotpos = x.lastIndexOf(".");
-    	    if (pass.length <= 0 && x.length <=0) {
-    	    	$(div_err).show();
-    	    	$(p_err).show();
-    	    	$(e_p).show();
-    	    	$(em_err).show();
-    	    	return false;
-    	    } else {
-    	        if (pass.length <= 0 || x.length <=0) {
-    	        	$(p_err).hide();
+
+$(document).ready(function(){
+	// Main.js
+	$('#btn_menu').on('click', function(){
+		if($('ul#mobile_nav').css('display') !== 'none'){
+			$('ul#mobile_nav').slideUp();
+		} else {
+			$('ul#mobile_nav').slideDown();
+		}
+	});
+	$('#panel_error .close').on('click', function(){
+		$('#panel_error').hide();
+	});
+
+	 // Validate register user
+    var div_err = $('#panel_error');
+    var em_err= $('p.valid_email');
+    var p_err = $('p.pass_error');
+    var e_p = $('p.email_pass_error');
+    function validateForm() {
+  	  	var pass = document.forms["myForm"]["password"].value;
+  	  	var x = document.forms["myForm"]["email"].value;
+  	    var atpos = x.indexOf("@");
+  	    var dotpos = x.lastIndexOf(".");
+  	    if (pass.length <= 0 && x.length <=0) {
+  	    	$(div_err).show();
+  	    	$(p_err).show();
+  	    	$(e_p).show();
+  	    	$(em_err).show();
+  	    	return false;
+  	    } else {
+  	        if (pass.length <= 0 || x.length <=0) {
+  	        	$(p_err).hide();
 	    	    	$(em_err).hide();
 	    	    	$(div_err).show();
 	    	    	$(e_p).show();
@@ -122,24 +136,10 @@
 		    	    }
 
 	    	    }
-    	    }
-    	    $(div_err).hide();
-    	    return true;
-    }
-
-$(document).ready(function(){
-	// Main.js
-	$('#btn_menu').on('click', function(){
-		if($('ul#mobile_nav').css('display') !== 'none'){
-			$('ul#mobile_nav').slideUp();
-		} else {
-			$('ul#mobile_nav').slideDown();
-		}
-	});
-	$('#panel_error .close').on('click', function(){
-		$('#panel_error').hide();
-	});
-
+  	    }
+  	    $(div_err).hide();
+  	    return true;
+  }
 	// Register user by js (main)
 	$(document).on('click', 'button.btn_submit', function(e){
 		  e.preventDefault();
@@ -162,6 +162,7 @@ $(document).ready(function(){
 		          },
 		          success: function(response) {
 		        	  if(response.status == 'fail validate') {
+		        		  $('p.unique_email').text(response.msg);
 		        		  $(div_err).show();
 		        		  $('p.unique_email').show();
 		        		  return false;

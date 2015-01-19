@@ -88,6 +88,7 @@ return array(
 		'email' => array(
 			'required' => 'Địa chỉ email không thể trống.',
 			'email' => 'Địa chỉ email không đúng định dạng',
+			'unique' => 'Địa chỉ email đã tồn tại trong hệ thống'
 		),
 		'password' => array(
 			'required' => 'Mật khẩu không thể trống.',

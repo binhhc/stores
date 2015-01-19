@@ -1,4 +1,9 @@
 @include('elements.header')
+@if(Session::has('success'))
+<div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
+    <h2>{{ Session::get('success') }}</h2>
+</div>
+@endif
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">
@@ -12,7 +17,7 @@
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
-								<a href="/store_url">Thay đổi</a>
+								<a href="store_domain">Thay đổi</a>
 							</p>
 						</li>
 					</ul>

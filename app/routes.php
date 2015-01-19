@@ -18,10 +18,10 @@ Route::get('/commercial_law', 'StoreController@commercial_law');
 Route::get('/store_setting', 'StoreController@store_setting');
 Route::get('/payment_method', 'StoreController@payment_method');
 Route::get('/setting_domain', 'StoreController@setting_domain');
-Route::get('/store_about', 'StoreController@store_about');
-Route::post('/store_about', 'StoreController@save_store_about');
-Route::get('/store_domain', 'StoreController@store_domain');
-Route::post('/store_domain', 'StoreController@save_domain');
+Route::get('/store_about', array('before' => 'auth', 'uses' => 'StoreController@store_about'));
+Route::post('/store_about', array('before' => 'auth', 'uses' => 'StoreController@save_store_about'));
+Route::get('/store_domain', array('before' => 'auth', 'uses' =>'StoreController@store_domain'));
+Route::post('/store_domain', array('before' => 'auth', 'uses' =>'StoreController@save_domain'));
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard/', 'StoreController@dashboard');
 Route::get('/dashboard/{id}', 'StoreController@dashboard');
@@ -85,6 +85,3 @@ Route::get('/forgetPassword', 'UserController@showForgetPassword');
 Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 
-// Route::post('/checkEmailJson', 'UserController@checkEmailJson');
-Blade::setContentTags('<%', '%>');        // for variables and all things Blade
-Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data

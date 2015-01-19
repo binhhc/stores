@@ -37,5 +37,19 @@ class UserStore extends Model{
             ->first();
         return !empty($userStores) ? $userStores : array();
     }
+    /**
+     * Validate
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_about($input){
+        $rules = array(
+            'facebook_url' => 'url',
+        	'twitter_url' => 'url',
+        	'homepage_url' => 'url',
 
+        );
+
+        return Validator::make($input, $rules);
+    }
 }

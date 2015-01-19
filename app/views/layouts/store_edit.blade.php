@@ -11,10 +11,8 @@
         var editStore_TextColor = <?php echo json_encode($sysTextColor);?>;
         var editStore_BackgroundColor = <?php echo json_encode($sysBackgroundColor);?>;
         var editStore_BackgroundPatterns = <?php echo json_encode($sysBackgroundImage);?>;
-
-        {{HTML::style('css/application.css')}}
-        {{HTML::script('js/edit_store.js')}}
-
+        </script>
+        <script src="http://stores.local.srv/public/js/edit_store.js"></script>
         <script type="text/javascript">
         //<![CDATA[
             AUTH_TOKEN = "123456";

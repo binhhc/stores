@@ -114,11 +114,21 @@ class StoreController extends BaseController {
             $data['store']['store_style']['item_text_color_id'] = $itemTextColorId;
             $data['store']['store_style']['store_text_color_id'] = $storeTextColors;
 
+            //copy file upload
+            $file_name = $data['store']['store_style']['logo_image'];
+            $tmpPath = public_path() . '/_temp_files/'. $file_name;
+            $folder_user = public_path() . '/files/hoangnn001';
+            if(!is_dir($folder_user)){
+                mkdir($folder_user);
+            }
+            $destinationPath = $folder_user.'/'.$file_name;
+            copy($tmpPath, $destinationPath);
+
             $json = json_encode($data);
 
             //init data
             $userStore = new UserStore;
-            $userStore->user_id = 1;
+            $userStore->user_id = Session::get('user.id');
             $userStore->domain = 'hauln@leverages.jp';
             $userStore->settings = $json;
 
@@ -258,7 +268,7 @@ class StoreController extends BaseController {
                     'item' => $store->store_style->display_item
                 );
                 $style['shipping_fee'] = 0;
-                $style['logo'] = '';
+                $style['logo'] = $store->store_style->logo_image;
 
                 $json = json_encode($style);
                 echo $json;

@@ -13,8 +13,12 @@ class MainController extends BaseController {
      * @return Response
      */
     public function main(){
-    	$this->checkLogin();
-    	return View::make('main.index');
+    	if(!$this->checkLogin()) {
+    		return View::make('main.index');
+    	} else {
+    		 return Redirect::to('/dashboard');
+    	}
+
     }
 
 

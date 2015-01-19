@@ -88,13 +88,18 @@ return array(
 		'email' => array(
 			'required' => 'Địa chỉ email không thể trống.',
 			'email' => 'Địa chỉ email không đúng định dạng',
+			'unique' => 'Địa chỉ email đã tồn tại trong hệ thống'
 		),
 		'password' => array(
 			'required' => 'Mật khẩu không thể trống.',
 			'alpha_num' => 'Mật khẩu không thể chứa kí tự đặc biệt.',
 			'min' => 'Mật khẩu chứa ít nhất 6 kí tự.',
 			'max' => 'Mật khẩu chứa nhiều nhất 30 kí tự.'
-		)
+		),
+		'domain' => array(
+			'required' => 'Vui lòng nhập tên miền.',
+			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.'
+		),
 	),
 
 	/*

@@ -1,5 +1,4 @@
 @include('elements.header')
-{{HTML::script('js/main_page.js')}}
 <div class="wrapper domain">
 	<div class="heading_box clearfix">
 		<h2 class="heading">STORES.jpの独自ドメインについて</h2>
@@ -34,7 +33,7 @@
 	</ul>
 	<div class="agree" ng-show="step == 1" style="">
 		<p id="popup_premium_button" class="btn_high_big" ng-show="plan == 'free'" style="">
-		<a href="#!/premium">独自ドメインを利用する</a>
+		<a href="#!/premium">Sử dụng tên miền  của tôi</a>
 		</p>
 	</div>
 </div>

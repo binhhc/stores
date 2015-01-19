@@ -7990,6 +7990,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     _.each($scope.items, function(v, k) {
                         if (!_.isEmpty(v.images)) {
                             var file_name = v.images[0].name.split(".");
+                            console.log(file_name);
                             v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
                         }
                     }), _.delay(function() {
@@ -8113,53 +8114,10 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         font_weight: 400
                     }]
                 },
-                layouts: [{
-                    name: "layout_a",
-                    first: "205x205",
-                    other: "205x205"
-                }, {
-                    name: "layout_b",
-                    first: "285x285",
-                    other: "285x285"
-                }, {
-                    name: "layout_c",
-                    first: "450x450",
-                    other: "450x450"
-                }, {
-                    name: "layout_h",
-                    first: "120x120",
-                    other: "120x120"
-                }, {
-                    name: "layout_d",
-                    first: "420x200",
-                    other: "190x190"
-                }, {
-                    name: "layout_e",
-                    first: "420x420",
-                    other: "180x180"
-                }, {
-                    name: "layout_f",
-                    first: "420x420",
-                    other: "420x420"
-                }, {
-                    name: "layout_g",
-                    first: "420x200",
-                    other: "420x200"
-                }],
-                background_patterns: [
-                    ["/img/samples/bg2/bg2_1.gif", "/img/samples/bg2/bg2_2.gif", "/img/samples/bg2/bg2_3.gif", "/img/samples/bg2/bg2_4.gif", "/img/samples/bg2/bg2_5.gif"],
-                    ["/img/samples/bg2/bg2_6.gif", "/img/samples/bg2/bg2_7.gif", "/img/samples/bg2/bg2_8.gif", "/img/samples/bg2/bg2_9.gif", "/img/samples/bg2/bg2_10.gif"],
-                    ["/img/samples/bg2/bg2_11.gif", "/img/samples/bg2/bg2_12.gif", "/img/samples/bg2/bg2_13.gif", "/img/samples/bg2/bg2_14.gif", "/img/samples/bg2/bg2_15.gif"],
-                    ["/img/samples/bg2/bg2_16.gif", "/img/samples/bg2/bg2_17.gif", "/img/samples/bg2/bg2_18.gif", "/img/samples/bg2/bg2_19.gif", "/img/samples/bg2/bg2_20.gif"],
-                    ["/img/samples/bg2/bg2_21.gif", "/img/samples/bg2/bg2_22.gif", "/img/samples/bg2/bg2_23.gif", "/img/samples/bg2/bg2_24.gif", "/img/samples/bg2/bg2_25.gif"],
-                    ["/img/samples/bg2/bg2_26.gif", "/img/samples/bg2/bg2_27.gif", "/img/samples/bg2/bg2_28.gif", "/img/samples/bg2/bg2_29.gif", "/img/samples/bg2/bg2_30.gif"]
-                ],
-                background_colors: [
-                    ["#e51919", "#e5bc19", "#66b714", "#19bce5", "#1466b7", "#bc42bc", "#6b42bc", "#bc4241", "#bca442", "#669534", "#42a4bc", "#346696", "#a45aa4", "#7359a4"],
-                    ["#ff9393", "#ffe993", "#bdff7e", "#b7f0fe", "#7ebeff", "#e9a9e9", "#bea9e9", "#fbcfcf", "#fbf2cf", "#e0fbc5", "#cff2fb", "#c4e0fb", "#f2d8f2", "#e1d8f2"],
-                    ["#4b4545", "#4b4a45", "#393c36", "#454a4c", "#373a3c", "#4a464a", "#47464a", "#000000", "#333233", "#666666", "#808080", "#999999", "#cccccc", "#ffffff"]
-                ],
-                text_colors: ["#000000", "#666666", "#999999", "#ffffff"]
+                layouts: editStore_Layouts,
+                background_patterns: editStore_BackgroundPatterns,
+                background_colors: editStore_BackgroundColor,
+                text_colors: editStore_TextColor
             },
             util: {
                 generate_image_style: function(path) {
@@ -8174,40 +8132,41 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                 }
             },
             init: function() {
-                $http.get("/stores/items/").success(function(data) {
+                $http.get("/items").success(function(data) {
                     $scope.items = _.isEmpty(data) ? [{
                         name: "Balo đựng laptop",
                         price: 1e3,
-                        path: "/img/samples/products/1.jpeg"
+                        path: "img/samples/products/1.jpeg"
                     }, {
                         name: "Quần jean",
                         price: 1e3,
-                        path: "/img/samples/products/2.jpeg"
+                        path: "img/samples/products/2.jpeg"
                     }, {
                         name: "Dù che mưa",
                         price: 1e3,
-                        path: "/img/samples/products/3.jpeg"
+                        path: "img/samples/products/3.jpeg"
                     }, {
                         name: "Máy chụp hình cổ",
                         price: 1e3,
-                        path: "/img/samples/products/4.jpeg"
+                        path: "img/samples/products/4.jpeg"
                     }, {
                         name: "Giày nam",
                         price: 1e3,
-                        path: "/img/samples/products/5.jpeg"
+                        path: "img/samples/products/5.jpeg"
                     }, {
                         name: "Quạt máy",
                         price: 1e3,
-                        path: "/img/samples/products/6.jpeg"
+                        path: "img/samples/products/6.jpeg"
                     }, {
                         name: "Áo thun",
                         price: 1e3,
-                        path: "/img/samples/products/7.jpeg"
+                        path: "img/samples/products/7.jpeg"
                     }, {
                         name: "Mắt kính",
                         price: 1e3,
-                        path: "/img/samples/products/8.jpeg"
-                    }] : data, $http.get("/stores/styles/").success(function(data) {
+                        path: "img/samples/products/8.jpeg"
+                    }] : data, $http.get("/styles").success(function(data) {
+                    	
                         _.each(data, function(v, k) {
                             v && (_.isObject(v) ? _.each(v, function(v2, k2) {
                                 $scope.store[k][k2] = v2
@@ -8247,9 +8206,9 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                                 "margin-right": 0
                             })
                         }, 50)
-                    }), $http.get("/stores/categories/").success(function(data) {
+                    }), $http.get("/categories").success(function(data) {
                         $scope.categories = data
-                    }), $http.head("/stores/about/").success(function() {
+                    }), $http.head("/about").success(function() {
                         $scope.hasAbout = !0
                     })
                 }), (navigator.userAgent.toLowerCase().indexOf("firefox") + 1 ? 1 : 0) && ($("#label_logo_image").on("click", function() {
@@ -8259,13 +8218,13 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                 })), $("#file_logo_image, #file_background_image").on("change", function() {
                     $(this).submit()
                 }), $("#file_logo_image").change(function() {
-                    $(this).upload("/stores/upload_image", {
+                    $(this).upload("/upload_image", {
                         authenticity_token: AUTH_TOKEN
                     }, function(data) {
                         $scope.store.logo = data.name, $scope.styles.logo_image = "/_temp_files/" + data.name, $scope.styles.logo = !0, $scope.styles.show_logo_switch = !0, $scope.$digest()
                     }, "json")
                 }), $("#file_background_image").change(function() {
-                    $(this).upload("/stores/upload_image", {
+                    $(this).upload("/upload_image", {
                         authenticity_token: AUTH_TOKEN
                     }, function(data) {
                         $scope.store.background.image = data.name, $scope.styles.body["background-image"] = $scope.util.generate_image_style("/_temp_files/" + data.name)["background-image"], $scope.$digest()
@@ -8283,7 +8242,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         _.isFunction(v) || (data[k] = v)
                     });
                     var d = data;
-                    $scope.styles.logo || (d.logo = null), $http.post("/stores/save", {
+                    $scope.styles.logo || (d.logo = null), $http.post("/save", {
                         authenticity_token: AUTH_TOKEN,
                         store: {
                             name: d.name,
@@ -8304,7 +8263,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                             }
                         }
                     }).success(function(data, status, headers, config) {
-                        alert(data);
+                        //alert(data);
                         //$(window).off("beforeunload"), location.href = "/"
                     }).error(function(data, status, headers, config) {
                         alert('errot' + data);

@@ -22,9 +22,9 @@ class BaseController extends Controller {
 	public function checkLogin() {
 		$user = Session::get('user');
 		if(empty($user)) {
-    		return Redirect::to('/');
+    		return false;
     	} else {
-    		return $user;
+    		return true;
     	}
 	}
 	/**
@@ -35,7 +35,7 @@ class BaseController extends Controller {
 	public function getUserId() {
 		$user = Session::get('user');
 		if(empty($user)) {
-    		return Redirect::to('/');
+    		return false;
     	} else {
     		return $user['id'];
     	}

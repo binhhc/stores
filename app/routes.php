@@ -14,27 +14,36 @@ Route::resource('user', 'UserController');
 Route::model('user', 'User');
 
 Route::get('/', 'MainController@main');
-Route::get('/commercial_law', array('before' => 'auth', 'uses' => 'StoreController@commercial_law'));
-Route::get('/store_setting', array('before' => 'auth', 'uses' => 'StoreController@store_setting'));
-Route::get('/payment_method', array('before' => 'auth', 'uses' => 'StoreController@payment_method'));
-Route::get('/setting_domain', array('before' => 'auth', 'uses' => 'StoreController@setting_domain'));
-Route::get('/store_about', array('before' => 'auth', 'uses' => 'StoreController@store_about'));
-Route::get('/store_url', array('before' => 'auth', 'uses' => 'StoreController@store_url'));
-Route::get('/item_management', array('before' => 'auth', 'uses' => 'UserItemController@item_management'));
-Route::get('/dashboard/', array('before' => 'auth', 'uses' => 'StoreController@dashboard'));
-Route::get('/dashboard/{id}', array('before' => 'auth', 'uses' => 'StoreController@dashboard'));
-Route::get('/addon', array('before' => 'auth', 'uses' => 'AddonController@addon'));
-Route::get('/saveaddon/{id}/{flg}', array('before' => 'auth', 'uses' => 'AddonController@saveaddon'));
-Route::get('/sort_item', array('before' => 'auth', 'uses' => 'UserItemController@sort_item'));
-Route::get('/set_status', array('before' => 'auth', 'uses' => 'UserItemController@set_status'));
+Route::get('/commercial_law', 'StoreController@commercial_law');
+Route::get('/store_setting', 'StoreController@store_setting');
+Route::get('/payment_method', 'StoreController@payment_method');
+Route::get('/setting_domain', 'StoreController@setting_domain');
+Route::get('/store_about', 'StoreController@store_about');
+Route::post('/store_about', 'StoreController@save_store_about');
+Route::get('/store_domain', 'StoreController@store_domain');
+Route::post('/store_domain', 'StoreController@save_domain');
+Route::get('/item_management', 'UserItemController@item_management');
+Route::get('/dashboard/', 'StoreController@dashboard');
+Route::get('/dashboard/{id}', 'StoreController@dashboard');
+Route::get('/addon', 'AddonController@addon');
+Route::get('/sort_item', 'UserItemController@sort_item');
+Route::get('/set_status', 'UserItemController@set_status');
 
-Route::get('/list_item_ajax', array('before' => 'auth', 'uses' => 'UserItemController@list_item_ajax'));
-Route::get('/send_email', array('before' => 'auth', 'uses' => 'UserController@send_email'));
-Route::get('/update_sort/{$id}/{$order}', array('before' => 'auth', 'uses' => 'UserItemController@update_sort'));
+Route::get('/list_item_ajax', 'UserItemController@list_item_ajax');
+Route::get('/send_email', 'UserController@send_email');
+Route::get('/delete_item', 'UserItemController@delete_item');
+Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 
 //edit store
-Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
-Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
+//Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
+//Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
+Route::get('/edit', 'StoreController@edit');
+Route::get('/styles', 'StoreController@styles');
+Route::get('/items', 'StoreController@items');
+Route::get('/categories', 'StoreController@categories');
+Route::get('/about', 'StoreController@about');
+Route::post('/upload_image', 'StoreController@upload_image');
+Route::post('/save', 'StoreController@save');
 
 //Login
 Route::get('/login', 'UserController@showLogin');
@@ -77,3 +86,5 @@ Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 
 // Route::post('/checkEmailJson', 'UserController@checkEmailJson');
+Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data

@@ -1,5 +1,9 @@
 @include('elements.header')
-{{HTML::script('js/main_page.js')}}
+@if(Session::has('success'))
+<div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
+    <h2>{{ Session::get('success') }}</h2>
+</div>
+@endif
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">
@@ -13,7 +17,7 @@
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
-								<a href="/store_url">Thay đổi</a>
+								<a href="store_domain">Thay đổi</a>
 							</p>
 						</li>
 					</ul>
@@ -424,30 +428,3 @@
 	</div>
 </div>
 @include('elements.footer')
-<script>
-	$(document).ready(function(){
-		$('#open_shipping_select').on('click', function(event){
-			 event.preventDefault();
-			if ($('#shipping_select').css('display') == 'none') {
-				$('#shipping_select').show();
-			} else {
-				$('#shipping_select').hide();
-			}
-		});
-		$('button.cancel_button').on('click', function(){
-			$('#shipping_select').hide();
-		})
-		$('#form_promotion').on('click', function(){
-			$('#modal-win').show();
-		});
-		$('a.modal-move').on('click', function() {
-			var modal = $(this).attr('href');
-			$('#modal-win-inner').hide();
-			$('.modal_slide').hide();
-			$(modal).show();
-		});
-		$('a.modal-close').on('click', function(){
-			$('#modal-win').hide();
-		});
-	});
-</script>

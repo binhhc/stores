@@ -274,7 +274,7 @@ class UserController extends BaseController {
     public function send_email() {
         $response = array('sucess' => 'fail');
         $user_id = Session::get('user.id');
-        $email   = "sangpm@leverages.jp";//Session::get('user.email');
+        $email   = Session::get('user.email');
         $token   = User::createAccountToken();
       
         User::where('id',$user_id)
@@ -294,6 +294,27 @@ class UserController extends BaseController {
         } 
         return Response::json( $response );
 
+    }
+    
+     /**
+     * Logout
+     *
+     * @param   null
+     * @return  Response
+     * @author  SangPM
+     * @since   2015.01.19
+     */
+    public function active($token = null){
+        $user_info = User::where('account_token',$token)->first(); 
+       
+        if(User::checkExpiredTime($user_info) == true){
+            $user_info->account_token = "";
+            $user_info->save();
+            echo "Active token thành công";
+            exit();
+        }
+        echo "Token không tồn tại";
+        exit();
     }
     
     /**

@@ -28,8 +28,7 @@ class UserStore extends Model{
      * get user_store by user_id
      */
     public static function getUserStoreByUserId() {
-        //$userId = Session::get('user.id');
-        $userId = 1;
+        $userId = Session::get('user.id');
         $userStores = DB::table('user_stores')
             ->select('id', 'user_id', 'domain', 'public_flg','settings')
             ->where('user_stores.user_id', '=', $userId)

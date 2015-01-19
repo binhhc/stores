@@ -12,6 +12,7 @@
 */
 Route::resource('user', 'UserController');
 Route::model('user', 'User');
+Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/commercial_law', 'StoreController@commercial_law');
@@ -46,15 +47,16 @@ Route::post('/upload_image', 'StoreController@upload_image');
 Route::post('/save', 'StoreController@save');
 
 //Login
-Route::get('/login', 'UserController@showLogin');
-Route::post('/login', 'UserController@doLogin');
+Route::get('/login', array('uses' => 'UserController@showLogin'));
+Route::post('/login', array('uses' => 'UserController@doLogin'));
 
-//login facebook
-Route::get('/facebook_login', 'UserController@loginFacebook');
-Route::post('/facebook', 'UserController@doLoginFacebook');
+/*login facebook */
+Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));
+Route::get('login/fb/callback', array('uses' => 'UserController@facebookCallback'));
+/* end login facebook */
 
 //logout
-Route::get('/logout', 'UserController@doLogout');
+Route::get('/logout', array('uses' => 'UserController@doLogout'));
 
 //account setting
 Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));
@@ -85,3 +87,6 @@ Route::get('/forgetPassword', 'UserController@showForgetPassword');
 Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 
+// Route::post('/checkEmailJson', 'UserController@checkEmailJson');
+//Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+//Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data

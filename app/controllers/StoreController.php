@@ -171,14 +171,15 @@ class StoreController extends BaseController {
         //get user_item from user_id
         $items = array();
         $userItems = UserItem::getUserItemFromUserId();
-        foreach ($userItems as $key => $value) {
-            $value->images[]['name'] = $value->image_url;
-            unset($value->image_url);
-            $items[] = $value;
+        
+        if (!empty($userItems)) {
+            foreach ($userItems as $key => $value) {
+                $value->images[]['name'] = $value->image_url;
+                unset($value->image_url);
+                $items[] = $value;
+            }
         }
-print "<pre>";
-print_r($items);
-print "</pre>";
+
         if (Request::ajax())
         {
             $json = json_encode($items);
@@ -246,7 +247,7 @@ print "</pre>";
                 $style['background'] = array(
                     'color' => $store->store_style->background_color,
                     'repeat' => '',
-                    'image' => ''
+                    'image' => $store->store_style->background_image
                 );
                 $style['text_color'] = array(
                     'item' => $store->store_style->item_text_color,

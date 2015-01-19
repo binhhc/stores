@@ -192,8 +192,7 @@ class UserController extends BaseController {
         if(Request::ajax())
         {
             $input = Input::all();
-            $email = trim(Input::get('email'));
-            $account_token = md5($email);
+            $email = trim(Input::get('email'));           
             $password = trim(Input::get('password'));
             $v = User::validate_register(Input::all());
 
@@ -248,25 +247,28 @@ class UserController extends BaseController {
     public function send_email() {
         $response = array('sucess' => 'fail');
         $user_id = Session::get('user.id');
-        $email   = Session::get('user.email');
+        $email   = "sangpm@leverages.jp";//Session::get('user.email');
         $token   = User::createAccountToken();
       
         User::where('id',$user_id)
-                ->update(array(
-                    'account_token' => $token,
-                    'updated_user'  => $user_id));
+                ->update(array('account_token' => $token));
         
-//        if(Request::ajax()) {         	            
-//            $status = Mail::send('emails.register', array(), function($message) use($email) {
-//                $message->to($email, 'Thành viên mới')->subject('Đăng ký Store thành công');
-//            });
-//            $response = array('sucess' => $status);
-//        } 
-
-    return Response::json( $response );
+        $data = array(
+            'domain' => Config::get('constants.domain'),
+            'token'  => $token,
+            'contact_email' => Config::get('constants.contact_email'),
+        );
+        
+        if(Request::ajax()) {         	 
+            $status = Mail::send('emails.register', $data, function($message) use($email) {
+                $message->to($email, 'Thành viên mới')->subject('Đăng ký Store thành công');
+            });
+            $response = array('sucess' => $status);
+        } 
+        return Response::json( $response );
 
     }
-
+    
     /**
      * Logout
      *

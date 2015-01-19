@@ -98,5 +98,5 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return Validator::make($input, $rules);
     }
-
-}
+    
+    }

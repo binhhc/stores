@@ -403,7 +403,7 @@ class StoreController extends BaseController {
     	}
     	$user_id = $this->getUserId();
     	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
-    	$data['setting_intros'] = $user_store['	setting_intros'];
+    	$data['setting_intros'] = json_decode($user_store['	setting_intros']);
     	return View::make('store.store_about', $data);
     }
     /**
@@ -495,7 +495,7 @@ class StoreController extends BaseController {
      * @since 2015-01-19
      */
     public function save_store_about(){
-    	//$v = UserStore::validate_domain(Input::all());
+    	$v = UserStore::validate_about(Input::all());
     	$user_id = $this->getUserId();
 
         if($v->fails()){

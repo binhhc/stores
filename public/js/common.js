@@ -268,7 +268,7 @@ $(document).ready(function(){
     /**
      * Change status of item
      */
-    $(document).on('click', '.switch p.status', function(){
+    $(document).on('click', '.switch p.item_status', function(){
     	var item_id = $(this).attr('item_id');
     	var public_flg = $(this).attr('public_flg');
     	$.ajax({

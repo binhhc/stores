@@ -32,8 +32,15 @@ Route::get('/send_email', array('before' => 'auth', 'uses' => 'UserController@se
 Route::get('/update_sort/{$id}/{$order}', array('before' => 'auth', 'uses' => 'UserItemController@update_sort'));
 
 //edit store
-Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
-Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
+//Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
+//Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
+Route::get('/edit', 'StoreController@edit');
+Route::get('/styles', 'StoreController@styles');
+Route::get('/items', 'StoreController@items');
+Route::get('/categories', 'StoreController@categories');
+Route::get('/about', 'StoreController@about');
+Route::post('/upload_image', 'StoreController@upload_image');
+Route::post('/save', 'StoreController@save');
 
 //Login
 Route::get('/login', 'UserController@showLogin');
@@ -76,3 +83,5 @@ Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 
 // Route::post('/checkEmailJson', 'UserController@checkEmailJson');
+Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data

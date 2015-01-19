@@ -64,6 +64,31 @@ class UserController extends BaseController {
     }
 
     /**
+     * Login facebook.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.16
+     */
+    public function loginFacebook(){
+        $service = Social::service('facebook');
+        return Redirect::to((string) $service->getAuthorizationUri());
+    }
+
+    /**
+     * Login facebook.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.16
+     */
+    public function doLoginFacebook(){
+        echo 1;exit;
+    }
+
+    /**
      * Display forget password page.
      *
      * @param  null
@@ -107,8 +132,10 @@ class UserController extends BaseController {
         if(!empty($email)){
             $user = User::where('email', '=', $email)->get()->toArray();
 
-            var_dump($user);exit;
             if (!empty($user)) {
+                Mail::send('emails.demo', $data, function($message){
+                    $message->to('jane@example.com', 'Jane Doe')->subject('This is a demo!');
+                });
 
                 $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
                 //send email

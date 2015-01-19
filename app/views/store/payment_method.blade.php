@@ -1,8 +1,5 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/main_page.js')}}
-        @include('elements.header')
+@include('elements.header')
+{{HTML::script('js/main_page.js')}}
 <div class="wrapper ng-scope" ng-init="payment_method()">
 	<h2 class="heading">Thiết lập các phương thức thanh toán</h2>
 	<form class="ng-pristine ng-valid" novalidate="" ng-submit="submit()" name="form">
@@ -65,13 +62,15 @@
 					</dd>
 				</dl>
 			</dd>
-<dl class="btn_pair" ng-hide="pending">
-		<dd class="btn_low">
-			<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
-		</dd>
-		<dd class="btn_high">
-			<a href="/store_setting"><button type="submit">Lưu</button></a>
-		</dd>
-	</dl>
+		</dl>
+		<dl class="btn_pair" ng-hide="pending">
+			<dd class="btn_low">
+				<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
+			</dd>
+			<dd class="btn_high">
+				<a href="/store_setting"><button type="submit">Lưu</button></a>
+			</dd>
+		</dl>
+	</form>
 </div>
 @include('elements.footer')

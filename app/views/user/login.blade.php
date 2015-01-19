@@ -15,7 +15,7 @@
             <div class="box">
                 {{Form::open(array('url' => 'login', 'method' => 'post'))}}
                     <dl class="set">
-                        <dt>Email</dt>
+                        <dt>Địa chỉ email</dt>
                         <dd>
                             {{Form::text('email', null, array('class' => 'input_login'))}}
                             <font class="message_error">{{ $errors->first('email') }}</font>
@@ -37,7 +37,9 @@
 
                     <div class="social_login">
                         <p class="btn_facebook">
-                            {{HTML::link('#', 'Facebook', array('class' => ''))}}
+                            <a href="{{URL::asset('/facebook_login')}}">
+                                Facebook
+                            </a>
                         </p>
                     </div>
                 {{ Form::close() }}

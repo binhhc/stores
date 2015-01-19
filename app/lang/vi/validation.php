@@ -85,9 +85,16 @@ return array(
 	*/
 
 	'custom' => array(
-		'attribute-name' => array(
-			'rule-name' => 'custom-message',
+		'email' => array(
+			'required' => 'Địa chỉ email không thể trống.',
+			'email' => 'Địa chỉ email không đúng định dạng',
 		),
+		'password' => array(
+			'required' => 'Mật khẩu không thể trống.',
+			'alpha_num' => 'Mật khẩu không thể chứa kí tự đặc biệt.',
+			'min' => 'Mật khẩu chứa ít nhất 6 kí tự.',
+			'max' => 'Mật khẩu chứa nhiều nhất 30 kí tự.'
+		)
 	),
 
 	/*

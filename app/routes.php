@@ -38,6 +38,12 @@ Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@style
 //Login
 Route::get('/login', 'UserController@showLogin');
 Route::post('/login', 'UserController@doLogin');
+
+//login facebook
+Route::get('/facebook_login', 'UserController@loginFacebook');
+Route::post('/facebook', 'UserController@doLoginFacebook');
+
+//logout
 Route::get('/logout', 'UserController@doLogout');
 
 //account setting

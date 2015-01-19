@@ -1,10 +1,6 @@
-{{HTML::style('css/bootstrap.min.css')}}
-        {{HTML::style('css/item_management.css')}}
-        {{HTML::script('js/jquery.min.js')}}
-         {{HTML::script('js/item_management.js')}}
-        @include('elements.header')
-        <?php $user= Session::get('user'); $email = $user['email']; ?>
- <?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+@include('elements.header')
+<?php $user= Session::get('user'); $email = $user['email']; ?>
+<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
 <div class="dashboard_wrapper ng-scope">
 	<ul class="dashboard">
 		<li>
@@ -59,5 +55,4 @@
 		</div>
 	</div>
 </div>
-<input type="hidden" value="<?php echo $email?>" id="email_user" />
 @include('elements.footer')

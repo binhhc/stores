@@ -12,7 +12,7 @@
 		</dd>
 		<dd>
 			<dl class="cols">
-				<dt>リンク</dt>
+				<dt>Liên kết</dt>
 				<dd>
 					<ul>
 						<li class="sz_fix">Twitter</li>

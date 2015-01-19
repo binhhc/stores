@@ -17,46 +17,129 @@ class StoreController extends BaseController {
      * @since   2015/01/14
      *
      * @return void
+     * get information store
      */
     public function edit() {
-        return View::make('store.edit');
+        //sys_colors
+        $sysLayouts = array();
+        $tmpSysLayouts= SysLayout::getSysLayouts();
+        if (!empty($tmpSysLayouts)) {
+            foreach ($tmpSysLayouts as $key => $value) {
+                $sysLayouts[] = array('name' => $value);
+            }
+        }
+
+        //system text color
+        $sysTextColor = SysTextColor::getSysTextColor();
+
+        //system background color
+        $tmp_sysBackgroundColor = SysBackgroundColor::getSysBackgroundColor();
+        $max1 = 14; $sysBackgroundColor = array();
+        $index = 0; $j = 0;
+
+        if (!empty($tmp_sysBackgroundColor)) {
+            foreach ($tmp_sysBackgroundColor as $key => $value) {
+                if($index == $max1) {
+                    $j ++; $index = 0;
+                    $sysBackgroundColor[$j] = array();
+                }
+                $sysBackgroundColor[$j][] = $value;
+                $index++;
+            }
+        }
+
+        //system background image
+        $tmp_sysBackgroundImage = SysBackgroundImage::getSysBackgroundImages();
+        $max = 5; $sysBackgroundImage = array();
+        $index = 0; $j = 0;
+
+        if (!empty($tmp_sysBackgroundImage)) {
+            foreach ($tmp_sysBackgroundImage as $key => $value) {
+                if($index == $max) {
+                    $j ++; $index = 0;
+                    $sysBackgroundImage[$j] = array();
+                }
+                $sysBackgroundImage[$j][] = 'img/samples/bg2/'.$value;
+                $index++;
+            }
+        }
+
+        return View::make('store.edit', array(
+            'sysLayouts' => $sysLayouts,
+            'sysTextColor' => $sysTextColor,
+            'sysBackgroundColor' => $sysBackgroundColor,
+            'sysBackgroundImage' => $sysBackgroundImage
+        ));
     }
 
     /**
      * Save store layout
      *
-     * @author Nguyen Hoang
+     * @author Le Nhan Hau
      * @since 2015-01-08
      *
      * @return void
      */
     public function save() {
-        $this->autoRender = false;
-        if($this->request->is('ajax')){
-            $data = $this->request->input('json_decode', true);
+        $this->layout = '';
 
-            echo 'Vào file edit_store.js dòng 8307 để đóng alert này ';
-             pr($data);
+        if (Request::ajax())
+        {
+            //request data
+            $data = Input::all();
+
+            //get layout id
+            $layout = $data['store']['store_style']['layout'];
+            $layouts = SysLayout::getSysLayoutsIdByLayout($layout);
+            $layoutId = $layouts->id;
+
+            //get background color id
+            $background_color_code = $data['store']['store_style']['background_color'];
+            $systemBackgroundColors = SysBackgroundColor::getSysBackgroundColorIdByColorCode($background_color_code);
+            $systemBackgroundColorId = $systemBackgroundColors->id;
+
+            //get item_text_color
+            $item_text_color_code = $data['store']['store_style']['item_text_color'];
+            $itemTextColors = SysTextColor::getSysTextColorIdByColorCode($item_text_color_code);
+            $itemTextColorId = $itemTextColors->id;
+
+            //get store_text_color
+            $store_text_color_code = $data['store']['store_style']['store_text_color'];
+            $storeTextColors = SysTextColor::getSysTextColorIdByColorCode($store_text_color_code);
+            $storeTextColors = $storeTextColors->id;
+
+            //embed data
+            $data['store']['store_style']['layout_id'] = $layoutId;
+            $data['store']['store_style']['background_color_id'] = $systemBackgroundColorId;
+            $data['store']['store_style']['item_text_color_id'] = $itemTextColorId;
+            $data['store']['store_style']['store_text_color_id'] = $storeTextColors;
+
+            $json = json_encode($data);
+
+            //init data
+            $userStore = new UserStore;
+            $userStore->user_id = 1;
+            $userStore->domain = 'hauln@leverages.jp';
+            $userStore->settings = $json;
+
+            //save store
+            $userStore->save();
         }
-
     }
 
     /**
      * Load items
      *
-     * @author Nguyen Hoang
+     * @author Le Nhan Hau
      * @since 2015-01-08
      * parameter status
      * @return json
      */
     public function items($status = '') {
-        $this->autoRender = false;
-        $this->response->type('json');
+        $this->layout = '';
 
-        //Lay data từ DB => Fields nào cần thêm PM Sang thêm vào DB cho
-        //$items = ClassRegistry::init('UserItem')->getItemByUserIdWithQuantity($this->Store->getUserId());
-
-        $items = array();
+        //test data
+        /*$items = array();
         $item = array(
             'id' => '54ade2be86b1889a7900144f',
             'name' => 'Điện máy',
@@ -83,26 +166,39 @@ class StoreController extends BaseController {
             'sticker' => ''
 
         );
-        $items[] = $item;
+        $items[] = $item;*/
 
-        if($this->request->is('ajax')){
+        //get user_item from user_id
+        $items = array();
+        $userItems = UserItem::getUserItemFromUserId();
+
+        if (!empty($userItems)) {
+            foreach ($userItems as $key => $value) {
+                $value->images[]['name'] = $value->image_url;
+                unset($value->image_url);
+                $items[] = $value;
+            }
+        }
+
+        if (Request::ajax())
+        {
             $json = json_encode($items);
-            $this->response->body($json);
+            echo $json;
         }
     }
 
     /**
      * Load user style
      *
-     * @author Nguyen Hoang
+     * @author Le Nhan Hau
      * @since 2015-01-08
      * @return json
      */
     public function styles() {
-        $this->autoRender = false;
-        $this->layout = false;
+        $this->layout = '';
 
-        $style = array(
+        //test data
+        /*$style = array(
             'name' => 'hoangnn001',
             'store_font' => array
             (
@@ -130,52 +226,44 @@ class StoreController extends BaseController {
             ),
             'shipping_fee' => 0,
             'logo' => ''
-        );
-        //$this->response->type('json');
-        //$style = Configure::read('sys.store_style');
-        //$style['name']  =  'hoangnn001';
-//                array(
-//            'name' => 'hoangnn001',
-//            'store_font' => array
-//            (
-//                'style' => "'Allerta', sans-serif",
-//                'type' => 'google',
-//                'weight' => '400',
-//                'size' => '54',
-//            ),
-//            'layout' => 'layout_a',
-//            'background' => array
-//            (
-//                'color' => '#fff',
-//                'repeat' => '',
-//                'image' => '',
-//            ),
-//            'text_color' => array
-//            (
-//                'item' => '#000',
-//                'store' => '#000'
-//            ),
-//            'display' => array
-//            (
-//                'frame' => 1,
-//                'item' => 1
-//            ),
-//            'shipping_fee' => 0,
-//            'logo' => ''
-//        );
+        );*/
 
-        /*if($this->request->is('ajax')){
-            $json = json_encode($style);
-            $this->response->body($json);
-        }*/
-        $json = json_encode($style);
-        if (Request::ajax())
-        {
-            $json = json_encode($style);
-            return $json;
+        //get user_stores from user_id
+        $userStores = UserStore::getUserStoreByUserId();
+        if (Request::ajax()) {
+            $style = array();
+            if (!empty($userStores)) {
+                $settings = $userStores->settings;
+                $tmpSetting = json_decode($settings);
+                $store = $tmpSetting->store;
+                $style['name'] = $store->name;
+                $style['store_font'] = array(
+                    'style' => $store->store_style->store_font_style,
+                    'type' => $store->store_style->store_font_type,
+                    'weight' => $store->store_style->store_font_weight,
+                    'size' => $store->store_style->store_font_size
+                );
+                $style['layout'] = $store->store_style->layout;
+                $style['background'] = array(
+                    'color' => $store->store_style->background_color,
+                    'repeat' => '',
+                    'image' => $store->store_style->background_image
+                );
+                $style['text_color'] = array(
+                    'item' => $store->store_style->item_text_color,
+                    'store' => $store->store_style->store_text_color
+                );
+                $style['display'] = array(
+                    'frame' => $store->store_style->display_frame,
+                    'item' => $store->store_style->display_item
+                );
+                $style['shipping_fee'] = 0;
+                $style['logo'] = '';
+
+                $json = json_encode($style);
+                echo $json;
+            }
         }
-
-        echo json_encode($style);
     }
 
     /**
@@ -186,25 +274,33 @@ class StoreController extends BaseController {
      * @return json
      */
     public function categories() {
-        $this->autoRender = false;
-        $this->response->type('json');
+        $this->layout = '';
 
-        $categories = ClassRegistry::init('UserCategory')->getAllByUserId($this->Store->getUserId());
+        //$categories = ClassRegistry::init('UserCategory')->getAllByUserId($this->Store->getUserId());
+        /*$categories = array(
+            array(
+                'id' => 1,
+                'name' => 'Điện máy'
+            ),
+            array(
+                'id' => 2,
+                'name' => 'Thời trang'
+            )
+        );*/
+        //$categories = array();
+        //get user_categories from user_id
+        $userCategories = UserCategory::getUserCaterogiesFromUserId();
 
-//        $categories = array(
-//            array(
-//                'id' => 1,
-//                'name' => 'Điện máy'
-//            ),
-//            array(
-//                'id' => 2,
-//                'name' => 'Thời trang'
-//            )
-//        );
-
-        if($this->request->is('ajax')){
+        foreach ($userCategories as $key => $value) {
+            $categories[] = $value;
+        }
+        //exit;
+        if (Request::ajax())
+        {
             $json = json_encode($categories);
-            $this->response->body($json);
+            $response = Response::json($json);
+            $response->header('Content-Type', 'application/json');
+            return $response;
         }
     }
 
@@ -217,31 +313,32 @@ class StoreController extends BaseController {
      */
     public function about() {
         $this->autoRender = false;
-        $this->response->type('json');
+        $this->layout = '';
         $about = '';
 
-        if($this->request->is('ajax')){
+        if (Request::ajax())
+        {
             $json = json_encode($about);
-            $this->response->body($json);
+            $response = Response::json($json);
+            $response->header('Content-Type', 'application/json');
+            return $response;
         }
     }
 
      /**
      * Upload temp image
      *
-     * @author Nguyen Hoang
-     * @since 2015-01-08
+     * @author Le Nhan Hau
+     * @since 2015-01-15
      * @return json
      */
     public function upload_image() {
-        $this->autoRender = false;
-        if(!empty($_FILES['image'])){
-
+        $this->layout = '';
+        if (!empty($_FILES['image'])) {
             $file_name = time();
-            $dir = APP . WEBROOT_DIR . DS . '_temp_files' . DS . $file_name.'.jpeg';
-            move_uploaded_file($_FILES['image']['tmp_name'], $dir);
-            $size = getimagesize($dir);
-
+            $destinationPath = public_path() . '/_temp_files/'. $file_name.'.jpeg';
+            move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath);
+            $size = getimagesize($destinationPath);
             $logo = array(
                 'name' => $file_name.'.jpeg',
                 'src' => '/_temp_files/'.$file_name,
@@ -258,9 +355,9 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function store_setting() {
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
+	if(!$this->checkLogin()) {
+		return Redirect::to('/');
+	}
     	return View::make('store.store_setting');
     }
     /**
@@ -269,28 +366,10 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function payment_method() {
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
     	return View::make('store.payment_method');
-    }
-    /**
-     * Set url for stores
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function store_url() {
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-     	$v = UserStore::validate_domain(Input::all());
-
-        if($v->fails()){
-            return Redirect::to('/store_url')->withErrors($v)->withInput();
-        } else {
-
-        }
-    	return View::make('store.store_url');
     }
     /**
      * Set domain for stores
@@ -298,7 +377,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function setting_domain() {
-    	if(!$this->checkLogin()) {
+		if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
     	return View::make('store.setting_domain');
@@ -314,7 +393,7 @@ class StoreController extends BaseController {
     	}
     	$user_id = $this->getUserId();
     	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
-    	$data['setting_intros'] = $user_store['	setting_intros'];
+    	$data['setting_intros'] = json_decode($user_store['	setting_intros']);
     	return View::make('store.store_about', $data);
     }
     /**
@@ -326,7 +405,15 @@ class StoreController extends BaseController {
     	if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
-    	return View::make('store.commercial_law');
+    	$user_id = $this->getUserId();
+    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_trade_law'))->toArray();
+    	if(!empty($user_store)) {
+			$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    	} else {
+    		$data['setting_trade_law'] = array();
+    	}
+
+    	return View::make('store.commercial_law', $data);
     }
 
     /**
@@ -335,7 +422,7 @@ class StoreController extends BaseController {
      * @since 2015-01-09
      */
     public function dashboard($id=null) {
-    	if(!$this->checkLogin()) {
+		if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
     	$first = isset($id) ? intval($id) : 0;
@@ -354,7 +441,13 @@ class StoreController extends BaseController {
     	}
     	$user_id = $this->getUserId();
     	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
-    	$data['domain'] = $user_store['domain'];
+    	$data = array();
+    	if(!empty($user_store)) {
+			$data['domain'] = $user_store['domain'];
+    	} else {
+    		$data['domain'] = '';
+    	}
+
 
     	return View::make('store.store_domain', $data);
     }
@@ -381,10 +474,9 @@ class StoreController extends BaseController {
         		$user->domain = $domain;
         		$user->created_user = $user_id;
         		$user->save();
-        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
-        		return Redirect::to('/store_setting')->withInput();
         	}
-
+        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
+        	return Redirect::to('/store_setting')->withInput();
         }
     }
     /**
@@ -393,30 +485,29 @@ class StoreController extends BaseController {
      * @since 2015-01-19
      */
     public function save_store_about(){
-    	//$v = UserStore::validate_domain(Input::all());
+    	$v = UserStore::validate_about(Input::all());
     	$user_id = $this->getUserId();
 
         if($v->fails()){
-            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+            return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
-        	$domain = Input::all();
+        	$store_about = Input::all();
+        	$setting_intros = json_encode($store_about);
         	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
-        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+        				->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));
         	} else {
         		$user = new UserStore;
         		$user->user_id = $user_id;
-        		$user->domain = $domain;
+        		$user->setting_intros = $setting_intros;
         		$user->created_user = $user_id;
         		$user->save();
-        		Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
-        		return Redirect::to('/store_setting')->withInput();
         	}
+        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công");
+        	return Redirect::to('/store_setting')->withInput();
 
         }
     }
-
-
 
 }

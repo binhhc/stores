@@ -438,6 +438,7 @@ img {
 .message_error {
 	color: #d2615e;
 	margin-top: 5px;
+	font-size: 14px
 }
 .btn_high_l a {
     background: url("../img/main_page/btn_bg_blue_l.png") no-repeat scroll center top rgba(0, 0, 0, 0);

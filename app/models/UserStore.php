@@ -28,8 +28,7 @@ class UserStore extends Model{
      * get user_store by user_id
      */
     public static function getUserStoreByUserId() {
-        //$userId = Session::get('user.id');
-        $userId = 1;
+        $userId = Session::get('user.id');
         $userStores = DB::table('user_stores')
             ->select('id', 'user_id', 'domain', 'public_flg','settings')
             ->where('user_stores.user_id', '=', $userId)
@@ -37,5 +36,19 @@ class UserStore extends Model{
             ->first();
         return !empty($userStores) ? $userStores : array();
     }
+    /**
+     * Validate
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_about($input){
+        $rules = array(
+            'facebook_url' => 'url',
+        	'twitter_url' => 'url',
+        	'homepage_url' => 'url',
 
+        );
+
+        return Validator::make($input, $rules);
+    }
 }

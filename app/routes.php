@@ -19,7 +19,8 @@ Route::get('/store_setting', 'StoreController@store_setting');
 Route::get('/payment_method', 'StoreController@payment_method');
 Route::get('/setting_domain', 'StoreController@setting_domain');
 Route::get('/store_about', 'StoreController@store_about');
-Route::get('/store_url', 'StoreController@store_url');
+Route::get('/store_domain', 'StoreController@store_domain');
+Route::post('/store_domain', 'StoreController@save_domain');
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard/', 'StoreController@dashboard');
 Route::get('/dashboard/{id}', 'StoreController@dashboard');
@@ -30,7 +31,7 @@ Route::get('/set_status', 'UserItemController@set_status');
 Route::get('/list_item_ajax', 'UserItemController@list_item_ajax');
 Route::get('/send_email', 'UserController@send_email');
 Route::get('/delete_item', 'UserItemController@delete_item');
-Route::get('/update_sort/{$id}/{$order}', 'UserItemController@update_sort');
+Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 
 //edit store
 Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));

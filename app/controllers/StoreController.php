@@ -283,6 +283,13 @@ class StoreController extends BaseController {
     	if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
+     	$v = UserStore::validate_domain(Input::all());
+
+        if($v->fails()){
+            return Redirect::to('/store_url')->withErrors($v)->withInput();
+        } else {
+
+        }
     	return View::make('store.store_url');
     }
     /**
@@ -331,6 +338,32 @@ class StoreController extends BaseController {
     	$first = isset($id) ? intval($id) : 0;
     	$data['first'] = $first;
     	return View::make('store.dashboard', $data );
+    }
+
+	/**
+     * Set url for stores
+     * @author OanhHa
+     * @since 2015-01-09
+     */
+    public function store_domain(){
+    	if(!$this->checkLogin()) {
+    		return Redirect::to('/');
+    	}
+    	$user_id = $this->getUserId();
+    	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+    	return View::make('store.store_domain');
+    }
+    /**
+     * Save change domain
+     */
+    public function save_domain(){
+    	$v = UserStore::validate_domain(Input::all());
+
+        if($v->fails()){
+            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+        } else {
+
+        }
     }
 
 

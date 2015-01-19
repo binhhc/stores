@@ -67,7 +67,7 @@
 				<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 			</dd>
 			<dd class="btn_high">
-				<a href="/store_setting"><button type="submit">Lưu</button></a>
+				<button type="submit">Lưu</button>
 			</dd>
 		</dl>
 	</form>

@@ -6,4 +6,8 @@
  */
 class UserAddon extends Model{
     protected $table  = 'user_addons';
+    
+    public static function getAllAddonByUser(){
+        
+    }
 }

@@ -24,6 +24,7 @@ Route::get('/item_management', array('before' => 'auth', 'uses' => 'UserItemCont
 Route::get('/dashboard/', array('before' => 'auth', 'uses' => 'StoreController@dashboard'));
 Route::get('/dashboard/{id}', array('before' => 'auth', 'uses' => 'StoreController@dashboard'));
 Route::get('/addon', array('before' => 'auth', 'uses' => 'AddonController@addon'));
+Route::get('/saveaddon/{id}/{flg}', array('before' => 'auth', 'uses' => 'AddonController@saveaddon'));
 Route::get('/sort_item', array('before' => 'auth', 'uses' => 'UserItemController@sort_item'));
 Route::get('/set_status', array('before' => 'auth', 'uses' => 'UserItemController@set_status'));
 

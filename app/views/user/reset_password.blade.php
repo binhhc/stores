@@ -14,18 +14,20 @@
                 </a>
             </h1>
             <div class="box">
-                <form >
+                {{Form::open(array('url' => 'resetPassword', 'method' => 'post', 'class'=>'form_submit'))}}
                     <dl class="set">
-                        <dt>新しいパスワードを入力してください</dt>
+                        {{Form::text('email', $email, array('class'=>'display_none'))}}
+                        {{Form::text('account_token', $account_token, array('class'=>'display_none'))}}
+                        <dt>Vui lòng nhập mật khẩu mới</dt>
                         <dd>
                             {{Form::password('password')}}
                         </dd>
                     </dl>
                     <p class="btn_submit">
-                        <button type="submit">パスワードをリセット</button>
+                        <button type="submit" class="btn_submit_1">Đặt lại mật khẩu</button>
                     </p>
-                    <p class="btn_wait" style="display: none;">送信中</p>
-                </form>
+                    <p class="btn_wait display_none btn_wait_1">Đang gởi</p>
+                {{Form::close()}}
             </div>
         </div>
 
@@ -34,42 +36,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#forgetPass').submit(function(event){
-            event.preventDefault();
-            var email = $('.email_pass').val();
-            if (validateEmail(email)) {
-                $.ajax({
-                    url : "{{URL::asset('/forgetPassword')}}",
-                    type: "POST",
-                    data: "email="+email,
-                    beforeSend: function( xhr ) {
-                        $(".btn_submit_1").hide();
-                        $(".btn_wait_1").show();
-                    },
-                    success: function(data, textStatus, jqXHR){
-                        if (data.result == '1') {
-                            alert('1');
-                        } else {
-                            alert('0');
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown){
-                        $(".btn_submit_1").hide();
-                        $(".btn_wait_1").show();
-                    }
-                });
-            } else {
-                $(".btn_submit_1").hide();
-                $(".btn_wait_1").show();
-            }
+        $('.form_submit').submit(function(event){
+            $(".btn_submit_1").hide();
+            $(".btn_wait_1").show();
         });
     });
-
-function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-
-
 </script>

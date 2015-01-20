@@ -22,8 +22,8 @@
                 </a>
                 <div addon="mail_magazine" sp-grip="" class="ng-scope">
                     <div ng-click="toggleAddon()" class="switch">
-                        <p ng-show="isEnableAddon()" class="status active" style="display: none;">ON</p>
-                        <p ng-hide="isEnableAddon()" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p>
+                        <p ng-show="isEnableAddon()" id-pro="{{$ad['id']}}" class="status active" style="display: none;">ON</p>
+                        <p ng-hide="isEnableAddon()" id-pro="{{$ad['id']}}" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p>
                     </div>
                 </div>
             </li>         
@@ -640,11 +640,28 @@
                 $(this).parent().find('.active').show();
                 $(this).parent().find('.deactive').hide();
                 $(this).parent().find('.grip').css({'left':'57px'});
+                saveAddon($(this).attr('id-pro'),1);
             } else {
                 $(this).parent().find('.deactive').show();
                 $(this).parent().find('.active').hide();
                 $(this).parent().find('.grip').css({'left':'2px'});
+                saveAddon($(this).attr('id-pro'),0);
             }
         });
+        
+        @foreach ($user_addon as $ad)
+            $(".switch").find("[id-pro={{$ad}}]").each(function(){
+                $(this).parent().find('.active').show();
+                $(this).parent().find('.deactive').hide();
+                $(this).parent().find('.grip').css({'left':'57px'});
+            });
+        @endforeach
 	});
+    
+/**
+ * Comment
+ */
+function saveAddon(id,flg) {
+    $.ajax({type: "GET",url: "/saveaddon/"+id+"/"+flg,});
+}
 </script>

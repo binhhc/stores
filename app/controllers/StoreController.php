@@ -465,8 +465,19 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
-    	$data['setting_intros'] = json_decode($user_store['	setting_intros']);
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'))->toArray();
+    	$data = array();
+    	if(!empty($user_store)) {
+    		$des = json_decode($user_store['setting_intros']);
+			$data['description'] = isset($des->description) ? $des->description : '';
+
+			$data['facebook'] = isset($des->facebook) ? $des->facebook : '';
+			$data['twitter'] = isset($des->twitter) ? $des->twitter : '';
+			$data['homepage'] = isset($des->homepage) ? $des->homepage : '';
+    	} else {
+    		$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
+    	}
+
     	return View::make('store.store_about', $data);
     }
     /**
@@ -479,11 +490,17 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_trade_law'))->toArray();
+
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_trade_law'))->toArray();
     	if(!empty($user_store)) {
-			$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		if(!empty($data['setting_trade_law'])) {
+				$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		} else {
+    			$data['setting_trade_law'] = '';
+    		}
+
     	} else {
-    		$data['setting_trade_law'] = array();
+    		$data['setting_trade_law'] = '';
     	}
 
     	return View::make('store.commercial_law', $data);
@@ -498,8 +515,9 @@ class StoreController extends BaseController {
 		if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
-    	$first = isset($id) ? intval($id) : 0;
-    	$data['first'] = $first;
+    	$user_id = $this->getUserId();
+    	$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
+    	$data['account_token'] = $token_accout['account_token'];
     	return View::make('store.dashboard', $data );
     }
 
@@ -513,13 +531,13 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
-    	$data = array();
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('domain'));
     	if(!empty($user_store)) {
 			$data['domain'] = $user_store['domain'];
     	} else {
     		$data['domain'] = '';
     	}
+
 
 
     	return View::make('store.store_domain', $data);
@@ -532,25 +550,32 @@ class StoreController extends BaseController {
     public function save_domain(){
     	$v = UserStore::validate_domain(Input::all());
     	$user_id = $this->getUserId();
-
-        if($v->fails()){
-            return Redirect::to('/store_domain')->withErrors($v)->withInput();
-        } else {
-        	$domain = Input::get('domain');
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
-        	if(!empty($user_store)) {
-        		UserStore::where('user_id', $user_id)
+    	$user_store = UserStore::where('user_id', $user_id)->first();
+		$domain = Input::get('domain');
+		if(isset($user_store['domain']) && $domain != '' && ($domain==$user_store['domain'])) {
+			UserStore::where('user_id', $user_id)
         				->update(array('domain' => $domain,  'updated_user' => $user_id));
-        	} else {
-        		$user = new UserStore;
-        		$user->user_id = $user_id;
-        		$user->domain = $domain;
-        		$user->created_user = $user_id;
-        		$user->save();
-        	}
-        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
-        	return Redirect::to('/store_setting')->withInput();
-        }
+        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
+	        return Redirect::to('/store_setting')->with('success', $success);
+		} else {
+			 if($v->fails()){
+	            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+	        } else {
+	        	if(!empty($user_store)) {
+	        		UserStore::where('user_id', $user_id)
+	        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+	        	} else {
+	        		$user = new UserStore;
+	        		$user->user_id = $user_id;
+	        		$user->domain = $domain;
+	        		$user->created_user = $user_id;
+	        		$user->save();
+	        	}
+	        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
+	        	 return Redirect::to('/store_setting')->with('success', $success);
+	        }
+		}
+
     }
     /**
      * Save change store about
@@ -560,13 +585,12 @@ class StoreController extends BaseController {
     public function save_store_about(){
     	$v = UserStore::validate_about(Input::all());
     	$user_id = $this->getUserId();
-
         if($v->fails()){
             return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
         	$store_about = Input::all();
         	$setting_intros = json_encode($store_about);
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
         				->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));
@@ -577,8 +601,8 @@ class StoreController extends BaseController {
         		$user->created_user = $user_id;
         		$user->save();
         	}
-        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công");
-        	return Redirect::to('/store_setting')->withInput();
+        	$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
+        	return Redirect::to('/store_setting')->with('success', $success);
 
         }
     }

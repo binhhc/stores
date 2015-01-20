@@ -43,9 +43,9 @@ class UserStore extends Model{
      */
     public static function validate_about($input){
         $rules = array(
-            'facebook_url' => 'url',
-        	'twitter_url' => 'url',
-        	'homepage_url' => 'url',
+            'facebook' => 'url',
+        	'twitter' => 'url',
+        	'homepage' => 'url',
 
         );
 

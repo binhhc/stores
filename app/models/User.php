@@ -120,6 +120,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @modified by
      **/
      public static function checkExpiredTime($obj){
+        if(!is_object($obj))return false;
         $created = new Carbon($obj->updated_at);
         $now = Carbon::now();
         $difference = ($created->diff($now));       

@@ -279,7 +279,6 @@ class UserController extends BaseController {
                 'msg' => $mss,
                 );
             } else {
-                $created = $modified = strtotime('now');
                 $user = new User;
                 $user->email = $email;
                 $user->password  = Hash::make($password);
@@ -289,7 +288,8 @@ class UserController extends BaseController {
                     if (Auth::attempt($user_data)) {
                         $user_data = User::where('email', '=', $email)->first()->toArray();
                         Session::put('user', $user_data);
-                        Input::flashOnly('register_email', $email);
+                        Session::put('first_register', 'hello');
+                        $this->send_email();
                         //return Redirect::to('/dashboard')->withInput();
                         $response = array(
                             'status' => 'success',
@@ -356,11 +356,12 @@ class UserController extends BaseController {
         if(User::checkExpiredTime($user_info) == true){
             $user_info->account_token = "";
             $user_info->save();
-            echo "Active token thành công";
-            exit();
+            $data['active'] =  "1";
+        } else {
+        	$data['active'] = "2";
         }
-        echo "Token không tồn tại";
-        exit();
+        return Redirect::to('/dashboard', $data);
+
     }
 
     /**

@@ -29,9 +29,9 @@
     </p>
     <div>
         <p style="font-weight:bold;line-height:1.8;font-size:16px;margin:30px 0 20px 0">
-            Xác nhận đăng ký từ {{$domain}}、<wbr></wbr>Cảm ơn！</p>
+            Xác nhận đăng ký từ {{$domain}},<wbr></wbr>Cảm ơn!</p>
         <p style="margin-bottom:30px;line-height:1.8;font-size:14px">
-            Ấn nút「Xác nhận đăng ký」ở phía dưới、<wbr></wbr>để hoàn tất việc đăng ký。
+            Ấn nút「Xác nhận đăng ký」ở phía dưới,<wbr></wbr>để hoàn tất việc đăng ký.
         </p>
         <p style="margin-bottom:30px">
             <a target="_blank" href="https://{{$domain}}/activate/{{$token}}">
@@ -39,10 +39,10 @@
             </a>
         </p>
         <p style="margin-bottom:20px;line-height:1.8;font-size:14px">
-            Store của bạn có thể sử dụng、<wbr></wbr>sau khi Đăng ký thành thông</p>
+            Store của bạn có thể sử dụng,<wbr></wbr>sau khi Đăng ký thành thông</p>
         <p style="margin-bottom:20px;line-height:1.8;font-size:14px">
             Trong lúc sử dụng nếu có câu hỏi,thắc mắc gì về hệ thống<br>
-            <wbr></wbr>Hãy liên hệ với chúng tôi。
+            <wbr></wbr>Hãy liên hệ với chúng tôi.
         </p>
         <p style="margin-bottom:30px;line-height:1.8;font-size:14px">
             Cảm ơn đã sử dụng Store
@@ -73,7 +73,7 @@
 </p>
 <div class="yj6qo"></div>
 <div class="adL"></div>
-    
+
 </div><div class="adL">
 
 </div></div></div>

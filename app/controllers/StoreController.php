@@ -408,8 +408,22 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
-    	$data['setting_intros'] = json_decode($user_store['	setting_intros']);
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'))->toArray();
+    	$data = array();
+    	if(!empty($user_store)) {
+			var_dump($user_store['setting_intros']);
+    		$des = json_decode($user_store['setting_intros']);
+    		var_dump($des);
+die;
+			$data['description'] = isset($des['description']) ? $des['description'] : '';
+
+			$data['facebook'] = isset($des['facebook']) ? $des['facebook'] : '';
+			$data['twitter'] = isset($des['twitter']) ? $des['twitter'] : '';
+			$data['homepage'] = isset($des['homepage']) ? $des['homepage'] : '';
+    	} else {
+    		$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
+    	}
+
     	return View::make('store.store_about', $data);
     }
     /**
@@ -422,11 +436,17 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_trade_law'))->toArray();
+
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_trade_law'))->toArray();
     	if(!empty($user_store)) {
-			$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		if(!empty($data['setting_trade_law'])) {
+				$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		} else {
+    			$data['setting_trade_law'] = '';
+    		}
+
     	} else {
-    		$data['setting_trade_law'] = array();
+    		$data['setting_trade_law'] = '';
     	}
 
     	return View::make('store.commercial_law', $data);
@@ -441,8 +461,9 @@ class StoreController extends BaseController {
 		if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
-    	$first = isset($id) ? intval($id) : 0;
-    	$data['first'] = $first;
+    	$user_id = $this->getUserId();
+    	$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
+    	$data['account_token'] = $token_accout['account_token'];
     	return View::make('store.dashboard', $data );
     }
 
@@ -456,7 +477,7 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('domain'))->toArray();
     	$data = array();
     	if(!empty($user_store)) {
 			$data['domain'] = $user_store['domain'];
@@ -480,7 +501,7 @@ class StoreController extends BaseController {
             return Redirect::to('/store_domain')->withErrors($v)->withInput();
         } else {
         	$domain = Input::get('domain');
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
         				->update(array('domain' => $domain,  'updated_user' => $user_id));
@@ -503,13 +524,12 @@ class StoreController extends BaseController {
     public function save_store_about(){
     	$v = UserStore::validate_about(Input::all());
     	$user_id = $this->getUserId();
-
         if($v->fails()){
             return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
         	$store_about = Input::all();
         	$setting_intros = json_encode($store_about);
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
         				->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));

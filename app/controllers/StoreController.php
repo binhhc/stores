@@ -535,7 +535,7 @@ die;
             return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
         	$store_about = Input::all();
-        	$setting_intros = json_encode($store_about);
+        	$setting_intros = json_encode(unserialize($store_about));
         	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)

@@ -138,7 +138,7 @@ class UserController extends BaseController {
      * @param  null
      * @return Response
      * @author Binh Hoang
-     * @since 2015.10.14
+     * @since 2015.01.14
      */
     public function showForgetPassword(){
         $input = Input::all();
@@ -147,18 +147,16 @@ class UserController extends BaseController {
         if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
             $user = User::where('email', '=', $input['email'])
                 ->where('account_token', '=', $input['token'])
-                ->first()->toArray();
+                ->first();
 
             if(!empty($user)){
                 //reset password
-                // return View::make('user.forgot_password');
-                return View::make('user.reset_password');
+                return View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$input['token']));
             }else{
                 return Redirect::to('/');
             }
 
         }else{
-
             return View::make('user.forgot_password');
         }
     }
@@ -169,29 +167,70 @@ class UserController extends BaseController {
      * @param  null
      * @return $result
      * @author Binh Hoang
-     * @since 2015.10.15
+     * @since 2015.01.15
      */
     public function doForgetPassword(){
         $email = Input::get('email');
-        $result = array('result' => 0);
+        $result = 0;
         if(!empty($email)){
-            $user = User::where('email', '=', $email)->get()->toArray();
+            $user = User::where('email', '=', $email)->first();
 
             if (!empty($user)) {
-                Mail::send('emails.demo', $data, function($message){
-                    $message->to('jane@example.com', 'Jane Doe')->subject('This is a demo!');
+                $link_reset = URL::to('/').'/forgetPassword?email='.$email.'&token='.$user->account_token;
+
+                $data = array(
+                    'link_reset' => $link_reset,
+                    'user' => $user->toArray()
+                );
+
+                Mail::send('emails.reset_password', $data, function($message) use($email) {
+                    $message->to($email, 'STORES.vn')->subject('【STORES.vn】Cấp lại mật khẩu!');
                 });
 
-                $link_reset = 'url/forgetPassword?email='.$email.'&token='.$user->account_token;
-                //send email
-                // if ($send_email) {
-                    // reset token
-
-                $result = array('result' => 1);
-                // }
+                $result = 1;
             }
         }
         return json_encode($result);
+    }
+
+    /**
+     * Reset password and account_token.
+     *
+     * @param  null
+     * @return null
+     * @author Binh Hoang
+     * @since 2015.01.20
+     */
+    public function resetPassword(){
+        $input = Input::all();
+        $password = Input::get('password');
+
+        $user = User::where('email', '=', $input['email'])
+                    ->where('account_token', '=', $input['account_token'])->first();
+
+        if(empty($user))
+            return Redirect::to('/');
+
+        if(empty($password)){
+            //Save to session
+            Session::put('user', $user->toArray());
+            Auth::login($user);
+            return Redirect::to('/dashboard');
+        }else{
+            $new_token   = User::createAccountToken();
+            //update new account_token
+            User::where('id',$user->id)
+                ->update(array('account_token' => $new_token, 'password' => Hash::make($password)));
+
+            $user = User::where('email', '=', $input['email'])->first();
+            if(!empty($user)){
+                Session::put('user', $user->toArray());
+                Auth::login($user);
+                return Redirect::to('/dashboard');
+            }else{
+                 return Redirect::to('/');
+            }
+        }
     }
 
     /**

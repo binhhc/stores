@@ -4,6 +4,16 @@
     /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
 }
 
+.sign_up .finish {
+    text-align: center;
+}
+
+.sign_up .finish h2, .sign_up .finish h3 {
+    margin: 10px 0 25px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .sign_up {
     width: 440px;
     margin: 0 auto;

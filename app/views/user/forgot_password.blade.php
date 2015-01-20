@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         {{HTML::script('js/jquery.min.js')}}
+        {{HTML::script('js/common.js')}}
         {{HTML::style('css/bootstrap.min.css')}}
         {{HTML::style('css/login.css')}}
     </head>
@@ -14,7 +15,7 @@
                 </a>
             </h1>
             <div class="box">
-                {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass'))}}
+                {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass', 'class'=>'form_submit'))}}
                     <dl class="set">
                         <dt>Vui lòng điền email bạn đã đăng kí</dt>
                         <dd>
@@ -28,35 +29,20 @@
                 {{Form::close()}}
 
                 <div class="finish" style="display: none;">
-                    <h2>The password reset message confirms we have received</h2>
+                    <h2>Mật khẩu đã được khởi tạo lại.</h2>
                     <p>
-                        The registered e-mail address<br>
-                        Password reissue mail we send.
+                        Hệ thống đã gửi mật khẩu đến mail mà bạn đã đăng ký.
                     </p>
+                    <br>
                     <p>
-                        Along the contents of the e-mail, thank you for your procedure.
+                        Xin hãy làm theo các bước được viết trong mail.
                     </p>
                 </div>
-            </div>
-            <div class="box" style="display: none;">
-                <form ng-submit="submit()" ng-hide="accepted" class="ng-pristine ng-valid">
-                    <dl class="set">
-                        <dt>新しいパスワードを入力してください</dt>
-                        <dd>
-                            {{Form::password('password')}}
-                        </dd>
-                    </dl>
-                    <p class="btn_submit" ng-hide="pending">
-                        <button type="submit">パスワードをリセット</button>
-                    </p>
-                    <p class="btn_wait" ng-show="pending" style="display: none;">送信中</p>
-                </form>
             </div>
         </div>
 
     </body>
 </html>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $('#forgetPass').submit(function(event){
@@ -72,10 +58,9 @@
                         $(".btn_wait_1").show();
                     },
                     success: function(data, textStatus, jqXHR){
-                        if (data.result == '1') {
-                            alert('1');
-                        } else {
-                            alert('0');
+                        if (data == '1') {
+                            $('.finish').show();
+                            $('.form_submit').hide();
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown){
@@ -89,12 +74,4 @@
             }
         });
     });
-
-function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-
-
 </script>

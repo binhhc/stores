@@ -21,11 +21,7 @@ class BaseController extends Controller {
 	 */
 	public function checkLogin() {
 		$user = Session::get('user');
-		if(empty($user)) {
-    		return false;
-    	} else {
-    		return true;
-    	}
+		return !empty($user) ? true : false;
 	}
 	/**
 	 * Get id of login user
@@ -34,11 +30,7 @@ class BaseController extends Controller {
 	 */
 	public function getUserId() {
 		$user = Session::get('user');
-		if(empty($user)) {
-    		return false;
-    	} else {
-    		return $user['id'];
-    	}
+		return !empty($user) ? $user['id'] : false;
 	}
 
 }

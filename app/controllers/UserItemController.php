@@ -132,7 +132,6 @@ class UserItemController extends BaseController {
 	    	 $response = $this->list_item_ajax();
 			 return Response::json($response);
 	    }
-
 	}
 
 	/**

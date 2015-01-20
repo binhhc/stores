@@ -10,13 +10,14 @@
 		</div>
 		<h2 class="heading">Luật thương mại</h2>
 	</div>
+	{{Form::open(array('url' => 'trade_law', 'method' => 'post','class' => 'form_basic'))}}
 	<div class="box_wht" ng-hide="accepted">
 		<dl class="form_basic" style="padding-top:20px;">
 			<dd>
 				<dl class="cols_single">
 					<dt>Đối với giá bán</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid ng-valid-required" required="" ng-model="data.price" style="height:80px;" name="price"></textarea>
+					{{Form::textarea('price', $price, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>
 				</dl>
 			</dd>
@@ -24,7 +25,7 @@
 				<dl class="cols_single">
 					<dt>Thanh toán khi nào và như thế nào về giá cả (xem xét)</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid ng-valid-required" required="" ng-model="data.period" style="height:80px;" name="period"></textarea>
+						{{Form::textarea('charge', $charge, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>
 				</dl>
 			</dd>
@@ -32,7 +33,7 @@
 				<dl class="cols_single">
 					<dt>Các vấn đề liên quan đến hợp đồng đặc biệt của Trả lại</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid ng-valid-required" required="" ng-model="data.price" style="height:80px;" name="price"></textarea>
+						{{Form::textarea('contract', $contract, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>
 				</dl>
 			</dd>
@@ -40,7 +41,7 @@
 				<dl class="cols_single">
 					<dt>Thời gian giao hàng của các dịch vụ hoặc hàng hóa</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid ng-valid-required" required="" ng-model="data.period" style="height:80px;" name="period"></textarea>
+						{{Form::textarea('time_ship', $time_ship, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>
 				</dl>
 			</dd>
@@ -48,7 +49,7 @@
 				<dl class="cols_single">
 					<dt>Tên và thông tin liên lạc của điều hành</dt>
 					<dd>
-						<textarea class="ng-pristine ng-valid ng-valid-required" required="" ng-model="data.period" style="height:80px;" name="period"></textarea>
+						{{Form::textarea('contact', $contact, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>
 				</dl>
 			</dd>
@@ -59,8 +60,9 @@
 			<a href="/store_setting"><button onclick="history.back()" type="button">Quay lại</button></a>
 		</dd>
 		<dd class="btn_high">
-			<a href="/store_setting"><button type="submit">Lưu</button></a>
+			<button type="submit">Lưu</button>
 		</dd>
 	</dl>
+	{{Form::close()}}
 </div>
 @include('elements.footer')

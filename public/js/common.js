@@ -1,5 +1,5 @@
 // Slide in main page
-	var slide_width = 880;
+    var slide_width = 880;
       var Slider = function(trg,btn,swidth){
         this.$slide = trg;
         this.$control = btn;
@@ -69,16 +69,16 @@
           });
         }
       }
-	$( window ).resize(function() {
-		if ($(window).width() > 1024) {
-			slider_home = new Slider($('.slide_wrap'),$('.slide_navi'),880);
-			slide_width = 880;
-		} else {
-			slider_home = new Slider($('.slide_wrap'),$('.slide_navi'),320);
-			slide_width = 320;
-		}
-		slider_home.init();
-	}).trigger('resize');
+    $( window ).resize(function() {
+        if ($(window).width() > 1024) {
+            slider_home = new Slider($('.slide_wrap'),$('.slide_navi'),880);
+            slide_width = 880;
+        } else {
+            slider_home = new Slider($('.slide_wrap'),$('.slide_navi'),320);
+            slide_width = 320;
+        }
+        slider_home.init();
+    }).trigger('resize');
 
 
 $(document).ready(function(){
@@ -97,52 +97,53 @@ $(document).ready(function(){
 		$('#panel_error').hide();
 	});
 
-	 // Validate register user
+     // Validate register user
     var div_err = $('#panel_error');
     var em_err= $('p.valid_email');
     var p_err = $('p.pass_error');
     var e_p = $('p.email_pass_error');
     function validateForm() {
-  	  	var pass = document.forms["myForm"]["password"].value;
-  	  	var x = document.forms["myForm"]["email"].value;
-  	    var atpos = x.indexOf("@");
-  	    var dotpos = x.lastIndexOf(".");
-  	    if (pass.length <= 0 && x.length <=0) {
-  	    	$(div_err).show();
-  	    	$(p_err).show();
-  	    	$(e_p).show();
-  	    	$(em_err).show();
-  	    	return false;
-  	    } else {
-  	        if (pass.length <= 0 || x.length <=0) {
-  	        	$(p_err).hide();
-	    	    	$(em_err).hide();
-	    	    	$(div_err).show();
-	    	    	$(e_p).show();
-	    	    	return false;
-	    	    } else {
-	    	    	$(e_p).hide();
-	    	    	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-		    	    	$(div_err).show();
-		    	    	$(em_err).show();
-		    	    	return false;
-		    	    } else {
-		    	    	$(em_err).hide();
-		    	    	if (pass.length < 6) {
-			    	    	$(div_err).show();
-			    	    	$(p_err).show();
-			    	    	return false;
-			    	    } else {
-			    	    	$(p_err).hide();
-			    	    }
+        var pass = document.forms["myForm"]["password"].value;
+        var x = document.forms["myForm"]["email"].value;
+        var atpos = x.indexOf("@");
+        var dotpos = x.lastIndexOf(".");
+        if (pass.length <= 0 && x.length <=0) {
+            $(div_err).show();
+            $(p_err).show();
+            $(e_p).show();
+            $(em_err).show();
+            return false;
+        } else {
+            if (pass.length <= 0 || x.length <=0) {
+                $(p_err).hide();
+                    $(em_err).hide();
+                    $(div_err).show();
+                    $(e_p).show();
+                    return false;
+                } else {
+                    $(e_p).hide();
+                    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                        $(div_err).show();
+                        $(em_err).show();
+                        return false;
+                    } else {
+                        $(em_err).hide();
+                        if (pass.length < 6) {
+                            $(div_err).show();
+                            $(p_err).show();
+                            return false;
+                        } else {
+                            $(p_err).hide();
+                        }
 
-		    	    }
+                    }
 
-	    	    }
-  	    }
-  	    $(div_err).hide();
-  	    return true;
+                }
+        }
+        $(div_err).hide();
+        return true;
   }
+
 	// Register user by js (main)
 	$(document).on('click', 'button.btn_submit', function(e){
 		  e.preventDefault();
@@ -177,32 +178,31 @@ $(document).ready(function(){
 		        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
 		            		  $('p.unique_email').show();
 		        		  }
-
-		        	  }
-		          },
-		          error: function(XMLHttpRequest, textStatus, errorThrown) {
-		          },
-		          complete: function() {
-		        	  $('button.btn_submit').show();
-		        	  $('.btn_wait').hide();
-		          },
-		      });
-		  } else {
-			  return false;
-		  }
-		});
+                      }
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  },
+                  complete: function() {
+                      $('button.btn_submit').show();
+                      $('.btn_wait').hide();
+                  },
+              });
+          } else {
+              return false;
+          }
+        });
 
     $('#start_with_store').on('click', function(e) {
-    	e.preventDefault();
-    	$('.modal_dashboard').hide();
+        e.preventDefault();
+        $('.modal_dashboard').hide();
     });
     /**
      * Send email for new user
      */
     $('.send_email').on('click', function(e) {
-    	var email=$('#email_user').val();
-     	e.preventDefault();
-     	 $.ajax({
+        var email=$('#email_user').val();
+        e.preventDefault();
+         $.ajax({
               type: "POST",
               url: "/send_email",
               data: {
@@ -216,8 +216,8 @@ $(document).ready(function(){
               global: true,
               dataType: 'json',
               success: function(response) {
-            	  $('.activate').hide();
-             	 //alert(response);
+                  $('.activate').hide();
+                 //alert(response);
               },
               error: function(XMLHttpRequest, textStatus, errorThrown) {
               },
@@ -232,17 +232,17 @@ $(document).ready(function(){
      * Sort item in item management
      */
     $(document).on('click', 'li.sort_item', function(){
-    	var item_id = $(this).attr('item_id');
-    	var order_value = $(this).attr('order_value');
-    	var up_down = $(this).attr('up_down');
-    	var list_public_item = $('li.sort_item.up');
-    	var items_array = [];
-    	$.each( list_public_item, function(index, item){
-    		var id = $(item).attr('item_id');
-    		var order = $(item).attr('order_value');
-    		items_array.push([id, order]);
-    	});
-    	$.ajax({
+        var item_id = $(this).attr('item_id');
+        var order_value = $(this).attr('order_value');
+        var up_down = $(this).attr('up_down');
+        var list_public_item = $('li.sort_item.up');
+        var items_array = [];
+        $.each( list_public_item, function(index, item){
+            var id = $(item).attr('item_id');
+            var order = $(item).attr('order_value');
+            items_array.push([id, order]);
+        });
+        $.ajax({
             type: "GET",
             url: "/sort_item",
             data: {
@@ -252,18 +252,18 @@ $(document).ready(function(){
                 up_down:up_down
             },
             beforeSend: function() {
-            	$(this).parent().parent().slideUp();
-            	$('.loading').show();
+                $(this).parent().parent().slideUp();
+                $('.loading').show();
             },
             global: true,
             dataType: 'json',
             success: function(response) {
-           	 	$('.items_contents').html(response.html);
+                $('.items_contents').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
             complete: function() {
-            	$('.loading').hide();
+                $('.loading').hide();
             },
         });
     });
@@ -272,9 +272,9 @@ $(document).ready(function(){
      * Change status of item
      */
     $(document).on('click', '.switch p.item_status', function(){
-    	var item_id = $(this).attr('item_id');
-    	var public_flg = $(this).attr('public_flg');
-    	$.ajax({
+        var item_id = $(this).attr('item_id');
+        var public_flg = $(this).attr('public_flg');
+        $.ajax({
             type: "GET",
             url: "/set_status",
             data: {
@@ -282,86 +282,91 @@ $(document).ready(function(){
                 public_flg: public_flg
             },
             beforeSend: function() {
-            	$('.loading').show();
+                $('.loading').show();
             },
             global: true,
             dataType: 'json',
             success: function(response) {
-           	 	$('.items_contents').html(response.html);
+                $('.items_contents').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
             complete: function() {
-            	$('.loading').hide();
+                $('.loading').hide();
             },
         });
     });
     /**
      * Delete an item
      */
-    	$(document).on('click', 'a.delete_item', function(e){
-    		e.preventDefault();
-    		var conf = confirm('Bạn chắc chắn muốn xoá mặt hàng này?');
-    		if(conf) {
-    			var item_id = $(this).attr('item_id');
-            	$.ajax({
+        $(document).on('click', 'a.delete_item', function(e){
+            e.preventDefault();
+            var conf = confirm('Bạn chắc chắn muốn xoá mặt hàng này?');
+            if(conf) {
+                var item_id = $(this).attr('item_id');
+                $.ajax({
                     type: "GET",
                     url: "/delete_item",
                     data: {
                         item_id: item_id,
                     },
                     beforeSend: function() {
-                    	$('.loading').show();
+                        $('.loading').show();
                     },
                     global: true,
                     dataType: 'json',
                     success: function(response) {
-                    	if(response.success=1) {
-                    		$('.items_contents').html(response.html.html);
-                    		$('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
-                    	} else {
-                    		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
-                    		return;
-                    	}
+                        if(response.success=1) {
+                            $('.items_contents').html(response.html.html);
+                            $('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
+                        } else {
+                            alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                            return;
+                        }
 
 
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                     },
                     complete: function() {
-                    	$('.loading').hide();
+                        $('.loading').hide();
                     },
                 });
-    		} else {
-    			return;
-    		}
+            } else {
+                return;
+            }
     });
 
-    	/**
-    	 * Open ship for store setting
-    	 */
-    	$('#open_shipping_select').on('click', function(event){
-			 event.preventDefault();
-			if ($('#shipping_select').css('display') == 'none') {
-				$('#shipping_select').show();
-			} else {
-				$('#shipping_select').hide();
-			}
-		});
-		$('button.cancel_button').on('click', function(){
-			$('#shipping_select').hide();
-		})
-		$('#form_promotion').on('click', function(){
-			$('#modal-win').show();
-		});
-		$('a.modal-move').on('click', function() {
-			var modal = $(this).attr('href');
-			$('#modal-win-inner').hide();
-			$('.modal_slide').hide();
-			$(modal).show();
-		});
-		$('a.modal-close').on('click', function(){
-			$('#modal-win').hide();
-		});
+        /**
+         * Open ship for store setting
+         */
+        $('#open_shipping_select').on('click', function(event){
+             event.preventDefault();
+            if ($('#shipping_select').css('display') == 'none') {
+                $('#shipping_select').show();
+            } else {
+                $('#shipping_select').hide();
+            }
+        });
+        $('button.cancel_button').on('click', function(){
+            $('#shipping_select').hide();
+        })
+        $('#form_promotion').on('click', function(){
+            $('#modal-win').show();
+        });
+        $('a.modal-move').on('click', function() {
+            var modal = $(this).attr('href');
+            $('#modal-win-inner').hide();
+            $('.modal_slide').hide();
+            $(modal).show();
+        });
+        $('a.modal-close').on('click', function(){
+            $('#modal-win').hide();
+        });
 
 });
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}

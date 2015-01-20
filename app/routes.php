@@ -87,6 +87,11 @@ Route::get('/active/{token}' , array('as' => 'active', 'uses' => 'UserController
 Route::get('/forgetPassword', 'UserController@showForgetPassword');
 Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
+//Reset password
+Route::post('/resetPassword', 'UserController@resetPassword');
+
+
+
 
 // Route::post('/checkEmailJson', 'UserController@checkEmailJson');
 //Blade::setContentTags('<%', '%>');        // for variables and all things Blade

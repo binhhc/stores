@@ -34,7 +34,7 @@
             Ấn nút「Xác nhận đăng ký」ở phía dưới,<wbr></wbr>để hoàn tất việc đăng ký.
         </p>
         <p style="margin-bottom:30px">
-            <a target="_blank" href="http://{{$domain}}/activate/{{$token}}">
+            <a target="_blank" href="http://{{$domain}}/active/{{$token}}">
                 <img width="255" height="40" src="https://ci4.googleusercontent.com/proxy/zwNQ6xSgVQBLDYdcX3Ig_QmhS5AS_bHb9UBB7A1PYWdV_2OuPvmd4_wm6PgYBVZ_k953R7SvYQhdijzSZP3J0WiuirWpt94=s0-d-e1-ft#https://stores.jp/images/mail/user/signup/btn.jpg" class="CToWUd">
             </a>
         </p>

@@ -356,11 +356,11 @@ class UserController extends BaseController {
         if(User::checkExpiredTime($user_info) == true){
             $user_info->account_token = "";
             $user_info->save();
-            $data['active'] =  "1";
+            $active =  "1";
         } else {
-        	$data['active'] = "2";
+        	$active = "2";
         }
-        return Redirect::to('/dashboard', $data);
+        return Redirect::to('/dashboard')->with('active',  $active);
 
     }
 

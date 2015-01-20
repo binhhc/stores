@@ -1,9 +1,9 @@
 @include('elements.header')
-@if(Session::has('success'))
-<div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
-    <h2>{{ Session::get('success') }}</h2>
+<?php if(Session::has('success')) {?>
+<div id="alert_panel" class="success" style="display: block; opacity: 1.0; top: -10px;">
+    <p><?php echo Session::get('success');?></p>
 </div>
-@endif
+<?php }?>
 <div class="wrapper ng-scope" ng-init="index();">
 	<h2 class="heading">Cài đặt cửa hàng</h2>
 	<dl class="store_content form_basic box_wht">

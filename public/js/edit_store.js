@@ -7917,7 +7917,9 @@ $(document).ready(function() {
         }))
     })
 });
-var app = angular.module("StoresJp::EditStore", ["StoresJpAddon"]);
+var app = angular.module("StoresJp::EditStore", ["StoresJpAddon"]).config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
+});
 angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", "$http", "$timeout", "storesJpAddonUtility", function($scope, $http, $timeout) {
         function update_store_name_ja_exists() {
             $scope.store_name_ja_only = $scope.store.name.match(/^[^ -~\uff61-\uff9f]*$/) ? !0 : !1

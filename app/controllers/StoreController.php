@@ -205,6 +205,7 @@ class StoreController extends BaseController {
         $folder_user = public_path() . '/files/'.$userInfos['USER_NAME'];
         if(!is_dir($folder_user)){
             mkdir($folder_user);
+            chmod($folder_user, 0777);
         }
         $destinationPath = $folder_user.'/'.$file_name;
         return copy($tmpPath, $destinationPath);    

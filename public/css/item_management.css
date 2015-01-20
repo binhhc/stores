@@ -407,6 +407,10 @@ img {
     background-color: #217fbe;
     color: #fff;
 }
+#alert_panel.fail {
+    background-color: #FF9966;
+    color: #FF0033;
+}
 #alert_panel {
     display: none;
     height: 60px;

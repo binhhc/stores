@@ -82,6 +82,9 @@
 
 
 $(document).ready(function(){
+	setTimeout(function() {
+	       $('#alert_panel').fadeOut();
+	   }, 4000);
 	// Main.js
 	$('#btn_menu').on('click', function(){
 		if($('ul#mobile_nav').css('display') !== 'none'){

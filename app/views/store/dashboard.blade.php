@@ -1,6 +1,20 @@
 @include('elements.header')
-<?php $user= Session::get('user'); $email = $user['email']; ?>
-<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+<?php if((Session::has('active')) && (Session::get('active')=="1")) {?>
+<div id="alert_panel" class="success" style="display: block; opacity: 1.0; top: -10px;">
+	<p>Bạn đã kích hoạt tài khoản thành công!</p>
+</div>
+<?php } else { if((Session::has('active')) && Session::get('active')=="2") {?>
+<div id="alert_panel" class="fail" style="display: block; opacity: 1.0; top: -10px;">
+	<p>Mã kích hoạt tài khoản của bạn đã hết hạn. Hãy đăng ký để hệ thống gửi lại email kích hoạt khác.</p>
+</div>
+<?php } } ?>
+<?php $user= Session::get('user'); $email = $user['email'];
+	if(Session::has('first_register'))
+      $str="display:block";
+    else $str="display:none";
+    // delete session
+    Session::forget('first_register');
+?>
 <div class="dashboard_wrapper ng-scope">
 	<ul class="dashboard">
 		<li>

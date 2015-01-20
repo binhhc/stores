@@ -9,8 +9,10 @@ class AddonController extends BaseController {
      * @author  Sang PM
      * @since   2015-01-15
      */
-    public function addon() {       
-        $data['addons'] = SysAddon::getAllSysData();        
+    public function addon() { 
+        $user_id            = Session::get('user.id');
+        $data['user_addon'] = UserAddon::getAllAddonByUser($user_id); 
+        $data['addons']     = SysAddon::getAllSysData();        
     	return View::make('addon.addon',$data);
     }
     

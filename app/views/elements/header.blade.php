@@ -30,12 +30,13 @@
 </head>
 
 <body>
-<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+<?php
+   	(isset($account_token) && !empty($account_token)) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">
         <div class="wrap">
             <p class="text">Chúng tôi gửi một xác nhận e-mail đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>
             <p class="btn">
-                <a class="send_email">Gửi email</a>
+                <a class="send_email">Gửi lại email</a>
             </p>
             <p class="btn" id="sending_email" ng-show="pending" style="display: none;">Đang gửi</p>
         </div>

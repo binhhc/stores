@@ -20,6 +20,8 @@ class StoreController extends BaseController {
      * get information store
      */
     public function edit() {
+        //get user login
+        $userInfos = User::getNameStore();
         //sys_colors
         $sysLayouts = array();
         $tmpSysLayouts= SysLayout::getSysLayouts();
@@ -65,6 +67,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'userInfos' => $userInfos,
             'sysLayouts' => $sysLayouts,
             'sysTextColor' => $sysTextColor,
             'sysBackgroundColor' => $sysBackgroundColor,
@@ -96,17 +99,17 @@ class StoreController extends BaseController {
             //get background color id
             $background_color_code = $data['store']['store_style']['background_color'];
             $systemBackgroundColors = SysBackgroundColor::getSysBackgroundColorIdByColorCode($background_color_code);
-            $systemBackgroundColorId = $systemBackgroundColors->id;
+            $systemBackgroundColorId = !empty($systemBackgroundColors) ? $systemBackgroundColors->id : '';
 
             //get item_text_color
             $item_text_color_code = $data['store']['store_style']['item_text_color'];
             $itemTextColors = SysTextColor::getSysTextColorIdByColorCode($item_text_color_code);
-            $itemTextColorId = $itemTextColors->id;
+            $itemTextColorId = !empty($itemTextColors) ? $itemTextColors->id : '';
 
             //get store_text_color
             $store_text_color_code = $data['store']['store_style']['store_text_color'];
             $storeTextColors = SysTextColor::getSysTextColorIdByColorCode($store_text_color_code);
-            $storeTextColors = $storeTextColors->id;
+            $storeTextColors = !empty($storeTextColors) ? $storeTextColors->id : '';
 
             //embed data
             $data['store']['store_style']['layout_id'] = $layoutId;
@@ -114,11 +117,24 @@ class StoreController extends BaseController {
             $data['store']['store_style']['item_text_color_id'] = $itemTextColorId;
             $data['store']['store_style']['store_text_color_id'] = $storeTextColors;
 
+            //get user login
+            $userInfos = User::getNameStore();
+            //copy file upload
+            $file_name = $data['store']['store_style']['logo_image'];
+            $tmpPath = public_path() . '/_temp_files/'. $file_name;
+            //$folder_user = public_path() . '/files/hoangnn001';
+            $folder_user = public_path() . '/files/'.$userInfos['USER_NAME'];
+            if(!is_dir($folder_user)){
+                mkdir($folder_user);
+            }
+            $destinationPath = $folder_user.'/'.$file_name;
+            copy($tmpPath, $destinationPath);
+
             $json = json_encode($data);
 
             //init data
             $userStore = new UserStore;
-            $userStore->user_id = 1;
+            $userStore->user_id = Session::get('user.id');
             $userStore->domain = 'hauln@leverages.jp';
             $userStore->settings = $json;
 
@@ -258,7 +274,7 @@ class StoreController extends BaseController {
                     'item' => $store->store_style->display_item
                 );
                 $style['shipping_fee'] = 0;
-                $style['logo'] = '';
+                $style['logo'] = $store->store_style->logo_image;
 
                 $json = json_encode($style);
                 echo $json;
@@ -392,8 +408,19 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_intros'))->toArray();
-    	$data['setting_intros'] = json_decode($user_store['	setting_intros']);
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'))->toArray();
+    	$data = array();
+    	if(!empty($user_store)) {
+    		$des = json_decode($user_store['setting_intros']);
+			$data['description'] = isset($des->description) ? $des->description : '';
+
+			$data['facebook'] = isset($des->facebook) ? $des->facebook : '';
+			$data['twitter'] = isset($des->twitter) ? $des->twitter : '';
+			$data['homepage'] = isset($des->homepage) ? $des->homepage : '';
+    	} else {
+    		$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
+    	}
+
     	return View::make('store.store_about', $data);
     }
     /**
@@ -406,11 +433,17 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('setting_trade_law'))->toArray();
+
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_trade_law'))->toArray();
     	if(!empty($user_store)) {
-			$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		if(!empty($data['setting_trade_law'])) {
+				$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
+    		} else {
+    			$data['setting_trade_law'] = '';
+    		}
+
     	} else {
-    		$data['setting_trade_law'] = array();
+    		$data['setting_trade_law'] = '';
     	}
 
     	return View::make('store.commercial_law', $data);
@@ -425,8 +458,9 @@ class StoreController extends BaseController {
 		if(!$this->checkLogin()) {
     		return Redirect::to('/');
     	}
-    	$first = isset($id) ? intval($id) : 0;
-    	$data['first'] = $first;
+    	$user_id = $this->getUserId();
+    	$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
+    	$data['account_token'] = $token_accout['account_token'];
     	return View::make('store.dashboard', $data );
     }
 
@@ -440,13 +474,13 @@ class StoreController extends BaseController {
     		return Redirect::to('/');
     	}
     	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->get(array('domain'))->toArray();
-    	$data = array();
+    	$user_store = UserStore::where('user_id', $user_id)->first(array('domain'));
     	if(!empty($user_store)) {
 			$data['domain'] = $user_store['domain'];
     	} else {
     		$data['domain'] = '';
     	}
+
 
 
     	return View::make('store.store_domain', $data);
@@ -459,25 +493,32 @@ class StoreController extends BaseController {
     public function save_domain(){
     	$v = UserStore::validate_domain(Input::all());
     	$user_id = $this->getUserId();
-
-        if($v->fails()){
-            return Redirect::to('/store_domain')->withErrors($v)->withInput();
-        } else {
-        	$domain = Input::get('domain');
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
-        	if(!empty($user_store)) {
-        		UserStore::where('user_id', $user_id)
+    	$user_store = UserStore::where('user_id', $user_id)->first();
+		$domain = Input::get('domain');
+		if(isset($user_store['domain']) && $domain != '' && ($domain==$user_store['domain'])) {
+			UserStore::where('user_id', $user_id)
         				->update(array('domain' => $domain,  'updated_user' => $user_id));
-        	} else {
-        		$user = new UserStore;
-        		$user->user_id = $user_id;
-        		$user->domain = $domain;
-        		$user->created_user = $user_id;
-        		$user->save();
-        	}
-        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công tên miền");
-        	return Redirect::to('/store_setting')->withInput();
-        }
+        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
+	        return Redirect::to('/store_setting')->with('success', $success);
+		} else {
+			 if($v->fails()){
+	            return Redirect::to('/store_domain')->withErrors($v)->withInput();
+	        } else {
+	        	if(!empty($user_store)) {
+	        		UserStore::where('user_id', $user_id)
+	        				->update(array('domain' => $domain,  'updated_user' => $user_id));
+	        	} else {
+	        		$user = new UserStore;
+	        		$user->user_id = $user_id;
+	        		$user->domain = $domain;
+	        		$user->created_user = $user_id;
+	        		$user->save();
+	        	}
+	        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
+	        	 return Redirect::to('/store_setting')->with('success', $success);
+	        }
+		}
+
     }
     /**
      * Save change store about
@@ -487,13 +528,12 @@ class StoreController extends BaseController {
     public function save_store_about(){
     	$v = UserStore::validate_about(Input::all());
     	$user_id = $this->getUserId();
-
         if($v->fails()){
             return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
         	$store_about = Input::all();
         	$setting_intros = json_encode($store_about);
-        	$user_store = UserStore::where('user_id', $user_id)->get()->toArray();
+        	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
         				->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));
@@ -504,8 +544,8 @@ class StoreController extends BaseController {
         		$user->created_user = $user_id;
         		$user->save();
         	}
-        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công");
-        	return Redirect::to('/store_setting')->withInput();
+        	$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
+        	return Redirect::to('/store_setting')->with('success', $success);
 
         }
     }

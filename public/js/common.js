@@ -82,17 +82,20 @@
 
 
 $(document).ready(function(){
-    // Main.js
-    $('#btn_menu').on('click', function(){
-        if($('ul#mobile_nav').css('display') !== 'none'){
-            $('ul#mobile_nav').slideUp();
-        } else {
-            $('ul#mobile_nav').slideDown();
-        }
-    });
-    $('#panel_error .close').on('click', function(){
-        $('#panel_error').hide();
-    });
+	setTimeout(function() {
+	       $('#alert_panel').fadeOut();
+	   }, 4000);
+	// Main.js
+	$('#btn_menu').on('click', function(){
+		if($('ul#mobile_nav').css('display') !== 'none'){
+			$('ul#mobile_nav').slideUp();
+		} else {
+			$('ul#mobile_nav').slideDown();
+		}
+	});
+	$('#panel_error .close').on('click', function(){
+		$('#panel_error').hide();
+	});
 
      // Validate register user
     var div_err = $('#panel_error');
@@ -140,41 +143,41 @@ $(document).ready(function(){
         $(div_err).hide();
         return true;
   }
-    // Register user by js (main)
-    $(document).on('click', 'button.btn_submit', function(e){
-          e.preventDefault();
-          if (validateForm()) {
-              var pass = document.forms["myForm"]["password"].value;
-              var x = document.forms["myForm"]["email"].value;
-              // Send data to server and ....
-              $.ajax({
-                  type: "POST",
-                  url: "/register",
-                  data: {
-                     email: x,
-                     password: pass
-                  },
-                  global: true,
-                  dataType: 'json',
-                  beforeSend: function() {
-                      $('button.btn_submit').hide();
-                      $('.btn_wait').show();
-                  },
-                  success: function(response) {
-                      if(response.status == 'fail validate') {
-                          $('p.unique_email').text(response.msg);
-                          $(div_err).show();
-                          $('p.unique_email').show();
-                          return false;
-                      } else {
-                          if(response.status== "success") {
-                              window.location.href = "/dashboard/1";
-                          } else {
-                              $(div_err).show();
-                              $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
-                              $('p.unique_email').show();
-                          }
 
+	// Register user by js (main)
+	$(document).on('click', 'button.btn_submit', function(e){
+		  e.preventDefault();
+		  if (validateForm()) {
+			  var pass = document.forms["myForm"]["password"].value;
+			  var x = document.forms["myForm"]["email"].value;
+			  // Send data to server and ....
+			  $.ajax({
+		          type: "POST",
+		          url: "/register",
+		          data: {
+		             email: x,
+			  		 password: pass
+		          },
+		          global: true,
+		          dataType: 'json',
+		          beforeSend: function() {
+		        	  $('button.btn_submit').hide();
+		        	  $('.btn_wait').show();
+		          },
+		          success: function(response) {
+		        	  if(response.status == 'fail validate') {
+		        		  $('p.unique_email').text(response.msg);
+		        		  $(div_err).show();
+		        		  $('p.unique_email').show();
+		        		  return false;
+		        	  } else {
+		        		  if(response.status== "success") {
+		        			  window.location.href = "/dashboard";
+		        		  } else {
+		        			  $(div_err).show();
+		        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
+		            		  $('p.unique_email').show();
+		        		  }
                       }
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) {

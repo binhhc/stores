@@ -120,11 +120,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @modified by
      **/
      public static function checkExpiredTime($obj){
+        if(!is_object($obj))return false;
         $created = new Carbon($obj->updated_at);
         $now = Carbon::now();
         $difference = ($created->diff($now));       
         if($difference->days > 0) return false;
         if($difference->h > 0) return false;
         return ($difference->i <= 30);
-    }    
+    }
+
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/01/19
+     * 
+     * get name store
+     */
+    public static function getNameStore() {
+        $userInfos = array();
+        $userLogin = Session::get('user');
+        $email = $userLogin['email'];
+        $tmpEmail = explode('@', $email);
+        
+        $userInfos['USER_NAME'] = $tmpEmail[0];
+        return $userInfos;
+    }
 }

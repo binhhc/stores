@@ -9,7 +9,7 @@
 				<dd>
 					<div class="big url">
 						<span class="first">https://</span>
-						 {{Form::text('domain', '', array('class' => ''))}}
+						 {{Form::text('domain', $domain, array('class' => ''))}}
 						<span class="second">.stores.jp</span>
 						<div class="message_error">{{ $errors->first('domain') }}</div>
 					</div>
@@ -27,5 +27,6 @@
 			</dl>
 		</dd>
 	</dl>
+	{{Form::close()}}
 </div>
 @include('elements.footer')

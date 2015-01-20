@@ -92,7 +92,7 @@ class UserController extends BaseController {
 
         $usersns = UserSns::where('sns_id', '=', $uid)->first();
 
-        $user = User::where('email', '=', $me['email'])->first()->toArray();
+        $user = User::where('email', '=', $me['email'])->first();
 
         //check email exist in database
         if (empty($user)) {
@@ -147,17 +147,18 @@ class UserController extends BaseController {
         if(!empty($input) && !empty($input['email']) && !empty($input['token'])){
             $user = User::where('email', '=', $input['email'])
                 ->where('account_token', '=', $input['token'])
-                ->get()->toArray();
+                ->first()->toArray();
 
             if(!empty($user)){
                 //reset password
-                return View::make('user.forgot_password');
-                // return View::make('user.reset_password');
+                // return View::make('user.forgot_password');
+                return View::make('user.reset_password');
             }else{
                 return Redirect::to('/');
             }
 
         }else{
+
             return View::make('user.forgot_password');
         }
     }
@@ -286,8 +287,8 @@ class UserController extends BaseController {
                 $user_data = array('email' => $email, 'password' => $password);
                 if($user->save()) {
                     if (Auth::attempt($user_data)) {
-                        $user_data = User::where('email', '=', $email)->get()->toArray();
-                        Session::put('user', $user_data[0]);
+                        $user_data = User::where('email', '=', $email)->first()->toArray();
+                        Session::put('user', $user_data);
                         Input::flashOnly('register_email', $email);
                         //return Redirect::to('/dashboard')->withInput();
                         $response = array(

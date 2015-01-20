@@ -35,8 +35,7 @@ class UserItem extends Model{
      * get user item from user_id
      */
     public static function getUserItemFromUserId() {
-        //$userId = Session::get('user.id');
-        $userId = 1;
+        $userId = Session::get('user.id');
         $userItems = DB::table('user_items')
             ->leftJoin('user_item_quatities', 'user_items.id', '=', 'user_item_quatities.item_id')
             ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_item_quatities.quantity')

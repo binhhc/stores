@@ -46,9 +46,9 @@
         <h1><a href="/">
             {{HTML::image('img/main_page/logo.png')}}
         </a></h1>
-        <p class="btn_store"><a href="#" target="_blank">Cửa hàng của tôi</a></p>
+        <p class="btn_store"><a href="/" target="_blank">Cửa hàng của tôi</a></p>
         <ul class="nav" style="cursor: pointer">
-            <li class="nav_design"><a href="#" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>
+            <li class="nav_design"><a href="/edit" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>
             <li class="nav_items"><a href="/item_management" id="mn_add_item" original-title="Thêm mặt hàng"></a></li>
             <li class="nav_store"><a href="/store_setting" id="mn_store_setting" original-title="Cài đặt cửa hàng"></a></li>
             <!-- TODO -->

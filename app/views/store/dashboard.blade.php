@@ -18,7 +18,7 @@
 <div class="dashboard_wrapper ng-scope">
 	<ul class="dashboard">
 		<li>
-			<a class="dashboard_design"  href="/">
+			<a class="dashboard_design"  href="/edit">
 				<h2>Thiết kế cửa hàng</h2>
 				<span>Tuỳ chỉnh thiết kế cửa hàng</span>
 			</a>

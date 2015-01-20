@@ -12,7 +12,7 @@
 <tbody>
 <tr>
     <td style="padding:10px;text-align:center;background-color:#2e3740" colspan="2">
-        <a target="_blank" href="https://{{$domain}}/">
+        <a target="_blank" href="http://{{$domain}}/">
             <img alt="{{$domain}}" src="https://ci3.googleusercontent.com/proxy/-RvWs-rJ2bjuZBTKRdl1j4zmpSfmxs1HP24OvorTq9fTH2OmZXqwJOlU56NxY6JGp6R2eHY1DlfoBVCmsue2dEOv_g=s0-d-e1-ft#https://stores.jp/images/mail/common/logo.png" class="CToWUd">
         </a>
     </td>

@@ -411,15 +411,12 @@ class StoreController extends BaseController {
     	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'))->toArray();
     	$data = array();
     	if(!empty($user_store)) {
-			var_dump($user_store['setting_intros']);
     		$des = json_decode($user_store['setting_intros']);
-    		var_dump($des);
-die;
-			$data['description'] = isset($des['description']) ? $des['description'] : '';
+			$data['description'] = isset($des->description) ? $des->description : '';
 
-			$data['facebook'] = isset($des['facebook']) ? $des['facebook'] : '';
-			$data['twitter'] = isset($des['twitter']) ? $des['twitter'] : '';
-			$data['homepage'] = isset($des['homepage']) ? $des['homepage'] : '';
+			$data['facebook'] = isset($des->facebook) ? $des->facebook : '';
+			$data['twitter'] = isset($des->twitter) ? $des->twitter : '';
+			$data['homepage'] = isset($des->homepage) ? $des->homepage : '';
     	} else {
     		$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
     	}
@@ -535,7 +532,7 @@ die;
             return Redirect::to('/store_about')->withErrors($v)->withInput();
         } else {
         	$store_about = Input::all();
-        	$setting_intros = json_encode(unserialize($store_about));
+        	$setting_intros = json_encode($store_about);
         	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
         	if(!empty($user_store)) {
         		UserStore::where('user_id', $user_id)
@@ -547,8 +544,8 @@ die;
         		$user->created_user = $user_id;
         		$user->save();
         	}
-        	Input::flashOnly('success', "Bạn đã chỉnh sửa thành công");
-        	return Redirect::to('/store_setting')->withInput();
+        	$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
+        	return Redirect::to('/store_setting')->with('success', $success);
 
         }
     }

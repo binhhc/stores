@@ -1,13 +1,13 @@
 @include('elements.header')
 <div class="wrapper ng-scope">
 	<h2 class="heading">Thay đổi địa chỉ URL</h2>
-	{{Form::open(array('url' => 'store_about', 'method' => 'post'))}}
+	{{Form::open(array('url' => 'store_about', 'method' => 'post','class' => 'form_basic'))}}
 	<dl class="form_basic form_multi">
 		<dd>
 			<dl class="cols">
 				<dt>Mô tả</dt>
 				<dd>
-				{{Form::text('description', $description, array('placeholder' => ' Mô tả cửa hàng', 'style' => "width: 500px; height: 200px;"))}}
+				{{Form::textarea('description', $description, array('placeholder' => ' Mô tả cửa hàng', 'style' => "width: 500px; height: 200px;"))}}
 				</dd>
 			</dl>
 		</dd>

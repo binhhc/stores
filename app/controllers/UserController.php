@@ -278,7 +278,6 @@ class UserController extends BaseController {
                 'msg' => $mss,
                 );
             } else {
-                $created = $modified = strtotime('now');
                 $user = new User;
                 $user->email = $email;
                 $user->password  = Hash::make($password);
@@ -288,7 +287,7 @@ class UserController extends BaseController {
                     if (Auth::attempt($user_data)) {
                         $user_data = User::where('email', '=', $email)->first()->toArray();
                         Session::put('user', $user_data);
-                        Input::flashOnly('register_email', $email);
+                        Session::put('first_register', 'hello');
                         //return Redirect::to('/dashboard')->withInput();
                         $response = array(
                             'status' => 'success',

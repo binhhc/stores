@@ -168,7 +168,7 @@ $(document).ready(function(){
 		        		  return false;
 		        	  } else {
 		        		  if(response.status== "success") {
-		        			  window.location.href = "/dashboard/1";
+		        			  window.location.href = "/dashboard";
 		        		  } else {
 		        			  $(div_err).show();
 		        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");

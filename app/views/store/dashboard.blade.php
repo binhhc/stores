@@ -1,6 +1,11 @@
 @include('elements.header')
-<?php $user= Session::get('user'); $email = $user['email']; ?>
-<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+<?php $user= Session::get('user'); $email = $user['email'];
+	if(Session::has('first_register'))
+      $str="display:block";
+    else $str="display:none";
+    // delete session
+    Session::forget('first_register');
+?>
 <div class="dashboard_wrapper ng-scope">
 	<ul class="dashboard">
 		<li>

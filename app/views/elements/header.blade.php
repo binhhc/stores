@@ -30,7 +30,8 @@
 </head>
 
 <body>
-<?php if(isset($first) && ($first == 1)) $str="display:block"; else $str="display:none";?>
+<?php
+   	(isset($account_token) && !empty($account_token)) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">
         <div class="wrap">
             <p class="text">Chúng tôi gửi một xác nhận e-mail đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>

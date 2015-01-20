@@ -20,6 +20,17 @@ class StoreController extends BaseController {
      * get information store
      */
     public function edit() {
+        //get item sample
+        $tmpItemSample = UserItem::getItemSample();
+        $itemSample = array();
+        foreach ($tmpItemSample as $item => $sample) {
+            $itemSample[] = array(
+                'name' => $sample->name,
+                'price' => $sample->price,
+                'path' => 'img/samples/products/'.$sample->image_url
+            );
+        }
+        
         //get image url sample
         $imgurlSampleBackground = UserStore::getImageUrlEditStore();
         
@@ -72,6 +83,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'itemSample' => $itemSample,
             'userInfos' => $userInfos,
             'sysLayouts' => $sysLayouts,
             'sysTextColor' => $sysTextColor,

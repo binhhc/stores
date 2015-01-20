@@ -7,6 +7,8 @@
         <title>Chỉnh sửa giao diện cửa hàng</title>
         <link media="all" type="text/css" rel="stylesheet" href="http://stores.local.srv/public/css/application.css">
         <script type="text/javascript">
+        
+        var editStoreItemSample = <?php echo json_encode($itemSample);?>;
         var editStore_Layouts = <?php echo json_encode($sysLayouts);?>;
         var editStore_TextColor = <?php echo json_encode($sysTextColor);?>;
         var editStore_BackgroundColor = <?php echo json_encode($sysBackgroundColor);?>;
@@ -18,6 +20,7 @@
             AUTH_TOKEN = "123456";
             STORE_ID = '123';
             USER_NAME = "<?php echo $userInfos['USER_NAME'];?>";
+            PATH_USER_NAME = '';
         //]]>
         </script>
         <script type="text/javascript">
@@ -72,7 +75,7 @@
               })
 
               //トグルスイッチ
-              /*setTimeout(function() {
+              setTimeout(function() {
                 var scope = angular.element('#edit').scope();
                 scope.$watch('styles.logo', function(v) {
                   $('.store_mark .grip').animate({left: (v ? '46px' : '2px')}, 'fast', 'swing');
@@ -89,7 +92,7 @@
                 scope.$watch('store.display.frame', function(v) {
                   $('#item_info .grip :eq(1)').animate({left: (v ? '46px' : '2px')}, 'fast', 'swing');
                 }, true);
-              }, 0);*/
+              }, 0);
             });
         </script>
     </body>

@@ -8240,8 +8240,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                             }
                         }
                     }).success(function(data, status, headers, config) {
-                        alert(data);
-                        //$(window).off("beforeunload"), location.href = "/"
+                        //alert(data);
+                        $(window).off("beforeunload"), location.href = "/"
                     }).error(function(data, status, headers, config) {
                         alert('errot' + data);
                     })

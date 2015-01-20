@@ -5,25 +5,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>Chỉnh sửa giao diện cửa hàng</title>
-        <link media="all" type="text/css" rel="stylesheet" href="http://stores.local.srv/public/css/application.css">
+        {{HTML::style('css/application.css')}}
         <script type="text/javascript">
+        var editStoreItemSample = <?php echo json_encode($itemSample);?>;
         var editStore_Layouts = <?php echo json_encode($sysLayouts);?>;
         var editStore_TextColor = <?php echo json_encode($sysTextColor);?>;
         var editStore_BackgroundColor = <?php echo json_encode($sysBackgroundColor);?>;
         var editStore_BackgroundPatterns = <?php echo json_encode($sysBackgroundImage);?>;
         </script>
-        <script src="http://stores.local.srv/public/js/edit_store.js"></script>
+        {{HTML::script('js/edit_store.js')}}
         <script type="text/javascript">
         //<![CDATA[
             AUTH_TOKEN = "123456";
             STORE_ID = '123';
             USER_NAME = "<?php echo $userInfos['USER_NAME'];?>";
+            PATH_USER_NAME = '';
         //]]>
         </script>
         <script type="text/javascript">
         //<![CDATA[
             STORES_JP = {
-            	    "FILE_SERVER_URL":"/public",
+            	    "FILE_SERVER_URL":"",
             	    //"enable_addons":["follow"]
             	    };
         //]]>
@@ -72,7 +74,7 @@
               })
 
               //トグルスイッチ
-              /*setTimeout(function() {
+              setTimeout(function() {
                 var scope = angular.element('#edit').scope();
                 scope.$watch('styles.logo', function(v) {
                   $('.store_mark .grip').animate({left: (v ? '46px' : '2px')}, 'fast', 'swing');
@@ -89,7 +91,7 @@
                 scope.$watch('store.display.frame', function(v) {
                   $('#item_info .grip :eq(1)').animate({left: (v ? '46px' : '2px')}, 'fast', 'swing');
                 }, true);
-              }, 0);*/
+              }, 0);
             });
         </script>
     </body>

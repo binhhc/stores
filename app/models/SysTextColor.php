@@ -16,7 +16,6 @@ class SysTextColor extends Model{
     public static function getSysTextColor() {
         $sysTextColor = DB::table('sys_text_colors')
             ->where('sys_text_colors.delete_flg', '=', 0)
-            ->orderBy('id', 'desc')
             ->lists('color');
         return !empty($sysTextColor) ? $sysTextColor : array();
     }

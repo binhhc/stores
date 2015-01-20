@@ -51,4 +51,15 @@ class UserStore extends Model{
 
         return Validator::make($input, $rules);
     }
+    
+    /*
+     * @author      Le Nhan Hau
+     * @since       2015/01/16
+     *
+     * get image url background sample
+     */
+    public static function getImageUrlEditStore() {
+        $imgurlSampleBackground = "img/samples/bg2/";
+        return $imgurlSampleBackground;
+    }
 }

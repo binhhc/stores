@@ -25,7 +25,7 @@
         <script type="text/javascript">
         //<![CDATA[
             STORES_JP = {
-            	    "FILE_SERVER_URL":"/public",
+            	    "FILE_SERVER_URL":"",
             	    //"enable_addons":["follow"]
             	    };
         //]]>

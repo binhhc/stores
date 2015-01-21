@@ -3,7 +3,7 @@
 <div class="setting">
     <div class="wrapper account">
         <div class="heading_box clearfix">
-            <h2 class="heading fl_l">Account settings</h2>
+            <h2 class="heading fl_l">Cài đặt tài khoản</h2>
         </div>
         <div class="box_wht">
             <dl>
@@ -12,7 +12,7 @@
                         <dt>Địa chỉ email</dt>
                         <dd class="horizon">
                             <ul>
-                                <li><strong class="ng-binding">hcbinh@gmail.com</strong></li>
+                                <li><strong>{{$user['email']}}</strong></li>
                                 <li class="btn_low_m">
                                     <a href="{{URL::asset('/change_email')}}">Thay đổi</a>
                                 </li>
@@ -31,7 +31,7 @@
                         <dt>Hồ sơ</dt>
                         <dd class="horizon">
                             <p class="btn_low_m">
-                                <a href="{{URL::asset('/change_profile')}}">Thay đổi</a>
+                                <a href="{{URL::asset('/change_profile')}}">Đăng kí</a>
                             </p>
                         </dd>
                     </dl>
@@ -44,31 +44,31 @@
                         </dt>
                         <dd class="horizon">
                             <p class="btn_low_m" >
-                                <a href="{{URL::asset('/change_shipping')}}">Thay đổi</a>
+                                <a href="{{URL::asset('/change_shipping')}}">Đăng kí</a>
                             </p>
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt>Credit Card</dt>
+                        <dt>Thẻ Tín Dụng</dt>
                         <dd class="horizon">
                             <p class="btn_low_m">
-                                <a href="#!/account/credit_card/edit">登録する</a>
+                                <a href="{{URL::asset('/change_credit_card')}}">Đăng kí</a>
                             </p>
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt>Destination account</dt>
+                        <dt>Tài khoản chuyển đến</dt>
                         <dd>
-                            <p class="btn_low_m"><a href="#!/account/bank">登録する</a></p>
+                            <p class="btn_low_m"><a href="{{URL::asset('/change_destination_account')}}">Đăng kí</a></p>
                             <p class="btn_low_m" style="display: none;">
-                                <a href="#!/account/bank">変更する</a>
+                                <a href="{{URL::asset('/change_destination_account')}}">Thay đổi</a>
                             </p>
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt id="mail_title">Mail notification settings</dt>
+                        <dt id="mail_title">Thiết lập thông báo email</dt>
                         <dd id="mail_contents" class="horizon">
-                            <p class="btn_low_m"><a href="#!/account/notifications">設定する</a></p>
+                            <p class="btn_low_m"><a href="{{URL::asset('/change_mail_notification_setting')}}">Thiết lập</a></p>
                         </dd>
                     </dl>
                     <dl class="cols" style="display: none;">
@@ -90,8 +90,12 @@
                     <dl class="cols">
                         <dt>Withdrawal</dt>
                         <dd>
-                            <p class="btn_low_m" ng-show="account_info.has_store"><a href="#popup_quit_form_message" class="fancybox" ng-click="pageview('/dashboard#!/quit/popup')">退会する</a></p>
-                            <p class="btn_low_m" ng-hide="account_info.has_store" style="display: none;"><a href="#popup_quit_form_follow" class="fancybox" ng-click="pageview('/dashboard#!/quit/popup')">退会する</a></p>
+                            <p class="btn_low_m" ng-show="account_info.has_store">
+                                <a href="#popup_quit_form_message" class="fancybox" ng-click="pageview('/dashboard#!/quit/popup')">退会する</a>
+                            </p>
+                            <p class="btn_low_m" ng-hide="account_info.has_store" style="display: none;">
+                                <a href="#popup_quit_form_follow" class="fancybox" ng-click="pageview('/dashboard#!/quit/popup')">退会する</a>
+                            </p>
                         </dd>
                     </dl>
                 </dd>

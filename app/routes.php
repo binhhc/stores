@@ -68,13 +68,16 @@ Route::get('/change_email', array('before' => 'auth', 'uses' => 'UserController@
 Route::get('/change_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
 //change profile
 Route::get('/change_profile', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
-//change profile
+//change shipping
 Route::get('/change_shipping', array('before' => 'auth', 'uses' => 'UserController@changeShipping'));
-//change profile
+//change credit card
 Route::get('/change_credit_card', array('before' => 'auth', 'uses' => 'UserController@changeCreaditCard'));
-//change profile
-Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
-
+//change destination account
+Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'UserController@changeDestinationAccount'));
+//change Mail notification settings
+Route::get('/change_mail_notification_setting', array('before' => 'auth', 'uses' => 'UserController@changeMailNotificationSetting'));
+//Withdrawal
+Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
 
 
 

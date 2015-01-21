@@ -20,6 +20,9 @@ class StoreController extends BaseController {
      * get information store
      */
     public function edit() {
+        //get fonts default
+        $fontDefaults = Config::get('constants.fonts');
+        
         //get item sample
         $tmpItemSample = UserItem::getItemSample();
         $itemSample = array();
@@ -83,6 +86,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'fontDefaults' => $fontDefaults,
             'itemSample' => $itemSample,
             'userInfos' => $userInfos,
             'sysLayouts' => $sysLayouts,

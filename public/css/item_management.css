@@ -760,7 +760,7 @@ p.error {
 }
 
 .btn_pair dd, .btn_pair li {
-    display: inline-block;
+    display: inline-block !important;
     letter-spacing: normal;
     padding: 0 10px;
     vertical-align: bottom;

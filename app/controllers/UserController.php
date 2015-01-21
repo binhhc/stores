@@ -242,7 +242,8 @@ class UserController extends BaseController {
      * @since 2015.01.14
      */
     public function accountSetting(){
-        return View::make('user.account_setting');
+        $user = Session::get('user');
+        return View::make('user.account_setting')->with(array('user' => $user));
     }
 
     /**
@@ -291,6 +292,42 @@ class UserController extends BaseController {
      */
     public function changeShipping(){
         return View::make('user.change_shipping');
+    }
+
+    /**
+     * Display change credit card.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.20
+     */
+    public function changeCreaditCard(){
+        return View::make('user.change_credit_card');
+    }
+
+    /**
+     * Display change destination account.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.20
+     */
+    public function changeDestinationAccount(){
+        return View::make('user.change_destination_account');
+    }
+
+    /**
+     * Display change mail notification setting.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.20
+     */
+    public function changeMailNotificationSetting(){
+        return View::make('user.change_mail_notification_setting');
     }
 
     /**

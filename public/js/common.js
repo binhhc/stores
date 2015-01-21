@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	setTimeout(function() {
 	       $('#alert_panel').fadeOut();
-	   }, 4000);
+	   }, 3000);
 
     $('#start_with_store').on('click', function(e) {
         e.preventDefault();
@@ -147,79 +147,6 @@ $(document).ready(function(){
                 return;
             }
     });
-
-    	/**
-    	 * Open ship for store setting
-    	 */
-    	$('#open_shipping_select').on('click', function(event){
-			 event.preventDefault();
-			if ($('#shipping_select').css('display') == 'none') {
-				$('#shipping_select').show();
-			} else {
-				$('#shipping_select').hide();
-			}
-		});
-		$('button.cancel_button').on('click', function(){
-			$('#shipping_select').hide();
-		})
-		$('#form_promotion').on('click', function(){
-			$('#modal-win').show();
-		});
-		$('a.modal-move').on('click', function() {
-			var modal = $(this).attr('href');
-			$('#modal-win-inner').hide();
-			$('.modal_slide').hide();
-			$(modal).show();
-		});
-		$('a.modal-close').on('click', function(){
-			$('#modal-win').hide();
-		});
-		if($('input[name="check_free_ship"]').val() == 1) {
-			$('li.shipping_free1').show();
-			$('#checkbox_image').removeClass('checked-');
-			$('#checkbox_image').addClass('checked-true');
-		}
-		$(document).on('click', '.styled_checkbox', function(e){
-			if($('#checkbox_image').hasClass('checked-')) {
-				$('#checkbox_image').removeClass('checked-');
-				$('#checkbox_image').addClass('checked-true');
-				$('li.shipping_free1').show();
-				$('input[name="check_free_ship"]').val('1');
-				$('input[name="check_free_ship"]').prop('checked', true);
-			} else {
-				$('#checkbox_image').removeClass('checked-true');
-				$('#checkbox_image').addClass('checked-');
-				$('li.shipping_free1').hide();
-				$('input[name="check_free_ship"]').val('0');
-				$('input[name="check_free_ship"]').prop('checked', false);
-			}
-		});
-		$('.save_shipping').on('click', function() {
-			var circle = $('input[name="circle"]').val();
-			var check_free_ship = $('input[name="check_free_ship"]').val();
-			var free_ship = $('input[name="free_ship"]').val();
-			$.ajax({
-                type: "POST",
-                url: "/ship_setting",
-                data: {
-                    circle: circle,
-                    check_free_ship: check_free_ship,
-                    free_ship:free_ship
-                },
-                global: true,
-                dataType: 'json',
-                success: function(response) {
-                	if(response.success=1) {
-                		$('#shipping_select').hide();
-                	} else {
-                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
-                		return;
-                	}
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                },
-            });
-		})
 });
 
 function validateEmail(email) {

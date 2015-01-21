@@ -52,7 +52,7 @@
 							<dd class="sz_i">
 							</dd>
 							<dd class="sz_l">
-								<a class="ng-binding" ng-click="edit(item)" href="">{{$item['name']}}</a>
+								<a class="ng-binding" ng-click="edit(item)" href=""><?php echo (strlen($item['name']) > 50) ? substr($item['name'], 0, 50). "..." : $item['name']?></a>
 							</dd>
 							<dd class="sz_s tr ng-binding">{{$item['price']}}</dd>
 							<dd class="sz_xs tc product_quantity">{{$item['quantity']}}</dd>
@@ -94,4 +94,9 @@
 .switch .active, .switch .deactive {
 	text-indent: 1em!important;
 }
+.wrapper {
+    margin: 50px auto 0;
+    width: 792px!important;
+}
 </style>
+

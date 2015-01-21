@@ -19,7 +19,7 @@
 				<dd style="width: 500px;">
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
-							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? $user_store['domain'] : ''?></span>
+							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? "http://".$user_store['domain']. '.stores.jp' : ''?></span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
@@ -215,7 +215,7 @@
 	<div id="modal-win" style="top: 622px; display: none">
 		<div id="modal-bg" style="opacity: 1;"></div>
 		<div id="modal-win-inner">
-			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: block; z-index: 101;" ng-class="class_modal_promotion()">
+			<div id="promotion_modal1" class="modal_slide ng-scope modal_contents" style="display: none; z-index: 101;" ng-class="class_modal_promotion()">
 				<p class="modal_title">Những chức năng khuyến mãi</p>
 				<p class="modal_image">
 					{{HTML::image('img/main_page/image_switch.png', 'Switch') }}

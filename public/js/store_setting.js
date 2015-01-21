@@ -15,16 +15,19 @@ $(document).ready(function(){
 	})
 	$('#form_promotion').on('click', function(){
 		$('#modal-win').show();
+		$("#promotion_modal1").show();
 	});
 	$('a.modal-move').on('click', function() {
 		var modal = $(this).attr('href');
-		$('#modal-win-inner').hide();
+		//$('#modal-win-inner').hide();
 		$('.modal_slide').hide();
 		$(modal).show();
 	});
 	$('a.modal-close').on('click', function(){
 		$('#modal-win').hide();
 	});
+
+
 	if($('input[name="check_free_ship"]').val() == 1) {
 		$('li.shipping_free1').show();
 		$('#checkbox_image').removeClass('checked-');

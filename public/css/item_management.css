@@ -106,12 +106,6 @@ img {
 .list_items .sz_s.publish, #news .list_news .sz_s.publish {
 	width: 80px;
 }
-.list_items .title dd, #news .list_news .title dd, .list_items .lists dd, #news .list_news .lists dd {
-    display: inline-block;
-    letter-spacing: normal;
-    line-height: 1.5;
-    vertical-align: middle;
-}
 .list_items .sz_i, #news .list_news .sz_i {
     width: 60px;
 }
@@ -146,7 +140,7 @@ img {
     background: none repeat scroll 0 0 #fff;
     border-bottom: 1px solid #ccc;
     float: right;
-    height: 76px;
+    height: 62px;
     padding: 13px 0 0 10px;
     position: relative;
     width: 740px;
@@ -266,7 +260,7 @@ img {
     height: 0;
     line-height: 2em;
     overflow: hidden;
-    padding-top: 25px;
+    padding-top: 23px;
     width: 26px;
 }
 

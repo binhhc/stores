@@ -355,15 +355,16 @@ class StoreController extends BaseController {
     /**
      * Load user categories
      *
-     * @author Nguyen Hoang
-     * @since 2015-01-08
+     * @author      Le Nhan Hau
+     * @since       2015-01-20
      * @return json
      */
     public function categories() {
         $this->layout = '';
 
-        //$categories = ClassRegistry::init('UserCategory')->getAllByUserId($this->Store->getUserId());
-        /*$categories = array(
+        //test data
+        /*$categories = array();
+        $categories = array(
             array(
                 'id' => 1,
                 'name' => 'Điện máy'
@@ -373,20 +374,24 @@ class StoreController extends BaseController {
                 'name' => 'Thời trang'
             )
         );*/
-        //$categories = array();
+        
         //get user_categories from user_id
         $userCategories = UserCategory::getUserCaterogiesFromUserId();
-
-        foreach ($userCategories as $key => $value) {
-            $categories[] = $value;
-        }
         
+        $categories = array();
+        if (!empty($userCategories)) {
+            foreach ($userCategories as $key => $value) {
+                $categories[] = array(
+                    'id' => $value->id,
+                    'name' => $value->name
+                );
+            }
+        }
+
         if (Request::ajax())
         {
             $json = json_encode($categories);
-            $response = Response::json($json);
-            $response->header('Content-Type', 'application/json');
-            return $response;
+            echo $json;
         }
     }
 
@@ -398,16 +403,13 @@ class StoreController extends BaseController {
      * @return json
      */
     public function about() {
-        $this->autoRender = false;
         $this->layout = '';
-        $about = '';
+        $about = array();
 
         if (Request::ajax())
         {
             $json = json_encode($about);
-            $response = Response::json($json);
-            $response->header('Content-Type', 'application/json');
-            return $response;
+            echo $json;
         }
     }
 

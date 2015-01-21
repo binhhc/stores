@@ -1,16 +1,4 @@
-$(document).ready(function(){
-	$('#btn_menu').on('click', function(){
-		if($('ul#mobile_nav').css('display') !== 'none'){
-			$('ul#mobile_nav').slideUp();
-		} else {
-			$('ul#mobile_nav').slideDown();
-		}
-	});
-	$('#panel_error .close').on('click', function(){
-	$('#panel_error').hide();
-});
-
-
+// Slide in main page
 	var slide_width = 880;
       var Slider = function(trg,btn,swidth){
         this.$slide = trg;
@@ -91,25 +79,40 @@ $(document).ready(function(){
 		}
 		slider_home.init();
 	}).trigger('resize');
-      // Validate register user
-      var div_err = $('#panel_error');
-      var em_err= $('p.valid_email');
-      var p_err = $('p.pass_error');
-      var e_p = $('p.email_pass_error');
-      function validateForm() {
-    	  	var pass = document.forms["myForm"]["password"].value;
-    	  	var x = document.forms["myForm"]["email"].value;
-    	    var atpos = x.indexOf("@");
-    	    var dotpos = x.lastIndexOf(".");
-    	    if (pass.length <= 0 && x.length <=0) {
-    	    	$(div_err).show();
-    	    	$(p_err).show();
-    	    	$(e_p).show();
-    	    	$(em_err).show();
-    	    	return false;
-    	    } else {
-    	        if (pass.length <= 0 || x.length <=0) {
-    	        	$(p_err).hide();
+
+
+$(document).ready(function(){
+	// Main.js
+	$('#btn_menu').on('click', function(){
+		if($('ul#mobile_nav').css('display') !== 'none'){
+			$('ul#mobile_nav').slideUp();
+		} else {
+			$('ul#mobile_nav').slideDown();
+		}
+	});
+	$('#panel_error .close').on('click', function(){
+		$('#panel_error').hide();
+	});
+
+	 // Validate register user
+    var div_err = $('#panel_error');
+    var em_err= $('p.valid_email');
+    var p_err = $('p.pass_error');
+    var e_p = $('p.email_pass_error');
+    function validateForm() {
+  	  	var pass = document.forms["myForm"]["password"].value;
+  	  	var x = document.forms["myForm"]["email"].value;
+  	    var atpos = x.indexOf("@");
+  	    var dotpos = x.lastIndexOf(".");
+  	    if (pass.length <= 0 && x.length <=0) {
+  	    	$(div_err).show();
+  	    	$(p_err).show();
+  	    	$(e_p).show();
+  	    	$(em_err).show();
+  	    	return false;
+  	    } else {
+  	        if (pass.length <= 0 || x.length <=0) {
+  	        	$(p_err).hide();
 	    	    	$(em_err).hide();
 	    	    	$(div_err).show();
 	    	    	$(e_p).show();
@@ -133,54 +136,56 @@ $(document).ready(function(){
 		    	    }
 
 	    	    }
-    	    }
-    	    $(div_err).hide();
-    	    return true;
-    }
+  	    }
+  	    $(div_err).hide();
+  	    return true;
+  }
+	// Register user by js (main)
 	$(document).on('click', 'button.btn_submit', function(e){
-	  e.preventDefault();
-	  if (validateForm()) {
-		  var pass = document.forms["myForm"]["password"].value;
-		  var x = document.forms["myForm"]["email"].value;
-		  // Send data to server and ....
-		  $.ajax({
-	          type: "POST",
-	          url: "/register",
-	          data: {
-	             email: x,
-		  		 password: pass
-	          },
-	          global: true,
-	          dataType: 'json',
-	          beforeSend: function() {
-	        	  $('button.btn_submit').hide();
-	        	  $('.btn_wait').show();
-	          },
-	          success: function(response) {
-	        	  if(response.status == 'fail validate') {
-	        		  $(div_err).show();
-	        		  $('p.unique_email').show();
-	        		  return false;
-	        	  } else {
-	        		  if(response.status== "success") {
-	        			  window.location.href = "/dashboard/1";
-	        		  } else {
-	        			  $(div_err).show();
-	        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
-	            		  $('p.unique_email').show();
-	        		  }
+		  e.preventDefault();
+		  if (validateForm()) {
+			  var pass = document.forms["myForm"]["password"].value;
+			  var x = document.forms["myForm"]["email"].value;
+			  // Send data to server and ....
+			  $.ajax({
+		          type: "POST",
+		          url: "/register",
+		          data: {
+		             email: x,
+			  		 password: pass
+		          },
+		          global: true,
+		          dataType: 'json',
+		          beforeSend: function() {
+		        	  $('button.btn_submit').hide();
+		        	  $('.btn_wait').show();
+		          },
+		          success: function(response) {
+		        	  if(response.status == 'fail validate') {
+		        		  $('p.unique_email').text(response.msg);
+		        		  $(div_err).show();
+		        		  $('p.unique_email').show();
+		        		  return false;
+		        	  } else {
+		        		  if(response.status== "success") {
+		        			  window.location.href = "/dashboard";
+		        		  } else {
+		        			  $(div_err).show();
+		        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
+		            		  $('p.unique_email').show();
+		        		  }
 
-	        	  }
-	          },
-	          error: function(XMLHttpRequest, textStatus, errorThrown) {
-	          },
-	          complete: function() {
-	        	  $('button.btn_submit').show();
-	        	  $('.btn_wait').hide();
-	          },
-	      });
-	  } else {
-		  return false;
-	  }
-	});
+		        	  }
+		          },
+		          error: function(XMLHttpRequest, textStatus, errorThrown) {
+		          },
+		          complete: function() {
+		        	  $('button.btn_submit').show();
+		        	  $('.btn_wait').hide();
+		          },
+		      });
+		  } else {
+			  return false;
+		  }
+		});
 });

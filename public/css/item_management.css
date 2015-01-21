@@ -504,18 +504,6 @@ img {
     width: 20px;
 }
 
-.styled_checkbox input {
-    -moz-appearance: none;
-    height: 100%;
-    left: 0;
-    margin: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-}
-
 #shipping_select dl.btn_pair, #over_age dl.btn_pair {
     margin: 0;
     padding: 0 !important;

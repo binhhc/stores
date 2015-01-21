@@ -438,188 +438,237 @@ class StoreController extends BaseController {
         }
     }
     /**
-     * Store setting
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function store_setting() {
-	if(!$this->checkLogin()) {
-		return Redirect::to('/');
-	}
-    	return View::make('store.store_setting');
-    }
-    /**
-     * Set payment method for stores
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function payment_method() {
+	 * Store setting
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function store_setting() {
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
-    	return View::make('store.payment_method');
-    }
-    /**
-     * Set domain for stores
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function setting_domain() {
+		$user_id = $this->getUserId();
+		$user_store = UserStore::where('user_id', $user_id)->first();
+		$user_store = !empty($user_store) ? $user_store->toArray() : array();
+		$setting_postage = !empty($user_store['setting_postage']) ? json_decode($user_store['setting_postage']) : '';
+		$data['setting_postage'] = $setting_postage;
+		$data['user_store'] = !empty($user_store) ? $user_store : '';
+
+		return View::make('store.store_setting', $data);
+	}
+
+	public function ship_setting() {
+		if(Request::ajax())
+	    {
+
+			 $circle = trim(Input::get('circle'));
+	    	 $check_free_ship = trim(Input::get('check_free_ship'));
+	    	 $free_ship = Input::get('free_ship');
+	    	 $free_ship = ($check_free_ship == 0) ? '' : $free_ship;
+	    	 $setting_postage = json_encode(array('circle' => $circle, 'check_free_ship' => $check_free_ship, 'free_ship' => $free_ship));
+	    	 $user_id = $this->getUserId();
+	    	 $user_store = UserStore::where('user_id', $user_id)->first();
+			 if(!empty($user_store)) {
+				UserStore::where('user_id', $user_id)
+						->update(array('setting_postage' => $setting_postage,  'updated_user' => $user_id));
+			} else {
+				$user = new UserStore;
+				$user->user_id = $user_id;
+				$user->setting_postage = $setting_postage;
+				$user->created_user = $user_id;
+				$user->save();
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
+
+	}
+	/**
+	 * Set payment method for stores
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function payment_method() {
 		if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-    	return View::make('store.setting_domain');
-    }
-    /**
-     * About stores
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function store_about() {
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-    	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'))->toArray();
-    	$data = array();
-    	if(!empty($user_store)) {
-    		$des = json_decode($user_store['setting_intros']);
+			return Redirect::to('/');
+		}
+		return View::make('store.payment_method');
+	}
+	/**
+	 * About stores
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function store_about() {
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
+		$user_id = $this->getUserId();
+		$user_store = UserStore::where('user_id', $user_id)->first(array('setting_intros'));
+		$user_store = !empty($user_store) ? $user_store->toArray() : array();
+		$data = array();
+		if(!empty($user_store)) {
+			$des = json_decode($user_store['setting_intros']);
 			$data['description'] = isset($des->description) ? $des->description : '';
 
 			$data['facebook'] = isset($des->facebook) ? $des->facebook : '';
 			$data['twitter'] = isset($des->twitter) ? $des->twitter : '';
 			$data['homepage'] = isset($des->homepage) ? $des->homepage : '';
-    	} else {
-    		$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
-    	}
+		} else {
+			$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
+		}
 
-    	return View::make('store.store_about', $data);
-    }
-    /**
-     * About commercial law
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function commercial_law() {
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-    	$user_id = $this->getUserId();
-
-    	$user_store = UserStore::where('user_id', $user_id)->first(array('setting_trade_law'))->toArray();
-    	if(!empty($user_store)) {
-    		if(!empty($data['setting_trade_law'])) {
-				$data['setting_trade_law'] = json_decode($user_store['setting_trade_law']);
-    		} else {
-    			$data['setting_trade_law'] = '';
-    		}
-
-    	} else {
-    		$data['setting_trade_law'] = '';
-    	}
-
-    	return View::make('store.commercial_law', $data);
-    }
-
-    /**
-     * About commercial law
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function dashboard($id=null) {
+		return View::make('store.store_about', $data);
+	}
+	/**
+	 * About commercial law
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function trade_law() {
 		if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-    	$user_id = $this->getUserId();
-    	$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
-    	$data['account_token'] = $token_accout['account_token'];
-    	return View::make('store.dashboard', $data );
-    }
+			return Redirect::to('/');
+		}
+		$user_id = $this->getUserId();
+
+		$user_store = UserStore::where('user_id', $user_id)->first(array('setting_trade_law'));
+		$user_store = !empty($user_store) ? $user_store->toArray() : array();
+		if(!empty($user_store)) {
+			$setting_trade_law = json_decode($user_store['setting_trade_law']);
+			$data['price'] = isset($setting_trade_law->price) ? $setting_trade_law->price : '';
+
+			$data['charge'] = isset($setting_trade_law->charge) ? $setting_trade_law->charge : '';
+			$data['time_ship'] = isset($setting_trade_law->time_ship) ? $setting_trade_law->time_ship : '';
+			$data['contract'] = isset($setting_trade_law->contract) ? $setting_trade_law->contract : '';
+			$data['contact'] = isset($setting_trade_law->contact) ? $setting_trade_law->contact : '';
+
+		} else {
+			$data = array('price' => '', 'charge' => '', 'contract' => '', 'contact' => '', 'time_ship' => '');
+		}
+
+		return View::make('store.commercial_law', $data);
+	}
 
 	/**
-     * Set url for stores
-     * @author OanhHa
-     * @since 2015-01-09
-     */
-    public function store_domain(){
-    	if(!$this->checkLogin()) {
-    		return Redirect::to('/');
-    	}
-    	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->first(array('domain'));
-    	if(!empty($user_store)) {
+	 * Save comercial law
+	 * @author OanhHa
+	 * @since 2015/01/20
+	 */
+
+	public function save_trade_law(){
+		$user_id = $this->getUserId();
+		$store_about = Input::all();
+		$setting_trade_law = json_encode($store_about);
+		$user_store = UserStore::where('user_id', $user_id)->first();
+		if(!empty($user_store)) {
+			UserStore::where('user_id', $user_id)
+					->update(array('setting_trade_law' => $setting_trade_law,  'updated_user' => $user_id));
+		} else {
+			$user = new UserStore;
+			$user->user_id = $user_id;
+			$user->setting_trade_law = $setting_trade_law;
+			$user->created_user = $user_id;
+			$user->save();
+		}
+		$success =  "Bạn đã chỉnh sửa luật thương mại thành công ";
+		return Redirect::to('/store_setting')->with('success', $success);
+	}
+	/**
+	 * About commercial law
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function dashboard($id=null) {
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
+		$user_id = $this->getUserId();
+		$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
+		$data['account_token'] = $token_accout['account_token'];
+		return View::make('store.dashboard', $data );
+	}
+
+	/**
+	 * Set url for stores
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function store_domain(){
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
+		$user_id = $this->getUserId();
+		$user_store = UserStore::where('user_id', $user_id)->first(array('domain'));
+		$user_store = !empty($user_store) ? $user_store->toArray() : array();
+		if(!empty($user_store)) {
 			$data['domain'] = $user_store['domain'];
-    	} else {
-    		$data['domain'] = '';
-    	}
-
-
-
-    	return View::make('store.store_domain', $data);
-    }
-    /**
-     * Save change domain
-     * @author OanhHa
-     * @since 2015-01-19
-     */
-    public function save_domain(){
-    	$v = UserStore::validate_domain(Input::all());
-    	$user_id = $this->getUserId();
-    	$user_store = UserStore::where('user_id', $user_id)->first();
+		} else {
+			$data['domain'] = '';
+		}
+		return View::make('store.store_domain', $data);
+	}
+	/**
+	 * Save change domain
+	 * @author OanhHa
+	 * @since 2015-01-19
+	 */
+	public function save_domain(){
+		$v = UserStore::validate_domain(Input::all());
+		$user_id = $this->getUserId();
+		$user_store = UserStore::where('user_id', $user_id)->first();
+		$user_store = !empty($user_store) ? $user_store->toArray() : array();
 		$domain = Input::get('domain');
 		if(isset($user_store['domain']) && $domain != '' && ($domain==$user_store['domain'])) {
 			UserStore::where('user_id', $user_id)
-        				->update(array('domain' => $domain,  'updated_user' => $user_id));
-        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
-	        return Redirect::to('/store_setting')->with('success', $success);
+						->update(array('domain' => $domain,  'updated_user' => $user_id));
+			$success =  "Bạn đã chỉnh sửa thành công tên miền";
+			return Redirect::to('/store_setting')->with('success', $success);
 		} else {
-			 if($v->fails()){
-	            return Redirect::to('/store_domain')->withErrors($v)->withInput();
-	        } else {
-	        	if(!empty($user_store)) {
-	        		UserStore::where('user_id', $user_id)
-	        				->update(array('domain' => $domain,  'updated_user' => $user_id));
-	        	} else {
-	        		$user = new UserStore;
-	        		$user->user_id = $user_id;
-	        		$user->domain = $domain;
-	        		$user->created_user = $user_id;
-	        		$user->save();
-	        	}
-	        	$success =  "Bạn đã chỉnh sửa thành công tên miền";
-	        	 return Redirect::to('/store_setting')->with('success', $success);
-	        }
+			if($v->fails()){
+				return Redirect::to('/store_domain')->withErrors($v)->withInput();
+			} else {
+				if(!empty($user_store)) {
+					UserStore::where('user_id', $user_id)
+							->update(array('domain' => $domain,  'updated_user' => $user_id));
+				} else {
+					$user = new UserStore;
+					$user->user_id = $user_id;
+					$user->domain = $domain;
+					$user->created_user = $user_id;
+					$user->save();
+				}
+				$success =  "Bạn đã chỉnh sửa thành công tên miền";
+				 return Redirect::to('/store_setting')->with('success', $success);
+			}
 		}
 
-    }
-    /**
-     * Save change store about
-     * @author OanhHa
-     * @since 2015-01-19
-     */
-    public function save_store_about(){
-    	$v = UserStore::validate_about(Input::all());
-    	$user_id = $this->getUserId();
-        if($v->fails()){
-            return Redirect::to('/store_about')->withErrors($v)->withInput();
-        } else {
-        	$store_about = Input::all();
-        	$setting_intros = json_encode($store_about);
-        	$user_store = UserStore::where('user_id', $user_id)->first()->toArray();
-        	if(!empty($user_store)) {
-        		UserStore::where('user_id', $user_id)
-        				->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));
-        	} else {
-        		$user = new UserStore;
-        		$user->user_id = $user_id;
-        		$user->setting_intros = $setting_intros;
-        		$user->created_user = $user_id;
-        		$user->save();
-        	}
-        	$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
-        	return Redirect::to('/store_setting')->with('success', $success);
-
-        }
-    }
+	}
+	/**
+	 * Save change store about
+	 * @author OanhHa
+	 * @since 2015-01-19
+	 */
+	public function save_store_about(){
+		$v = UserStore::validate_about(Input::all());
+		$user_id = $this->getUserId();
+		if($v->fails()){
+			return Redirect::to('/store_about')->withErrors($v)->withInput();
+		} else {
+			$store_about = Input::all();
+			$setting_intros = json_encode($store_about);
+			$user_store = UserStore::where('user_id', $user_id)->first();
+			if(!empty($user_store)) {
+				UserStore::where('user_id', $user_id)
+						->update(array('setting_intros' => $setting_intros,  'updated_user' => $user_id));
+			} else {
+				$user = new UserStore;
+				$user->user_id = $user_id;
+				$user->setting_intros = $setting_intros;
+				$user->created_user = $user_id;
+				$user->save();
+			}
+			$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
+			return Redirect::to('/store_setting')->with('success', $success);
+		}
+	}
 
 }

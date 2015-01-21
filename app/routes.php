@@ -65,7 +65,9 @@ Route::get('/logout', array('uses' => 'UserController@doLogout'));
 Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));
 
 //change email
-Route::get('/change_email', array('before' => 'auth', 'uses' => 'UserController@changeEmail'));
+Route::get('/update_email', array('before' => 'auth', 'uses' => 'UserController@update_email'));
+Route::post('/update_email', array('before' => 'auth', 'uses' => 'UserController@doUpdateEmail'));
+
 //change password
 Route::get('/change_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
 //change profile
@@ -79,7 +81,7 @@ Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'U
 //change Mail notification settings
 Route::get('/change_mail_notification_setting', array('before' => 'auth', 'uses' => 'UserController@changeMailNotificationSetting'));
 //Withdrawal
-Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
+Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@withdrawal'));
 
 
 

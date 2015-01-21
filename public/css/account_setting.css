@@ -341,7 +341,7 @@ line-height: 1.5;
 }
 
 
-.btn_low_m a {
+.btn_low_m a, .btn_low_m button{
     display: block;
     width: 140px;
     height: 30px;
@@ -352,6 +352,16 @@ line-height: 1.5;
     text-align: center;
     line-height: 30px;
 }
+
+.btn_low_m a:hover{
+    text-decoration: none;
+    color: #FFF;
+    background-position: center bottom;
+}
+
+
+
+
 
 
 
@@ -514,6 +524,184 @@ cursor: pointer;
     height: 100%;
     position: relative;
     width: 100%;
+}
+
+
+/* popup */
+
+.fancybox-opened {
+z-index: 8030;
+}
+
+.fancybox-wrap {
+position: absolute;
+top: 0;
+left: 0;
+z-index: 8020;
+}
+
+.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancybox-nav span, .fancybox-tmp {
+padding: 0;
+margin: 0;
+border: 0;
+outline: none;
+vertical-align: top;
+}
+
+.fancybox-skin {
+    position: relative;
+    background: #f9f9f9;
+    color: #444;
+    text-shadow: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.fancybox-outer, .fancybox-inner {
+position: relative;
+}
+.fancybox-inner {
+overflow: hidden;
+}
+.fancybox-outer, .fancybox-inner {
+position: relative;
+}
+#popup_premium_form_message, #popup_premium_form_finish, #popup_quit_form_message, #popup_quit_form_follow {
+text-align: center;
+padding: 25px 15px 15px 15px;
+}
+
+#popup_premium_form h2, #popup_premium_form_message h2, #popup_premium_form_finish h2, #popup_quit_form h2, #popup_quit_form_message h2, #popup_quit_form_follow h2 {
+margin-bottom: 10px;
+font-size: 18px;
+font-weight: bold;
+text-align: center;
+line-height: 1.8;
+}
+
+#popup_premium_form_message h3, #popup_premium_form_finish h3, #popup_quit_form_message h3, #popup_quit_form_follow h3 {
+margin-bottom: 30px;
+font-size: 14px;
+font-weight: bold;
+color: #666;
+line-height: 1.6;
+}
+
+#popup_premium_form_message .delete_list, #popup_premium_form_finish .delete_list, #popup_quit_form_message .delete_list, #popup_quit_form_follow .delete_list {
+margin-bottom: 20px;
+/*text-align: left;*/
+}
+
+
+#popup_premium_form_message .delete_list li, #popup_premium_form_finish .delete_list li, #popup_quit_form_message .delete_list li, #popup_quit_form_follow .delete_list li {
+width: 265px;
+margin: 0 auto 5px auto;
+padding-left: 60px;
+background: url("../img/account_setting/icon_delete.png") no-repeat 20px center #ededed;
+font-size: 14px;
+line-height: 1.8;
+}
+
+.memo {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding: 7px 15px 5px 15px;
+    background-color: #ededed;
+    font-size: 12px;
+    color: #666;
+}
+
+.btn_pair {
+    clear: both;
+    width: 361px;
+    margin: 0 auto;
+    letter-spacing: -0.35em;
+}
+.btn_pair dd, .btn_pair li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+    padding: 0 10px;
+    vertical-align: bottom;
+}
+
+#popup_premium_form h2, #popup_premium_form_message h2, #popup_premium_form_finish h2, #popup_quit_form h2, #popup_quit_form_message h2, #popup_quit_form_follow h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8;
+}
+
+#popup_premium_form #bg_premium_form, #popup_premium_form_message #bg_premium_form, #popup_premium_form_finish #bg_premium_form, #popup_quit_form #bg_premium_form, #popup_quit_form_message #bg_premium_form, #popup_quit_form_follow #bg_premium_form {
+    position: relative;
+    width: 483px;
+    height: 275px;
+    margin: 20px 15px 0 15px;
+    background: url("../img/account_setting/bg_premium_form.png") no-repeat;
+}
+
+#popup_premium_form #bg_premium_form ul, #popup_premium_form_message #bg_premium_form ul, #popup_premium_form_finish #bg_premium_form ul, #popup_quit_form #bg_premium_form ul, #popup_quit_form_message #bg_premium_form ul, #popup_quit_form_follow #bg_premium_form ul {
+position: absolute;
+top: 23px;
+right: 30px;
+}
+
+#bg_premium_form li {
+display: list-item;
+text-align: -webkit-match-parent;
+}
+
+#popup_premium_form #bg_premium_form ul li .styled_checkbox, #popup_premium_form_message #bg_premium_form ul li .styled_checkbox, #popup_premium_form_finish #bg_premium_form ul li .styled_checkbox, #popup_quit_form #bg_premium_form ul li .styled_checkbox, #popup_quit_form_message #bg_premium_form ul li .styled_checkbox, #popup_quit_form_follow #bg_premium_form ul li .styled_checkbox {
+display: inline-block;
+margin: 0 5px 10px 0;
+vertical-align: middle;
+}
+
+.styled_checkbox {
+display: block;
+position: relative;
+width: 20px;
+height: 20px;
+}
+
+.styled_checkbox input {
+-moz-appearance: none;
+-webkit-appearance: none;
+filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+opacity: 0;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 2;
+width: 100%;
+height: 100%;
+margin: 0;
+}
+
+.styled_checkbox span.checked-true {
+background: url("../img/account_setting/checkbox_checked.png") no-repeat left;
+}
+
+#popup_premium_form textarea, #popup_premium_form_message textarea, #popup_premium_form_finish textarea, #popup_quit_form textarea, #popup_quit_form_message textarea, #popup_quit_form_follow textarea {
+width: 470px;
+height: 50px;
+border: solid 1px #ccc;
+margin: 20px 10px 10px 10px;
+padding: 7px 10px;
+font-size: 13px;
+color: #666;
+}
+
+label{
+    display: inline-block;
+    font-size: 14px;
+}
+
+#myModal2{
+    padding: 25px 15px 15px 15px;
 }
 
 

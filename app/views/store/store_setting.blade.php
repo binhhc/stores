@@ -13,7 +13,7 @@
 				<dd style="width: 500px;">
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
-							<span class="big ng-binding" style="line-height: 220%;">https://oanhht.stores.jp</span>
+							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? $user_store['domain'] : ''?></span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
@@ -53,73 +53,87 @@
 				<dt>Publish</dt>
 				<dd>
 					<div id="switch_open" class="switch" ng-click="toggle_closed()">
-						<p class="status active hide" ng-hide="closed" style="display: block!important;">Publish</p>
-						<p class="status deactive hide" ng-show="closed">Riêng</p>
+					<?php if(isset($user_store['public_flg']) && $user_store['public_flg'] == 0) {?>
+						<p class="status active hide">Publish</p>
 						<p class="grip" style="left: 2px;"></p>
+					<?php } else {?>
+						<p class="status deactive hide">Riêng</p>
+						<p class="grip" style="left: 2px;"></p>
+					<?php }?>
 					</div>
 				</dd>
 			</dl>
 			<dl class="cols">
 				<dt>Mô tả cửa hàng</dt>
 				<dd class="horizon">
+				<?php if(isset($user_store['setting_intros']) && $user_store['setting_intros'] != '') {?>
+					<p class="btn_low_m" ng-show="hasAbout" >
+						<a href="store_about">Chỉnh sửa</a>
+					</p>
+					<p class="btn_low_m" ng-show="hasAbout" >
+						<a href="store_about">Xoá</a>
+					</p>
+				<?php } else {?>
 					<p class="btn_low_m" ng-hide="hasAbout">
 						<a href="store_about">Đăng ký</a>
 					</p>
-					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a href="store_about">Chỉnh sửa</a>
-					</p>
-					<p class="btn_low_m" ng-show="hasAbout" style="display: none;">
-						<a href="store_about">Xoá</a>
-					</p>
+
+				<?php }?>
 					<p class="memo" ng-show="showProfileSettingAlert()" style="display: none;">Cảm ơn bạn đã đăng ký</p>
 				</dd>
 			</dl>
 			<dl class="cols">
 				<dt>Luật giao dịch thương mại</dt>
 				<dd class="horizon">
-					<p class="btn_low_m" ng-hide="hasTokushoho">
-						<a  href="commercial_law">Đăng ký</a>
-					</p>
-					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a  href="commercial_law">Chỉnh sửa</a>
-					</p>
-					<p class="btn_low_m" ng-show="hasTokushoho" style="display: none;">
-						<a  href="">Xoá</a>
-					</p>
+					<?php if(isset($user_store['trade_law']) && $user_store['trade_law'] != '') {?>
+						<p class="btn_low_m" ng-show="hasTokushoho">
+							<a  href="trade_law">Chỉnh sửa</a>
+						</p>
+						<p class="btn_low_m" ng-show="hasTokushoho" >
+							<a  href="">Xoá</a>
+						</p>
+					<?php } else {?>
+						<p class="btn_low_m" ng-hide="hasTokushoho">
+							<a  href="trade_law">Đăng ký</a>
+						</p>
+					<?php }?>
 				</dd>
 			</dl>
-			<dl class="cols">
+			<!--  <dl class="cols">
 				<dt>Phương thức thanh toán</dt>
 				<dd class="horizon">
 					<p class="btn_low_m">
 						<a href="payment_method">Chỉnh sửa</a>
 					</p>
 				</dd>
-			</dl>
+			</dl>-->
 			<dl class="cols" ng-show="sf.type == 'fix'" style="">
 				<dt id="sipping_title">Cài đặt vận chuyển</dt>
 				<dd id="sipping_contents" class="horizon">
-					<p id="open_shipping_select" class="btn_low_m">
-						<a href="javascript:0">Cài đặt</a>
+					<p id="open_shipping_select"  class="btn_low_m">
+						<a href="">Cài đặt</a>
 					</p>
 					<div id="shipping_select" style="display:none;">
 						<div id="shipping_fix">
+						<?php $circle = isset($setting_postage->circle) ? $setting_postage->circle: ''?>
 							<dl class="box_wht">
 								<dd class="price">
-									<input class="sz_s ng-pristine ng-valid" type="text" ng-model="sf.default_shipping_fee">
+									 {{Form::text('circle',$circle , array('class' => ''))}}
 										Mối
 								</dd>
 							</dl>
 							<ul class="shipping_free_wrapper">
 								<li class="sz_fix" style="line-height:44px;">
+								<?php $check_free_ship = isset($setting_postage->check_free_ship) ? $setting_postage->check_free_ship: ''?>
 									<div class="styled_checkbox">
-										<input id="check_shipping_free_fix" class="check_shipping_free1 ng-pristine ng-valid" type="checkbox" ng-model="enabled_free_shipping" name="">
-										<span class="checked-"></span>
+										{{Form::checkbox('check_free_ship',$check_free_ship , array('id' => 'check_shipping_free_fix'))}}
+										<span id="checkbox_image" class="checked-"></span>
 									</div>
 									<label for="check_shipping_fix">Miễn phí vận chuyển</label>
 								</li>
+								<?php $free_ship = isset($setting_postage->free_ship) ? $setting_postage->free_ship: ''?>
 								<li class="shipping_free1" ng-show="enabled_free_shipping" style="display:none;">
-									<input class="sz_s ng-pristine ng-valid" type="text" ng-model="sf.free_shipping" name="">
+									 {{Form::text('free_ship', $free_ship, array('style' => 'width: 100px'))}}
 									Yên hoặc miễn phí vận chuyển
 								</li>
 							</ul>
@@ -131,14 +145,14 @@
 									<button class="cancel_button">Huỷ</button>
 								</dd>
 								<dd class="btn_high">
-									<button ng-click="save_fix_shipping_fee()">Lưu</button>
+									<button class="save_shipping">Lưu</button>
 								</dd>
 							</dl>
 						</div>
 					</div>
 				</dd>
 			</dl>
-
+			{{Form::close()}}
 			<dl class="cols" style="clear:both;">
 				<dt>
 					Theo dõi
@@ -150,9 +164,14 @@
 				</dt>
 				<dd class="ng-scope" addon="follow" sp-grip="">
 					<div class="switch" ng-click="toggleAddon()">
-						<p class="status active" ng-hide="closed" style="display: block!important;">ON</p>
-						<p class="status deactive" ng-hide="isEnableAddon()" style="display: none;">OFF</p>
-						<p class="grip" style="left: 57px;"></p>
+						<?php if(isset($user_store['follow']) && $user_store['follow'] == 0) {?>
+							<p class="status active">ON</p>
+							<p class="grip" style="left: 57px;"></p>
+						<?php } else {?>
+							<p class="status deactive" >OFF</p>
+							<p class="grip" style="left: 57px;"></p>
+						<?php }?>
+
 					</div>
 				</dd>
 			</dl>
@@ -427,4 +446,5 @@
 		</div>
 	</div>
 </div>
+
 @include('elements.footer')

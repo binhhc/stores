@@ -15,7 +15,8 @@ Route::model('user', 'User');
 Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
-Route::get('/commercial_law', 'StoreController@commercial_law');
+Route::get('/trade_law', 'StoreController@trade_law');
+Route::post('/trade_law', 'StoreController@save_trade_law');
 Route::get('/store_setting', 'StoreController@store_setting');
 Route::get('/payment_method', 'StoreController@payment_method');
 Route::get('/setting_domain', 'StoreController@setting_domain');
@@ -23,6 +24,7 @@ Route::get('/store_about', array('before' => 'auth', 'uses' => 'StoreController@
 Route::post('/store_about', array('before' => 'auth', 'uses' => 'StoreController@save_store_about'));
 Route::get('/store_domain', array('before' => 'auth', 'uses' =>'StoreController@store_domain'));
 Route::post('/store_domain', array('before' => 'auth', 'uses' =>'StoreController@save_domain'));
+Route::post('/ship_setting', array('before' => 'auth', 'uses' =>'StoreController@ship_setting'));
 Route::get('/item_management', 'UserItemController@item_management');
 Route::get('/dashboard/', 'StoreController@dashboard');
 Route::get('/dashboard/{id}', 'StoreController@dashboard');

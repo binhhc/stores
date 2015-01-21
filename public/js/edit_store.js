@@ -1,3 +1,4 @@
+var URL_PATH_PATTENT = 'img/samples/'
 function toggle_frame(state) {
     state ? ($scope.styles.css.items = {
         background: "#fff"
@@ -7916,7 +7917,9 @@ $(document).ready(function() {
         }))
     })
 });
-var app = angular.module("StoresJp::EditStore", ["StoresJpAddon"]);
+var app = angular.module("StoresJp::EditStore", ["StoresJpAddon"]).config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
+});
 angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", "$http", "$timeout", "storesJpAddonUtility", function($scope, $http, $timeout) {
         function update_store_name_ja_exists() {
             $scope.store_name_ja_only = $scope.store.name.match(/^[^ -~\uff61-\uff9f]*$/) ? !0 : !1
@@ -7990,7 +7993,6 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     _.each($scope.items, function(v, k) {
                         if (!_.isEmpty(v.images)) {
                             var file_name = v.images[0].name.split(".");
-                            console.log(file_name);
                             v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
                         }
                     }), _.delay(function() {
@@ -8133,40 +8135,15 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
             },
             init: function() {
                 $http.get("/items").success(function(data) {
-                    $scope.items = _.isEmpty(data) ? [{
-                        name: "Balo đựng laptop",
-                        price: 1e3,
-                        path: "img/samples/products/1.jpeg"
-                    }, {
-                        name: "Quần jean",
-                        price: 1e3,
-                        path: "img/samples/products/2.jpeg"
-                    }, {
-                        name: "Dù che mưa",
-                        price: 1e3,
-                        path: "img/samples/products/3.jpeg"
-                    }, {
-                        name: "Máy chụp hình cổ",
-                        price: 1e3,
-                        path: "img/samples/products/4.jpeg"
-                    }, {
-                        name: "Giày nam",
-                        price: 1e3,
-                        path: "img/samples/products/5.jpeg"
-                    }, {
-                        name: "Quạt máy",
-                        price: 1e3,
-                        path: "img/samples/products/6.jpeg"
-                    }, {
-                        name: "Áo thun",
-                        price: 1e3,
-                        path: "img/samples/products/7.jpeg"
-                    }, {
-                        name: "Mắt kính",
-                        price: 1e3,
-                        path: "img/samples/products/8.jpeg"
-                    }] : data, $http.get("/styles").success(function(data) {
-                    	
+
+                    $scope.items = _.isEmpty(data) ? editStoreItemSample : data, $http.get("/styles").success(function(data) {
+                    	var url_path_background = (data.background.image);
+                        var main_url_path = '';
+                        if (url_path_background != null && url_path_background.indexOf(URL_PATH_PATTENT) > -1) {
+                            main_url_path = STORES_JP.FILE_SERVER_URL + '/' + url_path_background;
+                        } else {
+                            main_url_path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" +url_path_background;
+                        };
                         _.each(data, function(v, k) {
                             v && (_.isObject(v) ? _.each(v, function(v2, k2) {
                                 $scope.store[k][k2] = v2
@@ -8182,7 +8159,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                             }
                         }, $scope.styles["class"] = {
                             item_inner: "frame_none"
-                        }), _.isEmpty($scope.store.background.image) || $scope.store.change_background_image($scope.store.background.image), _.isEmpty($scope.store.logo) || ($scope.styles.logo_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.store.logo, $scope.styles.logo = !0, $scope.styles.show_logo_switch = !0), "no-repeat" == $scope.store.background.repeat && ($scope.styles.body["background-repeat"] = "no-repeat"), $scope.store.background.image && "/" != $scope.store.background.image[0] && ($scope.styles.original_background_image = !0, $scope.styles.body["background-image"] = $scope.util.generate_image_style(STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.store.background.image)["background-image"]), $scope.store.background.color && ($scope.styles.body["background-color"] = $scope.store.background.color), $scope.store.text_color.store && ($scope.styles.store_logo.color = $scope.styles.navi_main.color = $scope.store.text_color.store), $scope.store.store_font.style && ("google" == $scope.store.store_font.type ? ($scope.styles.store_logo["font-family"] = $scope.store.store_font.style, $scope.styles.store_logo["font-weight"] = $scope.store.store_font.weight) : ($scope.styles.store_logo["font-family"] = "dynamic_font", $scope.styles.store_logo["font-weight"] = "", Ts.dynamicCss(font_callback, $scope.store.name, $scope.store.store_font.style, "dynamic_font", "", ""))), $scope.select_font_name = $scope.store.store_font.style.split(",")[0].replace(/'/g, ""), update_store_name_ja_exists(), $(".store_logo_pc").css("font-size", $scope.store.store_font.size + "px"), $("#slider").slider({
+                        }), _.isEmpty($scope.store.background.image) || $scope.store.change_background_image($scope.store.background.image), _.isEmpty($scope.store.logo) || ($scope.styles.logo_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.store.logo, $scope.styles.logo = !0, $scope.styles.show_logo_switch = !0), "no-repeat" == $scope.store.background.repeat && ($scope.styles.body["background-repeat"] = "no-repeat"), $scope.store.background.image && "/" != $scope.store.background.image[0] && ($scope.styles.original_background_image = !0, $scope.styles.body["background-image"] = $scope.util.generate_image_style(main_url_path)["background-image"]), $scope.store.background.color && ($scope.styles.body["background-color"] = $scope.store.background.color), $scope.store.text_color.store && ($scope.styles.store_logo.color = $scope.styles.navi_main.color = $scope.store.text_color.store), $scope.store.store_font.style && ("google" == $scope.store.store_font.type ? ($scope.styles.store_logo["font-family"] = $scope.store.store_font.style, $scope.styles.store_logo["font-weight"] = $scope.store.store_font.weight) : ($scope.styles.store_logo["font-family"] = "dynamic_font", $scope.styles.store_logo["font-weight"] = "", Ts.dynamicCss(font_callback, $scope.store.name, $scope.store.store_font.style, "dynamic_font", "", ""))), $scope.select_font_name = $scope.store.store_font.style.split(",")[0].replace(/'/g, ""), update_store_name_ja_exists(), $(".store_logo_pc").css("font-size", $scope.store.store_font.size + "px"), $("#slider").slider({
                             range: "max",
                             min: 30,
                             max: 120,
@@ -8263,8 +8240,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                             }
                         }
                     }).success(function(data, status, headers, config) {
-                        alert(data);
-                        //$(window).off("beforeunload"), location.href = "/"
+                        //alert(data);
+                        $(window).off("beforeunload"), location.href = "/"
                     }).error(function(data, status, headers, config) {
                         alert('errot' + data);
                     })

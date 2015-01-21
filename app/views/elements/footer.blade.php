@@ -21,6 +21,5 @@
             </div>
         <!-- /Information Panel -->
         {{HTML::script('/js/jquery.tipsy.js')}}
-        {{HTML::script('/js/common.js')}}
     </body>
 </html>

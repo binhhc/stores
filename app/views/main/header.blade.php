@@ -1,7 +1,7 @@
 {{HTML::style('css/bootstrap.min.css')}}
         {{HTML::style('css/main_page.css')}}
         {{HTML::script('js/jquery.min.js')}}
-        {{HTML::script('js/common.js')}}
+        {{HTML::script('js/main_page.js')}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!--  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54ae02186ebfd008" async="async"></script>-->
 

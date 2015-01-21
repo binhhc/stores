@@ -1,4 +1,5 @@
 @include('elements.header')
+ {{HTML::script('/js/store_setting.js')}}
 <div id="alert_delete_success" style="display: none">
 	<div id="alert_panel12" class="success" style="display: block; opacity: 1.0; top: -10px;">
        	<p>Bạn đã xoá thành công mô tả cửa hàng!</p>
@@ -29,7 +30,6 @@
 					<div class="btn_domain" ng-show="data.url[4] == 's'" style="">
 						<p class="icon">
 						{{HTML::image('img/main_page/icon_premium.png') }}
-
 						</p>
 						<p class="text">Với URL ngắn gọn và dễ nhớ, dễ quảng bá bán hàng</p>
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">
@@ -40,7 +40,7 @@
 			</dl>
 			<dl class="cols">
 				<dt>Kế hoạch sử dụng</dt>
-				<dd class="horizon" style="width: 300px;">
+				<dd class="horizon" style="width: 340px;">
 					<ul>
 						<li class="ng-binding" style="font-size: 14px; font-weight: bold;">Miễn phí</li>
 						<li class="btn_ribbon">

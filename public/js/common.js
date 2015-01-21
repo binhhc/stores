@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	setTimeout(function() {
 	       $('#alert_panel').fadeOut();
-	   }, 4000);
+	   }, 3000);
 
     $('#start_with_store').on('click', function(e) {
         e.preventDefault();
@@ -219,7 +219,186 @@ $(document).ready(function(){
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                 },
             });
-		})
+		});
+		$(document).on('click', '.switch_public_flag', function(e){
+			var store_id = $(this).attr('store_id');
+			var public_flg;
+			if($('.switch_public_flag .status_store').hasClass('active')) {
+				public_flg = 0;
+				$('.switch_public_flag .status_store').removeClass('active');
+				$('.switch_public_flag .status_store').addClass('deactive');
+				$('.switch_public_flag .status_store').text('Private');
+				$('.switch_public_flag .grip').css({'left':'2px'});
+			} else {
+				public_flg = 1;
+				$('.switch_public_flag .status_store').removeClass('deactive');
+				$('.switch_public_flag .status_store').addClass('active');
+				$('.switch_public_flag .status_store').text('Public');
+				$('.switch_public_flag .grip').css({'left':'57px'});
+			}
+			$.ajax({
+                type: "POST",
+                url: "/set_public_flag",
+                data: {
+                    store_id: store_id,
+                    public_flg:public_flg
+                },
+                global: true,
+                dataType: 'json',
+                success: function(response) {
+                	if(response.success=1) {
+                		return;
+                	} else {
+                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                		return;
+                	}
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                },
+            });
+
+		});
+		$(document).on('click', '.set_promotion', function(e){
+			var store_id = $(this).attr('store_id');
+			var promotion;
+			if($('.set_promotion .status_promotion').hasClass('active')) {
+				public_flg = 0;
+				$('.set_promotion .status_promotion').removeClass('active');
+				$('.set_promotion .status_promotion').addClass('deactive');
+				$('.set_promotion .status_promotion').text('OFF');
+				$('.set_promotion .grip').css({'left':'2px'});
+			} else {
+				public_flg = 1;
+				$('.set_promotion .status_promotion').removeClass('deactive');
+				$('.set_promotion .status_promotion').addClass('active');
+				$('.set_promotion .status_promotion').text('ON');
+				$('.set_promotion .grip').css({'left':'57px'});
+			}
+			$.ajax({
+                type: "POST",
+                url: "/set_promotion",
+                data: {
+                    store_id: store_id,
+                    promotion: promotion
+                },
+                global: true,
+                dataType: 'json',
+                success: function(response) {
+                	if(response.success=1) {
+                		return;
+                	} else {
+                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                		return;
+                	}
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                },
+            });
+
+		});
+		$(document).on('click', '.set_store_follow', function(e){
+			var store_id = $(this).attr('store_id');
+			var store_follow;
+			if($('.set_store_follow .status_follow').hasClass('active')) {
+				store_follow = 0;
+				$('.set_store_follow .status_follow').removeClass('active');
+				$('.set_store_follow .status_follow').addClass('deactive');
+				$('.set_store_follow .status_follow').text('OFF');
+				$('.set_store_follow .grip').css({'left':'2px'});
+			} else {
+				store_follow = 1;
+				$('.set_store_follow .status_follow').removeClass('deactive');
+				$('.set_store_follow .status_follow').addClass('active');
+				$('.set_store_follow .status_follow').text('ON');
+				$('.set_store_follow .grip').css({'left':'57px'});
+			}
+			$.ajax({
+                type: "POST",
+                url: "/set_store_follow",
+                data: {
+                    store_id: store_id,
+                    store_follow:store_follow
+                },
+                global: true,
+                dataType: 'json',
+                success: function(response) {
+                	if(response.success=1) {
+                		return;
+                	} else {
+                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                		return;
+                	}
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                },
+            });
+
+		});
+		$('#delete_store_about').on('click', function(e){
+			e.preventDefault();
+			conf = confirm('Bạn chắc chắn muốn xoá mô tả cửa hàng?');
+			if(conf) {
+				var store_id = $(this).attr('store_id');
+				$.ajax({
+	                type: "POST",
+	                url: "/delete_store_about",
+	                data: {
+	                    store_id: store_id,
+	                },
+	                global: true,
+	                dataType: 'json',
+	                success: function(response) {
+	                	if(response.success=1) {
+	                		$('#delete_store_about').hide();
+	                		$('#alert_delete_success p').text('Bạn đã xoá thành công mô tả cửa hàng!');
+	                		$('.store_edit').text('Đăng ký');
+	                         $('#alert_delete_success').fadeIn('slow').delay(3000).fadeOut('slow');
+	                		return;
+	                	} else {
+	                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+	                		return;
+	                	}
+	                },
+	                error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                },
+	            });
+			} else {
+				return;
+			}
+		});
+		$('#delete_trade_law').on('click', function(e){
+			e.preventDefault();
+			conf = confirm('Bạn chắc chắn muốn xoá luật thương mại?');
+			if(conf) {
+				var store_id = $(this).attr('store_id');
+				$.ajax({
+	                type: "POST",
+	                url: "/delete_trade_law",
+	                data: {
+	                    store_id: store_id,
+	                },
+	                global: true,
+	                dataType: 'json',
+	                success: function(response) {
+	                	if(response.success=1) {
+	                		$('#delete_trade_law').hide();
+	                		$('#alert_delete_success p').text('Bạn đã xoá thành công luật thương mại của cửa hàng!');
+	                		$('.trade_law_edit').text('Đăng ký');
+	                         $('#alert_delete_success').fadeIn('slow').delay(3000).fadeOut('slow');
+	                		return;
+	                	} else {
+	                		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+	                		return;
+	                	}
+	                },
+	                error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                },
+	            });
+			} else {
+				return;
+			}
+		});
+
 });
 
 function validateEmail(email) {

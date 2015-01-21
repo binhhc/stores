@@ -1,4 +1,9 @@
 @include('elements.header')
+<div id="alert_delete_success" style="display: none">
+	<div id="alert_panel12" class="success" style="display: block; opacity: 1.0; top: -10px;">
+       	<p>Bạn đã xoá thành công mô tả cửa hàng!</p>
+	</div>
+</div>
 <?php if(Session::has('success')) {?>
 <div id="alert_panel" class="success" style="display: block; opacity: 1.0; top: -10px;">
     <p><?php echo Session::get('success');?></p>
@@ -52,12 +57,12 @@
 			<dl id="cols_closed" class="cols">
 				<dt>Publish</dt>
 				<dd>
-					<div id="switch_open" class="switch" ng-click="toggle_closed()">
-					<?php if(isset($user_store['public_flg']) && $user_store['public_flg'] == 0) {?>
-						<p class="status active hide">Publish</p>
-						<p class="grip" style="left: 2px;"></p>
+					<div id="switch_open" class="switch switch_public_flag" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>" ng-click="toggle_closed()">
+					<?php if(isset($user_store['public_flg']) && $user_store['public_flg'] == 1) {?>
+						<p class="status_store active" >Publish</p>
+						<p class="grip" style="left: 57px;"></p>
 					<?php } else {?>
-						<p class="status deactive hide">Riêng</p>
+						<p class="status_store deactive">Private</p>
 						<p class="grip" style="left: 2px;"></p>
 					<?php }?>
 					</div>
@@ -68,10 +73,10 @@
 				<dd class="horizon">
 				<?php if(isset($user_store['setting_intros']) && $user_store['setting_intros'] != '') {?>
 					<p class="btn_low_m" ng-show="hasAbout" >
-						<a href="store_about">Chỉnh sửa</a>
+						<a href="store_about" class="store_edit">Chỉnh sửa</a>
 					</p>
-					<p class="btn_low_m" ng-show="hasAbout" >
-						<a href="store_about">Xoá</a>
+					<p class="btn_low_m" id="delete_store_about" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>" >
+						<a href="">Xoá</a>
 					</p>
 				<?php } else {?>
 					<p class="btn_low_m" ng-hide="hasAbout">
@@ -85,11 +90,11 @@
 			<dl class="cols">
 				<dt>Luật giao dịch thương mại</dt>
 				<dd class="horizon">
-					<?php if(isset($user_store['trade_law']) && $user_store['trade_law'] != '') {?>
+					<?php  if(isset($user_store['setting_trade_law']) && $user_store['setting_trade_law'] != '') {?>
 						<p class="btn_low_m" ng-show="hasTokushoho">
-							<a  href="trade_law">Chỉnh sửa</a>
+							<a  href="trade_law" class="trade_law_edit">Chỉnh sửa</a>
 						</p>
-						<p class="btn_low_m" ng-show="hasTokushoho" >
+						<p class="btn_low_m" id="delete_trade_law" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>" >
 							<a  href="">Xoá</a>
 						</p>
 					<?php } else {?>
@@ -162,14 +167,14 @@
 					</a>
 					</span>
 				</dt>
-				<dd class="ng-scope" addon="follow" sp-grip="">
-					<div class="switch" ng-click="toggleAddon()">
-						<?php if(isset($user_store['follow']) && $user_store['follow'] == 0) {?>
-							<p class="status active">ON</p>
+				<dd class="ng-scope" >
+					<div class="switch set_store_follow" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
+						<?php if(isset($user_store['follow']) && $user_store['follow'] == 1) {?>
+							<p class="status_follow active">ON</p>
 							<p class="grip" style="left: 57px;"></p>
 						<?php } else {?>
-							<p class="status deactive" >OFF</p>
-							<p class="grip" style="left: 57px;"></p>
+							<p class="status_follow deactive" >OFF</p>
+							<p class="grip" style="left: 2px;"></p>
 						<?php }?>
 
 					</div>
@@ -188,11 +193,17 @@
 				<dd>
 					<ul>
 						<li id="form_promotion">
-								<div class="switch" ng-hide="promotion_config" style="">
-									<p class="status active" ng-show="promotion" style="display: none;">ON</p>
-									<p class="status deactive" ng-hide="promotion" style="">OFF</p>
-									<p class="grip" style="left: 2px;"></p>
+								<div class="switch set_promotion" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
+									<?php if(isset($user_store['promotion']) && $user_store['promotion'] == 1) {?>
+										<p class="status_promotion active">ON</p>
+										<p class="grip" style="left: 57px;"></p>
+									<?php } else {?>
+										<p class="status_promotion deactive" >OFF</p>
+										<p class="grip" style="left: 2px;"></p>
+									<?php }?>
+
 								</div>
+
 						</li>
 					</ul>
 				</dd>

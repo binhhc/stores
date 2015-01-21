@@ -99,5 +99,126 @@ return array(
         'Rye',
         'Vast+Shadow',
     ),    
-    
-    ); 
+    'fonts' => array(
+        array(
+            'name' => "Allerta",
+            'type' => "google",
+            'font_family2'=> "sans-serif",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Montserrat",
+            'type' => "google",
+            'font_family2'=> "sans-serif",
+            'font_weight'=> 700
+        ),
+        array(
+            'name' => "Oswald",
+            'type' => "google",
+            'font_family2'=> "sans-serif",
+            'font_weight'=> 700
+        ),
+        array(
+            'name' => "Lora",
+            'type' => "google",
+            'font_family2'=> "serif",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Marko One",
+            'type' => "google",
+            'font_family2'=> "serif",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Arvo",
+            'type' => "google",
+            'font_family2'=> "serif",
+            'font_weight'=> 700
+        ),
+        array(
+            'name' => "Limelight",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Lobster",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Monoton",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Codystar",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Ribeye Marrow",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Special Elite",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Rock Salt",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Permanent Marker",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Great Vibes",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Quicksand",
+            'type' => "google",
+            'font_family2'=> "sans-serif",
+            'font_weight'=> 700
+        ),
+        array(
+            'name' => "Play",
+            'type' => "google",
+            'font_family2'=> "sans-serif",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Fugaz One",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Rye",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        ),
+        array(
+            'name' => "Vast Shadow",
+            'type' => "google",
+            'font_family2'=> "cursive",
+            'font_weight'=> 400
+        )
+    )
+); 

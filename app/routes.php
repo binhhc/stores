@@ -39,9 +39,7 @@ Route::get('/delete_item', 'UserItemController@delete_item');
 Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 
 //edit store
-//Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
-//Route::get('/styles', array('before' => 'auth', 'uses' => 'StoreController@styles'));
-Route::get('/edit', 'StoreController@edit');
+Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
 Route::get('/styles', 'StoreController@styles');
 Route::get('/items', 'StoreController@items');
 Route::get('/categories', 'StoreController@categories');

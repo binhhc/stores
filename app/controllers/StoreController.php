@@ -300,7 +300,7 @@ class StoreController extends BaseController {
                 $settings = $userStores->settings;
                 $tmpSetting = json_decode($settings);
                 $store = $tmpSetting->store;
-                $style['name'] = $store->name;
+                $style['name'] = !empty($store->name) ? $store->name : $userInfos['USER_NAME'] ;
                 $style['store_font'] = array(
                     'style' => $store->store_style->store_font_style,
                     'type' => $store->store_style->store_font_type,

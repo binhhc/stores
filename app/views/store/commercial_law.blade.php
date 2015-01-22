@@ -31,7 +31,7 @@
 			</dd>
 			<dd>
 				<dl class="cols_single">
-					<dt>Các vấn đề liên quan đến hợp đồng đặc biệt của Trả lại</dt>
+					<dt>Các vấn đề liên quan đến hợp đồng</dt>
 					<dd>
 						{{Form::textarea('contract', $contract, array('placeholder' => '', 'style' => "height: 80px;"))}}
 					</dd>

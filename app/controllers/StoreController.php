@@ -22,7 +22,7 @@ class StoreController extends BaseController {
     public function edit() {
         //get fonts default
         $fontDefaults = Config::get('constants.fonts');
-        
+
         //get item sample
         $tmpItemSample = UserItem::getItemSample();
         $itemSample = array();
@@ -552,7 +552,6 @@ class StoreController extends BaseController {
 	public function set_promotion() {
 		if(Request::ajax())
 	    {
-
 			 $store_id = trim(Input::get('store_id'));
 	    	 $promotion = trim(Input::get('promotion'));
 	    	 $user_id = $this->getUserId();
@@ -659,15 +658,15 @@ class StoreController extends BaseController {
 		$user_store = !empty($user_store) ? $user_store->toArray() : array();
 		if(!empty($user_store)) {
 			$setting_trade_law = json_decode($user_store['setting_trade_law']);
-			$data['price'] = isset($setting_trade_law->price) ? $setting_trade_law->price : '';
+			$data['price'] = isset($setting_trade_law->price) ? $setting_trade_law->price : Config::get('constants.trade_law.price');
 
-			$data['charge'] = isset($setting_trade_law->charge) ? $setting_trade_law->charge : '';
-			$data['time_ship'] = isset($setting_trade_law->time_ship) ? $setting_trade_law->time_ship : '';
-			$data['contract'] = isset($setting_trade_law->contract) ? $setting_trade_law->contract : '';
-			$data['contact'] = isset($setting_trade_law->contact) ? $setting_trade_law->contact : '';
+			$data['charge'] = isset($setting_trade_law->charge) ? $setting_trade_law->charge : Config::get('constants.trade_law.charge');
+			$data['time_ship'] = isset($setting_trade_law->time_ship) ? $setting_trade_law->time_ship : Config::get('constants.trade_law.time_ship');
+			$data['contract'] = isset($setting_trade_law->contract) ? $setting_trade_law->contract : Config::get('constants.trade_law.contract');
+			$data['contact'] = isset($setting_trade_law->contact) ? $setting_trade_law->contact : Config::get('constants.trade_law.contact');
 
 		} else {
-			$data = array('price' => '', 'charge' => '', 'contract' => '', 'contact' => '', 'time_ship' => '');
+			$data = array('price' => Config::get('constants.trade_law.price'), 'charge' => Config::get('constants.trade_law.charge'), 'contract' => Config::get('constants.trade_law.contract'), 'contact' => Config::get('constants.trade_law.contact'), 'time_ship' => Config::get('constants.trade_law.time_ship'));
 		}
 
 		return View::make('store.commercial_law', $data);

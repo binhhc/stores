@@ -116,13 +116,13 @@ $(document).ready(function(){
 		var store_id = $(this).attr('store_id');
 		var promotion;
 		if($('.set_promotion .status_promotion').hasClass('active')) {
-			public_flg = 0;
+			promotion = 0;
 			$('.set_promotion .status_promotion').removeClass('active');
 			$('.set_promotion .status_promotion').addClass('deactive');
 			$('.set_promotion .status_promotion').text('OFF');
 			$('.set_promotion .grip').css({'left':'2px'});
 		} else {
-			public_flg = 1;
+			promotion = 1;
 			$('.set_promotion .status_promotion').removeClass('deactive');
 			$('.set_promotion .status_promotion').addClass('active');
 			$('.set_promotion .status_promotion').text('ON');

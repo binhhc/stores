@@ -33,6 +33,7 @@ class UserItemController extends BaseController {
 		$data['items'] = $items;
 		/*$queries = DB::getQueryLog();
 		var_dump($queries);*/
+		$data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
 		return View::make('userItem.item_management', $data);
 	}
 	/**

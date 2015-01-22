@@ -22,7 +22,10 @@ class StoreController extends BaseController {
     public function edit() {
         //get fonts default
         $fontDefaults = Config::get('constants.fonts');
-        
+
+        //get font family default
+        $fontFamily = Config::get('constants.sys_css');
+
         //get item sample
         $tmpItemSample = UserItem::getItemSample();
         $itemSample = array();
@@ -86,6 +89,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'fontFamily' => $fontFamily,
             'fontDefaults' => $fontDefaults,
             'itemSample' => $itemSample,
             'userInfos' => $userInfos,
@@ -296,7 +300,7 @@ class StoreController extends BaseController {
                 $settings = $userStores->settings;
                 $tmpSetting = json_decode($settings);
                 $store = $tmpSetting->store;
-                $style['name'] = $store->name;
+                $style['name'] = !empty($store->name) ? $store->name : $userInfos['USER_NAME'] ;
                 $style['store_font'] = array(
                     'style' => $store->store_style->store_font_style,
                     'type' => $store->store_style->store_font_type,
@@ -426,15 +430,18 @@ class StoreController extends BaseController {
      */
     public function upload_image() {
         $this->layout = '';
+        
         if (!empty($_FILES['image'])) {
+            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $file_name = time();
-            $destinationPath = public_path() . '/_temp_files/'. $file_name.'.jpeg';
+            
+            $destinationPath = public_path() . '/_temp_files/'. $file_name.'.'.$ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath);
             $size = getimagesize($destinationPath);
             $logo = array(
-                'name' => $file_name.'.jpeg',
+                'name' => $file_name.'.'.$ext,
                 'src' => '/_temp_files/'.$file_name,
-                'ext' => '.jpeg',
+                'ext' => '.'.$ext,
                 'org_w' => $size[0],
                 'org_h' => $size[1]
             );
@@ -456,7 +463,7 @@ class StoreController extends BaseController {
 		$setting_postage = !empty($user_store['setting_postage']) ? json_decode($user_store['setting_postage']) : '';
 		$data['setting_postage'] = $setting_postage;
 		$data['user_store'] = !empty($user_store) ? $user_store : '';
-
+		$data['title_for_layout'] = "Cài đặt cửa hàng";
 		return View::make('store.store_setting', $data);
 	}
 
@@ -552,7 +559,6 @@ class StoreController extends BaseController {
 	public function set_promotion() {
 		if(Request::ajax())
 	    {
-
 			 $store_id = trim(Input::get('store_id'));
 	    	 $promotion = trim(Input::get('promotion'));
 	    	 $user_id = $this->getUserId();
@@ -641,7 +647,7 @@ class StoreController extends BaseController {
 		} else {
 			$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
 		}
-
+		$data['title_for_layout'] = "Mô tả cửa hàng";
 		return View::make('store.store_about', $data);
 	}
 	/**
@@ -659,17 +665,17 @@ class StoreController extends BaseController {
 		$user_store = !empty($user_store) ? $user_store->toArray() : array();
 		if(!empty($user_store)) {
 			$setting_trade_law = json_decode($user_store['setting_trade_law']);
-			$data['price'] = isset($setting_trade_law->price) ? $setting_trade_law->price : '';
+			$data['price'] = isset($setting_trade_law->price) ? $setting_trade_law->price : Config::get('constants.trade_law.price');
 
-			$data['charge'] = isset($setting_trade_law->charge) ? $setting_trade_law->charge : '';
-			$data['time_ship'] = isset($setting_trade_law->time_ship) ? $setting_trade_law->time_ship : '';
-			$data['contract'] = isset($setting_trade_law->contract) ? $setting_trade_law->contract : '';
-			$data['contact'] = isset($setting_trade_law->contact) ? $setting_trade_law->contact : '';
+			$data['charge'] = isset($setting_trade_law->charge) ? $setting_trade_law->charge : Config::get('constants.trade_law.charge');
+			$data['time_ship'] = isset($setting_trade_law->time_ship) ? $setting_trade_law->time_ship : Config::get('constants.trade_law.time_ship');
+			$data['contract'] = isset($setting_trade_law->contract) ? $setting_trade_law->contract : Config::get('constants.trade_law.contract');
+			$data['contact'] = isset($setting_trade_law->contact) ? $setting_trade_law->contact : Config::get('constants.trade_law.contact');
 
 		} else {
-			$data = array('price' => '', 'charge' => '', 'contract' => '', 'contact' => '', 'time_ship' => '');
+			$data = array('price' => Config::get('constants.trade_law.price'), 'charge' => Config::get('constants.trade_law.charge'), 'contract' => Config::get('constants.trade_law.contract'), 'contact' => Config::get('constants.trade_law.contact'), 'time_ship' => Config::get('constants.trade_law.time_ship'));
 		}
-
+		$data['title_for_layout'] = "Chỉnh sửa luật thương mại";
 		return View::make('store.commercial_law', $data);
 	}
 
@@ -709,6 +715,7 @@ class StoreController extends BaseController {
 		$user_id = $this->getUserId();
 		$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
 		$data['account_token'] = $token_accout['account_token'];
+		$data['title_for_layout'] = "Bảng điều khiển cửa hàng";
 		return View::make('store.dashboard', $data );
 	}
 
@@ -729,6 +736,7 @@ class StoreController extends BaseController {
 		} else {
 			$data['domain'] = '';
 		}
+		$data['title_for_layout'] = "Cài đặt tên miền cho cửa hàng";
 		return View::make('store.store_domain', $data);
 	}
 	/**

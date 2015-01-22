@@ -14,7 +14,8 @@ class MainController extends BaseController {
      */
     public function main(){
     	if(!$this->checkLogin()) {
-    		return View::make('main.index');
+    		$data['title_for_layout'] = 'Chào mừng đến với stores.vn';
+    		return View::make('main.index', $data);
     	} else {
     		 return Redirect::to('/dashboard');
     	}

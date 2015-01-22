@@ -277,13 +277,16 @@ img {
     padding-top: 25px;
     width: 26px;
 }
-
 .list_items .items, #news .list_news .items {
     height: 100px;
 }
 .switch .deactive {
     background: url("../img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
     text-indent: 2em;
+}
+dl.form_basic dl.cols_single dt{
+	padding-bottom: 10px;
+	font-size: 15px;
 }
 
 .box_wht {
@@ -498,6 +501,7 @@ img {
     margin-bottom: 1em;
     padding: 15px 0 15px 15px;
     width: 460px;
+    white-space: nowrap;
 }
 
 .form_basic .sz_s {

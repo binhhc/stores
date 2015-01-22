@@ -16,7 +16,6 @@ class SysLayout extends Model{
     public static function getSysLayouts() {
         $sysLayouts = DB::table('sys_layouts')
             ->where('sys_layouts.delete_flg', '=', 0)
-            ->orderBy('id', 'desc')
             ->lists('layout_css');
         return !empty($sysLayouts) ? $sysLayouts : array();
     }

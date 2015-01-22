@@ -19,7 +19,7 @@
 				<dd style="width: 500px;">
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
-							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? "http://".$user_store['domain']. '.stores.jp' : ''?></span>
+							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? "http://".$user_store['domain']. '.'. Config::get('constants.domain') : ''?></span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
@@ -123,7 +123,7 @@
 						<?php $circle = isset($setting_postage->circle) ? $setting_postage->circle: ''?>
 							<dl class="box_wht">
 								<dd class="price">
-									 {{Form::text('circle',$circle , array('class' => ''))}}
+									 {{Form::text('circle',$circle , array('style' => 'width: 200px;'))}}
 										Mối
 								</dd>
 							</dl>

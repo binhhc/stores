@@ -7886,10 +7886,11 @@ $(document).ready(function() {
                 var $t = $(this);
                 0 == i && $t.css({
                     display: "none"
-                }), $t.bind("click", function() {
+                }),
+                $t.bind("click", function() {
                     0 == i ? that.current > 0 && (that.current -= 1, that.changeHandler(!1)) : that.current < that.max - 1 && (that.current += 1, that.changeHandler(!0)), that.$btns.trigger("checker")
                 }).bind("checker", function() {
-                    0 == that.current ? 0 == i && $t.fadeOut(that.spd) : that.current == that.max - 1 ? 1 == i && $t.fadeOut(that.spd) : "none" == $t.css("display") && $t.fadeIn(that.spd)
+                    0 == that.current ? 0 == i && $t.fadeOut(that.spd) : that.current == that.max - 1 ? $t.fadeOut(that.spd) : "none" == $t.css("display") && $t.fadeIn(that.spd)
                 })
             })
         },
@@ -8031,6 +8032,41 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     return {
                         "background-color": color
                     }
+                },
+                generate_store_text: function(color) {
+                	if($scope.styles.store_logo.color == color) {
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_active_layouts: function(l){
+                	if($scope.store.layout == l){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_item_text: function(color) {
+                	if(typeof($scope.store.text_color.item) != "undefined" && ($scope.store.text_color.item == color)){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_active_background_colors: function(color){
+                	if($scope.store.background.color == color){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_active_background_patterns: function(pattern) {
+                	if($scope.store.background.image == pattern){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
                 }
             },
             init: function() {
@@ -8107,7 +8143,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         $scope.store.background.image = data.name, $scope.styles.body["background-image"] = $scope.util.generate_image_style("/_temp_files/" + data.name)["background-image"], $scope.$digest()
                     }, "json")
                 }), $scope.font_language_show = "en";
-               
+
                 $(window).on("beforeunload", function() {
                     return "Thông tin của bạn chưa được lưu. Thao tác này sẽ không phục hồi lại được."
                 })
@@ -8143,7 +8179,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         //alert(data);
                         $(window).off("beforeunload"), location.href = "/"
                     }).error(function(data, status, headers, config) {
-                        alert('errot' + data);
+                        //alert('errot' + data);
+                        alert('Đã có lỗi xảy ra!');
                     })
                 }
             }

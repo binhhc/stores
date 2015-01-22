@@ -478,7 +478,7 @@ class UserController extends BaseController {
             $user_info->account_token = "";
             $user_info->save();
             $user = $user_info->toArray();
-            Session::put('user', $user);            
+            Session::put('user', $user);
             $active =  "1";
         } else {
         	$active = "2";

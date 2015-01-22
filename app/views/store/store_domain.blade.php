@@ -10,7 +10,7 @@
 					<div class="big url">
 						<span class="first">https://</span>
 						 {{Form::text('domain', $domain, array('class' => ''))}}
-						<span class="second">.stores.jp</span>
+						<span class="second"><?php echo '.'. Config::get('constants.domain')?></span>
 						<div class="message_error">{{ $errors->first('domain') }}</div>
 					</div>
 				</dd>

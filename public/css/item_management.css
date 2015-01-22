@@ -285,6 +285,10 @@ img {
     background: url("../img/main_page/btn_status.gif") no-repeat scroll center bottom rgba(0, 0, 0, 0);
     text-indent: 2em;
 }
+dl.form_basic dl.cols_single dt{
+	padding-bottom: 10px;
+	font-size: 15px;
+}
 
 .box_wht {
     background: none repeat scroll 0 0 #fff;

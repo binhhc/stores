@@ -22,6 +22,9 @@ class StoreController extends BaseController {
     public function edit() {
         //get fonts default
         $fontDefaults = Config::get('constants.fonts');
+        
+        //get font family default
+        $fontFamily = Config::get('constants.sys_css');
 
         //get item sample
         $tmpItemSample = UserItem::getItemSample();
@@ -86,6 +89,7 @@ class StoreController extends BaseController {
         }
 
         return View::make('store.edit', array(
+            'fontFamily' => $fontFamily,
             'fontDefaults' => $fontDefaults,
             'itemSample' => $itemSample,
             'userInfos' => $userInfos,

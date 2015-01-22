@@ -25,7 +25,7 @@
                         <dt>Mật khẩu</dt>
                         <dd class="horizon">
                             <p class="btn_low_m">
-                                <a href="{{URL::asset('/change_password')}}">Thay đổi</a>
+                                <a href="{{URL::asset('/update_password')}}">Thay đổi</a>
                             </p>
                         </dd>
                     </dl>

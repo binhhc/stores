@@ -1,5 +1,8 @@
 <?php
 return array(
+    'ENCRYPTION_KEY' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    'website_name' => 'STOREs.VN',
+    'admin_email' => 'binhhc@leverages.jp',
     'domain' => 'stores.dev.srv',
     'contact_email' => 'sangpm@leverages.jp',
     'item_samples' => array(

@@ -277,7 +277,6 @@ img {
     padding-top: 25px;
     width: 26px;
 }
-
 .list_items .items, #news .list_news .items {
     height: 100px;
 }
@@ -502,6 +501,7 @@ dl.form_basic dl.cols_single dt{
     margin-bottom: 1em;
     padding: 15px 0 15px 15px;
     width: 460px;
+    white-space: nowrap;
 }
 
 .form_basic .sz_s {

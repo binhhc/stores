@@ -123,7 +123,7 @@
 						<?php $circle = isset($setting_postage->circle) ? $setting_postage->circle: ''?>
 							<dl class="box_wht">
 								<dd class="price">
-									 {{Form::text('circle',$circle , array('class' => ''))}}
+									 {{Form::text('circle',$circle , array('style' => 'width: 200px;'))}}
 										Mối
 								</dd>
 							</dl>

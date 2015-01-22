@@ -8032,6 +8032,20 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     return {
                         "background-color": color
                     }
+                },
+                generate_store_text: function(color) {
+                	if($scope.styles.store_logo.color == color) {
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_item_text: function(color) {
+                	if(typeof($scope.store.text_color.item) != "undefined" && ($scope.store.text_color.item == color)){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
                 }
             },
             init: function() {

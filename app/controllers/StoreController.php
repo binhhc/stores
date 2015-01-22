@@ -430,15 +430,18 @@ class StoreController extends BaseController {
      */
     public function upload_image() {
         $this->layout = '';
+        
         if (!empty($_FILES['image'])) {
+            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $file_name = time();
-            $destinationPath = public_path() . '/_temp_files/'. $file_name.'.jpeg';
+            
+            $destinationPath = public_path() . '/_temp_files/'. $file_name.'.'.$ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath);
             $size = getimagesize($destinationPath);
             $logo = array(
-                'name' => $file_name.'.jpeg',
+                'name' => $file_name.'.'.$ext,
                 'src' => '/_temp_files/'.$file_name,
-                'ext' => '.jpeg',
+                'ext' => '.'.$ext,
                 'org_w' => $size[0],
                 'org_h' => $size[1]
             );

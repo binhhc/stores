@@ -8179,7 +8179,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         //alert(data);
                         $(window).off("beforeunload"), location.href = "/"
                     }).error(function(data, status, headers, config) {
-                        alert('errot' + data);
+                        //alert('errot' + data);
+                        alert('Đã có lỗi xảy ra!');
                     })
                 }
             }

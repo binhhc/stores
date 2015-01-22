@@ -7,7 +7,7 @@ return array(
             'id' => 1,
             'user_id'=>0,
             'category_id'=>0,
-            'name'=>'Sample 2',
+            'name'=>'Sample 1',
             'price'=>2000,
             'image_url'=>"1.jpeg",
             'introduce'=>"Sample 1 Intro"
@@ -25,7 +25,7 @@ return array(
             'id' => 3,
             'user_id'=>0,
             'category_id'=>0,
-            'name'=>'Sample',
+            'name'=>'Sample 3',
             'price'=>2000,
             'image_url'=>"3.jpeg",
             'introduce'=>"Sample 3 Intro"

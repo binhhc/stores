@@ -8040,8 +8040,29 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                 		return ' ';
                 	}
                 },
+                generate_active_layouts: function(l){
+                	if($scope.store.layout == l){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
                 generate_item_text: function(color) {
                 	if(typeof($scope.store.text_color.item) != "undefined" && ($scope.store.text_color.item == color)){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_active_background_colors: function(color){
+                	if($scope.store.background.color == color){
+                		return ' active';
+                	}else {
+                		return ' ';
+                	}
+                },
+                generate_active_background_patterns: function(pattern) {
+                	if($scope.store.background.image == pattern){
                 		return ' active';
                 	}else {
                 		return ' ';

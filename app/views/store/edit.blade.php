@@ -91,7 +91,7 @@
                             </style>
                             <div class="mask">
                                 <dl class="bg_c btn_bgcolor">
-                                <dd ng-repeat="n in [0,1,2]">
+                                <dd ng-repeat="n in [0,1]">
                                     <ul>
                                         <li ng-repeat="color in preset.background_colors[n]" ng-style="util.generate_background_color_style(color)" ng-click="store.change_background_color(color)" onclick="change_active_element(this, '.btn_bgcolor dd ul li.active')" onmouseover="$(this).css({opacity: 0.5})" onmouseout="$(this).css({opacity: 1})">
                                             <span></span>

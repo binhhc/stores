@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html id="ng-app" ng-app="StoresJp">
 <head>
-    <title>{{$title_for_layout}}</title>
+    <title>{{{ !empty($title_for_layout) ? $title_for_layout: ''}}}</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="vi-vn" />
     {{HTML::style('css/bootstrap.min.css')}}

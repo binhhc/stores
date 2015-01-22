@@ -5,7 +5,7 @@
         <h2 class="heading fl_l">Thay đổi email</h2>
         <p class="fl_r btn_low"><a href="{{URL::asset('/account_setting')}}">Trở lại</a></p>
     </div>
-    <form name="form" >
+    {{Form::open(array('url' => 'change_email', 'method' => 'post', 'class'=>'form_submit'))}}
         <div class="form_basic">
             <dl class="cols">
                 <dt>Nhập email mới</dt>
@@ -32,7 +32,7 @@
                 </p>
             </div>
         </div>
-    </form>
+    {{Form::close()}}
 </div>
 
 @include('elements.footer')

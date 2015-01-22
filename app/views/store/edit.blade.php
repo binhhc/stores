@@ -145,11 +145,11 @@
                     <div id="textcolor" class="spb">
                         <dl id="textcolor_store" class="inner_list">
                             <dt>Tên cửa hàng/menu</dt>
-                            <dd ng-repeat="color in preset.text_colors" ng-class="'t'+($index+1)" ng-click="store.change_store_text_color(color)" onclick="change_active_element(this, '#textcolor_store dd')"><span></span></dd>
+                            <dd ng-repeat="color in preset.text_colors" ng-class="'t'+($index+1) + util.generate_store_text(color)" ng-click="store.change_store_text_color(color)" onclick="change_active_element(this, '#textcolor_store dd')"><span></span></dd>
                         </dl>
                         <dl id="textcolor_item" class="inner_list">
                             <dt>Sản phẩm/giá</dt>
-                            <dd ng-repeat="color in preset.text_colors" ng-class="'t'+($index+1)" ng-click="store.change_item_text_color(color)" onclick="change_active_element(this, '#textcolor_item dd')"><span></span></dd>
+                            <dd ng-repeat="color in preset.text_colors" ng-class="'t'+($index+1) + util.generate_item_text(color)" ng-click="store.change_item_text_color(color)" onclick="change_active_element(this, '#textcolor_item dd')"><span></span></dd>
                         </dl>
                     </div>
                     <div class="heading">

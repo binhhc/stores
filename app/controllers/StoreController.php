@@ -22,7 +22,7 @@ class StoreController extends BaseController {
     public function edit() {
         //get fonts default
         $fontDefaults = Config::get('constants.fonts');
-        
+
         //get font family default
         $fontFamily = Config::get('constants.sys_css');
 
@@ -732,6 +732,7 @@ class StoreController extends BaseController {
 		} else {
 			$data['domain'] = '';
 		}
+		$data['title_for_layout'] = "Cài đặt tên miền cho cửa hàng";
 		return View::make('store.store_domain', $data);
 	}
 	/**

@@ -71,7 +71,7 @@
                     <div id="layout">
                         <div class="mask">
                             <ul class="layout">
-                                <li ng-repeat="l in preset.layouts" ng-class="'l'+($index+1)" ng-click="store.change_layout(l.name)" onclick="change_active_element(this, '#layout div ul li.active')" onmouseover="$(this).css({opacity: 0.5})" onmouseout="$(this).css({opacity: 1})"></li>
+                                <li ng-repeat="l in preset.layouts" ng-class="'l'+($index+1) + util.generate_active_layouts(l.name)" ng-click="store.change_layout(l.name)" onclick="change_active_element(this, '#layout div ul li.active')" onmouseover="$(this).css({opacity: 0.5})" onmouseout="$(this).css({opacity: 1})"></li>
                             </ul>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 <dl class="bg_c btn_bgcolor">
                                 <dd ng-repeat="n in [0,1,2]">
                                     <ul>
-                                        <li ng-repeat="color in preset.background_colors[n]" ng-style="util.generate_background_color_style(color)" ng-click="store.change_background_color(color)" onclick="change_active_element(this, '.btn_bgcolor dd ul li.active')" onmouseover="$(this).css({opacity: 0.5})" onmouseout="$(this).css({opacity: 1})">
+                                        <li ng-repeat="color in preset.background_colors[n]" ng-class="util.generate_active_background_colors(color)" ng-style="util.generate_background_color_style(color)" ng-click="store.change_background_color(color)" onclick="change_active_element(this, '.btn_bgcolor dd ul li.active')" onmouseover="$(this).css({opacity: 0.5})" onmouseout="$(this).css({opacity: 1})">
                                             <span></span>
                                         </li>
                                     </ul>
@@ -110,7 +110,7 @@
                                 <dl class="bg_pt btn_bgpattern">
                                 <dd ng-repeat="patterns in preset.background_patterns">
                                     <ul>
-                                        <li ng-repeat="pattern in patterns" ng-style="util.generate_image_style(pattern)" ng-click="store.change_background_image(pattern)" onclick="change_active_element(this, '.bg_pt dd ul li.active')"><span></span></li>
+                                        <li ng-repeat="pattern in patterns" ng-class="util.generate_active_background_patterns(pattern)" ng-style="util.generate_image_style(pattern)" ng-click="store.change_background_image(pattern)" onclick="change_active_element(this, '.bg_pt dd ul li.active')"><span></span></li>
                                     </ul>
                                 </dd>
                                 </dl>

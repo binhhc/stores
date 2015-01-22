@@ -33,13 +33,13 @@ class StoreController extends BaseController {
                 'path' => 'img/samples/products/'.$sample->image_url
             );
         }
-        
+
         //get image url sample
         $imgurlSampleBackground = UserStore::getImageUrlEditStore();
-        
+
         //get user login
         $userInfos = User::getNameStore();
-        
+
         //sys_colors
         $sysLayouts = array();
         $tmpSysLayouts= SysLayout::getSysLayouts();
@@ -175,7 +175,7 @@ class StoreController extends BaseController {
         }
     }
 
-    
+
     /**
      * copy background_image
      *
@@ -192,7 +192,7 @@ class StoreController extends BaseController {
             $this->moveCopyImage($file_name);
         }
     }
-    
+
     /**
      * copy background_image and logo_image
      *
@@ -204,7 +204,7 @@ class StoreController extends BaseController {
     public function moveCopyImage($file_name) {
         //get user login
         $userInfos = User::getNameStore();
-        
+
         $tmpPath = public_path() . '/_temp_files/'. $file_name;
         $folder_user = public_path() . '/files/'.$userInfos['USER_NAME'];
         if(!is_dir($folder_user)){
@@ -212,9 +212,9 @@ class StoreController extends BaseController {
             chmod($folder_user, 0777);
         }
         $destinationPath = $folder_user.'/'.$file_name;
-        return copy($tmpPath, $destinationPath);    
+        return copy($tmpPath, $destinationPath);
     }
-    
+
     /**
      * Load items
      *
@@ -287,7 +287,7 @@ class StoreController extends BaseController {
 
         //get user login
         $userInfos = User::getNameStore();
-        
+
         //get user_stores from user_id
         $userStores = UserStore::getUserStoreByUserId();
         if (Request::ajax()) {
@@ -350,7 +350,7 @@ class StoreController extends BaseController {
                         'logo' => ''
                 );
             }
-            
+
             $json = json_encode($style);
             echo $json;
         }
@@ -378,10 +378,10 @@ class StoreController extends BaseController {
                 'name' => 'Thời trang'
             )
         );*/
-        
+
         //get user_categories from user_id
         $userCategories = UserCategory::getUserCaterogiesFromUserId();
-        
+
         $categories = array();
         if (!empty($userCategories)) {
             foreach ($userCategories as $key => $value) {
@@ -460,6 +460,11 @@ class StoreController extends BaseController {
 		return View::make('store.store_setting', $data);
 	}
 
+	/**
+	 * Setting shipping
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
 	public function ship_setting() {
 		if(Request::ajax())
 	    {
@@ -472,7 +477,8 @@ class StoreController extends BaseController {
 	    	 $user_id = $this->getUserId();
 	    	 $user_store = UserStore::where('user_id', $user_id)->first();
 			 if(!empty($user_store)) {
-				UserStore::where('user_id', $user_id)
+			 	$user_store = $user_store->toArray();
+				UserStore::where('id', $user_store['id'])
 						->update(array('setting_postage' => $setting_postage,  'updated_user' => $user_id));
 			} else {
 				$user = new UserStore;
@@ -485,6 +491,121 @@ class StoreController extends BaseController {
 			return Response::json($success);
 	    }
 
+	}
+	/**
+	 * set public flag for store
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
+	public function set_public_flag() {
+		if(Request::ajax())
+	    {
+
+			 $store_id = trim(Input::get('store_id'));
+	    	 $public_flg = trim(Input::get('public_flg'));
+	    	 $user_id = $this->getUserId();
+			 if(!empty($store_id)) {
+				UserStore::where('id', $store_id)
+						->update(array('public_flg' => $public_flg,  'updated_user' => $user_id));
+			} else {
+				$user = new UserStore;
+				$user->user_id = $user_id;
+				$user->public_flg = $public_flg;
+				$user->created_user = $user_id;
+				$user->save();
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
+	}
+	/**
+	 * set store follow
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
+	public function set_store_follow() {
+		if(Request::ajax())
+	    {
+
+			 $store_id = trim(Input::get('store_id'));
+	    	 $store_follow = trim(Input::get('store_follow'));
+	    	 $user_id = $this->getUserId();
+			 if(!empty($store_id)) {
+				UserStore::where('id', $store_id)
+						->update(array('follow' => $store_follow,  'updated_user' => $user_id));
+			} else {
+				$user = new UserStore;
+				$user->user_id = $user_id;
+				$user->follow = $store_follow;
+				$user->created_user = $user_id;
+				$user->save();
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
+	}
+	/**
+	 * set promotion
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
+	public function set_promotion() {
+		if(Request::ajax())
+	    {
+
+			 $store_id = trim(Input::get('store_id'));
+	    	 $promotion = trim(Input::get('promotion'));
+	    	 $user_id = $this->getUserId();
+			 if(!empty($store_id)) {
+				UserStore::where('id', $store_id)
+						->update(array('promotion' => $promotion,  'updated_user' => $user_id));
+			} else {
+				$user = new UserStore;
+				$user->user_id = $user_id;
+				$user->promotion = $promotion;
+				$user->created_user = $user_id;
+				$user->save();
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
+	}
+	/**
+	 * delete store about
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
+	public function delete_store_about() {
+		if(Request::ajax())
+	    {
+
+			 $store_id = trim(Input::get('store_id'));
+			 $user_id = $this->getUserId();
+			 if(!empty($store_id)) {
+				UserStore::where('id', $store_id)
+						->update(array('setting_intros' => '',  'updated_user' => $user_id));
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
+	}
+	/**
+	 * delete trade law
+	 * @author OanhHa
+	 * @since 2015-01-21
+	 */
+	public function delete_trade_law() {
+		if(Request::ajax())
+	    {
+			 $store_id = trim(Input::get('store_id'));
+			 $user_id = $this->getUserId();
+			 if(!empty($store_id)) {
+				UserStore::where('id', $store_id)
+						->update(array('setting_trade_law' => '',  'updated_user' => $user_id));
+			}
+			$success =  "1";
+			return Response::json($success);
+	    }
 	}
 	/**
 	 * Set payment method for stores

@@ -254,8 +254,41 @@ class UserController extends BaseController {
      * @author Binh Hoang
      * @since 2015.01.15
      */
-    public function changeEmail(){
-        return View::make('user.change_email');
+    public function update_email(){
+
+        $input = Input::all();
+        var_dump($input);
+        //check email, token
+        if(!empty($input) && !empty($input['code'])){
+            $user = User::where('account_token', '=', $input['code'])
+                ->first();
+
+            // if(!empty($user)){
+                //reset email
+
+                //reset account_token
+
+                return View::make('user.update_email_success');
+            // }else{
+            //     return Redirect::to('/');
+            // }
+
+        }else{
+            return View::make('user.update_email');
+        }
+
+    }
+
+    /**
+     * Change email.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.15
+     */
+    public function doUpdateEmail(){
+        echo 1;exit;
     }
 
     /**
@@ -328,6 +361,18 @@ class UserController extends BaseController {
      */
     public function changeMailNotificationSetting(){
         return View::make('user.change_mail_notification_setting');
+    }
+
+    /**
+     * Display change mail notification setting.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.20
+     */
+    public function withdrawal(){
+        return View::make('user.withdrawal');
     }
 
     /**

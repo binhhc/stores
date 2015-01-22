@@ -32,6 +32,11 @@ Route::get('/addon', 'AddonController@addon');
 Route::get('/saveaddon/{id}/{flg}', 'AddonController@saveaddon');
 Route::get('/sort_item', 'UserItemController@sort_item');
 Route::get('/set_status', 'UserItemController@set_status');
+Route::post('/set_store_follow', array('before' => 'auth', 'uses' => 'StoreController@set_store_follow'));
+Route::post('/set_public_flag', array('before' => 'auth', 'uses' => 'StoreController@set_public_flag'));
+Route::post('/set_promotion', array('before' => 'auth', 'uses' => 'StoreController@set_promotion'));
+Route::post('/delete_store_about', array('before' => 'auth', 'uses' => 'StoreController@delete_store_about'));
+Route::post('/delete_trade_law', array('before' => 'auth', 'uses' => 'StoreController@delete_trade_law'));
 
 Route::get('/list_item_ajax', 'UserItemController@list_item_ajax');
 Route::get('/send_email', 'UserController@send_email');
@@ -63,7 +68,9 @@ Route::get('/logout', array('uses' => 'UserController@doLogout'));
 Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));
 
 //change email
-Route::get('/change_email', array('before' => 'auth', 'uses' => 'UserController@changeEmail'));
+Route::get('/update_email', array('before' => 'auth', 'uses' => 'UserController@update_email'));
+Route::post('/update_email', array('before' => 'auth', 'uses' => 'UserController@doUpdateEmail'));
+
 //change password
 Route::get('/change_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
 //change profile
@@ -77,7 +84,7 @@ Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'U
 //change Mail notification settings
 Route::get('/change_mail_notification_setting', array('before' => 'auth', 'uses' => 'UserController@changeMailNotificationSetting'));
 //Withdrawal
-Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
+Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@withdrawal'));
 
 
 

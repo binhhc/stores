@@ -21,11 +21,11 @@
 						</ul>
 					@endif
 						<dl class="lists move">
-							<dd class="sz_xs tc count ng-binding"><?php echo $stt;?></dd>
+							<dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 0)<?php echo $stt;?> @endif</dd>
 							<dd class="sz_i">
 							</dd>
 							<dd class="sz_l">
-								<a class="ng-binding" ng-click="edit(item)" href="">{{$item['name']}}</a>
+								<a class="ng-binding" ng-click="edit(item)" href=""><?php echo (strlen($item['name']) > 50) ? substr($item['name'], 0, 50). "..." : $item['name']?></a>
 							</dd>
 							<dd class="sz_s tr ng-binding">{{$item['price']}}</dd>
 							<dd class="sz_xs tc product_quantity">{{$item['quantity']}}</dd>

@@ -22,7 +22,7 @@ class StoreController extends BaseController {
     public function edit() {
         //get fonts default
         $fontDefaults = Config::get('constants.fonts');
-        
+
         //get font family default
         $fontFamily = Config::get('constants.sys_css');
 
@@ -463,7 +463,7 @@ class StoreController extends BaseController {
 		$setting_postage = !empty($user_store['setting_postage']) ? json_decode($user_store['setting_postage']) : '';
 		$data['setting_postage'] = $setting_postage;
 		$data['user_store'] = !empty($user_store) ? $user_store : '';
-
+		$data['title_for_layout'] = "Cài đặt cửa hàng";
 		return View::make('store.store_setting', $data);
 	}
 
@@ -647,7 +647,7 @@ class StoreController extends BaseController {
 		} else {
 			$data = array('description' => '', 'homepage' => '', 'facebook' => '', 'twitter' => '');
 		}
-
+		$data['title_for_layout'] = "Mô tả cửa hàng";
 		return View::make('store.store_about', $data);
 	}
 	/**
@@ -675,7 +675,7 @@ class StoreController extends BaseController {
 		} else {
 			$data = array('price' => Config::get('constants.trade_law.price'), 'charge' => Config::get('constants.trade_law.charge'), 'contract' => Config::get('constants.trade_law.contract'), 'contact' => Config::get('constants.trade_law.contact'), 'time_ship' => Config::get('constants.trade_law.time_ship'));
 		}
-
+		$data['title_for_layout'] = "Chỉnh sửa luật thương mại";
 		return View::make('store.commercial_law', $data);
 	}
 
@@ -715,6 +715,7 @@ class StoreController extends BaseController {
 		$user_id = $this->getUserId();
 		$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
 		$data['account_token'] = $token_accout['account_token'];
+		$data['title_for_layout'] = "Bảng điều khiển cửa hàng";
 		return View::make('store.dashboard', $data );
 	}
 
@@ -735,6 +736,7 @@ class StoreController extends BaseController {
 		} else {
 			$data['domain'] = '';
 		}
+		$data['title_for_layout'] = "Cài đặt tên miền cho cửa hàng";
 		return View::make('store.store_domain', $data);
 	}
 	/**

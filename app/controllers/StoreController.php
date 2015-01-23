@@ -82,7 +82,6 @@ class StoreController extends BaseController {
                     $j ++; $index = 0;
                     $sysBackgroundImage[$j] = array();
                 }
-                //$sysBackgroundImage[$j][] = 'img/samples/bg2/'.$value;
                 $sysBackgroundImage[$j][] = $imgurlSampleBackground.$value;
                 $index++;
             }

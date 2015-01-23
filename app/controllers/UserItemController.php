@@ -12,30 +12,39 @@ class UserItemController extends BaseController {
 	 * @since 2015/01/14
 	 */
 	public function item_management() {
-		$this->checkLogin();
-		$user_id = $this->getUserId();
-		$items = UserItem::where('user_id', '=', ''.$user_id)
-					->orderBy('public_flg', 'asc')
-					->orderBy('order', 'asc')
-					->orderBy('updated_at', 'desc')
-					->get();
-		foreach($items as &$value) {
-			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
-			if(empty($item_quantity)) {
-				$value['quantity'] = 0;
-			} else {
-				$value['quantity'] = 0;
-				foreach($item_quantity as $i_q) {
-					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
-				}
-			}
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
 		}
-		$data['items'] = $items;
+		$data['items'] = $this->getItemList();
 		/*$queries = DB::getQueryLog();
 		var_dump($queries);*/
 		$data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
 		return View::make('userItem.item_management', $data);
 	}
+
+	 /**
+     * get item list
+     * @author OanhHa
+     * @since 2015/01/23
+     */
+ 	public function getItemList() {
+    	$user_id = Session::get('user.id');
+    	$items = UserItem::where('user_id',$user_id)
+					->orderBy('public_flg', 'asc')
+					->orderBy('order', 'asc')
+					->orderBy('updated_at', 'desc')
+					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
+			$value['quantity'] = 0;
+			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+			if(!empty($item_quantity)) {
+				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
+			}
+		}
+		return $items;
+
+    }
 	/**
 	 * update public flag
 	 * @author OanhHa
@@ -90,24 +99,7 @@ class UserItemController extends BaseController {
 	 * @since 2015/01/15
 	 */
 	public function list_item_ajax() {
-		$user_id = $this->getUserId();
-		$items = UserItem::where('user_id',$user_id)
-					->orderBy('public_flg', 'asc')
-					->orderBy('order', 'asc')
-					->orderBy('updated_at', 'desc')
-					->get();
-		foreach($items as &$value) {
-			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get()->toArray();
-			if(empty($item_quantity)) {
-				$value['quantity'] = 0;
-			} else {
-				$value['quantity'] = 0;
-				foreach($item_quantity as $i_q) {
-					$value['quantity'] = $value['quantity'] + $i_q['quantity'];
-				}
-			}
-		}
-		$data['items'] = $items;
+		$data['items'] = $this->getItemList();
 		$view =  View::make('elements.list_item_ajax', $data)->render();
 		$response = array(
 					'status' => 'success',

@@ -6,12 +6,12 @@
  */
 class UserItem extends Model{
     protected $table  = 'user_items';
-    
+
 	/**
      * @author      Sang PM
      * @since       2015/01/14
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function getItemSample(){
@@ -24,14 +24,13 @@ class UserItem extends Model{
             }
             $result[] = $obj;
         }
-        return $result; 
+        return $result;
     }
 
-    
     /**
      * @author      Le Nhan Hau
      * @since       2015/01/14
-     * 
+     *
      * get user item from user_id
      */
     public static function getUserItemFromUserId() {

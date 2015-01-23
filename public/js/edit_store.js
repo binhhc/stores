@@ -7890,7 +7890,7 @@ $(document).ready(function() {
                 $t.bind("click", function() {
                     0 == i ? that.current > 0 && (that.current -= 1, that.changeHandler(!1)) : that.current < that.max - 1 && (that.current += 1, that.changeHandler(!0)), that.$btns.trigger("checker")
                 }).bind("checker", function() {
-                    0 == that.current ? 0 == i && $t.fadeOut(that.spd) : that.current == that.max - 1 ? $t.fadeOut(that.spd) : "none" == $t.css("display") && $t.fadeIn(that.spd)
+                    0 == that.current ? 0 == i && $t.fadeOut(that.spd) : that.current == that.max - 1 ? 1 == i && $t.fadeOut(that.spd) : "none" == $t.css("display") && $t.fadeIn(that.spd)
                 })
             })
         },

@@ -494,16 +494,14 @@ class UserController extends BaseController {
             $password = trim(Input::get('password'));
             $v = User::validate_register(Input::all());
 
+            $status = "";
+            $mss= '';
             if($v->fails()){
-            	$mss = '';
             	foreach ($v->messages()->getMessages() as $field_name => $messages)
     			{
        				 $mss = $messages;// messages are retrieved (publicly)
    				}
-                $response = array(
-                'status' => 'fail validate',
-                'msg' => $mss,
-                );
+   				$status = "Fail validate";
             } else {
                 $user = new User;
                 $user->email = $email;
@@ -516,26 +514,23 @@ class UserController extends BaseController {
                         Session::put('user', $user_data);
                         Session::put('first_register', 'hello');
                         $this->send_email();
-                        //return Redirect::to('/dashboard')->withInput();
-                        $response = array(
-                            'status' => 'success',
-                            'msg' => 'Success',
-                            );
+                        $status = "success";
+                        $mss = 'Success';
                     } else {
-                        $response = array(
-                        'status' => 'faila',
-                        'msg' => 'Regiter fail',
-                        );
+                    	$status = 'faila';
+                    	$mss = 'Register fail';
                     }
 
                  } else {
-                    $response = array(
-                        'status' => 'fail',
-                        'msg' => 'Regiter fail',
-                        );
+                    	$status = 'faila';
+                    	$mss = 'Register fail';
                  }
             // validation successful!
             }
+			$response = array(
+                            'status' => $status,
+                            'msg' => $mss,
+                            );
             return Response::json( $response );
         }
     }

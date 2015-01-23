@@ -48,7 +48,7 @@
                             <p class="hide_file">
                                 <input type="file" id="file_logo_image" name="image" accept="image/jpeg,image/png,image/gif">
                             </p>
-                            <label for="file_logo_image" id="label_logo_image" class="label_button">Upload logo</label>
+                            <label for="file_logo_image" id="label_logo_image" class="label_button">Chọn logo</label>
                             <input type="submit" class="hide_submit" value="">
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                     <div class="data">
                         <dl>
                             <dd class="name"><h2>[[item.name]]</h2></dd>
-                            <dd class="price" ng-show="item.quantity > 0">[[item.price | number:0]] phan</dd>
+                            <dd class="price" ng-show="item.quantity > 0">[[item.price | number:0]] Dong</dd>
                             <dd class="price soldout ng-binding" ng-hide="item.quantity > 0"><img src="/img/samples/products/icon_soldout.png" alt="SOLD OUT"></dd>
                         </dl>
                     </div>

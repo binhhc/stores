@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background: #fff;
-    font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: Arial;
     color: #333
 }
 fieldset {
@@ -184,7 +184,7 @@ address {
     text-align: center
 }
 .r18over h1 span {
-    font-family: "Allerta", sans-serif;
+    font-family: Arial;
     font-size: 40px;
     font-weight: normal;
     text-align: center;
@@ -281,7 +281,7 @@ address {
     text-align: center
 }
 #store_form #header_basic h1 {
-    font-family: "Allerta", sans-serif;
+    font-family: Arial;
     font-weight: normal;
     font-size: 40px;
     line-height: 1
@@ -298,7 +298,7 @@ address {
 }
 #store_form #header_basic #navi_main {
     margin-top: 50px;
-    font-family: "Allerta", sans-serif
+    font-family: Arial
 }
 #store_form #header_basic #navi_main .dropdown {
     text-align: left
@@ -2557,7 +2557,7 @@ p.download span {
     visibility: hidden
 }
 #header h1 {
-    font-family: "Allerta", sans-serif;
+    font-family: Arial;
     word-wrap: break-word;
     word-break: break-all
 }

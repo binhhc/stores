@@ -140,12 +140,15 @@ img {
     background: none repeat scroll 0 0 #fff;
     border-bottom: 1px solid #ccc;
     float: right;
-    height: 62px;
+    height: 76px;
     padding: 13px 0 0 10px;
     position: relative;
     width: 740px;
 }
 
+#list_public {
+	width: 780px;
+}
 
 .loading {
     background: url("../img/main_page/loading.gif") no-repeat scroll center center #000;
@@ -511,7 +514,9 @@ dl.form_basic dl.cols_single dt{
     height: 44px;
     margin: 1.5em 0;
 }
-
+.shipping_free1 {
+	white-space: nowrap;
+}
 #sipping_contents .styled_checkbox {
     display: inline-block;
     margin-right: 3px;

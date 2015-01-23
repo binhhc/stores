@@ -68,13 +68,17 @@ Route::get('/logout', array('uses' => 'UserController@doLogout'));
 Route::get('/account_setting', array('before' => 'auth', 'uses' => 'UserController@accountSetting'));
 
 //change email
-Route::get('/update_email', array('before' => 'auth', 'uses' => 'UserController@update_email'));
+Route::get('/update_email', array('uses' => 'UserController@update_email'));
 Route::post('/update_email', array('before' => 'auth', 'uses' => 'UserController@doUpdateEmail'));
 
 //change password
-Route::get('/change_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
+Route::get('/update_password', array('before' => 'auth', 'uses' => 'UserController@changePassword'));
+Route::post('/update_password', array('before' => 'auth', 'uses' => 'UserController@doChangePassword'));
+
 //change profile
-Route::get('/change_profile', array('before' => 'auth', 'uses' => 'UserController@changeProfile'));
+Route::get('/change_profile', array('before' => 'auth', 'uses' => 'UserController@registerProfile'));
+Route::post('/change_profile', array('before' => 'auth', 'uses' => 'UserController@doRegisterProfile'));
+
 //change shipping
 Route::get('/change_shipping', array('before' => 'auth', 'uses' => 'UserController@changeShipping'));
 //change credit card

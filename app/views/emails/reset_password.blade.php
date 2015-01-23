@@ -1,6 +1,6 @@
 <div style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#fff;color:#58595b;font-size:12px;line-height:1.6;font-family:'\0030d2\0030e9\0030ae\0030ce\0089d2\0030b4  Pro W3','Hiragino Kaku Gothic Pro','\0030e1\0030a4\0030ea\0030aa',Meiryo,Osaka,'\00ff2d\00ff33  \00ff30\0030b4\0030b7\0030c3\0030af','MS PGothic',sans-serif">
     <p style="padding-bottom:10px;text-align:center;line-height:1.5;font-size:12px">
-        Email này được gởi từ Store VN
+        Email này được gởi từ {{Config::get('constants.website_name')}}
     </p>
     <table width="100%" align="center" bgcolor="#EDEDED" style="padding:40px 0">
         <tbody>
@@ -44,7 +44,7 @@
                                         <p style="margin:10px 0 5px 0"><strong>Trung tâm hỗ trợ khách hàng STORES.vn</strong></p>
                                         <p style="margin:0 0 10px 0">
                                             Liên hệ với chúng tôi qua e-mail：
-                                            <a href="mailto:hello@stores.jp" style="color:#0083d2" target="_blank">admin@stores.vn</a>
+                                            <a href="mailto:{{Config::get('constants.contact_email')}}" style="color:#0083d2" target="_blank">{{Config::get('constants.contact_email')}}</a>
                                         </p>
                                     </div>
                                 </td>

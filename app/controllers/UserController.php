@@ -30,9 +30,8 @@ class UserController extends BaseController {
     public function doLogin(){
         $v = User::validate(Input::all());
 
-        if($v->fails()){
+        if($v->fails())
             return Redirect::to('/login')->withErrors($v)->withInput(Input::except('password'));
-        }
 
         $userdata = array(
             'email' => Input::get('email'),
@@ -41,7 +40,8 @@ class UserController extends BaseController {
 
         if (Auth::attempt($userdata)) {
             // validation successful!
-            $user = User::where('email', '=', $userdata['email'])->first()->toArray();
+            $user = User::where('email', '=', $userdata['email'])
+                    ->where('delete_flg', '=', 0)->first()->toArray();
             Session::put('user', $user);
             return Redirect::to('/dashboard');
         } else {
@@ -255,28 +255,37 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function update_email(){
-
         $input = Input::all();
-        var_dump($input);
-        //check email, token
-        if(!empty($input) && !empty($input['code'])){
-            $user = User::where('account_token', '=', $input['code'])
-                ->first();
 
-            // if(!empty($user)){
-                //reset email
+        $v = '';
+        if(!empty($input['code']))
+            $v = User::validate_forget_password($input);
 
-                //reset account_token
+        //check email
+        if(!empty($input) && !empty($input['code']) && !empty($v) && !$v->fails()){
+            $code = explode('-m1-', $input['code']);
+
+            $old_email = $new_email = '';
+            if(!empty($code[0]))
+                $old_email = $this->decrypt($code[0], Config::get('constants.ENCRYPTION_KEY'));
+
+            if(!empty($code[1]))
+                $new_email = $this->decrypt($code[1], Config::get('constants.ENCRYPTION_KEY'));
+
+            $user = User::where('email', '=', $old_email)->first();
+
+            if(!empty($old_email) && !empty($new_email) && !empty($user)){
+                User::where('id',$user->id)
+                    ->update(array('email' => $new_email));
 
                 return View::make('user.update_email_success');
-            // }else{
-            //     return Redirect::to('/');
-            // }
+            }else{
+                return Redirect::to('/');
+            }
 
         }else{
             return View::make('user.update_email');
         }
-
     }
 
     /**
@@ -288,7 +297,24 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function doUpdateEmail(){
-        echo 1;exit;
+        $new_email = Input::get('email');
+
+        if(!empty($new_email)){
+            $user = Session::get('user');
+            $encrypt_new_email = $this->encrypt($new_email, Config::get('constants.ENCRYPTION_KEY'));
+            $encrypt_old_email = $this->encrypt($user['email'], Config::get('constants.ENCRYPTION_KEY'));
+
+            $link_reset = URL::to('/update_email').'?code='. $encrypt_old_email.'-m1-'. $encrypt_new_email;
+
+            $data = array(
+                'link_reset' => $link_reset,
+            );
+
+            Mail::send('emails.update_email', $data, function($message) use($new_email) {
+                $message->to($new_email, 'STORES.vn')->subject('【STORES.vn】 Thay đổi địa chỉ email!');
+            });
+            return Redirect::to('/account_setting');
+        }
     }
 
     /**
@@ -300,7 +326,30 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changePassword(){
-        return View::make('user.change_password');
+        return View::make('user.update_password');
+    }
+
+    /**
+     * Display change password.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.22
+     */
+    public function doChangePassword(){
+        $input = Input::all();
+        $user = Session::get('user');
+        $v = User::validate_update_password($input);
+
+        if(!empty($user) && !empty($v) && !$v->fails()){
+            User::where('id', $user['id'])
+                ->update(array('password' => Hash::make($input['password'])));
+
+            return Redirect::to('/account_setting');
+        }else{
+            return Redirect::to('/account_setting');
+        }
     }
 
     /**
@@ -311,8 +360,20 @@ class UserController extends BaseController {
      * @author Binh Hoang
      * @since 2015.01.15
      */
-    public function changeProfile(){
+    public function registerProfile(){
         return View::make('user.change_profile');
+    }
+
+    /**
+     * Display change profile.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.22
+     */
+    public function doRegisterProfile(){
+        // return View::make('user.change_profile');
     }
 
     /**
@@ -389,16 +450,14 @@ class UserController extends BaseController {
             $password = trim(Input::get('password'));
             $v = User::validate_register(Input::all());
 
+            $status = "";
+            $mss= '';
             if($v->fails()){
-            	$mss = '';
             	foreach ($v->messages()->getMessages() as $field_name => $messages)
     			{
        				 $mss = $messages;// messages are retrieved (publicly)
    				}
-                $response = array(
-                'status' => 'fail validate',
-                'msg' => $mss,
-                );
+   				$status = "Fail validate";
             } else {
                 $user = new User;
                 $user->email = $email;
@@ -411,26 +470,23 @@ class UserController extends BaseController {
                         Session::put('user', $user_data);
                         Session::put('first_register', 'hello');
                         $this->send_email();
-                        //return Redirect::to('/dashboard')->withInput();
-                        $response = array(
-                            'status' => 'success',
-                            'msg' => 'Success',
-                            );
+                        $status = "success";
+                        $mss = 'Success';
                     } else {
-                        $response = array(
-                        'status' => 'faila',
-                        'msg' => 'Regiter fail',
-                        );
+                    	$status = 'faila';
+                    	$mss = 'Register fail';
                     }
 
                  } else {
-                    $response = array(
-                        'status' => 'fail',
-                        'msg' => 'Regiter fail',
-                        );
+                    	$status = 'faila';
+                    	$mss = 'Register fail';
                  }
             // validation successful!
             }
+			$response = array(
+                            'status' => $status,
+                            'msg' => $mss,
+                            );
             return Response::json( $response );
         }
     }

@@ -430,11 +430,11 @@ class StoreController extends BaseController {
      */
     public function upload_image() {
         $this->layout = '';
-        
+
         if (!empty($_FILES['image'])) {
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $file_name = time();
-            
+
             $destinationPath = public_path() . '/_temp_files/'. $file_name.'.'.$ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath);
             $size = getimagesize($destinationPath);
@@ -622,7 +622,20 @@ class StoreController extends BaseController {
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
-		return View::make('store.payment_method');
+		$data['title_for_layout'] = "Cài đặt phương thức thanh toán";
+		return View::make('store.payment_method', $data);
+	}
+	/**
+	 * Set domain
+	 * @author OanhHa
+	 * @since 2015-01-09
+	 */
+	public function setting_domain() {
+		if(!$this->checkLogin()) {
+			return Redirect::to('/');
+		}
+		$data['title_for_layout'] = "Cài đặt tên miền của riêng bạn";
+		return View::make('store.setting_domain', $data);
 	}
 	/**
 	 * About stores

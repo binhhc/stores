@@ -212,7 +212,7 @@
                     <div class="data">
                         <dl>
                             <dd class="name"><h2>[[item.name]]</h2></dd>
-                            <dd class="price" ng-show="item.quantity > 0">[[item.price | number:0]] phan</dd>
+                            <dd class="price" ng-show="item.quantity > 0">[[item.price | number:0]] Dong</dd>
                             <dd class="price soldout ng-binding" ng-hide="item.quantity > 0"><img src="/img/samples/products/icon_soldout.png" alt="SOLD OUT"></dd>
                         </dl>
                     </div>

@@ -744,11 +744,7 @@ class StoreController extends BaseController {
 		$user_id = $this->getUserId();
 		$user_store = UserStore::where('user_id', $user_id)->first(array('domain'));
 		$user_store = !empty($user_store) ? $user_store->toArray() : array();
-		if(!empty($user_store)) {
-			$data['domain'] = $user_store['domain'];
-		} else {
-			$data['domain'] = '';
-		}
+		$data['domain'] = (!empty($user_store)) ?  $user_store['domain'] :  '';
 		$data['title_for_layout'] = "Cài đặt tên miền cho cửa hàng";
 		return View::make('store.store_domain', $data);
 	}

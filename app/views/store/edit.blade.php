@@ -48,7 +48,7 @@
                             <p class="hide_file">
                                 <input type="file" id="file_logo_image" name="image" accept="image/jpeg,image/png,image/gif">
                             </p>
-                            <label for="file_logo_image" id="label_logo_image" class="label_button">Upload logo</label>
+                            <label for="file_logo_image" id="label_logo_image" class="label_button">Chọn logo</label>
                             <input type="submit" class="hide_submit" value="">
                         </div>
                     </div>

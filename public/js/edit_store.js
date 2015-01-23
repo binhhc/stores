@@ -7884,13 +7884,48 @@ $(document).ready(function() {
             var that = this;
             that.$btns = btn, that.$pannel = pannel, that.w = pannel.children().width(), that.max = pannel.children().length, that.$btns.each(function(i) {
                 var $t = $(this);
-                0 == i && $t.css({
-                    display: "none"
-                }),
+				if($t.hasClass('l')){
+					if(that.current == 0 ){
+						$t.css('display', 'none');
+					}else {
+						if(that.current>0 && that.current < that.max) {
+							$t.css('display', 'list-item');
+						}
+					}					
+				}
+                if($t.hasClass('r')){
+					if(that.current == (that.max - 1)){
+						$t.css('display', 'none');
+					}else {
+						$t.css('display', 'list-item');
+					}					
+				}
+				// 0 == i && $t.css({
+				// display: "none"
+				// }),
                 $t.bind("click", function() {
                     0 == i ? that.current > 0 && (that.current -= 1, that.changeHandler(!1)) : that.current < that.max - 1 && (that.current += 1, that.changeHandler(!0)), that.$btns.trigger("checker")
                 }).bind("checker", function() {
-                    0 == that.current ? 0 == i && $t.fadeOut(that.spd) : that.current == that.max - 1 ? 1 == i && $t.fadeOut(that.spd) : "none" == $t.css("display") && $t.fadeIn(that.spd)
+					if($t.hasClass('l')){
+						if(that.current == 0 ){
+							$t.css('display', 'none');
+						}else {
+							if(that.current>0 && that.current < that.max) {
+								$t.css('display', 'list-item');
+							}
+						}					
+					}
+					if($t.hasClass('r')){
+						if(that.current == (that.max - 1)){
+							$t.css('display', 'none');
+						}else {
+							$t.css('display', 'list-item');
+						}					
+					}
+                    // 0 == that.current ? 0 == i && $t.fadeOut(that.spd) :
+					// that.current == that.max - 1 ? 1 == i &&
+					// $t.fadeOut(that.spd) : "none" == $t.css("display") &&
+					// $t.fadeIn(that.spd)
                 })
             })
         },

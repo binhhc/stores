@@ -329,7 +329,7 @@ class StoreController extends BaseController {
                     'name' => $userInfos['USER_NAME'],
                     'store_font' => array
                         (
-                            'style' => "'Allerta', sans-serif",
+                            'style' => "Arial",
                             'type' => 'google',
                             'weight' => '400',
                             'size' => '54',

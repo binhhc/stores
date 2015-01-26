@@ -171,7 +171,7 @@ $(document).ready(function(){
 		        			  window.location.href = "/dashboard";
 		        		  } else {
 		        			  $(div_err).show();
-		        			  $('p.unique_email').text("Lỗi không thể lưu vào cơ sở dữ liệu");
+		        			  $('p.unique_email').text(response.msg);
 		            		  $('p.unique_email').show();
 		        		  }
 

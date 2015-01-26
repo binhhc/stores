@@ -20,7 +20,7 @@
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
 						<?php $domain=  isset($user_store['domain']) ? "http://".$user_store['domain']. '.'. Config::get('constants.domain') : ''?>
-							<span class="big ng-binding" style="line-height: 220%;"><a href="{{URL::asset('/<?php echo $domain?>')}}">{{{$domain}}}</a></span>
+							<span class="big ng-binding" style="line-height: 220%;"><a href="<?php echo $domain?>">{{{$domain}}}</a></span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">

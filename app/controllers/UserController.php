@@ -243,7 +243,7 @@ class UserController extends BaseController {
      */
     public function accountSetting(){
         $user = Session::get('user');
-        return View::make('user.account_setting')->with(array('user' => $user));
+        return View::make('user.account_setting')->with(array('user' => $user, 'title_for_layout' => 'Cài đặt tài khoản'));
     }
 
     /**
@@ -262,7 +262,7 @@ class UserController extends BaseController {
             $v = User::validate_forget_password($input);
 
         //check email
-        if(!empty($input) && !empty($input['code']) && !empty($v) && !$v->fails()){
+        if(!empty($input) && !empty($input['code']) && !empty($v) && $v->passes()){
             $code = explode('-m1-', $input['code']);
 
             $old_email = $new_email = '';
@@ -278,13 +278,13 @@ class UserController extends BaseController {
                 User::where('id',$user->id)
                     ->update(array('email' => $new_email));
 
-                return View::make('user.update_email_success');
+                return View::make('user.update_email_success')->with(array('title_for_layout' => 'Cập nhật mật khẩu'));
             }else{
                 return Redirect::to('/');
             }
 
         }else{
-            return View::make('user.update_email');
+            return View::make('user.update_email')->with(array('title_for_layout' => 'Cập nhật e-mail'));
         }
     }
 
@@ -326,7 +326,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changePassword(){
-        return View::make('user.update_password');
+        return View::make('user.update_password')->with(array('title_for_layout' => 'Cập nhật mật khẩu'));;
     }
 
     /**
@@ -342,7 +342,7 @@ class UserController extends BaseController {
         $user = Session::get('user');
         $v = User::validate_update_password($input);
 
-        if(!empty($user) && !empty($v) && !$v->fails()){
+        if(!empty($user) && !empty($v) && $v->passes()){
             User::where('id', $user['id'])
                 ->update(array('password' => Hash::make($input['password'])));
 
@@ -361,7 +361,12 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function registerProfile(){
-        return View::make('user.change_profile');
+        $user = Session::get('user');
+        $user_profile = '';
+        if(!empty($user)){
+            $user_profile = UserProfile::where('user_id', $user['id'])->first();
+        }
+        return View::make('user.change_profile')->with(array('title_for_layout' => 'Thay đổi hồ sơ', 'user_profile' => $user_profile ));
     }
 
     /**
@@ -373,7 +378,46 @@ class UserController extends BaseController {
      * @since 2015.01.22
      */
     public function doRegisterProfile(){
-        // return View::make('user.change_profile');
+        $input = Input::all();
+        $username = Input::get('name');
+        $image = Input::file('image_url');
+
+        $v = UserProfile::validate_input($input);
+        if($v->passes()){
+            $user = Session::get('user');
+            $user_profile = UserProfile::where('user_id', $user['id'])->first();
+
+            if(Input::file('image_url')){ // not change image_url
+                $folder_name = User::getNameStore();
+                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+                if(!is_dir($folder_user)){
+                    mkdir($folder_user);
+                    chmod($folder_user, 0777);
+                }
+
+                $filename = $image->getClientOriginalName();
+                $upload = Input::file('image_url')->move($folder_user, $filename);
+            }
+
+            if(empty($user_profile)){ //user haven't profile
+                $profile = new UserProfile();
+                $profile->name = $username;
+                $profile->user_id = $user['id'];
+                $profile->image_url = 'files/'.$folder_name['USER_NAME'].'/'.$filename;
+                $profile->save();
+            }else{
+                if(isset($filename))
+                    $image_url = 'files/'.$folder_name['USER_NAME'].'/'.$filename;
+                else
+                    $image_url = $user_profile->image_url;
+
+                UserProfile::where('id', $user_profile['id'])
+                    ->update(array('name' => $username, 'image_url' => $image_url));
+            }
+            return Redirect::to('/account_setting');
+        }else{
+            return Redirect::to('/account_setting');
+        }
     }
 
     /**
@@ -385,7 +429,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changeShipping(){
-        return View::make('user.change_shipping');
+        return View::make('user.change_shipping')->with(array('title_for_layout' => 'Thay đổi giao hàng'));
     }
 
     /**
@@ -397,7 +441,7 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function changeCreaditCard(){
-        return View::make('user.change_credit_card');
+        return View::make('user.change_credit_card')->with(array('title_for_layout' => 'Thay đổi thẻ tín dụng'));
     }
 
     /**
@@ -409,7 +453,7 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function changeDestinationAccount(){
-        return View::make('user.change_destination_account');
+        return View::make('user.change_destination_account')->with(array('title_for_layout' => 'Thay đổi tài khoản chuyển đến'));
     }
 
     /**
@@ -421,7 +465,7 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function changeMailNotificationSetting(){
-        return View::make('user.change_mail_notification_setting');
+        return View::make('user.change_mail_notification_setting')->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email'));
     }
 
     /**
@@ -433,7 +477,7 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function withdrawal(){
-        return View::make('user.withdrawal');
+        return View::make('user.withdrawal')->with(array('title_for_layout' => 'Rút ra'));
     }
 
     /**

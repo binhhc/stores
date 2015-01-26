@@ -60,10 +60,10 @@
 				<dd>
 					<div id="switch_open" class="switch switch_public_flag" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>" ng-click="toggle_closed()">
 					<?php if(isset($user_store['public_flg']) && $user_store['public_flg'] == 1) {?>
-						<p class="status_store active" >Publish</p>
+						<p class="status_store active" >Công bố</p>
 						<p class="grip" style="left: 57px;"></p>
 					<?php } else {?>
-						<p class="status_store deactive">Private</p>
+						<p class="status_store deactive">Riêng tư</p>
 						<p class="grip" style="left: 2px;"></p>
 					<?php }?>
 					</div>
@@ -171,10 +171,10 @@
 				<dd class="ng-scope" >
 					<div class="switch set_store_follow" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
 						<?php if(isset($user_store['follow']) && $user_store['follow'] == 1) {?>
-							<p class="status_follow active">ON</p>
+							<p class="status_follow active">Mở</p>
 							<p class="grip" style="left: 57px;"></p>
 						<?php } else {?>
-							<p class="status_follow deactive" >OFF</p>
+							<p class="status_follow deactive" >Tắt</p>
 							<p class="grip" style="left: 2px;"></p>
 						<?php }?>
 
@@ -196,10 +196,10 @@
 						<li id="form_promotion">
 								<div class="switch set_promotion" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
 									<?php if(isset($user_store['promotion']) && $user_store['promotion'] == 1) {?>
-										<p class="status_promotion active">ON</p>
+										<p class="status_promotion active">Mở</p>
 										<p class="grip" style="left: 57px;"></p>
 									<?php } else {?>
-										<p class="status_promotion deactive" >OFF</p>
+										<p class="status_promotion deactive" >Tắt</p>
 										<p class="grip" style="left: 2px;"></p>
 									<?php }?>
 
@@ -458,94 +458,8 @@
 		</div>
 	</div>
 </div>
-
-
-
-<div id="dummy_modal_addon" class="ng-scope">
-	<div id="modal-win-addon" style="top: 622px; display: block">
-	<div id="modal-bg" style="opacity: 1;"></div>
-		<div class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" tabindex="-1" style="width: 750px; height: auto; position: absolute; top: 20px; left: 299px; opacity: 1; overflow: visible;">
-			<div class="fancybox-skin" style="padding: 15px; width: auto; height: auto;">
-			<div class="fancybox-outer">
-				<div class="fancybox-inner" style="overflow: auto; width: 720px; height: auto;">
-					<div id="popup_english" class="popup_addon" style="display: block;">
-						<div class="header">
-							<p class="icon">
-								{{HTML::image('img/main_page/icon_english.png', 'Information') }}
-							</p>
-							<h2>英語対応</h2>
-						</div>
-						<div class="slider">
-							<div class="bx-wrapper" style="max-width: 100%;">
-								<div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 300px;">
-									<ul id="slider_english" class="slider_contents" style="width: 415%; position: relative; transition-duration: 0s; transform: translate3d(-540px, 0px, 0px);">
-										<li class="bx-clone" style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_02.png', 'Information') }}
-										</li>
-										<li style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_01.png', 'Information') }}
-										</li>
-										<li style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_02.png', 'Information') }}
-										</li>
-										<li class="bx-clone" style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_01.png', 'Information') }}
-										</li>
-									</ul>
-								</div>
-
-								<div class="bx-controls bx-has-pager bx-has-controls-direction">
-									<div class="bx-pager bx-default-pager">
-										<div class="bx-pager-item">
-											<a class="bx-pager-link active" data-slide-index="0" href="">1</a>
-										</div>
-										<div class="bx-pager-item">
-											<a class="bx-pager-link" data-slide-index="1" href="">2</a>
-										</div>
-									</div>
-									<div class="bx-controls-direction">
-										<a class="bx-prev" href="">Prev</a>
-										<a class="bx-next" href="">Next</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<p class="text">
-							ストア内の固定テキストを、一瞬で英語に切り替えることができます。
-							<br>
-							「送料詳細設定」と併用して頂くことで、国別の送料を設定することも可能になります。
-							<span style="font-size:12px; display:block; margin-top:3px;">※海外向けのストアを運営されたい場合にご利用ください</span>
-							<span style="font-size:12px; display:block; margin-top:-4px;">※英語表記に切り替えた場合の決済方法はクレジットカードのみとなります</span>
-						</p>
-						<dl class="page">
-							<dt>追加されるページ</dt>
-							<dd>
-								<a target="_blank" ng-href="" href="">マイストア</a>
-							</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-			<a class="fancybox-item fancybox-close" href="javascript:;" title="Close"></a>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
 @include('elements.footer')
-<script>
-$(document).ready(function(){
-	$('.fancybox-close').on('click', function(e){
-		e.preventDefault();
-		$('#modal-win-addon').hide();
-	});
-});
-</script>
+<style>
+	.status_store.active {
+		text-indent: 0.5em !important;
+</style>

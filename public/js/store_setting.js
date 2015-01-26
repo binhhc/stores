@@ -81,13 +81,13 @@ $(document).ready(function(){
 			public_flg = 0;
 			$('.switch_public_flag .status_store').removeClass('active');
 			$('.switch_public_flag .status_store').addClass('deactive');
-			$('.switch_public_flag .status_store').text('Private');
+			$('.switch_public_flag .status_store').text('Riêng tư');
 			$('.switch_public_flag .grip').css({'left':'2px'});
 		} else {
 			public_flg = 1;
 			$('.switch_public_flag .status_store').removeClass('deactive');
 			$('.switch_public_flag .status_store').addClass('active');
-			$('.switch_public_flag .status_store').text('Public');
+			$('.switch_public_flag .status_store').text('Công bố');
 			$('.switch_public_flag .grip').css({'left':'57px'});
 		}
 		$.ajax({
@@ -119,13 +119,13 @@ $(document).ready(function(){
 			promotion = 0;
 			$('.set_promotion .status_promotion').removeClass('active');
 			$('.set_promotion .status_promotion').addClass('deactive');
-			$('.set_promotion .status_promotion').text('OFF');
+			$('.set_promotion .status_promotion').text('Tắt');
 			$('.set_promotion .grip').css({'left':'2px'});
 		} else {
 			promotion = 1;
 			$('.set_promotion .status_promotion').removeClass('deactive');
 			$('.set_promotion .status_promotion').addClass('active');
-			$('.set_promotion .status_promotion').text('ON');
+			$('.set_promotion .status_promotion').text('Mở');
 			$('.set_promotion .grip').css({'left':'57px'});
 		}
 		$.ajax({
@@ -157,13 +157,13 @@ $(document).ready(function(){
 			store_follow = 0;
 			$('.set_store_follow .status_follow').removeClass('active');
 			$('.set_store_follow .status_follow').addClass('deactive');
-			$('.set_store_follow .status_follow').text('OFF');
+			$('.set_store_follow .status_follow').text('Tắt');
 			$('.set_store_follow .grip').css({'left':'2px'});
 		} else {
 			store_follow = 1;
 			$('.set_store_follow .status_follow').removeClass('deactive');
 			$('.set_store_follow .status_follow').addClass('active');
-			$('.set_store_follow .status_follow').text('ON');
+			$('.set_store_follow .status_follow').text('Mở');
 			$('.set_store_follow .grip').css({'left':'57px'});
 		}
 		$.ajax({

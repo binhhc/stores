@@ -63,7 +63,7 @@ $(document).ready(function(){
                 up_down:up_down
             },
             beforeSend: function() {
-                $(this).parent().parent().slideUp();
+                $(this).parent().parent().delay(3000).fadeOut('slow');
                 $('.loading').show();
             },
             global: true,

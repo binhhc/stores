@@ -754,7 +754,7 @@ class StoreController extends BaseController {
 	 */
 	public function save_domain(){
 		$input = Input::all();
-		$input['domain'] = 'http://'. Input::get('domain'). Config::get('constants.domain');
+		$input['domain'] = 'http://'. Input::get('domain'). '.'. Config::get('constants.domain');
 		$v = UserStore::validate_domain($input);
 		$user_id = $this->getUserId();
 		$user_store = UserStore::where('user_id', $user_id)->first();

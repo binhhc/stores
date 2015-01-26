@@ -82,6 +82,8 @@
 
 
 $(document).ready(function(){
+    var slider = new Slider($('.slide_wrap'),$('.slide_navi'));
+    slider.init();
 	// Main.js
 	$('#btn_menu').on('click', function(){
 		if($('ul#mobile_nav').css('display') !== 'none'){

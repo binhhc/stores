@@ -60,10 +60,10 @@
 							<dd class="sz_s">
 								<div class="switch">
 									@if ($item['public_flg'] == 0)
-									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
+									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Công bố</p>
 										<p class="grip"></p>
 									@else
-										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Riêng tư</p>
 										<p class="grip gripdeactive"></p>
 									@endif
 								</div>
@@ -92,12 +92,15 @@
 <div class="loading ng-scope" ng-show="state == 'wait'" style="display: none;"></div>
 @include('elements.footer')
 <style>
-.switch .active, .switch .deactive {
+ .switch .deactive {
 	text-indent: 1em!important;
 }
 .wrapper {
     margin: 50px auto 0;
     width: 792px!important;
+}
+.switch .active {
+	text-indent: 0.5em!important;
 }
 </style>
 

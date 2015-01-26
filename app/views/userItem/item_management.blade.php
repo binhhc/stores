@@ -1,4 +1,5 @@
 @include('elements.header')
+ {{HTML::script('/js/item_management.js')}}
 <div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
 	<p>Đã xoá thành công!</p>
 </div>

@@ -24,7 +24,7 @@
 	</ul>
 	<ul id="foot_navi">
 		<li>
-			<a target="_blank" href="/">Công ty</a>
+			<a target="_blank" href="http://leverages.vn">Công ty vận hành</a>
 		</li>
 		<li>
 			<a href="/contact">Liên hệ</a>
@@ -33,10 +33,7 @@
 			<a href="/terms">Điều khoản sử dụng</a>
 		</li>
 		<li>
-			<a href="/tokushoho">Thương mại và an toàn</a>
-		</li>
-		<li>
-			<a href="/privacy_policy">Chính sách</a>
+			<a href="/privacy_policy">Chính sách bảo mật</a>
 		</li>
 	</ul>
 	<ul id="social">

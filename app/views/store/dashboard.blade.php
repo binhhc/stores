@@ -26,7 +26,7 @@
 		<li>
 			<a class="dashboard_items"  href="/item_management">
 			<h2>Quản lý sản phẩm</h2>
-			<span>Thêm / Chỉnh sửa mục</span>
+			<span>Thêm / Chỉnh sửa sản phẩm</span>
 			</a>
 		</li>
 		<li>

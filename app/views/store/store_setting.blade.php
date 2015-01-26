@@ -19,7 +19,8 @@
 				<dd style="width: 500px;">
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
-							<span class="big ng-binding" style="line-height: 220%;"><?php echo isset($user_store['domain']) ? "http://".$user_store['domain']. '.'. Config::get('constants.domain') : ''?></span>
+						<?php $domain=  isset($user_store['domain']) ? "http://".$user_store['domain']. '.'. Config::get('constants.domain') : ''?>
+							<span class="big ng-binding" style="line-height: 220%;">{{{$domain}}}</span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">

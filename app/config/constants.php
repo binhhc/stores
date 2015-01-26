@@ -224,6 +224,29 @@ return array(
             'font_weight'=> 400
         )
     ),
+    'edit_store_style_sample' => array(
+        'store_font' => array(
+            'style' => "Arial",
+            'type' => 'google',
+            'weight' => '400',
+            'size' => '54',
+        ),
+        'layout' => 'layout_a',
+            'background' => array(
+            'color' => '#fff',
+            'repeat' => '',
+            'image' => '',
+        ),
+        'text_color' => array(
+            'item' => '#000',
+            'store' => '#000'
+        ),
+        'display' => array(
+            'frame' => 1,
+            'item' => 1
+        ),
+        'logo' => ''
+    ),
     'trade_law' => array(
     	'price' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     	'charge' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',

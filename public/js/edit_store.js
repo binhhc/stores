@@ -8159,8 +8159,11 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         }, 50)
                     }), $http.get("/categories").success(function(data) {
                         $scope.categories = data
-                    }), $http.head("/about").success(function() {
-                        $scope.hasAbout = !0
+                    }), $http.get("/about").success(function(data) {
+                    	if (data !== '') {
+                    		   $scope.hasAbout = !0
+                    		}
+                        //$scope.hasAbout = !0
                     })
                 }), (navigator.userAgent.toLowerCase().indexOf("firefox") + 1 ? 1 : 0) && ($("#label_logo_image").on("click", function() {
                     return $("#file_logo_image").click(), !1

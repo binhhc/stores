@@ -14,7 +14,7 @@ class UserStore extends Model{
      */
     public static function validate_domain($input){
         $rules = array(
-            'domain' => 'required|unique:user_stores',
+            'domain' => 'required|url|unique:user_stores',
         );
 
         return Validator::make($input, $rules);
@@ -51,7 +51,7 @@ class UserStore extends Model{
 
         return Validator::make($input, $rules);
     }
-    
+
     /*
      * @author      Le Nhan Hau
      * @since       2015/01/16

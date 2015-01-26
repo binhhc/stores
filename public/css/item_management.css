@@ -1244,3 +1244,8 @@ background-position: bottom;
     background-color: #eee;
     text-decoration: none;
 }
+
+#header .nav .nav_addon {
+    background: url("../img/main_page/icon_main_nav_addon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+}
+

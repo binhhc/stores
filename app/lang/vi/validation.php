@@ -98,17 +98,19 @@ return array(
 		),
 		'domain' => array(
 			'required' => 'Vui lòng nhập tên miền.',
-			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.'
+			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.',
+			'url' => 'Địa chỉ url của trang web không đúng định dạng.'
+
 		),
 		'facebook' => array(
-			'url' => 'Địa chỉ url của facebook không đúng'
+			'url' => 'Địa chỉ url của facebook không đúng.'
 		),
 		'twitter' => array(
-			'url' => 'Địa chỉ url của twitter không đúng'
+			'url' => 'Địa chỉ url của twitter không đúng.'
 		),
 		'homepage' => array(
-			'url' => 'Địa chỉ url của trang web không đúng'
-		)
+			'url' => 'Địa chỉ url của trang web không đúng.'
+		),
 	),
 
 	/*

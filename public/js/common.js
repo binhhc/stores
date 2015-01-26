@@ -43,6 +43,7 @@ $(document).ready(function(){
      * Sort item in item management
      */
     $(document).on('click', 'li.sort_item', function(){
+    	var sort_item = $(this);
         var item_id = $(this).attr('item_id');
         var order_value = $(this).attr('order_value');
         var up_down = $(this).attr('up_down');
@@ -63,7 +64,7 @@ $(document).ready(function(){
                 up_down:up_down
             },
             beforeSend: function() {
-                $(this).parent().parent().slideUp();
+                $(sort_item).parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,
@@ -83,6 +84,7 @@ $(document).ready(function(){
      * Change status of item
      */
     $(document).on('click', '.switch p.item_status', function(){
+    	var sort_item = $(this);
         var item_id = $(this).attr('item_id');
         var public_flg = $(this).attr('public_flg');
         $.ajax({
@@ -93,6 +95,7 @@ $(document).ready(function(){
                 public_flg: public_flg
             },
             beforeSend: function() {
+            	$(sort_item).parent().parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,
@@ -112,6 +115,7 @@ $(document).ready(function(){
      */
         $(document).on('click', 'a.delete_item', function(e){
             e.preventDefault();
+            var sort_item = $(this);
             var conf = confirm('Bạn chắc chắn muốn xoá mặt hàng này?');
             if(conf) {
                 var item_id = $(this).attr('item_id');

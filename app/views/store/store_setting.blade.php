@@ -20,7 +20,7 @@
 					<ul>
 						<li style="max-width: 500px; word-break: break-word; word-wrap: break-word;">
 						<?php $domain=  isset($user_store['domain']) ? "http://".$user_store['domain']. '.'. Config::get('constants.domain') : ''?>
-							<span class="big ng-binding" style="line-height: 220%;">{{{$domain}}}</span>
+							<span class="big ng-binding" style="line-height: 220%;"><a href="{{URL::asset('/<?php echo $domain?>')}}">{{{$domain}}}</a></span>
 						</li>
 						<li ng-show="data.available_url_change && !data.has_domain" style="">
 							<p class="btn_low_m">
@@ -60,10 +60,10 @@
 				<dd>
 					<div id="switch_open" class="switch switch_public_flag" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>" ng-click="toggle_closed()">
 					<?php if(isset($user_store['public_flg']) && $user_store['public_flg'] == 1) {?>
-						<p class="status_store active" >Publish</p>
+						<p class="status_store active" >Công bố</p>
 						<p class="grip" style="left: 57px;"></p>
 					<?php } else {?>
-						<p class="status_store deactive">Private</p>
+						<p class="status_store deactive">Riêng tư</p>
 						<p class="grip" style="left: 2px;"></p>
 					<?php }?>
 					</div>
@@ -171,10 +171,10 @@
 				<dd class="ng-scope" >
 					<div class="switch set_store_follow" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
 						<?php if(isset($user_store['follow']) && $user_store['follow'] == 1) {?>
-							<p class="status_follow active">ON</p>
+							<p class="status_follow active">Mở</p>
 							<p class="grip" style="left: 57px;"></p>
 						<?php } else {?>
-							<p class="status_follow deactive" >OFF</p>
+							<p class="status_follow deactive" >Tắt</p>
 							<p class="grip" style="left: 2px;"></p>
 						<?php }?>
 
@@ -196,10 +196,10 @@
 						<li id="form_promotion">
 								<div class="switch set_promotion" store_id="<?php echo isset($user_store['id'])? $user_store['id'] : ''?>">
 									<?php if(isset($user_store['promotion']) && $user_store['promotion'] == 1) {?>
-										<p class="status_promotion active">ON</p>
+										<p class="status_promotion active">Mở</p>
 										<p class="grip" style="left: 57px;"></p>
 									<?php } else {?>
-										<p class="status_promotion deactive" >OFF</p>
+										<p class="status_promotion deactive" >Tắt</p>
 										<p class="grip" style="left: 2px;"></p>
 									<?php }?>
 
@@ -458,5 +458,8 @@
 		</div>
 	</div>
 </div>
-
 @include('elements.footer')
+<style>
+	.status_store.active {
+		text-indent: 0.5em !important;
+</style>

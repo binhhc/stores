@@ -12,7 +12,8 @@ class AddonController extends BaseController {
     public function addon() { 
         $user_id            = Session::get('user.id');
         $data['user_addon'] = UserAddon::getAllAddonByUser($user_id); 
-        $data['addons']     = SysAddon::getAllSysData();        
+        $data['addons']     = SysAddon::getAllSysData();   
+        $data['title_for_layout']     = 'Addon';   
     	return View::make('addon.addon',$data);
     }
     

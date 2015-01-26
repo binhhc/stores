@@ -33,10 +33,10 @@
 							<dd class="sz_s">
 								<div class="switch">
 									@if ($item['public_flg'] == 0)
-									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
+									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Công bố</p>
 										<p class="grip"></p>
 									@else
-										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Riêng tư</p>
 										<p class="grip gripdeactive"></p>
 									@endif
 								</div>

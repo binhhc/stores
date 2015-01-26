@@ -99,7 +99,7 @@ return array(
 		'domain' => array(
 			'required' => 'Vui lòng nhập tên miền.',
 			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.',
-			'url' => 'Địa chỉ url của trang web không đúng định dạng.'
+			'url' => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
 
 		),
 		'facebook' => array(

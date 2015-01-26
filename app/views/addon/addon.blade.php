@@ -149,7 +149,7 @@ $(document).ready(function(){
         $('#modal-win-addon').show();
     });
     
-	$('.fancybox-close').on('click', function(e){
+	$('#modal-bg,.fancybox-close').on('click', function(e){
 		e.preventDefault();
 		$('#modal-win-addon').hide();
 	});

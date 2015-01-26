@@ -190,7 +190,7 @@
                 <span class="txt" ng-hide="styles.logo">[[store.name]]</span>
             </h1>
             <div id="navi_main" style="display:none;" ng-show="categories || hasAbout">
-                <dl style="font-family: Allerta">
+                <dl style="font-family: Arial; white-space: nowrap;">
                 <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">Trang chủ</a></dd>
                 <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">Giới thiệu</a></dd>
                 <dd class="btn_dropdown" style="z-index:500;">

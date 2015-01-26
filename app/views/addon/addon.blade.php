@@ -1,9 +1,8 @@
-{{HTML::style('css/bootstrap.min.css')}}
-{{HTML::style('css/item_management.css')}}
-{{HTML::style('css/addon.css')}}
-{{HTML::script('js/jquery.min.js')}}
-{{HTML::script('js/main_page.js')}}
 @include('elements.header')
+{{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/addon.css')}}
+{{HTML::script('js/jquery.bxslider.js')}}
+{{HTML::script('js/main_page.js')}}
 <div ng-view=""><div class="addon ng-scope">
   <div class="header">
     <h2><img alt="STORES.jpアドオン あなたのストアを、進化させる。" src="/img/addon/title.png"></h2>
@@ -16,7 +15,7 @@
                 <a class="fancybox" id="get_newsletter" href="#{{$ad['popup']}}">
                     <p class="icon"><img alt="{{$ad['name']}}" src="{{SysAddon::getImageURL($ad)}}"></p>
                     <div class="text">
-                        <h3>{{$ad['name']}}</h3>
+                        <h3 style="margin-top:0px">{{$ad['name']}}</h3>
                         <p>{{$ad['intro']}}。</p>
                     </div>
                 </a>
@@ -50,39 +49,14 @@
 							<h2>Tiếng Anh Tương Ứng</h2>
 						</div>
 						<div class="slider">
-							<div class="bx-wrapper" style="max-width: 100%;">
-								<div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 300px;">
-									<ul id="slider_english" class="slider_contents" style="width: 415%; position: relative; transition-duration: 0s; transform: translate3d(-540px, 0px, 0px);">
-										<li class="bx-clone" style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_02.png', 'Information') }}
-										</li>
-										<li style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_01.png', 'Information') }}
-										</li>
-										<li style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_02.png', 'Information') }}
-										</li>
-										<li class="bx-clone" style="float: left; list-style: outside none none; position: relative; width: 540px;">
-											{{HTML::image('img/main_page/english_01.png', 'Information') }}
-										</li>
-									</ul>
-								</div>
-
-								<div class="bx-controls bx-has-pager bx-has-controls-direction">
-									<div class="bx-pager bx-default-pager">
-										<div class="bx-pager-item">
-											<a class="bx-pager-link active" data-slide-index="0" href="">1</a>
-										</div>
-										<div class="bx-pager-item">
-											<a class="bx-pager-link" data-slide-index="1" href="">2</a>
-										</div>
-									</div>
-									<div class="bx-controls-direction">
-										<a class="bx-prev" href="">Prev</a>
-										<a class="bx-next" href="">Next</a>
-									</div>
-								</div>
-							</div>
+                            <ul id="slider_english" class="slider_contents" >
+                                <li >
+                                    {{HTML::image('img/main_page/english_01.png', 'Information') }}
+                                </li>
+                                <li >
+                                    {{HTML::image('img/main_page/english_02.png', 'Information') }}
+                                </li>
+                            </ul>
 						</div>
 						<p class="text">
 							Những đoạn văn cố định sẽ được dịch sang tiếng anh Tương ứng。
@@ -166,9 +140,15 @@ function saveAddon(id,flg) {
 </script>
 <script>
 $(document).ready(function(){
+    $('.slider_contents').bxSlider({
+        mode: 'fade',
+        captions: true
+      });
+      
     $('.fancybox').on('click', function(e){
         $('#modal-win-addon').show();
     });
+    
 	$('.fancybox-close').on('click', function(e){
 		e.preventDefault();
 		$('#modal-win-addon').hide();

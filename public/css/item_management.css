@@ -1266,7 +1266,7 @@ background-position: bottom;
     border-radius: 5px;
     height: 320px;
     margin-top: 15px;
-    padding-top: 20px;
+    padding-top: 10px;
     position: relative;
     width: 720px;
 }
@@ -1278,7 +1278,8 @@ background-position: bottom;
 .popup_addon .slider .bx-wrapper .bx-controls .bx-pager {
     left: 334px;
     position: absolute;
-    top: 300px;
+    top: 288px;
+    z-index: 200;
 }
 .popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item {
     float: left;

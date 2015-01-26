@@ -30,7 +30,7 @@ class UserStore extends Model{
     public static function getUserStoreByUserId() {
         $userId = Session::get('user.id');
         $userStores = DB::table('user_stores')
-            ->select('id', 'user_id', 'domain', 'public_flg','settings')
+            ->select('id', 'user_id', 'domain', 'public_flg', 'settings', 'setting_intros')
             ->where('user_stores.user_id', '=', $userId)
             ->orderBy('id', 'desc')
             ->first();

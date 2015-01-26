@@ -405,7 +405,7 @@ class StoreController extends BaseController {
     /**
      * Load user about
      *
-     * @author Nguyen Hoang
+     * @author Le Nhan Hau
      * @since 2015-01-08
      * @return json
      */
@@ -413,10 +413,16 @@ class StoreController extends BaseController {
         $this->layout = '';
         $about = array();
 
+        //get setting_intros of user_stores
+        $tmpUserStore = UserStore::getUserStoreByUserId();
+        
+        if (!empty($tmpUserStore)) {
+            $about = $tmpUserStore->setting_intros;
+        }
+        
         if (Request::ajax())
         {
-            $json = json_encode($about);
-            echo $json;
+            echo $about;
         }
     }
 

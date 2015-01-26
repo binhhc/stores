@@ -40,7 +40,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var submit_flg = true;
+        var txtEmail = $('.email').val();
         $('#frmUpdateEmail').submit(function(event){
+            if(txtEmail.length == 0){
+                $('.error').empty();
+                $('.error').append('Vui lòng nhập địa chỉ e-mail của bạn');
+                submit_flg = false;
+            }
             if(submit_flg){
                 var email = $('.email').val();
                 if (validateEmail(email)) {
@@ -53,7 +59,6 @@
         });
 
         $('.email').keyup(function(){
-            var txtEmail = $('.email').val();
             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             $('.error').empty();
 

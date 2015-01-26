@@ -40,6 +40,20 @@
     $(document).ready(function(){
         var submit_flg = true;
         $('#frmUpdatePassword').submit(function(event){
+            var password = $('.password').val();
+            var confirm_password = $('.confirm_password').val();
+            //check length email when submit
+            if(password.length == 0){
+                $('.password').empty();
+                $('.password').append('Vui lòng nhập mật khẩu');
+                submit_flg = false;
+            }
+            //check length confirm_email when submit
+            if(confirm_password.length == 0){
+                $('.confirm_password').empty();
+                $('.confirm_password').append('Mật khẩu không phù hợp');
+                submit_flg = false;
+            }
             if(submit_flg == false){
                 event.preventDefault();
             }
@@ -48,13 +62,14 @@
         $('.password').keyup(function(){
             var password = $('.password').val();
             $('.password').empty();
-
             if(password.length == 0){
-                submit_flg = false;
                 $('.password').append('Vui lòng nhập mật khẩu');
-            }else if(password.length < 6){
                 submit_flg = false;
+            }else if(password.length < 6){
                 $('.password').append('Vui lòng nhập mật khẩu ít nhất 6 kí tự');
+                submit_flg = false;
+            }else{
+                submit_flg = true;
             }
 
         });
@@ -67,6 +82,8 @@
             if(confirm_password != password){
                 submit_flg = false;
                 $('.confirm_password').append('Mật khẩu không phù hợp');
+            }else{
+                submit_flg = true;
             }
         });
     });

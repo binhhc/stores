@@ -314,6 +314,8 @@ class UserController extends BaseController {
                 $message->to($new_email, 'STORES.vn')->subject('【STORES.vn】 Thay đổi địa chỉ email!');
             });
             return Redirect::to('/account_setting');
+        }else{
+            return Redirect::to('/account_setting');
         }
     }
 

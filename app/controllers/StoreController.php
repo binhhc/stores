@@ -290,68 +290,48 @@ class StoreController extends BaseController {
 
         //get user login
         $userInfos = User::getNameStore();
-
+        
+        //styles sample
+        $tmpStyle = Config::get('constants.edit_store_style_sample');
+        $tmpStyle['name'] = $userInfos['USER_NAME'];
+        
         //get user_stores from user_id
         $userStores = UserStore::getUserStoreByUserId();
         if (Request::ajax()) {
             $style = array();
             if (!empty($userStores)) {
                 $settings = $userStores->settings;
-                $tmpSetting = json_decode($settings);
-                $store = $tmpSetting->store;
-                $style['name'] = !empty($store->name) ? $store->name : $userInfos['USER_NAME'] ;
-                $style['store_font'] = array(
-                    'style' => $store->store_style->store_font_style,
-                    'type' => $store->store_style->store_font_type,
-                    'weight' => $store->store_style->store_font_weight,
-                    'size' => $store->store_style->store_font_size
-                );
-                $style['layout'] = $store->store_style->layout;
-                $style['background'] = array(
-                    'color' => $store->store_style->background_color,
-                    'repeat' => '',
-                    'image' => $store->store_style->background_image
-                );
-                $style['text_color'] = array(
-                    'item' => $store->store_style->item_text_color,
-                    'store' => $store->store_style->store_text_color
-                );
-                $style['display'] = array(
-                    'frame' => $store->store_style->display_frame,
-                    'item' => $store->store_style->display_item
-                );
-                $style['shipping_fee'] = 0;
-                $style['logo'] = $store->store_style->logo_image;
+                if (!empty($settings)) {
+                    $tmpSetting = json_decode($settings);
+                    $store = $tmpSetting->store;
+                    $style['name'] = !empty($store->name) ? $store->name : $userInfos['USER_NAME'] ;
+                    $style['store_font'] = array(
+                        'style' => $store->store_style->store_font_style,
+                        'type' => $store->store_style->store_font_type,
+                        'weight' => $store->store_style->store_font_weight,
+                        'size' => $store->store_style->store_font_size
+                    );
+                    $style['layout'] = $store->store_style->layout;
+                    $style['background'] = array(
+                        'color' => $store->store_style->background_color,
+                        'repeat' => '',
+                        'image' => $store->store_style->background_image
+                    );
+                    $style['text_color'] = array(
+                        'item' => $store->store_style->item_text_color,
+                        'store' => $store->store_style->store_text_color
+                    );
+                    $style['display'] = array(
+                        'frame' => $store->store_style->display_frame,
+                        'item' => $store->store_style->display_item
+                    );
+                    $style['shipping_fee'] = 0;
+                    $style['logo'] = $store->store_style->logo_image;
+                }else {
+                    $style = $tmpStyle;
+                }
             }else {
-                //init data
-                $style = array(
-                    'name' => $userInfos['USER_NAME'],
-                    'store_font' => array
-                        (
-                            'style' => "Arial",
-                            'type' => 'google',
-                            'weight' => '400',
-                            'size' => '54',
-                        ),
-                        'layout' => 'layout_a',
-                        'background' => array
-                        (
-                            'color' => '#fff',
-                            'repeat' => '',
-                            'image' => '',
-                        ),
-                        'text_color' => array
-                        (
-                            'item' => '#000',
-                            'store' => '#000'
-                        ),
-                        'display' => array
-                        (
-                            'frame' => 1,
-                            'item' => 1
-                        ),
-                        'logo' => ''
-                );
+                $style = $tmpStyle;
             }
 
             $json = json_encode($style);

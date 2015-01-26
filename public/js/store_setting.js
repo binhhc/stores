@@ -23,7 +23,8 @@ $(document).ready(function(){
 		$('.modal_slide').hide();
 		$(modal).show();
 	});
-	$('a.modal-close').on('click', function(){
+	$('#modal-bg,a.modal-close').on('click', function(e){
+		e.preventDefault();
 		$('#modal-win').hide();
 	});
 

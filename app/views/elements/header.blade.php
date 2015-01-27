@@ -35,7 +35,7 @@
    	(isset($account_token) && !empty($account_token)) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">
         <div class="wrap">
-            <p class="text">Chúng tôi gửi một xác nhận e-mail đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>
+            <p class="text">Chúng tôi gửi một e-mail xác nhận đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>
             <p class="btn">
                 <a class="send_email">Gửi lại email</a>
             </p>
@@ -55,6 +55,7 @@
 
             <!-- TODO -->
             <li class="nav_account"><a href="{{URL::asset('/account_setting')}}" id="mn_account_setting" original-title="Cài đặt tài khoản"></a></li>
+            <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon">Addon</a></li>
             <li class="nav_faq"><a href="#" id="mn_faq" original-title="FAQ"></a></li>
         </ul>
         <!-- /Nav -->
@@ -75,5 +76,6 @@
            $('#mn_store_setting').tipsy({fade: true, gravity: 'n'});
            $('#mn_account_setting').tipsy({fade: true, gravity: 'n'});
            $('#mn_faq').tipsy({fade: true, gravity: 'n'});
+           $('#mn_addon').tipsy({fade: true, gravity: 'n'});
         });
     </script>

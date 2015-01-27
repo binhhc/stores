@@ -23,6 +23,7 @@
 						<dl class="lists move">
 							<dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 0)<?php echo $stt;?> @endif</dd>
 							<dd class="sz_i">
+								{{HTML::image($item['image_url'], 'Hình ảnh sản phẩm', array('width' => 50, 'height' => 50))}}
 							</dd>
 							<dd class="sz_l">
 								<a class="ng-binding" ng-click="edit(item)" href=""><?php echo (strlen($item['name']) > 50) ? substr($item['name'], 0, 50). "..." : $item['name']?></a>
@@ -32,10 +33,10 @@
 							<dd class="sz_s">
 								<div class="switch">
 									@if ($item['public_flg'] == 0)
-									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Publish</p>
+									 	<p class="item_status status active" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Công bố</p>
 										<p class="grip"></p>
 									@else
-										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Private</p>
+										<p class="item_status status deactive" style="text-indent: 2em!important" item_id="{{$item['id']}}" public_flg="{{$item['public_flg']}}">Riêng tư</p>
 										<p class="grip gripdeactive"></p>
 									@endif
 								</div>

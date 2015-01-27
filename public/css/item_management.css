@@ -1244,3 +1244,168 @@ background-position: bottom;
     background-color: #eee;
     text-decoration: none;
 }
+
+#header .nav .nav_addon {
+    background: url("../img/main_page/icon_main_nav_addon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+}
+
+.popup_addon .header .icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+.popup_addon .header h2 {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
+    vertical-align: middle;
+}
+
+.popup_addon .slider {
+    background-color: #2e3740;
+    border-radius: 5px;
+    height: 320px;
+    margin-top: 15px;
+    padding-top: 10px;
+    position: relative;
+    width: 720px;
+}
+.popup_addon .slider .bx-wrapper .bx-viewport {
+    height: 300px !important;
+    margin: 0 auto;
+    width: 540px !important;
+}
+.popup_addon .slider .bx-wrapper .bx-controls .bx-pager {
+    left: 334px;
+    position: absolute;
+    top: 288px;
+    z-index: 200;
+}
+.popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item {
+    float: left;
+    height: 8px;
+    margin: 0 4px;
+    width: 8px;
+}
+.popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item .bx-pager-link.active, .popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item .switch .bx-pager-link.deactive, .switch .popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item .bx-pager-link.deactive {
+    background-position: left center;
+}
+.popup_addon .slider .bx-wrapper .bx-controls .bx-pager .bx-pager-item .bx-pager-link {
+    background: url("../img/main_page/slider_pointer.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-top: 8px;
+    width: 8px;
+}
+
+.popup_addon .slider .bx-wrapper .bx-controls-direction .bx-prev {
+    background: url("../img/main_page/slider_nav.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+    display: block;
+    height: 0;
+    left: 25px;
+    overflow: hidden;
+    padding-top: 40px;
+    position: absolute;
+    top: 150px;
+    width: 40px;
+}
+
+.popup_addon .slider .bx-wrapper .bx-controls-direction .bx-next {
+    background: url("../img/main_page/slider_nav.png") no-repeat scroll right top rgba(0, 0, 0, 0);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-top: 40px;
+    position: absolute;
+    right: 25px;
+    top: 150px;
+    width: 40px;
+}
+.popup_addon .text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+.popup_addon .page {
+    padding-bottom: 10px;
+}
+.popup_addon .page dt {
+    color: #878787;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.popup_addon .page dd {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.popup_addon .page dd a {
+    background-color: #ededed;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    color: #666;
+    display: inline-block;
+    font-size: 12px;
+    padding: 8px 10px;
+}
+.fancybox-outer, .fancybox-inner {
+    position: relative;
+}
+
+.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancybox-nav span, .fancybox-tmp {
+    border: 0 none;
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+    vertical-align: top;
+}
+.fancybox-opened .fancybox-skin {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+.fancybox-skin {
+    background: none repeat scroll 0 0 #f9f9f9;
+    border-radius: 4px;
+    color: #444;
+    position: relative;
+    text-shadow: none;
+}
+.fancybox-opened {
+    z-index: 8030;
+}
+.fancybox-wrap {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 8020;
+}
+.fancybox-close {
+    cursor: pointer;
+    height: 36px;
+    position: absolute;
+    right: -18px;
+    top: -18px;
+    width: 36px;
+    z-index: 8040;
+}
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url("../img/main_page/fancybox_sprite.png");
+}
+
+.popup_addon .page dd a:hover {
+    background-color: #ddd;
+    text-decoration: none;
+}
+
+.popup_addon .slider .bx-wrapper .bx-controls-direction .bx-next:hover {
+    background-position: right bottom;
+}
+
+.popup_addon .slider .bx-wrapper .bx-controls-direction .bx-prev:hover {
+    background-position: left bottom;
+}

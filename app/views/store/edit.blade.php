@@ -189,11 +189,11 @@
                 <span class="mark" ng-show="styles.logo"><img ng-src="[[styles.logo_image]]" alt="logo"></span>
                 <span class="txt" ng-hide="styles.logo">[[store.name]]</span>
             </h1>
-            <div id="navi_main" style="display:none;" ng-show="categories || hasAbout">
-                <dl style="font-family: Allerta">
+            <div id="navi_main" style="display:none;" ng-show="categories.length >0 || hasAbout">
+                <dl style="font-family: Arial; white-space: nowrap;">
                 <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">Trang chủ</a></dd>
                 <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">Giới thiệu</a></dd>
-                <dd class="btn_dropdown" style="z-index:500;">
+                <dd ng-show="categories.length >0" class="btn_dropdown" style="z-index:500;">
                     <a href="" ng-style="styles.navi_main">Danh mục</a>
                     <ul class="dropdown">
                         <li ng-repeat="category in categories"><a href="">[[category.name]]</a></li>

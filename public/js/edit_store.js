@@ -8029,7 +8029,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     _.each($scope.items, function(v, k) {
                         if (!_.isEmpty(v.images)) {
                             var file_name = v.images[0].name.split(".");
-                            v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
+                            //v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
+                            v.path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "." + file_name[1]
                         }
                     }), _.delay(function() {
                         $("dd.name").tile()
@@ -8110,10 +8111,13 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     $scope.items = _.isEmpty(data) ? editStoreItemSample : data, $http.get("/styles").success(function(data) {
                     	var url_path_background = (data.background.image);
                         var main_url_path = '';
+                        var is_original_background_image = !1;
                         if (url_path_background != null && url_path_background.indexOf(URL_PATH_PATTENT) > -1) {
                             main_url_path = STORES_JP.FILE_SERVER_URL + '/' + url_path_background;
+                            is_original_background_image = !1;
                         } else {
                             main_url_path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" +url_path_background;
+                            is_original_background_image = !0;
                         };
                         _.each(data, function(v, k) {
                             v && (_.isObject(v) ? _.each(v, function(v2, k2) {
@@ -8130,7 +8134,7 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                             }
                         }, $scope.styles["class"] = {
                             item_inner: "frame_none"
-                        }), _.isEmpty($scope.store.background.image) || $scope.store.change_background_image($scope.store.background.image), _.isEmpty($scope.store.logo) || ($scope.styles.logo_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.store.logo, $scope.styles.logo = !0, $scope.styles.show_logo_switch = !0), "no-repeat" == $scope.store.background.repeat && ($scope.styles.body["background-repeat"] = "no-repeat"), $scope.store.background.image && "/" != $scope.store.background.image[0] && ($scope.styles.original_background_image = !0, $scope.styles.body["background-image"] = $scope.util.generate_image_style(main_url_path)["background-image"]), $scope.store.background.color && ($scope.styles.body["background-color"] = $scope.store.background.color), $scope.store.text_color.store && ($scope.styles.store_logo.color = $scope.styles.navi_main.color = $scope.store.text_color.store), $scope.store.store_font.style && ("google" == $scope.store.store_font.type ? ($scope.styles.store_logo["font-family"] = $scope.store.store_font.style, $scope.styles.store_logo["font-weight"] = $scope.store.store_font.weight) : ($scope.styles.store_logo["font-family"] = "dynamic_font", $scope.styles.store_logo["font-weight"] = "", Ts.dynamicCss(font_callback, $scope.store.name, $scope.store.store_font.style, "dynamic_font", "", ""))), $scope.select_font_name = $scope.store.store_font.style.split(",")[0].replace(/'/g, ""), update_store_name_ja_exists(), $(".store_logo_pc").css("font-size", $scope.store.store_font.size + "px"), $("#slider").slider({
+                        }), _.isEmpty($scope.store.background.image) || $scope.store.change_background_image($scope.store.background.image), _.isEmpty($scope.store.logo) || ($scope.styles.logo_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.store.logo, $scope.styles.logo = !0, $scope.styles.show_logo_switch = !0), "no-repeat" == $scope.store.background.repeat && ($scope.styles.body["background-repeat"] = "no-repeat"), $scope.store.background.image && "/" != $scope.store.background.image[0] && ($scope.styles.original_background_image = is_original_background_image, $scope.styles.body["background-image"] = $scope.util.generate_image_style(main_url_path)["background-image"]), $scope.store.background.color && ($scope.styles.body["background-color"] = $scope.store.background.color), $scope.store.text_color.store && ($scope.styles.store_logo.color = $scope.styles.navi_main.color = $scope.store.text_color.store), $scope.store.store_font.style && ("google" == $scope.store.store_font.type ? ($scope.styles.store_logo["font-family"] = $scope.store.store_font.style, $scope.styles.store_logo["font-weight"] = $scope.store.store_font.weight) : ($scope.styles.store_logo["font-family"] = "dynamic_font", $scope.styles.store_logo["font-weight"] = "", Ts.dynamicCss(font_callback, $scope.store.name, $scope.store.store_font.style, "dynamic_font", "", ""))), $scope.select_font_name = $scope.store.store_font.style.split(",")[0].replace(/'/g, ""), update_store_name_ja_exists(), $(".store_logo_pc").css("font-size", $scope.store.store_font.size + "px"), $("#slider").slider({
                             range: "max",
                             min: 30,
                             max: 120,
@@ -8145,7 +8149,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         _.each($scope.items, function(v, k) {
                             if (!_.isEmpty(v.images)) {
                                 var file_name = v.images[0].name.split(".");
-                                v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.first + "." + file_name[1]
+                                //v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.first + "." + file_name[1]
+                                v.path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "." + file_name[1]
                             }
                         }), $(".panel_btn:eq(1)").click(), _.delay(function() {
                             $(".btn_bgcolor dd ul li:nth-child(7n)").css({
@@ -8156,8 +8161,11 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         }, 50)
                     }), $http.get("/categories").success(function(data) {
                         $scope.categories = data
-                    }), $http.head("/about").success(function() {
-                        $scope.hasAbout = !0
+                    }), $http.get("/about").success(function(data) {
+                    	if (data !== '') {
+                    		   $scope.hasAbout = !0
+                    		}
+                        //$scope.hasAbout = !0
                     })
                 }), (navigator.userAgent.toLowerCase().indexOf("firefox") + 1 ? 1 : 0) && ($("#label_logo_image").on("click", function() {
                     return $("#file_logo_image").click(), !1

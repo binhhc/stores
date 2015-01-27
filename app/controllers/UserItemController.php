@@ -27,69 +27,55 @@ class UserItemController extends BaseController {
      * @author OanhHa
      * @since 2015/01/23
      */
-    public function getItemList() {
-        $user_id = Session::get('user.id');
-        $items = UserItem::where('user_id',$user_id)
-                    ->orderBy('public_flg', 'asc')
-                    ->orderBy('order', 'asc')
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
-        foreach($items as &$value) {
-            $item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
-            $value['quantity'] = 0;
-            $item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
-            if(!empty($item_quantity)) {
-                $value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
-            }
-        }
-        return $items;
+ 	public function getItemList() {
+ 		$image_url =  User::getNameStore();
+ 		$url = '/files/' . $image_url['USER_NAME']. '/';
+    	$user_id = Session::get('user.id');
+    	$items = UserItem::where('user_id',$user_id)
+					->orderBy('public_flg', 'asc')
+					->orderBy('order', 'asc')
+					->orderBy('updated_at', 'desc')
+					->get();
+		foreach($items as &$value) {
+			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
+			$value['quantity'] = 0;
+			$value['image_url'] = $url . $value['image_url'];
+			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+			if(!empty($item_quantity)) {
+				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
+			}
+		}
+		return $items;
 
     }
-    /**
-     * update public flag
-     * @author OanhHa
-     * @since 2015/01/15
-     * @param unknown_type $id
-     * @param unknown_type $flg
-     */
-    public function update_status($id, $flg) {
-        $user_id = $this->getUserId();
-        $flg = intval($flg);
-        $id_item = intval($id);
-        // public
-        if($flg == 0) {
-            UserItem::where('id', $id_item)
-                    ->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
-        } else {
-            // private
-            UserItem::where('id', $id_item)
-                    ->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
-        }
 
-    }
-    /**
-     * sorting items
-     * @author OanhHa
-     * @since 2015/01/15
-     * @param unknown_type $id
-     * @param unknown_type $flg
-     */
-    public function update_sort($id,$order_value, $up_down) {
-        $user_id = $this->getUserId();
-        $order_value = intval($order_value);
-        $id_item = intval($id);
-        if($up_down == 'up') {
-            UserItem::where('order', $order_value -1)
-            ->update(array('order' => $order_value,  'updated_user' => $user_id));
-            UserItem::where('id', $id_item)
-            ->update(array('order' => $order_value-1,  'updated_user' => $user_id));
+	/**
+	 * update public flag
+	 * @author OanhHa
+	 * @since 2015/01/15
+	 * @param unknown_type $id
+	 * @param unknown_type $flg
+	 */
+	public function update_status($id, $flg) {
+		$user_id = $this->getUserId();
+		$flg = intval($flg);
+		$id_item = intval($id);
+		// public
+		if($flg == 0) {
+			UserItem::where('id', $id_item)
+					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
+		} else {
+			// private
+			UserItem::where('id', $id_item)
+					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
+		}
 
-        } else {
-            UserItem::where('order', $order_value + 1)
-            ->update(array('order' => $order_value,  'updated_user' => $user_id));
-            UserItem::where('id', $id_item)
-            ->update(array('order' => $order_value + 1,  'updated_user' => $user_id));
-        }
+        //} else {
+            //UserItem::where('order', $order_value + 1)
+            //->update(array('order' => $order_value,  'updated_user' => $user_id));
+            //UserItem::where('id', $id_item)
+            //->update(array('order' => $order_value + 1,  'updated_user' => $user_id));
+        //}
 
 
     }

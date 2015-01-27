@@ -549,7 +549,7 @@ class UserController extends BaseController {
                         $user_data = User::where('email', '=', $email)->first()->toArray();
                         Session::put('user', $user_data);
                         Session::put('first_register', 'hello');
-                        $this->send_email();
+                        //$this->send_email();
                         $status = "success";
                         $mss = 'Success';
                     } else {

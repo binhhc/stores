@@ -7,8 +7,8 @@
                 <li><a href="/contact" target="_blank">Liên hệ</a></li>
                 <li><a href="/terms" target="_blank">Điều khoản sử dụng</a></li>
                 <li><a href="/tokushoho" target="_blank">Luật thương mại</a></li>
-                <li><a href="/privacy_policy" target="_blank">Chính sách</a></li>
-                <li><a href="http://leverages.vn/" target="_blank">Công ty</a></li>
+                <li><a href="/privacy_policy" target="_blank">Chính sách bảo mật</a></li>
+                <li><a href="http://leverages.vn/" target="_blank">Công ty vận hành</a></li>
                 <li class="logout">
                     <a href="{{URL::asset('/logout')}}">Đăng xuất</a>
                 </li>

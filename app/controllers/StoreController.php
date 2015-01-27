@@ -48,7 +48,11 @@ class StoreController extends BaseController {
         $tmpSysLayouts= SysLayout::getSysLayouts();
         if (!empty($tmpSysLayouts)) {
             foreach ($tmpSysLayouts as $key => $value) {
-                $sysLayouts[] = array('name' => $value);
+                $sysLayouts[] = array(
+                    'name' => $value->layout_css,
+                    'first' => $value->first,
+                    'other' => $value->other
+                );
             }
         }
 

@@ -39,7 +39,9 @@ class UserItem extends Model{
             ->leftJoin('user_item_quatities', 'user_items.id', '=', 'user_item_quatities.item_id')
             ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_item_quatities.quantity')
             ->where('user_items.user_id', '=', $userId)
+            ->orderBy('user_items.public_flg', 'asc')
             ->orderBy('user_items.order', 'asc')
+            ->orderBy('user_items.updated_at', 'desc')
             ->get();
         return !empty($userItems) ? $userItems : array();
     }

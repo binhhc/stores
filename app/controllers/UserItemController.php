@@ -28,6 +28,8 @@ class UserItemController extends BaseController {
      * @since 2015/01/23
      */
  	public function getItemList() {
+ 		$image_url =  User::getNameStore();
+ 		$url = '/files/' . $image_url['USER_NAME']. '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'asc')
@@ -37,6 +39,7 @@ class UserItemController extends BaseController {
 		foreach($items as &$value) {
 			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
+			$value['image_url'] = $url . $value['image_url'];
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
 			if(!empty($item_quantity)) {
 				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
@@ -45,6 +48,7 @@ class UserItemController extends BaseController {
 		return $items;
 
     }
+
 	/**
 	 * update public flag
 	 * @author OanhHa

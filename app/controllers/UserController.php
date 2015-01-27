@@ -16,6 +16,9 @@ class UserController extends BaseController {
      * @since 2015.01.14
      */
     public function showLogin(){
+        if(Session::has('user')){
+            return Redirect::to('/dashboard');
+        }
         return View::make('user.login');
     }
 
@@ -34,8 +37,8 @@ class UserController extends BaseController {
             return Redirect::to('/login')->withErrors($v)->withInput(Input::except('password'));
 
         $userdata = array(
-            'email' => Input::get('email'),
-            'password' => Input::get('password')
+            'email' => trim(Input::get('email')),
+            'password' => trim(Input::get('password'))
         );
 
         if (Auth::attempt($userdata)) {
@@ -328,7 +331,7 @@ class UserController extends BaseController {
      * @since 2015.01.15
      */
     public function changePassword(){
-        return View::make('user.update_password')->with(array('title_for_layout' => 'Cập nhật mật khẩu'));;
+        return View::make('user.update_password')->with(array('title_for_layout' => 'Cập nhật mật khẩu'));
     }
 
     /**
@@ -418,7 +421,7 @@ class UserController extends BaseController {
             }
             return Redirect::to('/account_setting');
         }else{
-            return Redirect::to('/account_setting');
+            return Redirect::to('/account_setting')->withErrors($v)->withInput(Input::except('name'));
         }
     }
 
@@ -471,6 +474,37 @@ class UserController extends BaseController {
     }
 
     /**
+     * Ajax save mail notification setting
+     *
+     * @param  null
+     * @return ajaxt
+     * @author Binh Hoang
+     * @since 2015.01.26
+     */
+    public function ajax_mail_notification_setting(){
+        if(Request::ajax()){
+             $flag_mail_follow = Input::get('flag_mail_follow');
+             $flag_mail_notice = Input::get('flag_mail_notice');
+             $user_id = $this->getUserId();                          
+                                                       
+
+             $info_notification = UserNotification::where('user_id', $user_id);
+
+             if(empty($info_notification)){
+                $user_noti = new UserNotification();
+                $user_noti->user_id = $user_id;
+
+             }
+
+            // UserNotification::where('user_id', $user_id)
+            //     ->update(array('mail_notify' => ,  'updated_user' => $user_id));
+
+            $success =  "1";
+            return Response::json($success);
+        }
+    }
+
+    /**
      * Display change mail notification setting.
      *
      * @param  null
@@ -479,7 +513,7 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function withdrawal(){
-        return View::make('user.withdrawal')->with(array('title_for_layout' => 'Rút ra'));
+        return View::make('user.withdrawal')->with(array('title_for_layout' => 'Xóa tài khoản'));
     }
 
     /**

@@ -8,7 +8,7 @@
 		<ul id="select_item">
 			<li>
 				<p class="btn_high">
-					<a href="">Thêm hàng</a>
+					<a href="{{URL::asset('/add_item')}}">Thêm hàng</a>
 				</p>
 			</li>
 		</ul>

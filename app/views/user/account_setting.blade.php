@@ -90,11 +90,11 @@
                         </dd>
                     </dl>
                     <dl class="cols">
-                        <dt>Rút ra</dt>
+                        <dt>Xóa tài khoản</dt>
                         <dd>
                             <p class="btn_low_m">
                                 <button type="button" class="fancybox" data-toggle="modal" data-target="#myModal">
-                                    Rút ra
+                                    Xóa tài khoản
                                 </button>
                             </p>
                         </dd>

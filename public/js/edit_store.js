@@ -8029,7 +8029,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                     _.each($scope.items, function(v, k) {
                         if (!_.isEmpty(v.images)) {
                             var file_name = v.images[0].name.split(".");
-                            v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
+                            //v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + _layout.first + "." + file_name[1]
+                            v.path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "." + file_name[1]
                         }
                     }), _.delay(function() {
                         $("dd.name").tile()
@@ -8148,7 +8149,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
                         _.each($scope.items, function(v, k) {
                             if (!_.isEmpty(v.images)) {
                                 var file_name = v.images[0].name.split(".");
-                                v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.first + "." + file_name[1]
+                                //v.path = k ? STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.other + "." + file_name[1] : STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "_" + layout.first + "." + file_name[1]
+                                v.path = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + file_name[0] + "." + file_name[1]
                             }
                         }), $(".panel_btn:eq(1)").click(), _.delay(function() {
                             $(".btn_bgcolor dd ul li:nth-child(7n)").css({

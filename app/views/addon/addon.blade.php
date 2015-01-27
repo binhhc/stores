@@ -1,5 +1,4 @@
 @include('elements.header')
-{{HTML::style('css/bootstrap.min.css')}}
 {{HTML::style('css/addon.css')}}
 {{HTML::script('js/jquery.bxslider.js')}}
 {{HTML::script('js/main_page.js')}}
@@ -10,7 +9,7 @@
   <div class="wrapper">
     <ul class="addon_list">
 
-        @foreach ($addons as $ad)              
+        @foreach ($addons as $ad)
             <li class="lists">
                 <a class="fancybox" id="get_newsletter" href="#{{$ad['popup']}}">
                     <p class="icon"><img alt="{{$ad['name']}}" src="{{SysAddon::getImageURL($ad)}}"></p>
@@ -25,9 +24,9 @@
                         <p ng-hide="isEnableAddon()" id-pro="{{$ad['id']}}" class="status deactive">OFF</p><p class="grip" style="left: 2px;"></p>
                     </div>
                 </div>
-            </li>         
+            </li>
         @endforeach
-        
+
     </ul>
   </div>
 </div></div>
@@ -106,7 +105,7 @@
 		$('a.modal-close').on('click', function(){
 			$('#modal-win').hide();
 		});
-        
+
         $('.switch p.status' ).click(function(){
             var _class = $(this).attr('class');
             if(_class.match(/deactive/)) {
@@ -121,7 +120,7 @@
                 saveAddon($(this).attr('id-pro'),0);
             }
         });
-        
+
         @foreach ($user_addon as $ad)
             $(".switch").find("[id-pro={{$ad}}]").each(function(){
                 $(this).parent().find('.active').show();
@@ -130,7 +129,7 @@
             });
         @endforeach
 	});
-    
+
 /**
  * Comment
  */
@@ -144,11 +143,11 @@ $(document).ready(function(){
         mode: 'fade',
         captions: true
       });
-      
+
     $('.fancybox').on('click', function(e){
         $('#modal-win-addon').show();
     });
-    
+
 	$('#modal-bg,.fancybox-close').on('click', function(e){
 		e.preventDefault();
 		$('#modal-win-addon').hide();

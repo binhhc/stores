@@ -1,0 +1,171 @@
+.form_basic textarea {
+    width: 480px;
+    height: 150px;
+    border: #ccc 1px solid;
+    padding: 5px;
+    background: #fff;
+    font-size: 12px;
+    line-height: 1.6em;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.num_wrap {
+    border: solid 1px #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #e9e9e9;
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.status_lamp .lamp {
+    width: 25px;
+    height: 25px;
+    margin: 3px auto 2px auto;
+    background: url("../img/items/btn_lamp.png") no-repeat bottom;
+    cursor: pointer;
+}
+
+.status_lamp .lamp.active, .status_lamp .switch .lamp.deactive, .switch .status_lamp .lamp.deactive {
+    background: url("../img/items/btn_lamp.png") no-repeat top;
+}
+
+.form_basic .btn_variation {
+    display: block;
+    width: 180px;
+    height: 30px;
+    color: #fff;
+    text-decoration: none;
+    background: url("../img/items/btn_bg_variation.jpg") no-repeat top;
+    font-size: 14px;
+    text-indent: 1.7em;
+    line-height: 32px;
+}
+
+.category .add_category .btn_category {
+    display: block;
+    width: 180px;
+    height: 30px;
+    color: #fff;
+    text-decoration: none;
+    background: url("../img/items/btn_bg_variation.jpg") no-repeat top;
+    font-size: 14px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.category .category_list .categories {
+    margin-bottom: 10px;
+}
+
+.category .category_list .categories {
+    border: solid 1px #ccc;
+    padding: 10px;
+    background-color: #fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.category .category_list .categories .name_category {
+    width: 350px;
+}
+
+.category .category_list .categories li {
+    padding-right: 5px !important;
+}
+
+.styled_checkbox input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.styled_checkbox span {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("../img/items/checkbox_normal.png") no-repeat left;
+}
+
+.styled_checkbox span.checked-true {
+    background: url("../img/items/checkbox_checked.png") no-repeat left;
+}
+
+.form_basic .images.dragdrop {
+    background: url("../img/items/bg_dragdrop.png") no-repeat center center #e9e9e9;
+}
+
+.form_basic .images {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 450px;
+    height: 112px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 12px 0px 0 12px;
+    background-color: #e9e9e9;
+    cursor: move;
+}
+
+.form_basic .cols dd, .form_basic .cols li {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+
+.form_basic .cols ul li input[disabled] {
+    background-color: #ddd;
+}
+
+.form_basic .variation_heading {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.form_basic .variation_heading .v1 {
+    width: 160px;
+    margin-left: 10px;
+}
+
+.form_basic .variation .delete a:hover {
+background-position: bottom;
+}
+
+.form_basic .variation .delete a {
+display: block;
+width: 20px;
+height: 20px;
+background: url("../img/items/btn_mini_delete.gif") no-repeat top;
+}
+
+.form_basic .variation {
+    border: solid 1px #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #e9e9e9;
+    /*width: 340px;*/
+    margin-bottom: 10px;
+}

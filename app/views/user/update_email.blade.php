@@ -69,7 +69,6 @@
             }else{
                 submit_flg = true;
             }
-
         });
     });
 </script>

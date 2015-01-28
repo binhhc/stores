@@ -153,11 +153,12 @@ class UserItemController extends BaseController {
 	 */
 	public function update_all_order ($data = array()) {
 		$user_id = $this->getUserId();
+		$data_save = array();
 		foreach($data as $item) {
-			$id = $item[0];
-			$order = $item[1];
-			UserItem::where('id' ,  $id)
-					->update(array('order' => $order,  'updated_user' => $user_id));
+			$temp['id'] = $item[0];
+			$temp['order'] = $item[1];
+			$temp['updated_user'] = $user_id;
+			UserItem::where('id', $temp['id'])->update(array('order' => $temp['order'], 'updated_user' => $temp['updated_user']));
 		}
 	}
 	/**

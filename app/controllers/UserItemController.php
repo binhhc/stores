@@ -69,15 +69,6 @@ class UserItemController extends BaseController {
 			UserItem::where('id', $id_item)
 					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
 		}
-
-        //} else {
-            //UserItem::where('order', $order_value + 1)
-            //->update(array('order' => $order_value,  'updated_user' => $user_id));
-            //UserItem::where('id', $id_item)
-            //->update(array('order' => $order_value + 1,  'updated_user' => $user_id));
-        //}
-
-
     }
     /**
      * Get all item by ajax
@@ -113,6 +104,32 @@ class UserItemController extends BaseController {
         }
     }
 
+	/**
+	 * sorting items
+	 * @author OanhHa
+	 * @since 2015/01/15
+	 * @param unknown_type $id
+	 * @param unknown_type $flg
+	 */
+	public function update_sort($id,$order_value, $up_down) {
+		$user_id = $this->getUserId();
+		$order_value = intval($order_value);
+		$id_item = intval($id);
+		if($up_down == 'up') {
+			UserItem::where('order', $order_value -1)
+			->update(array('order' => $order_value,  'updated_user' => $user_id));
+			UserItem::where('id', $id_item)
+			->update(array('order' => $order_value-1,  'updated_user' => $user_id));
+
+		} else {
+			UserItem::where('order', $order_value + 1)
+			->update(array('order' => $order_value,  'updated_user' => $user_id));
+			UserItem::where('id', $id_item)
+			->update(array('order' => $order_value + 1,  'updated_user' => $user_id));
+		}
+
+
+	}
     /**
      * set status by ajax
      * @author OanhHa

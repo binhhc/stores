@@ -43,6 +43,10 @@ Route::get('/send_email', 'UserController@send_email');
 Route::post('/delete_item', 'UserItemController@delete_item');
 Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 
+//add new item
+Route::get('/add_item', 'UserItemController@show_add_item');
+Route::post('/add_item', 'UserItemController@add_item');
+
 //edit store
 Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
 Route::get('/styles', 'StoreController@styles');
@@ -87,6 +91,8 @@ Route::get('/change_credit_card', array('before' => 'auth', 'uses' => 'UserContr
 Route::get('/change_destination_account', array('before' => 'auth', 'uses' => 'UserController@changeDestinationAccount'));
 //change Mail notification settings
 Route::get('/change_mail_notification_setting', array('before' => 'auth', 'uses' => 'UserController@changeMailNotificationSetting'));
+Route::post('/ajax_mail_notification_setting', array('before' => 'auth', 'uses' => 'UserController@ajax_mail_notification_setting'));
+
 //Withdrawal
 Route::get('/withdrawal', array('before' => 'auth', 'uses' => 'UserController@withdrawal'));
 

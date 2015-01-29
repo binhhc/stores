@@ -15,7 +15,7 @@ $(document).ready(function(){
             items_array.push([id, order]);
         });
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/sort_item",
             data: {
                 item_id: item_id,
@@ -48,7 +48,7 @@ $(document).ready(function(){
         var item_id = $(this).attr('item_id');
         var public_flg = $(this).attr('public_flg');
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/set_status",
             data: {
                 item_id: item_id,
@@ -80,7 +80,7 @@ $(document).ready(function(){
             if(conf) {
                 var item_id = $(this).attr('item_id');
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "/delete_item",
                     data: {
                         item_id: item_id,

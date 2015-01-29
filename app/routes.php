@@ -47,6 +47,10 @@ Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 Route::get('/add_item', 'UserItemController@show_add_item');
 Route::post('/add_item', 'UserItemController@add_item');
 
+//add new category
+Route::post('/create_category', 'UserItemController@create_category');
+
+
 //edit store
 Route::get('/edit', array('before' => 'auth', 'uses' => 'StoreController@edit'));
 Route::get('/styles', 'StoreController@styles');

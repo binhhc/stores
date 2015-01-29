@@ -19,5 +19,19 @@ class UserCategory extends Model{
             ->where('user_id', '=', Session::get('user.id'))->get();
         return !empty($userCategories) ? $userCategories : array();
     }
-	
+
+    /**
+     * Validate login
+     *
+     * @return boolean
+     * @author Binh Hoang
+     * @since 2015.01.29
+     */
+    public static function validate($input){
+        $rules = array(
+            'name' => 'required|unique:user_categories',
+        );
+
+        return Validator::make($input, $rules);
+    }
 }

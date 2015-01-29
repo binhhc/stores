@@ -67,7 +67,6 @@
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
         });
-        console.log(flag_mail_follow);
     }).trigger('click');
 
     $('#switch_open').click(function(){
@@ -85,7 +84,6 @@
             $('.switch_public_flag .status_store').text('Đồng ý');
             $('.switch_public_flag .grip').css({'left':'57px'});
         }
-        console.log(flag_mail_notice);
         $.ajax({
             type: "POST",
             url: "{{URL::asset('/ajax_mail_notification_setting')}}",

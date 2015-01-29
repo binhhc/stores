@@ -163,7 +163,7 @@ class UserItemController extends BaseController {
 
     /**
      * show add item
-     * @author Binh Haong
+     * @author Binh Hoang
      * @since 2015/01/26
      */
     public function show_add_item(){
@@ -172,10 +172,49 @@ class UserItemController extends BaseController {
 
     /**
      * progress add item
-     * @author OanhHa
+     * @author Binh Hoang
      * @since 2015/01/26
      */
     public function add_item(){
         echo 1;exit;
+    }
+
+    /**
+     * progress add item
+     * @author Binh Hoang
+     * @since 2015/01/29
+     */
+    public function create_category(){
+        if(Request::ajax()){
+            $result = array();
+            $input = Input::all();
+
+            $user = Session::get('user');
+
+            $v = UserCategory::validate($input);
+
+            $category_info = UserCategory::where('id', $input['id'])->first();
+            $id = '';
+            $name = '';
+            if($v->passes()){
+                if(empty($category_info)){
+                    $category = new UserCategory();
+                    $category->user_id = $user['id'];
+                    $category->name = trim($input['name']);
+
+                    $category->save();
+                    $id = $category->id;
+                }else{
+                    UserCategory::where('id', $input['id'])
+                        ->update(array('name' => $input['name']));
+                }
+                $result = array(
+                    'id' => $id,
+                    'name' => $input['name'],
+                    'success' => 1
+                );
+                return Response::json($result);
+            }
+        }
     }
 }

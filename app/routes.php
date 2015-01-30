@@ -44,11 +44,13 @@ Route::post('/delete_item', 'UserItemController@delete_item');
 Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 
 //add new item
-Route::get('/add_item', 'UserItemController@show_add_item');
-Route::post('/add_item', 'UserItemController@add_item');
+Route::get('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@show_add_item'));
+Route::post('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@add_item'));
 
 //add new category
-Route::post('/create_category', 'UserItemController@create_category');
+Route::post('/create_category', array('before' => 'auth', 'uses' => 'UserItemController@create_category'));
+//delete category
+Route::post('/delete_category', array('before' => 'auth', 'uses' => 'UserItemController@delete_category'));
 
 
 //edit store

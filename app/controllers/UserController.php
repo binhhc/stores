@@ -260,20 +260,16 @@ class UserController extends BaseController {
     public function update_email(){
         $input = Input::all();
 
-        $v = '';
-        if(!empty($input['code']))
-            $v = User::validate_forget_password($input);
-
         //check email
-        if(!empty($input) && !empty($input['code']) && !empty($v) && $v->passes()){
+        if(!empty($input) && !empty($input['code'])){
             $code = explode('-m1-', $input['code']);
 
             $old_email = $new_email = '';
             if(!empty($code[0]))
-                $old_email = $this->decrypt($code[0], Config::get('constants.ENCRYPTION_KEY'));
+                $old_email = Crypt::decrypt($code[0]);
 
             if(!empty($code[1]))
-                $new_email = $this->decrypt($code[1], Config::get('constants.ENCRYPTION_KEY'));
+                $new_email = Crypt::decrypt($code[1]);
 
             $user = User::where('email', '=', $old_email)->first();
 
@@ -304,8 +300,8 @@ class UserController extends BaseController {
 
         if(!empty($new_email)){
             $user = Session::get('user');
-            $encrypt_new_email = $this->encrypt($new_email, Config::get('constants.ENCRYPTION_KEY'));
-            $encrypt_old_email = $this->encrypt($user['email'], Config::get('constants.ENCRYPTION_KEY'));
+            $encrypt_new_email = Crypt::encrypt($new_email);
+            $encrypt_old_email = Crypt::encrypt($user['email']);
 
             $link_reset = URL::to('/update_email').'?code='. $encrypt_old_email.'-m1-'. $encrypt_new_email;
 

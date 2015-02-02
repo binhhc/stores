@@ -46,6 +46,7 @@ class UserController extends BaseController {
             $user = User::where('email', '=', $userdata['email'])
                     ->where('delete_flg', '=', 0)->first()->toArray();
             Session::put('user', $user);
+            Session::put('userStoresDomain', UserStore::getUserStoreDomain());
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form

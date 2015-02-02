@@ -55,7 +55,7 @@
 
             <!-- TODO -->
             <li class="nav_account"><a href="{{URL::asset('/account_setting')}}" id="mn_account_setting" original-title="Cài đặt tài khoản"></a></li>
-            <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon">Addon</a></li>
+            <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon"></a></li>
             <li class="nav_faq"><a href="#" id="mn_faq" original-title="FAQ"></a></li>
         </ul>
         <!-- /Nav -->

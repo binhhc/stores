@@ -62,4 +62,18 @@ class UserStore extends Model{
         $imgurlSampleBackground = "img/samples/bg2/";
         return $imgurlSampleBackground;
     }
+
+    /*
+     * @author      Le Nhan Hau
+     * @since       2015/02/02
+     *
+     * get user stores domain
+     */
+    public static function getUserStoreDomain() {
+        $userId = Session::get('user.id');
+        $userStoresDomain = UserStore::where('user_id', '=', $userId)
+            ->select('domain')
+            ->first()->toArray();
+        return !empty($userStoresDomain) ? $userStoresDomain : array();
+    }
 }

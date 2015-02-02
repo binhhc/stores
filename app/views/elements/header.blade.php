@@ -47,7 +47,7 @@
         <h1><a href="/">
             {{HTML::image('img/main_page/logo.png')}}
         </a></h1>
-        <p class="btn_store"><a href="/" target="_blank">Cửa hàng của tôi</a></p>
+        <p class="btn_store"><a href="http://{{Session::get('userStoresDomain.domain')}}.{{Request::server ("SERVER_NAME")}}" target="_blank">Cửa hàng của tôi</a></p>
         <ul class="nav" style="cursor: pointer">
             <li class="nav_design"><a href="{{URL::asset('/edit')}}" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>
             <li class="nav_items"><a href="{{URL::asset('/item_management')}}" id="mn_add_item" original-title="Thêm mặt hàng"></a></li>

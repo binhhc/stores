@@ -41,6 +41,12 @@
 			<span>Sửa thông tin cá nhân</span>
 			</a>
 		</li>
+        <li class="special">
+            <a class="dashboard_addon" href="{{URL::asset('/addon')}}">
+              <h2>Addon</h2>
+              <span>Cập nhật tính năng mới</span>
+            </a>
+        </li>
 	</ul>
 </div>
 <div id="dummy_modal"  class="modal_dashboard" style="<?php echo $str?>">

@@ -7,6 +7,25 @@
 class UserItem extends Model{
     protected $table  = 'user_items';
 
+
+    /**
+     * Validate item
+     *
+     * @return boolean
+     * @author Binh Hoang
+     * @since 2015.01.29
+     */
+    public static function validate($input){
+        $rules = array(
+            'name' => 'required|unique:user_categories',
+            'price' => 'required|numeric|min:100',
+            'image_url' => 'required|image',
+            'quality' => 'required',
+
+        );
+        return Validator::make($input, $rules);
+    }
+
 	/**
      * @author      Sang PM
      * @since       2015/01/14

@@ -70,7 +70,7 @@
     font-weight: normal;
     margin-bottom: 15px;
     line-height: 1;
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
 }
 
 .sign_up dd {
@@ -166,7 +166,7 @@
     margin: 23px auto 0 auto;
     padding-top: 25px;
     background: url("../img/login/line_dark.png") repeat-x top left;
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
 }
 
 .sign_up .social_login .btn_facebook a {
@@ -195,7 +195,7 @@
     margin-top:27px;
     text-align:center;
     font-size: 13px;
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
 }
 
 .sign_up .link li{
@@ -312,7 +312,7 @@
         letter-spacing:normal;
         height:40px;
         line-height:40px;
-        font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+        /*font-family:"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
         font-size:20px;
         color:#ccc;
     }

@@ -193,11 +193,21 @@ class UserItemController extends BaseController {
      * @since 2015/01/26
      */
     public function add_item(){
+        $input = Input::all();
+
+        $v = UserItem::validate($input);
+
+        if($v->fails())
+            return Redirect::to('/item_management');
+
+        echo '<pre>';
+        var_dump($input);
         echo 1;exit;
     }
 
     /**
-     * progress add item
+     * Add item by ajax
+     *
      * @author Binh Hoang
      * @since 2015/01/29
      */
@@ -213,6 +223,7 @@ class UserItemController extends BaseController {
             $category_info = UserCategory::where('id', $input['id'])->first();
             $id = '';
             $name = '';
+            $action = '';
             if($v->passes()){
                 if(empty($category_info)){
                     $category = new UserCategory();
@@ -221,17 +232,47 @@ class UserItemController extends BaseController {
 
                     $category->save();
                     $id = $category->id;
+                    $action = 'add';
                 }else{
                     UserCategory::where('id', $input['id'])
                         ->update(array('name' => $input['name']));
+
+                    $id = $input['id'];
+                    $action = 'edit';
                 }
                 $result = array(
                     'id' => $id,
                     'name' => $input['name'],
+                    'action' => $action,
                     'success' => 1
                 );
                 return Response::json($result);
             }
         }
+    }
+
+    /**
+     * Delete category by ajax
+     *
+     * @author Binh Hoang
+     * @since 2015/01/30
+     */
+    public function delete_category(){
+        $id = Input::get('id');
+        $name = Input::get('name');
+
+        $user = Session::get('user');
+
+        $category = UserCategory::where('id', $id)
+                        ->where('name', $name)
+                        ->where('user_id', $user['id'])->first();
+        $success = 0;
+        if(!empty($category)){
+            $cate = UserCategory::find($id);
+            $cate->delete();
+            $success = 1;
+        }
+
+        return Response::json($success);
     }
 }

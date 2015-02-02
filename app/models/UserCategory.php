@@ -21,7 +21,7 @@ class UserCategory extends Model{
     }
 
     /**
-     * Validate login
+     * Validate category
      *
      * @return boolean
      * @author Binh Hoang
@@ -29,9 +29,8 @@ class UserCategory extends Model{
      */
     public static function validate($input){
         $rules = array(
-            'name' => 'required|unique:user_categories',
+            'name' => 'required|unique:user_categories'
         );
-
         return Validator::make($input, $rules);
     }
 }

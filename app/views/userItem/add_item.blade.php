@@ -5,25 +5,21 @@
 {{HTML::script('js/bootstrap.min.js')}}
 
 <div class="wrapper">
-  <div class="heading_box clearfix">
-    <h2 class="heading fl_l">Chỉnh sửa mặt hàng</h2>
-    <p class="fl_r btn_low">
-        <a href="{{URL::asset('/item_management')}}">Danh sách mặt hàng</a>
-    </p>
+    <div class="heading_box clearfix">
+        <h2 class="heading fl_l">Chỉnh sửa mặt hàng</h2>
+        <p class="fl_r btn_low">
+            <a href="{{URL::asset('/item_management')}}">Danh sách mặt hàng</a>
+        </p>
     </div>
-    <!-- Mybook/ -->
-    <p class="mybook_close hide" style="display: none;">
-        Mặt hàng này là một sản phẩm được tạo trong danh sách của tôi
-        <span class="delete"><img src="img/items/close2.png"></span>
-    </p>
     <!-- /Mybook -->
+    {{Form::open(array('url' => 'add_item', 'method' => 'post', 'files' => true))}}
     <dl class="form_basic">
         <dd>
             <dl class="cols">
             <dt>Tên mặt hàng</dt>
                 <dd>
-                    <input type="text">
-                    <p class="error"></p>
+                    {{Form::text('name', null, array('class'=>'item_name'))}}
+                    <p class="error err_name"></p>
                 </dd>
             </dl>
         </dd>
@@ -33,10 +29,11 @@
                 <dd>
                     <ul>
                         <li>
-                            <input type="text" class="sz_s ">
+                            {{Form::text('price', null, array('class' => 'sz_s item_price'))}}
                         </li>
                         <li>Circle</li>
                     </ul>
+                    <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>
             </dl>
         </dd>
@@ -45,19 +42,19 @@
                 <dt>Hình mặt hàng</dt>
                 <dd>
                     <!-- <input class="fileup" type="file" id="file" name="image" accept="image/jpeg,image/png,image/gif"> -->
-                    {{Form::file('image', array('accept'=>'image/jpeg,image/png,image/gif', 'onchange'=>'previewFile()', 'class'=>'fileup'))}}
+                    {{Form::file('image_url[]', array('accept'=>'image/jpeg,image/png,image/gif', 'onchange'=>'previewFile()', 'class'=>'fileup', 'multiple'=>true))}}
                     <ul class="images dragdrop image" id="image_back">
                         <!-- ngRepeat: image in item.images -->
                     </ul>
-                    <p class="error" style="display: none;">Please upload the item image</p>
+                    <p class="error err_image"></p>
                 </dd>
             </dl>
         </dd>
         <dd>
             <dl class="cols">
-                <dt>Chứng thực mặt hàng</dt>
+                <dt>Đặc tả</dt>
                 <dd>
-                    <textarea name="item[description]" cols="30" rows="10"></textarea>
+                    {{Form::textarea('description', null, array('col'=>'30', 'rows'=>10))}}
                 </dd>
             </dl>
         </dd>
@@ -68,7 +65,7 @@
                     <span id="itemSerial">
                         <ul class="list_items num_wrap top_quality">
                             <li>
-                                <input class="sz_xs number" type="text">
+                                {{Form::text('quality', null, array('class' => 'sz_xs number'))}}
                             </li>
                             <li>
                                 <div class="status_lamp">
@@ -97,10 +94,10 @@
                         <!-- ngRepeat: quantity in item.quantities -->
                         <ul class="variation list_items" style="display: none;">
                             <li>
-                                <input class="sz_sm" type="text" placeholder="（Ví dụ）S,M,L">
+                                {{Form::text('size', null, array('class'=>'sz_sm', 'placeholder'=>'（Ví dụ）S,M,L'))}}
                             </li>
                             <li>
-                                <input class="sz_xs number" type="text">
+                                {{Form::text('size', null, array('class'=>'sz_sm number'))}}
                             </li>
                             <li>
                                 <div class="status_lamp">
@@ -116,71 +113,76 @@
                             <li class="delete">
                                 <a class="btn_delete" href=""></a>
                             </li>
+
+                            <p class="error">Khong duoc trong</p>
                         </ul>
+
                     </span>
                 </dd>
             </dl>
         </dd>
         <dd>
             <dl class="cols">
-            <dt>Danh mục</dt>
-            <dd class="category">
-                <div id="sortable" ui-sortable="categorySortableOptions" class="category_list open ui-sortable">
-                    <!-- ngRepeat: category in categories -->
+                <dt>Danh mục</dt>
+                <dd class="category">
+                    <div id="sortable" ui-sortable="categorySortableOptions" class="category_list open ui-sortable">
+                        <!-- ngRepeat: category in categories -->
 
-                    @foreach (UserCategory::all() as $cate)
-                        <ul class="categories">
-                            <li class="name_category">
-                                <div class="styled_checkbox">
-                                    <input type="checkbox" class="chk_category">
-                                    <span class=""></span>
-                                </div>
-                                <label>{{$cate->name}}</label>
-                            </li>
-                            <li class="menu_category">
-                                <span class="edit_category">
-                                    <a href="#">
-                                        <img src="img/items/icon_category_edit.gif">
-                                    </a>
-                                </span>
-                                <span>
-                                    <a href="">
-                                        <img src="img/items/icon_category_delete.gif">
-                                    </a>
-                                </span>
-                                <img class="move_category" src="img/items/icon_category_move.gif">
-                            </li>
-                        </ul>
-                    @endforeach
+                        @foreach (UserCategory::all() as $cate)
+                            <ul class="categories">
+                                <li class="name_category">
+                                    <div class="styled_checkbox">
+                                        <input type="checkbox" class="chk_category">
+                                        <span class=""></span>
+                                    </div>
+                                    {{Form::hidden('category_id[]', $cate->id, array('class'=>'category_id'))}}
+                                    <label class="category_name">{{$cate->name}}</label>
+                                </li>
+                                <li class="menu_category">
+                                    <span class="edit_category">
+                                        <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
+                                            <img src="img/items/icon_category_edit.gif">
+                                        </a>
+                                    </span>
+                                    <span>
+                                        <a href="" class="btn_delete_category">
+                                            <img src="img/items/icon_category_delete.gif">
+                                        </a>
+                                    </span>
+                                    <img class="move_category" src="img/items/icon_category_move.gif">
+                                </li>
+                            </ul>
+                        @endforeach
 
-                </div>
-                <ul class="add_category">
-                    <li>
-                        <button type="button" class="btn_category" data-toggle="modal" data-target="#myModal">
-                            Thêm mới danh mục
-                        </button>
-                    </li>
-                    <li>Nếu cần thiết, hãy thiết lập các danh mục</li>
+                    </div>
+                    <ul class="add_category">
+                        <li>
+                            <button type="button" class="btn_category" data-toggle="modal" data-target="#myModal">
+                                Thêm mới danh mục
+                            </button>
+                        </li>
+                        <li>Nếu cần thiết, hãy thiết lập các danh mục</li>
 
-                </ul>
-            </dd>
-        </dl>
-    </dd>
+                    </ul>
+                </dd>
+            </dl>
+        </dd>
 
-    <dd class="border_top">
-        <dl class="btn_pair">
-            <dd class="btn_low">
-                <a href="{{URL::asset('/item_management')}}">Hủy bỏ</a>
-            </dd>
-            <dd class="btn_high">
-                <button type="submit">Lưu lại</button>
-            </dd>
-        </dl>
-        <dl class="btn_single btn_low none" style="display: none;">
-            <button type="button" disabled="" class="send"><span>Đang gửi</span></button>
-        </dl>
-    </dd>
+        <dd class="border_top">
+            <dl class="btn_pair">
+                <dd class="btn_low">
+                    <a href="{{URL::asset('/item_management')}}">Hủy bỏ</a>
+                </dd>
+                <dd class="btn_high">
+                    <button type="submit" class="btn_submit_item">Lưu lại</button>
+                </dd>
+            </dl>
+            <dl class="btn_single btn_low none" style="display: none;">
+                <button type="button" disabled="" class="send"><span>Đang gửi</span></button>
+            </dl>
+        </dd>
     </dl>
+    {{Form::close()}}
 </div>
 
 
@@ -193,7 +195,7 @@
                     <div class="fancybox-inner" >
                         <div id="add_category_window">
                             <!-- {{Form::open(array('url' => 'create_category', 'method' => 'post'))}} -->
-                                {{Form::hidden('id', isset($category['id'])?$category['id']:null, array('class'=>'id_category'))}}
+                                {{Form::hidden('id', null, array('class'=>'category_id'))}}
                                 {{Form::text('name', null, array('class' => 'category_name', 'placeholder' => 'Điền vào tên danh mục'))}}
                                 <dl class="btn_pair">
                                     <dd class="btn_low">
@@ -212,21 +214,40 @@
     </div>
 </div>
 
+<div class="hidden" id="new_row_clone">
+    <ul class="categories">
+        <li class="name_category">
+            <div class="styled_checkbox">
+                <input type="checkbox" class="chk_category">
+                <span class=""></span>
+            </div>
+            {{Form::hidden('category_id[]', null, array('class'=>'category_id'))}}
+            <label class="category_name"></label>
+        </li>
+        <li class="menu_category">
+            <span class="edit_category">
+                <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
+                    <img src="img/items/icon_category_edit.gif">
+                </a>
+            </span>
+            <span>
+                <a href="" class="btn_delete_category">
+                    <img src="img/items/icon_category_delete.gif">
+                </a>
+            </span>
+            <img class="move_category" src="img/items/icon_category_move.gif">
+        </li>
+    </ul>
+</div>
+
 <script type="text/javascript">
 
-        //load ajax image
+
+    //load ajax image
     function previewFile(){
         // var preview = document.querySelector('#image_back'); //selects the query named img
         var file    = document.querySelector('input[type=file]').files[0]; //sames as here
         var reader  = new FileReader();
-
-        reader.onloadend = function () {
-            // console.log(preview);
-            $('#image_back').html("<li>");
-            // preview.‎appendTo("<li>");
-            preview.html("<img src="+reader.result+">");
-            preview.html("</li>");
-        }
 
         if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
             alert('Không đúng định dạng ảnh!');
@@ -238,6 +259,13 @@
                 reader.readAsDataURL(file); //reads the data as a URL
             } else {
                 // preview.src = "";
+            }
+        }
+
+        reader.onloadend = function () {
+            var count_img = $('#image_back li').length;
+            if(count_img < 4){
+                $('#image_back').append("<li><img src="+reader.result+" width=98 height=87></li>");
             }
         }
     }
@@ -280,9 +308,94 @@
     });
 
     $(document).ready(function(){
+        var flg = true;
+        $('.btn_submit_item').click(function(events){
+
+            var item_name = $('.item_name').val();
+            if(!item_name.trim()){
+                flg = false;
+                $('.err_name').html('Vui lòng điền vào tên mặt hàng');
+            }
+
+            var item_price = $('.item_price').val();
+            if(!item_price.trim()){
+                flg = false;
+                $('.err_price').html('Vui lòng điền vào giá mặt hàng');
+            }else if(item_price < 100){
+                flg = false;
+                $('.err_price').html('Vui lòng điền giá mặt hàng lớn hơn 100đ');
+            }
+
+            var item_image = $('#image_back li').length;
+            if(item_image < 1){
+                flg = false;
+                $('.err_image').html('Vui lòng tải lên hình ảnh mặt hàng');
+            }
+
+
+            if(!flg)
+                events.preventDefault();
+        });
+
+
+        $('.btn_edit_category').click(function(e){
+            e.preventDefault();
+            var current = $(this).closest('ul.categories');
+            var category_id = current.find('.category_id').val();
+            var category_name = current.find('.category_name').text();
+            $("#add_category_window input.category_id").val(category_id);
+            $("#add_category_window input.category_name").val(category_name);
+            $.ajax({
+                type: "POST",
+                url: "{{URL::asset('/create_category')}}",
+                data: {
+                    id : category_id,
+                    name : category_name,
+                },
+                global: true,
+                dataType: 'json',
+                success: function(response) {
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                },
+            });
+
+        });
+
+        //ajax delete category
+        $('.btn_delete_category').click(function(e){
+            e.preventDefault();
+            var current = $(this).closest('ul.categories');
+            var category_id = current.find('.category_id').val();
+            var category_name = current.find('.category_name').text();
+
+            $.ajax({
+                type: "POST",
+                url: "{{URL::asset('/delete_category')}}",
+                data: {
+                    id : category_id,
+                    name : category_name,
+                },
+                global: true,
+                dataType: 'json',
+                success: function(response) {
+                    if(response == 1) {
+                        $(current).remove();
+                        // return;
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                },
+            });
+        });
+
+        //ajax add new category
         $('.btn_save_category').click(function(){
-            var name = $('.category_name').val();
-            var id = $('.id_category').val();
+            var current_add = $(this).closest('div#add_category_window');
+            var name = current_add.find('.category_name').val();
+            var id = current_add.find('.category_id').val();
+
             $.ajax({
                 type: "POST",
                 url: "{{URL::asset('/create_category')}}",
@@ -295,8 +408,18 @@
                 success: function(response) {
                     console.log(response);
                     if(response.success == 1) {
+                        if(response.action == 'add'){
+                            $(current_add).find('.category_name').val('');
+                            $(current_add).find('.category_id').val('');
 
-                        return;
+                            $('#new_row_clone').find('.category_id').val(response.id);
+                            $('#new_row_clone').find('.category_name').text(response.name);
+
+                            $('#sortable').append($('#new_row_clone ul'));
+                        }else if(response.action == 'edit'){
+                            $('#sortable ul li.name_category input[value="'+response.id+'"].category_id').next( "label.category_name").text(response.name);
+                        }
+
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {

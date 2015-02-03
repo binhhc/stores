@@ -29,7 +29,7 @@ class UserItemController extends BaseController {
      */
  	public function getItemList() {
  		$image_url =  User::getNameStore();
- 		$url = public_path() .'/files/' . $image_url['USER_NAME']. '/';
+ 		$url = '/files/' . $image_url['USER_NAME']. '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'asc')
@@ -184,7 +184,9 @@ class UserItemController extends BaseController {
      * @since 2015/01/26
      */
     public function show_add_item(){
-        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng'));
+        $user = Session::get('user');
+        $category = UserCategory::where('user_id', $user['id'])->get();
+        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng', 'category' => $category));
     }
 
     /**

@@ -129,7 +129,7 @@
                     <div id="sortable" ui-sortable="categorySortableOptions" class="category_list open ui-sortable">
                         <!-- ngRepeat: category in categories -->
 
-                        @foreach (UserCategory::all() as $cate)
+                        @foreach ($category as $cate)
                             <ul class="categories">
                                 <li class="name_category">
                                     <div class="styled_checkbox">

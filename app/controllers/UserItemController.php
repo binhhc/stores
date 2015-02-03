@@ -29,7 +29,7 @@ class UserItemController extends BaseController {
      */
  	public function getItemList() {
  		$image_url =  User::getNameStore();
- 		$url = public_path() .'/files/' . $image_url['USER_NAME']. '/';
+ 		$url = '/files/' . $image_url['USER_NAME']. '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'asc')
@@ -41,8 +41,12 @@ class UserItemController extends BaseController {
 			$value['quantity'] = 0;
 			$value['image_url'] = $url . $value['image_url'];
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+           
 			if(!empty($item_quantity)) {
-				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
+                foreach($item_quantity as $item){
+                    $value['quantity'] += (empty($item['quantity'])) ? 0 : empty($item['quantity']);
+                }
+//				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
 			}
 		}
 		return $items;
@@ -184,7 +188,9 @@ class UserItemController extends BaseController {
      * @since 2015/01/26
      */
     public function show_add_item(){
-        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng'));
+        $user = Session::get('user');
+        $category = UserCategory::where('user_id', $user['id'])->get();
+        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng', 'category' => $category));
     }
 
     /**

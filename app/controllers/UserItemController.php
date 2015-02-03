@@ -41,8 +41,12 @@ class UserItemController extends BaseController {
 			$value['quantity'] = 0;
 			$value['image_url'] = $url . $value['image_url'];
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+           
 			if(!empty($item_quantity)) {
-				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
+                foreach($item_quantity as $item){
+                    $value['quantity'] += (empty($item['quantity'])) ? 0 : empty($item['quantity']);
+                }
+//				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
 			}
 		}
 		return $items;

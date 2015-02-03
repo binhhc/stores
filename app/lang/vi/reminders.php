@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	"password" => "Passwords must be at least six characters and match the confirmation.",
+	"password" => "Mật khẩu phải có ít nhất sáu ký tự và đúng với mật khẩu xác nhận.",
 
 	"user" => "We can't find a user with that e-mail address.",
 

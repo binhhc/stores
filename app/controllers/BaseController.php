@@ -32,4 +32,13 @@ class BaseController extends Controller {
         $user = Session::get('user');
         return !empty($user) ? $user['id'] : false;
     }
+    
+    /**
+     * Get id of login user
+     * @author Sang PM
+     * @since 2015/02/02
+     */
+    public function setLangByAdon(){
+        App::setLocale(UserAddon::getLanguage($this->getUserId()));
+    }
 }

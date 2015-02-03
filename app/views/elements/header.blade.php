@@ -47,7 +47,7 @@
         <h1><a href="/">
             {{HTML::image('img/main_page/logo.png')}}
         </a></h1>
-        <p class="btn_store"><a href="/" target="_blank">Cửa hàng của tôi</a></p>
+        <p class="btn_store"><a href="http://{{Session::get('userStoresDomain.domain')}}.{{Request::server ("SERVER_NAME")}}" target="_blank">Cửa hàng của tôi</a></p>
         <ul class="nav" style="cursor: pointer">
             <li class="nav_design"><a href="{{URL::asset('/edit')}}" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>
             <li class="nav_items"><a href="{{URL::asset('/item_management')}}" id="mn_add_item" original-title="Thêm mặt hàng"></a></li>
@@ -55,7 +55,7 @@
 
             <!-- TODO -->
             <li class="nav_account"><a href="{{URL::asset('/account_setting')}}" id="mn_account_setting" original-title="Cài đặt tài khoản"></a></li>
-            <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon">Addon</a></li>
+            <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon"></a></li>
             <li class="nav_faq"><a href="#" id="mn_faq" original-title="FAQ"></a></li>
         </ul>
         <!-- /Nav -->

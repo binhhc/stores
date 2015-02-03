@@ -1409,3 +1409,9 @@ background-position: bottom;
 .popup_addon .slider .bx-wrapper .bx-controls-direction .bx-prev:hover {
     background-position: left bottom;
 }
+.dashboard_wrapper .dashboard li .dashboard_addon {
+    background: url("../img/main_page/icon_big_addon.png") no-repeat scroll 60px 20px rgba(0, 0, 0, 0);
+}
+.dashboard_wrapper .dashboard li.special {
+    background: url("../img/setting/button/btn_bg_dashboard_special.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+}

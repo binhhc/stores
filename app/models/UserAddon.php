@@ -23,4 +23,15 @@ class UserAddon extends Model{
         }
         return $result;
     }
+    
+    /*
+     * @author      Sang PM
+     * @since       2015/02/02
+     * 
+     * get Language by User
+     */
+    public static function getLanguage($ids){
+        $data = self::where('user_id',$ids)->where('active_flg',1)->where('addon_id',5)->first();
+        return empty($data) ? 'vi' : 'en';
+    }
 }

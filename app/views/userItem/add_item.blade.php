@@ -65,7 +65,7 @@
                     <span id="itemSerial">
                         <ul class="list_items num_wrap top_quality">
                             <li>
-                                {{Form::text('quality_single', null, array('class' => 'sz_xs number item_size'))}}
+                                {{Form::text('quality_single', null, array('class' => 'sz_xs number_quality item_size'))}}
                             </li>
                             <li>
                                 <div class="status_lamp">
@@ -274,13 +274,13 @@
     $(document).on("click", '.d_quality',function() {
         $(this).hide();
         $(this).parent().find('span.a_quality').show();
-        $(this).closest('ul').find('input.number_quality').val('').attr('disabled', 'true');
+        $(this).closest('ul').find('input.number_quality').val('').attr('readonly', 'true');
     });
 
     $(document).on("click", '.a_quality',function() {
         $(this).hide();
         $(this).parent().find('span.d_quality').show();
-        $(this).closest('ul').find('input.number_quality').removeAttr('disabled');
+        $(this).closest('ul').find('input.number_quality').removeAttr('readonly');
     });
 
     $(document).on("click", '.chk_category',function() {
@@ -381,13 +381,15 @@
                     $(this).find('.size_extend').empty();
                 }
 
-                if(number_quality.length == 0 || !$.isNumeric(number_quality)){
-                    flg_quality_extend = false;
-                    $(this).find('.size_extend').empty();
-                    $(this).find('.size_extend').append('Vui lòng nhập số lượng');
-                }else{
-                    flg_quality_extend = true;
-                    $(this).find('.size_extend').empty();
+                if(!$(this).find('.number_quality').is(':readonly')){
+                    if(number_quality.length == 0 || !$.isNumeric(number_quality)){
+                        flg_quality_extend = false;
+                        $(this).find('.size_extend').empty();
+                        $(this).find('.size_extend').append('Vui lòng nhập số lượng');
+                    }else{
+                        flg_quality_extend = true;
+                        $(this).find('.size_extend').empty();
+                    }
                 }
             });
 

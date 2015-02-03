@@ -229,7 +229,7 @@ class UserItemController extends BaseController {
         //get id latest insert
         $lastInsertIdItem = $item->id;
 
-        if(!empty(array_filter($input['quality'])) && !empty(array_filter($input['size']))){
+        if(!empty(array_filter($input['size']))){
             for($i = 0; $i < count($input['quality']); $i++){
                 $quality = new UserItemQuatity;
                 $quality->item_id = $lastInsertIdItem;
@@ -237,19 +237,14 @@ class UserItemController extends BaseController {
                 $quality->quantity = $input['quality'][$i];
                 $quality->save();
             }
-        }elseif(!empty($input['quality_single'])){
+        }else{
             $quality = new UserItemQuatity;
             $quality->item_id = $lastInsertIdItem;
-            $quality->quantity = $input['quality_single'];
+            $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
             $quality->save();
         }
 
         return Redirect::to('/item_management');
-
-
-        echo "<pre>";
-        var_dump($input);
-
     }
 
     /**

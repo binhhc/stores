@@ -269,3 +269,7 @@ cursor: move;
 #add_category_window{
     text-align: center;
 }
+
+.form_basic .cols ul li input[readonly] {
+    background-color: #ddd;
+}

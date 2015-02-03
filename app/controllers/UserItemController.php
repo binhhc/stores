@@ -29,7 +29,7 @@ class UserItemController extends BaseController {
      */
  	public function getItemList() {
  		$image_url =  User::getNameStore();
- 		$url = '/files/' . $image_url['USER_NAME']. '/';
+ 		$url = public_path() .'/files/' . $image_url['USER_NAME']. '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'asc')

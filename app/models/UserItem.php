@@ -17,11 +17,9 @@ class UserItem extends Model{
      */
     public static function validate($input){
         $rules = array(
-            'name' => 'required|unique:user_categories',
+            'name' => 'required',
             'price' => 'required|numeric|min:100',
-            'image_url' => 'required|image',
-            'quality' => 'required',
-
+            'image_url' => 'required',
         );
         return Validator::make($input, $rules);
     }

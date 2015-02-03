@@ -196,13 +196,55 @@ class UserItemController extends BaseController {
         $input = Input::all();
 
         $v = UserItem::validate($input);
-
         if($v->fails())
             return Redirect::to('/item_management');
 
-        echo '<pre>';
-        var_dump($input);
-        echo 1;exit;
+        //get user information from session
+        $user = Session::get('user');
+
+        $item = new UserItem;
+        $item->user_id = $user['id'];
+        if(!empty($input['category_id'])){
+            $item->category_id = implode($input['category_id'], ',');
+        }
+        $item->name = $input['name'];
+        $item->price = $input['price'];
+        $image = Input::file('image_url');
+        if(Input::file('image_url')){ // not change image_url
+            $folder_name = User::getNameStore();
+            $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+            if(!is_dir($folder_user)){
+                mkdir($folder_user);
+                chmod($folder_user, 0777);
+            }
+
+            $filename = $image->getClientOriginalName();
+            $upload = Input::file('image_url')->move($folder_user, $filename);
+
+            $item->image_url = $filename;
+        }
+
+        $item->introduce = $input['description'];
+        $item->save();
+        //get id latest insert
+        $lastInsertIdItem = $item->id;
+
+        if(!empty(array_filter($input['size']))){
+            for($i = 0; $i < count($input['quality']); $i++){
+                $quality = new UserItemQuatity;
+                $quality->item_id = $lastInsertIdItem;
+                $quality->size_name = $input['size'][$i];
+                $quality->quantity = $input['quality'][$i];
+                $quality->save();
+            }
+        }else{
+            $quality = new UserItemQuatity;
+            $quality->item_id = $lastInsertIdItem;
+            $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
+            $quality->save();
+        }
+
+        return Redirect::to('/item_management');
     }
 
     /**

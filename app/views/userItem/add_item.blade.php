@@ -300,7 +300,9 @@
         var length_ul = $('#itemSerial > ul.variation').length;
         if(length_ul <= 2){
             $('#itemSerial > ul.variation').hide();
+            $('#itemSerial > ul.variation.list_items input').prop('disabled', true);
             $('.top_quality').show();
+            $('.top_quality input.number_quality.item_size').prop('disabled', false);
             $('.variation_heading').hide();
         }
         $(this).closest('ul').remove();
@@ -312,7 +314,8 @@
         //validate before submit
         $('.btn_submit_item').click(function(e){
             //validate item name
-            var flg_name = flg_price = flg_size = flg_image = flg_size_extend = flg_quality_extend = false;
+            var flg_name = flg_price = flg_size = flg_image = flg_size_extend = flg_quality_extend = true;
+
             var item_name = $('.item_name').val();
             if(item_name.length == 0){
                 flg_name = false;
@@ -349,47 +352,54 @@
                 $('.err_image').empty();
             }
 
-            if($('.item_size').attr('readonly') == 'readonly'){
-                flg_size = true;
-                $('.err_size').empty();
-            }
-            else{
-                var size = $('.item_size').val();
-                if(size.length == 0 || !$.isNumeric(size)){
-                    flg_size = false;
-                    $('.err_size').empty();
-                    $('.err_size').append('Vui lòng nhập số lượng mặt hàng');
-                }else{
+            //validate size simple
+            if($('.top_quality').is(':visible')){
+                if($('.item_size').attr('readonly') == 'readonly'){
                     flg_size = true;
                     $('.err_size').empty();
+                }else{
+                    var size = $('.item_size').val();
+                    if(size.length == 0 || !$.isNumeric(size)){
+                        flg_size = false;
+                        $('.err_size').empty();
+                        $('.err_size').append('Vui lòng nhập số lượng mặt hàng');
+                    }else{
+                        flg_size = true;
+                        $('.err_size').empty();
+                    }
                 }
             }
 
             var arr_size = ['S', 'L', 'M', 's', 'l', 'm'];
-            $('.variation.list_items:visible').each(function(){
-                var size_quality = $(this).find('.size_quality').val();
-                var number_quality = $(this).find('.number_quality').val();
+            if($('.variation.list_items').is(':visible')){
+                $('.variation.list_items').each(function(){
+                    var size_quality = $(this).find('.size_quality').val();
+                    var number_quality = $(this).find('.number_quality').val();
 
-                if($.inArray(size_quality, arr_size) == -1){
-                    flg_size_extend = false;
-                    $(this).find('.size_extend').empty();
-                    $(this).find('.size_extend').append('Vui lòng nhập kích cỡ');
-                }else{
-                    flg_size_extend = true;
-                    $(this).find('.size_extend').empty();
-                }
-
-                if(!$(this).find('.number_quality').is(':readonly')){
-                    if(number_quality.length == 0 || !$.isNumeric(number_quality)){
-                        flg_quality_extend = false;
+                    if(!size_quality.trim() || $.inArray(size_quality, arr_size) == -1){
+                        console.log($(this));
+                        flg_size_extend = false;
                         $(this).find('.size_extend').empty();
-                        $(this).find('.size_extend').append('Vui lòng nhập số lượng');
+                        $(this).find('.size_extend').append('Vui lòng nhập kích cỡ');
                     }else{
-                        flg_quality_extend = true;
+                        flg_size_extend = true;
                         $(this).find('.size_extend').empty();
+                        if ($(this).find('.number_quality').is('[readonly]')) {
+                            flg_quality_extend = true;
+                            $(this).find('.size_extend').empty();
+                        } else {
+                            if(number_quality.length == 0 || !$.isNumeric(number_quality)){
+                                flg_quality_extend = false;
+                                $(this).find('.size_extend').empty();
+                                $(this).find('.size_extend').append('Vui lòng nhập số lượng');
+                            }else{
+                                flg_quality_extend = true;
+                                $(this).find('.size_extend').empty();
+                            }
+                        }
                     }
-                }
-            });
+                });
+            }
 
             //disabled input category not check
             $('.categories:visible').each(function(){
@@ -496,9 +506,13 @@
             e.preventDefault();
             $('.err_size').empty();
             $('.top_quality').hide();
+            $('.top_quality input.number_quality.item_size').prop('disabled', true);
             $('.variation_heading').show();
             $('.variation').show();
-            $('.variation:first').clone().appendTo('#itemSerial');
+            $('#itemSerial > ul.variation.list_items input').prop('disabled', false);
+            var tmp_field_cl = $('.variation:first').clone();
+            tmp_field_cl.find("input").val('');
+            $('#itemSerial').append(tmp_field_cl);
         });
     });
 </script>

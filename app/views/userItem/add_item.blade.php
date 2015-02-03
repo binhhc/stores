@@ -31,7 +31,7 @@
                         <li>
                             {{Form::text('price', null, array('class' => 'sz_s item_price'))}}
                         </li>
-                        <li>Circle</li>
+                        <li>USD</li>
                     </ul>
                     <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>
@@ -332,7 +332,7 @@
             }else if(item_price < 100){
                 flg_price = false;
                 $('.err_price').empty();
-                $('.err_price').append('Vui lòng điền giá mặt hàng lớn hơn 100đ');
+                $('.err_price').append('Vui lòng điền giá mặt hàng lớn hơn 100');
             }else{
                 flg_price = true;
                 $('.err_price').empty();
@@ -477,13 +477,12 @@
                     console.log(response);
                     if(response.success == 1) {
                         if(response.action == 'add'){
-                            $(current_add).find('.category_name').val('');
-                            $(current_add).find('.category_id').val('');
+                            var clone_ul = $('#new_row_clone ul').clone();
 
-                            $('#new_row_clone').find('.category_id').val(response.id);
-                            $('#new_row_clone').find('.category_name').text(response.name);
+                            clone_ul.find('.category_id').val(response.id);
+                            clone_ul.find('.category_name').text(response.name);
 
-                            $('#sortable').append($('#new_row_clone ul'));
+                            $('#sortable').append(clone_ul);
                         }else if(response.action == 'edit'){
                             $('#sortable ul li.name_category input[value="'+response.id+'"].category_id').next( "label.category_name").text(response.name);
                         }

@@ -73,7 +73,7 @@ class UserStore extends Model{
         $userId = Session::get('user.id');
         $userStoresDomain = UserStore::where('user_id', '=', $userId)
             ->select('domain')
-            ->first()->toArray();
-        return !empty($userStoresDomain) ? $userStoresDomain : array();
+            ->first();
+        return !empty($userStoresDomain) ? $userStoresDomain->toArray() : array();
     }
 }

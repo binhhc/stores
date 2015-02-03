@@ -312,7 +312,7 @@
         //validate before submit
         $('.btn_submit_item').click(function(e){
             //validate item name
-            var flg_name = flg_price = flg_size = flg_image = flg_size_extend = flg_quality_extend = true;
+            var flg_name = flg_price = flg_size = flg_image = flg_size_extend = flg_quality_extend = false;
             var item_name = $('.item_name').val();
             if(item_name.length == 0){
                 flg_name = false;
@@ -349,18 +349,16 @@
                 $('.err_image').empty();
             }
 
-            if($('.top_quality').is(':visible')){
+            if($('.item_size').attr('readonly') == 'readonly'){
+                flg_size = true;
+                $('.err_size').empty();
+            }
+            else{
                 var size = $('.item_size').val();
                 if(size.length == 0 || !$.isNumeric(size)){
-                    var attr = $('.item_size').attr('disabled');
-                    if(typeof attr == typeof undefined){
-                        flg_size = false;
-                        $('.err_size').empty();
-                        $('.err_size').append('Vui lòng nhập số lượng mặt hàng');
-                    }else{
-                        flg_size = true;
-                        $('.err_size').empty();
-                    }
+                    flg_size = false;
+                    $('.err_size').empty();
+                    $('.err_size').append('Vui lòng nhập số lượng mặt hàng');
                 }else{
                     flg_size = true;
                     $('.err_size').empty();
@@ -474,7 +472,6 @@
                 global: true,
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response);
                     if(response.success == 1) {
                         if(response.action == 'add'){
                             var clone_ul = $('#new_row_clone ul').clone();

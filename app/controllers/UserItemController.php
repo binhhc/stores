@@ -229,7 +229,7 @@ class UserItemController extends BaseController {
         //get id latest insert
         $lastInsertIdItem = $item->id;
 
-        if(!empty(array_filter($input['size']))){
+        if(!empty($input['size'])){
             for($i = 0; $i < count($input['quality']); $i++){
                 $quality = new UserItemQuatity;
                 $quality->item_id = $lastInsertIdItem;

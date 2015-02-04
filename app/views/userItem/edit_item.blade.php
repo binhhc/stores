@@ -142,15 +142,15 @@
                                 <li class="menu_category">
                                     <span class="edit_category">
                                         <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
-                                            <img src="img/items/icon_category_edit.gif">
+                                            {{HTML::image('img/items/icon_category_edit.gif')}}
                                         </a>
                                     </span>
                                     <span>
                                         <a href="" class="btn_delete_category">
-                                            <img src="img/items/icon_category_delete.gif">
+                                            {{HTML::image('img/items/icon_category_delete.gif')}}
                                         </a>
                                     </span>
-                                    <img class="move_category" src="img/items/icon_category_move.gif">
+                                    {{HTML::image('img/items/icon_category_move.gif', null,array('class'=>'move_category'))}}
                                 </li>
                             </ul>
                         @endforeach
@@ -228,15 +228,15 @@
         <li class="menu_category">
             <span class="edit_category">
                 <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
-                    <img src="img/items/icon_category_edit.gif">
+                    {{HTML::image('img/items/icon_category_edit.gif')}}
                 </a>
             </span>
             <span>
                 <a href="" class="btn_delete_category">
-                    <img src="img/items/icon_category_delete.gif">
+                    {{HTML::image('img/items/icon_category_delete.gif')}}
                 </a>
             </span>
-            <img class="move_category" src="img/items/icon_category_move.gif">
+            {{HTML::image('img/items/icon_category_move.gif', null, array('class'=>'move_category'))}}
         </li>
     </ul>
 </div>
@@ -273,6 +273,7 @@
     }
 
 </script>
+
 {{HTML::script('js/add_item.js')}}
 
 

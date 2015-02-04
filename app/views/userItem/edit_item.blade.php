@@ -12,13 +12,13 @@
         </p>
     </div>
     <!-- /Mybook -->
-    {{Form::open(array('url' => 'add_item', 'method' => 'post', 'files' => true))}}
+    {{Form::open(array('url' => 'edit_item', 'method' => 'post', 'files' => true))}}
     <dl class="form_basic">
         <dd>
             <dl class="cols">
             <dt>Tên mặt hàng</dt>
                 <dd>
-                    {{Form::text('name', null, array('class'=>'item_name'))}}
+                    {{Form::text('name', $item->name, array('class'=>'item_name'))}}
                     <p class="error err_name"></p>
                 </dd>
             </dl>
@@ -29,7 +29,7 @@
                 <dd>
                     <ul>
                         <li>
-                            {{Form::text('price', null, array('class' => 'sz_s item_price'))}}
+                            {{Form::text('price', $item->price, array('class' => 'sz_s item_price'))}}
                         </li>
                         <li>USD</li>
                     </ul>
@@ -54,7 +54,7 @@
             <dl class="cols">
                 <dt>Đặc tả</dt>
                 <dd>
-                    {{Form::textarea('description', null, array('col'=>'30', 'rows'=>10))}}
+                    {{Form::textarea('description', $item->introduce, array('col'=>'30', 'rows'=>10))}}
                 </dd>
             </dl>
         </dd>
@@ -134,7 +134,7 @@
                                 <li class="name_category">
                                     <div class="styled_checkbox">
                                         <input type="checkbox" class="chk_category">
-                                        <span class=""></span>
+                                        <span class="check_category"></span>
                                     </div>
                                     {{Form::hidden('category_id[]', $cate->id, array('class'=>'category_id'))}}
                                     <label class="category_name">{{$cate->name}}</label>
@@ -142,15 +142,15 @@
                                 <li class="menu_category">
                                     <span class="edit_category">
                                         <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
-                                            <img src="img/items/icon_category_edit.gif">
+                                            {{HTML::image('img/items/icon_category_edit.gif')}}
                                         </a>
                                     </span>
                                     <span>
                                         <a href="" class="btn_delete_category">
-                                            <img src="img/items/icon_category_delete.gif">
+                                            {{HTML::image('img/items/icon_category_delete.gif')}}
                                         </a>
                                     </span>
-                                    <img class="move_category" src="img/items/icon_category_move.gif">
+                                    {{HTML::image('img/items/icon_category_move.gif', null,array('class'=>'move_category'))}}
                                 </li>
                             </ul>
                         @endforeach
@@ -228,15 +228,15 @@
         <li class="menu_category">
             <span class="edit_category">
                 <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
-                    <img src="img/items/icon_category_edit.gif">
+                    {{HTML::image('img/items/icon_category_edit.gif')}}
                 </a>
             </span>
             <span>
                 <a href="" class="btn_delete_category">
-                    <img src="img/items/icon_category_delete.gif">
+                    {{HTML::image('img/items/icon_category_delete.gif')}}
                 </a>
             </span>
-            <img class="move_category" src="img/items/icon_category_move.gif">
+            {{HTML::image('img/items/icon_category_move.gif', null, array('class'=>'move_category'))}}
         </li>
     </ul>
 </div>
@@ -244,6 +244,18 @@
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
+
+    $(document).ready(function(){
+        var cate = {{json_encode(explode(',', $item->category_id))}};
+        //check category
+        $('#sortable .categories').each(function(){
+            var category_id = $(this).find('.category_id').val();
+
+            if($.inArray(category_id, cate) !== -1){
+                $(this).find('.check_category').addClass('checked-true');
+            }
+        });
+    });
 
     //load ajax image
     function previewFile(){
@@ -273,6 +285,7 @@
     }
 
 </script>
+
 {{HTML::script('js/add_item.js')}}
 
 

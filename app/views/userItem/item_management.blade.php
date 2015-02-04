@@ -54,7 +54,7 @@
                                 {{HTML::image($item['image_url'], 'Hình ảnh sản phẩm', array('width' => 50, 'height' => 50))}}
                             </dd>
                             <dd class="sz_l">
-                                <a class="ng-binding" ng-click="edit(item)" href=""><?php echo (strlen($item['name']) > 50) ? substr($item['name'], 0, 50). "..." : $item['name']?></a>
+                                <a href="{{URL::asset('/edit_item/'.Crypt::encrypt($item['id']))}}"><?php echo (strlen($item['name']) > 50) ? substr($item['name'], 0, 50). "..." : $item['name']?></a>
                             </dd>
                             <dd class="sz_s tr ng-binding">{{$item['price']}}</dd>
                             <dd class="sz_xs tc product_quantity">{{$item['quantity']}}</dd>
@@ -74,8 +74,8 @@
                                     <li class="navi_delete" >
                                         <a class="delete_item" item_id="{{$item['id']}}" href="javascript:(0)">Xoá</a>
                                     </li>
-                                    <li class="navi_edit" item_id="{{$item['id']}}">
-                                        <a ng-click="edit(item)" href="">Sửa</a>
+                                    <li class="navi_edit">
+                                        <a href="{{URL::asset('/edit_item/'.Crypt::encrypt($item['id']))}}">Sửa</a>
                                     </li>
                                     <li class="navi_share" item_id="{{$item['id']}}">
                                         <p class="navi_share_btn" ng-class="item_share(item)">Xem</p>

@@ -265,9 +265,12 @@ class UserItemController extends BaseController {
 
         $user = Session::get('user');
 
+        $item = UserItem::where('id', '=', $id)->first();
 
-        $category = UserCategory::where('user_id', $user['id'])->get();
-        return View::make('userItem.edit_item')->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category));
+
+        $category = UserCategory::where('user_id', '=', $user['id'])->get();
+        return View::make('userItem.edit_item')
+            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item));
     }
 
     /**

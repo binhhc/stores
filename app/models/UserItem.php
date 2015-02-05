@@ -62,4 +62,15 @@ class UserItem extends Model{
             ->get();
         return !empty($userItems) ? $userItems : array();
     }
+    
+    /**
+     * Format Money
+     *
+     * @return      String
+     * @author      Sang PM
+     * @since       2015/02/05
+     */
+    public static function formatPrice($price = 0){
+        return "VND ".number_format($price, 2, '.', ',');
+    }
 }

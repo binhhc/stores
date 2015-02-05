@@ -61,13 +61,20 @@
 			</ul>
 			<div class="slide_mask">
 				<div class="slide_wrap">
+				<?php $i = 0;?>
 				<?php foreach($item_slides as $item) {?>
+				<?php $i ++ ;?>
 					<div class="slide_cols">
 					  <ul class="col4">
 					  <?php foreach ($item as $key => $value) {?>
 						<li class="cols">
 						  <a href="{{$value['href']}}" target="_blank">{{HTML::image($value['url'], $value['name'])}}</a>
 						</li>
+						<?php }?>
+						<?php if($i== count($item_slides)) {?>
+							<li class="cols more">
+							  <a href="/category">{{HTML::image('img/main_page/top_more.png', 'もっと見る')}}<p>Tiếp tục</p></a>
+							</li>
 						<?php }?>
 					  </ul>
 					</div>

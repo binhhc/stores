@@ -1,6 +1,7 @@
 <?php
 return array(
     'ENCRYPTION_KEY' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+	'facebook_app_id' => '656236484498840',
     'website_name' => 'STOREs.VN',
     'admin_email' => 'binhhc@leverages.jp',
     'domain' => 'stores.dev.srv',

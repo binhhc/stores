@@ -16,6 +16,7 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
+        $data['app_id'] = Config::get('constants.facebook_app_id');
         /*$queries = DB::getQueryLog();
         var_dump($queries);*/
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
@@ -40,8 +41,9 @@ class UserItemController extends BaseController {
 			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
 			$value['image_url'] = $url . $value['image_url'];
+			$value['price'] = UserItem::formatPrice($value['price']);
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
-            
+
 			if(!empty($item_quantity)) {
                 foreach($item_quantity as $item){
                     $value['quantity'] += (empty($item['quantity'])) ? 0 : $item['quantity'];

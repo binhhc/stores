@@ -111,4 +111,24 @@ $(document).ready(function(){
                 return;
             }
     });
+
+        $(document).on('click', '.share_facebook', function(e){
+        	var item_name = $(this).attr('item_name');
+        	var img_url = $(this).attr('image_url');
+        	e.preventDefault();
+        	FB.ui({
+        		  method: 'feed',
+        		  link: 'http://storeslavarel.dev/item_management',
+        		  caption: item_name,
+        		  picture: img_url
+        		}, function(response){});
+
+
+        });
+        $(document).on('click', 'li.navi_share', function(e){
+        	var item_id = $(this).attr('item_id');
+        	var tooltip_share = $('.tooltip_share' + item_id);
+        	$(tooltip_share).show();
+
+        });
 })

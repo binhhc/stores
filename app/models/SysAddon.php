@@ -15,6 +15,17 @@ class SysAddon extends Model{
      * @modified by
      **/
     public static function getAllSysData(){
-        return self::where('active_flg', '=', 1)->get();
+        return self::where('active_flg', '=', 1)->get(self::getFeilds());
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','name','intro','image_url','active_flg','popup');
     }
 }

@@ -15,6 +15,17 @@ class SysAdver extends Model{
      * @modified by
      **/
     public static function getData(){
-        return self::get(array('name','href','url'))->toArray();
+        return self::get(self::getFeilds())->toArray();
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('name','href','url');
     }
 }

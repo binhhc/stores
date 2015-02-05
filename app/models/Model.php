@@ -41,7 +41,7 @@ class Model extends Eloquent{
      * @modified by
      **/
     public static function getAllSysData(){
-        return self::get();
+        return self::get(self::getFeilds());
     }
     
     /**
@@ -52,7 +52,17 @@ class Model extends Eloquent{
      * @modified by
      **/
     public static function getAllMsData(){
-        return self::get();
+        return self::get(self::getFeilds());
     }
-    
+        
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('*');
+    }
     }

@@ -280,6 +280,29 @@ img {
     padding-top: 25px;
     width: 26px;
 }
+
+.list_items .items .navi .navi_share .navi_share_btn_true, #news .list_news .items .navi .navi_share .navi_share_btn_true {
+    background: url("../img/main_page/btn_mini.png") no-repeat scroll 0 -50px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 0;
+    line-height: 2em;
+    overflow: hidden;
+    padding-top: 25px;
+    width: 26px;
+}
+
+.list_items .items .navi .navi_share ul li.navi_share_tw a:hover, #news .list_news .items .navi .navi_share ul li.navi_share_tw a:hover {
+    background: url("../img/main_page/bg_share_tw_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+
+.list_items .items .navi .navi_share ul li.navi_share_fb a:hover, #news .list_news .items .navi .navi_share ul li.navi_share_fb a:hover {
+    background: url("../img/main_page/bg_share_fb_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+.list_items .items .navi .navi_share .navi_share_btn_true:hover, #news .list_news .items .navi .navi_share .navi_share_btn_true:hover {
+    background-position: -26px -50px;
+}
 .list_items .items, #news .list_news .items {
     height: 100px;
 }
@@ -1417,4 +1440,40 @@ background-position: bottom;
 }
 .dashboard_wrapper .dashboard li.special:hover{
     background-position: center bottom;
+}
+
+.list_items .items .navi .navi_share ul.baloon1, #news .list_news .items .navi .navi_share ul.baloon1 {
+    right: -11px;
+    top: -87px;
+}
+.list_items .items .navi .navi_share ul, #news .list_news .items .navi .navi_share ul {
+    height: 96px;
+    position: absolute;
+    width: 148px;
+    z-index: 1000;
+}
+
+.list_items .items .navi .navi_share ul li, #news .list_news .items .navi .navi_share ul li {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.list_items .items .navi .navi_share ul li.navi_share_fb a, #news .list_news .items .navi .navi_share ul li.navi_share_fb a {
+    background: url("../img/main_page/bg_share_fb.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #666;
+    display: block;
+    height: 41px;
+    line-height: 42px;
+    padding: 0 0 0 40px;
+    width: 108px;
+}
+
+.list_items .items .navi .navi_share ul li.navi_share_tw a, #news .list_news .items .navi .navi_share ul li.navi_share_tw a {
+    background: url("../img/main_page/bg_share_tw.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #666;
+    display: block;
+    height: 55px;
+    line-height: 42px;
+    padding: 0 0 0 40px;
+    width: 108px;
 }

@@ -608,7 +608,8 @@ class UserController extends BaseController {
         $user_info = User::where('account_token',$token)->first();
 
         if(User::checkExpiredTime($user_info) == true){
-            $user_info->account_token = "";
+            $user_info->account_token = User::createAccountToken();
+            $user_info->account_active = 1;
             $user_info->save();
             $user = $user_info->toArray();
             Session::put('user', $user);

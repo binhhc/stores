@@ -1,4 +1,4 @@
-$(document).on("click", '.d_quality',function() {
+    $(document).on("click", '.d_quality',function() {
         $(this).hide();
         $(this).parent().find('span.a_quality').show();
         $(this).closest('ul').find('input.number_quality').val('').attr('readonly', 'true');
@@ -14,9 +14,9 @@ $(document).on("click", '.d_quality',function() {
         $(this).parent().find('span').toggleClass('checked-true');
 
         if($(this).parent().find('span').hasClass('checked-true')){
-            $(this).attr('check', 'true');
+            $(this).prop('checked', true);
         }else{
-            $(this).attr('check', 'false');
+            $(this).prop('checked', false);
         }
     });
 
@@ -36,8 +36,13 @@ $(document).on("click", '.d_quality',function() {
 
     });
 
-
     $(document).ready(function(){
+        //sort category
+        $(function() {
+            $( "#sortable" ).sortable();
+            $( "#sortable" ).disableSelection();
+        });
+
         //validate before submit
         $('.btn_submit_item').click(function(e){
             //validate item name

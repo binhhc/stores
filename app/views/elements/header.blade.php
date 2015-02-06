@@ -4,7 +4,6 @@
     <title>{{$title_for_layout}}</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="vi-vn" />
-    {{HTML::style('css/bootstrap.min.css')}}
     {{HTML::style('css/style.css')}}
     {{HTML::style('css/jquery.tipsy.css')}}
     {{HTML::style('css/item_management.css')}}
@@ -31,8 +30,9 @@
 </head>
 
 <body>
+
 <?php
-   	(isset($account_token) && !empty($account_token)) ? $str="display:block" :  $str="display:none";?>
+   	(isset($account_active) && $account_active !=1 ) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">
         <div class="wrap">
             <p class="text">Chúng tôi gửi một e-mail xác nhận đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>

@@ -111,4 +111,49 @@ $(document).ready(function(){
                 return;
             }
     });
+
+        $(document).on('click', '.share_facebook', function(e){
+        	var item_name = $(this).attr('item_name');
+        	var img_url = $(this).attr('image_url');
+        	img_url = 'http://storeslavarel.dev/' + img_url;
+        	e.preventDefault();
+        	FB.ui({
+        		  method: 'feed',
+        		  link: 'http://storeslavarel.dev/',
+        		  caption: item_name,
+        		  picture: img_url
+        		}, function(response){
+        		});
+
+
+        });
+        $(document).on('click', '.popup', function(e){
+        	e.preventDefault();
+        	var item_id = $(this).attr('item_id');
+        		    var width  = 575,
+        		        height = 400,
+        		        left   = ($(window).width()  - width)  / 2,
+        		        top    = ($(window).height() - height) / 2,
+        		        url    = this.href,
+        		        opts   = 'status=1' +
+        		                 ',width='  + width  +
+        		                 ',height=' + height +
+        		                 ',top='    + top    +
+        		                 ',left='   + left;
+
+        		    window.open(url, 'twitter' + item_id, opts);
+
+        		    return false;
+
+        });
+        $(document).on('mouseover', 'li.navi_share', function(e){
+        	var item_id = $(this).attr('item_id');
+        	var tooltip_share = $('.tooltip_share' + item_id);
+        	$(tooltip_share).show();
+        });
+        $(document).on('mouseout', 'li.navi_share', function(e){
+        	var item_id = $(this).attr('item_id');
+        	var tooltip_share = $('.tooltip_share' + item_id);
+        	$(tooltip_share).hide();
+        });
 })

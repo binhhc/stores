@@ -35,5 +35,14 @@ class SysBackgroundColor extends Model{
             ->first();
         return !empty($sysBackgroundId) ? $sysBackgroundId : array();
     }
-	
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','name','color');
+    }
 }

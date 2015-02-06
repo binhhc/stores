@@ -23,4 +23,18 @@ class UserProfile extends Model{
 
         return Validator::make($input, $rules);
     }
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array(
+            'id','user_id','name','image_url','first_name',
+            'last_name','prefecture_cd','address','phone',
+            'account_bank','account_brand','account_type',
+            'account_number','account_holder');
+    }
 }

@@ -34,4 +34,15 @@ class UserAddon extends Model{
         $data = self::where('user_id',$ids)->where('active_flg',1)->where('addon_id',5)->first();
         return empty($data) ? 'vi' : 'en';
     }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','user_id','addon_id','active_flg');
+    }
 }

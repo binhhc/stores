@@ -14,13 +14,13 @@
                     <div class="switch_open switch">
                         <p class="status active">Đồng ý</p>
                         <p class="grip" style="left: 57px;"></p>
-                        <input type="text" class="hidden follow" value="{{$mail_follow}}">
+                        <input type="text" style="display:none" class="hidden follow" value="{{$mail_follow}}">
                     </div>
                 @else
                     <div class="switch_open switch">
                         <p class="status deactive">Từ chối</p>
                         <p class="grip" style="left: 2px;"></p>
-                        <input type="text" class="hidden follow" value="{{$mail_follow}}">
+                        <input type="text" style="display:none" class="hidden follow" value="{{$mail_follow}}">
                     </div>
                 @endif
             </dd>
@@ -32,13 +32,13 @@
                     <div class="switch_open switch">
                         <p class="status active">Đồng ý</p>
                         <p class="grip" style="left: 57px;"></p>
-                        <input type="text" class="hidden notice" value="{{$mail_notice}}">
+                        <input type="text" style="display:none" class="hidden notice" value="{{$mail_notice}}">
                     </div>
                 @else
                     <div class="switch_open switch">
                         <p class="status deactive">Từ chối</p>
                         <p class="grip" style="left: 2px;"></p>
-                        <input type="text" class="hidden notice" value="{{$mail_notice}}">
+                        <input type="text" style="display:none" class="hidden notice" value="{{$mail_notice}}">
                     </div>
                 @endif
             </dd>
@@ -91,77 +91,4 @@
 
         });
     });
-
-
-
-    // $('#switch_status').click(function(){
-    //     if($('#switch_status .status').hasClass('active')) {
-    //         flag_mail_follow = 0;
-    //         $('#switch_status .status').removeClass('active');
-    //         $('#switch_status .status').addClass('deactive');
-    //         $('#switch_status .status').text('Từ chối');
-    //         $('#switch_status .grip').css({'left':'2px'});
-    //     } else {
-    //         flag_mail_follow = 1;
-    //         $('#switch_status .status').removeClass('deactive');
-    //         $('#switch_status .status').addClass('active');
-    //         $('#switch_status .status').text('Đồng ý');
-    //         $('#switch_status .grip').css({'left':'57px'});
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "{{URL::asset('/ajax_mail_notification_setting')}}",
-    //         data: {
-    //             flag_mail_follow : flag_mail_follow,
-    //         },
-    //         global: true,
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             if(response == 1) {
-    //                 return;
-    //             } else {
-    //                 alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
-    //                 return;
-    //             }
-    //         },
-    //         error: function(XMLHttpRequest, textStatus, errorThrown) {
-    //         },
-    //     });
-    // }).trigger('click');
-
-    // $('#switch_open').click(function(){
-    //     if($('.switch_public_flag .status_store').hasClass('active')) {
-    //         flag_mail_notice = 0;
-    //         $('.switch_public_flag .status_store').removeClass('active');
-    //         $('.switch_public_flag .status_store').addClass('deactive');
-    //         $('.switch_public_flag .status_store').text('Từ chối');
-    //         $('.switch_public_flag .grip').css({'left':'2px'});
-    //     } else {
-    //         flag_mail_notice = 1;
-    //         $('.switch_public_flag .status_store').removeClass('deactive');
-    //         $('.switch_public_flag .status_store').addClass('active');
-    //         $('.switch_public_flag .status_store').text('Đồng ý');
-    //         $('.switch_public_flag .grip').css({'left':'57px'});
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "{{URL::asset('/ajax_mail_notification_setting')}}",
-    //         data: {
-    //             flag_mail_notice : flag_mail_notice,
-    //         },
-    //         global: true,
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             if(response == 1) {
-    //                 return;
-    //             } else {
-    //                 alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
-    //                 return;
-    //             }
-    //         },
-    //         error: function(XMLHttpRequest, textStatus, errorThrown) {
-    //         },
-    //     });
-    // }).trigger('click');
-
 </script>

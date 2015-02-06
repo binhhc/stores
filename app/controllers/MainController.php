@@ -21,7 +21,19 @@ class MainController extends BaseController {
     	} else {
     		 return Redirect::to('/dashboard');
     	}
+    }
 
+    /**
+     *
+     * Set support for user
+     * @author OanhHa
+     * @since 2015-02-06
+     */
+    public function support() {
+    	if(!$this->checkLogin()) {
+            return Redirect::to('/');
+        }
+        return View::make('main.support');
     }
 
 

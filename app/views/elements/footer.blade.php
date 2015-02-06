@@ -1,7 +1,7 @@
          <!-- Footer/ -->
         <div id="footer" class="row">
-            <p class="support_banner"><a href="#!/support">Hạn chế hỗ trợ hoạt động</a></p>
-            <p class="referral_banner"><a href="#!/referral">Giới thiệu chiến dịch khuyến mãi</a></p>
+            <p class="support_banner"><a  href="{{URL::asset('/support')}}">Hạn chế hỗ trợ hoạt động</a></p>
+            <p class="referral_banner"><a  href="{{URL::asset('/referral')}}">Giới thiệu chiến dịch khuyến mãi</a></p>
             <ul id="foot_navi">
                 <li><a href="http://storesjpinfo.tumblr.com/" target="_blank">Thông báo</a></li>
                 <li><a href="/contact" target="_blank">Liên hệ</a></li>

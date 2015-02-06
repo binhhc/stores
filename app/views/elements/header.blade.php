@@ -31,6 +31,7 @@
 </head>
 
 <body>
+
 <?php
    	(isset($account_active) && $account_active !=1 ) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">

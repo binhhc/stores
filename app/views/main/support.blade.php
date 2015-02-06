@@ -13,10 +13,10 @@
 			<li>
 				<a target="_blank" href="/support/photo">
 				<p class="image">
-				<img alt="プロカメラマンによる商品撮影サービス" src="/support/all/images/photo.png">
+				 {{HTML::image('img/main_page/photo.png', '', array('width' => '252', 'height' => '180'))}}
 				</p>
 				<p class="icon_free">
-				<img alt="無料" src="/support/all/images/free.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				プロカメラマンによる
@@ -29,10 +29,10 @@
 			<li>
 				<a target="_blank" href="/support/card">
 				<p class="image">
-					<img alt="無料ストアカード（名刺）提供サービス" src="/support/all/images/card.png">
+				{{HTML::image('img/main_page/card.png')}}
 				</p>
 				<p class="icon_free">
-					<img alt="無料" src="/support/all/images/free.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				ストアカード
@@ -45,10 +45,10 @@
 			<li>
 				<a target="_blank" href="/support/storage">
 				<p class="image">
-				<img alt="商品の保管・発送代行サービス" src="/support/all/images/storage.png">
+				{{HTML::image('img/main_page/storage.png')}}
 				</p>
 				<p class="icon_free">
-				<img alt="無料" src="/support/all/images/free.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				商品の保管・発送
@@ -61,10 +61,10 @@
 			<li>
 				<a target="_blank" href="/support/pickup">
 				<p class="image">
-				<img alt="商品の集荷依頼サービス" src="/support/all/images/pickup.png">
+				{{HTML::image('img/main_page/pickup.png')}}
 				</p>
 				<p class="icon_free">
-				<img alt="無料" src="/support/all/images/free.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				商品の集荷
@@ -77,10 +77,10 @@
 			<li>
 				<a target="_blank" href="/support/box">
 				<p class="image">
-				<img alt="無料梱包キット提供サービス" src="/support/all/images/box.png">
+				{{HTML::image('img/main_page/box.png')}}
 				</p>
 				<p class="icon_free">
-				<img alt="無料" src="/support/all/images/free.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				梱包キット
@@ -93,10 +93,10 @@
 			<li>
 				<a target="_blank" href="http://topics.stores.jp/support/virtual">
 				<p class="image">
-				<img alt="バーチャルストア構築サービス" src="/support/all/images/virtual.png">
+				{{HTML::image('img/main_page/virtual.png')}}
 				</p>
 				<p class="icon_free">
-				<img alt="都内限定" src="/support/all/images/tokyo.png">
+				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
 				バーチャルストア

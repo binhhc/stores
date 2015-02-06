@@ -1530,3 +1530,17 @@ background-position: bottom;
     line-height: 1.8;
     text-align: left;
 }
+
+#functions #support_list li a:hover {
+    background-color: #fafafa;
+    text-decoration: none;
+}
+#functions .text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    text-align: center;
+}
+ul li img {
+    vertical-align: middle;
+}

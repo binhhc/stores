@@ -4,7 +4,6 @@
     <title>{{$title_for_layout}}</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="vi-vn" />
-    {{HTML::style('css/bootstrap.min.css')}}
     {{HTML::style('css/style.css')}}
     {{HTML::style('css/jquery.tipsy.css')}}
     {{HTML::style('css/item_management.css')}}

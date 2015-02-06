@@ -5,6 +5,6 @@
  * @author sangpm
  */
 class UserNotification extends Model{
-    protected $table  = 'user_items';
-	
+    protected $table  = 'user_notifications';
+
 }

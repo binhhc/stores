@@ -3,6 +3,7 @@
 {{HTML::style('css/account_setting.css')}}
 {{HTML::style('css/item.css')}}
 {{HTML::script('js/bootstrap.min.js')}}
+{{HTML::script('js/jquery-ui.js')}}
 
 <div class="wrapper">
     <div class="heading_box clearfix">
@@ -44,7 +45,7 @@
                     <!-- <input class="fileup" type="file" id="file" name="image" accept="image/jpeg,image/png,image/gif"> -->
                     {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'onchange'=>'previewFile()', 'class'=>'fileup', 'multiple'=>true))}}
                     <ul class="images dragdrop image" id="image_back">
-                        <!-- ngRepeat: image in item.images -->
+                        <!-- image view -->
                     </ul>
                     <p class="error err_image"></p>
                 </dd>
@@ -267,7 +268,7 @@
         reader.onloadend = function () {
             var count_img = $('#image_back li').length;
             if(count_img < 4){
-                $('#image_back').append("<li><img name=image  src="+reader.result+" width=98 height=87></li>");
+                $('#image_back').append("<li><img name=image[]  src="+reader.result+" width=98 height=87></li>");
             }
         }
     }

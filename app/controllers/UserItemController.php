@@ -209,7 +209,7 @@ class UserItemController extends BaseController {
             $item = new UserItem;
             $item->user_id = $user['id'];
             if(!empty($input['category_id'])){
-                $item->category_id = implode($input['category_id'], ',');
+                $item->category_id = implode(',', $input['category_id']);
             }
             $item->name = $input['name'];
             $item->price = $input['price'];
@@ -256,7 +256,11 @@ class UserItemController extends BaseController {
      * @author Binh Hoang
      * @since 2015/01/26
      */
-    public function get_item($id){
+    public function get_item($id = null){
+        if(empty($id))
+            return Redirect::to('/item_management');
+
+        //check change id in address
         try{
             $id = Crypt::decrypt($id);
         }catch(Exception $e){
@@ -267,10 +271,11 @@ class UserItemController extends BaseController {
 
         $item = UserItem::where('id', '=', $id)->first();
 
+        $item_quantity = UserItemQuatity::where('item_id', '=', $id)->get();
 
         $category = UserCategory::where('user_id', '=', $user['id'])->get();
         return View::make('userItem.edit_item')
-            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item));
+            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'item_quantity' => $item_quantity));
     }
 
     /**
@@ -279,9 +284,58 @@ class UserItemController extends BaseController {
      * @since 2015/01/26
      */
     public function edit_item(){
-        $user = Session::get('user');
-        $category = UserCategory::where('user_id', $user['id'])->get();
-        return View::make('userItem.edit_item')->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category));
+        $input = Input::all();
+        echo '<pre>';
+        print_r($input);
+
+        // $v = UserItem::validate($input);
+        // if($v->passes()){
+        //     //get user information from session
+        //     $user = Session::get('user');
+
+        //     $item = new UserItem;
+        //     $item->user_id = $user['id'];
+        //     if(!empty($input['category_id'])){
+        //         $item->category_id = implode(',', $input['category_id']);
+        //     }
+        //     $item->name = $input['name'];
+        //     $item->price = $input['price'];
+        //     $image = Input::file('image_url');
+        //     if(Input::file('image_url')){ // not change image_url
+        //         $folder_name = User::getNameStore();
+        //         $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+        //         if(!is_dir($folder_user)){
+        //             mkdir($folder_user);
+        //             chmod($folder_user, 0777);
+        //         }
+
+        //         $filename = $image->getClientOriginalName();
+        //         $upload = Input::file('image_url')->move($folder_user, $filename);
+
+        //         $item->image_url = $filename;
+        //     }
+
+        //     $item->introduce = $input['description'];
+        //     $item->save();
+        //     //get id latest insert
+        //     $lastInsertIdItem = $item->id;
+
+        //     if(!empty($input['quality_single'])){
+        //         $quality = new UserItemQuatity;
+        //         $quality->item_id = $lastInsertIdItem;
+        //         $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
+        //         $quality->save();
+        //     }else{
+        //         for($i = 0; $i < count($input['size']); $i++){
+        //             $quality = new UserItemQuatity;
+        //             $quality->item_id = $lastInsertIdItem;
+        //             $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
+        //             $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
+        //             $quality->save();
+        //         }
+        //     }
+        // }
+        // return Redirect::to('/item_management');
     }
 
 

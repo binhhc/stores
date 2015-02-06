@@ -3,6 +3,7 @@
 {{HTML::style('css/account_setting.css')}}
 {{HTML::style('css/item.css')}}
 {{HTML::script('js/bootstrap.min.js')}}
+{{HTML::script('js/jquery-ui.js')}}
 
 <div class="wrapper">
     <div class="heading_box clearfix">
@@ -42,7 +43,7 @@
                 <dt>Hình mặt hàng</dt>
                 <dd>
                     <!-- <input class="fileup" type="file" id="file" name="image" accept="image/jpeg,image/png,image/gif"> -->
-                    {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'onchange'=>'previewFile()', 'class'=>'fileup', 'multiple'=>true))}}
+                    {{Form::file('image_url[]', array('accept'=>'image/jpeg,image/png,image/gif', 'class'=>'fileup', 'multiple'=>true))}}
                     <ul class="images dragdrop image" id="image_back">
                         <!-- ngRepeat: image in item.images -->
                     </ul>
@@ -244,7 +245,11 @@
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
+</script>
 
+{{HTML::script('js/add_item.js')}}
+
+<script type="text/javascript">
     $(document).ready(function(){
         var cate = {{json_encode(explode(',', $item->category_id))}};
         //check category
@@ -253,40 +258,102 @@
 
             if($.inArray(category_id, cate) !== -1){
                 $(this).find('.check_category').addClass('checked-true');
+                $(this).find('.chk_category').prop('checked', true);
             }
         });
+
+        var item_quantity = {{$item_quantity}};
+
+        if(item_quantity[0]['size_name'] == '' || item_quantity[0]['size_name'] == null){
+            if(item_quantity[0]['quantity'] != 0){
+                $('.top_quality').find('input.item_size').val(item_quantity[0]['quantity']);
+            }else{
+                $('.d_quality').trigger('click');
+            }
+        }else{
+            $('.btn_variation').click();
+
+            var clone_ql = $('#itemSerial ul.variation.list_items:first').clone();
+            $('#itemSerial ul.variation.list_items').remove();
+
+            for(var i = 0; i < item_quantity.length; i++){
+                var flg_unlimit = false;
+                var tmp_clone_ql = clone_ql.clone();
+                tmp_clone_ql.find('.size_quality').val(item_quantity[i]['size_name']);
+
+                if(item_quantity[i]['quantity'] > 0){
+                    tmp_clone_ql.find('.number_quality').val(item_quantity[i]['quantity']);
+                }else{
+                    flg_unlimit = true;
+                }
+                $('#itemSerial').append(tmp_clone_ql);
+                if (flg_unlimit) {
+                    $('#itemSerial ul.variation.list_items:last .d_quality').click();
+                };
+            }
+        }
+
+
+        $('.fileup').change(function(){
+            // var preview = document.querySelector('#image_back'); //selects the query named img
+            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader  = new FileReader();
+
+            // var clone_image = $('.fileup').clone();
+
+            if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
+                alert('Không đúng định dạng ảnh!');
+                $('input[name=image_url]').val('');
+                // preview.src = "";
+                submit_flg = false;
+            }else{
+                if(file){
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    // preview.src = "";
+                }
+            }
+
+            reader.onloadend = function () {
+                var count_img = $('#image_back li').length;
+                if(count_img < 4){
+                    console.log(file);
+                    $('#image_back').append('<li class="preview"><img name=image  src='+reader.result+' width=98 height=87></li>');
+                    // $(clone_image).addClass('hidden');
+                    // $('#image_back .preview').append(clone_image);
+                }
+            }
+        });
+
     });
 
     //load ajax image
-    function previewFile(){
-        // var preview = document.querySelector('#image_back'); //selects the query named img
-        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-        var reader  = new FileReader();
+    // function previewFile(){
+    //     // var preview = document.querySelector('#image_back'); //selects the query named img
+    //     var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+    //     var reader  = new FileReader();
 
-        if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
-            alert('Không đúng định dạng ảnh!');
-            $('input[name=image_url]').val('');
-            // preview.src = "";
-            submit_flg = false;
-        }else{
-            if(file){
-                reader.readAsDataURL(file); //reads the data as a URL
-            } else {
-                // preview.src = "";
-            }
-        }
+    //     if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
+    //         alert('Không đúng định dạng ảnh!');
+    //         $('input[name=image_url]').val('');
+    //         // preview.src = "";
+    //         submit_flg = false;
+    //     }else{
+    //         if(file){
+    //             reader.readAsDataURL(file); //reads the data as a URL
+    //         } else {
+    //             // preview.src = "";
+    //         }
+    //     }
 
-        reader.onloadend = function () {
-            var count_img = $('#image_back li').length;
-            if(count_img < 4){
-                $('#image_back').append("<li><img name=image  src="+reader.result+" width=98 height=87></li>");
-            }
-        }
-    }
-
+    //     reader.onloadend = function () {
+    //         var count_img = $('#image_back li').length;
+    //         if(count_img < 4){
+    //             console.log(file);
+    //             $('#image_back').append('<li><img name=image  src='+reader.result+' width=98 height=87></li>');
+    //         }
+    //     }
+    // }
 </script>
-
-{{HTML::script('js/add_item.js')}}
-
 
 @include('elements.footer')

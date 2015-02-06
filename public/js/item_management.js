@@ -119,15 +119,10 @@ $(document).ready(function(){
         	e.preventDefault();
         	FB.ui({
         		  method: 'feed',
-        		  link: 'http://storeslavarel.dev/item_management',
+        		  link: 'http://storeslavarel.dev/',
         		  caption: item_name,
-        		  //picture: ''
+        		  picture: img_url
         		}, function(response){
-        			if (response && !response.error_code) {
-        			      alert('Posting completed.');
-        			    } else {
-        			      alert('Error while posting.');
-        			    }
         		});
 
 

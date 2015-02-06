@@ -1,5 +1,6 @@
+{{HTML::style('css/bootstrap.min.css')}}
 @include('elements.header')
-<script src="//connect.facebook.net/ja_JP/all.js"></script>
+<script src="//connect.facebook.net/vi_VN/all.js"></script>
  {{HTML::script('/js/item_management.js')}}
 <div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
     <p>Đã xoá thành công!</p>
@@ -79,15 +80,17 @@
                                         <a href="{{URL::asset('/edit_item/'.Crypt::encrypt($item['id']))}}">Sửa</a>
                                     </li>
                                     <li class="navi_share" item_id="{{$item['id']}}">
-                                        <p class="navi_share_btn_true" ng-class="item_share(item)">Xem</p>
+                                        <p class="navi_share_btn_true" ng-class="item_share(item)">Chia sẻ</p>
+                                         @if ($item['public_flg'] == 0)
                                         <ul class="baloon1 navi_share_baloon tooltip_share{{$item['id']}}" ng-class="{navi_share_baloon: is_postable_parco_blog(item) == false && is_exblog == false && is_postable_parcocity_blog(item) == false}" data-share-display="false" style="display: none;">
 											<li class="navi_share_fb">
 												<div class="fb-share-button" data-layout="icon_link"><a ng-click="postToFeedItem(item)" class="share_facebook" href="" item_name="{{$item['name']}}" image_url="{{$item['image_url']}}">Chia sẻ</a></div>
 											</li>
-											<li class="navi_share_tw">
-												<a ng-click="share_sns(item)" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2Foanhht.stores.jp%2F%23!%2Fitems%2F54bf2b9986b188c7540009f9 @stores_jp" target="_blank">Tweet</a>
+											<li class="navi_share_tw" >
+												<a ng-click="share_sns(item)" class="twitter popup" item_id="{{$item['id']}}" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2Foanhht.stores.jp%2F%28883!%2Fitems%2F54bf2b9986b188c7540009f9 @stores_jp" target="_blank">Tweet</a>
 											</li>
 										</ul>
+										@endif
                                     </li>
                                 </ul>
                             </dd>

@@ -17,8 +17,6 @@ class UserItemController extends BaseController {
         }
         $data['items'] = $this->getItemList();
         $data['app_id'] = Config::get('constants.facebook_app_id');
-        /*$queries = DB::getQueryLog();
-        var_dump($queries);*/
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
         return View::make('userItem.item_management', $data);
     }

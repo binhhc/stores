@@ -1444,7 +1444,7 @@ background-position: bottom;
 
 .list_items .items .navi .navi_share ul.baloon1, #news .list_news .items .navi .navi_share ul.baloon1 {
     right: -11px;
-    top: -87px;
+    top: -37px;
 }
 .list_items .items .navi .navi_share ul, #news .list_news .items .navi .navi_share ul {
     height: 96px;
@@ -1476,4 +1476,71 @@ background-position: bottom;
     line-height: 42px;
     padding: 0 0 0 40px;
     width: 156px;
+}
+
+#functions h2.heading {
+    margin-bottom: 30px;
+}
+#functions h2 {
+    color: #333;
+    padding-top: 50px;
+    text-align: center;
+}
+#functions .text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    text-align: center;
+}
+#functions #support_list {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 972px;
+}
+#functions #support_list li a {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+    display: block;
+    float: left;
+    height: 360px;
+    margin: 0 0 26px 24px;
+    overflow: hidden;
+    padding: 10px 20px 20px;
+    width: 252px;
+}
+#functions #support_list li a .image {
+    height: 180px;
+    text-align: center;
+}
+#functions #support_list li a .icon_free {
+    float: left;
+    padding-top: 22px;
+    width: 70px;
+}
+
+#functions #support_list li a h3 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 25px 0 20px;
+}
+
+#functions #support_list li a .text {
+    line-height: 1.8;
+    text-align: left;
+}
+
+#functions #support_list li a:hover {
+    background-color: #fafafa;
+    text-decoration: none;
+}
+#functions .text {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    text-align: center;
+}
+ul li img {
+    vertical-align: middle;
 }

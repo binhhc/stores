@@ -33,5 +33,14 @@ class SysTextColor extends Model{
             ->first();
         return !empty($sysTextColorId) ? $sysTextColorId : array();
     }
-	
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','name','color');
+    }
 }

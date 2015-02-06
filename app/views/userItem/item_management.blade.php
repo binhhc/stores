@@ -1,4 +1,3 @@
-{{HTML::style('css/bootstrap.min.css')}}
 @include('elements.header')
 <script src="//connect.facebook.net/vi_VN/all.js"></script>
  {{HTML::script('/js/item_management.js')}}

@@ -3,7 +3,7 @@
 <div class="adM"> </div>
 <div style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#fff;color:#58595b;font-size:12px;line-height:1.6;font-family:'\0030d2\0030e9\0030ae\0030ce\0089d2\0030b4 Pro W3','Hiragino Kaku Gothic Pro','\0030e1\0030a4\0030ea\0030aa',Meiryo,Osaka,'\00ff2d\00ff33 \00ff30\0030b4\0030b7\0030c3\0030af','MS PGothic',sans-serif">
 <div class="adM"> </div>
-<p style="padding-bottom:10px;text-align:center;line-height:1.5;font-size:12px">Email này được gửi từ {{$store_domain}}</p>
+<p style="padding-bottom:10px;text-align:center;line-height:1.5;font-size:12px">Email này được gửi từ {{$website_name}}</p>
 <table width="100%" bgcolor="#EDEDED" align="center" style="padding:40px 0">
 <tbody>
 <tr>
@@ -29,31 +29,30 @@
 </tr>
 <tr>
 <td style="padding:0 30px 20px 30px;text-align:center" colspan="2">
-<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}}様があなたをSTORES.jpに招待しています。</p>
+<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}} đã mời bạn tham gia {{$website_name}}</p>
 <p style="margin-bottom:20px;line-height:1.6;font-size:14px">
-あなただけのオンラインストアを無料で作ってみませんか？
+Bạn muốn tạo một cửa hàng trực tuyến miễn phí?
 <br>
-新規登録からストアオープンまでに必要な時間は最短2分です。
+Trong vòng 2 phút bạn có thể tạo cửa hàng của mình
 </p>
 <p style="margin-bottom:30px;line-height:1.6;font-size:14px">
-『STORES.jp』は、
+{{$website_name}} là hệ thống
 <wbr></wbr>
-ウェブサイト制作の知識を全くお持ちでない方でも
+mà ở đó bạn không cần bất kỳ kiến thức nào về lập trang web
 <br>
-簡単にオンラインストアを作ることができるサービスです。
+bạn vẫn có thể thao tác dễ dàng
 <br>
-誰でも気軽に世界でひとつだけのオンラインストアをオープンでき
+Dù bạn là bất kỳ ai bạn cũng có thể sở hữu cửa hàng trực tuyến của riêng mình
 <wbr></wbr>
-ます。
 </p>
 <p style="margin-bottom:40px">
-<a target="_blank" href="{{$store_domain}}">
+<a target="_blank" href="{{$website_name}}">
 <img class="CToWUd" width="344" height="64" alt="ストアを作る" src="https://ci4.googleusercontent.com/proxy/hZ7kn2xH3f_QarDSf0hM5WLTuuAm1GVSqSz1N-Zon_Cx9QMXPdQzqsAzOEQdEhCqGt7qpV_IgibHmSZmspsttnvxxM6DJeE9EyE=s0-d-e1-ft#https://stores.jp/images/mail/store/referral/btn.png">
 </a>
 </p>
 <div style="border-top:double 3px #cccccc;border-bottom:double 3px #cccccc;padding:5px">
 <p style="margin:10px 0 5px 0">
-<strong>Trung tâm hỗ trợ khách hàng Stores.vn</strong>
+<strong>Trung tâm hỗ trợ khách hàng {{$website_name}}</strong>
 </p>
 <p style="margin:0 0 10px 0">
 Liên hệ với chúng tôi bằng email

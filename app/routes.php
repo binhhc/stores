@@ -16,6 +16,8 @@ Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/support', 'MainController@support');
+Route::get('/referral', 'MainController@referral');
+Route::post('/invitation', 'MainController@invitation');
 Route::get('/trade_law', 'StoreController@trade_law');
 Route::post('/trade_law', 'StoreController@save_trade_law');
 Route::get('/store_setting', 'StoreController@store_setting');

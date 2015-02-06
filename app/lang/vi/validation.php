@@ -111,6 +111,9 @@ return array(
 		'homepage' => array(
 			'url' => 'Địa chỉ url của trang web không đúng.'
 		),
+		'name' => array(
+			'required' => 'Bạn phải nhập tên người giới thiệu.'
+		)
 	),
 
 	/*

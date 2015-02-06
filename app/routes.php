@@ -124,7 +124,6 @@ Route::post('/resetPassword', 'UserController@resetPassword');
 
 
 
-
 // Route::post('/checkEmailJson', 'UserController@checkEmailJson');
 //Blade::setContentTags('<%', '%>');        // for variables and all things Blade
 //Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data

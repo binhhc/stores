@@ -57,7 +57,6 @@ class MainController extends BaseController {
      * @since 2015-02-06
      */
     public function invitation() {
-    	die;
       if(Request::ajax())
         {
              $email = trim(Input::get('email'));
@@ -73,7 +72,13 @@ class MainController extends BaseController {
    				}
    				$status = $mss;
             } else {
-             $this->send_email($email, $name);
+            	 $data = array(
+		            'domain' => Config::get('constants.domain'),
+		            'name'  => $name,
+		        	'website_name' => Config::get('constants.website_name'),
+		            'contact_email' => Config::get('constants.contact_email'),
+		        );
+            	 $this->send_email($email, $data);
        		 }
        		 return Response::json($status);
    		}
@@ -83,16 +88,9 @@ class MainController extends BaseController {
      * @author OanhHa
      * @since 2015-02-06
      */
-    public function send_email($email, $name) {
-        $data = array(
-            'domain' => Config::get('constants.domain'),
-            'name'  => $name,
-        	'store_domain' => Config::get('constants.website_name'),
-            'contact_email' => Config::get('constants.contact_email'),
-        );
-
+    public function send_email($email, $data) {
        $status = Mail::send('emails.referral', $data, function($message) use($email) {
-                $message->to($email, 'Mời tham gia Stores')->subject($name . ' Mời tham gia Store');
+                $message->to($email, 'Mời tham gia Stores')->subject('Thư mời tham gia Store');
        });
 
     }

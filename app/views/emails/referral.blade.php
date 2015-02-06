@@ -29,21 +29,22 @@
 </tr>
 <tr>
 <td style="padding:0 30px 20px 30px;text-align:center" colspan="2">
-<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}} đã mời bạn tham gia {{$store_domain}}</p>
+<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}}様があなたをSTORES.jpに招待しています。</p>
 <p style="margin-bottom:20px;line-height:1.6;font-size:14px">
-Bạn muốn tạo một cửa hàng trực tuyến miễn phí?
+あなただけのオンラインストアを無料で作ってみませんか？
 <br>
-Trong vòng 2 phút bạn có thể tạo cửa hàng của mình
+新規登録からストアオープンまでに必要な時間は最短2分です。
 </p>
 <p style="margin-bottom:30px;line-height:1.6;font-size:14px">
-{{$store_domain}} là hệ thống
+『STORES.jp』は、
 <wbr></wbr>
-mà ở đó bạn không cần bất kỳ kiến thức nào về lập trang web
+ウェブサイト制作の知識を全くお持ちでない方でも
 <br>
-bạn vẫn có thể thao tác dễ dàng
+簡単にオンラインストアを作ることができるサービスです。
 <br>
-Dù bạn là bất kỳ ai bạn cũng có thể sở hữu cửa hàng trực tuyến của riêng mình
+誰でも気軽に世界でひとつだけのオンラインストアをオープンでき
 <wbr></wbr>
+ます。
 </p>
 <p style="margin-bottom:40px">
 <a target="_blank" href="{{$store_domain}}">

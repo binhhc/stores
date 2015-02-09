@@ -405,7 +405,7 @@ class UserController extends BaseController {
                 $profile = new UserProfile();
                 $profile->name = $username;
                 $profile->user_id = $user['id'];
-                $profile->image_url = 'files/'.$folder_name['USER_NAME'].'/'.$filename;
+                $profile->image_url = $filename;
                 $profile->save();
             }else{
                 if(isset($filename))
@@ -467,7 +467,28 @@ class UserController extends BaseController {
      * @since 2015.01.20
      */
     public function changeMailNotificationSetting(){
-        return View::make('user.change_mail_notification_setting')->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email'));
+        $user_id = $this->getUserId();
+        $info = UserNotification::where('user_id', $user_id)->first();
+
+        $follow = $notice = 0;
+        if(!empty($info)){
+            $email_noti = decbin($info->mail_notify);
+            if($email_noti == 0){
+                $follow = 0;
+                $notice = 0;
+            }elseif($email_noti == 1){
+                $email_noti = '01';
+                $email_noti = str_split((string)$email_noti);
+                $follow = $email_noti[0];
+                $notice = $email_noti[1];
+            }else{
+                $email_noti = str_split((string)$email_noti);
+                $follow = $email_noti[0];
+                $notice = $email_noti[1];
+            }
+        }
+
+        return View::make('user.change_mail_notification_setting')->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email', 'mail_follow' => $follow, 'mail_notice' => $notice));
     }
 
     /**
@@ -480,21 +501,24 @@ class UserController extends BaseController {
      */
     public function ajax_mail_notification_setting(){
         if(Request::ajax()){
-             $flag_mail_follow = Input::get('flag_mail_follow');
-             $flag_mail_notice = Input::get('flag_mail_notice');
-             $user_id = $this->getUserId();                          
-                                                       
+            $follow = Input::get('follow');
+            $notice = Input::get('notice');
+            $user_id = $this->getUserId();
 
-             $info_notification = UserNotification::where('user_id', $user_id);
+            $info = UserNotification::where('user_id', $user_id)->first();
 
-             if(empty($info_notification)){
+            if(empty($info)){
                 $user_noti = new UserNotification();
                 $user_noti->user_id = $user_id;
+                $user_noti->mail_notify = bindec($follow.$notice);
 
-             }
+                $user_noti->save();
+            }else{
+                UserNotification::where('user_id', $user_id)
+                    ->update(array('mail_notify' => bindec($follow.$notice)));
+            }
 
-            // UserNotification::where('user_id', $user_id)
-            //     ->update(array('mail_notify' => ,  'updated_user' => $user_id));
+
 
             $success =  "1";
             return Response::json($success);
@@ -608,7 +632,8 @@ class UserController extends BaseController {
         $user_info = User::where('account_token',$token)->first();
 
         if(User::checkExpiredTime($user_info) == true){
-            $user_info->account_token = "";
+            $user_info->account_token = User::createAccountToken();
+            $user_info->account_active = 1;
             $user_info->save();
             $user = $user_info->toArray();
             Session::put('user', $user);

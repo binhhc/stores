@@ -73,8 +73,21 @@ class UserStore extends Model{
         $userId = Session::get('user.id');
         $userStoresDomain = UserStore::where('user_id', '=', $userId)
             ->select('domain')
-            ->first()->toArray();
-        return !empty($userStoresDomain) ? $userStoresDomain : array();
+            ->first();
+        return !empty($userStoresDomain) ? $userStoresDomain->toArray() : array();
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','user_id','domain','public_flg','settings',
+                     'setting_intros','setting_trade_law','setting_pay_methods',
+                     'setting_postage','follow','promotion');
     }
     
     /*

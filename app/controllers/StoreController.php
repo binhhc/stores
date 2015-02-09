@@ -1127,10 +1127,10 @@ class StoreController extends BaseController {
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
-		$user_id = $this->getUserId();
-		$token_accout = User::where('id', $user_id)->first(array('account_token'))->toArray();
-		$data['account_token'] = $token_accout['account_token'];
-		$data['title_for_layout'] = "Bảng điều khiển cửa hàng";
+		$user_id    = $this->getUserId();
+		$accout     = User::where('id', $user_id)->first(array('account_active'))->toArray();
+		$data['account_active']     = $accout['account_active'];
+		$data['title_for_layout']   = "Bảng điều khiển cửa hàng";
 		return View::make('store.dashboard', $data );
 	}
 

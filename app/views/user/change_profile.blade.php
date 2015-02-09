@@ -21,8 +21,10 @@
                 <p class="profile_image">
                     <?php
                         $url_img = '/img/login/user_icon_01.png';
-                        if(isset($user_profile))
-                            $url_img = $user_profile->image_url;
+                        if(isset($user_profile)){
+                            $folder_name = User::getNameStore();
+                            $url_img = '/files/'.$folder_name['USER_NAME'].'/'.$user_profile->image_url;
+                        }
                     ?>
                     {{
                         HTML::image($url_img, 'Hồ sơ',array('width' => 100, 'height' => '100', 'id'=>'img_loadImagePreview'))

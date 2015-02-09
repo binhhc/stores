@@ -17,11 +17,9 @@ class UserItem extends Model{
      */
     public static function validate($input){
         $rules = array(
-            'name' => 'required|unique:user_categories',
+            'name' => 'required',
             'price' => 'required|numeric|min:100',
-            'image_url' => 'required|image',
-            'quality' => 'required',
-
+            'image_url' => 'required',
         );
         return Validator::make($input, $rules);
     }
@@ -65,7 +63,29 @@ class UserItem extends Model{
         return !empty($userItems) ? $userItems : array();
     }
     
-    public function userItemQuatity(){
+    /**
+     * Format Money
+     *
+     * @return      String
+     * @author      Sang PM
+     * @since       2015/02/05
+     */
+    public static function formatPrice($price = 0){
+        return "VND ".number_format($price, 2, '.', ',');
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','user_id','category_id','name','price','image_url','introduce','order');
+    }
+	
+	    public function userItemQuatity(){
         return $this->hasMany('UserItemQuatity', 'item_id');
     }
     

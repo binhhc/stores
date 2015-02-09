@@ -31,8 +31,9 @@
 </head>
 
 <body>
+
 <?php
-   	(isset($account_token) && !empty($account_token)) ? $str="display:block" :  $str="display:none";?>
+   	(isset($account_active) && $account_active !=1 ) ? $str="display:block" :  $str="display:none";?>
     <div class="activate" style="<?php echo $str?>">
         <div class="wrap">
             <p class="text">Chúng tôi gửi một e-mail xác nhận đến địa chỉ e-mail đã đăng ký. Hãy hoàn thành quy trình của bạn từ mail.</p>

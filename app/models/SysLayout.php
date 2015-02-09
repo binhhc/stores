@@ -34,5 +34,14 @@ class SysLayout extends Model{
             ->first();
         return !empty($sysLayoutsId) ? $sysLayoutsId : array();
     }
-	
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','layout_name','layout_image','layout_css','first','other');
+    }
 }

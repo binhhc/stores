@@ -16,8 +16,7 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
-        /*$queries = DB::getQueryLog();
-        var_dump($queries);*/
+        $data['app_id'] = Config::get('constants.facebook_app_id');
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
         return View::make('userItem.item_management', $data);
     }
@@ -40,9 +39,14 @@ class UserItemController extends BaseController {
 			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
 			$value['image_url'] = $url . $value['image_url'];
+			$value['price'] = UserItem::formatPrice($value['price']);
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+
 			if(!empty($item_quantity)) {
-				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
+                foreach($item_quantity as $item){
+                    $value['quantity'] += (empty($item['quantity'])) ? 0 : $item['quantity'];
+                }
+//				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
 			}
 		}
 		return $items;
@@ -184,7 +188,9 @@ class UserItemController extends BaseController {
      * @since 2015/01/26
      */
     public function show_add_item(){
-        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng'));
+        $user = Session::get('user');
+        $category = UserCategory::where('user_id', $user['id'])->get();
+        return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng', 'category' => $category));
     }
 
     /**
@@ -196,14 +202,142 @@ class UserItemController extends BaseController {
         $input = Input::all();
 
         $v = UserItem::validate($input);
+        if($v->passes()){
+            //get user information from session
+            $user = Session::get('user');
 
-        if($v->fails())
+            $item = new UserItem;
+            $item->user_id = $user['id'];
+            if(!empty($input['category_id'])){
+                $item->category_id = implode(',', $input['category_id']);
+            }
+            $item->name = $input['name'];
+            $item->price = $input['price'];
+            $image = Input::file('image_url');
+            if(Input::file('image_url')){ // not change image_url
+                $folder_name = User::getNameStore();
+                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+                if(!is_dir($folder_user)){
+                    mkdir($folder_user);
+                    chmod($folder_user, 0777);
+                }
+
+                $filename = $image->getClientOriginalName();
+                $upload = Input::file('image_url')->move($folder_user, $filename);
+
+                $item->image_url = $filename;
+            }
+
+            $item->introduce = $input['description'];
+            $item->save();
+            //get id latest insert
+            $lastInsertIdItem = $item->id;
+
+            if(!empty($input['quality_single'])){
+                $quality = new UserItemQuatity;
+                $quality->item_id = $lastInsertIdItem;
+                $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
+                $quality->save();
+            }else{
+                for($i = 0; $i < count($input['size']); $i++){
+                    $quality = new UserItemQuatity;
+                    $quality->item_id = $lastInsertIdItem;
+                    $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
+                    $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
+                    $quality->save();
+                }
+            }
+        }
+        return Redirect::to('/item_management');
+    }
+
+    /**
+     * show edit item
+     * @author Binh Hoang
+     * @since 2015/01/26
+     */
+    public function get_item($id = null){
+        if(empty($id))
             return Redirect::to('/item_management');
 
-        echo '<pre>';
-        var_dump($input);
-        echo 1;exit;
+        //check change id in address
+        try{
+            $id = Crypt::decrypt($id);
+        }catch(Exception $e){
+            return Redirect::to('/item_management');
+        }
+
+        $user = Session::get('user');
+
+        $item = UserItem::where('id', '=', $id)->first();
+
+        $item_quantity = UserItemQuatity::where('item_id', '=', $id)->get();
+
+        $category = UserCategory::where('user_id', '=', $user['id'])->get();
+        return View::make('userItem.edit_item')
+            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'item_quantity' => $item_quantity));
     }
+
+    /**
+     * progress edit item
+     * @author Binh Hoang
+     * @since 2015/01/26
+     */
+    public function edit_item(){
+        $input = Input::all();
+        echo '<pre>';
+        print_r($input);
+
+        // $v = UserItem::validate($input);
+        // if($v->passes()){
+        //     //get user information from session
+        //     $user = Session::get('user');
+
+        //     $item = new UserItem;
+        //     $item->user_id = $user['id'];
+        //     if(!empty($input['category_id'])){
+        //         $item->category_id = implode(',', $input['category_id']);
+        //     }
+        //     $item->name = $input['name'];
+        //     $item->price = $input['price'];
+        //     $image = Input::file('image_url');
+        //     if(Input::file('image_url')){ // not change image_url
+        //         $folder_name = User::getNameStore();
+        //         $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+        //         if(!is_dir($folder_user)){
+        //             mkdir($folder_user);
+        //             chmod($folder_user, 0777);
+        //         }
+
+        //         $filename = $image->getClientOriginalName();
+        //         $upload = Input::file('image_url')->move($folder_user, $filename);
+
+        //         $item->image_url = $filename;
+        //     }
+
+        //     $item->introduce = $input['description'];
+        //     $item->save();
+        //     //get id latest insert
+        //     $lastInsertIdItem = $item->id;
+
+        //     if(!empty($input['quality_single'])){
+        //         $quality = new UserItemQuatity;
+        //         $quality->item_id = $lastInsertIdItem;
+        //         $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
+        //         $quality->save();
+        //     }else{
+        //         for($i = 0; $i < count($input['size']); $i++){
+        //             $quality = new UserItemQuatity;
+        //             $quality->item_id = $lastInsertIdItem;
+        //             $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
+        //             $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
+        //             $quality->save();
+        //         }
+        //     }
+        // }
+        // return Redirect::to('/item_management');
+    }
+
 
     /**
      * Add item by ajax

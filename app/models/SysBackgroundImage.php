@@ -21,4 +21,16 @@ class SysBackgroundImage extends Model{
             ->lists('image_url');
         return !empty($sysBackgroundImage) ? $sysBackgroundImage : array();
     }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/02/05
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getFeilds(){
+        return array('id','name','image_url');
+    }
+    
 }

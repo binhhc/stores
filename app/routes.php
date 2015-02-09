@@ -165,6 +165,9 @@ Route::model('user', 'User');
 Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
+Route::get('/support', 'MainController@support');
+Route::get('/referral', 'MainController@referral');
+Route::post('/invitation', 'MainController@invitation');
 Route::get('/trade_law', 'StoreController@trade_law');
 Route::post('/trade_law', 'StoreController@save_trade_law');
 Route::get('/store_setting', 'StoreController@store_setting');
@@ -196,6 +199,9 @@ Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 //add new item
 Route::get('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@show_add_item'));
 Route::post('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@add_item'));
+//edit item
+Route::get('/edit_item/{id}', array('before' => 'auth', 'uses' => 'UserItemController@get_item'));
+Route::post('/edit_item', array('before' => 'auth', 'uses' => 'UserItemController@edit_item'));
 
 //add new category
 Route::post('/create_category', array('before' => 'auth', 'uses' => 'UserItemController@create_category'));
@@ -265,7 +271,6 @@ Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 //Reset password
 Route::post('/resetPassword', 'UserController@resetPassword');
-
 
 
 

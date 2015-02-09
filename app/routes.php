@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('domain' => '{account}.stores.local'), function()
+Route::group(array('domain' => '{account}.stores.dev.srv'), function()
 {
     Route::get('/', function($account)
     {

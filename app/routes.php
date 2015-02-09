@@ -1,5 +1,155 @@
 <?php
 
+Route::group(array('domain' => '{account}.stores.dev.srv'), function()
+{
+    Route::get('/', function($account)
+    {
+        return App::make('StoreController')->ownerStore($account);
+
+    });
+
+    Route::get('/partials/c/items/index', 'StoreController@index');
+    
+    Route::get('/partials/c/items/show', 'StoreController@show');
+    
+    Route::get('/partials/c/stores/about', 'StoreController@aboutDetail');
+    
+    Route::get('/store/{account}/about_detail', function($account)
+    {
+        return App::make('StoreController')->about_detail($account);
+    });
+    
+    Route::get('/store/{account}/categories', function($account)
+    {
+        return App::make('StoreController')->storeCategories($account);
+    });
+    
+    Route::get('/store/{account}/about', function($account)
+    {
+        return App::make('StoreController')->storeAbout($account);
+    });
+    
+    Route::get('/store/{account}/virtual_store', function($account)
+    {
+        return App::make('StoreController')->virtual_store($account);
+    });
+    
+     Route::get('/store/{account}/delivery_methods', function($account)
+    {
+        return App::make('StoreController')->delivery_methods($account);
+    });
+    
+     Route::get('/store/{account}/shipping_fee', function($account)
+    {
+        return App::make('StoreController')->shipping_fee($account);
+    });
+    
+    Route::get('/store_style', function($account)
+    {
+        return App::make('StoreController')->store_style($account);
+    });
+    
+    Route::get('/current_user', function($account)
+    {
+        return App::make('StoreController')->current_user($account);
+    });
+    
+    Route::get('/items_pager', function($account)
+    {
+        return App::make('StoreController')->items_pager($account);
+    });
+    
+    Route::get('/items/{id}', function($domain, $id)
+    {
+        return App::make('StoreController')->itemDetail($id);
+    });
+    
+    Route::get('/profile/{id}', function($id)
+    {
+        return App::make('StoreController')->profile($id);
+    });
+    
+    Route::get('/iframe/store/cart_popup', function($id)
+    {
+        return App::make('StoreController')->cart_popup($id);
+    });
+    
+    Route::get('/iframe/store/favorite_item_button/{id}', function($id)
+    {
+        return App::make('StoreController')->favorite_item_button($id);
+    });
+    
+    Route::get('/partials/c/items/checkout', function($id)
+    {
+        return App::make('StoreController')->checkout($id);
+
+    });
+    
+    Route::get('/payment_maintenance', function($id)
+    {
+        return App::make('StoreController')->payment_maintenance($id);
+    });
+    
+    Route::get('/store/{account}/enable_coupon', function($id)
+    {
+        return App::make('StoreController')->enable_coupon($id);
+    });
+    
+    Route::get('/store/{account}/payment_methods', function($id)
+    {
+        return App::make('StoreController')->payment_methods($id);
+    });
+    
+    Route::get('/iframe/store/follow_about', function($id)
+    {
+        return App::make('StoreController')->follow_about($id);
+    });
+    
+    Route::get('/partials/c/shared/receive_method', function($id)
+    {
+        return App::make('StoreController')->receive_method($id);
+    });
+    
+    Route::get('/partials/c/shared/checkout_card', function($id)
+    {
+        return App::make('StoreController')->checkout_card($id);
+    });
+    
+    Route::get('/partials/c/shared/checkout_shipping', function($id)
+    {
+        return App::make('StoreController')->checkout_shipping($id);
+    });
+    
+    Route::get('/partials/c/shared/checkout_other_shipping', function($id)
+    {
+        return App::make('StoreController')->checkout_other_shipping($id);
+    });
+    
+    Route::get('/profile_address', function($id)
+    {
+        return App::make('StoreController')->profile_address($id);
+    });
+    
+    Route::get('/user_cc', function($id)
+    {
+        return App::make('StoreController')->user_cc($id);
+    });
+    
+    Route::get('/partials/c/items/checkout_confirm', function($id)
+    {
+        return App::make('StoreController')->checkout_confirm($id);
+    });
+     Route::get('/orders', function($id)
+    {
+        return App::make('StoreController')->orders($id);
+    });
+    
+    Route::get('/partials/c/stores/tokushoho', function($id)
+    {
+        return App::make('StoreController')->tokushoho($id);
+    });
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,6 +166,8 @@ Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/support', 'MainController@support');
+Route::get('/referral', 'MainController@referral');
+Route::post('/invitation', 'MainController@invitation');
 Route::get('/trade_law', 'StoreController@trade_law');
 Route::post('/trade_law', 'StoreController@save_trade_law');
 Route::get('/store_setting', 'StoreController@store_setting');
@@ -119,7 +271,6 @@ Route::post('/forgetPassword', 'UserController@doForgetPassword');
 
 //Reset password
 Route::post('/resetPassword', 'UserController@resetPassword');
-
 
 
 

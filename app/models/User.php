@@ -127,7 +127,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function usersns(){
         return $this->hasMany('UserSns');
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/01/19
@@ -139,7 +139,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         if(!is_object($obj))return false;
         $created = new Carbon($obj->updated_at);
         $now = Carbon::now();
-        $difference = ($created->diff($now));       
+        $difference = ($created->diff($now));
         if($difference->days > 0) return false;
         if($difference->h > 0) return false;
         return ($difference->i <= 30);
@@ -148,7 +148,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     /**
      * @author      Le Nhan Hau
      * @since       2015/01/19
-     * 
+     *
      * get name store
      */
     public static function getNameStore() {
@@ -156,8 +156,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $userLogin = Session::get('user');
         $email = $userLogin['email'];
         $tmpEmail = explode('@', $email);
-        
+
         $userInfos['USER_NAME'] = $tmpEmail[0];
         return $userInfos;
+    }
+	/**
+     * Validate
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_email_invitation($input){
+        $rules = array(
+            'email' => 'required|email',
+            'name' => 'required'
+        );
+
+        return Validator::make($input, $rules);
     }
 }

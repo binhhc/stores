@@ -1541,6 +1541,178 @@ background-position: bottom;
     margin-bottom: 40px;
     text-align: center;
 }
-ul li img {
-    vertical-align: middle;
+#referral {
+    background-color: #fff;
+    width: 780px;
+}
+#referral h3 {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 30px 0;
+    text-align: center;
+}
+#referral h3 img {
+    margin-right: 10px;
+}
+#referral #btn_link {
+    text-align: center;
+}
+
+#referral #btn_link li {
+    display: inline-block;
+    margin: 0 5px;
+}
+#referral #btn_link a {
+    background: url("../img/main_page/btn_link.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #535353;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 200px;
+}
+#referral #btn_link img {
+    margin-right: 8px;
+}
+#referral .separate_title {
+    background: url("../img/main_page/line.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    margin: 40px 0 30px;
+    text-align: center;
+}
+#referral #address_form {
+    margin: 0 auto 20px;
+    overflow: hidden;
+    width: 620px;
+}
+#referral #address_form dt {
+    clear: both;
+    float: left;
+    font-weight: bold;
+    line-height: 40px;
+    margin: 0 15px 20px 0;
+    padding-left: 20px;
+    width: 120px;
+}
+
+#referral #address_form dd {
+    display: inline-block;
+    float: left;
+    margin-bottom: 20px;
+    width: 400px;
+}
+#referral #address_form input {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    float: left;
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 15px;
+    padding: 0 5px;
+    width: 300px;
+}
+#referral #btn_send {
+    clear: both;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    width: 300px;
+}
+#referral #btn_send #premium_badge {
+    left: -40px;
+    position: absolute;
+    top: -13px;
+}
+
+#referral .separate_title {
+    background: url("../img/main_page/line.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    margin: 40px 0 30px;
+    text-align: center;
+}
+#referral #url_copy {
+    margin: 0 auto 40px;
+    width: 312px;
+}
+#referral #url_copy input {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    width: 300px;
+}
+#referral #send_list {
+    background-color: #ededed;
+    margin: 0 auto 40px;
+    padding: 20px 20px 15px;
+    width: 580px;
+}
+#referral .note {
+    background: url("../img/main_page/border_dot.gif") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    margin: 0 15px;
+    padding: 15px 0;
+}
+#referral .note li {
+    font-size: 12px;
+    line-height: 1.6em;
+}
+#referral #send_list h4 {
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.btn_high_big button {
+    background: url("../img/main_page/btn_bg_blue_big.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 15px;
+    height: 50px;
+    text-decoration: none;
+    vertical-align: text-top;
+    width: 300px;
+}
+
+.btn_low_big button {
+    background: url("../img/main_page/btn_bg_grey_big.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 15px;
+    height: 50px;
+    text-decoration: none;
+    vertical-align: text-top;
+    width: 300px;
+}
+#referral #btn_link a:hover {
+    background-position: 0 -30px;
+    text-decoration: none;
+}
+.btn_high_big button:hover {
+    background-position: center bottom;
+}
+#referral #address_form .error {
+    clear: both;
+    color: #ff0000;
+    padding-top: 10px;
+}
+#referral .panel span {
+    background-color: #0083d3;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px -4px #333;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 20px 100px;
+}
+#referral .panel {
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 100px;
+    width: 780px;
 }

@@ -110,3 +110,8 @@
 	</div>
 	</div>
 @include('elements.footer')
+<style>
+*, *:before, *:after {
+    box-sizing: unset!important;
+}
+</style>

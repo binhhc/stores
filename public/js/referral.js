@@ -20,7 +20,10 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function(response) {
                         if(response=='success') {
-                        	alert('aaa');
+                        	 $('.email_send').val('');
+                        	 $('.name_send').val('');
+                        	 $('.panel').fadeIn('slow').delay(3000).fadeOut('slow');
+
                         } else {
                             // Validate error
                         	if(response.email != '') {
@@ -43,15 +46,11 @@ $(document).ready(function(){
     });
 
         $(document).on('click', '.share_facebook', function(e){
-        	var item_name = $(this).attr('item_name');
-        	var img_url = $(this).attr('image_url');
-        	img_url = 'http://storeslavarel.dev/' + img_url;
+        	var url_store = 'http://' + $(this).attr('url_store');
         	e.preventDefault();
         	FB.ui({
         		  method: 'feed',
-        		  link: 'http://storeslavarel.dev/',
-        		  caption: item_name,
-        		  picture: img_url
+        		  link: url_store,
         		}, function(response){
         		});
 

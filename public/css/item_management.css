@@ -1709,3 +1709,10 @@ background-position: bottom;
     font-weight: bold;
     padding: 20px 100px;
 }
+#referral .panel {
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 100px;
+    width: 780px;
+}

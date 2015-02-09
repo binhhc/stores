@@ -1,4 +1,5 @@
 @include('elements.header')
+<script src="//connect.facebook.net/vi_VN/all.js"></script>
 {{HTML::script('/js/referral.js')}}
 <div ng-view="">
 	<div id="referral" class="wrapper ng-scope" ng-init="email()">
@@ -20,13 +21,13 @@
 				</a>
 			</li>
 			<li>
-				<a name="fb_btn" ng-click="postToFeed(referral_url)" href="">
+				<a name="fb_btn" class="share_facebook" href="" url_store = "<?php echo Config::get('constants.website_name');?>">
 				{{HTML::image('img/main_page/icon_facebook_referral.png')}}
 				Mời bạn Facebook
 				</a>
 			</li>
 			<li>
-				<a name="tw_btn" href="http://twitter.com/intent/tweet?ount=none&lang='ja'&url=http://goo.gl/qDDe4k&text=STORES.jpは最短2分で驚くほど簡単にオンラインストアが作ることが出来ます!!もちろん登録は無料です!! @stores_jp">
+				<a name="tw_btn" class="popup twitter" href="http://twitter.com/intent/tweet?ount=none&lang='vn'&url=<?php echo Config::get('constants.short_url');?>&text=Đăng ký để tạo cửa hàng trực tuyến miễn phí của mình trong vòng 2 phút!!!">
 				{{HTML::image('img/main_page/icon_twitter_referral.png')}}
 				Mời bạn Twitter
 				</a>
@@ -54,21 +55,24 @@
 					<p class="btn_high_big" ng-hide="pending" style="margin-left: 10px;">
 					<button class="send_email_invitation" type="button">Gửi thư mời bạn bè</button>
 					</p>
-					<p class="btn_low_big" ng-show="pending" style="margin-left: 10px; display: none;">
+					<p class="btn_low_big" style="margin-left: 10px; display: none;">
 					<button class="button_pending" type="button">Đang gửi</button>
 					</p>
 				</div>
 			</form>
 			<p id="url_copy">
-				<input type="text" value="http://goo.gl/qDDe4k">
+				<input type="text" value="<?php echo Config::get('constants.short_url');?>">
 			</p>
 			<div id="send_list">
 				<h4>Bạn bè bạn đã mở một cửa hàng từ lời mời của bạn</h4>
-				<div ng-show="referrals.length == 0" style="">まだお申込をいただいたお友達はいません。</div>
+				<div ng-show="referrals.length == 0" style=""></div>
 			</div>
 			<ul class="note">
 				<li>※招待後、ご登録されているメールアドレス宛にプレミアムサービスチケットを送付いたします。</li>
 			</ul>
+			<p class="panel" style="display: none;">
+				<span>Đã gửi lời mời thành công!</span>
+			</p>
 		</div>
 		<div style="display: none;">
 			<div id="popup_gmail">
@@ -92,3 +96,15 @@
 	</div>
 </div>
 @include('elements.footer')
+<div id="fb-root"></div>
+<input type="hidden" name="facebook_id" class="facebook_app_id" value="<?php echo Config::get('constants.facebook_app_id'); ?>"/>
+<script>
+var app_id = $('.facebook_app_id').val();
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : app_id,
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+</script>

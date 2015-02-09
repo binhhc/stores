@@ -205,17 +205,33 @@ class StoreController extends BaseController {
         return View::make('store.show');
     }
     
-    public function storeCategories() {
+    /**
+     * @since       2015/02/09
+     * 
+     * get user_categories
+     */
+    public function storeCategories($parameters) {
         $this->layout = '';
         
-        $aboutDetail = array(
-            'detail' => 'haulenhan\u306e\u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7\u3067\u3059\u3002'
-        );
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
         
+        //get user_categories
+        $tmpUserCategories = UserCategory::getUserCaterogiesByUserId($userId);
+        $userCategories = array();
+        if (!empty($tmpUserCategories)) {
+            foreach ($tmpUserCategories as $key => $value) {
+                $userCategories[] = array(
+                    'id' => $value->id,
+                    'name' => $value->name
+                );
+            }
+        }
+        
+        echo json_encode($userCategories);
         //if (Request::ajax())
         //{
-            $json = json_encode($aboutDetail);
-            echo '[{"id":"1","name":"hauaaaaa"}]';
+            //echo '[{"id":"1","name":"hauaaaaa"}]';
         //}
         exit;
     }

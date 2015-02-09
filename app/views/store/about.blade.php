@@ -7,12 +7,12 @@
         <a href="/" ng-hide="styles.logo"><span class="txt">{[styles.name]}</span></a>
       </h1>
       <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore || news_navi">
-        <dl style="font-family: Allerta">
-          <dd><a href="/">HOME</a></dd>
-          <dd sp-controller="NewsController" addon="news" sp-show ng-show="news_navi"><a href="#!/news">NEWS</a></dd>
-          <dd ng-show="hasAbout"><a href="#!/about">ABOUT</a></dd>
+        <dl style="font-family: Arial">
+          <dd><a href="/">TRANG CHỦ</a></dd>
+          <dd sp-controller="NewsController" addon="news" sp-show ng-show="news_navi"><a href="#!/news">TIN TỨC</a></dd>
+          <dd ng-show="hasAbout"><a href="#!/about">GIỚI THIỆU</a></dd>
           <dd class="btn_dropdown" ng-show="categories">
-            <a href="">CATEGORY</a>
+            <a href="">DANH MỤC</a>
             <ul class="dropdown">
               <li ng-repeat="category in categories"><a ng-click="category_click(category.name)">{[category.name]}</a></li>
             </ul>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="box_wht" ng-hide="accepted">
-      <h2>About</h2>
+      <h2>Giới thiệu</h2>
       <!-- Account/ -->
       <div class="account">
         <p id="store_image" style="display:table-cell; vertical-align:middle;"><img ng-src="{[profile.profile_image.src_url]}"></p>

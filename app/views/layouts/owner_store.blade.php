@@ -16,7 +16,8 @@
     <script src="//connect.facebook.net/ja_JP/all.js"></script>
     <script src="https://typesquare.com/accessor/apiscript/typesquare.js?JR8Di~WDf1g%3D" charset="utf-8"></script>
 
-    <link media="all" type="text/css" rel="stylesheet" href="/css/application_store.css">
+    
+    {{HTML::style('css/application_store.css')}}
     <style rel="stylesheet" id="font_css"></style>
     <style id="font_css" rel="stylesheet"></style>
     <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Allerta">
@@ -77,10 +78,9 @@
 
         //]]&gt;
     </script>
+    {{HTML::script('js/application.js')}}
+    {{HTML::script('js/routes.js')}}
     
-    <script src="/js/application.js"></script>
-
-    <script src="/js/routes.js"></script>
 
     <style type="text/css">
         @charset "UTF-8";

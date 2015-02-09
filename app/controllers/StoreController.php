@@ -19,9 +19,12 @@ class StoreController extends BaseController {
      */
     public function ownerStore($parameters) {
         $domain = Request::url();
+        //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
+        preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         
         return View::make('store.owner_store', array(
-            'domain' => $domain
+            'domain' => $domain,
+            'url' => 'http://'.$url[2].'/store_setting'
         ));
     }
     

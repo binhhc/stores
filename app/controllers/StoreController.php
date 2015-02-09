@@ -12,6 +12,419 @@ class StoreController extends BaseController {
     public $uses = array();
 
     /**
+     * @author  Le Nhan Hau
+     * @since   2015/02/03
+     * 
+     * custom store
+     */
+    public function ownerStore($parameters) {
+        $domain = Request::url();
+        
+        return View::make('store.owner_store', array(
+            'domain' => $domain
+        ));
+    }
+    
+    /**
+     * @since   2015/02/03
+     * 
+     * display list item
+     */
+    public function index() {
+        return View::make('store.index');
+    }
+    
+    public function about_detail() {
+        $this->layout = '';
+        
+        $aboutDetail = array(
+            'detail' => 'haulenhan\u306e\u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7\u3067\u3059\u3002'
+        );
+        
+        if (Request::ajax())
+        {
+            $json = json_encode($aboutDetail);
+            echo $json;
+        }
+    }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/02/05
+     * 
+     * get user_stores detail
+     */
+    public function store_style($parameters) {
+        $this->layout = '';
+        
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        
+        //tmp about
+        $tmpUserStores = UserStore::where('user_id', '=', $userId)
+            ->first();
+        
+        $userStores = array();
+        if (!empty($tmpUserStores)) {
+            $tmpSettings = $tmpUserStores->settings;
+            if (!empty($tmpSettings)) {
+                $settings = json_decode($tmpSettings);
+                $stores = $settings->store;
+                
+                $userStores = array(
+                    'name' => $stores->name,
+                    'store_font' => array(
+                        'style' => $stores->store_style->store_font_style,
+                        'type' => $stores->store_style->store_font_type,
+                        'weight' => $stores->store_style->store_font_weight,
+                        'size' => $stores->store_style->store_font_size
+                    ),
+                    'layout' => $stores->store_style->layout,
+                    'background' => array(
+                        'color' => $stores->store_style->background_color,
+                        'repeat' => '',
+                        'image' => $stores->store_style->background_image
+                    ),
+                    'text_color' => array(
+                        'item' => $stores->store_style->item_text_color,
+                        'store' => $stores->store_style->store_text_color
+                    ),
+                    'display' => array(
+                        'frame' => $stores->store_style->display_frame,
+                        'item' => $stores->store_style->display_item
+                    ),
+                    'shipping_fee' => 0,
+                    'logo' => $stores->store_style->logo_image
+                );
+            }
+        }
+        
+        echo json_encode($userStores);
+        //if (Request::ajax())
+        //{
+            //echo '{"name":"haulenhan","store_font":{"style":"\'Allerta\', sans-serif","type":"google","weight":"400","size":"44"},"layout":"layout_a","background":{"color":"#fff","repeat":null,"image":"/img/samples/bg2/bg2_3.gif"},"text_color":{"item":"#000","store":"#000"},"display":{"frame":false,"item":true},"shipping_fee":0,"logo":null}';
+        //}
+        exit;
+    }
+    
+    public function current_user() {
+        $this->layout = '';
+        
+        //if (Request::ajax())
+        //{
+            echo '{"name":"haulenhan","my_store":true,"is_following":false,"store_owner":"haulenhan","store_owner_id":"54c5c1a5391bb34148001feb"}';
+        //}
+        exit;
+    }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/02/04
+     * 
+     * @param       $parameters
+     * get item from domain
+     */
+    public function items_pager($parameters) {
+        $this->layout = '';
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        //get user_items from user_id
+        $tmpUserItems = UserItem::getUserItemByUserId($userId);
+        
+        $lastpage = true;
+        if(isset($_GET['page']))
+            $lastpage = (intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
+            
+        $userItems = array(
+            'cnt_items' => $tmpUserItems->getTotal(),
+            'cnt_pages' => $tmpUserItems->getLastPage(),
+            'last_page?' => $lastpage
+        );
+        if (!empty($tmpUserItems)) {
+            foreach ($tmpUserItems as $key => $value) {
+                //user_items_quatity
+                $objItemQuatity = $value['userItemQuatity'];
+                
+                //image_url
+                $imageUrl = array();
+                if (!empty($value->image_url)) {
+                    $tmpImageUrl = explode(',', $value->image_url);
+                    foreach ($tmpImageUrl as $k => $v) {
+                        $imageUrl[] = array('name' => $v);
+                    }
+                }
+                
+                //user_items
+                $userItems['items'][] = array(
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'description' => $value->introduce,
+                    'status' => '',
+                    'price' => $value->price,
+                    'sale_flag' => '',
+                    'digital_contents' => '',
+                    'variations' => array(),
+                    'quantity' => $objItemQuatity->count(),
+                    'shared' => '',
+                    'images' => $imageUrl
+                );
+            }
+        }
+        
+        echo json_encode($userItems);
+        
+        //if (Request::ajax())
+        //{
+            /*echo '{"cnt_items":4,"cnt_pages":1,"last_page?":true,"items":
+            [
+            {"id":"54c743a4391bb3c77b000323","name":"hau_item_3","description":null,"status":"shown",
+            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,
+            "shared":null,"images":[{"name":"e88bba0f6140f640f184.jpeg"}],"sticker":""},
+            {"id":"54c7443fef3377ef02000ffb","name":"hau_item_4","description":null,"status":"shown",
+            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,
+            "shared":null,"images":[{"name":"d441b9f0783875e27aa1.jpeg"},
+            {"name":"962beeaa149f1fdd7ce4.gif"},{"name":"29e84b209611697bf840.gif"}],"sticker":""},
+            {"id":"54c743603cd482db3900158b","name":"hau_item_2","description":null,"status":"shown",
+            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,"shared":null,"images":[{"name":"f65759c93930eb8a5936.gif"}],"sticker":""},
+            {"id":"54c6f71def3377ef02000165","name":"hau_item_1","description":null,"status":"shown","price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,"shared":null,"images":[{"name":"5390192f2e6903b717bc.jpeg"},{"name":"cfd787754654ad854bd8.jpeg"}],"sticker":""}
+            ]
+            }';*/
+        //}
+        exit;
+    }
+    
+    /**
+     * @since       2015/02/06
+     * 
+     * show item detail
+     */
+    public function show() {
+        return View::make('store.show');
+    }
+    
+    public function storeCategories() {
+        $this->layout = '';
+        
+        $aboutDetail = array(
+            'detail' => 'haulenhan\u306e\u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7\u3067\u3059\u3002'
+        );
+        
+        //if (Request::ajax())
+        //{
+            $json = json_encode($aboutDetail);
+            echo '[{"id":"1","name":"hauaaaaa"}]';
+        //}
+        exit;
+    }
+    
+    /**
+     * @since       2015/02/05
+     * 
+     * store about detail
+     */
+    public function storeAbout($parameters) {
+        $this->layout = '';
+        
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        
+        //tmp about
+        $tmpAbout = UserStore::where('user_id', '=', $userId)
+            ->first();
+        
+        $about = array();
+        if (!empty($tmpAbout)) {
+            $setting_intros = json_decode($tmpAbout->setting_intros);
+            
+            $about = array(
+                'detail' => $setting_intros->description,
+                'links' => array(
+                    'twitter' => $setting_intros->twitter,
+                    'facebook' => $setting_intros->facebook,
+                    'website' => $setting_intros->homepage,
+                    'exblog' => null
+                )
+            );
+        }
+        
+        echo json_encode($about);
+        //if (Request::ajax())
+        //{
+            //echo '{"detail":"test stores test stores test stores","links":{"twitter":null,"facebook":null,"website":null,"exblog":null}}';
+        //}
+        exit;
+    }
+    
+    public function virtual_store() {
+       
+        exit;
+    }
+    
+    public function delivery_methods() {
+       
+        exit;
+    }
+    public function shipping_fee() {
+       
+        exit;
+    }
+    
+    public function aboutDetail() {
+       
+        return View::make('store.about', array('data' => 'test'));
+    }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2014/02/05
+     * 
+     * @param $id   //item_id
+     * get item detail
+     */
+    public function itemDetail($id) {
+        $this->layout = '';
+        
+        //user_items
+        $tmpUserItems = UserItem::getUserItemByItemId($id);
+        
+        $userItems = array();
+        $itemQuantity = array();
+        if (!empty($tmpUserItems)) {
+            //user_item_quantity
+            if (isset($tmpUserItems['userItemQuatity'])) {
+                $userItemQuantity = $tmpUserItems['userItemQuatity'];
+                
+                foreach ($userItemQuantity as $key => $value) {
+                    $itemQuantity[] = array(
+                        'quantity' => $value->quantity,
+                        'variation' => $value->size_name,
+                        'infinite_status' => false
+                    );
+                }
+            }
+            
+            //image_url
+            $imageUrl = array();
+            if (!empty($tmpUserItems->image_url)) {
+                $tmpImageUrl = explode(',', $tmpUserItems->image_url);
+                foreach ($tmpImageUrl as $k => $v) {
+                    $imageUrl[] = array('name' => $v);
+                }
+            }
+            
+            $userItems = array(
+                    'quantities' => $itemQuantity,
+                    'images' => $imageUrl,
+                    'digital_contents' => null,
+                    'mybook_item' => false,
+                    'group_id' => null,
+                    'promotion_category' => null,
+                    'delivery_method' => null,
+                    'mall_large_category_id' => '',
+                    'mall_medium_category_id' => '',
+                    'mall_option_values' => array(),
+                    'id' => $tmpUserItems->id,
+                    'name' => $tmpUserItems->name,
+                    'title' => '',
+                    'quantity' => $itemQuantity,
+                    'description' => $tmpUserItems->introduce,
+                    'price' => $tmpUserItems->price,
+                    'sale_flag' => false,
+                    'review_count' => 0,
+                    'avg_score' => null
+                );
+        }
+        
+        echo json_encode($userItems);
+        
+        /*echo '{"quantities":[{"quantity":1,"variation":null,"infinite_status":false}],
+        "images":[{"name":"e88bba0f6140f640f184.jpeg"}],
+        "digital_contents":null,"mybook_item":false,"group_id":null,
+        "promotion_category":null,"delivery_method":null,
+        "mall_large_category_id":"","mall_medium_category_id":"",
+        "mall_option_values":{},"id":"54c743a4391bb3c77b000323",
+        "name":"hau_item_3","title":"hau_item_3","quantity":[{"quantity":1,"variation":null,"infinite_status":false}],
+        "description":null,"price":1000,"sale_flag":false,"review_count":0,"avg_score":null}';*/
+        exit;
+    }
+    
+    public function profile($id) {
+        echo '{"name":null,"profile_image":{"name":"user_icon_01.png","src_url":"https://stores.jp/images/follow/user_icon/user_icon_01.png"}}';
+        exit;
+    }
+    
+    public function cart_popup($id) {
+        return View::make('store.cart_popup', array('data' => 'test'));
+    }
+    
+    public function favorite_item_button($id) {
+        return View::make('store.favorite_item_button', array('data' => 'test'));
+    }
+    
+    public function checkout($id) {
+        return View::make('store.checkout', array('data' => 'test'));
+    }
+    
+    public function payment_maintenance($id) {
+        echo '{"convenience_store_payment":false,"credit":false}';
+        exit;
+    }
+    
+    public function enable_coupon($id) {
+        echo false;
+        exit;
+    }
+    
+    public function payment_methods($id) {
+        echo '{"credit":0,"convenience_store_payment":0,"bank_transfer":0}';
+        exit;
+    }
+    
+    public function follow_about($id) {
+        return View::make('store.follow_about', array('data' => 'test'));
+    }
+    
+    public function receive_method($id) {
+        return View::make('store.receive_method', array('data' => 'test'));
+    }
+    
+    public function checkout_card($id) {
+        return View::make('store.checkout_card', array('data' => 'test'));
+    }
+    
+    public function checkout_shipping($id) {
+        return View::make('store.checkout_shipping', array('data' => 'test'));
+    }
+    
+    public function checkout_other_shipping($id) {
+        return View::make('store.checkout_other_shipping', array('data' => 'test'));
+    }
+    
+    public function profile_address($id) {
+        echo '{"first_name":null,"last_name":null,"email":"haulenhan@gmail.com","tel":null,"zip":null,"prefecture":null,"address":null}';
+        exit;
+    }
+    
+    public function user_cc($id) {
+
+        exit;
+    }
+    
+    public function orders($id) {
+        echo '[]';
+        exit;
+    }
+    
+    public function checkout_confirm($id) {
+        return View::make('store.checkout_confirm', array('data' => 'test'));
+    }
+    
+    public function tokushoho($id) {
+        return View::make('store.tokushoho', array('data' => 'test'));
+    }
+
+    
+    /**
      *
      * @author  Le Nhan Hau
      * @since   2015/01/14

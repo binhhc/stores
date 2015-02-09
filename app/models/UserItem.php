@@ -64,4 +64,46 @@ class UserItem extends Model{
             ->get();
         return !empty($userItems) ? $userItems : array();
     }
+    
+    public function userItemQuatity(){
+        return $this->hasMany('UserItemQuatity', 'item_id');
+    }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/02/05
+     * 
+     * @param       $userId
+     * get user item from user_id
+     */
+    public static function getUserItemByUserId($userId) {
+        /*$userItems = UserItem::with('userItemQuatity')
+            ->where('user_items.user_id', '=', $userId)
+            ->get();*/
+        //Request::get('category_id')
+       
+        $userItems = UserItem::with('userItemQuatity')
+            ->where('user_items.user_id', '=', $userId);
+            if (!empty(Request::get('category_id'))){
+                $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
+            }
+                
+           $userItems =  $userItems->paginate(20);
+
+        return !empty($userItems) ? $userItems : array();
+    }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/02/05
+     * 
+     * @param       $userId
+     * get user item from item_id
+     */
+    public static function getUserItemByItemId($itemId) {
+        $userItems = UserItem::with('userItemQuatity')
+            ->where('user_items.id', '=', $itemId)
+            ->first();
+        return !empty($userItems) ? $userItems : array();
+    }
 }

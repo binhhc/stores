@@ -22,7 +22,7 @@
 				</a>
 			</li>
 			<li>
-				<a name="fb_btn" class="share_facebook" href="" url_store = "<?php echo Config::get('constants.website_name');?>">
+				<a name="fb_btn" class="share_facebook" href="" url_store = "<?php echo Config::get('constants.domain');?>">
 				{{HTML::image('img/main_page/icon_facebook_referral.png')}}
 				Mời bạn Facebook
 				</a>

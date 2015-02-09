@@ -104,6 +104,7 @@
 <div class="loading ng-scope" ng-show="state == 'wait'" style="display: none;"></div>
 @include('elements.footer')
 <input type="hidden" name="facebook_id" class="facebook_app_id" value="{{$app_id}}"/>
+<input type="hidden" name="website_url" class="website_url" value="<?php echo Config::get('constants.website_name');?>"/>
 <style>
  .switch .deactive {
     text-indent: 1em!important;

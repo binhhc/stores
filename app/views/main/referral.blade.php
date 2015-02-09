@@ -15,7 +15,8 @@
 				<a id="btn_gmail" href="#popup_gmail"></a>
 			</li>
 			<li>
-				<a name="gmail_btn" href="/google_authorize">
+			<!--  <a href="https://accounts.google.com/o/oauth2/auth?client_id={{$clientid}}&redirect_uri= {{$redirecturi}}&scope=https://www.google.com/m8/feeds/&response_type=code">-->
+				 <a name="gmail_btn" href="/auth_gmail">
 				{{HTML::image('img/main_page/icon_google_referral.png')}}
 				Mời bạn trên Gmail
 				</a>
@@ -74,26 +75,55 @@
 				<span>Đã gửi lời mời thành công!</span>
 			</p>
 		</div>
-		<div style="display: none;">
-			<div id="popup_gmail">
-				<h2>
-				<img alt="" src="images/referral/icon_mail.png">
-				Gmailの連絡先から選択
-				</h2>
-				<ul> </ul>
-				<div class="btn_bottom">
-					<p class="btn_high" style="" ng-hide="pending">
-					<button ng-click="submitGmail(gmail_users)" type="submit">招待する</button>
-					</p>
-					<p class="btn_low" style="display: none;" ng-show="pending">
-					<button type="">
-					<span>送信中</span>
-					</button>
-					</p>
-				</div>
+	<?php if(isset($gmail_account)) {?>
+		<div id="dummy_modal" class="ng-scope">
+		<div id="modal-win" style="top: 190px; display: block">
+		<div id="modal-bg" style="opacity: 1;"></div>
+		<div id="modal-win-inner">
+				<div id="popup_gmail">
+					<h2>
+					{{HTML::image('img/main_page/icon_mail.png')}}
+					Danh sách bạn trong Gmail
+					</h2>
+					<ul>
+					<?php if(empty($gmail_account)) {?>
+					<li class="ng-scope" ng-repeat="user in gmail_users">
+						<label class="ng-binding">Không tìm thấy danh sách bạn trong Gmail!</label>
+					</li>
+					<?php } else { foreach ($gmail_account as $item) {?>
+						<li class="ng-scope" ng-repeat="user in gmail_users">
+							<span ng-show="user.status == 'nosend'">
+								<p class="checkbox">
+								<input class="ng-valid ng-dirty" type="checkbox"  value="{{$item[1]}}">
+								</p>
+								<p class="name">
+								<label class="ng-binding">{{$item[0]}}</label>
+								</p>
+								<p class="address ng-binding">{{$item[1]}}</p>
+							</span>
+						</li>
+						<?php }}?>
+					</ul>
+					<div class="btn_bottom">
+						<p class="btn_high" style="" ng-hide="pending">
+						<button class="send_email_list" type="submit">Mời</button>
+						</p>
+						<p class="btn_low" style="display: none; text-align: center" >
+						<button type="">
+						<span>Đang mời</span>
+						</button>
+						</p>
+					</div>
+				<p class="btn_modal_close">
+					<a class="modal-close" href="#">
+						{{HTML::image('img/main_page/btn_modal_close.png', 'Information') }}
+					</a>
+				</p>
 			</div>
 		</div>
 	</div>
+	</div>
+	<?php }?>
 </div>
 @include('elements.footer')
 <div id="fb-root"></div>
@@ -108,3 +138,11 @@ window.fbAsyncInit = function() {
     });
   };
 </script>
+<style>
+	.radio, .checkbox {
+    margin-top: 0px!important;
+}
+#modal-win-inner {
+	width: 610px !important;
+}
+</style>

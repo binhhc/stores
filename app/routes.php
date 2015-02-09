@@ -17,6 +17,7 @@ Route::model('usersns', 'UserSns');
 Route::get('/', 'MainController@main');
 Route::get('/support', 'MainController@support');
 Route::get('/referral', 'MainController@referral');
+Route::get('/referral/{id}', 'MainController@referral');
 Route::post('/invitation', 'MainController@invitation');
 Route::get('/trade_law', 'StoreController@trade_law');
 Route::post('/trade_law', 'StoreController@save_trade_law');
@@ -122,7 +123,8 @@ Route::post('/forgetPassword', 'UserController@doForgetPassword');
 //Reset password
 Route::post('/resetPassword', 'UserController@resetPassword');
 
-
+Route::get('/auth_gmail', array('uses' => 'MainController@auth_gmail'));
+Route::post('/send_email_list', 'MainController@send_email_list');
 
 // Route::post('/checkEmailJson', 'UserController@checkEmailJson');
 //Blade::setContentTags('<%', '%>');        // for variables and all things Blade

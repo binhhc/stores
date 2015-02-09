@@ -3,7 +3,7 @@ return array(
     'ENCRYPTION_KEY' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 	'facebook_app_id' => '656236484498840',
     'website_name' => 'STOREs.VN',
-	'short_url' => 'http://goo.gl/o1ZsYg',
+	'short_url' => 'http://goo.gl/6PSpfn',
     'admin_email' => 'binhhc@leverages.jp',
     'domain' => 'stores.dev.srv',
     'contact_email' => 'sangpm@leverages.jp',

@@ -1,5 +1,9 @@
 @include('elements.header')
 
+{{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/style.css')}}
+{{HTML::style('css/jquery.tipsy.css')}}
+{{HTML::style('css/item_management.css')}}
 {{HTML::style('css/account_setting.css')}}
 {{HTML::style('css/item.css')}}
 {{HTML::script('js/bootstrap.min.js')}}
@@ -19,6 +23,7 @@
             <dl class="cols">
             <dt>Tên mặt hàng</dt>
                 <dd>
+                    {{Form::text('id', Crypt::encrypt($item->id), array('style'=>'display:none'))}}
                     {{Form::text('name', $item->name, array('class'=>'item_name'))}}
                     <p class="error err_name"></p>
                 </dd>
@@ -32,7 +37,7 @@
                         <li>
                             {{Form::text('price', $item->price, array('class' => 'sz_s item_price'))}}
                         </li>
-                        <li>USD</li>
+                        <li>VND</li>
                     </ul>
                     <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>
@@ -43,7 +48,7 @@
                 <dt>Hình mặt hàng</dt>
                 <dd>
                     <!-- <input class="fileup" type="file" id="file" name="image" accept="image/jpeg,image/png,image/gif"> -->
-                    {{Form::file('image_url[]', array('accept'=>'image/jpeg,image/png,image/gif', 'class'=>'fileup', 'multiple'=>true))}}
+                    {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'class'=>'fileup', 'multiple'=>true))}}
                     <ul class="images dragdrop image" id="image_back">
                         <!-- ngRepeat: image in item.images -->
                     </ul>
@@ -327,33 +332,6 @@
 
     });
 
-    //load ajax image
-    // function previewFile(){
-    //     // var preview = document.querySelector('#image_back'); //selects the query named img
-    //     var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-    //     var reader  = new FileReader();
-
-    //     if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
-    //         alert('Không đúng định dạng ảnh!');
-    //         $('input[name=image_url]').val('');
-    //         // preview.src = "";
-    //         submit_flg = false;
-    //     }else{
-    //         if(file){
-    //             reader.readAsDataURL(file); //reads the data as a URL
-    //         } else {
-    //             // preview.src = "";
-    //         }
-    //     }
-
-    //     reader.onloadend = function () {
-    //         var count_img = $('#image_back li').length;
-    //         if(count_img < 4){
-    //             console.log(file);
-    //             $('#image_back').append('<li><img name=image  src='+reader.result+' width=98 height=87></li>');
-    //         }
-    //     }
-    // }
 </script>
 
 @include('elements.footer')

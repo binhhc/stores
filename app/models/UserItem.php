@@ -85,7 +85,7 @@ class UserItem extends Model{
         return array('id','user_id','category_id','name','price','image_url','introduce','order');
     }
 	
-	    public function userItemQuatity(){
+    public function userItemQuatity(){
         return $this->hasMany('UserItemQuatity', 'item_id');
     }
     
@@ -101,14 +101,14 @@ class UserItem extends Model{
             ->where('user_items.user_id', '=', $userId)
             ->get();*/
         //Request::get('category_id')
-       
+
         $userItems = UserItem::with('userItemQuatity')
             ->where('user_items.user_id', '=', $userId);
-            if (!empty(Request::get('category_id'))){
+            if (Request::get('category_id')){
                 $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
             }
                 
-           $userItems =  $userItems->paginate(20);
+            $userItems =  $userItems->paginate(20);
 
         return !empty($userItems) ? $userItems : array();
     }

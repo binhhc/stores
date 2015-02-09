@@ -89,4 +89,17 @@ class UserStore extends Model{
                      'setting_intros','setting_trade_law','setting_pay_methods',
                      'setting_postage','follow','promotion');
     }
+    
+    /*
+     * @author      Le Nhan Hau
+     * @since       2015/02/04
+     *
+     * get user stores from domain
+     */
+    public static function getUserStoreByDomain($parameter) {
+        $userStores = UserStore::where('domain', '=', $parameter)
+            ->select('id', 'user_id', 'domain', 'public_flg', 'settings', 'setting_intros')
+            ->first();
+        return !empty($userStores) ? $userStores : array();
+    }
 }

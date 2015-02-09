@@ -6,7 +6,15 @@
  */
 class UserItemQuatity extends Model{
     protected $table  = 'user_item_quatities';
-    
+
+    /**
+     * Defines an inverse one-to-many relationship.
+     * @author Binh Hoang
+     */
+    public function item(){
+        return $this->belongsTo('UserItem', 'item_id');
+    }
+
 	/**
      * @author      Sang PM
      * @since       2015/01/14

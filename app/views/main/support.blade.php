@@ -2,11 +2,11 @@
 <div>
 	<div id="functions" class="ng-scope">
 		<div class="area-heading">
-			<h2 class="heading">ストアオーナー限定 ストア運営サポート</h2>
+        <h2 class="heading">Quảng lý cấu hình cửa hàng</h2>
 			<p class="text">
-			オンラインストアを運営していくにあたり、ご利用可能なオプション運営サポートの一覧です。
+			Cấu hình một cửa hàng trực tuyến, nó là một danh sách các tùy chọn có sẵn hỗ trợ hoạt động。
 			<br>
-			STORES.jpのストアオーナー様であれば、どなたでもご利用頂くことが可能です。ぜひ、ご活用くださいませ。
+			Là chủ cửa hàng ở {{Config::get('constants.website_name')}} bất kỳ ai cũng có thể cấu hình sử dụng。
 			</p>
 		</div>
 		<ul id="support_list">
@@ -19,11 +19,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				プロカメラマンによる
+				Ảnh chuyên nghiệp
 				<br>
-				商品撮影サービス
+				Dịch vụ chụp ảnh
 				</h3>
-				<p class="text">商品をお送り頂くだけで、プロカメラマンが無料で撮影を行います。アイテム登録をする際にご利用ください。</p>
+				<p class="text">Gửi cho chúng tôi các mặt hàng, các nhiếp ảnh gia chuyên nghiệp chụp ảnh miễn phí.</p>
 				</a>
 			</li>
 			<li>
@@ -35,11 +35,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				ストアカード
+				Thẻ lưu trữ
 				<br>
-				提供サービス
+				Cung cấp dịch vụ
 				</h3>
-				<p class="text">ストアカードを無料で作成いたします。ご自身のストアを宣伝する際に、ストアカードをご活用ください。</p>
+				<p class="text">Là một thẻ lưu trữ miễn phí. Khi quảng cáo cửa hàng của riêng bạn, hãy tận dụng lợi thế của các thẻ lưu trữ.</p>
 				</a>
 			</li>
 			<li>
@@ -51,11 +51,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				商品の保管・発送
+				Lưu trữ hàng hóa
 				<br>
-				代行サービス
+				Dịch vụ vận chuyển
 				</h3>
-				<p class="text">商品の保管や発送業務など、ストアの運営で面倒な作業を、STORES.jpが代行いたします。</p>
+				<p class="text">Lưu trữ và vận chuyển kinh doanh hàng hoá, chúng tôi sẽ thay mặt {{Config::get('constants.website_name')}}.</p>
 				</a>
 			</li>
 			<li>
@@ -67,11 +67,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				商品の集荷
+				Thu thập hàng hóa
 				<br>
-				依頼サービス
+				Dịch vụ yêu cầu
 				</h3>
-				<p class="text">ご希望の時間帯・場所にヤマト運輸のドライバーが発送予定の荷物を引き取りに伺います。</p>
+				<p class="text">Chỉ cần cung cấp thời gian và địa điểm chúng tôi sẽ mang hàng đến cho bạn</p>
 				</a>
 			</li>
 			<li>
@@ -83,11 +83,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				梱包キット
+				Kit bao bì
 				<br>
-				提供サービス
+				Dịch vụ công cộng
 				</h3>
-				<p class="text">商品の発送の際などに必要な、梱包キット（ダンボール、ガムテープ）を無料で提供いたします。</p>
+				<p class="text">Sản phẩm sẽ được cung cấp trong bộ đóng gói (bìa cứng, băng đóng gói) miễn phí.</p>
 				</a>
 			</li>
 			<li>
@@ -99,11 +99,11 @@
 				{{HTML::image('img/main_page/free.png', '', array('width' => '56', 'height' => '56' ))}}
 				</p>
 				<h3>
-				バーチャルストア
+				Cửa hàng ảo
 				<br>
-				構築サービス
+				Dịch vụ xây dựng
 				</h3>
-				<p class="text">低価格で仮想ショッピング体験を提供できる、パノラマ・バーチャルストアを構築いたします。</p>
+				<p class="text">Xây dựng một cửa hàng ảo toàn cảnh,cung cấp một kinh nghiệm mua sắm ảo ở một mức giá thấp. </p>
 				</a>
 			</li>
 		</ul>

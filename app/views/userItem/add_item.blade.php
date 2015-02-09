@@ -1,5 +1,9 @@
 @include('elements.header')
 
+{{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/style.css')}}
+{{HTML::style('css/jquery.tipsy.css')}}
+{{HTML::style('css/item_management.css')}}
 {{HTML::style('css/account_setting.css')}}
 {{HTML::style('css/item.css')}}
 {{HTML::script('js/bootstrap.min.js')}}
@@ -32,7 +36,7 @@
                         <li>
                             {{Form::text('price', null, array('class' => 'sz_s item_price'))}}
                         </li>
-                        <li>USD</li>
+                        <li>VND</li>
                     </ul>
                     <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>

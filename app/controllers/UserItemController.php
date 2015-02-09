@@ -285,57 +285,62 @@ class UserItemController extends BaseController {
      */
     public function edit_item(){
         $input = Input::all();
-        echo '<pre>';
-        print_r($input);
+        $v = UserItem::validate($input);
+        if($v->passes()){
+            //get user information from session
+            $user_id = $this->getUserId();
+            $item_id = Crypt::decrypt($input['id']);
 
-        // $v = UserItem::validate($input);
-        // if($v->passes()){
-        //     //get user information from session
-        //     $user = Session::get('user');
+            $category = '';
+            if(!empty($input['category_id'])){
+                $category = implode(',', $input['category_id']);
+            }
 
-        //     $item = new UserItem;
-        //     $item->user_id = $user['id'];
-        //     if(!empty($input['category_id'])){
-        //         $item->category_id = implode(',', $input['category_id']);
-        //     }
-        //     $item->name = $input['name'];
-        //     $item->price = $input['price'];
-        //     $image = Input::file('image_url');
-        //     if(Input::file('image_url')){ // not change image_url
-        //         $folder_name = User::getNameStore();
-        //         $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
-        //         if(!is_dir($folder_user)){
-        //             mkdir($folder_user);
-        //             chmod($folder_user, 0777);
-        //         }
+            $image = Input::file('image_url');
+            $filename = '';
+            if(Input::file('image_url')){ // not change image_url
+                $folder_name = User::getNameStore();
+                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+                if(!is_dir($folder_user)){
+                    mkdir($folder_user);
+                    chmod($folder_user, 0777);
+                }
 
-        //         $filename = $image->getClientOriginalName();
-        //         $upload = Input::file('image_url')->move($folder_user, $filename);
+                $filename = $image->getClientOriginalName();
+                $upload = Input::file('image_url')->move($folder_user, $filename);
+            }
 
-        //         $item->image_url = $filename;
-        //     }
 
-        //     $item->introduce = $input['description'];
-        //     $item->save();
-        //     //get id latest insert
-        //     $lastInsertIdItem = $item->id;
+            UserItem::where('id', $item_id)
+                ->update(
+                    array(
+                        'user_id' => $user_id,
+                        'category_id' => $category,
+                        'name' => $input['name'],
+                        'price' => $input['price'],
+                        'introduce' => $input['description'],
+                        'image_url' => $filename,
+                    )
+                );
 
-        //     if(!empty($input['quality_single'])){
-        //         $quality = new UserItemQuatity;
-        //         $quality->item_id = $lastInsertIdItem;
-        //         $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
-        //         $quality->save();
-        //     }else{
-        //         for($i = 0; $i < count($input['size']); $i++){
-        //             $quality = new UserItemQuatity;
-        //             $quality->item_id = $lastInsertIdItem;
-        //             $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
-        //             $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
-        //             $quality->save();
-        //         }
-        //     }
-        // }
-        // return Redirect::to('/item_management');
+            $old_quantity = UserItemQuatity::where('item_id', '=', $item_id)->delete();
+
+            if(!empty($input['quality_single'])){
+                $quality = new UserItemQuatity;
+                $quality->item_id = $item_id;
+                $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
+                $quality->save();
+            }else{
+                for($i = 0; $i < count($input['size']); $i++){
+                    $quality = new UserItemQuatity;
+                    $quality->item_id = $item_id;
+                    $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
+                    $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
+                    $quality->save();
+                }
+            }
+        }
+        return Redirect::to('/item_management');
     }
 
 

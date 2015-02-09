@@ -9,6 +9,15 @@ class UserItem extends Model{
 
 
     /**
+     * Defines a one-to-many relationship.
+     * @author Binh Hoang
+     */
+    public function quantity(){
+        return $this->hasMany('UserItemQuatity', 'id');
+    }
+
+
+    /**
      * Validate item
      *
      * @return boolean

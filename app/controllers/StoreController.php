@@ -237,11 +237,11 @@ class StoreController extends BaseController {
             $setting_intros = json_decode($tmpAbout->setting_intros);
             
             $about = array(
-                'detail' => $setting_intros->description,
+                'detail' => isset($setting_intros->description) ? $setting_intros->description : '',
                 'links' => array(
-                    'twitter' => $setting_intros->twitter,
-                    'facebook' => $setting_intros->facebook,
-                    'website' => $setting_intros->homepage,
+                    'twitter' => isset($setting_intros->twitter) ? $setting_intros->twitter : '',
+                    'facebook' => isset($setting_intros->facebook) ? $setting_intros->facebook : '',
+                    'website' => isset($setting_intros->homepage) ? $setting_intros->homepage : '',
                     'exblog' => null
                 )
             );

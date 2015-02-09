@@ -1,6 +1,12 @@
 @include('elements.header')
-{{HTML::script('js/bootstrap.min.js')}}
+
+{{HTML::style('css/bootstrap.min.css')}}
+{{HTML::style('css/style.css')}}
+{{HTML::style('css/jquery.tipsy.css')}}
+{{HTML::style('css/item_management.css')}}
 {{HTML::style('css/account_setting.css')}}
+{{HTML::script('js/bootstrap.min.js')}}
+{{HTML::script('js/jquery-ui.js')}}
 
 <div class="setting">
     <div class="wrapper account">

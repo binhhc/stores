@@ -7,9 +7,9 @@ return array(
     'admin_email' => 'binhhc@leverages.jp',
     'domain' => 'stores.dev.srv',
     'contact_email' => 'sangpm@leverages.jp',
-	'clientid'       => '154524176342-j1rpqdupoemelgls9mtu27d62ngkomrv.apps.googleusercontent.com',
-	'clientsecret'   => 'h1ZXhwXip3DEa1FB5pAImUBc',
-	'redirecturi'    => 'http://storeslavarel.dev/auth_gmail',
+	'clientid'       => '892839076206-e2dshintmn6tg405rrahorl2fv7l0mld.apps.googleusercontent.com',
+	'clientsecret'   => 'vgldIo53SKQEc3nm_06_OYp1',
+	'redirecturi'    => 'http://oanhstores.com/auth_gmail',
 	'maxresults'     => 50, // Number of mailid you want to display.
     'item_samples' => array(
         array(

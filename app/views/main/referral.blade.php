@@ -15,8 +15,7 @@
 				<a id="btn_gmail" href="#popup_gmail"></a>
 			</li>
 			<li>
-			<!--  <a href="https://accounts.google.com/o/oauth2/auth?client_id={{$clientid}}&redirect_uri= {{$redirecturi}}&scope=https://www.google.com/m8/feeds/&response_type=code">-->
-				 <a name="gmail_btn" href="/auth_gmail">
+			 <a href="https://accounts.google.com/o/oauth2/auth?client_id={{$clientid}}&redirect_uri={{$redirecturi}}&scope=https://www.google.com/m8/feeds/&response_type=code">
 				{{HTML::image('img/main_page/icon_google_referral.png')}}
 				Mời bạn trên Gmail
 				</a>

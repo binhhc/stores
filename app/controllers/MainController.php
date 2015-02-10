@@ -132,7 +132,7 @@ class MainController extends BaseController {
      */
     public function auth_gmail() {
 
-    	$output_array = array(
+    	/*$output_array = array(
     			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
     			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
     			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
@@ -163,10 +163,9 @@ class MainController extends BaseController {
     			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
     			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
     			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'sangpm@leverages.jp'));
-    	Session::put('account_gmail', $output_array);
-    	return Redirect::to('/referral/gmail');
+    			 array( '0' => 'oanhha', '1' => 'sangpm@leverages.jp'));*/
     	$authcode = $_GET["code"];
+
 
     	$clientid       = Config::get('constants.clientid');
 		$clientsecret   = Config::get('constants.clientsecret');
@@ -185,6 +184,7 @@ class MainController extends BaseController {
 
 
 		$ch = curl_init();//open connection
+		 die;
 		curl_setopt($ch,CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
 		curl_setopt($ch,CURLOPT_POST,5);
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
@@ -192,6 +192,7 @@ class MainController extends BaseController {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$result = curl_exec($ch);
 
+		var_dump($result); die;
 		$response = json_decode($result);
 		$accesstoken = $response->access_token;
 		if( $accesstoken!='')
@@ -207,12 +208,12 @@ class MainController extends BaseController {
 		  }
 		}
 
+		var_dump($output_array);
 
+		die;
+		Session::put('account_gmail', $output_array);
+    	return Redirect::to('/referral/gmail');
 
-		print "<pre>";
-		print_r($output_array);
-		print "<pre>";
-		exit();
 
     }
 }

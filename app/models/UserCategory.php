@@ -44,4 +44,18 @@ class UserCategory extends Model{
     public static function getFeilds(){
         return array('id','user_id','name','order');
     }
+    
+    /**
+     * @author      Le Nhan Hau
+     * @since       2015/01/14
+     * 
+     * for main store
+     * get user categories by user_id
+     */
+    public static function getUserCaterogiesByUserId($userId) {
+        $userCategories = DB::table('user_categories')
+            ->select('id', 'name')
+            ->where('user_id', '=', $userId)->get();
+        return !empty($userCategories) ? $userCategories : array();
+    }
 }

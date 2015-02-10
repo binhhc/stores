@@ -61,7 +61,7 @@
             <div ng-if="I18n.locale == 'en'"><p id="default-review" class="icon" data-score={[item.avg_score]} ><span>（<a ng-href="#!/items/{[item.id]}/reviews">{[I18n.store.show.review.review]}{[item.review_count]}</a>）</span></p></div>
           </div>
         </div>
-        <p class="price">¥{[item.price | number:0]}</p>
+        <p class="price">{[item.price | number:0]} Đồng</p>
         <p class="free_shipping" style="display:none" ng-show="shipping_fee.free_shipping"><span>{[I18n.store.show.shippingFee.balloon1]}{[shipping_fee.free_shipping | number:0]}{[I18n.store.show.shippingFee.balloon2]}</span></P>
         <p style="font-size: 11px;" ng-hide="I18n.locale == 'en'">{[I18n.store.show.tax]}</p>
         <p style="font-size: 11px;" ng-show="I18n.locale == 'ja' && mall == 'parco'">※＜PARCOカード＞のOFFは「店頭お取り置き」選択時のみ対象となります。</p>
@@ -116,7 +116,7 @@
           </li>
         </ul>
       </div>
-      <p style="text-align:center; font-weight:bold; font-size:14px; display:none;" ng-show="not_found">アイテムが見つかりませんでした</p>
+      <p style="text-align:center; font-weight:bold; font-size:14px; display:none;" ng-show="not_found">Không tìm thấy sản phẩm</p>
     </div>
     <p class="btn_low btn_center" ng-hide="market_back_url"><a href="/" >{[I18n.store.show.back]}</a></p>
     <p class="btn_low btn_center" ng-show="market_back_url"><a href="{[market_back_url]}" >マーケットへ戻る</a></p>

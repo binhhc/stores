@@ -14,7 +14,7 @@
           <dd class="btn_dropdown" ng-show="categories">
             <a href="">DANH MỤC</a>
             <ul class="dropdown">
-              <li ng-repeat="category in categories"><a ng-click="category_click(category.name)">{[category.name]}</a></li>
+              <li ng-repeat="category in categories"><a ng-click="category_click(category.id)">{[category.name]}</a></li>
             </ul>
           </dd>
           <dd ng-show="showVirtualStore"><a href="{[virtualStore.url]}" target="_blank">VIRTUAL STORE</a></dd>

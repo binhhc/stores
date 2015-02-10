@@ -37,4 +37,16 @@ class UserProfile extends Model{
             'account_bank','account_brand','account_type',
             'account_number','account_holder');
     }
+    
+    /**
+     * @since       2015/02/09
+     * 
+     * get user_profile by user_id
+     */
+    public static function getUserProfileByUserId($userId) {
+        $userProfiles = UserProfile::where('user_id', '=', $userId)
+            ->select('id', 'name', 'image_url')
+            ->first();
+        return !empty($userProfiles) ? $userProfiles : array();
+    }
 }

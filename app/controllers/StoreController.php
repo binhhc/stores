@@ -367,8 +367,41 @@ class StoreController extends BaseController {
         exit;
     }
     
+    /**
+     * @since       2015/02/09
+     * 
+     * get profile
+     */
     public function profile($id) {
-        echo '{"name":null,"profile_image":{"name":"user_icon_01.png","src_url":"https://stores.jp/images/follow/user_icon/user_icon_01.png"}}';
+        //get domain
+        $url = Request::url();
+        
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($id)->user_id;
+        //get user_profiles
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
+        
+        $userProfiles = array();
+        if (!empty($tmpUserProfiles)) {
+            $userProfiles = array(
+                'name' => $tmpUserProfiles->name,
+                'profile_image' => array(
+                    'name' => $tmpUserProfiles->image_url,
+                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$id.'/'.$tmpUserProfiles->image_url
+                )
+            );
+        }else {
+            $userProfiles = array(
+                'name' => null,
+                'profile_image' => array(
+                    'name' => '',
+                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/img/user_icon_01.png'
+                )
+            );
+        }
+        
+        echo json_encode($userProfiles);
+        //echo '{"name":null,"profile_image":{"name":"user_icon_01.png","src_url":"https://stores.jp/images/follow/user_icon/user_icon_01.png"}}';
         exit;
     }
     

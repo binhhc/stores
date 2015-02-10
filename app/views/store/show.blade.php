@@ -116,7 +116,7 @@
           </li>
         </ul>
       </div>
-      <p style="text-align:center; font-weight:bold; font-size:14px; display:none;" ng-show="not_found">アイテムが見つかりませんでした</p>
+      <p style="text-align:center; font-weight:bold; font-size:14px; display:none;" ng-show="not_found">Không tìm thấy sản phẩm</p>
     </div>
     <p class="btn_low btn_center" ng-hide="market_back_url"><a href="/" >{[I18n.store.show.back]}</a></p>
     <p class="btn_low btn_center" ng-show="market_back_url"><a href="{[market_back_url]}" >マーケットへ戻る</a></p>

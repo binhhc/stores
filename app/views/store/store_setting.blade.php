@@ -28,7 +28,7 @@
 							</p>
 						</li>
 					</ul>
-					<div class="btn_domain" ng-show="data.url[4] == 's'" style="">
+					<!--<div class="btn_domain" ng-show="data.url[4] == 's'" style="">
 						<p class="icon">
 						{{HTML::image('img/main_page/icon_premium.png') }}
 						</p>
@@ -36,7 +36,7 @@
 						<p class="btn_high_m" ng-show="data.url[4] == 's' && !data.has_domain" style="">
 							<a href="setting_domain">Sử dụng tên miền của tôi</a>
 						</p>
-					</div>
+					</div>  -->
 				</dd>
 			</dl>
 			<dl class="cols">
@@ -44,14 +44,14 @@
 				<dd class="horizon" style="width: 340px;">
 					<ul>
 						<li class="ng-binding" style="font-size: 14px; font-weight: bold;">Miễn phí</li>
-						<li class="btn_ribbon">
+						<!-- <li class="btn_ribbon">
 							<p class="btn_high_l" ng-show="data.plan == 'free'" style="margin-left: 10px;">
 								<a href="#!/premium">Giới thiệu phí bảo hiểm</a>
 							</p>
 							<p class="ribbon" ng-show="data.plan == 'free'" style="">
 								{{HTML::image('img/main_page/ribbon.png') }}
 							</p>
-						</li>
+						</li> -->
 					</ul>
 				</dd>
 			</dl>

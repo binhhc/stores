@@ -14,7 +14,19 @@ class UserStore extends Model{
      */
     public static function validate_domain($input){
         $rules = array(
-            'domain' => 'required|url|unique:user_stores',
+            'domain' => 'required|url',
+        );
+
+        return Validator::make($input, $rules);
+    }
+	/**
+     * Validate unique
+     *	@author OanhHa
+     * @return boolean
+     */
+    public static function validate_unique_domain($input){
+        $rules = array(
+            'domain' => 'unique:user_stores',
         );
 
         return Validator::make($input, $rules);
@@ -76,12 +88,12 @@ class UserStore extends Model{
             ->first();
         return !empty($userStoresDomain) ? $userStoresDomain->toArray() : array();
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/02/05
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function getFeilds(){
@@ -89,7 +101,7 @@ class UserStore extends Model{
                      'setting_intros','setting_trade_law','setting_pay_methods',
                      'setting_postage','follow','promotion');
     }
-    
+
     /*
      * @author      Le Nhan Hau
      * @since       2015/02/04

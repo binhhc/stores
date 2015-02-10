@@ -14,63 +14,63 @@ class StoreController extends BaseController {
     /**
      * @author  Le Nhan Hau
      * @since   2015/02/03
-     * 
+     *
      * custom store
      */
     public function ownerStore($parameters) {
         $domain = Request::url();
-        
+
         return View::make('store.owner_store', array(
             'domain' => $domain
         ));
     }
-    
+
     /**
      * @since   2015/02/03
-     * 
+     *
      * display list item
      */
     public function index() {
         return View::make('store.index');
     }
-    
+
     public function about_detail() {
         $this->layout = '';
-        
+
         $aboutDetail = array(
             'detail' => 'haulenhan\u306e\u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7\u3067\u3059\u3002'
         );
-        
+
         if (Request::ajax())
         {
             $json = json_encode($aboutDetail);
             echo $json;
         }
     }
-    
+
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
-     * 
+     *
      * get user_stores detail
      */
     public function store_style($parameters) {
         $this->layout = '';
-        
+
         //get user_id from domain
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-        
+
         //tmp about
         $tmpUserStores = UserStore::where('user_id', '=', $userId)
             ->first();
-        
+
         $userStores = array();
         if (!empty($tmpUserStores)) {
             $tmpSettings = $tmpUserStores->settings;
             if (!empty($tmpSettings)) {
                 $settings = json_decode($tmpSettings);
                 $stores = $settings->store;
-                
+
                 $userStores = array(
                     'name' => $stores->name,
                     'store_font' => array(
@@ -98,7 +98,7 @@ class StoreController extends BaseController {
                 );
             }
         }
-        
+
         echo json_encode($userStores);
         //if (Request::ajax())
         //{
@@ -106,21 +106,21 @@ class StoreController extends BaseController {
         //}
         exit;
     }
-    
+
     public function current_user() {
         $this->layout = '';
-        
+
         //if (Request::ajax())
         //{
             echo '{"name":"haulenhan","my_store":true,"is_following":false,"store_owner":"haulenhan","store_owner_id":"54c5c1a5391bb34148001feb"}';
         //}
         exit;
     }
-    
+
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/04
-     * 
+     *
      * @param       $parameters
      * get item from domain
      */
@@ -130,11 +130,11 @@ class StoreController extends BaseController {
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
         //get user_items from user_id
         $tmpUserItems = UserItem::getUserItemByUserId($userId);
-        
+
         $lastpage = true;
         if(isset($_GET['page']))
             $lastpage = (intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
-            
+
         $userItems = array(
             'cnt_items' => $tmpUserItems->getTotal(),
             'cnt_pages' => $tmpUserItems->getLastPage(),
@@ -144,7 +144,7 @@ class StoreController extends BaseController {
             foreach ($tmpUserItems as $key => $value) {
                 //user_items_quatity
                 $objItemQuatity = $value['userItemQuatity'];
-                
+
                 //image_url
                 $imageUrl = array();
                 if (!empty($value->image_url)) {
@@ -153,7 +153,7 @@ class StoreController extends BaseController {
                         $imageUrl[] = array('name' => $v);
                     }
                 }
-                
+
                 //user_items
                 $userItems['items'][] = array(
                     'id' => $value->id,
@@ -170,9 +170,9 @@ class StoreController extends BaseController {
                 );
             }
         }
-        
+
         echo json_encode($userItems);
-        
+
         //if (Request::ajax())
         //{
             /*echo '{"cnt_items":4,"cnt_pages":1,"last_page?":true,"items":
@@ -192,23 +192,23 @@ class StoreController extends BaseController {
         //}
         exit;
     }
-    
+
     /**
      * @since       2015/02/06
-     * 
+     *
      * show item detail
      */
     public function show() {
         return View::make('store.show');
     }
-    
+
     public function storeCategories() {
         $this->layout = '';
-        
+
         $aboutDetail = array(
             'detail' => 'haulenhan\u306e\u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7\u3067\u3059\u3002'
         );
-        
+
         //if (Request::ajax())
         //{
             $json = json_encode($aboutDetail);
@@ -216,26 +216,26 @@ class StoreController extends BaseController {
         //}
         exit;
     }
-    
+
     /**
      * @since       2015/02/05
-     * 
+     *
      * store about detail
      */
     public function storeAbout($parameters) {
         $this->layout = '';
-        
+
         //get user_id from domain
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-        
+
         //tmp about
         $tmpAbout = UserStore::where('user_id', '=', $userId)
             ->first();
-        
+
         $about = array();
         if (!empty($tmpAbout)) {
             $setting_intros = json_decode($tmpAbout->setting_intros);
-            
+
             $about = array(
                 'detail' => isset($setting_intros->description) ? $setting_intros->description : '',
                 'links' => array(
@@ -246,7 +246,7 @@ class StoreController extends BaseController {
                 )
             );
         }
-        
+
         echo json_encode($about);
         //if (Request::ajax())
         //{
@@ -254,46 +254,46 @@ class StoreController extends BaseController {
         //}
         exit;
     }
-    
+
     public function virtual_store() {
-       
+
         exit;
     }
-    
+
     public function delivery_methods() {
-       
+
         exit;
     }
     public function shipping_fee() {
-       
+
         exit;
     }
-    
+
     public function aboutDetail() {
-       
+
         return View::make('store.about', array('data' => 'test'));
     }
-    
+
     /**
      * @author      Le Nhan Hau
      * @since       2014/02/05
-     * 
+     *
      * @param $id   //item_id
      * get item detail
      */
     public function itemDetail($id) {
         $this->layout = '';
-        
+
         //user_items
         $tmpUserItems = UserItem::getUserItemByItemId($id);
-        
+
         $userItems = array();
         $itemQuantity = array();
         if (!empty($tmpUserItems)) {
             //user_item_quantity
             if (isset($tmpUserItems['userItemQuatity'])) {
                 $userItemQuantity = $tmpUserItems['userItemQuatity'];
-                
+
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => $value->quantity,
@@ -302,7 +302,7 @@ class StoreController extends BaseController {
                     );
                 }
             }
-            
+
             //image_url
             $imageUrl = array();
             if (!empty($tmpUserItems->image_url)) {
@@ -311,7 +311,7 @@ class StoreController extends BaseController {
                     $imageUrl[] = array('name' => $v);
                 }
             }
-            
+
             $userItems = array(
                     'quantities' => $itemQuantity,
                     'images' => $imageUrl,
@@ -334,9 +334,9 @@ class StoreController extends BaseController {
                     'avg_score' => null
                 );
         }
-        
+
         echo json_encode($userItems);
-        
+
         /*echo '{"quantities":[{"quantity":1,"variation":null,"infinite_status":false}],
         "images":[{"name":"e88bba0f6140f640f184.jpeg"}],
         "digital_contents":null,"mybook_item":false,"group_id":null,
@@ -347,83 +347,83 @@ class StoreController extends BaseController {
         "description":null,"price":1000,"sale_flag":false,"review_count":0,"avg_score":null}';*/
         exit;
     }
-    
+
     public function profile($id) {
         echo '{"name":null,"profile_image":{"name":"user_icon_01.png","src_url":"https://stores.jp/images/follow/user_icon/user_icon_01.png"}}';
         exit;
     }
-    
+
     public function cart_popup($id) {
         return View::make('store.cart_popup', array('data' => 'test'));
     }
-    
+
     public function favorite_item_button($id) {
         return View::make('store.favorite_item_button', array('data' => 'test'));
     }
-    
+
     public function checkout($id) {
         return View::make('store.checkout', array('data' => 'test'));
     }
-    
+
     public function payment_maintenance($id) {
         echo '{"convenience_store_payment":false,"credit":false}';
         exit;
     }
-    
+
     public function enable_coupon($id) {
         echo false;
         exit;
     }
-    
+
     public function payment_methods($id) {
         echo '{"credit":0,"convenience_store_payment":0,"bank_transfer":0}';
         exit;
     }
-    
+
     public function follow_about($id) {
         return View::make('store.follow_about', array('data' => 'test'));
     }
-    
+
     public function receive_method($id) {
         return View::make('store.receive_method', array('data' => 'test'));
     }
-    
+
     public function checkout_card($id) {
         return View::make('store.checkout_card', array('data' => 'test'));
     }
-    
+
     public function checkout_shipping($id) {
         return View::make('store.checkout_shipping', array('data' => 'test'));
     }
-    
+
     public function checkout_other_shipping($id) {
         return View::make('store.checkout_other_shipping', array('data' => 'test'));
     }
-    
+
     public function profile_address($id) {
         echo '{"first_name":null,"last_name":null,"email":"haulenhan@gmail.com","tel":null,"zip":null,"prefecture":null,"address":null}';
         exit;
     }
-    
+
     public function user_cc($id) {
 
         exit;
     }
-    
+
     public function orders($id) {
         echo '[]';
         exit;
     }
-    
+
     public function checkout_confirm($id) {
         return View::make('store.checkout_confirm', array('data' => 'test'));
     }
-    
+
     public function tokushoho($id) {
         return View::make('store.tokushoho', array('data' => 'test'));
     }
 
-    
+
     /**
      *
      * @author  Le Nhan Hau
@@ -707,11 +707,11 @@ class StoreController extends BaseController {
 
         //get user login
         $userInfos = User::getNameStore();
-        
+
         //styles sample
         $tmpStyle = Config::get('constants.edit_store_style_sample');
         $tmpStyle['name'] = $userInfos['USER_NAME'];
-        
+
         //get user_stores from user_id
         $userStores = UserStore::getUserStoreByUserId();
         if (Request::ajax()) {
@@ -812,11 +812,11 @@ class StoreController extends BaseController {
 
         //get setting_intros of user_stores
         $tmpUserStore = UserStore::getUserStoreByUserId();
-        
+
         if (!empty($tmpUserStore)) {
             $about = $tmpUserStore->setting_intros;
         }
-        
+
         if (Request::ajax())
         {
             echo $about;
@@ -1172,6 +1172,11 @@ class StoreController extends BaseController {
 			if($v->fails()){
 				return Redirect::to('/store_domain')->withErrors($v)->withInput();
 			} else {
+				$input['domain'] = $domain;
+				$v = UserStore::validate_unique_domain($input);
+				if($v->fails()) {
+					return Redirect::to('/store_domain')->withErrors($v)->withInput();
+				}
 				if(!empty($user_store)) {
 					UserStore::where('user_id', $user_id)
 							->update(array('domain' => $domain,  'updated_user' => $user_id));

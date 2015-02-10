@@ -182,9 +182,7 @@ class MainController extends BaseController {
 		foreach($fields as $key=>$value){ $fields_string .= $key.'='.$value.'&'; }
 		$fields_string = rtrim($fields_string,'&');
 
-
 		$ch = curl_init();//open connection
-		 die;
 		curl_setopt($ch,CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
 		curl_setopt($ch,CURLOPT_POST,5);
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
@@ -192,7 +190,6 @@ class MainController extends BaseController {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$result = curl_exec($ch);
 
-		var_dump($result); die;
 		$response = json_decode($result);
 		$accesstoken = $response->access_token;
 		if( $accesstoken!='')
@@ -208,9 +205,6 @@ class MainController extends BaseController {
 		  }
 		}
 
-		var_dump($output_array);
-
-		die;
 		Session::put('account_gmail', $output_array);
     	return Redirect::to('/referral/gmail');
 

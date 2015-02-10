@@ -106,18 +106,15 @@ class UserItem extends Model{
      * get user item from user_id
      */
     public static function getUserItemByUserId($userId) {
-        /*$userItems = UserItem::with('userItemQuatity')
-            ->where('user_items.user_id', '=', $userId)
-            ->get();*/
-        //Request::get('category_id')
-
         $userItems = UserItem::with('userItemQuatity')
-            ->where('user_items.user_id', '=', $userId);
-            if (Request::get('category_id')){
-                $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
-            }
-                
-            $userItems =  $userItems->paginate(20);
+            ->where('user_items.user_id', '=', $userId)
+            ->where('user_items.public_flg', '=', true);
+            
+        if (Request::get('category_id')){
+            $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
+        }
+            
+        $userItems =  $userItems->paginate(20);
 
         return !empty($userItems) ? $userItems : array();
     }

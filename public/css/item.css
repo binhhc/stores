@@ -273,3 +273,20 @@ cursor: move;
 .form_basic .cols ul li input[readonly] {
     background-color: #ddd;
 }
+
+span.boxclose{
+    border: 1px solid #AEAEAE;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0px 0px;
+    z-index: 100000;
+    position: absolute;
+    height: 17px;
+    width: 16px;
+    margin-left: 89px;
+    margin-top: -108px;
+    line-height: 13px;
+    text-align: center;
+    background-color: darkgray;
+    color: white;
+}

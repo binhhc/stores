@@ -131,9 +131,86 @@ class UserController extends BaseController {
         $session_user = $user->toArray();
         //save to session
         Session::put('user', $session_user);
+        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
         Auth::login($user);
 
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
+    }
+
+    /**
+     * Register by facebook.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.16
+     */
+    public function registerFacebook(){
+        $facebook = new Facebook(Config::get('facebook'));
+        $params = array(
+            'redirect_uri' => url('/login/fb/register'),
+            'scope' => 'email',
+        );
+
+        return Redirect::to($facebook->getLoginUrl($params));
+    }
+
+    /**
+     * Facebook callback.
+     *
+     * @param  null
+     * @return Response
+     * @author Binh Hoang
+     * @since 2015.01.19
+     */
+    public function facebookRegister(){
+        $code = Input::get('code');
+        if (strlen($code) == 0)
+            return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
+
+        $facebook = new Facebook(Config::get('facebook'));
+        $uid = $facebook->getUser();
+
+        if ($uid == 0)
+            return Redirect::to('/')->with('message', 'Lỗi kết nối!');
+
+        $me = $facebook->api('/me');
+
+        $usersns = UserSns::where('sns_id', '=', $uid)->first();
+
+        $user = User::where('email', '=', $me['email'])->first();
+
+        //check email exist in database
+        if (empty($user)) {
+            $user = new User;
+            $user->email = $me['email'];
+            $user->account_token = User::createAccountToken();
+            $user->save();
+
+            //get last insert id
+            $lastInsertId = $user->id;
+
+            $usersns = new UserSns();
+            $usersns->user_id = $lastInsertId;
+            $usersns->sns_type = '1';
+            $usersns->sns_id = $uid;
+            $usersns = $user->usersns()->save($usersns);
+
+            $usersns->authen_token = $facebook->getAccessToken();
+
+            $usersns->save();
+
+            $user = $usersns->user;
+            $session_user = $user->toArray();
+            //save to session
+            Session::put('user', $session_user);
+            Session::put('userStoresDomain', UserStore::getUserStoreDomain());
+            Auth::login($user);
+
+            return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
+        }else{ //user exist
+            return Redirect::to('/')->with('message', 'Đăng nhập bằng Facebook');
+        }
     }
 
     /**

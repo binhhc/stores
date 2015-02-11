@@ -16,7 +16,7 @@
 
     <!-- Private/ -->
     <div class="private">
-        <p class="text">Cửa hàng chưa được công khai, vui lòng vào<a href="https://stores.jp/dashboard#!/store">「cài đặt cửa hàng」</a></p>
+        <p class="text">Cửa hàng chưa được công khai, vui lòng vào<a href="{{$url}}">「cài đặt cửa hàng」</a></p>
     </div>
     <!-- /Private -->
 

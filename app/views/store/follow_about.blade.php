@@ -17,7 +17,7 @@
   <body ng-controller="UserCtrl" style="background-color:transparent;">
     <div ng-cloak class="ng-cloak" style="height: auto;">
       <div ng-init="isFollowing = false; storeName = 'haulenhan'; position = 'about'">
-        <p class="follow_btn"><a href="" ng-click="parent_fancybox_open('#popup_alert_follow')">フォローする</a></p>
+        <p class="follow_btn"><a href="" ng-click="parent_fancybox_open('#popup_alert_follow')">Follow</a></p>
       </div>
     </div>
   <script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {

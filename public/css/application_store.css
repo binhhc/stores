@@ -2,7 +2,8 @@
 body {
     background: none repeat scroll 0 0 #fff;
     color: #333;
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
+    font-family: Arial;
     margin: 0;
     padding: 0;
 }
@@ -277,7 +278,8 @@ address {
 }
 }
 body {
-    font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    /*font-family: "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;*/
+    font-family: Arial;
     margin: 0;
 }
 .margin_0 {

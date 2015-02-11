@@ -36,7 +36,7 @@
             <div class="data">
               <dl>
                 <dd class="name"><h2>{[item.name]}</h2></dd>
-                <dd class="price" ng-show="item.quantity > 0">¥{[item.price | number:0]}</dd>
+                <dd class="price" ng-show="item.quantity > 0">{[item.price | number:0]} Đồng</dd>
                 <dd class="price soldout ng-binding" ng-hide="item.quantity > 0"><img src="/img/icon_soldout.png" alt="SOLD OUT"></dd>
                 <dd class="mybook_sale" style="height: 18px;" ng-show="{[item.sale_flag]}"><img src="/img/icon_mybook_sale.png" alt="SALE"></dd>
                </dl>

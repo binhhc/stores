@@ -29,7 +29,7 @@
 </tr>
 <tr>
 <td style="padding:0 30px 20px 30px;text-align:center" colspan="2">
-<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}} đã mời bạn tham gia {{$website_name}}</p>
+<p style="font-weight:bold;line-height:1.6;font-size:16px;margin:10px 0 20px 0">{{$name}} Mời bạn tham gia {{$website_name}}</p>
 <p style="margin-bottom:20px;line-height:1.6;font-size:14px">
 Bạn muốn tạo một cửa hàng trực tuyến miễn phí?
 <br>

@@ -2,6 +2,10 @@ $(document).ready(function(){
     /**
      * Delete an item
      */
+	$('#modal-bg,a.modal-close').on('click', function(e){
+		e.preventDefault();
+		$('#modal-win').hide();
+	});
         $(document).on('click', '.send_email_invitation', function(e){
                 var email = $('.email_send').val();
                 var name = $('.name_send').val();
@@ -75,4 +79,45 @@ $(document).ready(function(){
         		    return false;
 
         });
+        $(document).on('click', '.send_email_list', function(e){
+            var items_array = [];
+            $("#popup_gmail input:checkbox:checked").each(function(){ items_array.push($(this).val()); });
+            if(items_array.length == 0) {
+            	alert('Bạn chưa chọn danh sách người muốn mời!');
+            	return;
+            }
+        	$.ajax({
+                    type: "POST",
+                    url: "/send_email_list",
+                    data: {
+                        user_emails: items_array,
+                    },
+                    beforeSend: function() {
+                    	$('.send_email_list').hide();
+                    	$('#popup_gmail btn_low').show();
+                    },
+                    global: true,
+                    dataType: 'json',
+                    success: function(response) {
+                        if(response=='success') {
+                        	$('.send_email_list').hide();
+                        	$('#popup_gmail btn_low').show();
+                        	$('#modal-win').hide();
+                        	 $('.panel').fadeIn('slow').delay(3000).fadeOut('slow');
+                        } else {
+                            alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                            return;
+                        }
+
+
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    },
+                    complete: function() {
+                    	$('#popup_gmail btn_low').hide();
+                    	$('.send_email_list').show();
+                    },
+                });
+    });
+
 })

@@ -1,3 +1,25 @@
+function update_sort (listId) {
+	 $.ajax({
+         type: "GET",
+         url: "/sortable_item",
+         data: {
+             items_array: listId,
+         },
+         beforeSend: function() {
+             $('.loading').show();
+         },
+         global: true,
+         dataType: 'json',
+         success: function(response) {
+             $('.items_contents').html(response.html);
+         },
+         error: function(XMLHttpRequest, textStatus, errorThrown) {
+         },
+         complete: function() {
+             $('.loading').hide();
+         },
+     });
+}
 $(document).ready(function(){
 	 /**
      * Sort item in item management
@@ -7,6 +29,8 @@ $(document).ready(function(){
         var item_id = $(this).attr('item_id');
         var order_value = $(this).attr('order_value');
         var up_down = $(this).attr('up_down');
+        if(order_value == 1 && up_down == 'up') return false;
+        if(up_down=='down' && order_value == $('.count_public_items').val()) return false;
         var list_public_item = $('li.sort_item.up');
         var items_array = [];
         $.each( list_public_item, function(index, item){
@@ -156,5 +180,23 @@ $(document).ready(function(){
         	var item_id = $(this).attr('item_id');
         	var tooltip_share = $('.tooltip_share' + item_id);
         	$(tooltip_share).hide();
+        });
+
+        $( "#sortable" ).sortable({
+        	opacity: 0.6,
+    		start: function(event, ui) {
+    			$(event.target).parent().css("background-color", "#cccccc");
+    		},
+    		stop:  function (event, ui) {
+    			$(event.target).parent().css("background-color", "#F2F2F2");
+    			var listId = [];
+    			  $('.sortable dl#list_public').each(function(index) {
+    				  alert(index);
+    				  var is_id = $(this).find('li.sort_item.up').attr('item_id');
+    				  listId.push([is_id, index]);
+
+                  });
+    			  update_sort (listId);
+    		}
         });
 })

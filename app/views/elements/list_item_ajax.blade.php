@@ -57,6 +57,7 @@
 					</dd>
 				</dl>
 			@endforeach
+			<input type="hidden" name="count_public_item" class="count_public_items" value="{{$count_public_items}}" >
 	</div>
 <!-- 								{{HTML::image($item['image_url'], 'Hình ảnh sản phẩm', array('width' => 50, 'height' => 50))}}
  -->

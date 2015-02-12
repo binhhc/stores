@@ -85,6 +85,8 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
+       $user_id = Session::get('user.id');
+        $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         $view =  View::make('elements.list_item_ajax', $data)->render();
         $response = array(
                     'status' => 'success',

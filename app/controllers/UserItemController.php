@@ -81,6 +81,9 @@ class UserItemController extends BaseController {
      * @since 2015/01/15
      */
     public function list_item_ajax() {
+    	if(!$this->checkLogin()) {
+            return Redirect::to('/');
+        }
         $data['items'] = $this->getItemList();
         $view =  View::make('elements.list_item_ajax', $data)->render();
         $response = array(

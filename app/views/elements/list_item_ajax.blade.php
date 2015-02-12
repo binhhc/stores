@@ -1,19 +1,7 @@
-		<dl class="list_items">
-			<dd class="title">
-				<dl>
-					<dd class="sz_xs tc">STT</dd>
-					<dd class="sz_i"></dd>
-					<dd class="sz_l">Tên sản phẩm</dd>
-					<dd class="sz_s tr">Giá</dd>
-					<dd class="sz_xs tc product_quantity">Số lượng</dd>
-					<dd class="sz_s tc publish">Trạng thái</dd>
-				</dl>
-			</dd>
-		</dl>
-		<?php $stt = 1;?>
+<?php $stt = 1;?>
  <div id="sortable">
 		@foreach ($items as $item)
-				<dl id="list_public" data-a="1" class="list_items ng-pristine ng-valid ui-sortable" ng-model="items_shown" ui-sortable="items_sortable_options">
+				<dl id="list_public" class="list_items <?php echo ($item['public_flg'] == 1) ?  'ui-state-enabled' : ''?>">
 					<dd class="items ng-scope" ng-hide="item.animate" ng-repeat="item in items_shown">
 					@if ($item['public_flg'] == 1)
 						<ul class="sort">

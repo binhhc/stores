@@ -17,7 +17,6 @@
         </ul>
     </div>
     @if (count($items) === 0)
-
     <span ng-hide="items.length">
         <div id="nodata" ng-hide="orders.length">
             <p>
@@ -43,7 +42,7 @@
         <?php $stt = 1;?>
         <div id="sortable">
         @foreach ($items as $item)
-                <dl id="list_public" data-a="1" class="list_items ng-pristine ng-valid ui-sortable" ng-model="items_shown" ui-sortable="items_sortable_options">
+                <dl id="list_public" class="list_items <?php echo ($item['public_flg'] == 1) ? 'ui-state-enabled' : ''?>">
                     <dd class="items ng-scope" ng-hide="item.animate" ng-repeat="item in items_shown">
                     @if ($item['public_flg'] == 1)
                         <ul class="sort">

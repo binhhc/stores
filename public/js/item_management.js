@@ -1,6 +1,6 @@
 function update_sort (listId) {
 	 $.ajax({
-         type: "GET",
+         type: "POST",
          url: "/sortable_item",
          data: {
              items_array: listId,
@@ -11,12 +11,13 @@ function update_sort (listId) {
          global: true,
          dataType: 'json',
          success: function(response) {
-             $('.items_contents').html(response.html);
+             $('#sortable').html(response.html);
          },
          error: function(XMLHttpRequest, textStatus, errorThrown) {
          },
          complete: function() {
              $('.loading').hide();
+             $('ul.sort').show();
          },
      });
 }
@@ -54,7 +55,7 @@ $(document).ready(function(){
             global: true,
             dataType: 'json',
             success: function(response) {
-                $('.items_contents').html(response.html);
+                $('#sortable').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -85,7 +86,7 @@ $(document).ready(function(){
             global: true,
             dataType: 'json',
             success: function(response) {
-                $('.items_contents').html(response.html);
+                $('#sortable').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -116,7 +117,7 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function(response) {
                         if(response.success=1) {
-                            $('.items_contents').html(response.html.html);
+                            $('#sortable').html(response.html.html);
                             $('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
                         } else {
                             alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
@@ -183,15 +184,16 @@ $(document).ready(function(){
         });
 
         $( "#sortable" ).sortable({
-        	opacity: 0.6,
+        	items: "> dl.ui-state-enabled",
     		start: function(event, ui) {
-    			$(event.target).parent().css("background-color", "#cccccc");
+    			//$(ui.item[0]).find('dl').css("background-color", "#F2F2F2");
+    			$(ui.item[0]).find('dl').css("border", "1px dotted black");
+    			$('ul.sort').hide();
     		},
     		stop:  function (event, ui) {
-    			$(event.target).parent().css("background-color", "#F2F2F2");
+    			//$(event.target).parent().css("background-color", "#F2F2F2");
     			var listId = [];
-    			  $('.sortable dl#list_public').each(function(index) {
-    				  alert(index);
+    			  $('#sortable dl').each(function(index) {
     				  var is_id = $(this).find('li.sort_item.up').attr('item_id');
     				  listId.push([is_id, index]);
 
@@ -199,4 +201,5 @@ $(document).ready(function(){
     			  update_sort (listId);
     		}
         });
+        $( "#sortable dl" ).disableSelection();
 })

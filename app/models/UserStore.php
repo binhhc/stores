@@ -110,7 +110,7 @@ class UserStore extends Model{
      */
     public static function getUserStoreByDomain($parameter) {
         $userStores = UserStore::where('domain', '=', $parameter)
-            ->select('id', 'user_id', 'domain', 'public_flg', 'settings', 'setting_intros')
+            ->select(self::getFeilds())
             ->first();
         return !empty($userStores) ? $userStores : array();
     }

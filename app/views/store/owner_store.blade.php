@@ -8,16 +8,17 @@
     <!-- Cart/ -->
     <div id="cart_button" class="private" style="z-index:1">
         <a href="#popup_cart">
-            
             <span>0</span>
         </a>
     </div>
     <!-- /Cart -->
 
     <!-- Private/ -->
-    <div class="private">
-        <p class="text">Cửa hàng chưa được công khai, vui lòng vào<a href="{{$url}}">「cài đặt cửa hàng」</a></p>
-    </div>
+    <?php if(!$public_flg):?>
+        <div class="private">
+            <p class="text">Cửa hàng chưa được công khai, vui lòng vào<a href="{{$url}}">「cài đặt cửa hàng」</a></p>
+        </div>
+    <?php endif;?>
     <!-- /Private -->
 
     <div ng-view></div>
@@ -26,7 +27,7 @@
     <div class="follow_box" sp-if="follow">
         <p class="close"><a href="">close</a>
         </p>
-        <p class="message">ストアの情報をチェックしよう！</p>
+        <p class="message">Kiểm tra thông tin cửa hàng！</p>
         <p class="store_image"><img src="https://stores.jp/images/follow/user_icon/user_icon_01.png">
         </p>
         <div class="store_info">
@@ -47,9 +48,9 @@
 
 <!-- PopupAlertFollow/ -->
 <div id="popup_alert_follow" class="fancybox popup_alert">
-    <p class="image"><img src="/img/icon_attention_big_gray.png" alt="アラート">
+    <p class="image"><img src="/img/icon_attention_big_gray.png" alt="Flow">
     </p>
-    <p class="text">自分のストアをフォローすることはできません。</p>
+    <p class="text">Không flow được.</p>
 </div>
 <!-- /PopupAlertFollow -->
 

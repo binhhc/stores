@@ -7137,7 +7137,7 @@ p.download span {
     width: 70%;
 }
 .layout_b #item_list .items .frame_none .data dl {
-    height: 100%;
+    /*height: 100%;*/
     width: 285px;
 }
 .layout_b #item_list.hover_style .frame_none .data dl {

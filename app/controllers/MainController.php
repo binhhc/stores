@@ -182,7 +182,6 @@ class MainController extends BaseController {
 		foreach($fields as $key=>$value){ $fields_string .= $key.'='.$value.'&'; }
 		$fields_string = rtrim($fields_string,'&');
 
-
 		$ch = curl_init();//open connection
 		curl_setopt($ch,CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
 		curl_setopt($ch,CURLOPT_POST,5);

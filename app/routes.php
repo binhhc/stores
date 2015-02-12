@@ -201,9 +201,16 @@ Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 //add new item
 Route::get('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@show_add_item'));
 Route::post('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@add_item'));
+
 //edit item
 Route::get('/edit_item/{id}', array('before' => 'auth', 'uses' => 'UserItemController@get_item'));
 Route::post('/edit_item', array('before' => 'auth', 'uses' => 'UserItemController@edit_item'));
+
+// App::error(function(MethodNotAllowedHttpException $e) {
+//     echo 1;exit;
+//     Log::warning('MethodNotAllowedHttpException', array('context' => $exception->getMessage()));
+//     return View::make('errors.show', array('code' => 'http_error_404'), 404);
+// });
 
 //add new category
 Route::post('/create_category', array('before' => 'auth', 'uses' => 'UserItemController@create_category'));
@@ -223,6 +230,10 @@ Route::post('/save', 'StoreController@save');
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin'));
 Route::post('/login', array('uses' => 'UserController@doLogin'));
+
+//register facebook
+Route::get('register/fb', array('uses' => 'UserController@registerFacebook'));
+Route::get('login/fb/register', array('uses' => 'UserController@facebookRegister'));
 
 /*login facebook */
 Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));

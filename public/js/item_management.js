@@ -49,7 +49,7 @@ $(document).ready(function(){
                 up_down:up_down
             },
             beforeSend: function() {
-                $(sort_item).parent().parent().slideUp('fast');
+                $(sort_item).parent().parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,
@@ -80,7 +80,7 @@ $(document).ready(function(){
                 public_flg: public_flg
             },
             beforeSend: function() {
-            	$(sort_item).parent().parent().parent().slideUp('fast');
+            	$(sort_item).parent().parent().parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,

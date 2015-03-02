@@ -1,5 +1,5 @@
 
-<h2>{{I18n.store.checkout.receiveMehtod.title}}</h2>
+<h2>{[I18n.store.checkout.receiveMehtod.title]}</h2>
 <dl class="form_basic spb">
   <dd>
     <dl class="cols no_border">
@@ -9,7 +9,7 @@
           <li class="select_s">
             <div class="styled_select_thick payment_methods">
               <select class="payment styled" ng-model="customer.receive_method" ng-options="rm.value for rm in preset.receive_methods" ng-change="cart.sum()"></select>
-              <span>{{customer.receive_method.value}}</span>
+              <span>{[customer.receive_method.value]}</span>
             </div>
           </li>
         </ul>

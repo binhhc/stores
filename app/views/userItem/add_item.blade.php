@@ -285,7 +285,6 @@
                             "title='" + picnames + "' width='96' height='80' alt='Item Image' style='position:relative;' data-valu='" + mimetype + "'/><span class='boxclose' style='cursor:pointer' id='span_" + count + "'>x</span>";
 
                     }
-
                     output.insertBefore(div, null);
                 }
 

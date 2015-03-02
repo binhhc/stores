@@ -480,6 +480,10 @@ class StoreController extends BaseController {
     public function tokushoho($id) {
         return View::make('store.tokushoho', array('data' => 'test'));
     }
+    
+    public function inquiry($id) {
+        return View::make('store.inquiry', array('data' => 'test'));
+    }
 
 
     /**

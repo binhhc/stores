@@ -99,6 +99,7 @@
                 </dl>
             @endforeach
             </div>
+            <input type="hidden" name="count_public_item" class="count_public_items" value="{{$count_public_items}}" >
     </div>
     @endif
 </div>
@@ -106,7 +107,6 @@
 @include('elements.footer')
 <input type="hidden" name="facebook_id" class="facebook_app_id" value="{{$app_id}}"/>
 <input type="hidden" name="website_url" class="website_url" value="<?php echo Config::get('constants.website_name');?>"/>
-<input type="hidden" name="count_public_item" class="count_public_items" value="{{$count_public_items}}" >
 <style>
  .switch .deactive {
     text-indent: 1em!important;

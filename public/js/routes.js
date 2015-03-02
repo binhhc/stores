@@ -18,7 +18,7 @@ app.config(function($routeProvider, $locationProvider, $interpolateProvider) {
         templateUrl: "/partials/c/items/checkout_confirm",
         controller: ItemsController
     }).when("/inquiry", {
-        templateUrl: "/partials/c/stores/inquiry.html",
+        templateUrl: "/partials/c/stores/inquiry",
         controller: StoresController
     }).when("/tokushoho", {
         templateUrl: "/partials/c/stores/tokushoho",

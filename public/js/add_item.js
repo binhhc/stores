@@ -43,6 +43,12 @@
             $( "#sortable" ).disableSelection();
         });
 
+        //sort image
+        $(function() {
+            $( "#result" ).sortable();
+            $( "#result" ).disableSelection();
+        });
+
         //validate before submit
         $('.btn_submit_item').click(function(e){
             //validate item name
@@ -74,7 +80,7 @@
             }
 
             //validate image
-            var item_image = $('#image_back li').length;
+            var item_image = $('#result li').length;
             if(item_image < 1){
                 flg_image = false;
                 $('.err_image').empty();

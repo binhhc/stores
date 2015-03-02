@@ -22,11 +22,15 @@ class StoreController extends BaseController {
 
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
-
-        return View::make('store.owner_store', array(
+        
+        $data = array(
+            'public_flg' => 1,
             'domain' => $domain,
-            'url' => 'http://'.$url[2].'/store_setting'
-        ));
+            'sub'    => $parameters,
+            'url'   => 'http://'.$url[2].'/store_setting'
+        );
+        
+        return View::make('store.owner_store', $data);
     }
 
     /**
@@ -700,36 +704,6 @@ class StoreController extends BaseController {
     public function items($status = '') {
         $this->layout = '';
 
-        //test data
-        /*$items = array();
-        $item = array(
-            'id' => '54ade2be86b1889a7900144f',
-            'name' => 'Điện máy',
-            'description' => '',
-            'status' => 'shown',
-            'price' => '20000',
-            'sale_flag' => '',
-            'digital_contents' => '',
-            'variations' => array
-            (
-                '0' => 'S',
-                '1' => 'M',
-            ),
-            'quantity' => '2',
-            'shared' => '',
-            'images' => array
-            (
-                '0' => array
-                (
-                    'name' => '76eb0d20782bdab37aa8.jpeg'
-                )
-
-            ),
-            'sticker' => ''
-
-        );
-        $items[] = $item;*/
-
         //get user_item from user_id
         $items = array();
         $userItems = UserItem::getUserItemFromUserId();
@@ -819,20 +793,6 @@ class StoreController extends BaseController {
      */
     public function categories() {
         $this->layout = '';
-
-        //test data
-        /*$categories = array();
-        $categories = array(
-            array(
-                'id' => 1,
-                'name' => 'Điện máy'
-            ),
-            array(
-                'id' => 2,
-                'name' => 'Thời trang'
-            )
-        );*/
-
         //get user_categories from user_id
         $userCategories = UserCategory::getUserCaterogiesFromUserId();
 

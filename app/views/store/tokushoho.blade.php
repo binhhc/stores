@@ -1,26 +1,7 @@
 
 <div class="wrapper" id="store_cart" ng-init="tokushoho()">
   <div class="height_fix">
-    <div id="header_basic">
-      <h1 id="store_logo" ng-style="styles.store_logo">
-        <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{{logo_src}}" alt="logo"></span></a>
-        <a href="/" ng-hide="styles.logo"><span class="txt">{{styles.name}}</span></a>
-      </h1>
-      <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore || news_navi">
-        <dl style="font-family: Allerta">
-          <dd><a href="/">HOME</a></dd>
-          <dd sp-controller="NewsController" addon="news" sp-show ng-show="news_navi"><a href="#!/news">NEWS</a></dd>
-          <dd ng-show="hasAbout"><a href="#!/about">ABOUT</a></dd>
-          <dd class="btn_dropdown" ng-show="categories">
-            <a href="">CATEGORY</a>
-            <ul class="dropdown">
-              <li ng-repeat="category in categories"><a ng-click="category_click(category.name)">{{category.name}}</a></li>
-            </ul>
-          </dd>
-          <dd ng-show="showVirtualStore"><a href="{{virtualStore.url}}" target="_blank">VIRTUAL STORE</a></dd>
-        </dl>
-      </div>
-    </div>
+    @include('elements.user_header')
     <div class="box_wht" ng-hide="accepted">
       <h2>{{I18n.store.tokushoho.title}}</h2>
       <ul class="terms_link">
@@ -55,17 +36,7 @@
 </div>
 
 <!-- Footer/ -->
-<div id="store_item_footer">
-  <div id="store_footer_inner">
-    <ul class="navi fl_l">
-      <li><a href="#!/inquiry" class="contact">お問い合わせ</a></li>
-      <li><a href="#!/tokushoho" class="tokusho">特定商取引法に関する表記</a></li>
-    </ul>
-    <div class="stores">
-      <p><a href="https://stores.jp/?via={{ via }}&id={{user_name}}" target="_blank" ng-mouseover="footer_mouse_over()"><img src="/img/logo_footer.png" alt="ネットショップの開業ならSTORES.jp"></a></p>
-    </div>
-  </div>
-</div>
+@include('elements.user_footer')
 <!-- /Footer -->
 
 <!-- Popup/ -->

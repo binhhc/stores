@@ -11,6 +11,10 @@ return array(
 	'clientsecret'   => 'vgldIo53SKQEc3nm_06_OYp1',
 	'redirecturi'    => 'http://oanhstores.com/auth_gmail',
 	'maxresults'     => 50, // Number of mailid you want to display.
+    'item'=>array(
+        'unit' => 'Cái',
+        'currency'   => 'VND',
+    ),
     'item_samples' => array(
         array(
             'id' => 1,

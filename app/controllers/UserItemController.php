@@ -17,7 +17,9 @@ class UserItemController extends BaseController {
         }
         $data['items'] = $this->getItemList();
         $data['app_id'] = Config::get('constants.facebook_app_id');
+        $user_id = Session::get('user.id');
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
+        $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         return View::make('userItem.item_management', $data);
     }
 
@@ -31,7 +33,7 @@ class UserItemController extends BaseController {
  		$url = '/files/' . $image_url['USER_NAME']. '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
-					->orderBy('public_flg', 'asc')
+					->orderBy('public_flg', 'desc')
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
@@ -46,7 +48,6 @@ class UserItemController extends BaseController {
                 foreach($item_quantity as $item){
                     $value['quantity'] += (empty($item['quantity'])) ? 0 : $item['quantity'];
                 }
-//				$value['quantity'] = array_sum(array_column( $item_quantity, 'quantity'));
 			}
 		}
 		return $items;
@@ -80,7 +81,12 @@ class UserItemController extends BaseController {
      * @since 2015/01/15
      */
     public function list_item_ajax() {
+    	if(!$this->checkLogin()) {
+            return Redirect::to('/');
+        }
         $data['items'] = $this->getItemList();
+       $user_id = Session::get('user.id');
+        $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         $view =  View::make('elements.list_item_ajax', $data)->render();
         $response = array(
                     'status' => 'success',
@@ -103,6 +109,20 @@ class UserItemController extends BaseController {
              $items_array = Input::get('items_array');
              $this->update_all_order($items_array);
              $this->update_sort($item_id,$order_value, $up_down);
+             $response = $this->list_item_ajax();
+             return Response::json($response);
+        }
+    }
+ 	/**
+     * sort item by sortable jquery
+     * @author OanhHa
+     * @since 2015/01/15
+     */
+    public function sortable_item() {
+        if(Request::ajax())
+        {
+             $items_array = Input::get('items_array');
+             $this->update_all_order($items_array);
              $response = $this->list_item_ajax();
              return Response::json($response);
         }

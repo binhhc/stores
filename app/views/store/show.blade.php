@@ -3,26 +3,7 @@
 <div id="item" ng-init="show()" itemscope itemtype="http://data-vocabulary.org/Product">
   <div class="height_fix">
     <!-- Item/ -->
-    <div id="header_basic">
-      <h1 id="store_logo" ng-style="styles.store_logo">
-        <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{[logo_src]}" alt="{[styles.name]}"></span></a>
-        <a href="/" ng-hide="styles.logo"><span class="txt" itemprop="brand">{[styles.name]}</span></a>
-      </h1>
-    </div>
-    <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore || news_navi">
-      <dl style="font-family: Arial">
-        <dd><a href="/">TRANG CHỦ</a></dd>
-        <dd sp-controller="NewsController" addon="news" sp-show ng-show="news_navi"><a href="#!/news">TIN TỨC</a></dd>
-        <dd ng-show="hasAbout"><a href="#!/about">GIỚI THIỆU</a></dd>
-        <dd class="btn_dropdown" ng-show="categories">
-          <a href="">DANH MỤC</a>
-          <ul class="dropdown">
-            <li ng-repeat="category in categories"><a ng-click="category_click(category.name)">{[category.name]}</a></li>
-          </ul>
-        </dd>
-        <dd ng-show="showVirtualStore"><a href="{[virtualStore.url]}" target="_blank">VIRTUAL STORE</a></dd>
-      </dl>
-    </div>
+     @include('elements.user_header')
     <div class="box_wht">
       <span class="sticker" ng-if="show_sticker && item.sticker.store_image_path"><img ng-src="{[item.sticker.store_image_path]}"></span>
       <div class="fl_l" ng-hide="not_found">
@@ -61,7 +42,7 @@
             <div ng-if="I18n.locale == 'en'"><p id="default-review" class="icon" data-score={[item.avg_score]} ><span>（<a ng-href="#!/items/{[item.id]}/reviews">{[I18n.store.show.review.review]}{[item.review_count]}</a>）</span></p></div>
           </div>
         </div>
-        <p class="price">{[item.price | number:0]} Đồng</p>
+        <p class="price">{[item.price | number:0]} <?php echo Config::get('constants.item.currency'); ?></p>
         <p class="free_shipping" style="display:none" ng-show="shipping_fee.free_shipping"><span>{[I18n.store.show.shippingFee.balloon1]}{[shipping_fee.free_shipping | number:0]}{[I18n.store.show.shippingFee.balloon2]}</span></P>
         <p style="font-size: 11px;" ng-hide="I18n.locale == 'en'">{[I18n.store.show.tax]}</p>
         <p style="font-size: 11px;" ng-show="I18n.locale == 'ja' && mall == 'parco'">※＜PARCOカード＞のOFFは「店頭お取り置き」選択時のみ対象となります。</p>
@@ -87,7 +68,7 @@
                 </select>
                 <span>{[stocks[quantity.variation]]}</span>
               </div>
-              <p ng-show="quantity.quantity > 0 && I18n.locale =='ja'">個</p>
+              <p ng-show="quantity.quantity > 0 && I18n.locale =='ja'"><?php echo Config::get('constants.item.unit'); ?></p>
             </td>
             <td ng-hide="quantity.quantity > 0">SOLD OUT</td>
             <td class="restock" sp-show="restock_notification">
@@ -124,17 +105,7 @@
   </div>
 </div>
 <!-- Footer/ -->
-<div id="store_item_footer">
-  <div id="store_footer_inner">
-    <ul class="navi fl_l">
-      <li><a href="#!/inquiry" class="contact">お問い合わせ</a></li>
-      <li><a href="#!/tokushoho" class="tokusho">特定商取引法に関する表記</a></li>
-    </ul>
-    <div class="stores">
-      <p><a href="https://stores.jp/?via={[ via ]}&id={[user_name]}" target="_blank" ng-mouseover="footer_mouse_over()"><img src="/img/logo_footer.png" alt="ネットショップの開業ならSTORES.jp"></a></p>
-    </div>
-  </div>
-</div>
+@include('elements.user_footer')
 <!-- /Footer -->
 
 <!-- PopupCart/ -->
@@ -157,21 +128,21 @@
           <dd class="sz_i"><img ng-src="{[cart_item.image.src]}"></dd>
           <dd class="sz_l">{[cart_item.name]}</dd>
           <dd class="sz_s tl">{[cart.null_to_hyphen(cart_item.variation)]}</dd>
-          <dd class="sz_s tr">¥{[cart_item.price | number:0]}</dd>
+          <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?>{[cart_item.price | number:0]}</dd>
           <dd class="sz_s tc">{[cart_item.quantity]}</dd>
-          <dd class="sz_s tr">¥{[(cart_item.price * cart_item.quantity) | number:0]}</dd>
+          <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?>{[(cart_item.price * cart_item.quantity) | number:0]}</dd>
         </dl>
       </dd>
       <dd class="lists shipping">
         <dl>
           <dd class="sz_m tr">{[I18n.store.cart.shippingFee]}</dd>
-          <dd class="sz_s tr">¥{[cart.shipping_fee | number:0]}</dd>
+          <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?>{[cart.shipping_fee | number:0]}</dd>
         </dl>
       </dd>
       <dd class="lists total">
         <dl>
           <dd class="sz_m tr">{[I18n.store.cart.subtotal]}</dd>
-          <dd class="sz_s tr">¥{[cart.total | number:0]}</dd>
+          <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?>{[cart.total | number:0]}</dd>
         </dl>
       </dd>
     </dl>

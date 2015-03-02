@@ -1,3 +1,26 @@
+function update_sort (listId) {
+	 $.ajax({
+         type: "POST",
+         url: "/sortable_item",
+         data: {
+             items_array: listId,
+         },
+         beforeSend: function() {
+             $('.loading').show();
+         },
+         global: true,
+         dataType: 'json',
+         success: function(response) {
+             $('#sortable').html(response.html);
+         },
+         error: function(XMLHttpRequest, textStatus, errorThrown) {
+         },
+         complete: function() {
+             $('.loading').hide();
+             $('ul.sort').show();
+         },
+     });
+}
 $(document).ready(function(){
 	 /**
      * Sort item in item management
@@ -7,6 +30,8 @@ $(document).ready(function(){
         var item_id = $(this).attr('item_id');
         var order_value = $(this).attr('order_value');
         var up_down = $(this).attr('up_down');
+        if(order_value == 1 && up_down == 'up') return false;
+        if(up_down=='down' && order_value == $('.count_public_items').val()) return false;
         var list_public_item = $('li.sort_item.up');
         var items_array = [];
         $.each( list_public_item, function(index, item){
@@ -24,13 +49,13 @@ $(document).ready(function(){
                 up_down:up_down
             },
             beforeSend: function() {
-                $(sort_item).parent().parent().slideUp('fast');
+                $(sort_item).parent().parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,
             dataType: 'json',
             success: function(response) {
-                $('.items_contents').html(response.html);
+                $('#sortable').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -55,13 +80,13 @@ $(document).ready(function(){
                 public_flg: public_flg
             },
             beforeSend: function() {
-            	$(sort_item).parent().parent().parent().slideUp('fast');
+            	$(sort_item).parent().parent().parent().parent().slideUp('fast');
                 $('.loading').show();
             },
             global: true,
             dataType: 'json',
             success: function(response) {
-                $('.items_contents').html(response.html);
+                $('#sortable').html(response.html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -92,7 +117,7 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function(response) {
                         if(response.success=1) {
-                            $('.items_contents').html(response.html.html);
+                            $('#sortable').html(response.html.html);
                             $('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
                         } else {
                             alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
@@ -157,4 +182,24 @@ $(document).ready(function(){
         	var tooltip_share = $('.tooltip_share' + item_id);
         	$(tooltip_share).hide();
         });
+
+        $( "#sortable" ).sortable({
+        	items: "> dl.ui-state-enabled",
+    		start: function(event, ui) {
+    			//$(ui.item[0]).find('dl').css("background-color", "#F2F2F2");
+    			$(ui.item[0]).find('dl').css("border", "1px dotted black");
+    			$('ul.sort').hide();
+    		},
+    		stop:  function (event, ui) {
+    			//$(event.target).parent().css("background-color", "#F2F2F2");
+    			var listId = [];
+    			  $('#sortable dl').each(function(index) {
+    				  var is_id = $(this).find('li.sort_item.up').attr('item_id');
+    				  listId.push([is_id, index]);
+
+                  });
+    			  update_sort (listId);
+    		}
+        });
+        $( "#sortable dl" ).disableSelection();
 })

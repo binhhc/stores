@@ -1,27 +1,7 @@
 
 <div class="wrapper" id="store_cart" ng-init="about()">
   <div class="height_fix">
-    <div id="header_basic">
-      <h1 id="store_logo" ng-style="styles.store_logo">
-        <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{[logo_src]}" alt="logo" /></span></a>
-        <a href="/" ng-hide="styles.logo"><span class="txt">{[styles.name]}</span></a>
-      </h1>
-      <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore || news_navi">
-        <dl style="font-family: Arial">
-          <dd><a href="/">TRANG CHỦ</a></dd>
-          <dd sp-controller="NewsController" addon="news" sp-show ng-show="news_navi"><a href="#!/news">TIN TỨC</a></dd>
-          <dd ng-show="hasAbout"><a href="#!/about">GIỚI THIỆU</a></dd>
-          <dd class="btn_dropdown" ng-show="categories">
-            <a href="">DANH MỤC</a>
-            <ul class="dropdown">
-              <li ng-repeat="category in categories"><a ng-click="category_click(category.id)">{[category.name]}</a></li>
-
-            </ul>
-          </dd>
-          <dd ng-show="showVirtualStore"><a href="{[virtualStore.url]}" target="_blank">VIRTUAL STORE</a></dd>
-        </dl>
-      </div>
-    </div>
+    @include('elements.user_header')
     <div class="box_wht" ng-hide="accepted">
       <h2>Giới thiệu</h2>
       <!-- Account/ -->
@@ -62,17 +42,7 @@
 </div>
 
 <!-- FOOTER/ -->
-<div id="store_item_footer">
-  <div id="store_footer_inner">
-    <ul class="navi fl_l">
-      <li><a href="#!/inquiry" class="contact">ãŠå•ã„åˆã‚ã›</a></li>
-      <li><a href="#!/tokushoho" class="tokusho">ç‰¹å®šå•†å–å¼•æ³•ã«é–¢ã™ã‚‹è¡¨è¨˜</a></li>
-    </ul>
-    <div class="stores">
-      <p><a href="https://stores.jp/?via={[ via ]}&id={[user_name]}" target="_blank" ng-mouseover="footer_mouse_over()"><img src="/img/logo_footer.png" alt="ãƒãƒƒãƒˆã‚·ãƒ§ãƒƒãƒ—ã®é–‹æ¥­ãªã‚‰STORES.jp"></a></p>
-    </div>
-  </div>
-</div>
+@include('elements.user_footer')
 <!-- /FOOTER -->
 
 <!-- POPUP/ -->

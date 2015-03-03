@@ -201,11 +201,14 @@ Route::get('/update_sort/{id}/{order}', 'UserItemController@update_sort');
 //add new item
 Route::get('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@show_add_item'));
 Route::post('/add_item', array('before' => 'auth', 'uses' => 'UserItemController@add_item'));
+Route::post('/remove_image', array('before' => 'auth', 'uses' => 'UserItemController@remove_image'));
 
 //edit item
 Route::get('/edit_item/{id}', array('before' => 'auth', 'uses' => 'UserItemController@get_item'));
 Route::post('/edit_item', array('before' => 'auth', 'uses' => 'UserItemController@edit_item'));
-
+// Sort category
+Route::post('/sort_category', array('before' => 'auth', 'uses' => 'UserItemController@sort_category'));
+Route::post('/upload_image_item', array('before' => 'auth', 'uses' => 'UserItemController@upload_image_item'));
 // App::error(function(MethodNotAllowedHttpException $e) {
 //     echo 1;exit;
 //     Log::warning('MethodNotAllowedHttpException', array('context' => $exception->getMessage()));

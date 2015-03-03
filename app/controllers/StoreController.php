@@ -22,14 +22,14 @@ class StoreController extends BaseController {
 
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
-        
+
         $data = array(
             'public_flg' => 1,
             'domain' => $domain,
             'sub'    => $parameters,
             'url'   => 'http://'.$url[2].'/store_setting'
         );
-        
+
         return View::make('store.owner_store', $data);
     }
 

@@ -716,7 +716,8 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
             return $rootScope.hide_logo = !0, $scope.$root.step = 2, $scope.$root.state = "", $scope.resize_order_done = function(url) {
                 urls = url.split(".");
                 var resized_image = null;
-                return resized_image = urls[0] + "_50x50." + urls[1]
+                //return resized_image = urls[0] + "_50x50." + urls[1]
+                return resized_image = urls[0] + "." + urls[1]
             }, $scope.postToFeedOrder = function(order_item) {
                 function callback(response) {
                     response && analytics.event("order_item", "share", "facebook")
@@ -861,7 +862,8 @@ function OrdersController($scope, $resource, $location, $routeParams, $http, $ro
             $scope.resize_order_done = function(url) {
                 urls = url.split(".");
                 var resized_image = null;
-                return resized_image = urls[0] + "_50x50." + urls[1]
+                //return resized_image = urls[0] + "_50x50." + urls[1]
+                return resized_image = urls[0] + "." + urls[1]
             }, $scope.I18n = I18n, $scope.store_name = USER_NAME, $scope.origin_url = location.protocol + "//" + location.host, $scope.origin_url_tw = encodeURIComponent($scope.origin_url + "/#!/items/"), $scope.origin_image_url = $scope.origin_url + "/files/" + USER_NAME + "/", $scope.cart.items.length || $location.path("/"), _.isEmpty($scope.$root.customer) ? $location.path("/") : ($scope.customer = $scope.$root.customer, $scope.styles.logo && ($scope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.styles.logo), "credit" === $scope.customer.payment_method[0] && ($scope.temp = {
                 cc_number: function(cc_number) {
                     var str = "";
@@ -1275,10 +1277,10 @@ I18n.translations = {
                         freeOrder: "1\u56de\u306e\u3054\u6ce8\u6587\u306b\u3064\u304d",
                         freeOrder2: "\u5186\u4ee5\u4e0a\u306f\u9001\u6599\u7121\u6599\u3067\u3059\u3002",
                         quantity: "\u500b",
-                        addCart: "\u30ab\u30fc\u30c8\u306b\u5165\u308c\u308b",
-                        back: "\u4e00\u89a7\u306b\u623b\u308b",
-                        tweet: "\u30c4\u30a4\u30fc\u30c8\u3059\u308b",
-                        share: "\u30b7\u30a7\u30a2\u3059\u308b",
+                        addCart: "giỏ hàng",
+                        back: "trở về trang chủ",
+                        tweet: "twitter",
+                        share: "share",
                         shippingFee: {
                             cost: "\u9001\u6599\u306b\u3064\u3044\u3066",
                             other: "\u305d\u306e\u4ed6\u5730\u57df",
@@ -1305,14 +1307,14 @@ I18n.translations = {
                         }
                     },
                     cart: {
-                        title: "\u30ab\u30fc\u30c8\u306b\u5165\u3063\u3066\u3044\u308b\u5546\u54c1",
-                        item: "\u30a2\u30a4\u30c6\u30e0\u540d",
-                        price: "\u4fa1\u683c",
-                        quantity: "\u500b\u6570",
-                        category: "\u7a2e\u985e",
-                        total: "\u5c0f\u8a08",
-                        shippingFee: "\u914d\u9001\u6599",
-                        subtotal: "\u5408\u8a08",
+                        title: "sản phẩm có trong giỏ hàng",
+                        item: "tên sản phẩm",
+                        price: "đơn giá",
+                        quantity: "số lượng",
+                        category: "loại",
+                        total: "số tiền",
+                        shippingFee: "phí vận chuyển",
+                        subtotal: "tổng số",
                         check: "\u6ce8\u6587\u753b\u9762\u3078\u9032\u3080",
                         "continue": "\u30b7\u30e7\u30c3\u30d4\u30f3\u30b0\u3092\u7d9a\u3051\u308b"
                     },
@@ -1357,22 +1359,22 @@ I18n.translations = {
                         couponCode: "\u30af\u30fc\u30dd\u30f3\u30b3\u30fc\u30c9",
                         couponCodeErr: "\u30af\u30fc\u30dd\u30f3\u30b3\u30fc\u30c9\u304c\u9593\u9055\u3063\u3066\u3044\u307e\u3059\u3002",
                         couponUse: "\u4f7f\u7528",
-                        receiverAddress: "\u304a\u5ba2\u69d8\u60c5\u5831",
+                        receiverAddress: "thông tin khách hàng",
                         shippingAddress: "\u304a\u5c4a\u3051\u5148\u60c5\u5831",
-                        nameInfo: "\u304a\u540d\u524d",
-                        firstName: "\u59d3",
-                        lastName: "\u540d",
-                        postalCode: "\u90f5\u4fbf\u756a\u53f7",
+                        nameInfo: "họ tên",
+                        firstName: "họ",
+                        lastName: "tên",
+                        postalCode: "mã bưu chính",
                         postalCodeWarning: "\u90f5\u4fbf\u756a\u53f7\u306f\u5168\u3066\u7d9a\u3051\u3066\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002",
-                        address: "\u3054\u4f4f\u6240",
-                        tel: "\u96fb\u8a71\u756a\u53f7",
+                        address: "địa chỉ",
+                        tel: "số điện thoại",
                         tel_warning: "\u203b\u96fb\u8a71\u756a\u53f7\u306f\u5168\u3066\u7d9a\u3051\u3066\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002",
-                        country: "\u90fd\u9053\u5e9c\u770c",
-                        email: "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        country: "tỉnh/thành phố",
+                        email: "địa chỉ thư điện tử",
                         email2: "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9(\u78ba\u8a8d)",
                         emailWarning: "\u203b\u30aa\u30fc\u30c0\u30fc\u306e\u304a\u63a7\u3048\u30e1\u30fc\u30eb\u304c\u5c4a\u304d\u307e\u3059\u3002\u5fc5\u305a\u53d7\u4fe1\u3067\u304d\u308b\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002",
                         emailConfirm: "\u203b\u78ba\u8a8d\u306e\u305f\u3081\u3082\u3046\u4e00\u5ea6\u5165\u529b\u3057\u3066\u4e0b\u3055\u3044\u3002",
-                        notes: "\u5099\u8003\u6b04",
+                        notes: "ghi chú",
                         notesWarning: "\u203b\u5fc5\u8981\u3067\u3042\u308c\u3070\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002",
                         sameAddress: "\u4e0a\u8a18\u3068\u540c\u3058\u4f4f\u6240\u306b\u914d\u9001\u3059\u308b",
                         thanks: "\u3054\u8cfc\u5165\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059",
@@ -1400,11 +1402,11 @@ I18n.translations = {
                         },
                         convenienceStoreNotification: "\u4e0b\u8a18\u306e\u756a\u53f7\u306f\u304a\u652f\u6255\u3044\u624b\u7d9a\u304d\u306b\u5fc5\u8981\u3068\u306a\u308a\u307e\u3059\u306e\u3067\u3001\u5fc5\u305a\u304a\u63a7\u3048\u304f\u3060\u3055\u3044\u3002",
                         optional: "\u4efb\u610f",
-                        input: "\u5165\u529b",
-                        confirm: "\u78ba\u8a8d",
-                        complete: "\u5b8c\u4e86",
-                        confirmEmail: "\u203b\u5165\u529b\u3057\u305f\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u306b\u304a\u9593\u9055\u3044\u306a\u3044\u304b\u3001\u3082\u3046\u4e00\u5ea6\u3054\u78ba\u8a8d\u304f\u3060\u3055\u3044\u3002",
-                        exampleAddress: "\u4f8b\uff09\u6e0b\u8c37\u533a\u795e\u53571-20-15 \u56fd\u969b101\u53f7\u9928\u30d3\u30eb2\u968e",
+                        input: "nhập thông tin",
+                        confirm: "xác nhận",
+                        complete: "hoàn thành",
+                        confirmEmail: "xin vui lòng kiểm tra lại địa chỉ thư điện tử",
+                        exampleAddress: "ví dụ: Lô I-415, chung cư tây thạnh...",
                         termsOfService: "\u5229\u7528\u898f\u7d04\u306f\u3053\u3061\u3089",
                         privacyPolicy: "\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30dd\u30ea\u30b7\u30fc\u306f\u3053\u3061\u3089"
                     },
@@ -1412,11 +1414,11 @@ I18n.translations = {
                         download: "\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9"
                     },
                     error: {
-                        name: "\u540d\u524d\u3092\u5165\u529b\u3057\u3066\u4e0b\u3055\u3044",
-                        postalCode: "\u90f5\u4fbf\u756a\u53f7\u3092\u5165\u529b\u3057\u3066\u4e0b\u3055\u3044",
-                        address: "\u4f4f\u6240\u3092\u5165\u529b\u3057\u3066\u4e0b\u3055\u3044",
-                        tel: "\u96fb\u8a71\u756a\u53f7\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044",
-                        email: "\u6709\u52b9\u306a\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044",
+                        name: "hãy nhập họ tên",
+                        postalCode: "hãy nhập mã bưu chính",
+                        address: "hãy nhập địa chỉ",
+                        tel: "hãy nhập số điện thoại",
+                        email: "hãy nhập đia chỉ thư điện tử",
                         notes: "2000\u6587\u5b57\u4ee5\u5185\u3067\u5165\u529b\u3057\u3066\u4e0b\u3055\u3044",
                         credit: {
                             type: "\u30ab\u30fc\u30c9\u7a2e\u985e\u3092\u9078\u629e\u3057\u3066\u4e0b\u3055\u3044",
@@ -1481,7 +1483,7 @@ I18n.translations = {
                     }
                 },
                 prefectures: ["\u5317\u6d77\u9053", "\u9752\u68ee\u770c", "\u5ca9\u624b\u770c", "\u5bae\u57ce\u770c", "\u79cb\u7530\u770c", "\u5c71\u5f62\u770c", "\u798f\u5cf6\u770c", "\u8328\u57ce\u770c", "\u6803\u6728\u770c", "\u7fa4\u99ac\u770c", "\u57fc\u7389\u770c", "\u5343\u8449\u770c", "\u6771\u4eac\u90fd", "\u795e\u5948\u5ddd\u770c", "\u65b0\u6f5f\u770c", "\u5bcc\u5c71\u770c", "\u77f3\u5ddd\u770c", "\u798f\u4e95\u770c", "\u5c71\u68a8\u770c", "\u9577\u91ce\u770c", "\u5c90\u961c\u770c", "\u9759\u5ca1\u770c", "\u611b\u77e5\u770c", "\u4e09\u91cd\u770c", "\u6ecb\u8cc0\u770c", "\u4eac\u90fd\u5e9c", "\u5927\u962a\u5e9c", "\u5175\u5eab\u770c", "\u5948\u826f\u770c", "\u548c\u6b4c\u5c71\u770c", "\u9ce5\u53d6\u770c", "\u5cf6\u6839\u770c", "\u5ca1\u5c71\u770c", "\u5e83\u5cf6\u770c", "\u5c71\u53e3\u770c", "\u5fb3\u5cf6\u770c", "\u9999\u5ddd\u770c", "\u611b\u5a9b\u770c", "\u9ad8\u77e5\u770c", "\u798f\u5ca1\u770c", "\u4f50\u8cc0\u770c", "\u9577\u5d0e\u770c", "\u718a\u672c\u770c", "\u5927\u5206\u770c", "\u5bae\u5d0e\u770c", "\u9e7f\u5150\u5cf6\u770c", "\u6c96\u7e04\u770c"],
-                nonSelect: "\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044",
+                nonSelect: "hãy lựa chọn",
                 paymentMethods: {
                     credit: "\u30af\u30ec\u30b8\u30c3\u30c8\u30ab\u30fc\u30c9",
                     bank_transfer: "\u9280\u884c\u632f\u8fbc",
@@ -11109,7 +11111,8 @@ app.config(["$httpProvider", function($httpProvider) {
     $scope.I18n = I18n, $scope.item_id = $routeParams.item_id, $scope.clicked_submit = !1, $scope.review_key = $location.search().review_key, $scope.review_key || $location.url("/"), $http.get("/items/" + $scope.item_id).success(function(res) {
         $scope.item = res;
         var images = $scope.item.images[0].name.split(".");
-        $scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + images[0] + "_50x50." + images[1], $scope.submit = function() {
+        //$scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + images[0] + "_50x50." + images[1], $scope.submit = function() {
+    	$scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + images[0] + "." + images[1], $scope.submit = function() {
             $scope.clicked_submit || ($scope.clicked_submit = !0, $scope.form.$valid !== !1 && ($scope.review.item_id = $scope.item_id, $scope.review.review_key = $scope.review_key, $scope.review.score = $scope.rate, $scope.pending = !0, $http.post("/create_review", {
                 review: $scope.review
             }).success(function() {
@@ -11678,7 +11681,8 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                             item_quantity.quantity >= item.quantity + stock_quantity && (item.quantity += stock_quantity)
                         } else if (stock_quantity) {
                             var image_name = item_info.images[0].name.split(".");
-                            item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_50x50." + image_name[1];
+                            //item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_50x50." + image_name[1];
+                            item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1];
                             var delivery_method_id = item_info.delivery_method ? item_info.delivery_method.id : null;
                             $rootScope.cart.items.push({
                                 item_id: item_info.id,

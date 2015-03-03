@@ -1269,9 +1269,9 @@ I18n.translations = {
                         back: "\u30b9\u30c8\u30a2\u30c8\u30c3\u30d7\u3078\u623b\u308b"
                     },
                     show: {
-                        tax: "\u203b\u3053\u306e\u4fa1\u683c\u306b\u306f\u6d88\u8cbb\u7a0e8%\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059",
+                        tax: "Thuế",
                         download: "\u203b\u3053\u306e\u5546\u54c1\u306f\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u5546\u54c1\u3068\u306a\u308a\u307e\u3059",
-                        freeShipping: "\u203b\u9001\u6599\u7121\u6599\u3067\u3059",
+                        freeShipping: "Miễn phí vận chuyển",
                         orderFee: "\u203b\u5225\u9014\u9001\u6599\u304c\u304b\u304b\u308a\u307e\u3059",
                         orderFee2: "\u5186\u306e\u914d\u9001\u6599\u304c\u304b\u304b\u308a\u307e\u3059\u3002",
                         freeOrder: "1\u56de\u306e\u3054\u6ce8\u6587\u306b\u3064\u304d",

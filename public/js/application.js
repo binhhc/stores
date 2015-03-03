@@ -610,7 +610,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                 signup_terms: !0,
                 login: !1
             }, $scope.enablereceiveMethodAddon && ($scope.customer.receive_method = $scope.preset.receive_methods[0]), storesJpAddonUtility.isEnableAddon("follow") === !0 ? CurrentUser.then(function() {
-                $scope.customer.login = !0, $scope.customer.signup_terms = !1, $scope.address_change_text = "\u4e0a\u8a18\u306e\u5185\u5bb9\u3067\u4f4f\u6240\u3092\u767b\u9332\u3059\u308b", "ja" === I18n.locale && $http.get("/profile_address").success(function(address) {
+                $scope.customer.login = !0, $scope.customer.signup_terms = !1, $scope.address_change_text = "Đồng ý với nội dung trên", "ja" === I18n.locale && $http.get("/profile_address").success(function(address) {
                     $scope.customer.email = address.email, $scope.customer.email2 = address.email, address.zip && (angular.extend($scope.customer, address), $scope.address_change_text = "\u4e0a\u8a18\u306e\u5185\u5bb9\u3067\u4f4f\u6240\u3092\u5909\u66f4\u3057\u3066\u4fdd\u5b58\u3059\u308b")
                 }), $http.get("/user_cc").success(function(cc) {
                     $scope.customer.cc_info = cc, $scope.customer.use_registered_cc = !0
@@ -1316,7 +1316,7 @@ I18n.translations = {
                         shippingFee: "Phí vận chuyển",
                         subtotal: "Tổng số",
                         check: "\u6ce8\u6587\u753b\u9762\u3078\u9032\u3080",
-                        "continue": "\u30b7\u30e7\u30c3\u30d4\u30f3\u30b0\u3092\u7d9a\u3051\u308b"
+                        "continue": "Tiếp tục mua hàng"
                     },
                     inquiry: {
                         title: "Liên hệ",
@@ -1381,7 +1381,7 @@ I18n.translations = {
                         confirmMailAlert1: "\u3054\u6ce8\u6587\u3044\u305f\u3060\u304f\u3068\u304a\u63a7\u3048\u306e\u30e1\u30fc\u30eb\u304c\u3059\u3050\u306b\u81ea\u52d5\u9001\u4fe1\u3055\u308c\u307e\u3059\u3002",
                         confirmMailAlert2: "\u30e1\u30fc\u30eb\u304c\u5c4a\u304b\u306a\u3044\u5834\u5408\u306f\u3001\u304a\u554f\u3044\u5408\u308f\u305b\u30d5\u30a9\u30fc\u30e0\u3088\u308a\u304a\u554f\u3044\u5408\u308f\u305b\u3044\u305f\u3060\u304d\u307e\u3059\u69d8\u304a\u9858\u3044\u7533\u3057\u4e0a\u3052\u307e\u3059\u3002",
                         credit: {
-                            title: "\u304a\u652f\u6255\u3044\u65b9\u6cd5",
+                            title: "Phương thức thanh toán",
                             type: "\u30ab\u30fc\u30c9\u306e\u7a2e\u985e",
                             typeDescription1: "\u3053\u3061\u3089\u306e\u30af\u30ec\u30b8\u30c3\u30c8\u30ab\u30fc\u30c9\u3092",
                             typeDescription2: "\u3054\u5229\u7528\u3044\u305f\u3060\u3051\u307e\u3059",
@@ -1389,7 +1389,7 @@ I18n.translations = {
                             holder: "\u30ab\u30fc\u30c9\u540d\u7fa9",
                             until: "\u6709\u52b9\u671f\u9650",
                             cardId: "\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3\u30fc\u30b3\u30fc\u30c9",
-                            preview: "\u3054\u78ba\u8a8d",
+                            preview: "Xác nhận",
                             cancel: "\u30ad\u30e3\u30f3\u30bb\u30eb",
                             back: "\u623b\u308b",
                             example: "\u4f8b",
@@ -1407,8 +1407,8 @@ I18n.translations = {
                         complete: "Hoàn thành",
                         confirmEmail: "Xin vui lòng kiểm tra lại địa chỉ thư điện tử",
                         exampleAddress: "Ví dụ: Lô I-415, chung cư tây thạnh...",
-                        termsOfService: "\u5229\u7528\u898f\u7d04\u306f\u3053\u3061\u3089",
-                        privacyPolicy: "\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30dd\u30ea\u30b7\u30fc\u306f\u3053\u3061\u3089"
+                        termsOfService: "Điều khoản sử dụng",
+                        privacyPolicy: "Chính sách bảo mật"
                     },
                     download: {
                         download: "\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9"

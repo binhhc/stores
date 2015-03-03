@@ -40,7 +40,7 @@
           <dd class="lists" ng-repeat="cart_item in cart.items">
             <dl>
               <dd class="sz_xs btn_delete_mini"><a href="" ng-click="cart.remove(cart_item)">Delete</a></dd>
-              <dd class="sz_i"><img ng-src="{[cart_item.image.src]}"></dd>
+              <dd class="sz_i"><img ng-src="{[cart_item.image.src]}" width="50px" height="50px"></dd>
               <dd class="sz_l">{[cart_item.name]}</dd>
               <dd class="sz_s tl">{[cart_item.variation]}</dd>
               <dd class="sz_s tr">Â¥{[cart_item.price | number:0]}</dd>

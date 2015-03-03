@@ -71,7 +71,7 @@ class UserItem extends Model{
             ->get();
         return !empty($userItems) ? $userItems : array();
     }
-    
+
     /**
      * Format Money
      *
@@ -82,26 +82,26 @@ class UserItem extends Model{
     public static function formatPrice($price = 0){
         return Config::get('constants.item.currency')." ".number_format($price, 2, '.', ',');
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/02/05
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function getFeilds(){
         return array('id','user_id','category_id','name','price','image_url','introduce','order');
     }
-	
+
     public function userItemQuatity(){
         return $this->hasMany('UserItemQuatity', 'item_id');
     }
-    
+
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
-     * 
+     *
      * @param       $userId
      * get user item from user_id
      */
@@ -109,20 +109,20 @@ class UserItem extends Model{
         $userItems = UserItem::with('userItemQuatity')
             ->where('user_items.user_id', '=', $userId)
             ->where('user_items.public_flg', '=', true);
-            
+
         if (Request::get('category_id')){
             $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
         }
-            
+
         $userItems =  $userItems->paginate(20);
 
         return !empty($userItems) ? $userItems : array();
     }
-    
+
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
-     * 
+     *
      * @param       $userId
      * get user item from item_id
      */
@@ -132,4 +132,11 @@ class UserItem extends Model{
             ->first();
         return !empty($userItems) ? $userItems : array();
     }
+	public static function updatePlusOne($userId,$pos = 0){
+       return self::
+               where('user_id', '=', $userId)
+               ->where('public_flg','>',0)
+               ->where('order','>',$pos)
+               ->increment('order');
+   }
 }

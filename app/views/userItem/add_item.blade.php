@@ -17,13 +17,13 @@
         </p>
     </div>
     <!-- /Mybook -->
-    {{Form::open(array('url' => 'add_item', 'method' => 'post', 'files' => true))}}
+    {{Form::open(array('url' => 'add_item', 'method' => 'post', 'files' => true, 'enctype' => 'multipart/form-data', 'id' => 'formItem'))}}
     <dl class="form_basic">
         <dd>
             <dl class="cols">
             <dt>Tên mặt hàng</dt>
                 <dd>
-                    {{Form::text('name', null, array('class'=>'item_name'))}}
+                    {{Form::text('name', null, array('class'=>'item_name', 'width' => '502'))}}
                     <p class="error err_name"></p>
                 </dd>
             </dl>
@@ -46,11 +46,12 @@
             <dl class="cols">
                 <dt>Hình mặt hàng</dt>
                 <dd>
-                    {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup', 'multiple'=>true, 'style'=>'display:none'))}}
+                    {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup', 'multiple'=>'multiple'))}}
                     <input type="button" onclick="$('#imgInput').click();" value="Chọn hình ảnh" />
                     <ul class="images dragdrop image" id="result">
                         <!-- image view -->
                     </ul>
+                    <div id="image_arrays"></div>
                     <p class="error err_image"></p>
                 </dd>
             </dl>
@@ -183,9 +184,10 @@
                     <button type="submit" class="btn_submit_item">Lưu lại</button>
                 </dd>
             </dl>
-            <dl class="btn_single btn_low none" style="display: none;">
-                <button type="button" disabled="" class="send"><span>Đang gửi</span></button>
-            </dl>
+           <dl class="btn_single btn_low none" ng-show="pending" style="display: none;">
+				<button class="send" disabled="" type="button">
+				<span>Đang xử lý</span>
+				</button>
         </dd>
     </dl>
     {{Form::close()}}
@@ -224,24 +226,24 @@
     <ul class="categories">
         <li class="name_category">
             <div class="styled_checkbox">
-                <input type="checkbox" class="chk_category">
-                <span class="check_category"></span>
+                <input type="checkbox" class="chk_category" checked="checked">
+                <span class="check_category checked-true"></span>
             </div>
             {{Form::hidden('category_id[]', null, array('class'=>'category_id'))}}
             <label class="category_name"></label>
         </li>
-        <li class="menu_category">
+       <li class="menu_category">
             <span class="edit_category">
                 <a href="#" class="btn_edit_category" data-toggle="modal" data-target="#myModal">
-                    <img src="img/items/icon_category_edit.gif">
+                    {{HTML::image('img/items/icon_category_edit.gif')}}
                 </a>
             </span>
             <span>
                 <a href="" class="btn_delete_category">
-                    <img src="img/items/icon_category_delete.gif">
+                    {{HTML::image('img/items/icon_category_delete.gif')}}
                 </a>
             </span>
-            <img class="move_category" src="img/items/icon_category_move.gif">
+            {{HTML::image('img/items/icon_category_move.gif', null, array('class'=>'move_category'))}}
         </li>
     </ul>
 </div>
@@ -249,86 +251,6 @@
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
-
-    var ftype = new Array();
-    $("#imgInput").change(function () {
-        readURL(this);
-    });
-
-    function readURL(input) {
-        var files = input.files;
-        var output = document.getElementById("result");
-        var count = 0;
-        var count1 = 0;
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var picReader = new FileReader();
-            var divid = 'div_' + i;
-            var spanid = 'span_' + i;
-            picReader.addEventListener("load", function (event) {
-                count_img = $('#result').find('li').length;
-                var picFile = event.target;
-                var picnames = files[count].name;
-                var mimetypes = picFile.result.split(',');
-                var mimetype1 = mimetypes[0];
-                var mimetype = mimetype1.split(':')[1].split(';')[0];
-
-
-                count++;
-                if(count_img < 4){
-                    count_img++;
-                    var div = document.createElement("li");
-                    div.setAttribute('id', 'div_' + count);
-                    div.setAttribute('class', 'divclass');
-                    if (mimetype.match('image')) {
-                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
-                            "title='" + picnames + "' width='96' height='80' alt='Item Image' style='position:relative;' data-valu='" + mimetype + "'/><span class='boxclose' style='cursor:pointer' id='span_" + count + "'>x</span>";
-
-                    }
-                    output.insertBefore(div, null);
-                }
-
-            });
-
-            picReader.readAsDataURL(file);
-        }
-    }
-
-
-    $('body').on('click','.boxclose','',function(e){
-        var spanid = $(this).attr('id');
-        var splitval = spanid.split('_');
-        $('#div_' + splitval[1]).remove();
-    });
-
-
-    //load ajax image
-    // function previewFile(){
-    //     // var preview = document.querySelector('#image_back'); //selects the query named img
-    //     var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-    //     var reader  = new FileReader();
-
-    //     if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
-    //         alert('Không đúng định dạng ảnh!');
-    //         $('input[name=image_url]').val('');
-    //         // preview.src = "";
-    //         submit_flg = false;
-    //     }else{
-    //         if(file){
-    //             reader.readAsDataURL(file); //reads the data as a URL
-    //         } else {
-    //             // preview.src = "";
-    //         }
-    //     }
-
-    //     reader.onloadend = function () {
-    //         var count_img = $('#image_back li').length;
-    //         if(count_img < 4){
-    //             $('#image_back').append("<li><img name=image[]  src="+reader.result+" width=98 height=87></li>");
-    //         }
-    //     }
-    // }
-
 </script>
 {{HTML::script('js/add_item.js')}}
 

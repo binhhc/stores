@@ -40,7 +40,8 @@ class UserItemController extends BaseController {
 		foreach($items as &$value) {
 			$item_quantity = UserItemQuatity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
-			$value['image_url'] = $url . $value['image_url'];
+			$names_image = explode(',', $value['image_url']);
+			$value['image_url'] = $url .$names_image[0] ;
 			$value['price'] = UserItem::formatPrice($value['price']);
 			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
 
@@ -85,7 +86,7 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
-       $user_id = Session::get('user.id');
+        $user_id = Session::get('user.id');
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         $view =  View::make('elements.list_item_ajax', $data)->render();
         $response = array(
@@ -193,6 +194,13 @@ class UserItemController extends BaseController {
         {
              $item_id = trim(Input::get('item_id'));
              $success = 0;
+             $item = UserItem::where('id', $item_id)->first()->toArray();
+             $images_name = explode(',',$item['image_url']);
+             $folder_name = User::getNameStore();
+             // delete image of item
+             foreach ($images_name as $key) {
+				unlink( public_path() . '/files/'.$folder_name['USER_NAME'] . '/' . $key);
+             }
              if(UserItem::where('id', $item_id)->delete()){
                 $success = 1;
              }
@@ -209,7 +217,7 @@ class UserItemController extends BaseController {
      */
     public function show_add_item(){
         $user = Session::get('user');
-        $category = UserCategory::where('user_id', $user['id'])->get();
+        $category = UserCategory::where('user_id', $user['id'])->orderBy('order', 'asc')->get();
         return View::make('userItem.add_item')->with(array('title_for_layout' => 'Thêm mới mặt hàng', 'category' => $category));
     }
 
@@ -220,6 +228,8 @@ class UserItemController extends BaseController {
      */
     public function add_item(){
         $input = Input::all();
+        $image = $input['image_name'];
+        $input['image_name'] = implode(',', $image);
 
         $v = UserItem::validate($input);
         if($v->passes()){
@@ -233,20 +243,7 @@ class UserItemController extends BaseController {
             }
             $item->name = $input['name'];
             $item->price = $input['price'];
-            $image = Input::file('image_url');
-            if(Input::file('image_url')){ // not change image_url
-                $folder_name = User::getNameStore();
-                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
-                if(!is_dir($folder_user)){
-                    mkdir($folder_user);
-                    chmod($folder_user, 0777);
-                }
-
-                $filename = $image->getClientOriginalName();
-                $upload = Input::file('image_url')->move($folder_user, $filename);
-
-                $item->image_url = $filename;
-            }
+            $item->image_url = $input['image_name'];
 
             $item->introduce = $input['description'];
             $item->save();
@@ -268,7 +265,7 @@ class UserItemController extends BaseController {
                 }
             }
         }
-        return Redirect::to('/item_management');
+        return Redirect::to('/item_management')->with('success', 'Bạn đã tạo sản phẩm thành công!');
     }
 
     /**
@@ -287,15 +284,14 @@ class UserItemController extends BaseController {
             return Redirect::to('/item_management');
         }
 
+        $folder_name = User::getNameStore();
         $user = Session::get('user');
-
         $item = UserItem::where('id', '=', $id)->first();
-
         $item_quantity = UserItemQuatity::where('item_id', '=', $id)->get();
 
-        $category = UserCategory::where('user_id', '=', $user['id'])->get();
+        $category = UserCategory::where('user_id', '=', $user['id'])->orderBy('order', 'asc')->get();
         return View::make('userItem.edit_item')
-            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'item_quantity' => $item_quantity));
+            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'url_image' =>  '/files/'.$folder_name['USER_NAME']. '/' ,'item_quantity' => $item_quantity));
     }
 
     /**
@@ -305,6 +301,10 @@ class UserItemController extends BaseController {
      */
     public function edit_item(){
         $input = Input::all();
+        $image = $input['image_name'];
+        $input['image_url']  =  implode(',', $image);
+
+
         $v = UserItem::validate($input);
         if($v->passes()){
             //get user information from session
@@ -316,21 +316,6 @@ class UserItemController extends BaseController {
                 $category = implode(',', $input['category_id']);
             }
 
-            $image = Input::file('image_url');
-            $filename = '';
-            if(Input::file('image_url')){ // not change image_url
-                $folder_name = User::getNameStore();
-                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
-                if(!is_dir($folder_user)){
-                    mkdir($folder_user);
-                    chmod($folder_user, 0777);
-                }
-
-                $filename = $image->getClientOriginalName();
-                $upload = Input::file('image_url')->move($folder_user, $filename);
-            }
-
-
             UserItem::where('id', $item_id)
                 ->update(
                     array(
@@ -339,7 +324,7 @@ class UserItemController extends BaseController {
                         'name' => $input['name'],
                         'price' => $input['price'],
                         'introduce' => $input['description'],
-                        'image_url' => $filename,
+                        'image_url' =>  $input['image_url'] ,
                     )
                 );
 
@@ -360,7 +345,7 @@ class UserItemController extends BaseController {
                 }
             }
         }
-        return Redirect::to('/item_management');
+        return Redirect::to('/item_management')->with('success', 'Bạn đã chỉnh sửa thành công sản phẩm!');
     }
 
 
@@ -433,5 +418,77 @@ class UserItemController extends BaseController {
         }
 
         return Response::json($success);
+    }
+	/**
+     * sort category
+     * @author OanhHa
+     * @since 2015/03/02
+     */
+    public function sort_category() {
+        if(Request::ajax())
+        {
+             $items_array = Input::get('items_array');
+             $this->update_category($items_array);
+             return Response::json('1');
+        }
+    }
+    /**
+     * Update order for category
+     * @author OanhHa
+     * @since 2015/03/02
+     */
+    public function update_category($items_array) {
+    	$user_id = $this->getUserId();
+    	$i = 0;
+        foreach($items_array as $item) {
+        	$i ++ ;
+            UserCategory::where('id' ,  $item)
+                    ->update(array('order' => $i,  'updated_user' => $user_id));
+
+        }
+    }
+    /**
+     * Upload image for item
+     * @author OanhHa
+     * @since 2015/03/03
+     */
+    public function upload_image_item() {
+    	if(Request::ajax())
+        {
+        	 $input = Input::all();
+        	 $image = $input[0];
+
+	         $folder_name = User::getNameStore();
+                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+                if(!is_dir($folder_user)){
+                    mkdir($folder_user);
+                    chmod($folder_user, 0777);
+                }
+
+                $filename = $image->getClientOriginalName();
+                $upload = $image->move($folder_user, $filename);
+                $newname = time(). $filename;
+                rename($folder_user.'/'. $filename, $folder_user. '/' . $newname );
+                $response = array(
+                	'name' => $newname,
+                	'source' => '/files/'.$folder_name['USER_NAME']. '/' . $newname
+                );
+                return Response::json($response);
+        }
+    }
+    /**
+     * Remove item image
+     * @author OanhHa
+     * @since 2015/03/03
+     */
+    public function remove_image() {
+	    if(Request::ajax())
+	        {
+	        	 $input = Input::all();
+	        	 $image = $input['image_name'];
+		         $folder_name = User::getNameStore();
+	             $filename = public_path() . '/files/'.$folder_name['USER_NAME'] . '/' . $image;
+	             unlink($filename);
+	        }
     }
 }

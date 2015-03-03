@@ -17,7 +17,7 @@
         </p>
     </div>
     <!-- /Mybook -->
-    {{Form::open(array('url' => 'edit_item', 'method' => 'post', 'files' => true))}}
+    {{Form::open(array('url' => 'edit_item', 'method' => 'post', 'files' => true,  'id' => 'formItem'))}}
     <dl class="form_basic">
         <dd>
             <dl class="cols">
@@ -47,11 +47,23 @@
             <dl class="cols">
                 <dt>Hình mặt hàng</dt>
                 <dd>
-                    <!-- <input class="fileup" type="file" id="file" name="image" accept="image/jpeg,image/png,image/gif"> -->
-                    {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'class'=>'fileup', 'multiple'=>true))}}
-                    <ul class="images dragdrop image" id="image_back">
+                {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup', 'multiple'=>'multiple'))}}
+                    <ul class="images dragdrop image" id="result">
+                    <?php $item->image_url = explode(',', $item->image_url); $count = 0; ?>
+                    <?php foreach ($item->image_url as $key) {?>
+                     	<li id="div_<?php echo $count?>" class="divclass">
+                     	 {{HTML::image($url_image . $key, 'Hình ảnh sản phẩm', array('width' => 96, 'title' => $key,'height' => 80, 'style' => 'position:relative','class' => 'thumbnail'))}}
+							<span id="span_<?php echo $count?>" class="boxclose" style="cursor:pointer">x</span>
+						</li>
+                    <?php $count ++ ; }?>
                         <!-- ngRepeat: image in item.images -->
                     </ul>
+                     <div id="image_arrays">
+
+                      <?php $count = 0; foreach ($item->image_url as $key) {?>
+                      <input type='hidden' name='image_name[]' id="input_<?php echo $count?>" value="<?php echo $key?>" >
+                      <?php $count ++ ;}?>
+                     </div>
                     <p class="error err_image"></p>
                 </dd>
             </dl>
@@ -185,7 +197,7 @@
                 </dd>
             </dl>
             <dl class="btn_single btn_low none" style="display: none;">
-                <button type="button" disabled="" class="send"><span>Đang gửi</span></button>
+                <button type="button" disabled="" class="send"><span>Đang xử lý</span></button>
             </dl>
         </dd>
     </dl>
@@ -225,8 +237,8 @@
     <ul class="categories">
         <li class="name_category">
             <div class="styled_checkbox">
-                <input type="checkbox" class="chk_category">
-                <span class="check_category"></span>
+                <input type="checkbox" class="chk_category" checked="checked">
+                <span class="check_category checked-true"></span>
             </div>
             {{Form::hidden('category_id[]', null, array('class'=>'category_id'))}}
             <label class="category_name"></label>
@@ -299,7 +311,7 @@
         }
 
 
-        $('.fileup').change(function(){
+      /* $('.fileup').change(function(){
             // var preview = document.querySelector('#image_back'); //selects the query named img
             var file    = document.querySelector('input[type=file]').files[0]; //sames as here
             var reader  = new FileReader();
@@ -328,7 +340,7 @@
                     // $('#image_back .preview').append(clone_image);
                 }
             }
-        });
+        });*/
 
     });
 

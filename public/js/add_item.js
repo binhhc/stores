@@ -1,4 +1,123 @@
-    $(document).on("click", '.d_quality',function() {
+ 	var base_url = '';
+    pathArray = location.href.split( '/' );
+    protocol = pathArray[0];
+    host = pathArray[2];
+    base_url = protocol + '//' + host;
+    var ftype = new Array();
+    $("#imgInput").change(function (event) {
+    	files = event.target.files;
+
+    	if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(files[0].name)){
+            alert('Không đúng định dạng ảnh!');
+            return;
+        }
+
+    	count_img = $('#result').find('li').length;
+    	var output = document.getElementById("result");
+    	if(count_img >=4) {
+    		 alert('Bạn chỉ được upload tối đa 4 hình ảnh cho sản phẩm!');
+             return;
+    	}
+    	var data = new FormData();
+
+        // Thêm dữ liệu từ biến files vào form
+        $.each(files, function(key, value) {
+            data.append(key, value);
+        });
+          $.ajax({
+            type: "POST",
+            url: "/upload_image_item",
+            data: data,
+            global: true,
+            dataType: 'json',
+            processData: false, // Không cho jQuery xử lý lại dữ liệu form
+            contentType: false,
+            success: function(response) {
+                     var div = document.createElement("li");
+                     div.setAttribute('id', 'div_' + count_img);
+                     div.setAttribute('class', 'divclass');
+                         div.innerHTML = "<img class='thumbnail' src='" + base_url + response.source + "'" +
+                             "title='" + response.name + "' width='96' height='80' alt='Item Image' style='position:relative;'"  + " /><span class='boxclose' style='cursor:pointer' id='span_" + count_img + "'>x</span>";
+                         input = "<input type='hidden' name='image_name[]' id='input_"+ count_img + "' value='" + response.name + "' >";
+                         $('#image_arrays').append(input);
+                     output.insertBefore(div, null);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            },
+        });
+        //readURL(this);
+    });
+
+    function readURL(input) {
+        var files = input.files;
+
+        var output = document.getElementById("result");
+        var count = 0;
+        var count1 = 0;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var picReader = new FileReader();
+            var divid = 'div_' + i;
+            var spanid = 'span_' + i;
+            picReader.addEventListener("load", function (event) {
+                count_img = $('#result').find('li').length;
+                var picFile = event.target;
+                var picnames = files[count].name;
+                var mimetypes = picFile.result.split(',');
+                var mimetype1 = mimetypes[0];
+                var mimetype = mimetype1.split(':')[1].split(';')[0];
+
+
+                count++;
+                if(count_img < 4){
+                    count_img++;
+                    var div = document.createElement("li");
+                    div.setAttribute('id', 'div_' + count);
+                    div.setAttribute('class', 'divclass');
+                    if (mimetype.match('image')) {
+                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picnames + "' width='100' height='100' alt='Item Image' style='position:relative;' data-valu='" + mimetype + "'/><span class='boxclose' style='cursor:pointer' id='span_" + count + "'>x</span>";
+                        input = "<input type='hidden' name='image_name[]' value='" + picnames + "' >";
+                        $('#image_arrays').append(input);
+                    }
+                    output.insertBefore(div, null);
+
+                } else {
+                    alert('Bạn chỉ được upload tối đa 4 hình ảnh cho sản phẩm!');
+                    return;
+                }
+
+
+            });
+
+            picReader.readAsDataURL(file);
+        }
+    }
+
+
+    $('body').on('click','.boxclose','',function(e){
+        var spanid = $(this).attr('id');
+        var splitval = spanid.split('_');
+        $('#div_' + splitval[1]).remove();
+        var name_image =  $('#input_' + splitval[1]).val();
+        $('#input_' + splitval[1]).remove();
+        // remove image by ajax
+        $.ajax({
+            type: "POST",
+            url: "/remove_image",
+            data: {
+                image_name: name_image
+            },
+            global: true,
+            dataType: 'json',
+            success: function(response) {
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            },
+        });
+    });
+
+$(document).on("click", '.d_quality',function() {
         $(this).hide();
         $(this).parent().find('span.a_quality').show();
         $(this).closest('ul').find('input.number_quality').val('').attr('readonly', 'true');
@@ -35,14 +154,59 @@
         $(this).closest('ul').remove();
 
     });
+    function update_sort (listId) {
+   	 $.ajax({
+            type: "POST",
+            url: "/sort_category",
+            data: {
+                items_array: listId,
+            },
+            global: true,
+            dataType: 'json',
+            beforeSend: function() {
+            	$('.btn_pair').hide();
+                $('.btn_single').show();
+            },
+            success: function(response) {
+            	$('#formItem').submit();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            },
+        });
+   }
 
     $(document).ready(function(){
         //sort category
         $(function() {
-            $( "#sortable" ).sortable();
+        	$( "#sortable" ).sortable({
+            });
+
             $( "#sortable" ).disableSelection();
         });
 
+        $( "#result" ).sortable({
+    		start: function(event, ui) {
+    			//$(ui.item[0]).find('dl').css("background-color", "#F2F2F2");
+    			$(ui.item[0]).find('img').css("border", "1px dotted black");
+    		},
+    		stop:  function (event, ui) {
+    			//$(event.target).parent().css("background-color", "#F2F2F2");
+    			var listId = [];
+    			  $('#result li').each(function(index) {
+    				  var name = $(this).find('img').attr('title');
+    				  listId.push(name);
+
+                  });
+    			  $('#image_arrays').empty();
+
+    			  for (var k in listId) {
+    				  input = "<input type='hidden' name='image_name[]' id='input_"+ k + "' value='" + listId[k] + "' >";
+    				  $('#image_arrays').append(input);
+
+    			  }
+    		}
+        });
+        $( "#sortable dl" ).disableSelection();
         //sort image
         $(function() {
             $( "#result" ).sortable();
@@ -69,7 +233,7 @@
             if(item_price.length == 0 || !$.isNumeric(item_price)){
                 flg_price = false;
                 $('.err_price').empty();
-                $('.err_price').append('Vui lòng điền vào giá mặt hàng');
+                $('.err_price').append('Bạn hãy nhập một giá cả hợp lệ cho mặt hàng (>=100)');
             }else if(item_price < 100){
                 flg_price = false;
                 $('.err_price').empty();
@@ -114,8 +278,8 @@
                     var size_quality = $(this).find('.size_quality').val();
                     var number_quality = $(this).find('.number_quality').val();
 
-                    if(!size_quality.trim() || $.inArray(size_quality, arr_size) == -1){
-                        console.log($(this));
+                   // if(!size_quality.trim() || $.inArray(size_quality, arr_size) == -1){
+                    if(!size_quality.trim()){
                         flg_size_extend = false;
                         $(this).find('.size_extend').empty();
                         $(this).find('.size_extend').append('Vui lòng nhập kích cỡ');
@@ -148,7 +312,18 @@
 
             if(flg_name == false || flg_price == false || flg_image == false || flg_size == false || flg_quality_extend == false || flg_size_extend == false){
                 e.preventDefault();
+            } else {
+            	// update order for category
+            	var listId = [];
+  			    $('#sortable ul').each(function(index) {
+  				  var is_id = $(this).find('.category_id').val();
+  				  listId.push(is_id);
+
+                });
+  			    update_sort (listId);
+  			    e.preventDefault();
             }
+
         });
 
         //ajax edit category
@@ -226,6 +401,8 @@
 
                             clone_ul.find('.category_id').val(response.id);
                             clone_ul.find('.category_name').text(response.name);
+                            current_add.find('.category_name').val('');
+                            //current_add.find('.category_id').val('');
 
                             $('#sortable').append(clone_ul);
                         }else if(response.action == 'edit'){

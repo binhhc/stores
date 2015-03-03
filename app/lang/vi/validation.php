@@ -102,6 +102,11 @@ return array(
 			'url' => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
 
 		),
+		 'price' => array(
+		 	'required' => 'Vui lòng nhập giá của sản phẩm.',
+		 	 'numeric' => 'Giá của sản phẩm phải ở dạng số.',
+		 	 'min:100' => 'Giá sản phẩm nhỏ nhất là 100'
+		),
 		'facebook' => array(
 			'url' => 'Địa chỉ url của facebook không đúng.'
 		),

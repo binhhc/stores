@@ -2,6 +2,11 @@
 <script src="//connect.facebook.net/vi_VN/all.js"></script>
 {{HTML::script('/js/jquery-ui.min.js')}}
  {{HTML::script('/js/item_management.js')}}
+ <?php if(Session::has('success')) {?>
+<div id="alert_panel" class="success" style="display: block; opacity: 1.0; top: -10px;">
+    <p><?php echo Session::get('success');?></p>
+</div>
+<?php }?>
 <div id="alert_panel" class="success" style="display: none; opacity: 1.0; top: -10px;">
     <p>Đã xoá thành công!</p>
 </div>

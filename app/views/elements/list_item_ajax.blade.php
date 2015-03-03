@@ -1,3 +1,13 @@
+@if (count($items) === 0)
+    <span ng-hide="items.length">
+        <div id="nodata" ng-hide="orders.length">
+            <p>
+                {{HTML::image('img/main_page/icon_nodata1.png', '', array('width' => 301, 'height' => 297))}}
+            </p>
+            <h3>Không có thông tin mặt hàng</h3>
+        </div>
+    </span>
+    @else
 <?php $stt = 1;?>
  <div id="sortable">
 		@foreach ($items as $item)
@@ -61,3 +71,4 @@
 	</div>
 <!-- 								{{HTML::image($item['image_url'], 'Hình ảnh sản phẩm', array('width' => 50, 'height' => 50))}}
  -->
+ @endif

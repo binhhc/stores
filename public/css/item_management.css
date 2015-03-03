@@ -1781,20 +1781,6 @@ background-position: bottom;
     padding: 20px;
     width: 160px;
 }
-
-element.style {
-    padding-top: 58px;
-}
-body {
-    background: none repeat scroll 0 0 #fff;
-    color: #444;
-    font-family: sans-serif;
-    margin: 0 0 0 240px;
-    padding: 0;
-}
-html {
-    font-size: 82%;
-}
 .btn_low button.send span {
     background: url("../img/main_page/icon_loading2.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
     display: block;

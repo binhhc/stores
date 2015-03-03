@@ -27,7 +27,8 @@ class StoreController extends BaseController {
             'public_flg' => 1,
             'domain' => $domain,
             'sub'    => $parameters,
-            'url'   => 'http://'.$url[2].'/store_setting'
+            'url'   => 'http://'.$url[2].'/store_setting',
+            'prefecture' => json_encode(MsPrefecture::getJsonData())
         );
         
         return View::make('store.owner_store', $data);

@@ -61,6 +61,8 @@
         };
 
         //]]&gt;
+        var prefecture = <?php echo $prefecture?>;
+        
     </script>
     {{HTML::script('js/application.js')}}
     {{HTML::script('js/routes.js')}}

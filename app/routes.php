@@ -148,6 +148,17 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     {
         return App::make('StoreController')->tokushoho($id);
     });
+    
+    Route::get('/partials/c/stores/inquiry', function($id)
+    {
+        return App::make('StoreController')->inquiry($id);
+    });
+    
+    Route::get('/js/application.js', function()
+    {
+        return App::make('StoreController')->jsApplication();
+    });
+    
 });
 
 /*

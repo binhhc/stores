@@ -1,5 +1,5 @@
 
-<h2>{{I18n.store.checkout.credit.title}}</h2>
+<h2>{[I18n.store.checkout.credit.title]}</h2>
 <dl class="form_basic spb">
   <!-- <dd ng-hide="payment_methods.length == 1 && customer.payment_method[0] == 'credit'"> -->
   <dd>
@@ -10,11 +10,11 @@
           <li class="select_s">
             <div class="styled_select_thick payment_methods" ng-hide="payment_methods.length == 0">
               <select class="payment styled" ng-model="customer.payment_method" ng-options="pm[1] for pm in payment_methods" ng-change="cart.sum()"></select>
-              <span>{{customer.payment_method[1]}}</span>
+              <span>{[customer.payment_method[1]]}</span>
             </div>
             <p ng-show="payment_methods.length == 0">ただいまメンテナンス中です</p>
           </li>
-          <li class="fee" ng-show="customer.payment_method[2] > 0">手数料{{customer.payment_method[2] | number}}円が発生します。</li>
+          <li class="fee" ng-show="customer.payment_method[2] > 0">手数料{[customer.payment_method[2] | number]}円が発生します。</li>
           <li class="fee" ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc"><img src="/img/icon_card_set.png" alt="クレジットカード"></li>
         </ul>
         <p class="error" ng-show="customer.payment_method[0] == '-' && clicked_submit">お支払い方法を選択してください</p>
@@ -24,14 +24,14 @@
         <div class="card_yes" ng-show="customer.payment_method[0] == 'credit' && customer.cc_info" sp-if="follow">
           <div class="styled_radio">
             <input type="radio" name="registered_card" ng-value="true" id="card_yes" ng-model="customer.use_registered_cc" ng-change="customer.cc.register = false">
-            <span class="checked-{{customer.use_registered_cc}}"></span>
+            <span class="checked-{[customer.use_registered_cc]}"></span>
           </div>
           <label for="card_yes" ng-bind="I18n.follow.credit_card.use_registered"></label>
           <dl class="card_info" ng-show="customer.use_registered_cc">
             <dt ng-bind="I18n.store.checkout.credit.num"></dt>
-            <dd>{{customer.cc_info.number}}</dd>
+            <dd>{[customer.cc_info.number]}</dd>
             <dt ng-bind="I18n.store.checkout.credit.until"></dt>
-            <dd>{{customer.cc_info.expires.month}}/{{customer.cc_info.expires.year}}</dd>
+            <dd>{[customer.cc_info.expires.month]}/{[customer.cc_info.expires.year]}</dd>
           </dl>
         </div>
         <!-- 登録済みカード情報を使う/ -->
@@ -40,7 +40,7 @@
           <div ng-show="customer.cc_info">
             <div class="styled_radio">
               <input type="radio" name="registered_card" ng-value="false" id="card_no" ng-model="customer.use_registered_cc">
-              <span class="checked-{{!customer.use_registered_cc}}"></span>
+              <span class="checked-{[!customer.use_registered_cc]}"></span>
             </div>
             <label for="card_no" ng-bind="I18n.follow.credit_card.use_other"></label>
           </div>
@@ -51,52 +51,52 @@
   </dd>
   <dd ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
     <dl class="cols">
-      <dt>{{I18n.store.checkout.credit.num}}</dt>
+      <dt>{[I18n.store.checkout.credit.num]}</dt>
       <dd>
         <input class="sz_m" type="text" name="cc_number" ng-model="customer.cc.number" ng-class="{error: is_field_invalid(form.cc_number, true)}" ng-required="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
-        <span style="font-size:12px; margin-left:20px;">{{I18n.store.checkout.credit.example}}）1234567890123456</span>
-        <span class="error" ng-show="is_field_invalid(form.cc_number) || (clicked_submit && !customer.cc.company)">{{I18n.store.error.credit.num}}</span>
+        <span style="font-size:12px; margin-left:20px;">{[I18n.store.checkout.credit.example]}）1234567890123456</span>
+        <span class="error" ng-show="is_field_invalid(form.cc_number) || (clicked_submit && !customer.cc.company)">{[I18n.store.error.credit.num]}</span>
         <input type="hidden" name="cc_company" ng-model="customer.cc.company" ng-required="customer.payment_method[0] == 'credit' && !customer.use_registered_cc" />
       </dd>
     </dl>
   </dd>
   <dd class="delete_elm" ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
     <dl class="cols">
-      <dt>{{I18n.store.checkout.credit.holder}}</dt>
-      <dd><input class="sz_m" type="text" name="cc_name" ng-model="customer.cc.name" ng-class="{error: is_field_invalid(form.cc_name, true)}" ng-required="customer.payment_method[0] == 'credit' && !customer.use_registered_cc"><span style="font-size:12px; margin-left:20px;">{{I18n.store.checkout.credit.example}}）TARO YAMADA</span><span class="error" ng-show="is_field_invalid(form.cc_name)">{{I18n.store.error.credit.holder}}</span></dd>
+      <dt>{[I18n.store.checkout.credit.holder]}</dt>
+      <dd><input class="sz_m" type="text" name="cc_name" ng-model="customer.cc.name" ng-class="{error: is_field_invalid(form.cc_name, true)}" ng-required="customer.payment_method[0] == 'credit' && !customer.use_registered_cc"><span style="font-size:12px; margin-left:20px;">{[I18n.store.checkout.credit.example]}）TARO YAMADA</span><span class="error" ng-show="is_field_invalid(form.cc_name)">{[I18n.store.error.credit.holder]}</span></dd>
     </dl>
   </dd>
   <dd ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
     <dl class="cols">
-      <dt>{{I18n.store.checkout.credit.until}}</dt>
+      <dt>{[I18n.store.checkout.credit.until]}</dt>
       <dd>
         <ul>
           <li class="select_s">
             <div class="styled_select_thick">
               <select id="credit_month" class="styled" name="cc.expires.month" ng-model="customer.cc.expires.month" ng-options="month for month in preset.cc.expires.months"></select>
-              <span>{{customer.cc.expires.month}}</span>
+              <span>{[customer.cc.expires.month]}</span>
             </div>
           </li>
-          <li>{{I18n.store.checkout.credit.month}}</li>
+          <li>{[I18n.store.checkout.credit.month]}</li>
           <li>&frasl;</li>
           <li class="select_s">
             <div class="styled_select_thick">
               <select id="credit_year" class="styled" name="cc.expires.year" ng-model="customer.cc.expires.year" ng-options="year for year in preset.cc.expires.years"></select>
-              <span>{{customer.cc.expires.year}}</span>
+              <span>{[customer.cc.expires.year]}</span>
             </div>
           </li>
-          <li>{{I18n.store.checkout.credit.year}}</li>
+          <li>{[I18n.store.checkout.credit.year]}</li>
         </ul>
       </dd>
     </dl>
   </dd>
   <dd class="delete_elm" ng-show="customer.payment_method[0] == 'credit'">
     <dl class="cols">
-      <dt>{{I18n.store.checkout.credit.cardId}}</dt>
+      <dt>{[I18n.store.checkout.credit.cardId]}</dt>
       <dd>
         <input class="sz_m" type="text" name="cc_security_code" style="width: 60px;" maxlength="4" ng-model="customer.cc.security_code" ng-class="{error: is_field_invalid(form.cc_security_code, true)}" ng-required="customer.payment_method[0] == 'credit'">
-        <span style="font-size:12px; margin-left:20px;">{{I18n.store.checkout.credit.security_code}}</span>
-        <span class="error" ng-show="is_field_invalid(form.cc_security_code)">{{I18n.store.error.credit.cardId}}</span>
+        <span style="font-size:12px; margin-left:20px;">{[I18n.store.checkout.credit.security_code]}</span>
+        <span class="error" ng-show="is_field_invalid(form.cc_security_code)">{[I18n.store.error.credit.cardId]}</span>
       </dd>
     </dl>
   </dd>
@@ -106,7 +106,7 @@
       <dd>
         <div class="styled_checkbox">
           <input type="checkbox" name="cc_register" ng-model="customer.cc.register">
-          <span class="checked-{{customer.cc.register}}"></span>
+          <span class="checked-{[customer.cc.register]}"></span>
         </div>
       </dd>
     </dl>
@@ -130,10 +130,10 @@
 <!--
 <dl ng-class="{btn_single: meta.dontBack, btn_pair: !meta.dontBack}">
   <dd>
-    <p class="btn_high"><button type="submit">{{I18n.store.checkout.credit.preview}}</button></p>
+    <p class="btn_high"><button type="submit">{[I18n.store.checkout.credit.preview]}</button></p>
     <p style="padding:15px 0 0 0;text-align:center;">
-      <a href="/" style="color: #217fbe;" ng-hide="market_back_url && !meta.dontBack">{{ I18n.store.cart.continue }}</a>
-      <a style="color: #217fbe;" ng-show="market_back_url && !meta.dontBack" ng-click="back_to_market()">{{ I18n.store.cart.continue }}</a>
+      <a href="/" style="color: #217fbe;" ng-hide="market_back_url && !meta.dontBack">{[ I18n.store.cart.continue ]}</a>
+      <a style="color: #217fbe;" ng-show="market_back_url && !meta.dontBack" ng-click="back_to_market()">{[ I18n.store.cart.continue ]}</a>
     </p>
   </dd>
 </dl>

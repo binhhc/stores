@@ -27,7 +27,8 @@ class StoreController extends BaseController {
             'public_flg' => 1,
             'domain' => $domain,
             'sub'    => $parameters,
-            'url'   => 'http://'.$url[2].'/store_setting'
+            'url'   => 'http://'.$url[2].'/store_setting',
+            'prefecture' => json_encode(MsPrefecture::getJsonData())
         );
 
         return View::make('store.owner_store', $data);
@@ -480,7 +481,21 @@ class StoreController extends BaseController {
     public function tokushoho($id) {
         return View::make('store.tokushoho', array('data' => 'test'));
     }
-
+    
+    public function inquiry($id) {
+        return View::make('store.inquiry', array('data' => 'test'));
+    }
+    
+    public function jsApplication() {
+        $content = View::make('Layouts.jsApplication', 
+                array(
+                    'prefecture' => json_encode(MsPrefecture::getJsonData()),
+                    ));
+        $response = Response::make($content, 200);
+        $response->header('Content-Type', 'application/javascript');
+        return $response;
+        
+    }
 
     /**
      *

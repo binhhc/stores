@@ -8,7 +8,7 @@
     <!-- Cart/ -->
     <div id="cart_button" class="private" style="z-index:1">
         <a href="#popup_cart">
-            <span>0</span>
+            <span>{[cart.quantity]}</span>
         </a>
     </div>
     <!-- /Cart -->

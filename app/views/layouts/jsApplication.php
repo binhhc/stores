@@ -1482,7 +1482,7 @@ I18n.translations = {
                         email2: "\u8cfc\u5165\u6642\u306e\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u304c\u6b63\u3057\u304f\u3042\u308a\u307e\u305b\u3093"
                     }
                 },
-                prefectures: prefecture,
+                prefectures: <?php echo $prefecture;?>,
                 nonSelect: "Hãy lựa chọn",
                 paymentMethods: {
                     credit: "\u30af\u30ec\u30b8\u30c3\u30c8\u30ab\u30fc\u30c9",

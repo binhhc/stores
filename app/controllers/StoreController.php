@@ -487,7 +487,10 @@ class StoreController extends BaseController {
     }
     
     public function jsApplication() {
-        $content = View::make('Layouts.jsApplication', array('language' => json_encode(MsPrefecture::getJsonData())));
+        $content = View::make('Layouts.jsApplication', 
+                array(
+                    'prefecture' => json_encode(MsPrefecture::getJsonData()),
+                    ));
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');
         return $response;

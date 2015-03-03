@@ -485,7 +485,14 @@ class StoreController extends BaseController {
     public function inquiry($id) {
         return View::make('store.inquiry', array('data' => 'test'));
     }
-
+    
+    public function jsApplication() {
+        $content = View::make('Layouts.jsApplication', array('language' => json_encode(MsPrefecture::getJsonData())));
+        $response = Response::make($content, 200);
+        $response->header('Content-Type', 'application/javascript');
+        return $response;
+        
+    }
 
     /**
      *

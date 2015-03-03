@@ -153,6 +153,16 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     {
         return App::make('StoreController')->inquiry($id);
     });
+    
+    Route::get('/js/application', function()
+    {
+        return App::make('StoreController')->jsApplication();
+    });
+    
+    Route::get('/js/application', function()
+    {
+        return App::make('StoreController')->jsApplication();
+    });
 });
 
 /*

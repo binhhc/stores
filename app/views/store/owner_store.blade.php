@@ -32,7 +32,7 @@
         </p>
         <div class="store_info">
             
-            <h3>hau le nhan</h3>
+            <h3>{[styles.name]}</h3>
             <p></p>
         </div>
         <iframe id="follow_iframe" src="https://haulenhan.stores.jp/iframe/store/follow_header?position=box" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" scrolling="no" frameborder="0"></iframe>

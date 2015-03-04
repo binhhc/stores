@@ -45,4 +45,19 @@ class UserAddon extends Model{
     public static function getFeilds(){
         return array('id','user_id','addon_id','active_flg');
     }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/04
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getLanguegeByDomain($domain){
+        $data = self::join('user_stores', 'user_stores.user_id', '=', 'user_addons.user_id')
+                ->where('user_stores.domain',$domain)
+                ->where('active_flg',1)
+                ->where('addon_id',5)->first();
+        return empty($data) ? 'vi' : 'en';
+    }
 }

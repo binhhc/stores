@@ -25,10 +25,11 @@ class StoreController extends BaseController {
 
         $data = array(
             'public_flg' => 1,
-            'domain' => $domain,
-            'sub'    => $parameters,
-            'url'   => 'http://'.$url[2].'/store_setting',
-            'prefecture' => json_encode(MsPrefecture::getJsonData())
+            'domain'     => $domain,
+            'sub'        => $parameters,
+            'url'        => 'http://'.$url[2].'/store_setting',
+            'prefecture' => json_encode(MsPrefecture::getJsonData()),
+            'language'   => UserAddon::getLanguegeByDomain($parameters)
         );
 
         return View::make('store.owner_store', $data);

@@ -36,7 +36,7 @@
 </div>
 
 <!-- Footer/ -->
-<div id="store_footer">
+<div id="store_item_footer">
     @include('elements.user_footer')
 </div>
 <!-- /Footer -->

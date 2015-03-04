@@ -36,7 +36,9 @@
 </div>
 
 <!-- Footer/ -->
-@include('elements.user_footer')
+<div id="store_footer">
+    @include('elements.user_footer')
+</div>
 <!-- /Footer -->
 
 <!-- Popup/ -->

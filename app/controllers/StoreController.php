@@ -487,7 +487,7 @@ class StoreController extends BaseController {
     }
     
     public function jsApplication() {
-        $content = View::make('layouts.jsApplication', 
+        $content = View::make('Layouts.jsApplication', 
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),
                     ));

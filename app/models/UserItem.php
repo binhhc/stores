@@ -101,6 +101,8 @@ class UserItem extends Model{
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
+     * 
+     * @modifed date    2015/03/04
      *
      * @param       $userId
      * get user item from user_id
@@ -108,7 +110,10 @@ class UserItem extends Model{
     public static function getUserItemByUserId($userId) {
         $userItems = UserItem::with('userItemQuatity')
             ->where('user_items.user_id', '=', $userId)
-            ->where('user_items.public_flg', '=', true);
+            ->where('user_items.public_flg', '=', true)
+            ->orderBy('user_items.public_flg', 'desc')
+            ->orderBy('user_items.order', 'asc')
+            ->orderBy('user_items.updated_at', 'desc');
 
         if (Request::get('category_id')){
             $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));

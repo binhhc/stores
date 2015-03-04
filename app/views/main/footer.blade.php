@@ -10,7 +10,7 @@
 			<a href="/price">Giá cả</a>
 		</li>
 		<li>
-			<a href="/support">Hỗ trợ</a>
+			<a href="/support_stores">Hỗ trợ</a>
 		</li>
 		<li>
 			<a href="/interview">Phỏng vấn</a>

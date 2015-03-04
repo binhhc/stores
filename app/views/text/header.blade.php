@@ -11,7 +11,7 @@
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54ae02186ebfd008" async="async"></script>
 </head>
 <body>
-<h1 class="summary"><?php echo Config::get('constants.website_name');?></h1>
+<h1 class="summary"><?php echo Config::get('constants.website_name'). ' '. $title_for_layout;?></h1>
   <!-- Header/ -->
   <div id="header">
     <div class="wrapper pc">
@@ -26,7 +26,7 @@
         <li><a href="/category">Phân loại</a></li>
         <li><a href="/faq">FAQ</a></li>
         <li><a href="/login">Đăng nhập</a></li>
-        <li id="navi_signup"><a href="/"><span>Đăng ký</span></a></li>
+        <li id="navi_signup"><a href="/"><span>Tham gia Stores</span></a></li>
       </ul>
     </div>
     <!-- Mobile/ -->

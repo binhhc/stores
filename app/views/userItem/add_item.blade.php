@@ -47,7 +47,6 @@
                 <dt>Hình mặt hàng</dt>
                 <dd>
                     {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup', 'multiple'=>'multiple'))}}
-                    <input type="button" onclick="$('#imgInput').click();" value="Chọn hình ảnh" />
                     <ul class="images dragdrop image" id="result">
                         <!-- image view -->
                     </ul>

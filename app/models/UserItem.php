@@ -132,6 +132,12 @@ class UserItem extends Model{
             ->first();
         return !empty($userItems) ? $userItems : array();
     }
+    /**
+     * update order for items
+     * @author OanhHa
+     * @param unknown_type $userId
+     * @param unknown_type $pos
+     */
 	public static function updatePlusOne($userId,$pos = 0){
        return self::
                where('user_id', '=', $userId)

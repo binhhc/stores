@@ -69,11 +69,23 @@ class UserItemController extends BaseController {
 		// public
 		if($flg == 0) {
 			UserItem::where('id', $id_item)
-					->update(array('public_flg' => 1, 'order' => -1,  'updated_user' => $user_id));
+					->update(array('public_flg' => 1, 'order' => 1,  'updated_user' => $user_id));
+            // increase order of others items 1
+            UserItem:: where('user_id', '=', $user_id)
+            	->where('id', '!=', $id_item)
+               ->where('public_flg','=',1)
+               ->increment('order');
 		} else {
 			// private
+			$item = UserItem::where('id', $id_item)->first()->toArray();
+			$old_order = $item['order'];
 			UserItem::where('id', $id_item)
 					->update(array('public_flg' => 0, 'order' => 0, 'updated_user' => $user_id));
+			UserItem:: where('user_id', '=', $user_id)
+               ->where('public_flg','=',1)
+               ->where('id', '!=', $id_item)
+               ->where('order','>',$old_order)
+               ->decrement('order');
 		}
     }
     /**
@@ -107,8 +119,6 @@ class UserItemController extends BaseController {
              $item_id = trim(Input::get('item_id'));
              $order_value = trim(Input::get('order_value'));
              $up_down = Input::get('up_down');
-             $items_array = Input::get('items_array');
-             $this->update_all_order($items_array);
              $this->update_sort($item_id,$order_value, $up_down);
              $response = $this->list_item_ajax();
              return Response::json($response);
@@ -195,6 +205,13 @@ class UserItemController extends BaseController {
              $item_id = trim(Input::get('item_id'));
              $success = 0;
              $item = UserItem::where('id', $item_id)->first()->toArray();
+             // update order for items
+             if($item['public_flg'] == 1) {
+             	UserItem:: where('user_id', '=', $item['user_id'])
+	               ->where('public_flg','=',1)
+	               ->where('order','>',$item['order'])
+	               ->decrement('order');
+             }
              $images_name = explode(',',$item['image_url']);
              $folder_name = User::getNameStore();
              // delete image of item

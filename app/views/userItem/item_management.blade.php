@@ -44,19 +44,18 @@
                 </dl>
             </dd>
         </dl>
-        <?php $stt = 1;?>
         <div id="sortable">
         @foreach ($items as $item)
                 <dl id="list_public" class="list_items <?php echo ($item['public_flg'] == 1) ? 'ui-state-enabled' : ''?>">
                     <dd class="items ng-scope" ng-hide="item.animate" ng-repeat="item in items_shown">
                     @if ($item['public_flg'] == 1)
                         <ul class="sort">
-                            <li class="sort_item up" up_down="up" order_value="<?php echo $stt;?>" item_id="{{$item['id']}}">UP</li>
-                            <li class="sort_item down" up_down="down" order_value="<?php echo $stt;?>" item_id="{{$item['id']}}">DOWN</li>
+                            <li class="sort_item up" up_down="up" order_value="<?php echo $item['order'];?>" item_id="{{$item['id']}}">UP</li>
+                            <li class="sort_item down" up_down="down" order_value="<?php echo $item['order'];?>" item_id="{{$item['id']}}">DOWN</li>
                         </ul>
                     @endif
-                        <dl class="lists move">
-                            <dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 1) <?php echo $stt; $stt=$stt + 1 ;?> @endif</dd>
+                        <dl class="lists move" id="<?php echo $item['id']?>" order_value="<?php echo $item['order']?>">
+                            <dd class="sz_xs tc count ng-binding">@if ($item['public_flg'] == 1) <?php echo $item['order'] ;?> @endif</dd>
                             <dd class="sz_i">
                                 {{HTML::image($item['image_url'], 'Hình ảnh sản phẩm', array('width' => 50, 'height' => 50))}}
                             </dd>

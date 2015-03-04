@@ -32,19 +32,11 @@ $(document).ready(function(){
         var up_down = $(this).attr('up_down');
         if(order_value == 1 && up_down == 'up') return false;
         if(up_down=='down' && order_value == $('.count_public_items').val()) return false;
-        var list_public_item = $('li.sort_item.up');
-        var items_array = [];
-        $.each( list_public_item, function(index, item){
-            var id = $(item).attr('item_id');
-            var order = $(item).attr('order_value');
-            items_array.push([id, order]);
-        });
         $.ajax({
             type: "POST",
             url: "/sort_item",
             data: {
                 item_id: item_id,
-                items_array: items_array,
                 order_value: order_value,
                 up_down:up_down
             },
@@ -183,21 +175,22 @@ $(document).ready(function(){
         	$(tooltip_share).hide();
         });
 
+        var id_start, order_start, id_stop, order_stop;
         $( "#sortable" ).sortable({
         	items: "> dl.ui-state-enabled",
     		start: function(event, ui) {
-    			//$(ui.item[0]).find('dl').css("background-color", "#F2F2F2");
-    			$(ui.item[0]).find('dl').css("border", "1px dotted black");
+    			var li_start = $(ui.item[0]).find('dl');
+    			$(li_start).css("border", "1px dotted black");
     			$('ul.sort').hide();
     		},
     		stop:  function (event, ui) {
-    			//$(event.target).parent().css("background-color", "#F2F2F2");
     			var listId = [];
-    			  $('#sortable dl').each(function(index) {
-    				  var is_id = $(this).find('li.sort_item.up').attr('item_id');
-    				  listId.push([is_id, index]);
+    			  $('#sortable dl.lists').each(function(index) {
+    				  var is_id = $(this).attr('id');
+    				  listId.push([is_id, index + 1]);
 
                   });
+
     			  update_sort (listId);
     		}
         });

@@ -126,6 +126,7 @@
       <!-- /Gift -->
       <!-- Card/ -->
       <div class="box_wht">
+      <?php /*?>
         <h2><span class="icon_card">{[I18n.store.checkout.credit.title]}</span></h2>
         <dl class="form_basic border_bottom spb">
           <dd>
@@ -185,6 +186,7 @@
           </dd>
           <!-- /ConvenienceStore -->
         </dl>
+        <?php */?>
         <dl class="btn_pair" sp-hide="receive_method">
           <dd class="btn_low"><button type="button" onclick="history.back()">{[I18n.store.checkout.credit.back]}</button></dd>
           <dd class="btn_high"><button type="submit">{[I18n.store.inquiry.checkout]}</button></dd>
@@ -192,6 +194,7 @@
       </div>
       <!-- /Card -->
       <!-- ReceiveMethod/ -->
+      <?php /*?>
       <div class="box_wht" sp-show="receive_method">
         <h2><span class="icon_card">{[I18n.store.checkout.receiveMehtod.title]}</span></h2>
         <dl class="form_basic border_bottom spb">
@@ -209,6 +212,7 @@
           <dd class="btn_high"><button type="submit">{[I18n.store.inquiry.checkout]}</button></dd>
         </dl>
       </div>
+      <?php */?>
       <!-- /ReceiveMethod -->
     </form>
     <!-- Loading/ -->

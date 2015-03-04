@@ -38,15 +38,19 @@
       </div>
       <!-- /Gift -->
       <!-- Card/ -->
+      <!-- 
       <div class="box_wht" ng-include="'/partials/c/shared/checkout_card'">
       </div>
+       -->
       <!-- /Card -->
 
       <!-- ReceiveMethod/ -->
+      <!-- 
       <div sp-show="receive_method">
         <div class="box_wht" ng-include="'/partials/c/shared/receive_method'">
         </div>
       </div>
+       -->
       <!-- /ReceiveMethod -->
 
       <!-- Member/ -->

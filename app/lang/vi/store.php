@@ -262,5 +262,6 @@ return array(
             )
         )
     ),
-    'cart_popup_button_checkout' => 'Mua hàng'
+    'cart_popup_button_checkout' => 'Mua hàng',
+    'checkout_label_address' => 'Địa chỉ sẽ được nhập tự động'
 );

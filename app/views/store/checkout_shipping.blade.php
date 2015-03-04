@@ -18,7 +18,7 @@
   <dd>
     <dl class="cols">
       <dt><!--<<span class="required">必須</span>-->{[I18n.store.checkout.postalCode]}</dt>
-      <dd><input class="sz_s" type="text" name="zip" ng-model="customer.zip" placeholder="" stores-zip-code required ng-class="{error: is_field_invalid(form.zip, true)}"><span style="font-size:12px; margin-left:20px;" class="ng-binding" ng-show="I18n.locale == 'ja'">※住所が自動入力されます。</span><span class="error" ng-show="is_field_invalid(form.zip)">{[I18n.store.error.postalCode]}</span></dd>
+      <dd><input class="sz_s" type="text" name="zip" ng-model="customer.zip" placeholder="" stores-zip-code required ng-class="{error: is_field_invalid(form.zip, true)}"><span style="font-size:12px; margin-left:20px;" class="ng-binding" ng-show="I18n.locale == 'ja'">{{$checkout_label_address}}</span><span class="error" ng-show="is_field_invalid(form.zip)">{[I18n.store.error.postalCode]}</span></dd>
     </dl>
   </dd>
   <dd>

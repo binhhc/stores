@@ -311,5 +311,6 @@ return array(
             )
         )
     ),
-    'cart_popup_button_checkout' => 'Shopping'
+    'cart_popup_button_checkout' => 'Shopping',
+    'checkout_label_address' => 'Địa chỉ sẽ được nhập tự động'
 );

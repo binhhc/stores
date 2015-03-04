@@ -463,8 +463,20 @@ class StoreController extends BaseController {
         return View::make('store.checkout_card', array('data' => 'test'));
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * checkout_shipping
+     */
     public function checkout_shipping($id) {
-        return View::make('store.checkout_shipping', array('data' => 'test'));
+        App::setLocale('vi');
+        $checkout_label_address = Lang::get('store.checkout_label_address');
+        
+        $data = array(
+            'checkout_label_address' => $checkout_label_address
+        );
+        return View::make('store.checkout_shipping', $data);
     }
 
     public function checkout_other_shipping($id) {

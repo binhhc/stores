@@ -154,9 +154,9 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
         return App::make('StoreController')->inquiry($id);
     });
     
-    Route::get('/js/application.js', function()
+    Route::get('/js/application.js', function($parameters)
     {
-        return App::make('StoreController')->jsApplication();
+        return App::make('StoreController')->jsApplication($parameters);
     });
     
 });

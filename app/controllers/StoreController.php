@@ -517,8 +517,9 @@ class StoreController extends BaseController {
      * 
      * generate js application
      */
-    public function jsApplication() {
-        App::setLocale('vi');
+    public function jsApplication($parameters) {
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
         $language = Lang::get('store.js');
         $language['prefectures'] = MsPrefecture::getJsonData();
         

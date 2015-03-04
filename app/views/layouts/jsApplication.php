@@ -965,7 +965,7 @@ function StoresController($scope, $http, $location, $rootScope, optimizely, $tim
         },
         tokushoho: function() {
             var page_title = "\u7279\u5b9a\u5546\u53d6\u5f15\u6cd5\u306b\u95a2\u3059\u308b\u8868\u8a18";
-            "en" == I18n.locale && (page_title = "Notation based on the Specified Commercial Transaction Act"), updatePageTitle(page_title), $http.get("/store/" + USER_NAME + "/tokushoho").success(function(data) {
+            "en" == I18n.locale && (page_title = "Notation based on the Specified Commercial Transaction Act"), updatePageTitle(page_title), $http.get("/stores/" + USER_NAME + "/tokushoho").success(function(data) {
                 $scope.data = data
             }).error(function(data) {
                 $scope.data = data

@@ -507,6 +507,20 @@ class StoreController extends BaseController {
         return View::make('store.tokushoho', array('data' => 'test'));
     }
     
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * information tokushoho
+     */
+    public function json_tokushoho($id) {
+        echo '{"price":"",
+        "period":"",
+        "shipment":"",
+        "contact":""}';
+        exit;
+    }
+    
     public function inquiry($id) {
         return View::make('store.inquiry', array('data' => 'test'));
     }

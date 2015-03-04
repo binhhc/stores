@@ -159,6 +159,16 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
         return App::make('StoreController')->jsApplication($parameters);
     });
     
+    Route::get('/partials/c/stores/terms', function($parameters)
+    {
+        return App::make('StoreController')->terms($parameters);
+    });
+    
+    Route::get('/partials/c/stores/privacy_policy', function($parameters)
+    {
+        return App::make('StoreController')->privacy_policy($parameters);
+    });
+    
 });
 
 /*

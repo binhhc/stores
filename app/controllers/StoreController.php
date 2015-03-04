@@ -533,6 +533,26 @@ class StoreController extends BaseController {
         return $response;
         
     }
+    
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * term
+     */
+    public function terms($parameters) {
+        return View::make('store.terms', array('data' => 'test'));
+    }
+    
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * privacy_policy
+     */
+    public function privacy_policy($parameters) {
+        return View::make('store.privacy_policy', array('data' => 'test'));
+    }
 
     /**
      *

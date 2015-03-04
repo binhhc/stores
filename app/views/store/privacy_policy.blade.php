@@ -28,47 +28,47 @@
         <li class="current"><a href="#!/privacy_policy/">{[I18n.store.privacyPolicy.buttonPrivacyPolicy]}</a></li>
       </ul>
       <div class="store_terms">
-        <p class="lead">お客様が、当ウェブサイトを利用する場合または商品の購入をする場合、下記「お客様情報の取扱規定（プライバシーポリシー）」を熟読のうえ、内容に同意していただく必要があります。なお、ご同意いただけない場合は、商品の購入ができません。</p>
-        <h4>1.お客様情報について</h4>
-        <p class="inner">お客様情報とは、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、その他の記述等により特定の個人を識別することが出来るものを言います。これには他の情報と照合することが出来、それにより特定の個人を識別できる事となるものを含みます。</p>
-        <h4>2.お客様情報の利用目的について</h4>
-        <p class="inner">当方は、(1)売買取引における当方の債務を履行するため、(2)売買取引におけるアフターサービスを実施するため、(3)お客様に特別なサービスや新商品等をご案内すること、又は、(4)メールマガジン等のお知らせの送信することを目的とし、お客様情報を利用させていただきます。これらの利用目的以外には、下記3に記載する場合または事前にお客様に同意をいただいた場合を除き、利用致しません。</p>
-        <h4>3.お客様情報の第三者への委託について</h4>
-        <p class="inner">当方は、利用目的の達成に必要な範囲内において、お客様情報の全部又は一部を委託する場合があります。</p>
-        <h4>4.お客様情報の第三者への提供について</h4>
-        <p class="inner">当方は、事前にお客様の同意を得ることなしでお客様情報を第三者に提供しません。</p>
-        <h4>5.お客様情報の共同利用について</h4>
-        <p class="inner">当方は、以下に記載する会社との間で、お客様情報を共同利用いたします。</p>
+        <p class="lead">Khách hàng, nếu bạn muốn mua một trường hợp hay sản phẩm để sử dụng trang web của chúng tôi, sau "của thông tin khách hàng xử lý quy định (Chính sách bảo mật)" đầu nhìn chăm chú, bạn sẽ cần phải đồng ý với các nội dung. Cần lưu ý rằng, nếu bạn không đồng ý, bạn không thể mua sản phẩm.</p>
+        <h4>1.Để biết thông tin của bạn</h4>
+        <p class="inner">Các thông tin khách hàng là thông tin về một cá nhân để tồn tại, bao gồm tên trong thông tin, nói ngày tháng năm sinh, địa chỉ, số điện thoại, các báo cáo khác như những người có thể được sử dụng để xác định một cá nhân cụ thể. Nó Điều này có thể được đối chiếu với các thông tin khác, do đó bao gồm cả những người mà sẽ có thể xác định một cá nhân cụ thể.</p>
+        <h4>2.Đối với mục đích của thông tin khách hàng</h4>
+        <p class="inner">Us, (1) để thực hiện các nghĩa vụ của chúng tôi trong các giao dịch bán hàng, (2) để thực hiện các dịch vụ sau bán hàng trong các giao dịch, (3) khách hàng để hướng dẫn các dịch vụ đặc biệt và các sản phẩm mới, vv, hoặc, (4), và dự định gửi thông báo như tạp chí e-mail, chúng tôi sẽ sử dụng thông tin của bạn. Việc bổ sung cho những mục đích này, và trừ khi bạn đã nhận được sự đồng ý cho khách hàng trong các trường hợp hoặc pre mô tả dưới 3, sẽ không được sử dụng.</p>
+        <h4>3.Đối với lô hàng cho bên thứ ba thông tin của bạn</h4>
+        <p class="inner">Chúng tôi, đến mức cần thiết để đạt được các mục đích sử dụng, bạn có thể muốn thuê ngoài toàn bộ hoặc một phần thông tin của khách hàng.</p>
+        <h4>4.Đối với việc cung cấp cho khách hàng bên thứ ba thông tin</h4>
+        <p class="inner">Chúng ta, không cung cấp trước None các thông tin khách hàng mà có được sự đồng ý của bạn cho bên thứ ba.</p>
+        <h4>5.Sử dụng chung các thông tin khách hàng</h4>
+        <p class="inner">Chúng ta, giữa các công ty như được mô tả dưới đây, sẽ được đồng sử dụng các thông tin khách hàng.</p>
         <div class="inner">
           <table>
             <tr>
-              <th>共同して利用するお客様情報の項目</th>
-              <td>お客様の氏名、住所、電話番号、メールアドレス、購入された商品情報など</td>
+              <th>Mục thông tin của khách hàng được sử dụng kết hợp</th>
+              <td>Tên, địa chỉ, số điện thoại, địa chỉ e-mail, chẳng hạn như thông tin sản phẩm bạn đã mua</td>
             </tr>
             <tr>
-              <th>共同して利用する者の範囲</th>
-              <td>株式会社ブラケット（STORES.jp運営会社）</td>
+              <th>Phạm vi của người được sử dụng kết hợp</th>
+              <td>Bracket, Inc (công ty điều hành STORES.vn)</td>
             </tr>
             <tr>
-              <th>利用する者の利用目的</th>
+              <th>Mục đích của việc sử dụng cho những người</th>
               <td>
                 <ul>
-                  <li>当方とお客様の間の売買取引のうち、商品の配送など、当方が委託した業務を行うため</li>
-                  <li>お客様に特別なサービスや新商品等をご案内するため</li>
-                  <li>お客様に対するアフターサービスを実施するため</li>
-                  <li>メールマガジン等のお知らせの送信のため</li>
-                  <li>その他STORES.jpの運用のため</li>
+                  <li>Trong giao dịch mua bán giữa chúng tôi và khách hàng của chúng tôi, chẳng hạn như việc giao hàng, để thực hiện các nhiệm vụ của chúng tôi đã được giao phó</li>
+                  <li>Để hướng dẫn bạn thông qua các dịch vụ đặc biệt và các sản phẩm mới, vv để khách hàng của chúng tôi</li>
+                  <li>Đối với việc thực hiện các dịch vụ sau bán hàng cho khách hàng</li>
+                  <li>Đối với việc truyền tải các thông báo của tạp chí e-mail như vậy</li>
+                  <li>Đối với các hoạt động của STORES.vn khác</li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <th>お客様情報の管理について<br>責任を有する者</th>
-              <td>ストアオーナー</td>
+              <th>Đối với việc quản lý thông tin khách hàng<br>Người có trách nhiệm</th>
+              <td>chủ cửa hàng</td>
             </tr>
           </table>
         </div>
-        <h4>6.お客様情報のお問い合わせについて</h4>
-        <p class="inner">当ウェブサイトの特定商取引法に関する表記内にある「事業者の名称および連絡先」までご連絡ください。もしくは、ストアページ内の【お問い合わせフォーム】への請求により、電子メールにて遅滞なく連絡先等を提供いたします。</p>
+        <h4>6.Giới thiệu Liên hệ khách hàng Thông tin</h4>
+        <p class="inner">Hãy liên hệ với "tên và thông tin liên lạc kinh doanh của" trong ký hiệu về luật thương mại cụ thể của trang web này. Hoặc, theo yêu cầu của các [mẫu yêu cầu] trong các trang lưu trữ, sẽ cung cấp thông tin chậm trễ mà không liên lạc bằng e-mail.</p>
       </div>
     </div>
   </div>
@@ -76,60 +76,12 @@
 
 <!-- Footer/ -->
 <div id="store_item_footer">
-  <div id="store_footer_inner">
-    <ul class="navi fl_l">
-      <li><a href="#!/inquiry" class="contact">お問い合わせ</a></li>
-      <li><a href="#!/tokushoho" class="tokusho">特定商取引法に関する表記</a></li>
-    </ul>
-    <div class="stores">
-      <p><a href="https://stores.jp/?via={[ via ]}&id={[user_name]}" target="_blank" ng-mouseover="footer_mouse_over()"><img src="/images/footer/logo_footer.png" alt="ネットショップの開業ならSTORES.jp"></a></p>
-    </div>
-  </div>
+  @include('elements.user_footer')
 </div>
 <!-- /Footer -->
 
 <!-- Popup/ -->
-<div style="display: none;">
-  <div id="popup_cart" class="box_wht">
-    <h2><span class="icon_cart">{[I18n.store.cart.title]}</span></h2>
-    <dl id="cart_items">
-      <dd class="title">
-        <dl>
-          <dd class="sz_l">{[I18n.store.cart.item]}</dd>
-          <dd class="sz_s tc">{[I18n.store.cart.category]}</dd>
-          <dd class="sz_s tr">{[I18n.store.cart.price]}</dd>
-          <dd class="sz_s tc">{[I18n.store.cart.quantity]}</dd>
-          <dd class="sz_s tr">{[I18n.store.cart.total]}</dd>
-        </dl>
-      </dd>
-      <dd class="lists" ng-repeat="cart_item in cart.items">
-        <dl>
-          <dd class="sz_xs btn_delete_mini"><a href="" ng-click="cart.remove(cart_item)">Delete</a></dd>
-          <dd class="sz_i"><img ng-src="{[cart_item.image.src]}" /></dd>
-          <dd class="sz_l">{[cart_item.name]}</dd>
-          <dd class="sz_s tc">{[cart.null_to_hyphen(cart_item.variation)]}</dd>
-          <dd class="sz_s tr">¥{[cart_item.price | number:0]}</dd>
-          <dd class="sz_s tc">{[cart_item.quantity]}</dd>
-          <dd class="sz_s tr">¥{[(cart_item.price * cart_item.quantity) | number:0]}</dd>
-        </dl>
-      </dd>
-      <dd class="lists shipping">
-        <dl>
-          <dd class="sz_s tr">{[I18n.store.cart.shippingFee]}</dd>
-          <dd class="sz_s tr">¥{[cart.shipping_fee | number:0]}</dd>
-        </dl>
-      </dd>
-      <dd class="lists total">
-        <dl>
-          <dd class="sz_s tr">{[I18n.store.cart.subtotal]}</dd>
-          <dd class="sz_s tr">¥{[cart.total | number:0]}</dd>
-        </dl>
-      </dd>
-    </dl>
-    <p class="btn_high_big cart" ng-show="cart.items.length > 0" style="padding-bottom: 20px;"><button id="checkout_button" type='button'>{[I18n.store.cart.check]}</button></p>
-    <!--<p style="text-align:center; padding:20px 0 10px 0;"><a href="" onclick="$('.fancybox-close').click();" style="color: #217fbe;">{[I18n.store.cart.continue]}</a></p>-->
-  </div>
-</div>
+@include('elements.user_cart')
 <!-- /Popup -->
 
 <script>

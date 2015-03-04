@@ -511,10 +511,21 @@ class StoreController extends BaseController {
         return View::make('store.inquiry', array('data' => 'test'));
     }
     
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * generate js application
+     */
     public function jsApplication() {
+        App::setLocale('vi');
+        $language = Lang::get('store.js');
+        $language['prefectures'] = MsPrefecture::getJsonData();
+        
         $content = View::make('layouts.jsApplication', 
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),
+                    'language' => json_encode($language)
                     ));
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');

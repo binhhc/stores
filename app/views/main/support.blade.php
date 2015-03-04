@@ -112,6 +112,6 @@
 @include('elements.footer')
 <style>
 *, *:before, *:after {
-    box-sizing: unset!important;
+    box-sizing: content-box;
 }
 </style>

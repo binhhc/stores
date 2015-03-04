@@ -114,7 +114,7 @@
 @include('text.footer')
 <style>
 *, *:before, *:after {
-    box-sizing: unset!important;
+    box-sizing: content-box;
 }
 body {
     background-color: #f0f0f0;

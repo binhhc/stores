@@ -73,15 +73,7 @@
 </div>
 <!-- Footer/ -->
 <div id="store_item_footer">
-  <div id="store_footer_inner">
-    <ul class="navi fl_l">
-      <li><a href="#!/inquiry" class="contact">お問い合わせ</a></li>
-      <li><a href="#!/tokushoho" class="tokusho">特定商取引法に関する表記</a></li>
-    </ul>
-    <div class="stores">
-      <p><a href="https://stores.jp/?via={[ via ]}&id={[user_name]}" target="_blank" ng-mouseover="footer_mouse_over()"><img src="/images/footer/logo_footer.png" alt="ネットショップの開業ならSTORES.jp"></a></p>
-    </div>
-  </div>
+  @include('elements.user_footer')
 </div>
 <!-- /Footer -->
 

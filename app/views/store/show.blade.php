@@ -105,7 +105,9 @@
   </div>
 </div>
 <!-- Footer/ -->
-@include('elements.user_footer')
+<div id="store_item_footer">
+    @include('elements.user_footer')
+</div>
 <!-- /Footer -->
 
 <!-- PopupCart/ -->

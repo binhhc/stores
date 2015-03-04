@@ -261,5 +261,6 @@ return array(
                 )
             )
         )
-    )
+    ),
+    'cart_popup_button_checkout' => 'Mua hàng'
 );

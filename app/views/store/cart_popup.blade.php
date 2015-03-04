@@ -39,7 +39,7 @@
 
   <body ng-controller="UserCtrl" style="background-color:transparent;">
     <div ng-cloak class="ng-cloak" id="cart_popup">
-      <p class="btn_high_big" style="height:70px;"><a href="" parent-href="{url: '/#!/checkout'}">注文画面へ進む</a></p>
+      <p class="btn_high_big" style="height:70px;"><a href="" parent-href="{url: '/#!/checkout'}">{{$cart_popup_button_checkout}}</a></p>
     </div>
   <script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
 NREUMQ.push(["load",new Date().getTime()]);

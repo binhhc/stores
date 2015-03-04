@@ -412,8 +412,20 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * cart_popup
+     */
     public function cart_popup($id) {
-        return View::make('store.cart_popup', array('data' => 'test'));
+        App::setLocale('vi');
+        $cart_popup_button_checkout = Lang::get('store.cart_popup_button_checkout');
+        
+        $data = array(
+            'cart_popup_button_checkout' => $cart_popup_button_checkout
+        );
+        return View::make('store.cart_popup', $data);
     }
 
     public function favorite_item_button($id) {
@@ -487,7 +499,7 @@ class StoreController extends BaseController {
     }
     
     public function jsApplication() {
-        $content = View::make('Layouts.jsApplication', 
+        $content = View::make('layouts.jsApplication', 
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),
                     ));

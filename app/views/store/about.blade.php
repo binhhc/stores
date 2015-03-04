@@ -42,7 +42,9 @@
 </div>
 
 <!-- FOOTER/ -->
+<div id="store_item_footer">
 @include('elements.user_footer')
+</div>
 <!-- /FOOTER -->
 
 <!-- POPUP/ -->

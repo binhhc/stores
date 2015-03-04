@@ -15,55 +15,7 @@
     </div>
     <form name="form" ng-submit="submit()">
       <!-- Cart/ -->
-      <div class="box_wht">
-        <h2><span class="icon_cart">{[I18n.store.cart.title]}</span></h2>
-        <dl id="cart_items">
-          <dd class="title">
-            <dl>
-              <dd class="sz_l">{[I18n.store.cart.item]}</dd>
-              <dd class="sz_s tl">{[I18n.store.cart.category]}</dd>
-              <dd class="sz_s tr">{[I18n.store.cart.price]}</dd>
-              <dd class="sz_s tc">{[I18n.store.cart.quantity]}</dd>
-              <dd class="sz_s tr">{[I18n.store.cart.total]}</dd>
-            </dl>
-          </dd>
-          <dd class="lists" ng-repeat="cart_item in cart.items">
-            <dl>
-              <dd class="sz_xs btn_delete_mini"></dd>
-              <dd class="sz_i"><img ng-src="{[cart_item.image.src]}" width="50px" height="50px"></dd>
-              <dd class="sz_l">{[cart_item.name]}</dd>
-              <dd class="sz_s tl">{[cart_item.variation]}</dd>
-              <dd class="sz_s tr">¥{[cart_item.price | number:0]}</dd>
-              <dd class="sz_s tc">{[cart_item.quantity]}</dd>
-              <dd class="sz_s tr">¥{[(cart_item.price * cart_item.quantity) | number:0]}</dd>
-            </dl>
-          </dd>
-          <dd class="lists shipping checkout">
-            <dl>
-              <dd class="sz_ex tr">{[I18n.store.cart.shippingFee]}</dd>
-              <dd class="sz_s tr">¥{[cart.shipping_fee | number:0]}</dd>
-            </dl>
-          </dd>
-          <dd class="lists shipping checkout" ng-show="customer.payment_method && customer.payment_method[2] > 0">
-            <dl>
-              <dd class="sz_ex tr">{[customer.payment_method[1]]}{[I18n.store.commission]}</dd>
-              <dd class="sz_s tr">¥{[customer.payment_method[2] | number:0]}</dd>
-            </dl>
-          </dd>
-          <dd class="lists shipping checkout" style="display:none;" ng-show="coupon">
-            <dl>
-              <dd class="sz_s tr">{[I18n.store.cart.coupon]}</dd>
-              <dd class="sz_s tr" style="color: red;">- ¥{[coupon.price | number:0]}</dd>
-            </dl>
-          </dd>
-          <dd class="lists total checkout">
-            <dl>
-              <dd class="sz_ex tr">{[I18n.store.cart.subtotal]}</dd>
-              <dd class="sz_s tr">¥{[cart.total | number:0]}</dd>
-            </dl>
-          </dd>
-        </dl>
-      </div>
+      @include('elements.order_cart')
       <!-- /Cart -->
       <!-- Shipping/ -->
       <div class="box_wht">

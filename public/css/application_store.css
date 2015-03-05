@@ -6829,6 +6829,21 @@ p.download span {
     right: 20px;
     width: 280px;
 }
+#follow a {
+    -moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: block;
+	width: 108px;
+	height: 40px;
+	padding-left: 12px;
+	background: url("/img/icon_plus.png") no-repeat 12px center #999;
+	font-size: 13px;
+	line-height: 40px;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+}
 .follow_box.delete {
     display: none !important;
     opacity: 0;

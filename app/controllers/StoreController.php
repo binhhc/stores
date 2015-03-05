@@ -44,12 +44,21 @@ class StoreController extends BaseController {
         return View::make('store.index');
     }
     
-    
-    public function inquiries($parameters) {
-        print "<pre>";
-        print_r(Input::get('data'));
-        print "<pre>";
-        exit();
+    public function inquiries($account) {
+        $data = Input::get('data');
+        $data['parameters'] = $account;
+        $tmpUserStores = UserStore::getUserStoreByDomain($account);
+        $tmpSettings = $tmpUserStores->settings;
+        if (!empty($tmpSettings)) {
+            $settings = json_decode($tmpSettings);
+             $stores = $settings->store;
+             
+        $data['store_name'] =    $stores->name; 
+        $email = $data['email'];
+        Mail::send('emails.contacts', $data, function($message) use($email) {
+            $message->to($email, 'Liên hệ thành công')->subject('Cảm ơn bạn đã liên hệ với chúng tôi');
+        });
+    }
     }
 
     public function about_detail() {

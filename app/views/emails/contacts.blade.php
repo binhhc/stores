@@ -8,9 +8,9 @@
           <tbody>
             <tr>
               <td style="padding:10px 30px 30px 30px;text-align:center" colspan="2">
-                <p style="margin-top:30px">
-                    <img src="https://ci4.googleusercontent.com/proxy/JfHwmfI4nYXFHIpJZCvXlM3eB1MDW0hJrAo_9680PiH3sPR5gW62PLRNo7Z92SIBrlTmfFMH8a5UJGsOL1YwVG33-p0gIAhZsB1D5UXx1iQjmuYCLmhg=s0-d-e1-ft#https://f.stores.jp/_files/sangpm/687e4ee86d59ef8de216_200x0.jpeg" class="CToWUd">
-                </p>
+                <h1 style="margin-top:30px">
+                    {{$store_name}}
+                </h1>
                 
             <div style="text-align:left">
                 <p style="margin:40px 0 0 0;line-height:2;font-size:20px;font-weight:bold">Cảm ơn bạn đã liên hệ！</p>
@@ -51,8 +51,10 @@
             </div>
                 <div>
                     <p style="margin-top:10px">
-                        <a target="_blank" href="https://stores.jp/?utm_source=%E8%B3%BC%E5%85%A5%E8%80%85%E5%90%91%E3%81%91%E3%83%A1%E3%83%BC%E3%83%AB&amp;utm_medium=email&amp;utm_campaign=%E8%B3%BC%E5%85%A5%E8%80%85%E5%90%91%E3%81%91%E3%83%A1%E3%83%BC%E3%83%AB">
-                        <img alt="{{Config::get('constants.domain')}}" src="https://ci6.googleusercontent.com/proxy/iXG2XAsYr74ov2aHgkmaF5n4mQKg4v01Gf4ssyjPuCSBAYKiqLJ0QEy1Ioveakv_WIDfs5jTRhlWU5vdkdzMVSBMTCqXnhRixRo=s0-d-e1-ft#https://stores.jp/images/mail/common/logo_footer.gif" class="CToWUd">
+                        <a target="_blank" href="https://{{$parameters}}.{{Config::get('constants.domain')}}">
+                        <img alt="{{Config::get('constants.domain')}}" 
+                            src="https://ci6.googleusercontent.com/proxy/iXG2XAsYr74ov2aHgkmaF5n4mQKg4v01Gf4ssyjPuCSBAYKiqLJ0QEy1Ioveakv_WIDfs5jTRhlWU5vdkdzMVSBMTCqXnhRixRo=s0-d-e1-ft#https://stores.jp/images/mail/common/logo_footer.gif" 
+                            class="CToWUd">
                         </a>
                     </p>
                   

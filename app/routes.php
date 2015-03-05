@@ -9,7 +9,7 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     });
     
     Route::post('/store/{account}/inquiries', function($account){
-        return App::make('StoreController')->inquiries();
+        return App::make('StoreController')->inquiries($account);
     });
 
     Route::get('/partials/c/items/index', 'StoreController@index');

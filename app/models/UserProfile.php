@@ -49,4 +49,18 @@ class UserProfile extends Model{
             ->first();
         return !empty($userProfiles) ? $userProfiles : array();
     }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/04
+     * 
+     * @modified  
+     * @modified by
+     **/
+    public static function getInfoByDomain($domain){
+        return self::join('user_stores', 'user_stores.user_id', '=', 'user_profiles.user_id')
+                ->where('user_stores.domain',$domain)
+                ->first();
+       
+    }
 }

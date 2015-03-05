@@ -82,27 +82,27 @@ return array(
                 "done" => "Thông tin liên hệ đã của bạn đã được nhận"
             ),
             "tokushoho" => array(
-                "title" => "Terms & Conditions",
+                "title" => "Điều khoản & Điều kiện",
                 "price" => "<Price>",
                 "payment" => "<Payment>",
                 "returning" => "<Return Policy>",
                 "merchandise" => "<Delivery>",
                 "contact" => "<Contact>",
-                "buttonTokushoho" => "About",
-                "buttonTerms" => "Terms of Service",
-                "buttonPrivacyPolicy" => "Privacy Policy"
+                "buttonTokushoho" => "Giới thiệu",
+                "buttonTerms" => "Điều khoản dịch vụ",
+                "buttonPrivacyPolicy" => "Chính sách bảo mật"
             ),
             "terms" => array(
-                "title" => "Terms & Conditions",
-                "buttonTokushoho" => "About",
-                "buttonTerms" => "Terms of Service",
-                "buttonPrivacyPolicy" => "Privacy Policy"
+                "title" => "Điều khoản & Điều kiện",
+                "buttonTokushoho" => "Giới thiệu",
+                "buttonTerms" => "Điều khoản dịch vụ",
+                "buttonPrivacyPolicy" => "Chính sách bảo mật"
             ),
             "privacyPolicy" => array(
-                "title" => "Terms & Conditions",
-                "buttonTokushoho" => "About",
-                "buttonTerms" => "Terms of Service",
-                "buttonPrivacyPolicy" => "Privacy Policy"
+                "title" => "Điều khoản & Điều kiện",
+                "buttonTokushoho" => "Giới thiệu",
+                "buttonTerms" => "Điều khoản dịch vụ",
+                "buttonPrivacyPolicy" => "Chính sách bảo mật"
             ),
             "checkout" => array(
                 "coupon" => "Coupon",

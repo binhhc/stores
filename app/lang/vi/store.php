@@ -77,9 +77,9 @@ return array(
                 "question" => "Nội dung câu hỏi",
                 "send" => "Gửi",
                 "checkout" => "Đặt hàng",
-                "sending" => "Sending",
+                "sending" => "Đang gửi",
                 "cancel" => "Hủy",
-                "done" => "Your message has been received."
+                "done" => "Thông tin liên hệ đã của bạn đã được nhận"
             ),
             "tokushoho" => array(
                 "title" => "Terms & Conditions",

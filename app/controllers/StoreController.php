@@ -43,6 +43,14 @@ class StoreController extends BaseController {
     public function index() {
         return View::make('store.index');
     }
+    
+    
+    public function inquiries($parameters) {
+        print "<pre>";
+        print_r(Input::get('data'));
+        print "<pre>";
+        exit();
+    }
 
     public function about_detail() {
         $this->layout = '';

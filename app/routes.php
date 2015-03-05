@@ -7,6 +7,10 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
         return App::make('StoreController')->ownerStore($account);
 
     });
+    
+    Route::post('/store/{account}/inquiries', function($account){
+        return App::make('StoreController')->inquiries();
+    });
 
     Route::get('/partials/c/items/index', 'StoreController@index');
 

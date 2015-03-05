@@ -633,6 +633,16 @@ class StoreController extends BaseController {
         );
         return View::make('store.privacy_policy', $data);
     }
+    
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * follow_header
+     */
+    public function follow_header($parameters) {
+        return View::make('store.follow_header');
+    }
 
     /**
      * @author          Le Nhan Hau

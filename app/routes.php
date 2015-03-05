@@ -191,6 +191,11 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
         return App::make('StoreController')->privacy_policy($parameters);
     });
     
+    Route::get('/iframe/store/follow_header', function($parameters)
+    {
+        return App::make('StoreController')->follow_header($parameters);
+    });
+    
     Route::get('/setLanguageForMenu', function($parameters)
     {
         return App::make('StoreController')->setLanguageForMenu($parameters);

@@ -3,7 +3,7 @@
 <div id="fb-root"></div>
 
 <div class="contents_view">
-    <iframe src="https://haulenhan.stores.jp/iframe/store/follow_header?position=header" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe>
+    <iframe src="/iframe/store/follow_header?position=header" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe>
 
     <!-- Cart/ -->
     <div id="cart_button" class="private" style="z-index:1">
@@ -35,7 +35,7 @@
             <h3>{[styles.name]}</h3>
             <p></p>
         </div>
-        <iframe id="follow_iframe" src="https://haulenhan.stores.jp/iframe/store/follow_header?position=box" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" scrolling="no" frameborder="0"></iframe>
+        <iframe id="follow_iframe" src="/iframe/store/follow_header?position=box" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" scrolling="no" frameborder="0"></iframe>
     </div>
     <!-- /FollowBox -->
 

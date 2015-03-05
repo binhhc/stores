@@ -24,10 +24,10 @@ app.config(function($routeProvider, $locationProvider, $interpolateProvider) {
         templateUrl: "/partials/c/stores/tokushoho",
         controller: StoresController
     }).when("/terms", {
-        templateUrl: "/partials/c/stores/terms.html",
+        templateUrl: "/partials/c/stores/terms",
         controller: StoresController
     }).when("/privacy_policy", {
-        templateUrl: "/partials/c/stores/privacy_policy.html",
+        templateUrl: "/partials/c/stores/privacy_policy",
         controller: StoresController
     }).when("/about", {
         templateUrl: "/partials/c/stores/about",

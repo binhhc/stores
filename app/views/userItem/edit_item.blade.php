@@ -36,8 +36,7 @@
                     <ul>
                         <li>
                             {{Form::text('price', $item->price, array('class' => 'sz_s item_price'))}}
-                        </li>
-                        <li>VND</li>
+                       VND</li>
                     </ul>
                     <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>
@@ -310,40 +309,7 @@
             }
         }
 
-
-      /* $('.fileup').change(function(){
-            // var preview = document.querySelector('#image_back'); //selects the query named img
-            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-            var reader  = new FileReader();
-
-            // var clone_image = $('.fileup').clone();
-
-            if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
-                alert('Không đúng định dạng ảnh!');
-                $('input[name=image_url]').val('');
-                // preview.src = "";
-                submit_flg = false;
-            }else{
-                if(file){
-                    reader.readAsDataURL(file); //reads the data as a URL
-                } else {
-                    // preview.src = "";
-                }
-            }
-
-            reader.onloadend = function () {
-                var count_img = $('#image_back li').length;
-                if(count_img < 4){
-                    console.log(file);
-                    $('#image_back').append('<li class="preview"><img name=image  src='+reader.result+' width=98 height=87></li>');
-                    // $(clone_image).addClass('hidden');
-                    // $('#image_back .preview').append(clone_image);
-                }
-            }
-        });*/
-
     });
 
 </script>
-
 @include('elements.footer')

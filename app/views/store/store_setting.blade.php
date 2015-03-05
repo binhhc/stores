@@ -462,4 +462,8 @@
 <style>
 	.status_store.active {
 		text-indent: 0.5em !important;
+	}
+*, *:before, *:after {
+    box-sizing: content-box;
+}
 </style>

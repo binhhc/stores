@@ -153,14 +153,29 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
         return App::make('StoreController')->tokushoho($id);
     });
     
+    Route::get('/stores/{account}/tokushoho', function($id)
+    {
+        return App::make('StoreController')->json_tokushoho($id);
+    });
+    
     Route::get('/partials/c/stores/inquiry', function($id)
     {
         return App::make('StoreController')->inquiry($id);
     });
     
-    Route::get('/js/application.js', function()
+    Route::get('/js/application.js', function($parameters)
     {
-        return App::make('StoreController')->jsApplication();
+        return App::make('StoreController')->jsApplication($parameters);
+    });
+    
+    Route::get('/partials/c/stores/terms', function($parameters)
+    {
+        return App::make('StoreController')->terms($parameters);
+    });
+    
+    Route::get('/partials/c/stores/privacy_policy', function($parameters)
+    {
+        return App::make('StoreController')->privacy_policy($parameters);
     });
     
 });

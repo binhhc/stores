@@ -515,6 +515,20 @@ class StoreController extends BaseController {
         return View::make('store.tokushoho', array('data' => 'test'));
     }
     
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * information tokushoho
+     */
+    public function json_tokushoho($id) {
+        echo '{"price":"",
+        "period":"",
+        "shipment":"",
+        "contact":""}';
+        exit;
+    }
+    
     public function inquiry($id) {
         return View::make('store.inquiry', array('data' => 'test'));
     }
@@ -525,8 +539,9 @@ class StoreController extends BaseController {
      * 
      * generate js application
      */
-    public function jsApplication() {
-        App::setLocale('vi');
+    public function jsApplication($parameters) {
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
         $language = Lang::get('store.js');
         $language['prefectures'] = MsPrefecture::getJsonData();
         
@@ -539,6 +554,26 @@ class StoreController extends BaseController {
         $response->header('Content-Type', 'application/javascript');
         return $response;
         
+    }
+    
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * term
+     */
+    public function terms($parameters) {
+        return View::make('store.terms', array('data' => 'test'));
+    }
+    
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * privacy_policy
+     */
+    public function privacy_policy($parameters) {
+        return View::make('store.privacy_policy', array('data' => 'test'));
     }
 
     /**

@@ -35,8 +35,8 @@
                     <ul>
                         <li>
                             {{Form::text('price', null, array('class' => 'sz_s item_price'))}}
-                        </li>
-                        <li>VND</li>
+
+                        VND</li>
                     </ul>
                     <p class="error err_price">{{ $errors->first('price') }}</p>
                 </dd>
@@ -252,5 +252,4 @@
     var path_delete_category = "{{URL::asset('/delete_category')}}";
 </script>
 {{HTML::script('js/add_item.js')}}
-
 @include('elements.footer')

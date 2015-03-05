@@ -30,9 +30,6 @@ class MainController extends BaseController {
      * @since 2015-02-06
      */
     public function support() {
-    	if(!$this->checkLogin()) {
-            return Redirect::to('/');
-        }
         $data['title_for_layout'] = 'Hỗ trợ người dùng';
         return View::make('main.support', $data);
     }

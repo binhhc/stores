@@ -949,7 +949,7 @@ function StoresController($scope, $http, $location, $rootScope, optimizely, $tim
         is_optimizely_activate !== !0 && (optimizely.activate(1589071962), is_optimizely_activate = !0)
     }, $scope.user_name = USER_NAME, $scope.I18n = I18n, angular.extend($scope, {
         inquiry: function() {
-            var page_title = "\u304a\u554f\u3044\u5408\u308f\u305b";
+            var page_title = "Liên hệ";
             "en" == I18n.locale && (page_title = "Contact"), updatePageTitle(page_title), setCookiePromotion(location.href, STORES_JP.promotion_enabled), $scope.submit = function() {
                 $scope.clicked_submit = !0, $scope.form.$valid && ($scope.pending = !0, $http.post("/store/" + USER_NAME + "/inquiries", {
                     authenticity_token: AUTH_TOKEN,
@@ -964,8 +964,8 @@ function StoresController($scope, $http, $location, $rootScope, optimizely, $tim
             }
         },
         tokushoho: function() {
-            var page_title = "\u7279\u5b9a\u5546\u53d6\u5f15\u6cd5\u306b\u95a2\u3059\u308b\u8868\u8a18";
-            "en" == I18n.locale && (page_title = "Notation based on the Specified Commercial Transaction Act"), updatePageTitle(page_title), $http.get("/store/" + USER_NAME + "/tokushoho").success(function(data) {
+            var page_title = "Điều khoản & Điều kiện";
+            "en" == I18n.locale && (page_title = "Notation based on the Specified Commercial Transaction Act"), updatePageTitle(page_title), $http.get("/stores/" + USER_NAME + "/tokushoho").success(function(data) {
                 $scope.data = data
             }).error(function(data) {
                 $scope.data = data

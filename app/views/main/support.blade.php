@@ -2,7 +2,7 @@
 <div>
 	<div id="functions" class="ng-scope">
 		<div class="area-heading">
-        <h2 class="heading">Quảng lý cấu hình cửa hàng</h2>
+        <h2 class="heading">Quản lý cấu hình cửa hàng</h2>
 			<p class="text">
 			Cấu hình một cửa hàng trực tuyến, nó là một danh sách các tùy chọn có sẵn hỗ trợ hoạt động。
 			<br>
@@ -112,6 +112,6 @@
 @include('elements.footer')
 <style>
 *, *:before, *:after {
-    box-sizing: unset!important;
+    box-sizing: content-box;
 }
 </style>

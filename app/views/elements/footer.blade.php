@@ -3,7 +3,6 @@
             <p class="support_banner"><a  href="{{URL::asset('/support')}}">Hạn chế hỗ trợ hoạt động</a></p>
             <p class="referral_banner"><a  href="{{URL::asset('/referral')}}">Giới thiệu chiến dịch khuyến mãi</a></p>
             <ul id="foot_navi">
-                <li><a href="/notification" target="_blank">Thông báo</a></li>
                 <li><a href="/contact" target="_blank">Liên hệ</a></li>
                 <li><a href="/terms" target="_blank">Điều khoản sử dụng</a></li>
                 <li><a href="/law" target="_blank">Luật thương mại</a></li>

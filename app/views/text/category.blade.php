@@ -246,12 +246,6 @@ Lorem ipsum dolor sit amet
 
 @include('text.footer')
 <script>
-$(document).ready(function(){
-$('#category_nav li.toolchip a').tipsy({opacity:1});
-$('#category_nav li.toolchip a').click(function () {
-  $('.tipsy').hide();
-});
-
 //フェード基本
 (function(a) {
   if (!a.omr) {
@@ -330,16 +324,12 @@ $('#category_nav li.toolchip a').click(function () {
           (new a.omr.mosaic(this, b))
       })
   }
+})(jQuery);
 
 //フェードカスタマイズ
-  	$('.fade').mosaic({
-  		animation : 'fade'
-  	});
-
-});
-
-//スクロール中にツールチップ消す
-$(window).scroll(function () {
-$('.tipsy').hide();
+$(document).ready(function(){
+	$('.fade').mosaic({
+		animation : 'fade'
+	});
 });
 </script>

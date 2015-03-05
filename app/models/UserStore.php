@@ -114,4 +114,28 @@ class UserStore extends Model{
             ->first();
         return !empty($userStores) ? $userStores : array();
     }
+    
+    /*
+     * @author      Sang PM
+     * @since       2015/03/05
+     *
+     * get user stores from domain
+     */
+    public static function getNewDomain($domain) {
+        $userStores = UserStore::where('domain', 'LIKE', $domain.'%')->get(array('domain'));
+        $list_dm = array();
+        if($userStores)
+            foreach($userStores->toArray()  as $user){
+                $list_dm[] = $user['domain'];
+            }
+       
+        if(!in_array($domain, $list_dm))  return  $domain;
+            
+        for($i = 1;$i <1000;$i++){
+            $new_dm = $domain.$i;
+            if(!in_array($new_dm, $list_dm))  return  $new_dm;
+        }   
+        
+        return "";
+    }
 }

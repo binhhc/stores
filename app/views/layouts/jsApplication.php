@@ -974,7 +974,7 @@ function StoresController($scope, $http, $location, $rootScope, optimizely, $tim
             }
         },
         about: function() {
-            var page_title = "en" === I18n.locale ? "About" : "\u30b9\u30c8\u30a2\u8aac\u660e";
+            var page_title = "en" === I18n.locale ? "About" : "Giới thiệu";
             updatePageTitle(page_title), $http.get("/store/" + USER_NAME + "/about").success(function(data) {
                 $scope.data = data, setTimeout(function() {
                     $("#store_about").autolink("_blank")

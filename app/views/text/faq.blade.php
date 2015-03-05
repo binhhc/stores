@@ -1,21 +1,133 @@
-@include('text.header')
-	<div id="content">
-	  <div class="wrapper">
-	  	<h2 class="heading">{{$title_for_layout}}</h2>
-		<div id="terms">{{$content}}</div>
-		<ul class="breadcrumb_list">
-			<li itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
-				<a itemprop="url" href="/">
-				<span itemprop="title">Trang chủ</span>
-				</a>
-				 >
-			</li>
-			<li itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
-				<a itemprop="url" href="/faq">
-				<strong itemprop="title">FAQ</strong>
-				</a>
-			</li>
-		</ul>
-	  </div>
+@include('text.header_simple')
+	  <div id="content">
+  <div id="faq_list" class="wrapper">
+    <h2 class="heading"><a href="/faq/">Lorem ipsum dolor sit amet,</a></h2>
+    <div id="faq_search">
+      <form method="GET" action="/faq/search" ng-submit="search(event)">
+        <input type="text" placeholder="Lorem ipsum dolor sit amet," name="q" ng-model="search_word">
+        <input type="submit" value="">
+      </form>
+    </div>
+    <ul>
+      <li>
+        <a href="/faq/about">
+          <p class="icon"> {{HTML::image('img/main_page/icon_about.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_about_sp.png', ' Lorem ipsum dolor sit amet,')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/premium">
+          <p class="icon"> {{HTML::image('img/main_page/icon_premium_faq.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_premium_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/store">
+          <p class="icon"> {{HTML::image('img/main_page/icon_store_faq.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_store_sp.png', ' Lorem ipsum dolor sit amet,')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/order">
+          <p class="icon"> {{HTML::image('img/main_page/icon_order2.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_order2_sp.png', 'Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li class="end">
+        <a href="/faq/dashboard">
+          <p class="icon"> {{HTML::image('img/main_page/icon_dashboard.png', ' Lorem ipsum dolor sit amet,')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_dashboard_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/support/photo">
+          <p class="icon"> {{HTML::image('img/main_page/icon_support.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_support_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/payment/cc">
+          <p class="icon"> {{HTML::image('img/main_page/icon_payment2.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_payment2_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/promotion">
+          <p class="icon"> {{HTML::image('img/main_page/icon_promotion.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_promotion_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/faq/addon">
+          <p class="icon"> {{HTML::image('img/main_page/icon_addon.png', ' Lorem ipsum dolor sit amet, ')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_addon_sp.png', ' Lorem ipsum dolor sit amet, ')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+      <li class="end sp_end">
+        <a href="/faq/follow">
+          <p class="icon"> {{HTML::image('img/main_page/icon_follow.png', ' Lorem ipsum dolor sit amet,')}}
+          <p class="icon_sp"> {{HTML::image('img/main_page/icon_follow_sp.png', ' Lorem ipsum dolor sit amet,')}}
+          <div class="title">
+            <h3>Lorem ipsum dolor sit amet,</h3>
+            <p class="text">Lorem ipsum dolor sit amet,</p>
+          </div>
+        </a>
+      </li>
+    </ul>
   </div>
+    <!-- Contact/ -->
+    <div id="faq_contact">
+      <div class="heading_faq">Lorem ipsum dolor sit amet,</div>
+      <ul>
+        <li class="mail">
+          <a href="/contact">
+            <p>Lorem ipsum dolor sit amet,</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  <!-- /Contact -->
+</div>
+<div id="faq_breadcrumb_list">
+  <ul class="breadcrumb_list">
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/" itemprop="url"><span itemprop="title">Trang chủ</span></a>&nbsp;&gt;</li>
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/faq" itemprop="url"><strong itemprop="title">FAQ</strong></a></li>
+  </ul>
+</div>
 @include('text.footer')

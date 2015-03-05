@@ -645,6 +645,14 @@ class UserController extends BaseController {
                 if($user->save()) {
                     if (Auth::attempt($user_data)) {
                         $user_data = User::where('email', '=', $email)->first()->toArray();
+                        // create user store
+                	    $tmpEmail = explode('@', $email);
+        			    $store_name = $tmpEmail[0];
+        			    $domain = UserStore::getNewDomain($store_name);
+        			    $userStore = new UserStore;
+        			    $userStore->domain = $domain;
+        			    $userStore->user_id = $user_data['id'];
+        			    $userStore->save();
                         Session::put('user', $user_data);
                         Session::put('first_register', 'hello');
                         //$this->send_email();
@@ -652,12 +660,12 @@ class UserController extends BaseController {
                         $mss = 'Success';
                     } else {
                     	$status = 'faila';
-                    	$mss = 'Register fail';
+                    	$mss = 'Có lỗi xảy ra! Vui lòng đăng ký lại.';
                     }
 
                  } else {
                     	$status = 'faila';
-                    	$mss = 'Register fail';
+                    	$mss = 'Có lỗi xảy ra! Vui lòng đăng ký lại.';
                  }
             // validation successful!
             }

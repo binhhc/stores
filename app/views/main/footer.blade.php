@@ -4,16 +4,13 @@
 			<a href="{{URL::asset('/')}}">STORES</a>
 		</li>
 		<li>
-			<a href="/features">Chức năng</a>
+			<a href="/feature">Chức năng</a>
 		</li>
 		<li>
 			<a href="/price">Giá cả</a>
 		</li>
 		<li>
 			<a href="/support_stores">Hỗ trợ</a>
-		</li>
-		<li>
-			<a href="/interview">Phỏng vấn</a>
 		</li>
 		<li>
 			<a href="/faq">FAQ</a>

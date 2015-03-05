@@ -22,7 +22,6 @@
         <li><a href="/feature">Chức năng</a></li>
         <li><a href="/price">Giá cả</a></li>
         <li><a href="/support_stores">Hỗ trợ</a></li>
-        <li><a href="/interview">Phỏng vấn</a></li>
         <li><a href="/category">Phân loại</a></li>
         <li><a href="/faq">FAQ</a></li>
         <li><a href="/login">Đăng nhập</a></li>
@@ -41,7 +40,6 @@
         <li><a href="/feature">Chức năng</a></li>
         <li><a href="/price">Giá cả</a></li>
         <li><a href="/support">Hỗ trợ</a></li>
-        <li><a href="/interview">Phỏng vấn</a></li>
         <li><a href="/category">Phân loại</a></li>
         <li><a href="/faq">FAQ</a></li>
         <li class="btn_login"><a href="/login">Đăng nhập</a></li>

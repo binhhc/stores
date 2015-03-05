@@ -8,11 +8,24 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
 
     });
 
-    Route::get('/partials/c/items/index', 'StoreController@index');
+    //Route::get('/partials/c/items/index', 'StoreController@index');
 
-    Route::get('/partials/c/items/show', 'StoreController@show');
+    Route::get('/partials/c/items/index', function($account)
+    {
+        return App::make('StoreController')->index($account);
+    });
+    
+    //Route::get('/partials/c/items/show', 'StoreController@show');
+    Route::get('/partials/c/items/show', function($account)
+    {
+        return App::make('StoreController')->show($account);
+    });
 
-    Route::get('/partials/c/stores/about', 'StoreController@aboutDetail');
+    //Route::get('/partials/c/stores/about', 'StoreController@aboutDetail');
+    Route::get('/partials/c/stores/about', function($account)
+    {
+        return App::make('StoreController')->aboutDetail($account);
+    });
 
     Route::get('/store/{account}/about_detail', function($account)
     {
@@ -172,6 +185,11 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     Route::get('/partials/c/stores/privacy_policy', function($parameters)
     {
         return App::make('StoreController')->privacy_policy($parameters);
+    });
+    
+    Route::get('/setLanguageForMenu', function($parameters)
+    {
+        return App::make('StoreController')->setLanguageForMenu($parameters);
     });
     
 });

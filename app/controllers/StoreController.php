@@ -40,8 +40,14 @@ class StoreController extends BaseController {
      *
      * display list item
      */
-    public function index() {
-        return View::make('store.index');
+    public function index($parameters) {
+        $store_main_menu = $this->setLanguageForMenu($parameters);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        
+        return View::make('store.index', $data);
     }
     
     public function inquiries($account) {
@@ -225,8 +231,13 @@ class StoreController extends BaseController {
      *
      * show item detail
      */
-    public function show() {
-        return View::make('store.show');
+    public function show($parameters) {
+        $store_main_menu = $this->setLanguageForMenu($parameters);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.show', $data);
     }
 
 
@@ -313,9 +324,19 @@ class StoreController extends BaseController {
         exit;
     }
 
-    public function aboutDetail() {
-
-        return View::make('store.about', array('data' => 'test'));
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/05
+     * 
+     * about store
+     */
+    public function aboutDetail($parameters) {
+        $store_main_menu = $this->setLanguageForMenu($parameters);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.about', $data);
     }
 
     /**
@@ -437,7 +458,9 @@ class StoreController extends BaseController {
      * cart_popup
      */
     public function cart_popup($id) {
-        App::setLocale('vi');
+        $typeLanguage = UserAddon::getLanguegeByDomain($id);
+        App::setLocale($typeLanguage);
+        
         $cart_popup_button_checkout = Lang::get('store.cart_popup_button_checkout');
         
         $data = array(
@@ -521,7 +544,12 @@ class StoreController extends BaseController {
     }
 
     public function tokushoho($id) {
-        return View::make('store.tokushoho', array('data' => 'test'));
+        $store_main_menu = $this->setLanguageForMenu($id);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.tokushoho', $data);
     }
     
     /**
@@ -538,8 +566,19 @@ class StoreController extends BaseController {
         exit;
     }
     
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/05
+     * 
+     * inquiry store
+     */
     public function inquiry($id) {
-        return View::make('store.inquiry', array('data' => 'test'));
+        $store_main_menu = $this->setLanguageForMenu($id);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.inquiry', $data);
     }
     
     /**
@@ -572,7 +611,12 @@ class StoreController extends BaseController {
      * term
      */
     public function terms($parameters) {
-        return View::make('store.terms', array('data' => 'test'));
+        $store_main_menu = $this->setLanguageForMenu($parameters);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.terms', $data);
     }
     
     /**
@@ -582,9 +626,28 @@ class StoreController extends BaseController {
      * privacy_policy
      */
     public function privacy_policy($parameters) {
-        return View::make('store.privacy_policy', array('data' => 'test'));
+        $store_main_menu = $this->setLanguageForMenu($parameters);
+        
+        $data = array(
+            'store_main_menu' => $store_main_menu
+        );
+        return View::make('store.privacy_policy', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/05
+     * 
+     * set language for menu store
+     */
+    public function setLanguageForMenu($parameters) {
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
+        
+        $store_main_menu = Lang::get('store.store_main_menu');
+        
+        return $store_main_menu;
+    }
     /**
      *
      * @author  Le Nhan Hau

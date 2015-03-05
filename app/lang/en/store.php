@@ -263,5 +263,10 @@ return array(
         )
     ),
     'cart_popup_button_checkout' => 'Shopping',
-    'checkout_label_address' => 'Địa chỉ sẽ được nhập tự động'
+    'checkout_label_address' => 'Địa chỉ sẽ được nhập tự động',
+    'store_main_menu' => array(
+        'home_menu' => 'HOME',
+        'about_menu' => 'ABOUT',
+        'categories' => 'CATEGORIES'
+    )
 );

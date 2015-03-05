@@ -1,25 +1,7 @@
 
 <div class="wrapper" id="store_cart">
   <div class="height_fix">
-    <div id="header_basic">
-      <h1 id="store_logo" ng-style="styles.store_logo">
-        <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{[logo_src]}" alt="logo"></span></a>
-        <a href="/" ng-hide="styles.logo"><span class="txt">{[styles.name]}</span></a>
-      </h1>
-      <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore">
-        <dl style="font-family: Allerta">
-          <dd><a href="/">HOME</a></dd>
-          <dd ng-show="hasAbout"><a href="#!/about">ABOUT</a></dd>
-          <dd class="btn_dropdown" ng-show="categories">
-            <a href="">CATEGORY</a>
-            <ul class="dropdown">
-              <li ng-repeat="category in categories"><a ng-click="category_click(category.name)">{[category.name]}</a></li>
-            </ul>
-          </dd>
-          <dd ng-show="showVirtualStore"><a href="{[virtualStore.url]}" target="_blank">VIRTUAL STORE</a></dd>
-        </dl>
-      </div>
-    </div>
+    @include('elements.user_header', array('store_main_menu'=>$store_main_menu))
     <div class="box_wht" ng-hide="accepted">
       <h2>{[I18n.store.privacyPolicy.title]}</h2>
       <ul class="terms_link">

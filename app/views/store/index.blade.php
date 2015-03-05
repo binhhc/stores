@@ -1,7 +1,7 @@
 <div id="preview" name="preview_delay_5000" ng-init="index()" infinite-scroll="page_scroll()"  infinite-scroll-disabled=disable_flag infinite-scroll-distance="5">
   <input type='hidden' name='footer_fixed' value='false'>
   <div id="layout_pattern" ng-class="styles.layout">
-    @include('elements.user_header')
+    @include('elements.user_header', array('store_main_menu'=>$store_main_menu))
     
     <h1 ng-repeat="cate in categories" ng-if="cate.id == category" id="category_title">{[cate.name]}</h1>
     <div id='item_list' >

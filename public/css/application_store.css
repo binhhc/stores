@@ -6844,6 +6844,14 @@ p.download span {
 	text-align: center;
 	text-decoration: none;
 }
+#follow a.box {
+    width: 86px;
+	height: 26px;
+	padding-left: 14px;
+	background: url("/img/icon_plus.png") no-repeat 8px center #177dc0;
+	font-size: 12px;
+	line-height: 26px;
+}
 .follow_box.delete {
     display: none !important;
     opacity: 0;

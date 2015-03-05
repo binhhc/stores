@@ -50,7 +50,7 @@
 <div id="popup_alert_follow" class="fancybox popup_alert">
     <p class="image"><img src="/img/icon_attention_big_gray.png" alt="Flow">
     </p>
-    <p class="text">Không flow được.</p>
+    <p class="text">Không Follow được.</p>
 </div>
 <!-- /PopupAlertFollow -->
 

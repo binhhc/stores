@@ -275,7 +275,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
             }
             var extendData = {};
             STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), $routeParams.category && (extendData.category_id = $routeParams.category, $scope.category = $routeParams.category, updatePageTitle($routeParams.category));
-            console.log($routeParams)
+            //console.log($routeParams)
             var last_page = !1;
             $("#store_footer").hide(), $scope.footerFixed = function(last) {
                 last || "true" != $("input[name=footer_fixed]")[0].value ? ($("#store_footer").show(), $("#store_footer").css("position", "relative"), $("#store_footer").css("background-color", "transparent"), last_page = !0) : ($("#store_footer").css("position", "fixed"), $(function() {

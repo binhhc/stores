@@ -83,11 +83,11 @@ return array(
             ),
             "tokushoho" => array(
                 "title" => "Điều khoản & Điều kiện",
-                "price" => "<Price>",
-                "payment" => "<Payment>",
-                "returning" => "<Return Policy>",
-                "merchandise" => "<Delivery>",
-                "contact" => "<Contact>",
+                "price" => "<Giá>",
+                "payment" => "<Thanh toán>",
+                "returning" => "<Chính sách trả lại>",
+                "merchandise" => "<Giao hàng>",
+                "contact" => "<Liên hệ>",
                 "buttonTokushoho" => "Giới thiệu",
                 "buttonTerms" => "Điều khoản dịch vụ",
                 "buttonPrivacyPolicy" => "Chính sách bảo mật"

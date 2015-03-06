@@ -46,7 +46,7 @@
             <dl class="cols">
                 <dt>Hình mặt hàng</dt>
                 <dd>
-                {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup', 'multiple'=>'multiple'))}}
+                {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup'))}}
                     <ul class="images dragdrop image" id="result">
                     <?php $item->image_url = explode(',', $item->image_url); $count = 0; ?>
                     <?php foreach ($item->image_url as $key) {?>

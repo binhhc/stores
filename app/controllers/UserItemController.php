@@ -97,6 +97,7 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
+        var_dump($data['items']);
         $user_id = Session::get('user.id');
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         $view =  View::make('elements.list_item_ajax', $data)->render();
@@ -104,6 +105,7 @@ class UserItemController extends BaseController {
                     'status' => 'success',
                     'html' => $view,
                     );
+
         return $response;
     }
     /**
@@ -212,12 +214,12 @@ class UserItemController extends BaseController {
 	               ->decrement('order');
              }
              $images_name = explode(',',$item['image_url']);
-             $folder_name = User::getNameStore();
              // delete image of item
              foreach ($images_name as $key) {
-				unlink( public_path() . '/files/'.$folder_name['USER_NAME'] . '/' . $key);
+				@unlink( public_path() . '/files/'.$this->getUserId() . '/' . $key);
              }
              if(UserItem::where('id', $item_id)->delete()){
+             	UserItemQuatity::where('item_id', $item_id)->delete();
                 $success = 1;
              }
              $html = $this->list_item_ajax();

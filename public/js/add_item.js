@@ -106,8 +106,13 @@
         $('#div_' + splitval[1]).remove();
         var name_image =  $('#input_' + splitval[1]).val();
         $('#input_' + splitval[1]).remove();
+        i_c = $('#result').find('li').length;
+        if( i_c == 0) {
+    		$('.form_basic .images.dragdrop').css("background-image","url('../img/main_page/bg_dragdrop.png')");
+
+    	}
         // remove image by ajax
-        $.ajax({
+        /*$.ajax({
             type: "POST",
             url: "/remove_image",
             data: {
@@ -129,7 +134,7 @@
 
              	}
             },
-        });
+        });*/
     });
 
 $(document).on("click", '.d_quality',function() {

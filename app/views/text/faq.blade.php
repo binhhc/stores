@@ -117,7 +117,7 @@
       <ul>
         <li class="mail">
           <a href="/contact">
-            <p>Lorem ipsum dolor sit amet,</p>
+            <p>Lorem ipsum dolor,</p>
           </a>
         </li>
       </ul>

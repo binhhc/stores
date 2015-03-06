@@ -557,12 +557,43 @@ class StoreController extends BaseController {
      * @since           2015/03/04
      *
      * information tokushoho
+     * user store setting trade law
      */
     public function json_tokushoho($id) {
-        echo '{"price":"",
+        //default setting trade law
+        $defaultSettingTradeLaw = Config::get('constants.trade_law');
+        
+        //setting_trade_law
+        $tmpSettingTradeLaw = UserStore::getUserStoreByDomain($id);
+        //$settingTradeLaw = array();
+        $settingTradeLaw = array(
+            'price' => $defaultSettingTradeLaw['price'],
+            'period' => $defaultSettingTradeLaw['time_ship'],
+            'shipment' => $defaultSettingTradeLaw['charge'],
+            'contact' => $defaultSettingTradeLaw['contact']
+        );
+        
+        if (!empty($tmpSettingTradeLaw)) {
+            $tmpSettingTradeLaw = $tmpSettingTradeLaw->toArray();
+            
+            if (!empty($tmpSettingTradeLaw['setting_trade_law'])) {
+                $tmpStoresSettingTradeLaw = json_decode($tmpSettingTradeLaw['setting_trade_law']);
+            
+                $settingTradeLaw = array(
+                    'price' => $tmpStoresSettingTradeLaw->price,
+                    'period' => $tmpStoresSettingTradeLaw->time_ship,
+                    'shipment' => $tmpStoresSettingTradeLaw->charge,
+                    'contact' => $tmpStoresSettingTradeLaw->contact
+                );
+            }
+        }
+        
+        echo json_encode($settingTradeLaw);
+        
+        /*echo '{"price":"",
         "period":"",
         "shipment":"",
-        "contact":""}';
+        "contact":""}';*/
         exit;
     }
 

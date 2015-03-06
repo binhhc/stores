@@ -895,7 +895,10 @@ class StoreController extends BaseController {
 
         if (!empty($userItems)) {
             foreach ($userItems as $key => $value) {
-                $value->images[]['name'] = $value->image_url;
+                $tmpImageUrl = explode(',', $value->image_url);
+                //$value->images[]['name'] = $value->image_url;
+                //modified date 2015/03/06
+                $value->images[]['name'] = $tmpImageUrl[0];
                 unset($value->image_url);
                 $items[] = $value;
             }

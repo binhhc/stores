@@ -1312,15 +1312,22 @@ class StoreController extends BaseController {
 	 * About commercial law
 	 * @author OanhHa
 	 * @since 2015-01-09
+	 * 
+	 * @modified by    Le Nhan Hau
+	 * @modified date  2015/03/06
 	 */
 	public function dashboard($id=null) {
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
+		//get domain store
+		$domain = UserStore::getUserStoreDomain();
 		$user_id    = $this->getUserId();
 		$accout     = User::where('id', $user_id)->first(array('account_active'))->toArray();
 		$data['account_active']     = $accout['account_active'];
 		$data['title_for_layout']   = "Bảng điều khiển cửa hàng";
+		$data['domain'] = $domain['domain'];
+		
 		return View::make('store.dashboard', $data );
 	}
 

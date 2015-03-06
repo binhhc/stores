@@ -46,10 +46,11 @@
             <dl class="cols">
                 <dt>Hình mặt hàng</dt>
                 <dd>
+                 <?php $item->image_url = explode(',', $item->image_url); $count = 0;
+                 $len = count($item->image_url);$style = '';
+                 if ($len != 0) $style="background-image: none"?>
                 {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup'))}}
-                    <ul class="images dragdrop image" id="result">
-                    <?php $item->image_url = explode(',', $item->image_url); $count = 0; ?>
-                    <?php foreach ($item->image_url as $key) {?>
+                    <ul class="images dragdrop image" id="result" style="<?php echo $style?>">
                      	<li id="div_<?php echo $count?>" class="divclass">
                      	 {{HTML::image($url_image . $key, 'Hình ảnh sản phẩm', array('width' => 96, 'title' => $key,'height' => 80, 'style' => 'position:relative','class' => 'thumbnail'))}}
 							<span id="span_<?php echo $count?>" class="boxclose" style="cursor:pointer">x</span>

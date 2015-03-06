@@ -41,6 +41,11 @@
                          input = "<input type='hidden' name='image_name[]' id='input_"+ count_img + "' value='" + response.name + "' >";
                          $('#image_arrays').append(input);
                      output.insertBefore(div, null);
+                     i_c = $('#result').find('li').length;
+                     if( i_c > 0) {
+                 		$('.form_basic .images.dragdrop').css("background-image","none");
+
+                 	}
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
             },
@@ -111,8 +116,18 @@
             global: true,
             dataType: 'json',
             success: function(response) {
+            	 i_c = $('#result').find('li').length;
+                 if( i_c == 0) {
+             		$('.form_basic .images.dragdrop').css("background-image","url('../img/main_page/bg_dragdrop.png')");
+
+             	}
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
+            	 i_c = $('#result').find('li').length;
+                 if( i_c == 0) {
+             		$('.form_basic .images.dragdrop').css("background-image","url('../img/main_page/bg_dragdrop.png')");
+
+             	}
             },
         });
     });

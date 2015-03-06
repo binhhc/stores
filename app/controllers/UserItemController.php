@@ -97,7 +97,6 @@ class UserItemController extends BaseController {
             return Redirect::to('/');
         }
         $data['items'] = $this->getItemList();
-        var_dump($data['items']);
         $user_id = Session::get('user.id');
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
         $view =  View::make('elements.list_item_ajax', $data)->render();
@@ -503,7 +502,8 @@ class UserItemController extends BaseController {
 	        	 $input = Input::all();
 	        	 $image = $input['image_name'];
 	             $filename = public_path() . '/files/'.$this->getUserId() . '/' . $image;
-	             unlink($filename);
+	             @unlink($filename);
+	             echo 1;
 	        }
     }
 }

@@ -593,10 +593,15 @@ class StoreController extends BaseController {
         $language = Lang::get('store.js');
         $language['prefectures'] = MsPrefecture::getJsonData();
 
+        //modified date 2015/03/06
+        $userStoreByDomain = UserStore::getUserStoreByDomain($parameters);
+        $folderUploadId = $userStoreByDomain->user_id;
+        
         $content = View::make('layouts.jsApplication',
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),
-                    'language' => json_encode($language)
+                    'language' => json_encode($language),
+                    'folderUploadId' => $folderUploadId
                     ));
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');
@@ -688,7 +693,9 @@ class StoreController extends BaseController {
         $imgurlSampleBackground = UserStore::getImageUrlEditStore();
 
         //get user login
-        $userInfos = User::getNameStore();
+        //$userInfos = User::getNameStore();
+        //modified date 2015/03/06
+        $userInfos = array('USER_NAME' => $this->getUserId());
 
         //sys_colors
         $sysLayouts = array();
@@ -812,7 +819,7 @@ class StoreController extends BaseController {
             //init data
             $userStore = new UserStore;
             $userStore->user_id = Session::get('user.id');
-            $userStore->domain = $userInfos['USER_NAME'];
+            //$userStore->domain = $userInfos['USER_NAME'];
             $userStore->settings = $json;
 
             //check exist user_stores
@@ -857,7 +864,9 @@ class StoreController extends BaseController {
      */
     public function moveCopyImage($file_name) {
         //get user login
-        $userInfos = User::getNameStore();
+        //$userInfos = User::getNameStore();
+        //modified date 2015/03/06
+        $userInfos = array('USER_NAME' => $this->getUserId());
 
         $tmpPath = public_path() . '/_temp_files/'. $file_name;
         $folder_user = public_path() . '/files/'.$userInfos['USER_NAME'];

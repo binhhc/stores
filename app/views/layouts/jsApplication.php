@@ -147,7 +147,7 @@ function EmailsController($scope, $resource, $location, $routeParams) {
                     var i = 0;
                     do {
                         var str = $scope.htmlEncode($scope.email.contents[i].b);
-                        $("#template").contents().find("#body" + i).html(str.replace(/\r\n/g, "<br />").replace(/(\n|\r)/g, "<br />")), (0 !== i || 0 !== $scope.email.fmt) && (str = $scope.htmlEncode($scope.email.contents[i].h), $("#template").contents().find("#head" + i).html(str.replace(/\r\n/g, "<br />").replace(/(\n|\r)/g, "<br />")), $scope.email.contents[i].image ? (img_name = $scope.email.contents[i].image.n.split("."), src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + img_name[0] + "_" + $scope.email.contents[i].image.w + "x" + $scope.email.contents[i].image.h + "x" + Math.abs($scope.email.contents[i].image.ox) + "x" + Math.abs($scope.email.contents[i].image.oy) + "." + img_name[1]) : src = "/images/mailmagazine/spacer.gif", $("#template").contents().find("#image" + i).load(function() {
+                        $("#template").contents().find("#body" + i).html(str.replace(/\r\n/g, "<br />").replace(/(\n|\r)/g, "<br />")), (0 !== i || 0 !== $scope.email.fmt) && (str = $scope.htmlEncode($scope.email.contents[i].h), $("#template").contents().find("#head" + i).html(str.replace(/\r\n/g, "<br />").replace(/(\n|\r)/g, "<br />")), $scope.email.contents[i].image ? (img_name = $scope.email.contents[i].image.n.split("."), src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + img_name[0] + "_" + $scope.email.contents[i].image.w + "x" + $scope.email.contents[i].image.h + "x" + Math.abs($scope.email.contents[i].image.ox) + "x" + Math.abs($scope.email.contents[i].image.oy) + "." + img_name[1]) : src = "/images/mailmagazine/spacer.gif", $("#template").contents().find("#image" + i).load(function() {
                             $("#template").attr("width", "600"), $("#template").attr("height", $("#template").contents().height()), $scope.$$phase || $scope.$digest()
                         }).attr("src", src))
                     } while (++i < $scope.email.fmt);
@@ -303,7 +303,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                 _.each($scope.items, function(v, k) {
                     var image_name = v.images[0].name.split(".");
                     //k ? (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_" + layout.other + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height) : (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_" + layout.first + "." + image_name[1], v.images[0].width = layout.first_width, v.images[0].height = layout.first_height)
-                  k ? (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height) : (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.first_width, v.images[0].height = layout.first_height)
+                  k ? (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height) : (v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.first_width, v.images[0].height = layout.first_height)
                 }), setTimeout(function() {
                     $("dd.name").tile();
                     var pagenBtn = $(".pagenation");
@@ -345,7 +345,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     _.each(items, function(v) {
                         var image_name = v.images[0].name.split(".");
                         //v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_" + layout.other + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height
-                        v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height
+                        v.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1], v.images[0].width = layout.other_width, v.images[0].height = layout.other_height
                     }), null == $scope.items ? $scope.items = items : 1 == $scope.mobile_nextpage_btn ? ($scope.items = null, $scope.items = items) : $scope.items = $scope.items.concat(items), $scope.disable_flag = !1, $scope.pagerdisplaycontrol(), $scope.mobile_nextpage_btn = !1, setTimeout(function() {
                         $("dd.name").tile()
                     }, 50), $scope.range(), (window.innerHeight - $("html").height() >= 0 || 1 == ie_flag) && $scope.items.length < $scope.cnt_items && $scope.page_scroll()
@@ -436,7 +436,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                 if (data.description && (item_keywords = data.name + ", " + data.description), metaDesc.attr("content", item_keywords), metaKeyWd.attr("content", item_keywords + ", \u30aa\u30f3\u30e9\u30a4\u30f3\u30b9\u30c8\u30a2, \u30cd\u30c3\u30c8\u30b7\u30e7\u30c3\u30d7, EC, \u30aa\u30f3\u30e9\u30a4\u30f3\u30b7\u30e7\u30c3\u30d7, \u30cd\u30c3\u30c8\u901a\u8ca9, \u30cd\u30c3\u30c8\u8ca9\u58f2"), metaTwiDesc.attr("content", item_keywords), $scope.tweet_item_name = encodeURI($scope.item.name).replace("&", "%26"), $scope.item.digital_contents && ($scope.item.is_digit = !0), $scope.title = encodeURIComponent(updatePageTitle(data.title)), $scope.item_images = [], _.each($scope.item.images, function(image) {
                         var image_name = image.name.split(".");
                         //image.original_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image.name, image.sp_big_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_500x0." + image_name[1], image.preview_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_460x460." + image_name[1], image.thumb_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_80x80." + image_name[1], $scope.item_images.push(image.preview_src)
-                        image.original_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image.name, image.sp_big_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_500x0." + image_name[1], image.preview_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1], image.thumb_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1], $scope.item_images.push(image.preview_src)
+                        image.original_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image.name, image.sp_big_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "_500x0." + image_name[1], image.preview_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1], image.thumb_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1], $scope.item_images.push(image.preview_src)
                     }), $scope.main_image = $scope.item.images[0], !$scope.item_image_limit && $scope.item.images.length > 4 && $scope.item.images.splice(4, $scope.item.images.length - 4), $scope.item.images.length > 4) {
                     var image_groups = [],
                         idx = 0,
@@ -739,7 +739,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                 FB.ui(obj, callback)
             }, twttr.events.unbind("tweet"), twttr.events.bind("tweet", function() {
                 analytics.event("order_item", "share", "twitter")
-            }), $scope.I18n = I18n, $scope.store_name = USER_NAME, $scope.origin_url = location.protocol + "//" + location.host, $scope.origin_url_tw = encodeURIComponent($scope.origin_url + "/#!/items/"), $scope.origin_image_url = $scope.origin_url + "/files/" + USER_NAME + "/", $scope.enableGiftAddon = storesJpAddonUtility.isEnableAddon("gift_form"), $scope.cart.items.length ? _.isEmpty($scope.$root.customer) ? void $location.path("/checkout") : ($scope.customer = $scope.$root.customer, $scope.styles.logo && ($scope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.styles.logo), $scope.cart.sum(), $scope.cart.refresh_quantity(), $scope.submit = function() {
+            }), $scope.I18n = I18n, $scope.store_name = USER_NAME, $scope.origin_url = location.protocol + "//" + location.host, $scope.origin_url_tw = encodeURIComponent($scope.origin_url + "/#!/items/"), $scope.origin_image_url = $scope.origin_url + "/files/" + <?php echo $folderUploadId;?> + "/", $scope.enableGiftAddon = storesJpAddonUtility.isEnableAddon("gift_form"), $scope.cart.items.length ? _.isEmpty($scope.$root.customer) ? void $location.path("/checkout") : ($scope.customer = $scope.$root.customer, $scope.styles.logo && ($scope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + $scope.styles.logo), $scope.cart.sum(), $scope.cart.refresh_quantity(), $scope.submit = function() {
                 var params = checkout.beforeSubmit(),
                     errorCallback = function(data) {
                         $scope.$root.state = "", "error_credit" == data.status ? (_gaq.push(["_trackEvent", "order", "error", "error_credit"]), $scope.$root.error_credit = !0, $location.path("/checkout")) : "error_bank_transfer" == data.status ? ($scope.$root.error_bank_transfer = !0, $scope.$root.state = "", $location.path("/checkout")) : "error_convenience_store_payment" == data.status ? (_gaq.push(["_trackEvent", "order", "error", "error_convenience_store_payment"]), $scope.$root.error_convenience_store_payment = !0, $location.path("/checkout")) : "error_asukanet_order" == data.status ? ($scope.$root.error_asukanet_order = !0, $scope.$root.error_asukanet_order_msg = data.msg, $location.path("/checkout")) : (_gaq.push(["_trackEvent", "order", "error", "other"]), $scope.cart.empty_cart(), delete $scope.$root.customer, delete $scope.$root.misc, alert($scope.I18n.store.error.checkout), $location.url("/"))
@@ -864,7 +864,7 @@ function OrdersController($scope, $resource, $location, $routeParams, $http, $ro
                 var resized_image = null;
                 //return resized_image = urls[0] + "_50x50." + urls[1]
                 return resized_image = urls[0] + "." + urls[1]
-            }, $scope.I18n = I18n, $scope.store_name = USER_NAME, $scope.origin_url = location.protocol + "//" + location.host, $scope.origin_url_tw = encodeURIComponent($scope.origin_url + "/#!/items/"), $scope.origin_image_url = $scope.origin_url + "/files/" + USER_NAME + "/", $scope.cart.items.length || $location.path("/"), _.isEmpty($scope.$root.customer) ? $location.path("/") : ($scope.customer = $scope.$root.customer, $scope.styles.logo && ($scope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + $scope.styles.logo), "credit" === $scope.customer.payment_method[0] && ($scope.temp = {
+            }, $scope.I18n = I18n, $scope.store_name = USER_NAME, $scope.origin_url = location.protocol + "//" + location.host, $scope.origin_url_tw = encodeURIComponent($scope.origin_url + "/#!/items/"), $scope.origin_image_url = $scope.origin_url + "/files/" + <?php echo $folderUploadId;?> + "/", $scope.cart.items.length || $location.path("/"), _.isEmpty($scope.$root.customer) ? $location.path("/") : ($scope.customer = $scope.$root.customer, $scope.styles.logo && ($scope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + $scope.styles.logo), "credit" === $scope.customer.payment_method[0] && ($scope.temp = {
                 cc_number: function(cc_number) {
                     var str = "";
                     cc_number = String(cc_number);
@@ -10606,7 +10606,7 @@ app.config(["$httpProvider", function($httpProvider) {
         $scope.item = res;
         var images = $scope.item.images[0].name.split(".");
         //$scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + images[0] + "_50x50." + images[1], $scope.submit = function() {
-        $scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + images[0] + "." + images[1], $scope.submit = function() {
+        $scope.item_image = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + images[0] + "." + images[1], $scope.submit = function() {
             $scope.clicked_submit || ($scope.clicked_submit = !0, $scope.form.$valid !== !1 && ($scope.review.item_id = $scope.item_id, $scope.review.review_key = $scope.review_key, $scope.review.score = $scope.rate, $scope.pending = !0, $http.post("/create_review", {
                 review: $scope.review
             }).success(function() {
@@ -11044,7 +11044,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
     }(), app.run(function($rootScope, $http, $routeParams, analytics, DeliveryMethod, storesJpAddonUtility) {
         ! function() {
             $http.get("/store_style?name=" + USER_NAME).success(function(data) {
-                $rootScope.styles = data, data.logo && ($rootScope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + data.logo), data.display.frame ? $rootScope.styles.css = {
+                $rootScope.styles = data, data.logo && ($rootScope.logo_src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + data.logo), data.display.frame ? $rootScope.styles.css = {
                     items: {
                         background: "#fff"
                     }
@@ -11068,7 +11068,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                     main_url_path = '/' + url_path_background;
                     is_original_background_image = !1;
                 } else {
-                    main_url_path = "/files/" + USER_NAME + "/" +url_path_background;
+                    main_url_path = "/files/" + <?php echo $folderUploadId;?> + "/" +url_path_background;
                     is_original_background_image = !0;
                 };
                 $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:44px;}</style>" ).appendTo("head");
@@ -11176,7 +11176,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                         } else if (stock_quantity) {
                             var image_name = item_info.images[0].name.split(".");
                             //item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "_50x50." + image_name[1];
-                            item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + USER_NAME + "/" + image_name[0] + "." + image_name[1];
+                            item_info.images[0].src = STORES_JP.FILE_SERVER_URL + "/files/" + <?php echo $folderUploadId;?> + "/" + image_name[0] + "." + image_name[1];
                             var delivery_method_id = item_info.delivery_method ? item_info.delivery_method.id : null;
                             $rootScope.cart.items.push({
                                 item_id: item_info.id,

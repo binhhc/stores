@@ -12,7 +12,7 @@
   <body ng-controller="FavoriteItemCtrl" style="background-color:transparent;">
     <div ng-cloak class="ng-cloak">
       <div id="favorite_item" ng-init="isFavoriteItem = false; itemId = '54c743a4391bb3c77b000323'; favoriteCount = 0">
-        <p class="btn_favorite" ng-hide="isFavoriteItem"><button type="button" ng-click="add()">お気に入りに追加する</button><span class="count" ng-hide="favoriteCount == 0">{[favoriteCount]}</span></p>
+        <p class="btn_favorite" ng-hide="isFavoriteItem"><button type="button" ng-click="add()">Favorite</button><span class="count" ng-hide="favoriteCount == 0">{[favoriteCount]}</span></p>
         <p class="btn_favorite already" ng-show="isFavoriteItem"><button type="button" ng-click="remove()">お気に入りに追加済み</button><span class="count" ng-hide="favoriteCount == 0">{[favoriteCount]}</span></p>
       </div>
     </div>

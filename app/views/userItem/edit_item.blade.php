@@ -46,24 +46,25 @@
             <dl class="cols">
                 <dt>Hình mặt hàng</dt>
                 <dd>
-                 <?php $item->image_url = explode(',', $item->image_url); $count = 0;
-                 $len = count($item->image_url);$style = '';
-                 if ($len != 0) $style="background-image: none"?>
+                <?php 
+                    $item->image_url = explode(',', $item->image_url);
+                    $style= (count($item->image_url) == 0) ? "" : "background-image: none"; 
+                ?>
                 {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup'))}}
-                    <ul class="images dragdrop image" id="result" style="<?php echo $style?>">
-                     	<li id="div_<?php echo $count?>" class="divclass">
-                     	 {{HTML::image($url_image . $key, 'Hình ảnh sản phẩm', array('width' => 96, 'title' => $key,'height' => 80, 'style' => 'position:relative','class' => 'thumbnail'))}}
-							<span id="span_<?php echo $count?>" class="boxclose" style="cursor:pointer">x</span>
-						</li>
-                    <?php $count ++ ; }?>
+                    <ul class="images dragdrop image" id="result" style="<?php echo $style;?>">
+                        <?php foreach ($item->image_url as $count => $key) {?>
+                            <li id="div_<?php echo $count?>" class="divclass">
+                                {{HTML::image($url_image . $key, 'Hình ảnh sản phẩm', array('width' => 96, 'title' => $key,'height' => 80, 'style' => 'position:relative','class' => 'thumbnail'))}}
+                                <span id="span_<?php echo $count?>" class="boxclose" style="cursor:pointer">x</span>
+                            </li>
+                        <?php } ?>
                         <!-- ngRepeat: image in item.images -->
                     </ul>
-                     <div id="image_arrays">
-
-                      <?php $count = 0; foreach ($item->image_url as $key) {?>
-                      <input type='hidden' name='image_name[]' id="input_<?php echo $count?>" value="<?php echo $key?>" >
-                      <?php $count ++ ;}?>
-                     </div>
+                    <div id="image_arrays">
+                        <?php foreach ($item->image_url as $count => $key) {?>
+                            <input type='hidden' name='image_name[]' id="input_<?php echo $count?>" value="<?php echo $key?>" >
+                        <?php }?>
+                    </div>
                     <p class="error err_image"></p>
                 </dd>
             </dl>

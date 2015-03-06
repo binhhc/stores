@@ -116,7 +116,8 @@ class UserItem extends Model{
             ->orderBy('user_items.updated_at', 'desc');
 
         if (Request::get('category_id')){
-            $userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
+            //$userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
+            $userItems =  $userItems->where(DB::raw('CONCAT(",",category_id,",")'), 'like', '%,'.Request::get('category_id').',%');
         }
 
         $userItems =  $userItems->paginate(20);

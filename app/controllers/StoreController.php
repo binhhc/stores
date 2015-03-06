@@ -42,14 +42,14 @@ class StoreController extends BaseController {
      */
     public function index($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
-        
+
         return View::make('store.index', $data);
     }
-    
+
     public function inquiries($account) {
         $data = Input::get('data');
         $data['parameters'] = $account;
@@ -58,8 +58,8 @@ class StoreController extends BaseController {
         if (!empty($tmpSettings)) {
             $settings = json_decode($tmpSettings);
              $stores = $settings->store;
-             
-        $data['store_name'] =    $stores->name; 
+
+        $data['store_name'] =    $stores->name;
         $email = $data['email'];
         Mail::send('emails.contacts', $data, function($message) use($email) {
             $message->to($email, 'Liên hệ thành công')->subject('Cảm ơn bạn đã liên hệ với chúng tôi');
@@ -233,7 +233,7 @@ class StoreController extends BaseController {
      */
     public function show($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
@@ -327,12 +327,12 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/05
-     * 
+     *
      * about store
      */
     public function aboutDetail($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
@@ -454,15 +454,15 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * cart_popup
      */
     public function cart_popup($id) {
         $typeLanguage = UserAddon::getLanguegeByDomain($id);
         App::setLocale($typeLanguage);
-        
+
         $cart_popup_button_checkout = Lang::get('store.cart_popup_button_checkout');
-        
+
         $data = array(
             'cart_popup_button_checkout' => $cart_popup_button_checkout
         );
@@ -507,13 +507,13 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * checkout_shipping
      */
     public function checkout_shipping($id) {
         App::setLocale('vi');
         $checkout_label_address = Lang::get('store.checkout_label_address');
-        
+
         $data = array(
             'checkout_label_address' => $checkout_label_address
         );
@@ -545,17 +545,17 @@ class StoreController extends BaseController {
 
     public function tokushoho($id) {
         $store_main_menu = $this->setLanguageForMenu($id);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
         return View::make('store.tokushoho', $data);
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * information tokushoho
      */
     public function json_tokushoho($id) {
@@ -565,26 +565,26 @@ class StoreController extends BaseController {
         "contact":""}';
         exit;
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/05
-     * 
+     *
      * inquiry store
      */
     public function inquiry($id) {
         $store_main_menu = $this->setLanguageForMenu($id);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
         return View::make('store.inquiry', $data);
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * generate js application
      */
     public function jsApplication($parameters) {
@@ -592,8 +592,8 @@ class StoreController extends BaseController {
         App::setLocale($typeLanguage);
         $language = Lang::get('store.js');
         $language['prefectures'] = MsPrefecture::getJsonData();
-        
-        $content = View::make('layouts.jsApplication', 
+
+        $content = View::make('layouts.jsApplication',
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),
                     'language' => json_encode($language)
@@ -601,43 +601,43 @@ class StoreController extends BaseController {
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');
         return $response;
-        
+
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * term
      */
     public function terms($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
         return View::make('store.terms', $data);
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * privacy_policy
      */
     public function privacy_policy($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu
         );
         return View::make('store.privacy_policy', $data);
     }
-    
+
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * follow_header
      */
     public function follow_header($parameters) {
@@ -647,15 +647,15 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/05
-     * 
+     *
      * set language for menu store
      */
     public function setLanguageForMenu($parameters) {
         $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
         App::setLocale($typeLanguage);
-        
+
         $store_main_menu = Lang::get('store.store_main_menu');
-        
+
         return $store_main_menu;
     }
     /**
@@ -1312,7 +1312,7 @@ class StoreController extends BaseController {
 	 * About commercial law
 	 * @author OanhHa
 	 * @since 2015-01-09
-	 * 
+	 *
 	 * @modified by    Le Nhan Hau
 	 * @modified date  2015/03/06
 	 */
@@ -1327,7 +1327,7 @@ class StoreController extends BaseController {
 		$data['account_active']     = $accout['account_active'];
 		$data['title_for_layout']   = "Bảng điều khiển cửa hàng";
 		$data['domain'] = $domain['domain'];
-		
+
 		return View::make('store.dashboard', $data );
 	}
 
@@ -1363,6 +1363,7 @@ class StoreController extends BaseController {
 		if(isset($user_store['domain']) && $domain != '' && ($domain==$user_store['domain'])) {
 			UserStore::where('user_id', $user_id)
 						->update(array('domain' => $domain,  'updated_user' => $user_id));
+			Session::put('userStoresDomain', UserStore::getUserStoreDomain());
 			$success =  "Bạn đã chỉnh sửa thành công tên miền";
 			return Redirect::to('/store_setting')->with('success', $success);
 		} else {
@@ -1384,6 +1385,7 @@ class StoreController extends BaseController {
 					$user->created_user = $user_id;
 					$user->save();
 				}
+				Session::put('userStoresDomain', UserStore::getUserStoreDomain());
 				$success =  "Bạn đã chỉnh sửa thành công tên miền";
 				 return Redirect::to('/store_setting')->with('success', $success);
 			}

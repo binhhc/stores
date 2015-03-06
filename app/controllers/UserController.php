@@ -654,6 +654,7 @@ class UserController extends BaseController {
         			    $userStore->user_id = $user_data['id'];
         			    $userStore->save();
                         Session::put('user', $user_data);
+                        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
                         Session::put('first_register', 'hello');
                         //$this->send_email();
                         $status = "success";

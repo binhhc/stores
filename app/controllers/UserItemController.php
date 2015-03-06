@@ -29,8 +29,7 @@ class UserItemController extends BaseController {
      * @since 2015/01/23
      */
  	public function getItemList() {
- 		$image_url =  User::getNameStore();
- 		$url = '/files/' . $image_url['USER_NAME']. '/';
+ 		$url = '/files/' . $this->getUserId(). '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
 					->orderBy('public_flg', 'desc')
@@ -301,14 +300,13 @@ class UserItemController extends BaseController {
             return Redirect::to('/item_management');
         }
 
-        $folder_name = User::getNameStore();
         $user = Session::get('user');
         $item = UserItem::where('id', '=', $id)->first();
         $item_quantity = UserItemQuatity::where('item_id', '=', $id)->get();
 
         $category = UserCategory::where('user_id', '=', $user['id'])->orderBy('order', 'asc')->get();
         return View::make('userItem.edit_item')
-            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'url_image' =>  '/files/'.$folder_name['USER_NAME']. '/' ,'item_quantity' => $item_quantity));
+            ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'url_image' =>  '/files/'.$this->getUserId(). '/' ,'item_quantity' => $item_quantity));
     }
 
     /**
@@ -475,8 +473,7 @@ class UserItemController extends BaseController {
         	 $input = Input::all();
         	 $image = $input[0];
 
-	         $folder_name = User::getNameStore();
-                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
+                $folder_user = public_path() . '/files/'.$this->getUserId();
                 if(!is_dir($folder_user)){
                     mkdir($folder_user);
                     chmod($folder_user, 0777);
@@ -488,7 +485,7 @@ class UserItemController extends BaseController {
                 rename($folder_user.'/'. $filename, $folder_user. '/' . $newname );
                 $response = array(
                 	'name' => $newname,
-                	'source' => '/files/'.$folder_name['USER_NAME']. '/' . $newname
+                	'source' => '/files/'.$this->getUserId(). '/' . $newname
                 );
                 return Response::json($response);
         }
@@ -503,8 +500,7 @@ class UserItemController extends BaseController {
 	        {
 	        	 $input = Input::all();
 	        	 $image = $input['image_name'];
-		         $folder_name = User::getNameStore();
-	             $filename = public_path() . '/files/'.$folder_name['USER_NAME'] . '/' . $image;
+	             $filename = public_path() . '/files/'.$this->getUserId() . '/' . $image;
 	             unlink($filename);
 	        }
     }

@@ -48,6 +48,7 @@
         <h1><a href="/">
             {{HTML::image('img/main_page/logo.png')}}
         </a></h1>
+        <?php $domain_user = Session::get('userStoresDomain'); $domain = $domain_user['domain']?>
         <p class="btn_store"><a href="http://{{$domain}}.{{Request::server ("SERVER_NAME")}}" target="_blank">Cửa hàng của tôi</a></p>
         <ul class="nav" style="cursor: pointer">
             <li class="nav_design"><a href="{{URL::asset('/edit')}}" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>

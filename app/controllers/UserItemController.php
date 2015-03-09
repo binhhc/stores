@@ -473,7 +473,6 @@ class UserItemController extends BaseController {
         {
         	 $input = Input::all();
         	 $image = isset($input[0]) ? $input[0] : $input['file'];
-
                 $folder_user = public_path() . '/files/'.$this->getUserId();
                 if(!is_dir($folder_user)){
                     mkdir($folder_user);

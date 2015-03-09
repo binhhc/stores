@@ -15,7 +15,7 @@
 
 	var options = {
 		action: "",
-		label: "Drag and drop files or click to select",
+		label: "",
 		maxQueue: 2,
 		maxSize: 5242880, // 5 mb
 		postData: {},
@@ -234,7 +234,7 @@
 
 	   if (!data.uploading) {
 		   $(window).on("beforeunload.dropper", function(){
-				return 'You have uploads pending, are you sure you want to leave this page?';
+				//return 'You have uploads pending, are you sure you want to leave this page?';
 			});
 
 			data.uploading = true;
@@ -315,6 +315,11 @@
     		 alert('Bạn chỉ được upload tối đa 4 hình ảnh cho sản phẩm!');
              return;
     	}
+
+    	if(!(/\.(gif|jpg|jpeg|tiff|png)$/i).test(file.name)){
+            alert('Không đúng định dạng ảnh!');
+            return;
+        }
 		if (file.size >= data.maxSize) {
 			file.error = true;
 			data.$dropper.trigger("fileError.dropper", [ file, "Too large" ]);

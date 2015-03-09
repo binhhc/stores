@@ -250,11 +250,11 @@
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
-    $(document).ready(function(){
+    /*$(document).ready(function(){
 	    $("#result").dropper({
 	    	action: "/upload_image_item"
 	    });
-    });
+    });*/
 </script>
 {{HTML::script('js/add_item.js')}}
 @include('elements.footer')

@@ -1,7 +1,7 @@
 
 <div class="wrapper" id="store_cart" ng-init="about()">
   <div class="height_fix">
-    @include('elements.user_header')
+    @include('elements.user_header_others', array('store_main_menu'=>$store_main_menu))
     <div class="box_wht" ng-hide="accepted">
       <h2>Giới thiệu</h2>
       <!-- Account/ -->

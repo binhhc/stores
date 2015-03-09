@@ -1,7 +1,7 @@
 
 <div class="wrapper" id="store_cart">
   <div class="height_fix">
-    @include('elements.user_header', array('store_main_menu'=>$store_main_menu))
+    @include('elements.user_header_others', array('store_main_menu'=>$store_main_menu))
     <div class="box_wht" ng-hide="accepted">
       <h2>{[I18n.store.privacyPolicy.title]}</h2>
       <ul class="terms_link">

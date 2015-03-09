@@ -204,6 +204,17 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+  $(document).ready(function(){
+	    $("a.tweet").click(function(){
+	          var w = 550; var h = 420;
+	          var sw = screen.width; var sh = screen.height;
+	          var l = 0; var t = 0;
+	          if (sw > w) l = Math.round(sw/2 - w/2);
+	          if (sh > h) t = Math.round(sh/2 - h/2);
+	          window.open(this.href, "Tweet","width="+w+",height="+h+",left="+l+",top="+t+",scrollbars=yes,resizable=yes,toolbar=no,location=yes");
+	          return false;
+	    });
+	});
   //$(document).ready(function(){
   //  $("a.tweet").click(function(){
   //    var w = 550; var h = 420;

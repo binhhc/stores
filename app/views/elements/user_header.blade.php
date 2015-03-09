@@ -1,4 +1,4 @@
-<div id="header_basic">
+<div id="header">
     <h1 id="store_logo" ng-style="styles.store_logo">
         <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{[logo_src]}" alt="logo" /></span></a>
         <a href="/" ng-hide="styles.logo"><span class="txt">{[styles.name]}</span></a>

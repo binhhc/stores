@@ -472,7 +472,7 @@ class UserItemController extends BaseController {
     	if(Request::ajax())
         {
         	 $input = Input::all();
-        	 $image = $input[0];
+        	 $image = isset($input[0]) ? $input[0] : $input['file'];
 
                 $folder_user = public_path() . '/files/'.$this->getUserId();
                 if(!is_dir($folder_user)){

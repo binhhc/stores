@@ -93,7 +93,6 @@
 
 		$dropper.addClass("dropper")
 				.append(html);
-
 		var data =  $.extend({
 			$dropper: $dropper,
 			$input: $dropper.find(".dropper-input"),
@@ -309,6 +308,13 @@
 	 * @param formData [object] "Target form"
 	 */
 	function _uploadFile(data, file, formData) {
+
+		var count_img = $('#result').find('li').length;
+    	var output = document.getElementById("result");
+    	if(count_img >=4) {
+    		 alert('Bạn chỉ được upload tối đa 4 hình ảnh cho sản phẩm!');
+             return;
+    	}
 		if (file.size >= data.maxSize) {
 			file.error = true;
 			data.$dropper.trigger("fileError.dropper", [ file, "Too large" ]);
@@ -346,8 +352,21 @@
 					data.$dropper.trigger("fileStart.dropper", [ file ]);
 				},
 				success: function(response, status, jqXHR) {
-					file.complete = true;
-					data.$dropper.trigger("fileComplete.dropper", [ file, response ]);
+					/*file.complete = true;
+					data.$dropper.trigger("fileComplete.dropper", [ file, response ]);*/
+					var div = document.createElement("li");
+                    div.setAttribute('id', 'div_' + count_img);
+                    div.setAttribute('class', 'divclass');
+                        div.innerHTML = "<img class='thumbnail' src='" + base_url + response.source + "'" +
+                            "title='" + response.name + "' width='96' height='80' alt='Item Image' style='position:relative;'"  + " /><span class='boxclose' style='cursor:pointer' id='span_" + count_img + "'>x</span>";
+                       var input = "<input type='hidden' name='image_name[]' id='input_"+ count_img + "' value='" + response.name + "' >";
+                        $('#image_arrays').append(input);
+                    output.insertBefore(div, null);
+                    var i_c = $('#result').find('li').length;
+                    if( i_c > 0) {
+                		$('.form_basic .images.dragdrop').css("background-image","none");
+
+                	}
 
 					_checkQueue(data);
 				},

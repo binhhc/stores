@@ -1,5 +1,5 @@
 @include('elements.header')
-
+{{HTML::style('css/jquery.fs.dropper.css')}}
 {{HTML::style('css/bootstrap.min.css')}}
 {{HTML::style('css/style.css')}}
 {{HTML::style('css/jquery.tipsy.css')}}
@@ -246,8 +246,6 @@
         </li>
     </ul>
 </div>
-
-{{HTML::style('css/jquery.fs.dropper.css')}}
 {{HTML::script('/js/jquery.fs.dropper.js')}}
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";

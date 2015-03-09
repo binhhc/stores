@@ -82,7 +82,7 @@
         <!-- /Favorite -->
         <p class="item_txt" id="item_description" style="margin-top: 20px; overflow: auto; white-space: pre-wrap; word-wrap: break-word;" itemprop="description">{[item.description]}</p>
         <ul id="btn_sns">
-          <li id="btn_sns_twitter"><a class="tweet" ng-class="I18n.locale" href="http://twitter.com/intent/tweet?ount=none&lang=ja&text={[tweet_item_name]} {[tw_url]} @stores_jp " name='tw_btn' ng-bind="I18n.store.show.tweet"></a></li>
+          <li id="btn_sns_twitter"><a class="tweet" ng-class="I18n.locale" href="http://twitter.com/intent/tweet?ount=none&lang=en&text={[tweet_item_name]} {[tw_url]} @stores_vn " name='tw_btn' ng-bind="I18n.store.show.tweet"></a></li>
           <li id="btn_sns_facebook" ng-hide="original_domain"><a ng-click='postToFeed(fb_url)'  ng-class="I18n.locale" name='fb_btn' ng-bind="I18n.store.show.share"></a></li>
           <li class="sumally">
             <script>(function(d, s, id) {
@@ -204,6 +204,17 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+  $(document).ready(function(){
+	    $("a.tweet").click(function(){
+	          var w = 550; var h = 420;
+	          var sw = screen.width; var sh = screen.height;
+	          var l = 0; var t = 0;
+	          if (sw > w) l = Math.round(sw/2 - w/2);
+	          if (sh > h) t = Math.round(sh/2 - h/2);
+	          window.open(this.href, "Tweet","width="+w+",height="+h+",left="+l+",top="+t+",scrollbars=yes,resizable=yes,toolbar=no,location=yes");
+	          return false;
+	    });
+	});
   //$(document).ready(function(){
   //  $("a.tweet").click(function(){
   //    var w = 550; var h = 420;

@@ -11156,7 +11156,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                     var addQuantityNumber = _.reduce(_.values(stocks), function(memo, num) {
                         return memo + parseInt(num, 10)
                     }, 0);
-                    if (0 === addQuantityNumber) return alert("en" == I18n.locale ? "Please specify the quantity." : "\u8cfc\u5165\u500b\u6570\u3092\u6307\u5b9a\u3057\u3066\u304f\u3060\u3055\u3044"), !1;
+                    if (0 === addQuantityNumber) return alert("en" == I18n.locale ? "Please specify the quantity." : "Hãy chọn số lượng sản phẩm"), !1;
                     _.each(stocks, function(stock_quantity, stock_variation) {
                         for (stock_infinite_status = !1, "null" == stock_variation && (stock_variation = null), i = 0; i < item_info.quantities.length; i++) item_info.quantities[i].variation == stock_variation && (stock_infinite_status = item_info.quantities[i].infinite_status);
                         stock_quantity = parseInt(stock_quantity, 10);

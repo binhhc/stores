@@ -365,8 +365,9 @@
                         div.innerHTML = "<img class='thumbnail' src='" + base_url + response.source + "'" +
                             "title='" + response.name + "' width='96' height='80' alt='Item Image' style='position:relative;'"  + " /><span class='boxclose' style='cursor:pointer' id='span_" + count_img + "'>x</span>";
                        var input = "<input type='hidden' name='image_name[]' id='input_"+ count_img + "' value='" + response.name + "' >";
-                        $('#image_arrays').append(input);
-                    output.insertBefore(div, null);
+                    $('#image_arrays').append(input);
+//                    output.insertBefore(div, null);
+                    $('.dropper-dropzone').append(div);
                     var i_c = $('#result').find('li').length;
                     if( i_c > 0) {
                 		$('.form_basic .images.dragdrop').css("background-image","none");

@@ -1,5 +1,5 @@
 @include('elements.header')
-
+{{HTML::style('css/jquery.fs.dropper.css')}}
 {{HTML::style('css/bootstrap.min.css')}}
 {{HTML::style('css/style.css')}}
 {{HTML::style('css/jquery.tipsy.css')}}
@@ -264,7 +264,7 @@
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
 </script>
-
+{{HTML::script('/js/jquery.fs.dropper.js')}}
 {{HTML::script('js/add_item.js')}}
 
 <script type="text/javascript">
@@ -310,6 +310,10 @@
                 };
             }
         }
+
+    	    $("#result").dropper({
+    	    	action: "/upload_image_item"
+    	    });
 
     });
 

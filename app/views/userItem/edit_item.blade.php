@@ -313,6 +313,28 @@
     	    $("#result").dropper({
     	    	action: "/upload_image_item"
     	    });
+    	    $( "#result_drop" ).sortable({
+        		start: function(event, ui) {
+        			//$(ui.item[0]).find('dl').css("background-color", "#F2F2F2");
+        			$(ui.item[0]).find('img').css("border", "1px dotted black");
+        		},
+        		stop:  function (event, ui) {
+        			//$(event.target).parent().css("background-color", "#F2F2F2");
+        			var listId = [];
+        			  $('#result_drop li').each(function(index) {
+        				  var name = $(this).find('img').attr('title');
+        				  listId.push(name);
+
+                      });
+        			  $('#image_arrays').empty();
+
+        			  for (var k in listId) {
+        				  input = "<input type='hidden' name='image_name[]' id='input_"+ k + "' value='" + listId[k] + "' >";
+        				  $('#image_arrays').append(input);
+
+        			  }
+        		}
+            });
 
     });
 

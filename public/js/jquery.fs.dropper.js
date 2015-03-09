@@ -16,7 +16,7 @@
 	var options = {
 		action: "",
 		label: "",
-		maxQueue: 2,
+		maxQueue: 4,
 		maxSize: 5242880, // 5 mb
 		postData: {},
 		postKey: "file"
@@ -81,8 +81,8 @@
 		opts = $.extend({}, opts, $dropper.data("dropper-options"));
 		var html = "";
 		var count_img = $('#result').find('li').length;
-		html += '<ul class="dropper-dropzone" id="result_drop">';
-		html += '</ul>';
+		html += '<div class="dropper-dropzone" id="result_drop">';
+		html += '</div>';
 		html += '<input class="dropper-input" type="file"';
 		if (opts.maxQueue > 1) {
 			html += ' multiple';

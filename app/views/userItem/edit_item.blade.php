@@ -47,21 +47,15 @@
                 <dt>Hình mặt hàng</dt>
                 <dd>
                 <?php
-                    $item->image_url = explode(',', $item->image_url);
-                    $style= (count($item->image_url) == 0) ? "" : "background-image: none";
+                    //$item->image_url = explode(',', $item->image_url);
+                    $style= ($item->image_url == '') ? "" : "background-image: none";
                 ?>
                 {{Form::file('image_url', array('accept'=>'image/jpeg,image/png,image/gif', 'id'=>'imgInput', 'class'=>'fileup'))}}
                     <ul class="images dragdrop image" id="result" style="<?php echo $style;?>">
-                        <?php foreach ($item->image_url as $count => $key) {?>
-                            <li id="div_<?php echo $count?>" class="divclass">
-                                {{HTML::image($url_image . $key, 'Hình ảnh sản phẩm', array('width' => 96, 'title' => $key,'height' => 80, 'style' => 'position:relative','class' => 'thumbnail'))}}
-                                <span id="span_<?php echo $count?>" class="boxclose" style="cursor:pointer">x</span>
-                            </li>
-                        <?php } ?>
                         <!-- ngRepeat: image in item.images -->
                     </ul>
                     <div id="image_arrays">
-                        <?php foreach ($item->image_url as $count => $key) {?>
+                        <?php $img_list = explode(',', $item->image_url); foreach ($img_list as $count => $key) {?>
                             <input type='hidden' name='image_name[]' id="input_<?php echo $count?>" value="<?php echo $key?>" >
                         <?php }?>
                     </div>
@@ -259,10 +253,15 @@
         </li>
     </ul>
 </div>
-
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";
     var path_delete_category = "{{URL::asset('/delete_category')}}";
+ 	var base_url = '';
+    pathArray = location.href.split( '/' );
+    protocol = pathArray[0];
+    host = pathArray[2];
+    base_url1 = protocol + '//' + host + "<?php echo $url_image?>";
+    var list_image = "<?php echo $item->image_url;?>"
 </script>
 {{HTML::script('/js/jquery.fs.dropper.js')}}
 {{HTML::script('js/add_item.js')}}

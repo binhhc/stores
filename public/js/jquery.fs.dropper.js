@@ -79,12 +79,10 @@
 	 */
 	function _build($dropper, opts) {
 		opts = $.extend({}, opts, $dropper.data("dropper-options"));
-
 		var html = "";
-
-		html += '<div class="dropper-dropzone">';
-		html += opts.label;
-		html += '</div>';
+		var count_img = $('#result').find('li').length;
+		html += '<ul class="dropper-dropzone" id="result_drop">';
+		html += '</ul>';
 		html += '<input class="dropper-input" type="file"';
 		if (opts.maxQueue > 1) {
 			html += ' multiple';
@@ -93,6 +91,17 @@
 
 		$dropper.addClass("dropper")
 				.append(html);
+		if(list_image !== '') {
+			var lists = list_image.split(',');
+			for (var i = 0; i < lists.length; i++) {
+				var div = document.createElement("li");
+                div.setAttribute('id', 'div_' + i);
+                div.setAttribute('class', 'divclass');
+                    div.innerHTML = "<img class='thumbnail' src='" + base_url1 + lists[i] + "'" +
+                        "title='" + lists[i] + "' width='96' height='80' alt='Item Image' style='position:relative;'"  + " /><span class='boxclose' style='cursor:pointer' id='span_" + i + "'>x</span>";
+                $('.dropper-dropzone').append(div);
+			}
+		}
 		var data =  $.extend({
 			$dropper: $dropper,
 			$input: $dropper.find(".dropper-input"),
@@ -101,7 +110,8 @@
 			uploading: false
 		}, opts);
 
-		$dropper.on("click.dropper", ".dropper-dropzone", data, _onClick)
+		//$dropper.on("click.dropper", ".dropper-dropzone", data, _onClick)
+		$dropper.on( ".dropper-dropzone", data, _onClick)
 				.on("dragenter.dropper", data, _onDragEnter)
 				.on("dragover.dropper", data, _onDragOver)
 				.on("dragleave.dropper", data, _onDragOut)

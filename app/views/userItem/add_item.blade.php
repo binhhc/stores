@@ -246,6 +246,9 @@
         </li>
     </ul>
 </div>
+<script>
+	var list_image = '';
+</script>
 {{HTML::script('/js/jquery.fs.dropper.js')}}
 <script type="text/javascript">
     var path_add_category = "{{URL::asset('/create_category')}}";

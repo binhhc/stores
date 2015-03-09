@@ -398,9 +398,16 @@ class StoreController extends BaseController {
                     'review_count' => 0,
                     'avg_score' => null
                 );
+            echo json_encode($userItems);
+        }else {
+            //App::abort(404);
+            if (Request::ajax()) {
+                return Response::make(null, '404');
+            }
+            exit;
         }
 
-        echo json_encode($userItems);
+        //echo json_encode($userItems);
 
         /*echo '{"quantities":[{"quantity":1,"variation":null,"infinite_status":false}],
         "images":[{"name":"e88bba0f6140f640f184.jpeg"}],

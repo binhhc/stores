@@ -82,7 +82,7 @@
         <!-- /Favorite -->
         <p class="item_txt" id="item_description" style="margin-top: 20px; overflow: auto; white-space: pre-wrap; word-wrap: break-word;" itemprop="description">{[item.description]}</p>
         <ul id="btn_sns">
-          <li id="btn_sns_twitter"><a class="tweet" ng-class="I18n.locale" href="http://twitter.com/intent/tweet?ount=none&lang=ja&text={[tweet_item_name]} {[tw_url]} @stores_jp " name='tw_btn' ng-bind="I18n.store.show.tweet"></a></li>
+          <li id="btn_sns_twitter"><a class="tweet" ng-class="I18n.locale" href="http://twitter.com/intent/tweet?ount=none&lang=en&text={[tweet_item_name]} {[tw_url]} @stores_vn " name='tw_btn' ng-bind="I18n.store.show.tweet"></a></li>
           <li id="btn_sns_facebook" ng-hide="original_domain"><a ng-click='postToFeed(fb_url)'  ng-class="I18n.locale" name='fb_btn' ng-bind="I18n.store.show.share"></a></li>
           <li class="sumally">
             <script>(function(d, s, id) {

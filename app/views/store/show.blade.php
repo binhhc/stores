@@ -3,7 +3,7 @@
 <div id="item" ng-init="show()" itemscope itemtype="http://data-vocabulary.org/Product">
   <div class="height_fix">
     <!-- Item/ -->
-     @include('elements.user_header')
+     @include('elements.user_header_others', array('store_main_menu'=>$store_main_menu))
     <div class="box_wht">
       <span class="sticker" ng-if="show_sticker && item.sticker.store_image_path"><img ng-src="{[item.sticker.store_image_path]}"></span>
       <div class="fl_l" ng-hide="not_found">

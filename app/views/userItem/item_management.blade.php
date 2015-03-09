@@ -91,7 +91,7 @@
 												<div class="fb-share-button" data-layout="icon_link"><a ng-click="postToFeedItem(item)" class="share_facebook" href="" item_name="{{$item['name']}}" image_url="{{$item['image_url']}}">Chia sẻ</a></div>
 											</li>
 											<li class="navi_share_tw" >
-												<a ng-click="share_sns(item)" class="twitter popup" item_id="{{$item['id']}}" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2Foanhht.stores.jp%2F%28883!%2Fitems%2F54bf2b9986b188c7540009f9 @stores_jp" target="_blank">Tweet</a>
+												<a ng-click="share_sns(item)" class="twitter popup" item_id="{{$item['id']}}" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2Foanhht.stores.vn%2F%28883!%2Fitems%2F54bf2b9986b188c7540009f9 @stores_vn" target="_blank">Tweet</a>
 											</li>
 										</ul>
 										@endif

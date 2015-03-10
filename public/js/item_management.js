@@ -110,6 +110,7 @@ $(document).ready(function(){
                     success: function(response) {
                         if(response.success=1) {
                             $('#sortable').html(response.html.html);
+                            $('#alert_panel p').text('Bạn đã xoá thành công sản phẩm');
                             $('#alert_panel').fadeIn('slow').delay(3000).fadeOut('slow');
                         } else {
                             alert('Có lỗi xảy ra. Vui lòng thử lại sau!');

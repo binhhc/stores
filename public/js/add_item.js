@@ -323,7 +323,8 @@ $(document).on("click", '.d_quality',function() {
         });
 
         //ajax edit category
-        $('.btn_edit_category').click(function(e){
+        $(document).on('click', '.btn_edit_category', function(e){
+        //$('.btn_edit_category').click(function(e){
             e.preventDefault();
             var current = $(this).closest('ul.categories');
             var category_id = current.find('.category_id').val();
@@ -349,7 +350,8 @@ $(document).on("click", '.d_quality',function() {
         });
 
         //ajax delete category
-        $('.btn_delete_category').click(function(e){
+        $(document).on('click', '.btn_delete_category', function(e){
+       // $('.btn_delete_category').click(function(e){
             e.preventDefault();
             var current = $(this).closest('ul.categories');
             var category_id = current.find('.category_id').val();
@@ -376,7 +378,8 @@ $(document).on("click", '.d_quality',function() {
         });
 
         //ajax add new category
-        $('.btn_save_category').click(function(){
+        $(document).on('click', '.btn_save_category', function(e){
+       // $('.btn_save_category').click(function(){
             var current_add = $(this).closest('div#add_category_window');
             var name = current_add.find('.category_name').val();
             var id = current_add.find('.category_id').val();

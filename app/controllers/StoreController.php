@@ -814,7 +814,7 @@ class StoreController extends BaseController {
             //get layout id
             $layout = $data['store']['store_style']['layout'];
             $layouts = SysLayout::getSysLayoutsIdByLayout($layout);
-            $layoutId = $layouts->id;
+            $layoutId = !empty($layouts->id) ? $layouts->id : '';
 
             //get background color id
             $background_color_code = $data['store']['store_style']['background_color'];

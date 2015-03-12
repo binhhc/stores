@@ -390,7 +390,7 @@ class StoreController extends BaseController {
                     'mall_option_values' => array(),
                     'id' => $tmpUserItems->id,
                     'name' => $tmpUserItems->name,
-                    'title' => '',
+                    'title' => $tmpUserItems->name,
                     'quantity' => $itemQuantity,
                     'description' => $tmpUserItems->introduce,
                     'price' => $tmpUserItems->price,

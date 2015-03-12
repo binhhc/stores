@@ -176,7 +176,7 @@ class StoreController extends BaseController {
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
                 //user_items_quatity
-                $objItemQuatity = $value['userItemQuantity'];
+                $objItemQuatity = $value['UserItemQuantity'];
 
                 //image_url
                 $imageUrl = array();
@@ -356,10 +356,10 @@ class StoreController extends BaseController {
         $itemQuantity = array();
         if (!empty($tmpUserItems)) {
             //user_item_quantity
-            if (isset($tmpUserItems['userItemQuantity'])) {
-                $userItemQuantity = $tmpUserItems['userItemQuantity'];
+            if (isset($tmpUserItems['UserItemQuantity'])) {
+                $UserItemQuantity = $tmpUserItems['UserItemQuantity'];
 
-                foreach ($userItemQuantity as $key => $value) {
+                foreach ($UserItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => (int)$value->quantity,
                         'variation' => $value->size_name,
@@ -569,7 +569,7 @@ class StoreController extends BaseController {
     public function json_tokushoho($id) {
         //default setting trade law
         $defaultSettingTradeLaw = Config::get('constants.trade_law');
-        
+
         //setting_trade_law
         $tmpSettingTradeLaw = UserStore::getUserStoreByDomain($id);
         //$settingTradeLaw = array();
@@ -579,13 +579,13 @@ class StoreController extends BaseController {
             'shipment' => $defaultSettingTradeLaw['charge'],
             'contact' => $defaultSettingTradeLaw['contact']
         );
-        
+
         if (!empty($tmpSettingTradeLaw)) {
             $tmpSettingTradeLaw = $tmpSettingTradeLaw->toArray();
-            
+
             if (!empty($tmpSettingTradeLaw['setting_trade_law'])) {
                 $tmpStoresSettingTradeLaw = json_decode($tmpSettingTradeLaw['setting_trade_law']);
-            
+
                 $settingTradeLaw = array(
                     'price' => $tmpStoresSettingTradeLaw->price,
                     'period' => $tmpStoresSettingTradeLaw->time_ship,
@@ -594,9 +594,9 @@ class StoreController extends BaseController {
                 );
             }
         }
-        
+
         echo json_encode($settingTradeLaw);
-        
+
         /*echo '{"price":"",
         "period":"",
         "shipment":"",
@@ -634,7 +634,7 @@ class StoreController extends BaseController {
         //modified date 2015/03/06
         $userStoreByDomain = UserStore::getUserStoreByDomain($parameters);
         $folderUploadId = $userStoreByDomain->user_id;
-        
+
         $content = View::make('layouts.jsApplication',
                 array(
                     'prefecture' => json_encode(MsPrefecture::getJsonData()),

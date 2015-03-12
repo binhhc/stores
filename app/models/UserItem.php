@@ -13,7 +13,7 @@ class UserItem extends Model{
      * @author Binh Hoang
      */
     public function quantity(){
-        return $this->hasMany('userItemQuantity', 'id');
+        return $this->hasMany('UserItemQuantity', 'id');
     }
 
 
@@ -94,8 +94,8 @@ class UserItem extends Model{
         return array('id','user_id','category_id','name','price','image_url','introduce','order');
     }
 
-    public function userItemQuantity(){
-        return $this->hasMany('userItemQuantity', 'item_id');
+    public function UserItemQuantity(){
+        return $this->hasMany('UserItemQuantity', 'item_id');
     }
 
     /**
@@ -108,7 +108,7 @@ class UserItem extends Model{
      * get user item from user_id
      */
     public static function getUserItemByUserId($userId) {
-        $userItems = UserItem::with('userItemQuantity')
+        $userItems = UserItem::with('UserItemQuantity')
             ->where('user_items.user_id', '=', $userId)
             ->where('user_items.public_flg', '=', true)
             ->orderBy('user_items.public_flg', 'desc')
@@ -133,7 +133,7 @@ class UserItem extends Model{
      * get user item from item_id
      */
     public static function getUserItemByItemId($itemId) {
-        $userItems = UserItem::with('userItemQuantity')
+        $userItems = UserItem::with('UserItemQuantity')
             ->where('user_items.id', '=', $itemId)
             ->first();
         return !empty($userItems) ? $userItems : array();

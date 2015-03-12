@@ -13,7 +13,7 @@ class UserItem extends Model{
      * @author Binh Hoang
      */
     public function quantity(){
-        return $this->hasMany('UserItemQuantity', 'id');
+        return $this->hasMany('userItemQuantity', 'id');
     }
 
 
@@ -62,8 +62,8 @@ class UserItem extends Model{
     public static function getUserItemFromUserId() {
         $userId = Session::get('user.id');
         $userItems = DB::table('user_items')
-            ->leftJoin('user_item_quatities', 'user_items.id', '=', 'user_item_quatities.item_id')
-            ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_item_quatities.quantity')
+            ->leftJoin('user_items_quantities', 'user_items.id', '=', 'user_items_quantities.item_id')
+            ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_items_quantities.quantity')
             ->where('user_items.user_id', '=', $userId)
             ->orderBy('user_items.public_flg', 'desc')
             ->orderBy('user_items.order', 'asc')
@@ -94,8 +94,8 @@ class UserItem extends Model{
         return array('id','user_id','category_id','name','price','image_url','introduce','order');
     }
 
-    public function UserItemQuantity(){
-        return $this->hasMany('UserItemQuantity', 'item_id');
+    public function userItemQuantity(){
+        return $this->hasMany('userItemQuantity', 'item_id');
     }
 
     /**
@@ -108,7 +108,7 @@ class UserItem extends Model{
      * get user item from user_id
      */
     public static function getUserItemByUserId($userId) {
-        $userItems = UserItem::with('UserItemQuantity')
+        $userItems = UserItem::with('userItemQuantity')
             ->where('user_items.user_id', '=', $userId)
             ->where('user_items.public_flg', '=', true)
             ->orderBy('user_items.public_flg', 'desc')
@@ -133,7 +133,7 @@ class UserItem extends Model{
      * get user item from item_id
      */
     public static function getUserItemByItemId($itemId) {
-        $userItems = UserItem::with('UserItemQuantity')
+        $userItems = UserItem::with('userItemQuantity')
             ->where('user_items.id', '=', $itemId)
             ->first();
         return !empty($userItems) ? $userItems : array();

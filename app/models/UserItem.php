@@ -65,6 +65,7 @@ class UserItem extends Model{
             ->leftJoin('user_items_quantities', 'user_items.id', '=', 'user_items_quantities.item_id')
             ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_items_quantities.quantity')
             ->where('user_items.user_id', '=', $userId)
+            ->where('user_items.public_flg', '=', true)
             ->orderBy('user_items.public_flg', 'desc')
             ->orderBy('user_items.order', 'asc')
             ->orderBy('user_items.updated_at', 'desc')

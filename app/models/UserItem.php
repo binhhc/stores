@@ -95,7 +95,7 @@ class UserItem extends Model{
     }
 
     public function userItemQuantity(){
-        return $this->hasMany('userItemQuantity', 'item_id');
+        return $this->hasMany('UserItemQuantity', 'item_id');
     }
 
     /**

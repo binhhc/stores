@@ -93,11 +93,43 @@ class StoreController extends BaseController {
         //get user_id from domain
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
 
-        //tmp about
+        //tmp user stores
         $tmpUserStores = UserStore::where('user_id', '=', $userId)
             ->first();
 
-        $userStores = array();
+        //default stores style
+        $tmpStyle = Config::get('constants.edit_store_style_sample');
+        
+        //default domain
+        $tmpStoresName = UserStore::getUserStoreByDomain($parameters);
+        $storesName = $tmpStoresName->domain;
+        
+        //default user stores
+        $userStores = array(
+            'name' => $storesName,
+            'store_font' => array(
+                'style' => $tmpStyle['store_font']['style'],
+                'type' => $tmpStyle['store_font']['type'],
+                'weight' => $tmpStyle['store_font']['weight'],
+                'size' => $tmpStyle['store_font']['size']
+            ),
+            'layout' => 'layout_a',
+            'background' => array(
+                'color' => $tmpStyle['background']['color'],
+                'repeat' => '',
+                'image' => ''
+            ),
+            'text_color' => array(
+                'item' => $tmpStyle['text_color']['item'],
+                'store' => $tmpStyle['text_color']['store']
+            ),
+            'display' => array(
+                'frame' => $tmpStyle['display']['frame'],
+                'item' => $tmpStyle['display']['item']
+            ),
+            'shipping_fee' => 0,
+            'logo' => $tmpStyle['logo']
+        );
         if (!empty($tmpUserStores)) {
             $tmpSettings = $tmpUserStores->settings;
             if (!empty($tmpSettings)) {

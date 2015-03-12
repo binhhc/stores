@@ -1032,11 +1032,11 @@ class StoreController extends BaseController {
             }
         }
 
-        if (Request::ajax())
-        {
+        //if (Request::ajax())
+        //{
             $json = json_encode($categories);
             echo $json;
-        }
+        //}
     }
 
     /**

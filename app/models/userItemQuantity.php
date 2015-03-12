@@ -4,7 +4,7 @@
  *
  * @author sangpm
  */
-class userItemQuantity extends Model{
+class UserItemQuantity extends Model{
     protected $table  = 'user_item_quantities';
 
     /**

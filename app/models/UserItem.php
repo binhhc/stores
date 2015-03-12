@@ -101,7 +101,7 @@ class UserItem extends Model{
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
-     * 
+     *
      * @modifed date    2015/03/04
      *
      * @param       $userId

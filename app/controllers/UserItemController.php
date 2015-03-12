@@ -37,7 +37,7 @@ class UserItemController extends BaseController {
 					->orderBy('updated_at', 'desc')
 					->get();
 		foreach($items as &$value) {
-			$item_quantity = userItemQuantity::where('item_id', $value['id'])->get();
+			$item_quantity = UserItemQuantity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
 			$names_image = explode(',', $value['image_url']);
 			$value['image_url'] = $url .$names_image[0] ;
@@ -218,7 +218,7 @@ class UserItemController extends BaseController {
 				@unlink( public_path() . '/files/'.$this->getUserId() . '/' . $key);
              }
              if(UserItem::where('id', $item_id)->delete()){
-             	userItemQuantity::where('item_id', $item_id)->delete();
+             	UserItemQuantity::where('item_id', $item_id)->delete();
                 $success = 1;
              }
              $html = $this->list_item_ajax();
@@ -268,13 +268,13 @@ class UserItemController extends BaseController {
             $lastInsertIdItem = $item->id;
 
             if(!empty($input['quality_single'])){
-                $quality = new userItemQuantity;
+                $quality = new UserItemQuantity;
                 $quality->item_id = $lastInsertIdItem;
                 $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
                 $quality->save();
             }else{
                 for($i = 0; $i < count($input['size']); $i++){
-                    $quality = new userItemQuantity;
+                    $quality = new UserItemQuantity;
                     $quality->item_id = $lastInsertIdItem;
                     $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
                     $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;
@@ -303,7 +303,7 @@ class UserItemController extends BaseController {
 
         $user = Session::get('user');
         $item = UserItem::where('id', '=', $id)->first();
-        $item_quantity = userItemQuantity::where('item_id', '=', $id)->get();
+        $item_quantity = UserItemQuantity::where('item_id', '=', $id)->get();
 
         $category = UserCategory::where('user_id', '=', $user['id'])->orderBy('order', 'asc')->get();
         return View::make('userItem.edit_item')
@@ -344,16 +344,16 @@ class UserItemController extends BaseController {
                     )
                 );
 
-            $old_quantity = userItemQuantity::where('item_id', '=', $item_id)->delete();
+            $old_quantity = UserItemQuantity::where('item_id', '=', $item_id)->delete();
 
             if(!empty($input['quality_single'])){
-                $quality = new userItemQuantity;
+                $quality = new UserItemQuantity;
                 $quality->item_id = $item_id;
                 $quality->quantity = isset($input['quality_single'])?$input['quality_single']:null;
                 $quality->save();
             }else{
                 for($i = 0; $i < count($input['size']); $i++){
-                    $quality = new userItemQuantity;
+                    $quality = new UserItemQuantity;
                     $quality->item_id = $item_id;
                     $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
                     $quality->quantity = isset($input['quality'][$i])?$input['quality'][$i]:null;

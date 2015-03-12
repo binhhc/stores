@@ -362,7 +362,7 @@ class StoreController extends BaseController {
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => (int)$value->quantity,
-                        'variation' => $value->size_name,
+                        'variation' => !empty($value->size_name) ? $value->size_name : null,
                         'infinite_status' => false
                     );
                 }

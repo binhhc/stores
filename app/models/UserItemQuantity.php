@@ -4,8 +4,8 @@
  *
  * @author sangpm
  */
-class UserItemQuantity extends Model{
-    protected $table  = 'user_items_quantities';
+class userItemQuantity extends Model{
+    protected $table  = 'user_item_quantities';
 
     /**
      * Defines an inverse one-to-many relationship.

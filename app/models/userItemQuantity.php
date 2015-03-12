@@ -5,7 +5,7 @@
  * @author sangpm
  */
 class UserItemQuantity extends Model{
-    protected $table  = 'user_item_quantities';
+    protected $table  = 'user_items_quantities';
 
     /**
      * Defines an inverse one-to-many relationship.
@@ -18,20 +18,20 @@ class UserItemQuantity extends Model{
 	/**
      * @author      Sang PM
      * @since       2015/01/14
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function findAllByItemIds($ids){
         $item_ids = is_array($ids) ? $ids : explode(",", $ids);
         return self::whereIn('item_id',array($item_ids))->get();
     }
-        
+
     /**
      * @author      Sang PM
      * @since       2015/02/05
-     * 
-     * @modified  
+     *
+     * @modified
      * @modified by
      **/
     public static function getFeilds(){

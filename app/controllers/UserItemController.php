@@ -444,7 +444,9 @@ class UserItemController extends BaseController {
         if(Request::ajax())
         {
              $items_array = Input::get('items_array');
-             $this->update_category($items_array);
+             if(!empty($items_array)) {
+             	$this->update_category($items_array);
+             }
              return Response::json('1');
         }
     }

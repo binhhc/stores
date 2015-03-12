@@ -176,7 +176,7 @@ class StoreController extends BaseController {
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
                 //user_items_quatity
-                $objItemQuatity = $value['userItemQuatity'];
+                $objItemQuatity = $value['userItemQuantity'];
 
                 //image_url
                 $imageUrl = array();
@@ -356,8 +356,8 @@ class StoreController extends BaseController {
         $itemQuantity = array();
         if (!empty($tmpUserItems)) {
             //user_item_quantity
-            if (isset($tmpUserItems['userItemQuatity'])) {
-                $userItemQuantity = $tmpUserItems['userItemQuatity'];
+            if (isset($tmpUserItems['userItemQuantity'])) {
+                $userItemQuantity = $tmpUserItems['userItemQuantity'];
 
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(

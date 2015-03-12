@@ -1,11 +1,11 @@
 <?php
 /**
- * Description of UserItemQuatity
+ * Description of userItemQuantity
  *
  * @author sangpm
  */
-class UserItemQuatity extends Model{
-    protected $table  = 'user_item_quatities';
+class userItemQuantity extends Model{
+    protected $table  = 'user_item_quantities';
 
     /**
      * Defines an inverse one-to-many relationship.

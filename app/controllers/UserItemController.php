@@ -37,7 +37,7 @@ class UserItemController extends BaseController {
 					->orderBy('updated_at', 'desc')
 					->get();
 		foreach($items as &$value) {
-			$item_quantity = userItemQuantity::where('item_id', $value['id'])->get();
+			$item_quantity = UserItemQuantity::where('item_id', $value['id'])->get();
 			$value['quantity'] = 0;
 			$names_image = explode(',', $value['image_url']);
 			$value['image_url'] = $url .$names_image[0] ;
@@ -304,6 +304,7 @@ class UserItemController extends BaseController {
         $user = Session::get('user');
         $item = UserItem::where('id', '=', $id)->first();
         $item_quantity = UserItemQuantity::where('item_id', '=', $id)->get();
+
         $category = UserCategory::where('user_id', '=', $user['id'])->orderBy('order', 'asc')->get();
         return View::make('userItem.edit_item')
             ->with(array('title_for_layout' => 'Chỉnh sửa mặt hàng', 'category' => $category, 'item' => $item, 'url_image' =>  '/files/'.$this->getUserId(). '/' ,'item_quantity' => $item_quantity));

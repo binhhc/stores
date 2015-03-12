@@ -1,10 +1,10 @@
 <?php
 /**
- * Description of UserItemQuatity
+ * Description of UserItemQuantity
  *
  * @author sangpm
  */
-class UserItemQuatity extends Model{
+class UserItemQuantity extends Model{
     protected $table  = 'user_item_quatities';
 
     /**

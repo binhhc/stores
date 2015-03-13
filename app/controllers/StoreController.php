@@ -28,6 +28,8 @@ class StoreController extends BaseController {
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
 
+        $user_id = $this->getUserId();
+        $follow_status = Follow::getStatus($domain, $user_id);
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,
@@ -35,6 +37,7 @@ class StoreController extends BaseController {
             'url'        => 'http://'.$url[2].'/store_setting',
             'prefecture' => json_encode(MsPrefecture::getJsonData()),
             'language'   => UserAddon::getLanguegeByDomain($parameters),
+        	'follow' => $follow_status,
             'languagePopupFollow' => $languagePopupFollow
         );
 
@@ -105,11 +108,11 @@ class StoreController extends BaseController {
 
         //default stores style
         $tmpStyle = Config::get('constants.edit_store_style_sample');
-        
+
         //default domain
         $tmpStoresName = UserStore::getUserStoreByDomain($parameters);
         $storesName = $tmpStoresName->domain;
-        
+
         //default user stores
         $userStores = array(
             'name' => $storesName,
@@ -345,7 +348,7 @@ class StoreController extends BaseController {
         $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
         App::setLocale($typeLanguage);
         $store_about = Lang::get('store.store_about');
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu,
             'store_about' => $store_about
@@ -420,7 +423,7 @@ class StoreController extends BaseController {
             }
             exit;
         }
-        
+
         exit;
     }
 

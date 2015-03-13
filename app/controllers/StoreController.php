@@ -339,10 +339,16 @@ class StoreController extends BaseController {
      * about store
      */
     public function aboutDetail($parameters) {
+        //language menu
         $store_main_menu = $this->setLanguageForMenu($parameters);
-
+        //language about
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
+        $store_about = Lang::get('store.store_about');
+        
         $data = array(
-            'store_main_menu' => $store_main_menu
+            'store_main_menu' => $store_main_menu,
+            'store_about' => $store_about
         );
         return View::make('store.about', $data);
     }

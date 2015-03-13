@@ -270,14 +270,14 @@ class UserItemController extends BaseController {
             if(!empty($input['quality_single'])){
                 $quality = new UserItemQuantity;
                 $quality->item_id = $lastInsertIdItem;
-                $quality->quantity = (isset($input['quality_single']) && (intval($input['quality_single']) != 0)) ? $input['quality_single'] : Config::get('constants.unlimitted_quantity');;
+                $quality->quantity = (isset($input['quality_single']) && (intval($input['quality_single']) != 0)) ? $input['quality_single'] : Config::get('constants.unlimitted_quantity');
                 $quality->save();
             }else{
                 for($i = 0; $i < count($input['size']); $i++){
                     $quality = new UserItemQuantity;
                     $quality->item_id = $lastInsertIdItem;
                     $quality->size_name = isset($input['size'][$i])?strtoupper($input['size'][$i]):null;
-                    $quality->quantity = (isset($input['quality'][$i]) && (intval($input['quality'][$i]) != 0)) ? $input['quality'][$i] : Config::get('constants.unlimitted_quantity');;
+                    $quality->quantity = (isset($input['quality'][$i]) && (intval($input['quality'][$i]) != 0)) ? $input['quality'][$i] : Config::get('constants.unlimitted_quantity');
                     $quality->save();
                 }
             }

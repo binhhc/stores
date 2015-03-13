@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('domain' => '{account}.oanhstores.com'), function()
+Route::group(array('domain' => '{account}.stores.dev.srv'), function()
 {
     Route::get('/', function($account)
     {
@@ -285,6 +285,7 @@ Route::post('/save', 'StoreController@save');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin'));
+Route::get('/login/{parameter}', array('uses' => 'UserController@showLogin'));
 Route::post('/login', array('uses' => 'UserController@doLogin'));
 
 //register facebook

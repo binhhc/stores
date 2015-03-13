@@ -15,11 +15,21 @@ class UserController extends BaseController {
      * @author Binh Hoang
      * @since 2015.01.14
      */
-    public function showLogin(){
+    public function showLogin($paremeter=null){
         if(Session::has('user')){
             return Redirect::to('/dashboard');
         }
-        return View::make('user.login');
+        $store_user_id = $_GET['store_user_id'];
+        $redirect_url = $_GET['redirect_url'];
+        $data = array();
+        if(!empty($store_user_id) && !empty($redirect_url)) {
+        	$store = UserStore::whereRaw('md5(user_stores.id) = "'.$store_user_id.'"')->first()->toArray();
+        	$data = array(
+        		'store_user_id' => $store['user_id'],
+        		'redirect_url' => $redirect_url,
+        	);
+        }
+        return View::make('user.login', $data);
     }
 
     /**
@@ -47,6 +57,13 @@ class UserController extends BaseController {
                     ->where('delete_flg', '=', 0)->first();
             Session::put('user', $user->toArray());
             Session::put('userStoresDomain', UserStore::getUserStoreDomain());
+            $store_user_id = Input::get('store_user_id');
+            $redirect_url = trim(Input::get('redirect_url'));
+            if(!empty($store_user_id) && !empty($redirect_url)) {
+            	// add Follow for user
+
+            	return Redirect::to('/'. $redirect_url);
+            }
             return Redirect::to('/dashboard');
         } else {
             // validation not successful, send back to form

@@ -29,7 +29,10 @@ class StoreController extends BaseController {
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
 
         $user_id = $this->getUserId();
-        $follow_status = Follow::getStatus($domain, $user_id);
+        $sub_domain = explode('//', $domain);
+        $store_domain = explode('.', $sub_domain[1]);
+        $follow_status = Follow::getStatus($store_domain[0], $user_id);
+        $store_user = UserStore::getUserStoreByDomain($store_domain[0]);
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,
@@ -37,10 +40,11 @@ class StoreController extends BaseController {
             'url'        => 'http://'.$url[2].'/store_setting',
             'prefecture' => json_encode(MsPrefecture::getJsonData()),
             'language'   => UserAddon::getLanguegeByDomain($parameters),
-        	'follow' => $follow_status,
+        	'follow_count' => $follow_status['count'],
+        	'follow_status' => $follow_status['follow'],
+        	'user_store_id' => $store_user->user_id,
             'languagePopupFollow' => $languagePopupFollow
         );
-
         return View::make('store.owner_store', $data);
     }
 

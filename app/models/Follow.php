@@ -44,12 +44,16 @@ class Follow extends Model{
      **/
     public static function addFollow($domain ,$user_id = 0){
         $store_id = UserStore::getUserStoreByDomain($domain)->id;
-        $data = self::getStatus($domain,$user_id);
         
-        if(empty($user_id)||($data['follow'] ==1))
-            return 0;
+        $data = self::where('store_id',$store_id)
+                    ->where('user_id',$user_id)->first(self::getFeilds());
         
-        return self::insert(array('store_id' =>$store_id, 'user_id' => $user_id));
+        if($data){
+            $data->follow = ($data->follow == 1) ? 0 : 1 ;
+            return $data->save();
+        }
+        
+        return self::insert(array('store_id' =>$store_id, 'user_id' => $user_id , 'follow'=>1));
     }
     
     /**
@@ -60,6 +64,6 @@ class Follow extends Model{
      * @modified by
      **/
     public static function getFeilds(){
-        return array('follows.user_id','follows.store_id');
+        return array('follows.id','follows.user_id','follows.store_id','follows.follow');
     }
 }

@@ -165,10 +165,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($userStores);
-        //if (Request::ajax())
-        //{
-            //echo '{"name":"haulenhan","store_font":{"style":"\'Allerta\', sans-serif","type":"google","weight":"400","size":"44"},"layout":"layout_a","background":{"color":"#fff","repeat":null,"image":"/img/samples/bg2/bg2_3.gif"},"text_color":{"item":"#000","store":"#000"},"display":{"frame":false,"item":true},"shipping_fee":0,"logo":null}';
-        //}
         exit;
     }
 
@@ -237,24 +233,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($userItems);
-
-        //if (Request::ajax())
-        //{
-            /*echo '{"cnt_items":4,"cnt_pages":1,"last_page?":true,"items":
-            [
-            {"id":"54c743a4391bb3c77b000323","name":"hau_item_3","description":null,"status":"shown",
-            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,
-            "shared":null,"images":[{"name":"e88bba0f6140f640f184.jpeg"}],"sticker":""},
-            {"id":"54c7443fef3377ef02000ffb","name":"hau_item_4","description":null,"status":"shown",
-            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,
-            "shared":null,"images":[{"name":"d441b9f0783875e27aa1.jpeg"},
-            {"name":"962beeaa149f1fdd7ce4.gif"},{"name":"29e84b209611697bf840.gif"}],"sticker":""},
-            {"id":"54c743603cd482db3900158b","name":"hau_item_2","description":null,"status":"shown",
-            "price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,"shared":null,"images":[{"name":"f65759c93930eb8a5936.gif"}],"sticker":""},
-            {"id":"54c6f71def3377ef02000165","name":"hau_item_1","description":null,"status":"shown","price":1000,"sale_flag":false,"digital_contents":null,"variations":[null],"quantity":1,"shared":null,"images":[{"name":"5390192f2e6903b717bc.jpeg"},{"name":"cfd787754654ad854bd8.jpeg"}],"sticker":""}
-            ]
-            }';*/
-        //}
         exit;
     }
 
@@ -297,10 +275,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($userCategories);
-        //if (Request::ajax())
-        //{
-            //echo '[{"id":"1","name":"hauaaaaa"}]';
-        //}
         exit;
     }
 
@@ -335,10 +309,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($about);
-        //if (Request::ajax())
-        //{
-            //echo '{"detail":"test stores test stores test stores","links":{"twitter":null,"facebook":null,"website":null,"exblog":null}}';
-        //}
         exit;
     }
 
@@ -438,17 +408,7 @@ class StoreController extends BaseController {
             }
             exit;
         }
-
-        //echo json_encode($userItems);
-
-        /*echo '{"quantities":[{"quantity":1,"variation":null,"infinite_status":false}],
-        "images":[{"name":"e88bba0f6140f640f184.jpeg"}],
-        "digital_contents":null,"mybook_item":false,"group_id":null,
-        "promotion_category":null,"delivery_method":null,
-        "mall_large_category_id":"","mall_medium_category_id":"",
-        "mall_option_values":{},"id":"54c743a4391bb3c77b000323",
-        "name":"hau_item_3","title":"hau_item_3","quantity":[{"quantity":1,"variation":null,"infinite_status":false}],
-        "description":null,"price":1000,"sale_flag":false,"review_count":0,"avg_score":null}';*/
+        
         exit;
     }
 
@@ -486,7 +446,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($userProfiles);
-        //echo '{"name":null,"profile_image":{"name":"user_icon_01.png","src_url":"https://stores.jp/images/follow/user_icon/user_icon_01.png"}}';
         exit;
     }
 
@@ -628,11 +587,6 @@ class StoreController extends BaseController {
         }
 
         echo json_encode($settingTradeLaw);
-
-        /*echo '{"price":"",
-        "period":"",
-        "shipment":"",
-        "contact":""}';*/
         exit;
     }
 

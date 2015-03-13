@@ -11,8 +11,10 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     Route::post('/store/{account}/inquiries', function($account){
         return App::make('StoreController')->inquiries($account);
     });
-
-    //Route::get('/partials/c/items/index', 'StoreController@index');
+    
+//    Route::post('/orders', function($account){
+//        return App::make('OrderController')->orders($account);
+//    });
 
     Route::get('/partials/c/items/index', function($account)
     {
@@ -219,6 +221,8 @@ Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/support', 'MainController@support');
+Route::get('/test', 'SangController@test');
+Route::get('/orders', 'OrderController@orders');
 Route::get('/referral', 'MainController@referral');
 Route::get('/referral/{id}', 'MainController@referral');
 Route::post('/invitation', 'MainController@invitation');

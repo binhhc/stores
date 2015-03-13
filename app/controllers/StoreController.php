@@ -29,10 +29,8 @@ class StoreController extends BaseController {
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
 
         $user_id = $this->getUserId();
-        $sub_domain = explode('//', $domain);
-        $store_domain = explode('.', $sub_domain[1]);
-        $follow_status = Follow::getStatus($store_domain[0], $user_id);
-        $store_user = UserStore::getUserStoreByDomain($store_domain[0]);
+        $follow_status = Follow::getStatus($parameters, $user_id);
+        $store_user = UserStore::getUserStoreByDomain($parameters);
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('domain' => '{account}.stores.dev.srv'), function()
+Route::group(array('domain' => '{account}.oanhstores.com'), function()
 {
     Route::get('/', function($account)
     {
@@ -11,7 +11,7 @@ Route::group(array('domain' => '{account}.stores.dev.srv'), function()
     Route::post('/store/{account}/inquiries', function($account){
         return App::make('StoreController')->inquiries($account);
     });
-    
+
 //    Route::post('/orders', function($account){
 //        return App::make('OrderController')->orders($account);
 //    });
@@ -298,7 +298,9 @@ Route::get('login/fb/register', array('uses' => 'UserController@facebookRegister
 
 /*login facebook */
 Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));
+Route::get('login/fb/{parameter}', array('uses' => 'UserController@loginFacebook'));
 Route::get('login/fb/callback', array('uses' => 'UserController@facebookCallback'));
+Route::get('login/fb/callback/{parameter}', array('uses' => 'UserController@facebookCallback'));
 /* end login facebook */
 
 //logout

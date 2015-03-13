@@ -30,11 +30,17 @@ class Order extends Model{
      * @modified by
      **/
     public static function saveOrder($data){
-        DB::transaction(function(){   
-            //1 . tao moi Order
+        DB::transaction(function($data) use ($data){   
+            $customer = $data['customer'];
+            $order_id = self::insertNewOrder($customer);
 
-            //2 .save OrderItem
+            if(!empty($data['items']))
+                foreach($data['items'] as $item){
+                    $item['order_id'] = $order_id;
+                    OrderItem::insertNewOrderItem($item);
+                }
         });
+        return 1;
     }
     
      /**

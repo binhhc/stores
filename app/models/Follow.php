@@ -19,6 +19,7 @@ class Follow extends Model{
 
         $data   = self::join('user_stores', 'user_stores.id', '=', 'follows.store_id')
                     ->where('user_stores.domain', '=', $domain)
+                    ->where('follows.follow', '=', 1)
                     ->get(self::getFeilds())->toArray();
 
         $result['count'] = count($data);

@@ -127,9 +127,9 @@ return array(
                 "notes" => "Ghi chú",
                 "notesWarning" => "Hãy điền thông tin nếu thấy cần thiết",
                 "sameAddress" => "Ship to billing address",
-                "thanks" => "Thank you for your purchase",
-                "confirmMailAlert1" => "We'll send the [Purchase Confirmation] to your e-mail address soon.",
-                "confirmMailAlert2" => "If you can't get the e-mail, please contact us from the inquiry form.",
+                "thanks" => "Cám ơn bạn đã mua hàng",
+                "confirmMailAlert1" => "Chúng tôi sẽ gửi [Thông tin xác nhận mua hàng] đến email của bạn.",
+                "confirmMailAlert2" => "Nếu bạn không thể nhận email này, xin vui lòng liên hệ với chúng tôi.",
                 "credit" => array(
                     "title" => "Phương thức thanh toán",
                     "type" => "Card Type",

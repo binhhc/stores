@@ -27,7 +27,7 @@
     <div class="follow_box" sp-if="follow">
         <p class="close"><a href="">close</a>
         </p>
-        <p class="message">Kiểm tra thông tin cửa hàng！</p>
+        <p class="message">{{$languagePopupFollow['label_popup_follow']}}</p>
         <p class="store_image"><img src="https://stores.jp/images/follow/user_icon/user_icon_01.png">
         </p>
         <div class="store_info">

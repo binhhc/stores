@@ -18,7 +18,12 @@ class StoreController extends BaseController {
      * custom store
      */
     public function ownerStore($parameters) {
+        //get url domain
         $domain = Request::url();
+        //language popup follow
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
+        $languagePopupFollow = Lang::get('store.store_popup_follow');
 
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
@@ -29,7 +34,8 @@ class StoreController extends BaseController {
             'sub'        => $parameters,
             'url'        => 'http://'.$url[2].'/store_setting',
             'prefecture' => json_encode(MsPrefecture::getJsonData()),
-            'language'   => UserAddon::getLanguegeByDomain($parameters)
+            'language'   => UserAddon::getLanguegeByDomain($parameters),
+            'languagePopupFollow' => $languagePopupFollow
         );
 
         return View::make('store.owner_store', $data);

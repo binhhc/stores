@@ -48,7 +48,7 @@ class Follow extends Model{
         $data = self::where('store_id',$store_id)
                     ->where('user_id',$user_id)->first(self::getFeilds());
         
-        if($data){
+        if(!empty($data)){
             $data->follow = ($data->follow == 1) ? 0 : 1 ;
             return $data->save();
         }

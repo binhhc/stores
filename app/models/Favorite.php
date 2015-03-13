@@ -46,7 +46,7 @@ class Favorite extends Model{
         $data = self::where('item_id',$item_id)
                     ->where('user_id',$user_id)->first(self::getFeilds());
         
-        if($data){
+        if(!empty($data)){
             $data->favorite = ($data->favorite == 1) ? 0 : 1 ;
             return $data->save();
         }

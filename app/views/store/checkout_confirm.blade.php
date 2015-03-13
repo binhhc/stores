@@ -27,12 +27,14 @@
               <dd>{[customer.last_name]}&nbsp;{[customer.first_name]}</dd>
             </dl>
           </dd>
+          <?php /*?>
           <dd>
             <dl class="cols">
               <dt>{[I18n.store.checkout.postalCode]}</dt>
               <dd>{[customer.zip]}</dd>
             </dl>
           </dd>
+          <?php */?>
           <dd>
             <dl class="cols">
               <dt>{[I18n.store.checkout.country]}</dt>

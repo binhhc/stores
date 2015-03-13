@@ -56,7 +56,8 @@
 
 <script>
     var I18n = I18n.translations.ja.js;
-    I18n.locale = 'ja';
+    //I18n.locale = 'ja';
+    I18n.locale = '{{$language}}';
     I18n.fb_locale = 'ja_JP';
     document.getElementById('cart_button').style.position = 'fixed';
 

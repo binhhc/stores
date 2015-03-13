@@ -11,28 +11,28 @@
       <div class="store_terms">
         <h4>Chương 1 Quy định chung</h4>
         <div class="inner">
-          <h5>Điều 1 [định nghĩa]</h5>
+          <h5>Điều 1 [Định nghĩa]</h5>
           <ol>
             <li>
               Điều khoản<br>
               Cửa hàng Điều khoản sử dụng
             </li>
             <li>
-              dịch vụ này<br>
+              Dịch vụ này<br>
               Dịch vụ đặt hàng qua thư mà chúng tôi là cung cấp thông qua Internet
             </li>
             <li>
-              người mua<br>
+              Người mua<br>
               Phù hợp với các thủ tục theo quy định của chúng tôi, về tất cả các nội dung của Hiệp định này và các chính sách bảo mật đã được chấp nhận và được chấp thuận, người thực hiện các ứng dụng của sản phẩm
             </li>
             <li>
-              người sử dụng<br>
+              Người sử dụng<br>
               Điều khoản và đã làm tất cả những hiểu và phê duyệt các nội dung của chính sách bảo mật, hình ảnh của chúng tôi được cung cấp bởi các mặt dịch vụ, văn bản, thiết kế, logo, hình ảnh, chương trình, ý tưởng, thông tin, vv (sau đây gọi là "Nội dung") Tìm kiếm, duyệt hoặc sử dụng chung của người
             </li>
           </ol>
-          <h5>[Áp dụng Điều khoản] Điều 2</h5>
+          <h5>Điều 2 [Áp dụng Điều khoản]</h5>
           <p>Sau khi chúng tôi được sử dụng bởi người sử dụng của các dịch vụ được cung cấp thông qua mạng Internet, bạn có thể xác định các điều khoản. Người sử dụng, bạn sẽ được coi là đã chấp nhận các nội dung của Hiệp định này tại thời điểm sử dụng bắt đầu của dịch vụ.</p>
-          <h5>[Thay đổi các Điều khoản] Điều 3</h5>
+          <h5>Điều 3 [Thay đổi các Điều khoản]</h5>
           <p>Chúng ta, mà không cần thông báo trước cho người sử dụng hoặc người mua, tất cả hoặc một phần của thỏa thuận này để có thể thay đổi tùy ý, và bạn sẽ có thể xác định một quy ước để bổ sung điều khoản mới. Thay đổi hoặc bổ sung Hiệp định này, người ta cho rằng nó có hiệu lực kể từ thời điểm bạn được đăng trên các trang web để cung cấp dịch vụ này, các dịch vụ được cung cấp sau khi có hiệu lực là để thể do Điều khoản thay đổi và bổ sung sau.</p>
           <p>Chúng ta, đối với bất kỳ thiệt hại gây ra cho người sử dụng hoặc mua bởi sự thay đổi, bổ sung của Hiệp định này, cho dù thiệt hại trực tiếp hoặc thiệt hại gián tiếp, bất kể là có hay không có thể dự đoán, và không chịu bất cứ trách nhiệm .</p>
         </div>
@@ -46,23 +46,23 @@
             <li>Bất kể các quy định của các khoản trên, nếu có sự gian lận hoặc hành vi sai trái liên quan đến sử dụng các dịch vụ, chúng tôi hủy bỏ hợp đồng mua bán, người ta cho rằng nó có thể phát hành khác có hành động thích hợp.</li>
             <li>Người tuổi vị thành niên, trừ khi có sự đồng ý của người đại diện pháp lý có thẩm quyền, không có thể được mua hàng bằng cách sử dụng dịch vụ này.</li>
           </ul>
-          <h5>Điều 5 [thay đổi thông tin đăng ký]</h5>
+          <h5>Điều 5 [Thay đổi thông tin đăng ký]</h5>
           <p>Người mua, giả sử rằng bạn liên hệ với chúng tôi ngay lập tức nếu có một thay đổi tên mà bạn đã nhập, địa chỉ cho tất cả hoặc một phần của vấn đề báo cáo khác cho chúng tôi tại thời điểm mua. Đối với thiệt hại gây ra bởi việc đăng ký thay đổi đã không được thực hiện, chúng tôi không chịu bất kỳ trách nhiệm. Ngoài ra, ngay cả khi việc đăng ký thay đổi đã được thực hiện, các giao dịch được tiến hành ở đăng ký trước khi thay đổi đã được thực hiện được giả định được thực hiện dựa trên các thông tin đăng ký trước khi thay đổi.</p>
-          <h5>Điều 6 [phương thức thanh toán]</h5>
+          <h5>Điều 6 [Phương thức thanh toán]</h5>
           <ul>
             <li>Số tiền thanh toán của hàng hóa, và giá bán của hàng hoá đó được hiển thị trên các trang web, thuế tiêu thụ, chi phí vận chuyển, sẽ là tổng số tiền lệ phí.</li>
             <li>Đối với thanh toán của hàng hóa đã được mua bởi các dịch vụ, và sẽ được giới hạn để thanh toán theo phương thức thanh toán thanh toán bằng thẻ tín dụng tên riêng, chuyển khoản ngân hàng của người mua hoặc tiền mặt khi giao hàng khác với chúng ta thiết lập.</li>
             <li>Nếu bạn thanh toán bằng thẻ tín dụng, bạn phải tuân thủ bất kỳ điều kiện người mua phải ký hợp đồng riêng rẽ với các công ty thẻ tín dụng. Liên quan đến việc sử dụng thẻ tín dụng, nếu xung đột xảy ra giữa các công ty bất kỳ mua hàng và thẻ tín dụng như vậy, và sẽ được giải quyết có trách nhiệm giữa người mua và công ty thẻ tín dụng.</li>
           </ul>
-          <h5>Điều 7 [sự trở lại của hàng]</h5>
+          <h5>Điều 7 [Sự trở lại của hàng]</h5>
           <p>Chúng ta, vì sự trở lại của hàng hóa từ người mua, và phải tương ứng phù hợp với "các vấn đề hợp đồng đặc biệt cho hàng hoá trả lại" trong vòng [ký hiệu về luật thương mại cụ thể], được đăng trên trang web.</p>
         </div>
-        <h4>Chương 3 việc xử lý thông tin cá nhân</h4>
+        <h4>Chương 3 Việc xử lý thông tin cá nhân</h4>
         <div class="inner">
-          <h5>Điều 8 [xử lý các thông tin cá nhân]</h5>
+          <h5>Điều 8 [Xử lý các thông tin cá nhân]</h5>
           <p>Chúng tôi, chúng tôi xác định riêng<a href="#!/privacy_policy/">Chính sách bảo mật</a>Phù hợp với, tôi sẽ xử lý thông tin cá nhân.</p>
         </div>
-        <h4>Chương 4 trách nhiệm về việc sử dụng</h4>
+        <h4>Chương 4 Trách nhiệm về việc sử dụng</h4>
         <div class="inner">
           <h5>Điều 9 [Cấm]</h5>
           <p>Trong việc sử dụng dịch vụ này, cấm không được làm những hành động của các mục sau đây cho người sử dụng hoặc người mua.</p>

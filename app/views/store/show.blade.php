@@ -68,7 +68,7 @@
                 </select>
                 <span>{[stocks[quantity.variation]]}</span>
               </div>
-              <p ng-show="quantity.quantity > 0 && I18n.locale =='ja'"><?php echo Config::get('constants.item.unit'); ?></p>
+              <p ng-show="quantity.quantity > 0 && I18n.locale =='vi'"><?php echo Config::get('constants.item.unit'); ?></p>
             </td>
             <td ng-hide="quantity.quantity > 0">SOLD OUT</td>
             <td class="restock" sp-show="restock_notification">

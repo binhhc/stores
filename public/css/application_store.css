@@ -6474,6 +6474,10 @@ p.download span {
     padding-left: 24px;
     width: 70px;
 }
+#btn_sns #btn_sns_twitter a.vi, #btn_sns #btn_sns_facebook a.ja {
+    width: 70px;
+    padding-left: 24px;
+}
 #btn_sns #btn_sns_twitter a.en, #btn_sns #btn_sns_facebook a.en {
     padding-left: 24px;
     width: 40px;

@@ -268,5 +268,11 @@ return array(
         'home_menu' => 'HOME',
         'about_menu' => 'ABOUT',
         'categories' => 'CATEGORIES'
+    ),
+    'store_popup_follow' => array(
+        'label_popup_follow' => "Let's check the store!"
+    ),
+    'store_about' => array(
+        'label_about' => 'About'
     )
 );

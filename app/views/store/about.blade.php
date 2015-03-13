@@ -3,7 +3,7 @@
   <div class="height_fix">
     @include('elements.user_header_others', array('store_main_menu'=>$store_main_menu))
     <div class="box_wht" ng-hide="accepted">
-      <h2>Giới thiệu</h2>
+      <h2>{{$store_about['label_about']}}</h2>
       <!-- Account/ -->
       <div class="account">
         <p id="store_image" style="display:table-cell; vertical-align:middle;"><img ng-src="{[profile.profile_image.src_url]}"></p>

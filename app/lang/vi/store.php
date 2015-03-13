@@ -269,5 +269,11 @@ return array(
         'home_menu' => 'TRANG CHỦ',
         'about_menu' => 'GIỚI THIỆU',
         'categories' => 'DANH MỤC'
+    ),
+    'store_popup_follow' => array(
+        'label_popup_follow' => 'Kiểm tra thông tin cửa hàng!'
+    ),
+    'store_about' => array(
+        'label_about' => 'Giới thiệu'
     )
 );

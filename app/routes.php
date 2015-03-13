@@ -286,10 +286,10 @@ Route::get('/categories', 'StoreController@categories');
 Route::get('/about', 'StoreController@about');
 Route::post('/upload_image', 'StoreController@upload_image');
 Route::post('/save', 'StoreController@save');
+Route::post('/do_follow', 'StoreController@do_follow');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin'));
-Route::get('/login/{parameter}', array('uses' => 'UserController@showLogin'));
 Route::post('/login', array('uses' => 'UserController@doLogin'));
 
 //register facebook
@@ -297,10 +297,8 @@ Route::get('register/fb', array('uses' => 'UserController@registerFacebook'));
 Route::get('login/fb/register', array('uses' => 'UserController@facebookRegister'));
 
 /*login facebook */
-Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));
-Route::get('login/fb/{parameter}', array('uses' => 'UserController@loginFacebook'));
-Route::get('login/fb/callback', array('uses' => 'UserController@facebookCallback'));
-Route::get('login/fb/callback/{parameter}', array('uses' => 'UserController@facebookCallback'));
+Route::get('/login/fb', array('uses' => 'UserController@loginFacebook'));
+Route::get('/login/fb/callback', array('uses' => 'UserController@facebookCallback'));
 /* end login facebook */
 
 //logout

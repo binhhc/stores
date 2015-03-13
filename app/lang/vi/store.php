@@ -275,5 +275,7 @@ return array(
     ),
     'store_about' => array(
         'label_about' => 'Giới thiệu'
-    )
+    ),
+    'follow' => 'Theo dõi',
+    'following' => 'Đang theo dõi'
 );

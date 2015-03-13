@@ -274,5 +274,7 @@ return array(
     ),
     'store_about' => array(
         'label_about' => 'About'
-    )
+    ),
+    'follow' => 'Follow',
+    'following' => 'Following'
 );

@@ -15,11 +15,14 @@ class UserItemController extends BaseController {
         if(!$this->checkLogin()) {
             return Redirect::to('/');
         }
+
         $data['items'] = $this->getItemList();
         $data['app_id'] = Config::get('constants.facebook_app_id');
+         die;
         $user_id = Session::get('user.id');
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
+
         return View::make('userItem.item_management', $data);
     }
 
@@ -29,6 +32,7 @@ class UserItemController extends BaseController {
      * @since 2015/01/23
      */
  	public function getItemList() {
+
  		$url = '/files/' . $this->getUserId(). '/';
     	$user_id = Session::get('user.id');
     	$items = UserItem::where('user_id',$user_id)
@@ -36,20 +40,27 @@ class UserItemController extends BaseController {
 					->orderBy('order', 'asc')
 					->orderBy('updated_at', 'desc')
 					->get();
-		foreach($items as &$value) {
-			$item_quantity = UserItemQuantity::where('item_id', $value['id'])->get();
-			$value['quantity'] = 0;
-			$names_image = explode(',', $value['image_url']);
-			$value['image_url'] = $url .$names_image[0] ;
-			$value['price'] = UserItem::formatPrice($value['price']);
-			$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
 
-			if(!empty($item_quantity)) {
-                foreach($item_quantity as $item){
-                    $value['quantity'] += (empty($item['quantity'])) ? 0 : $item['quantity'];
-                }
+		if(!empty($items)) {
+			//$items = $items->toArray();
+			foreach($items as &$value) {
+				$item_quantity = UserItemQuantity::where('item_id', $value['id'])->get();
+				var_dump($item_quantity); die;
+				$value['quantity'] = 0;
+				$names_image = explode(',', $value['image_url']);
+				$value['image_url'] = $url .$names_image[0] ;
+				$value['price'] = UserItem::formatPrice($value['price']);
+				$item_quantity = !empty($item_quantity) ? $item_quantity->toArray() : array();
+
+				if(!empty($item_quantity)) {
+	                foreach($item_quantity as $item){
+	                    $value['quantity'] += (empty($item['quantity'])) ? 0 : $item['quantity'];
+	                }
+				}
 			}
 		}
+
+		var_dump($items); die;
 		return $items;
 
     }

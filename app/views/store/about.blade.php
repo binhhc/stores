@@ -10,13 +10,13 @@
         <div id="store_info" style="display:table-cell; vertical-align:middle;">
           <h3>{[styles.name]}</h3>
           <p>{[profile.name]}</p>
-          <div id="follow">
+          <div id="follow" class="follow_about">
 	      <?php if($follow_status == 0) { ?>
 	        <p class="follow_btn">
 	        	<a href="" class="about"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
 	        </p>
 	       <?php }else {?>
-	        <p class="follow_btn follow_already" ng-show="isFollowing" style="display: none;">
+	        <p class="follow_btn follow_already" >
 				<a href="" class="about" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
 			</p>
 			<?php }?>
@@ -62,13 +62,13 @@
 @include('elements.user_cart')
 <!-- /POPUP -->
 <style>
-.follow_btn a:hover {
+.follow_about .follow_btn a:hover {
     opacity: 0.8;
 }
-.follow_btn.already a.about {
-    background: url("/images/icon/icon_check_white.png") no-repeat scroll 15px center #999;
+#follow .follow_btn.follow_already a.about {
+    background: url("../img/main_page/icon_check_white.png") no-repeat scroll 15px center #999;
 }
-.follow_btn a.about {
+#follow .follow_btn a.about {
     background: url("../img/main_page/icon_plus.png") no-repeat scroll 15px center #0083d2;
     border-radius: 2px;
     color: #fff;

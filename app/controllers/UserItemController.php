@@ -18,7 +18,6 @@ class UserItemController extends BaseController {
 
         $data['items'] = $this->getItemList();
         $data['app_id'] = Config::get('constants.facebook_app_id');
-         die;
         $user_id = Session::get('user.id');
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();
@@ -45,7 +44,6 @@ class UserItemController extends BaseController {
 			//$items = $items->toArray();
 			foreach($items as &$value) {
 				$item_quantity = UserItemQuantity::where('item_id', $value['id'])->get();
-				var_dump($item_quantity); die;
 				$value['quantity'] = 0;
 				$names_image = explode(',', $value['image_url']);
 				$value['image_url'] = $url .$names_image[0] ;
@@ -60,7 +58,6 @@ class UserItemController extends BaseController {
 			}
 		}
 
-		var_dump($items); die;
 		return $items;
 
     }

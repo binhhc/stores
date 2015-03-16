@@ -255,6 +255,7 @@ class StoreController extends BaseController {
      * @since       2015/02/06
      *
      * show item detail
+     * 
      */
     public function show($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
@@ -410,6 +411,8 @@ class StoreController extends BaseController {
                 }
             }
 
+            $user_id = $this->getUserId();
+            $favorite = Favorite::getStatus($item_id, $user_id);
             $userItems = array(
                     'quantities' => $itemQuantity,
                     'images' => $imageUrl,
@@ -429,7 +432,8 @@ class StoreController extends BaseController {
                     'price' => $tmpUserItems->price,
                     'sale_flag' => false,
                     'review_count' => 0,
-                    'avg_score' => null
+                    'avg_score' => null,
+                    'favorite' => $favorite
                 );
             echo json_encode($userItems);
         }else {
@@ -463,7 +467,7 @@ class StoreController extends BaseController {
                 'name' => $tmpUserProfiles->name,
                 'profile_image' => array(
                     'name' => $tmpUserProfiles->image_url,
-                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$id.'/'.$tmpUserProfiles->image_url
+                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$userId.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {

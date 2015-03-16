@@ -22,8 +22,10 @@
                     <?php
                         $url_img = '/img/login/user_icon_01.png';
                         if(isset($user_profile)){
-                            $folder_name = User::getNameStore();
-                            $url_img = '/files/'.$folder_name['USER_NAME'].'/'.$user_profile->image_url;
+                            $folder_name = $user_profile->user_id;
+                            if (!empty($user_profile->image_url)) {
+                                $url_img = '/files/'.$folder_name.'/'.$user_profile->image_url;
+                            }
                         }
                     ?>
                     {{
@@ -52,12 +54,24 @@
 <script type="text/javascript">
     var submit_flg = true;
     $(document).ready(function(){
+    	var txtUsername = $('.txtUsername').val();
+        $('.error').empty();
+        
         $('#frmChangeProfile').submit(function(event){
+        	var txtUsername = $('.txtUsername').val();
+            
             if(submit_flg){
                 var email = $('.email').val();
                 if (validateEmail(email)) {
                     $('.finish').show();
                     $('.form_submit').hide();
+                }
+                if (txtUsername.length == 0) {
+                	$('.error').append('Vui lòng nhập tên của bạn');
+                	submit_flg = false;
+                	return false;
+                }else {
+                	submit_flg = true;
                 }
             }else{
                 event.preventDefault();
@@ -71,12 +85,15 @@
             if(txtUsername.length == 0){
                 $('.error').append('Vui lòng nhập tên của bạn');
                 submit_flg = false;
+            }else{
+            	submit_flg = true;
             }
         });
     });
 
     //load ajax image
     function previewFile(){
+    	var txtUsername = $('.txtUsername').val();
         var preview = document.querySelector('img#img_loadImagePreview'); //selects the query named img
         var file    = document.querySelector('input[type=file]').files[0]; //sames as here
         var reader  = new FileReader();
@@ -89,7 +106,12 @@
             alert('Không đúng định dạng ảnh!');
             $('input[name=image_url]').val('');
             preview.src = "{{$url_img}}";
-            submit_flg = false;
+            //submit_flg = false;
+            if(preview && txtUsername){
+            	submit_flg = true;
+            }else{
+            	submit_flg = false;
+            }
         }else{
             if(file){
                 reader.readAsDataURL(file); //reads the data as a URL

@@ -8,6 +8,13 @@
 {{HTML::script('js/bootstrap.min.js')}}
 {{HTML::script('js/jquery-ui.js')}}
 
+@if(Session::has('success'))
+    <!-- Information Panel -->
+    <div id="alert_panel_profile" class="success" style="display: block; opacity: 1.0; top: -10px;">
+    <p>{{ Session::get('success') }}</p>
+    </div>
+    <!-- /Information Panel -->
+@endif
 <div class="setting">
     <div class="wrapper account">
         <div class="heading_box clearfix">
@@ -232,3 +239,8 @@
 </div>
 
 @include('elements.footer')
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#alert_panel_profile').fadeIn('slow').delay(3000).fadeOut('slow');
+})
+</script>

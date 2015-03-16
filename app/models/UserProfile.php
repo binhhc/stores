@@ -14,10 +14,15 @@ class UserProfile extends Model{
      * @return boolean
      * @author Binh Hoang
      * @since 2015.01.22
+     * 
+     * @modified by         Le Nhan Hau
+     * @modified date       2015/03/16
      */
+    protected $dontFlash = ['image_url'];
     public static function validate_input($input){
         $rules = array(
-            'name' => 'required|alphaNum',
+            //'name' => 'required|alphaNum',
+            'name' => 'required',
             'image_url' => 'image',
         );
 

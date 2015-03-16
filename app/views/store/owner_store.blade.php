@@ -160,14 +160,17 @@
         });
     });
     var login_user = "<?php echo Session::get('user.id') ?>";
+    var login_user_md5 = "<?php echo md5(Session::get('user.id')) ?>";
     $(document).ready(function(){
         var follow = "<?php echo $follow ?>";
         var following = "<?php echo $following ?>";
     	 $(document).on('click', '#follow p a', function(e){
         	 var btn=$(this);
+
         	 var store_user_id = $(btn).attr("user_store_id");
-        	 if(login_user == store_user_id) {
+        	 if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
+        		 return;
         	 }
         	 if(login_user == "") {
             	 // Not login
@@ -187,12 +190,15 @@
                      	if(response==1) {
                      		if($(btn).parent().hasClass('follow_already')) {
                          		// Following -> Follow
-                         		$(btn).parent().removeClass('follow_already');
-                         		$(btn).text(follow);
+                         		var following_btn = $('#follow p.follow_already');
+                         		$(following_btn).children().text(follow);
+                         		$(following_btn).removeClass('follow_already');
+
                      		} else {
                      		// Follow -> Following
-                         		$(btn).parent().addClass('follow_already');
-                         		$(btn).text(following);
+                     		var follow_btn = $('#follow p').not('.follow_already');
+                     		$(follow_btn).children().text(following);
+                     		$(follow_btn).addClass('follow_already');
                      		}
                      	} else {
                      		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');

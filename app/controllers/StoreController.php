@@ -381,7 +381,7 @@ class StoreController extends BaseController {
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => (int)$value->quantity,
-                        'variation' => !empty($value->size_name) ? $value->size_name : null,
+                        'variation' => 'ww',//!empty($value->size_name) ? $value->size_name : null,
                         'infinite_status' => false
                     );
                 }
@@ -422,7 +422,7 @@ class StoreController extends BaseController {
             //App::abort(404);
             if (Request::ajax()) {
                 return Response::make(null, '404');
-            }
+        }
             exit;
         }
 

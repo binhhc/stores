@@ -66,7 +66,6 @@ class UserItem extends Model{
             ->select('user_items.id', 'user_items.name', 'user_items.price', 'user_items.image_url','user_items_quantities.quantity')
             ->where('user_items.user_id', '=', $userId)
             ->where('user_items.public_flg', '=', true)
-            ->orderBy('user_items.public_flg', 'desc')
             ->orderBy('user_items.order', 'asc')
             ->orderBy('user_items.updated_at', 'desc')
             ->get();
@@ -92,7 +91,8 @@ class UserItem extends Model{
      * @modified by
      **/
     public static function getFeilds(){
-        return array('id','user_id','category_id','name','price','image_url','introduce','order');
+        return array('user_items.id','user_items.user_id','user_items.category_id','user_items.name',
+                    'user_items.price','user_items.image_url','user_items.introduce','user_items.order');
     }
 
     public function userItemQuantity(){
@@ -112,7 +112,6 @@ class UserItem extends Model{
         $userItems = UserItem::with('userItemQuantity')
             ->where('user_items.user_id', '=', $userId)
             ->where('user_items.public_flg', '=', true)
-            ->orderBy('user_items.public_flg', 'desc')
             ->orderBy('user_items.order', 'asc')
             ->orderBy('user_items.updated_at', 'desc');
 
@@ -136,7 +135,7 @@ class UserItem extends Model{
     public static function getUserItemByItemId($itemId) {
         $userItems = UserItem::with('userItemQuantity')
             ->where('user_items.id', '=', $itemId)
-            ->first();
+            ->first(self::getFeilds());
         return !empty($userItems) ? $userItems : array();
     }
     /**

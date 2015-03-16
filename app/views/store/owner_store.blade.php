@@ -189,10 +189,10 @@
         	 var btn=$(this);
 
         	 var store_user_id = $(btn).attr("user_store_id");
-        	 /*if(login_user_md5 == store_user_id) {
+        	 if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
         		 return;
-        	 }*/
+        	 }
         	 if(login_user == "") {
             	 // Not login
         		 window.location.href = "/login?store_user_id=" + store_user_id + "&redirect_url=" + window.location.href;

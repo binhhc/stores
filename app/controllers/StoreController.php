@@ -463,7 +463,7 @@ class StoreController extends BaseController {
                 'name' => $tmpUserProfiles->name,
                 'profile_image' => array(
                     'name' => $tmpUserProfiles->image_url,
-                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$id.'/'.$tmpUserProfiles->image_url
+                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$userId.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {

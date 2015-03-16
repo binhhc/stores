@@ -9,8 +9,9 @@
                 <tbody>
                     <tr>
                         <td style="padding:10px 30px 30px 30px;text-align:center" colspan="2">
-                            <p style="margin-top:30px">
-                                <img src="https://ci4.googleusercontent.com/proxy/JfHwmfI4nYXFHIpJZCvXlM3eB1MDW0hJrAo_9680PiH3sPR5gW62PLRNo7Z92SIBrlTmfFMH8a5UJGsOL1YwVG33-p0gIAhZsB1D5UXx1iQjmuYCLmhg=s0-d-e1-ft#https://f.stores.jp/_files/sangpm/687e4ee86d59ef8de216_200x0.jpeg" class="CToWUd"></p>
+                            <h1 style="margin-top:30px">
+                                {{$store_name}}
+                            </h1>
                 
 <div style="text-align:left">
     <p style="margin:30px 0 0 0;line-height:1.8;font-size:20px;font-weight:bold">Cảm ơn bạn đã mua hàng！</p>
@@ -21,33 +22,37 @@
 
 <table width="570" cellspacing="0" cellpadding="0" border="0" align="center" style="border-top:solid 1px #ddd;text-align:left">
     <tbody>
-        <tr>
+    <?php @foreach ($items as $item)?>    
+    <tr>
         <td valign="middle" style="padding:15px;border-bottom:solid 1px #ddd" colspan="4">
             <table width="540" cellspacing="0" cellpadding="0" border="0" align="center">
                 <tbody><tr>
                     <td width="70" valign="middle" style="padding:0 15px 0 0">
-                        <a target="_blank" href="https://sangpm.stores.jp/orders/7393144640/items/5502a4523cd4825674000230">
-                            <img width="70" height="70" src="https://ci5.googleusercontent.com/proxy/mlprQsl-ecIjs52k59rpc4tWKMMXYZ5SW2TkIIHaXi08W1btk8boRjGm8U0WGTGTwzOLkYKzgK8A-EIGnGUAXSd_05SONRo5W_6i0Q3e315A-fmck4Hi=s0-d-e1-ft#https://f.stores.jp/_files/sangpm/3a3033b5571bdc5ce44e_70x70.jpeg" alt="アイテム名2" class="CToWUd">
+                        <a target="_blank" href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['id']}}">
+                            <img width="70" height="70" src="https://ci5.googleusercontent.com/proxy/mlprQsl-ecIjs52k59rpc4tWKMMXYZ5SW2TkIIHaXi08W1btk8boRjGm8U0WGTGTwzOLkYKzgK8A-EIGnGUAXSd_05SONRo5W_6i0Q3e315A-fmck4Hi=s0-d-e1-ft#https://f.stores.jp/_files/sangpm/3a3033b5571bdc5ce44e_70x70.jpeg" alt="{{$item['name']}}" class="CToWUd">
                         </a>
                     </td>
                     <td valign="middle" style="font-size:14px;text-align:left;line-height:1.6">
-                        <a target="_blank" style="color:#333;text-decoration:none" href="https://sangpm.stores.jp/orders/7393144640/items/5502a4523cd4825674000230">
-                          Sản phẩm 2
+                        <a target="_blank" style="color:#333;text-decoration:none" 
+                           href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['id']}}">
+                            {{$item['name']}}
                         </a>
                     </td>
-                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6">Số lượng：1</td>
-                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6;font-weight:bold">VND 3,000</td>
+                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6">Số lượng：{{$item['quantity']}}</td>
+                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6;font-weight:bold">VND {{$item['price']}}</td>
                 </tr>
                 </tbody></table>
         </td>
     </tr>
+    <?php @endforeach?>
 </tbody></table>
 
 <table width="220" cellspacing="0" cellpadding="0" border="0" align="right" style="margin-bottom:30px;font-size:14px;line-height:1.6;float:right">
-    <tbody><tr>
+    <tbody>
+    <!-- <tr>
         <td style="border-bottom:solid 1px #ddd;padding:10px 0 5px 15px;text-align:left">Phí vận chuyển</td>
         <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND 0</td>
-    </tr>
+    </tr> -->
     <tr> 
         <td style="border-bottom:solid 1px #ddd;padding:10px 0 5px 15px;text-align:left">Tổng cộng（Thuế）</td>
         <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND 7,000</td>

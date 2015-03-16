@@ -59,6 +59,8 @@ class OrderController  extends BaseController {
     
     public function sendMailOrder($data){
         $data['domain_sub'] = 'sangpm';
+        $data['store_name'] = 'Sang Ga';
+       
         $new_email = 'sang.pham.minh@leverages.jp';$data['customer']['email'];
         Mail::send('emails.order_success', $data, function($message) use($new_email) {
             $message->to($new_email, 'Đặt hàng')->subject('Đặt hàng thành công');

@@ -396,7 +396,7 @@ class StoreController extends BaseController {
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => (int)$value->quantity,
-                        'variation' => 'ww',//!empty($value->size_name) ? $value->size_name : null,
+                        'variation' => !empty($value->size_name) ? $value->size_name : null,
                         'infinite_status' => false
                     );
                 }
@@ -412,7 +412,7 @@ class StoreController extends BaseController {
             }
 
             $user_id = $this->getUserId();
-            $favorite = Favorite::getStatus($item_id, $user_id);
+            $favorite = Favorite::getStatus($id, $user_id);
             $userItems = array(
                     'quantities' => $itemQuantity,
                     'images' => $imageUrl,

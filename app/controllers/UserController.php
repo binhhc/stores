@@ -23,7 +23,7 @@ class UserController extends BaseController {
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $data = array();
         if(!empty($store_user_id) && !empty($redirect_url)) {
-        	$store = UserStore::whereRaw('md5(user_stores.id) = "'.$store_user_id.'"')->first()->toArray();
+        	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
         	$data = array(
         		'store_user_id' => $store['user_id'],
         		'redirect_url' => $redirect_url,
@@ -83,11 +83,11 @@ class UserController extends BaseController {
      * @since 2015.01.16
      */
     public function loginFacebook(){
-    	die;
-        $facebook = new Facebook(Config::get('facebook'));
+
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $data = '?store_user_id=' . $store_user_id . '&redirect_url=' . $redirect_url;
+        $facebook = new Facebook(Config::get('facebook'));
         $params = array(
             'redirect_uri' => url('/login/fb/callback'. $data),
             'scope' => 'email',
@@ -108,8 +108,6 @@ class UserController extends BaseController {
         $code = Input::get('code');
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
-        var_dump($store_user_id);
-        var_dump($redirect_url); die;
         if (strlen($code) == 0)
             return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
 
@@ -125,6 +123,7 @@ class UserController extends BaseController {
 
         $user = User::where('email', '=', $me['email'])->first();
 
+        $user_id = 0;
         //check email exist in database
         if (empty($user)) {
             $user = new User;
@@ -133,17 +132,17 @@ class UserController extends BaseController {
             $user->save();
 
             //get last insert id
-            $lastInsertId = $user->id;
+            $user_id = $user->id;
 
             $usersns = new UserSns();
-            $usersns->user_id = $lastInsertId;
+            $usersns->user_id = $user_id;
             $usersns->sns_type = '1';
             $usersns->sns_id = $uid;
             $usersns = $user->usersns()->save($usersns);
         }else{ //user exist
             if(empty($usersns)){
                 $usersns = new UserSns();
-                $usersns->user_id = $user['id'];
+                $user_id = $usersns->user_id = $user['id'];
                 $usersns->sns_type = '1';
                 $usersns->sns_id = $uid;
                 $usersns->save();
@@ -161,6 +160,12 @@ class UserController extends BaseController {
         Session::put('userStoresDomain', UserStore::getUserStoreDomain());
         Auth::login($user);
 
+     	if(!empty($store_user_id) && !empty($redirect_url)) {
+            	// add Follow for user
+            	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
+            	Follow::addFollow($store['id'], $user_id);
+            	return Redirect::to( $redirect_url);
+            }
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
 

@@ -24,6 +24,8 @@ class StoreController extends BaseController {
         $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
         App::setLocale($typeLanguage);
         $languagePopupFollow = Lang::get('store.store_popup_follow');
+        $follow = Lang::get('store.follow');
+        $following = Lang::get('store.following');
 
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
@@ -41,7 +43,9 @@ class StoreController extends BaseController {
         	'follow_count' => $follow_status['count'],
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
-            'languagePopupFollow' => $languagePopupFollow
+            'languagePopupFollow' => $languagePopupFollow,
+        	'follow' => $follow,
+        	'following' => $following
         );
         return View::make('store.owner_store', $data);
     }
@@ -351,9 +355,19 @@ class StoreController extends BaseController {
         App::setLocale($typeLanguage);
         $store_about = Lang::get('store.store_about');
 
+        $follow = Lang::get('store.follow');
+        $following = Lang::get('store.following');
+        $user_id = $this->getUserId();
+        $follow_status = Follow::getStatus($parameters, $user_id);
+        $store_user = UserStore::getUserStoreByDomain($parameters);
         $data = array(
             'store_main_menu' => $store_main_menu,
-            'store_about' => $store_about
+            'store_about' => $store_about,
+        	//'follow_count' => $follow_status['count'],
+        	'follow_status' => $follow_status['follow'],
+        	'user_store_id' => $store_user->user_id,
+        	'follow' => $follow,
+        	'following' => $following
         );
         return View::make('store.about', $data);
     }
@@ -1471,6 +1485,25 @@ class StoreController extends BaseController {
 			}
 			$success =  "Bạn đã chỉnh sửa mô tả cửa hàng thành công ";
 			return Redirect::to('/store_setting')->with('success', $success);
+		}
+	}
+	/**
+	 * Follow stores
+	 * @author Oanhha
+	 * @since 2015-03-13
+	 */
+	public function do_follow() {
+		if(Request::ajax()){
+			$input = Input::all();
+		    $store_user_id = $input['store_user_id'];
+		    $login_user = $input['login_user'];
+            if(!empty($store_user_id) && !empty($login_user)) {
+            	// add Follow for user
+            	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
+            	//$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
+            	Follow::addFollow($store['id'], $login_user);
+            }
+			return Response::json(1);
 		}
 	}
 

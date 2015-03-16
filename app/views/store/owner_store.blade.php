@@ -5,9 +5,9 @@
 <div class="contents_view">
 	<div id="follow" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" >
           	<?php if($follow_status == 0) { ?>
-          		<p><a href="" class="header"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >Theo dõi</a>
+          		<p><a href="" class="header"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
             <?php } else {?>
-            <p class="follow_already"><a href="" class="header" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">Đang theo dõi</a>
+            <p class="follow_already"><a href="" class="header" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
             <?php }?>
 		</p>
       </div>
@@ -32,7 +32,8 @@
     <div ng-view></div>
 
     <!-- FollowBox/ -->
-    <div class="follow_box" sp-if="follow">
+    <?php $style =  ($follow_status == 1) ? 'display: block!important' : 'display: none'; ?>
+    <div class="follow_box" style="<?php echo $style ?>">
         <p class="close"><a href="">close</a>
         </p>
         <p class="message">{{$languagePopupFollow['label_popup_follow']}}</p>
@@ -43,7 +44,15 @@
             <h3>{[styles.name]}</h3>
             <p></p>
         </div>
-        <iframe id="follow_iframe" src="/iframe/store/follow_header?position=box&follow=<?php echo $follow_status?>&follow_count=<?php echo $follow_count?>" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" scrolling="no" frameborder="0"></iframe>
+        <div id="follow" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" >
+          	<?php if($follow_status == 0) { ?>
+          		<p><a href="" class="box"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
+            <?php } else {?>
+            <p class="follow_already"><a href="" class="box" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
+            <?php }?>
+		</p>
+      </div>
+        <!-- <iframe id="follow_iframe" src="/iframe/store/follow_header?position=box&follow=<?php echo $follow_status?>&follow_count=<?php echo $follow_count?>" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" scrolling="no" frameborder="0"></iframe>-->
     </div>
     <!-- /FollowBox -->
 
@@ -110,6 +119,40 @@
     width: 100%;
     z-index: 100;
 }
+#follow a.box:hover {
+    opacity: 0.8;
+}
+#follow .follow_already a.box {
+    background: url("../img/main_page/icon_check_white.png") no-repeat scroll 7px center #aaa;
+}
+#follow a.box {
+    background: url("../img/main_page/icon_plus.png") no-repeat scroll 8px center #177dc0;
+    font-size: 12px;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 14px;
+    width: 86px;
+}
+
+.follow_btn a:hover {
+    opacity: 0.8;
+}
+.follow_btn.already a {
+    background: url("/images/icon/icon_check_white.png") no-repeat scroll 15px center #999;
+}
+.follow_btn a {
+    background: url("../img/main_page/icon_plus.png") no-repeat scroll 15px center #0083d2;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+}
 </style>
 <script>
     var I18n = I18n.translations.ja.js;
@@ -136,25 +179,61 @@
             }
         });
     });
-    $(function() {
-        $(".follow_box .close").click(function() {
-            $(".follow_box").addClass("delete");
-        });
-    });
     var login_user = "<?php echo Session::get('user.id') ?>";
+    var login_user_md5 = "<?php echo md5(Session::get('user.id')) ?>";
     $(document).ready(function(){
-    	 $(document).on('click', '#follow p a.header', function(e){
+        var follow = "<?php echo $follow ?>";
+        var following = "<?php echo $following ?>";
+    	 $(document).on('click', '#follow p a', function(e){
+        	 e.preventDefault();
         	 var btn=$(this);
+
         	 var store_user_id = $(btn).attr("user_store_id");
-        	 if(login_user == store_user_id) {
+        	 /*if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
-        	 }
+        		 return;
+        	 }*/
         	 if(login_user == "") {
             	 // Not login
         		 window.location.href = "/login?store_user_id=" + store_user_id + "&redirect_url=" + window.location.href;
         	 } else {
+            	 var follow_status = $(btn).attr('follow_status');
+            	 $.ajax({
+                     type: "POST",
+                     url: "/do_follow",
+                     data: {
+                    	 store_user_id: store_user_id,
+                    	 login_user:login_user
+                     },
+                     global: true,
+                     dataType: 'json',
+                     success: function(response) {
+                     	if(response==1) {
+                     		if($(btn).parent().hasClass('follow_already')) {
+                         		// Following -> Follow
+                         		var following_btn = $('#follow p.follow_already');
+                         		$(following_btn).children().text(follow);
+                         		$(following_btn).removeClass('follow_already');
+
+                     		} else {
+                     		// Follow -> Following
+                     		var follow_btn = $('#follow p').not('.follow_already');
+                     		$(follow_btn).children().text(following);
+                     		$(follow_btn).addClass('follow_already');
+                     		}
+                     	} else {
+                     		alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                     		return;
+                     	}
+                     },
+                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     },
+                 });
         	 }
     	 });
+    	 $('.follow_box .close').on('click', function(){
+			$('.follow_box').hide();
+        });
     	 $('#modal-bg,a.modal-close').on('click', function(e){
     			e.preventDefault();
     			$('#modal-win').hide();

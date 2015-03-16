@@ -133,6 +133,26 @@
     padding-left: 14px;
     width: 86px;
 }
+
+.follow_btn a:hover {
+    opacity: 0.8;
+}
+.follow_btn.already a {
+    background: url("/images/icon/icon_check_white.png") no-repeat scroll 15px center #999;
+}
+.follow_btn a {
+    background: url("../img/main_page/icon_plus.png") no-repeat scroll 15px center #0083d2;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+}
 </style>
 <script>
     var I18n = I18n.translations.ja.js;
@@ -165,13 +185,14 @@
         var follow = "<?php echo $follow ?>";
         var following = "<?php echo $following ?>";
     	 $(document).on('click', '#follow p a', function(e){
+        	 e.preventDefault();
         	 var btn=$(this);
 
         	 var store_user_id = $(btn).attr("user_store_id");
-        	 if(login_user_md5 == store_user_id) {
+        	 /*if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
         		 return;
-        	 }
+        	 }*/
         	 if(login_user == "") {
             	 // Not login
         		 window.location.href = "/login?store_user_id=" + store_user_id + "&redirect_url=" + window.location.href;

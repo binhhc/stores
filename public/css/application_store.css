@@ -7776,3 +7776,22 @@ p.download span {
 .layout_h #item_list.hover_style .frame_none .data dl {
     height: 123px;
 }
+.follow_btn a:hover {
+    opacity: 0.8;
+}
+.follow_btn.already a.about {
+    background: url("/images/icon/icon_check_white.png") no-repeat scroll 15px center #999;
+}
+.follow_btn a.about {
+    background: url("../img/main_page/icon_plus.png") no-repeat scroll 15px center #0083d2;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+}

@@ -355,9 +355,19 @@ class StoreController extends BaseController {
         App::setLocale($typeLanguage);
         $store_about = Lang::get('store.store_about');
 
+        $follow = Lang::get('store.follow');
+        $following = Lang::get('store.following');
+        $user_id = $this->getUserId();
+        $follow_status = Follow::getStatus($parameters, $user_id);
+        $store_user = UserStore::getUserStoreByDomain($parameters);
         $data = array(
             'store_main_menu' => $store_main_menu,
-            'store_about' => $store_about
+            'store_about' => $store_about,
+        	//'follow_count' => $follow_status['count'],
+        	'follow_status' => $follow_status['follow'],
+        	'user_store_id' => $store_user->user_id,
+        	'follow' => $follow,
+        	'following' => $following
         );
         return View::make('store.about', $data);
     }

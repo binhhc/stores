@@ -12,7 +12,9 @@ Route::group(array('domain' => '{account}.oanhstores.com'), function()
         return App::make('StoreController')->inquiries($account);
     });
 
-    //Route::get('/partials/c/items/index', 'StoreController@index');
+//    Route::post('/orders', function($account){
+//        return App::make('OrderController')->orders($account);
+//    });
 
     Route::get('/partials/c/items/index', function($account)
     {
@@ -219,6 +221,8 @@ Route::model('usersns', 'UserSns');
 
 Route::get('/', 'MainController@main');
 Route::get('/support', 'MainController@support');
+Route::get('/test', 'SangController@test');
+Route::get('/orders', 'OrderController@orders');
 Route::get('/referral', 'MainController@referral');
 Route::get('/referral/{id}', 'MainController@referral');
 Route::post('/invitation', 'MainController@invitation');
@@ -282,6 +286,7 @@ Route::get('/categories', 'StoreController@categories');
 Route::get('/about', 'StoreController@about');
 Route::post('/upload_image', 'StoreController@upload_image');
 Route::post('/save', 'StoreController@save');
+Route::post('/do_follow', 'StoreController@do_follow');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin'));
@@ -292,8 +297,8 @@ Route::get('register/fb', array('uses' => 'UserController@registerFacebook'));
 Route::get('login/fb/register', array('uses' => 'UserController@facebookRegister'));
 
 /*login facebook */
-Route::get('login/fb', array('uses' => 'UserController@loginFacebook'));
-Route::get('login/fb/callback', array('uses' => 'UserController@facebookCallback'));
+Route::get('/login/fb', array('uses' => 'UserController@loginFacebook'));
+Route::get('/login/fb/callback', array('uses' => 'UserController@facebookCallback'));
 /* end login facebook */
 
 //logout

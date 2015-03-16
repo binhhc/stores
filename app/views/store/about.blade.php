@@ -10,7 +10,18 @@
         <div id="store_info" style="display:table-cell; vertical-align:middle;">
           <h3>{[styles.name]}</h3>
           <p>{[profile.name]}</p>
-          <iframe ng-src="{[ stores_domain ]}/iframe/store/follow_about" width="145" height="40" scrolling="no" frameborder="0" sp-if="follow"></iframe>
+          <div id="follow" class="follow_about">
+	      <?php if($follow_status == 0) { ?>
+	        <p class="follow_btn">
+	        	<a href="" class="about"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
+	        </p>
+	       <?php }else {?>
+	        <p class="follow_btn follow_already" >
+				<a href="" class="about" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
+			</p>
+			<?php }?>
+	      </div>
+          <!-- <iframe ng-src="{[ stores_domain ]}/iframe/store/follow_about" width="145" height="40" scrolling="no" frameborder="0" sp-if="follow"></iframe> -->
         </div>
       </div>
       <!-- /Account -->
@@ -40,7 +51,7 @@
     </div>
   </div>
 </div>
-
+<!-- /PopupAlertFollow -->
 <!-- FOOTER/ -->
 <div id="store_item_footer">
 @include('elements.user_footer')
@@ -50,7 +61,27 @@
 <!-- POPUP/ -->
 @include('elements.user_cart')
 <!-- /POPUP -->
-
+<style>
+.follow_about .follow_btn a:hover {
+    opacity: 0.8;
+}
+#follow .follow_btn.follow_already a.about {
+    background: url("../img/main_page/icon_check_white.png") no-repeat scroll 15px center #999;
+}
+#follow .follow_btn a.about {
+    background: url("../img/main_page/icon_plus.png") no-repeat scroll 15px center #0083d2;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+}
+</style>
 <script>
   $(document).ready(function() {
     $('.img_big a').fancybox();
@@ -65,6 +96,7 @@
         location.hash = '#!/checkout';
       }
     });
+
   });
   $(function(){
     $('.btn_dropdown').on({

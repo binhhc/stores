@@ -1,7 +1,8 @@
 <?php
 class OrderController  extends BaseController {
     public function orders(){
-     
+        ini_set("session.cookie_domain", ".stores.dev");
+        phpinfo();
         $data = [
             'customer' => [
                 'last_name' => 'Sang ga',
@@ -53,7 +54,7 @@ class OrderController  extends BaseController {
                 ]
             ];
         
-        $this->sendMailOrder($data);
+        //$this->sendMailOrder($data);
         exit();
     }
     

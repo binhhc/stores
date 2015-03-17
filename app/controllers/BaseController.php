@@ -2,6 +2,12 @@
 
 class BaseController extends Controller {
 
+	function __construct() {
+       ini_set("session.cookie_domain", '.' . Config::get('constants.domain'));
+       session_set_cookie_params(360000, '/', '.'. Config::get('constants.domain'));
+       session_start();
+
+  	}
     /**
      * Setup the layout used by the controller.
      *
@@ -32,7 +38,7 @@ class BaseController extends Controller {
         $user = Session::get('user');
         return !empty($user) ? $user['id'] : false;
     }
-    
+
     /**
      * Get id of login user
      * @author Sang PM

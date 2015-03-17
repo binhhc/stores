@@ -182,15 +182,17 @@
             }
         });
     });
-    var login_user = "<?php echo Session::get('user.id') ?>";
-    var login_user_md5 = "<?php echo md5(Session::get('user.id')) ?>";
-    $(document).ready(function(){
+        $(document).ready(function(){
+        <?php $login_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : '' ?>
+        var login_user = "<?php echo $login_id ?>";
+        var login_user_md5 = "<?php echo md5($login_id) ?>";
         var follow = "<?php echo $follow ?>";
         var following = "<?php echo $following ?>";
     	 $(document).on('click', '#follow p a', function(e){
         	 e.preventDefault();
         	 var btn=$(this);
         	 var store_user_id = $(btn).attr("user_store_id");
+
         	 if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
         		 return;

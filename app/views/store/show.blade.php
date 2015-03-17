@@ -78,7 +78,9 @@
         </table>
         <p class="btn_high_big cart" ng-show="total_quantity"><button type='button' ng-click="cart.add(item, stocks)">{[I18n.store.show.addCart]}</button></p>
         <!-- Favorite/ -->
-        <iframe ng-src="{[ stores_domain ]}/iframe/store/favorite_item_button/{[item_id]}" style="width: 300px; height: 50px; background-color: transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe>
+        <div id="favorite_item" >
+      </div>
+        <!--<iframe ng-src="{[ stores_domain ]}/iframe/store/favorite_item_button/{[item_id]}" style="width: 300px; height: 50px; background-color: transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe>  -->
         <!-- /Favorite -->
         <p class="item_txt" id="item_description" style="margin-top: 20px; overflow: auto; white-space: pre-wrap; word-wrap: break-word;" itemprop="description">{[item.description]}</p>
         <ul id="btn_sns">
@@ -162,7 +164,56 @@
 <!-- /PopupRestock -->
 
 <div id="fb-root"></div>
+<style>
 
+.btn_favorite .count::before {
+    border-color: transparent #fff transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 5px 0;
+    content: "";
+    display: block;
+    height: 0;
+    left: -5px;
+    margin-top: -5px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+    z-index: 0;
+}
+.btn_favorite .count::after {
+    background: url("../img/main_page/icon_heart.png") no-repeat scroll 64px 13px #fff;
+    border-color: transparent #ccc transparent transparent;
+    border-style: solid;
+    border-width: 6px 6px 6px 0;
+    content: "";
+    display: block;
+    height: 0;
+    left: -6px;
+    margin-top: -6px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+    z-index: -1;
+}
+.btn_favorite .count {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #666;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 30px;
+    margin-left: 10px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    width: auto;
+    z-index: 0;
+}
+
+</style>
 <script>
   $(document).ready(function() {
     $('.img_big a').fancybox();
@@ -206,7 +257,52 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+  function load_favorite(item_id, action) {
+	  $.ajax({
+          type: "POST",
+          url: "/load_item_favorite",
+          data: {
+          	item_id: item_id,
+          	action: action
+          },
+          global: true,
+          dataType: 'json',
+          success: function(response) {
+              var div = $('#favorite_item');
+              div.empty();
+              if(response.favorite == 0) {
+                  if(response.count != 0) {
+                	  var text = '<p class="btn_favorite" ><button type="button" >' + response.love + '</button><span class="count" >' + response.count + '</span></p>'
+                  } else {
+                	  var text = '<p class="btn_favorite" ><button type="button" >' + response.love + '</button></p>'
+                  }
+					div.html(text);
+              } else {
+                  var text = '<p class="btn_favorite already" ><button type="button" >' + response.loved + '</button><span class="count" >' + response.count +'</span></p>'
+                  div.html(text);
+              }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+          },
+      });
+  }
   $(document).ready(function(){
+	    var item_id = '';
+	    pathArray = location.href.split( '/' );
+	    item_id = pathArray[5];
+	 // Load favorite button
+	    load_favorite(item_id, 0);
+	    $(document).on('click', '.btn_favorite', function(e){
+		    var login_user = "<?php echo Session::get('user.id'); ?>";
+		    if(login_user == "") {
+			    // Not login
+		    	window.location.href = "/login?item_id=" + $item_id + "&redirect_url=" + window.location.href;
+		    } else {
+			    load_favorite(item_id, 1);
+		    }
+	    });
+
+
 	    $("a.tweet").click(function(){
 	          var w = 550; var h = 420;
 	          var sw = screen.width; var sh = screen.height;

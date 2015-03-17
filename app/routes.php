@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('domain' => '{account}.stores.dev.srv'), function()
+Route::group(array('domain' => '{account}.oanhstores.com'), function()
 {
     Route::get('/', function($account)
     {
@@ -287,6 +287,7 @@ Route::get('/about', 'StoreController@about');
 Route::post('/upload_image', 'StoreController@upload_image');
 Route::post('/save', 'StoreController@save');
 Route::post('/do_follow', 'StoreController@do_follow');
+Route::post('/load_item_favorite', 'StoreController@load_item_favorite');
 
 //Login
 Route::get('/login', array('uses' => 'UserController@showLogin'));

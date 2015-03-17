@@ -18,6 +18,7 @@ class StoreController extends BaseController {
      * custom store
      */
     public function ownerStore($parameters) {
+    	ini_set("session.cookie_domain", Config::get('constants.domain'));
         //get url domain
         $domain = Request::url();
         //language popup follow
@@ -35,7 +36,7 @@ class StoreController extends BaseController {
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
         //get user_profiles
         $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
-        
+
         $userProfiles = array();
         if (!empty($tmpUserProfiles)) {
             $userProfiles = array(
@@ -54,7 +55,7 @@ class StoreController extends BaseController {
                 )
             );
         }
-        
+
         //user_stores
         $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
         //store name
@@ -71,7 +72,7 @@ class StoreController extends BaseController {
                 $userStores['store']['name'] = $tmpSettings->store->name;
             }
         }
-        
+
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
         $store_user = UserStore::getUserStoreByDomain($parameters);
@@ -302,9 +303,11 @@ class StoreController extends BaseController {
      * @since       2015/02/06
      *
      * show item detail
-     * 
+     *
      */
     public function show($parameters) {
+    	ini_set("session.cookie_domain", Config::get('constants.domain'));
+
         $store_main_menu = $this->setLanguageForMenu($parameters);
 
         $data = array(
@@ -576,7 +579,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * follow about
      */
     public function follow_about($id) {
@@ -1562,6 +1565,28 @@ class StoreController extends BaseController {
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);
+		}
+	}
+	/**
+	 * Load favorite item
+	 * @author Oanhha
+	 * @since 2015-03-13
+	 */
+	public function load_item_favorite() {
+		if(Request::ajax()){
+			$input = Input::all();
+		    $item_id = $input['item_id'];
+		    $action = $input['action'];
+		    $user_id = $this->getUserId();
+            $user_id = empty($user_id) ?  0 : $user_id;
+            if($action == 1) {
+            	// Favortie
+            	Favorite::addFavorite($item_id, $user_id);
+            }
+            $result = Favorite::getStatus($item_id, $user_id);
+            $result['love'] = Lang::get('store.love');
+        	$result['loved'] = Lang::get('store.loved');
+			return Response::json($result);
 		}
 	}
 

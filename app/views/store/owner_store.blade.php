@@ -190,7 +190,6 @@
     	 $(document).on('click', '#follow p a', function(e){
         	 e.preventDefault();
         	 var btn=$(this);
-
         	 var store_user_id = $(btn).attr("user_store_id");
         	 if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();

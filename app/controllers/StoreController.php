@@ -555,8 +555,14 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * follow about
+     */
     public function follow_about($id) {
-        return View::make('store.follow_about', array('data' => 'test'));
+        return View::make('store.follow_about');
     }
 
     public function receive_method($id) {

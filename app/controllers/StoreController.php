@@ -550,8 +550,14 @@ class StoreController extends BaseController {
         return View::make('store.cart_popup', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return favorite_item_button
+     */
     public function favorite_item_button($id) {
-        return View::make('store.favorite_item_button', array('data' => 'test'));
+        return View::make('store.favorite_item_button');
     }
 
     public function checkout($id) {
@@ -583,12 +589,24 @@ class StoreController extends BaseController {
         return View::make('store.follow_about');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return receive_method
+     */
     public function receive_method($id) {
-        return View::make('store.receive_method', array('data' => 'test'));
+        return View::make('store.receive_method');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_card
+     */
     public function checkout_card($id) {
-        return View::make('store.checkout_card', array('data' => 'test'));
+        return View::make('store.checkout_card');
     }
 
     /**

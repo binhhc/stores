@@ -63,6 +63,7 @@ class UserController extends BaseController {
             if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
+            	$user_id = Session::get('user.id');
             	if($store_user_id !== $user_id) {
 					Follow::addFollow($store['id'], $user_id);
             	}
@@ -88,6 +89,10 @@ class UserController extends BaseController {
 
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
+     	if(!empty($store_user_id) && !empty($redirect_url)) {
+        	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
+        	$store_user_id =  $store['user_id'];
+        }
         $data = '?store_user_id=' . $store_user_id . '&redirect_url=' . $redirect_url;
         $facebook = new Facebook(Config::get('facebook'));
         $params = array(
@@ -491,7 +496,7 @@ class UserController extends BaseController {
      * @return Response
      * @author Binh Hoang
      * @since 2015.01.22
-     * 
+     *
      * @modified by         Le Nhan Hau
      * @modified date       2015/03/16
      */
@@ -513,7 +518,7 @@ class UserController extends BaseController {
                         mkdir($folder_user);
                         chmod($folder_user, 0777);
                     }
-    
+
                     //$filename = $image->getClientOriginalName();
                     $extension = Input::file('image_url')->getClientOriginalExtension();
                     $filename = time().'.'.$extension;

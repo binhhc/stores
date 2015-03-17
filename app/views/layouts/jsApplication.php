@@ -540,7 +540,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     }(jQuery),
                     function() {
                         $scope.total_quantity = 0, $scope.stocks = {}, $scope.item.quantities.length > 1 ? _.each($scope.item.quantities, function(quantity) {
-                            quantity.q_array = new Array(quantity.quantity + 1), $scope.stocks[quantity.variation] = 0, $scope.padding = 0, $scope.total_quantity += quantity.quantity
+                            quantity.q_array = new Array(quantity.quantity + 1), $scope.stocks[quantity.id] = 0, $scope.padding = 0, $scope.total_quantity += quantity.quantity
                         }) : ($scope.item.quantities[0].q_array = new Array($scope.item.quantities[0].quantity), $scope.stocks[null] = 1, $scope.padding = 1, $scope.total_quantity += $scope.item.quantities[0].quantity), $scope.loading = !1, setViaMarketData()
                     }()
             }, function() {
@@ -11167,10 +11167,10 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                         if (item) {
                             {
                                 var item_quantity = _.find($rootScope.item.quantities, function(quantity) {
-                                    return quantity.variation == item.variation
+                                    return quantity.id == item.variation
                                 });
                                 _.find($rootScope.item.quantities, function(quantity) {
-                                    return quantity.variation == item.variation ? item.infinite_status : void 0
+                                    return quantity.id == item.variation ? item.infinite_status : void 0
                                 })
                             }
                             item_quantity.quantity >= item.quantity + stock_quantity && (item.quantity += stock_quantity)
@@ -11186,6 +11186,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                                 quantity: stock_quantity,
                                 infinite_status: stock_infinite_status,
                                 variation: stock_variation,
+                                variation_name: item_info.variations[stock_variation],
                                 image: item_info.images[0],
                                 digital_contents: item_info.digital_contents,
                                 shipping_fee: item_info.shipping_fee,

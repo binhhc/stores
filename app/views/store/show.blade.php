@@ -62,11 +62,11 @@
             <td ng-show="quantity.quantity > 0 && I18n.locale == 'en'">Quantity:</td>
             <td ng-show="quantity.quantity > 0">
               <div class="styled_select_thin">
-                <select ng-model="stocks[quantity.variation]">
+                <select ng-model="stocks[quantity.id]">
                   <option ng-if="!item.is_digit" ng-repeat="q in quantity.q_array | limitTo: 100">{[$index + padding]}</option>
                   <option ng-if="item.is_digit">1</option>
                 </select>
-                <span>{[stocks[quantity.variation]]}</span>
+                <span>{[stocks[quantity.id]]}</span>
               </div>
               <p ng-show="quantity.quantity > 0 && I18n.locale =='vi'"><?php echo Config::get('constants.item.unit'); ?></p>
             </td>
@@ -83,28 +83,11 @@
         <!--<iframe ng-src="{[ stores_domain ]}/iframe/store/favorite_item_button/{[item_id]}" style="width: 300px; height: 50px; background-color: transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe>  -->
         <!-- /Favorite -->
         <p class="item_txt" id="item_description" style="margin-top: 20px; overflow: auto; white-space: pre-wrap; word-wrap: break-word;" itemprop="description">{[item.description]}</p>
-        <ul id="btn_sns">
-          <li id="btn_sns_twitter"><a class="tweet" ng-class="I18n.locale" href="http://twitter.com/intent/tweet?ount=none&lang=en&text={[tweet_item_name]} {[tw_url]} @stores_vn " name='tw_btn' ng-bind="I18n.store.show.tweet"></a></li>
-          <li id="btn_sns_facebook" ng-hide="original_domain"><a ng-click='postToFeed(fb_url)'  ng-class="I18n.locale" name='fb_btn' ng-bind="I18n.store.show.share"></a></li>
-          <?php /*?>
-          <li class="sumally">
-            <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "https://platform.sumally.com/buttons.min.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'sumally-bjs'));
-            </script>
-            <div class="sumally-button" data-button-type="plus" data-image="{[main_image.original_src]}" data-name="{[item.name]}" data-metadata="{[styles.name]}" data-title="{[itme.title]}" data-additional-images="{[item_images.join(' ')]}"></div>
-          </li>
-          <?php */?>
-        </ul>
       </div>
       <p style="text-align:center; font-weight:bold; font-size:14px; display:none;" ng-show="not_found">Không tìm thấy sản phẩm</p>
     </div>
     <p class="btn_low btn_center" ng-hide="market_back_url"><a href="/" >{[I18n.store.show.back]}</a></p>
-    <p class="btn_low btn_center" ng-show="market_back_url"><a href="{[market_back_url]}" >マーケットへ戻る</a></p>
+    <p class="btn_low btn_center" ng-show="market_back_url"><a href="{[market_back_url]}" >Trở về trang chủ</a></p>
     <!-- /Item -->
   </div>
 </div>

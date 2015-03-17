@@ -18,7 +18,6 @@ class StoreController extends BaseController {
      * custom store
      */
     public function ownerStore($parameters) {
-    	ini_set("session.cookie_domain", Config::get('constants.domain'));
         //get url domain
         $domain = Request::url();
         //language popup follow

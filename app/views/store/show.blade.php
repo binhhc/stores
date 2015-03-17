@@ -296,7 +296,8 @@
 	 // Load favorite button
 	    load_favorite(item_id, 0);
 	    $(document).on('click', '.btn_favorite', function(e){
-		    var login_user = "<?php echo Session::get('user.id'); ?>";
+	    	 <?php $login_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : '' ?>
+	         var login_user = "<?php echo $login_id ?>";
 		    if(login_user == "") {
 			    // Not login
 		    	window.location.href = "/login?item_id=" + item_id + "&redirect_url=" + window.location.href;

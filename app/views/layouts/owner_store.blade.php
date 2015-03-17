@@ -39,6 +39,7 @@
         USER_NAME = '<?php echo $sub?>';
         USER_ID = '54c5c1a5391bb34148001feb';
         STORE_NAME = '<?php echo $sub?>';
+        STORE_NAME_TITLE = '{{!empty($userStores['store']['name']) ? $userStores['store']['name'] : $sub}}';
         STORES_JP = {
             "promotion_enabled": null,
             "mall": null,

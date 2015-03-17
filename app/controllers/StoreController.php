@@ -55,6 +55,23 @@ class StoreController extends BaseController {
             );
         }
         
+        //user_stores
+        $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
+        //store name
+        $userStores = array(
+            'store' => array(
+                    'name' => ''
+                )
+        );
+        if (!empty($tmpUserStores)) {
+            $tmpUserStores = $tmpUserStores->toArray();
+            $tmpSettings = $tmpUserStores['settings'];
+            if (!empty($tmpSettings)) {
+                $tmpSettings = json_decode($tmpSettings);
+                $userStores['store']['name'] = $tmpSettings->store->name;
+            }
+        }
+        
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
         $store_user = UserStore::getUserStoreByDomain($parameters);
@@ -71,7 +88,8 @@ class StoreController extends BaseController {
             'languagePopupFollow' => $languagePopupFollow,
         	'follow' => $follow,
         	'following' => $following,
-            'userProfiles' => $userProfiles
+            'userProfiles' => $userProfiles,
+            'userStores' => $userStores
         );
         return View::make('store.owner_store', $data);
     }

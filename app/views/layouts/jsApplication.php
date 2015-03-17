@@ -5,6 +5,7 @@ function hideNumber(text, offset) {
 }
 
 function updatePageTitle(title) {
+	var STORE_NAME = STORE_NAME_TITLE;
     var s_name = STORE_NAME;
     return title ? (s_name = STORE_NAME ? STORE_NAME : USER_NAME, document.title = title + " | " + decodeURIComponent(s_name), void(document.getElementsByName("twitter:title").length >= 1 && (document.getElementsByName("twitter:title")[0].content = title + " | " + decodeURIComponent(s_name)))) : (s_name = STORE_NAME ? STORE_NAME : USER_NAME, document.title = decodeURIComponent(s_name), void(document.getElementsByName("twitter:title").length >= 1 && (document.getElementsByName("twitter:title")[0].content = decodeURIComponent(s_name))))
 }

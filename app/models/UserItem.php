@@ -68,6 +68,7 @@ class UserItem extends Model{
             ->where('user_items.public_flg', '=', true)
             ->orderBy('user_items.order', 'asc')
             ->orderBy('user_items.updated_at', 'desc')
+            ->groupBy('user_items.id')
             ->get();
         return !empty($userItems) ? $userItems : array();
     }

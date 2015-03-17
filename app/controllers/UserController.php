@@ -21,11 +21,18 @@ class UserController extends BaseController {
         }
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
+        $item_id = isset($_GET['item_id']) ?  $_GET['item_id'] : '';
         $data = array();
         if(!empty($store_user_id) && !empty($redirect_url)) {
         	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
         	$data = array(
         		'store_user_id' => $store['user_id'],
+        		'redirect_url' => $redirect_url,
+        	);
+        }
+     	if(!empty($item_id) && !empty($redirect_url)) {
+        	$data = array(
+        		'item_id' => $item_id,
         		'redirect_url' => $redirect_url,
         	);
         }
@@ -60,10 +67,22 @@ class UserController extends BaseController {
             Session::put('userStoresDomain', UserStore::getUserStoreDomain());
             $store_user_id = Input::get('store_user_id');
             $redirect_url = trim(Input::get('redirect_url'));
+            $item_id = Input::get('item_id');
             if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	Follow::addFollow($store['id'], $user['id']);
+            	$user_id = Session::get('user.id');
+            	if(intval($store_user_id) != $user_id) {
+					Follow::addFollow($store['id'], $user_id);
+
+            	}
+            	return Redirect::to( $redirect_url);
+            }
+        	if(!empty($item_id) && !empty($redirect_url)) {
+            	// add Follow for user
+            	$user_id = Session::get('user.id');
+            	Favorite::addFavorite($item_id, $user_id);
+
             	return Redirect::to( $redirect_url);
             }
             return Redirect::to('/dashboard');
@@ -86,7 +105,12 @@ class UserController extends BaseController {
 
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
-        $data = '?store_user_id=' . $store_user_id . '&redirect_url=' . $redirect_url;
+        $item_id = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
+     	if(!empty($store_user_id) && !empty($redirect_url)) {
+        	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
+        	$store_user_id =  $store['user_id'];
+        }
+        $data = '?store_user_id=' . $store_user_id . '&redirect_url=' . $redirect_url . '&item_id=' . $item_id;
         $facebook = new Facebook(Config::get('facebook'));
         $params = array(
             'redirect_uri' => url('/login/fb/callback'. $data),
@@ -108,6 +132,7 @@ class UserController extends BaseController {
         $code = Input::get('code');
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
+        $item_id = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
         if (strlen($code) == 0)
             return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
 
@@ -163,9 +188,18 @@ class UserController extends BaseController {
      	if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	Follow::addFollow($store['id'], $user_id);
+            	if(intval($store_user_id) !== $user_id) {
+					Follow::addFollow($store['id'], $user_id);
+            	}
             	return Redirect::to( $redirect_url);
-            }
+        }
+    	if(!empty($item_id) && !empty($redirect_url)) {
+            	// add Follow for user
+            	$user_id = Session::get('user.id');
+            	Favorite::addFavorite($item_id, $user_id);
+
+            	return Redirect::to( $redirect_url);
+        }
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
 
@@ -487,7 +521,7 @@ class UserController extends BaseController {
      * @return Response
      * @author Binh Hoang
      * @since 2015.01.22
-     * 
+     *
      * @modified by         Le Nhan Hau
      * @modified date       2015/03/16
      */
@@ -509,7 +543,7 @@ class UserController extends BaseController {
                         mkdir($folder_user);
                         chmod($folder_user, 0777);
                     }
-    
+
                     //$filename = $image->getClientOriginalName();
                     $extension = Input::file('image_url')->getClientOriginalExtension();
                     $filename = time().'.'.$extension;

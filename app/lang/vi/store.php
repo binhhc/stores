@@ -277,5 +277,7 @@ return array(
         'label_about' => 'Giới thiệu'
     ),
     'follow' => 'Theo dõi',
-    'following' => 'Đang theo dõi'
+    'following' => 'Đang theo dõi',
+    'love' => 'Thêm vào yêu thích',
+    'loved' => 'Đã thêm vào yêu thích',
 );

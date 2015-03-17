@@ -276,5 +276,7 @@ return array(
         'label_about' => 'About'
     ),
     'follow' => 'Follow',
-    'following' => 'Following'
+    'following' => 'Following',
+    'love' => 'Favorite',
+    'loved' => 'Already favorites'
 );

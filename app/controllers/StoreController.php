@@ -18,6 +18,7 @@ class StoreController extends BaseController {
      * custom store
      */
     public function ownerStore($parameters) {
+    	ini_set("session.cookie_domain", Config::get('constants.domain'));
         //get url domain
         $domain = Request::url();
         //language popup follow
@@ -29,6 +30,48 @@ class StoreController extends BaseController {
 
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
+
+        //profile follow box
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        //get user_profiles
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
+
+        $userProfiles = array();
+        if (!empty($tmpUserProfiles)) {
+            $userProfiles = array(
+                'name' => $tmpUserProfiles->name,
+                'profile_image' => array(
+                    'name' => $tmpUserProfiles->image_url,
+                    'src_url' => '/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                )
+            );
+        }else {
+            $userProfiles = array(
+                'name' => null,
+                'profile_image' => array(
+                    'name' => '',
+                    'src_url' => '/img/user_icon_01.png'
+                )
+            );
+        }
+
+        //user_stores
+        $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
+        //store name
+        $userStores = array(
+            'store' => array(
+                    'name' => ''
+                )
+        );
+        if (!empty($tmpUserStores)) {
+            $tmpUserStores = $tmpUserStores->toArray();
+            $tmpSettings = $tmpUserStores['settings'];
+            if (!empty($tmpSettings)) {
+                $tmpSettings = json_decode($tmpSettings);
+                $userStores['store']['name'] = $tmpSettings->store->name;
+            }
+        }
 
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
@@ -45,7 +88,9 @@ class StoreController extends BaseController {
         	'user_store_id' => $store_user->user_id,
             'languagePopupFollow' => $languagePopupFollow,
         	'follow' => $follow,
-        	'following' => $following
+        	'following' => $following,
+            'userProfiles' => $userProfiles,
+            'userStores' => $userStores
         );
         return View::make('store.owner_store', $data);
     }
@@ -252,12 +297,15 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/06
+     * @author          Le Nhan Hau
+     * @since           2015/02/06
      *
      * show item detail
-     * 
+     *
      */
     public function show($parameters) {
+    	ini_set("session.cookie_domain", Config::get('constants.domain'));
+
         $store_main_menu = $this->setLanguageForMenu($parameters);
 
         $data = array(
@@ -268,7 +316,8 @@ class StoreController extends BaseController {
 
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get user_categories
      */
@@ -295,7 +344,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/05
+     * @author          Le Nhan Hau
+     * @since           2015/02/05
      *
      * store about detail
      */
@@ -417,7 +467,6 @@ class StoreController extends BaseController {
 
             $user_id = $this->getUserId();
             $favorite = Favorite::getStatus($id, $user_id);
-            
             $userItems = array(
                 
                     'digital_contents'  => null,
@@ -445,16 +494,22 @@ class StoreController extends BaseController {
                     'avg_score'     => null,
                     'favorite'      => $favorite
                 );
-            
+
             echo json_encode($userItems);
-            
+        }else {
+            //App::abort(404);
+            if (Request::ajax()) {
+                return Response::make(null, '404');
+        }
+            exit;
         }
 
         exit;
     }
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get profile
      */
@@ -508,12 +563,24 @@ class StoreController extends BaseController {
         return View::make('store.cart_popup', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return favorite_item_button
+     */
     public function favorite_item_button($id) {
-        return View::make('store.favorite_item_button', array('data' => 'test'));
+        return View::make('store.favorite_item_button');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return checkout
+     */
     public function checkout($id) {
-        return View::make('store.checkout', array('data' => 'test'));
+        return View::make('store.checkout');
     }
 
     public function payment_maintenance($id) {
@@ -531,16 +598,34 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * follow about
+     */
     public function follow_about($id) {
-        return View::make('store.follow_about', array('data' => 'test'));
+        return View::make('store.follow_about');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return receive_method
+     */
     public function receive_method($id) {
-        return View::make('store.receive_method', array('data' => 'test'));
+        return View::make('store.receive_method');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return checkout_card
+     */
     public function checkout_card($id) {
-        return View::make('store.checkout_card', array('data' => 'test'));
+        return View::make('store.checkout_card');
     }
 
     /**
@@ -559,8 +644,14 @@ class StoreController extends BaseController {
         return View::make('store.checkout_shipping', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return checkout_other_shipping
+     */
     public function checkout_other_shipping($id) {
-        return View::make('store.checkout_other_shipping', array('data' => 'test'));
+        return View::make('store.checkout_other_shipping');
     }
 
     public function profile_address($id) {
@@ -578,10 +669,22 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return checkout_confirm
+     */
     public function checkout_confirm($id) {
-        return View::make('store.checkout_confirm', array('data' => 'test'));
+        return View::make('store.checkout_confirm');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     *
+     * return tokushoho
+     */
     public function tokushoho($id) {
         $store_main_menu = $this->setLanguageForMenu($id);
 
@@ -1514,6 +1617,28 @@ class StoreController extends BaseController {
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);
+		}
+	}
+	/**
+	 * Load favorite item
+	 * @author Oanhha
+	 * @since 2015-03-13
+	 */
+	public function load_item_favorite() {
+		if(Request::ajax()){
+			$input = Input::all();
+		    $item_id = $input['item_id'];
+		    $action = $input['action'];
+		    $user_id = $this->getUserId();
+            $user_id = empty($user_id) ?  0 : $user_id;
+            if($action == 1) {
+            	// Favortie
+            	Favorite::addFavorite($item_id, $user_id);
+            }
+            $result = Favorite::getStatus($item_id, $user_id);
+            $result['love'] = Lang::get('store.love');
+        	$result['loved'] = Lang::get('store.loved');
+			return Response::json($result);
 		}
 	}
 

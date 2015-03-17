@@ -299,7 +299,7 @@
 		    var login_user = "<?php echo Session::get('user.id'); ?>";
 		    if(login_user == "") {
 			    // Not login
-		    	window.location.href = "/login?item_id=" + $item_id + "&redirect_url=" + window.location.href;
+		    	window.location.href = "/login?item_id=" + item_id + "&redirect_url=" + window.location.href;
 		    } else {
 			    load_favorite(item_id, 1);
 		    }

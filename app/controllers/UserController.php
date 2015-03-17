@@ -63,7 +63,9 @@ class UserController extends BaseController {
             if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	Follow::addFollow($store['id'], $user['id']);
+            	if($store_user_id !== $user_id) {
+					Follow::addFollow($store['id'], $user_id);
+            	}
             	return Redirect::to( $redirect_url);
             }
             return Redirect::to('/dashboard');
@@ -163,7 +165,9 @@ class UserController extends BaseController {
      	if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	Follow::addFollow($store['id'], $user_id);
+            	if($store_user_id !== $user_id) {
+					Follow::addFollow($store['id'], $user_id);
+            	}
             	return Redirect::to( $redirect_url);
             }
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');

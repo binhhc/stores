@@ -201,10 +201,12 @@ class StoreController extends BaseController {
      * get item from domain
      */
     public function items_pager($parameters) {
+
         $this->layout = '';
         //get user_id from domain
         $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
         //get user_items from user_id
+
         $tmpUserItems = UserItem::getUserItemByUserId($userId);
 
         $lastpage = true;
@@ -216,6 +218,7 @@ class StoreController extends BaseController {
             'cnt_pages' => $tmpUserItems->getLastPage(),
             'last_page?' => $lastpage
         );
+
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
                 //user_items_quatity
@@ -431,6 +434,7 @@ class StoreController extends BaseController {
                     'review_count' => 0,
                     'avg_score' => null
                 );
+
             echo json_encode($userItems);
         }else {
             //App::abort(404);

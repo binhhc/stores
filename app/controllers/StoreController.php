@@ -30,6 +30,31 @@ class StoreController extends BaseController {
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
 
+        //profile follow box
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        //get user_profiles
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
+        
+        $userProfiles = array();
+        if (!empty($tmpUserProfiles)) {
+            $userProfiles = array(
+                'name' => $tmpUserProfiles->name,
+                'profile_image' => array(
+                    'name' => $tmpUserProfiles->image_url,
+                    'src_url' => '/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                )
+            );
+        }else {
+            $userProfiles = array(
+                'name' => null,
+                'profile_image' => array(
+                    'name' => '',
+                    'src_url' => '/img/user_icon_01.png'
+                )
+            );
+        }
+        
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
         $store_user = UserStore::getUserStoreByDomain($parameters);
@@ -45,7 +70,8 @@ class StoreController extends BaseController {
         	'user_store_id' => $store_user->user_id,
             'languagePopupFollow' => $languagePopupFollow,
         	'follow' => $follow,
-        	'following' => $following
+        	'following' => $following,
+            'userProfiles' => $userProfiles
         );
         return View::make('store.owner_store', $data);
     }

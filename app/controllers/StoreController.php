@@ -299,7 +299,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/06
+     * @author          Le Nhan Hau
+     * @since           2015/02/06
      *
      * show item detail
      * 
@@ -315,7 +316,8 @@ class StoreController extends BaseController {
 
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get user_categories
      */
@@ -342,7 +344,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/05
+     * @author          Le Nhan Hau
+     * @since           2015/02/05
      *
      * store about detail
      */
@@ -496,7 +499,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get profile
      */

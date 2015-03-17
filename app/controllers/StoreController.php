@@ -560,7 +560,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return favorite_item_button
      */
     public function favorite_item_button($id) {
@@ -570,7 +570,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return checkout
      */
     public function checkout($id) {
@@ -605,7 +605,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return receive_method
      */
     public function receive_method($id) {
@@ -615,7 +615,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return checkout_card
      */
     public function checkout_card($id) {
@@ -641,7 +641,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return checkout_other_shipping
      */
     public function checkout_other_shipping($id) {
@@ -666,7 +666,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return checkout_confirm
      */
     public function checkout_confirm($id) {
@@ -676,7 +676,7 @@ class StoreController extends BaseController {
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
-     * 
+     *
      * return tokushoho
      */
     public function tokushoho($id) {

@@ -180,6 +180,9 @@
     width: 0;
     z-index: 0;
 }
+.btn_favorite.already button {
+    background: url("../img/main_page/heart.png") no-repeat scroll 20px 9px #f2f2f2;
+}
 .btn_favorite .count::after {
     background: url("../img/main_page/icon_heart.png") no-repeat scroll 64px 13px #fff;
     border-color: transparent #ccc transparent transparent;

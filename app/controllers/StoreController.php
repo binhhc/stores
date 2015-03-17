@@ -300,7 +300,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/06
+     * @author          Le Nhan Hau
+     * @since           2015/02/06
      *
      * show item detail
      *
@@ -318,7 +319,8 @@ class StoreController extends BaseController {
 
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get user_categories
      */
@@ -345,7 +347,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/05
+     * @author          Le Nhan Hau
+     * @since           2015/02/05
      *
      * store about detail
      */
@@ -499,7 +502,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @since       2015/02/09
+     * @author          Le Nhan Hau
+     * @since           2015/02/09
      *
      * get profile
      */
@@ -553,12 +557,24 @@ class StoreController extends BaseController {
         return View::make('store.cart_popup', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return favorite_item_button
+     */
     public function favorite_item_button($id) {
-        return View::make('store.favorite_item_button', array('data' => 'test'));
+        return View::make('store.favorite_item_button');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout
+     */
     public function checkout($id) {
-        return View::make('store.checkout', array('data' => 'test'));
+        return View::make('store.checkout');
     }
 
     public function payment_maintenance($id) {
@@ -586,12 +602,24 @@ class StoreController extends BaseController {
         return View::make('store.follow_about');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return receive_method
+     */
     public function receive_method($id) {
-        return View::make('store.receive_method', array('data' => 'test'));
+        return View::make('store.receive_method');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_card
+     */
     public function checkout_card($id) {
-        return View::make('store.checkout_card', array('data' => 'test'));
+        return View::make('store.checkout_card');
     }
 
     /**
@@ -610,8 +638,14 @@ class StoreController extends BaseController {
         return View::make('store.checkout_shipping', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_other_shipping
+     */
     public function checkout_other_shipping($id) {
-        return View::make('store.checkout_other_shipping', array('data' => 'test'));
+        return View::make('store.checkout_other_shipping');
     }
 
     public function profile_address($id) {
@@ -629,10 +663,22 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_confirm
+     */
     public function checkout_confirm($id) {
-        return View::make('store.checkout_confirm', array('data' => 'test'));
+        return View::make('store.checkout_confirm');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return tokushoho
+     */
     public function tokushoho($id) {
         $store_main_menu = $this->setLanguageForMenu($id);
 

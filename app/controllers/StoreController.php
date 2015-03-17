@@ -635,8 +635,14 @@ class StoreController extends BaseController {
         return View::make('store.checkout_shipping', $data);
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_other_shipping
+     */
     public function checkout_other_shipping($id) {
-        return View::make('store.checkout_other_shipping', array('data' => 'test'));
+        return View::make('store.checkout_other_shipping');
     }
 
     public function profile_address($id) {

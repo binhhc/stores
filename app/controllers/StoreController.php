@@ -30,6 +30,31 @@ class StoreController extends BaseController {
         //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
         preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
 
+        //profile follow box
+        //get user_id from domain
+        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
+        //get user_profiles
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
+        
+        $userProfiles = array();
+        if (!empty($tmpUserProfiles)) {
+            $userProfiles = array(
+                'name' => $tmpUserProfiles->name,
+                'profile_image' => array(
+                    'name' => $tmpUserProfiles->image_url,
+                    'src_url' => '/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                )
+            );
+        }else {
+            $userProfiles = array(
+                'name' => null,
+                'profile_image' => array(
+                    'name' => '',
+                    'src_url' => '/img/user_icon_01.png'
+                )
+            );
+        }
+        
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
         $store_user = UserStore::getUserStoreByDomain($parameters);
@@ -45,7 +70,8 @@ class StoreController extends BaseController {
         	'user_store_id' => $store_user->user_id,
             'languagePopupFollow' => $languagePopupFollow,
         	'follow' => $follow,
-        	'following' => $following
+        	'following' => $following,
+            'userProfiles' => $userProfiles
         );
         return View::make('store.owner_store', $data);
     }
@@ -258,6 +284,7 @@ class StoreController extends BaseController {
      * @since       2015/02/06
      *
      * show item detail
+     * 
      */
     public function show($parameters) {
         $store_main_menu = $this->setLanguageForMenu($parameters);
@@ -398,7 +425,7 @@ class StoreController extends BaseController {
                 foreach ($userItemQuantity as $key => $value) {
                     $itemQuantity[] = array(
                         'quantity' => (int)$value->quantity,
-                        'variation' => 'ww',//!empty($value->size_name) ? $value->size_name : null,
+                        'variation' => !empty($value->size_name) ? $value->size_name : null,
                         'infinite_status' => false
                     );
                 }
@@ -413,6 +440,8 @@ class StoreController extends BaseController {
                 }
             }
 
+            $user_id = $this->getUserId();
+            $favorite = Favorite::getStatus($id, $user_id);
             $userItems = array(
                     'quantities' => $itemQuantity,
                     'images' => $imageUrl,
@@ -432,7 +461,8 @@ class StoreController extends BaseController {
                     'price' => $tmpUserItems->price,
                     'sale_flag' => false,
                     'review_count' => 0,
-                    'avg_score' => null
+                    'avg_score' => null,
+                    'favorite' => $favorite
                 );
 
             echo json_encode($userItems);
@@ -467,7 +497,7 @@ class StoreController extends BaseController {
                 'name' => $tmpUserProfiles->name,
                 'profile_image' => array(
                     'name' => $tmpUserProfiles->image_url,
-                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$id.'/'.$tmpUserProfiles->image_url
+                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$userId.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {

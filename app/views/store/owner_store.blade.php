@@ -37,12 +37,15 @@
         <p class="close"><a href="">close</a>
         </p>
         <p class="message">{{$languagePopupFollow['label_popup_follow']}}</p>
-        <p class="store_image"><img src="https://stores.jp/images/follow/user_icon/user_icon_01.png">
+        <p class="store_image">
+        {{
+            HTML::image($userProfiles['profile_image']['src_url'], 'Hồ sơ')
+        }}
         </p>
         <div class="store_info">
 
             <h3>{[styles.name]}</h3>
-            <p></p>
+            <p>{{$userProfiles['name']}}</p>
         </div>
         <div id="follow" style="float:right; width:100px; height:26px; margin:8px 12px 0 0; background-color:transparent; vertical-align:middle;" >
           	<?php if($follow_status == 0) { ?>

@@ -491,6 +491,9 @@ class UserController extends BaseController {
      * @return Response
      * @author Binh Hoang
      * @since 2015.01.22
+     * 
+     * @modified by         Le Nhan Hau
+     * @modified date       2015/03/16
      */
     public function doRegisterProfile(){
         $input = Input::all();
@@ -502,34 +505,39 @@ class UserController extends BaseController {
             $user = Session::get('user');
             $user_profile = UserProfile::where('user_id', $user['id'])->first();
 
-            if(Input::file('image_url')){ // not change image_url
-                $folder_name = User::getNameStore();
-                $folder_user = public_path() . '/files/'.$folder_name['USER_NAME'];
-                if(!is_dir($folder_user)){
-                    mkdir($folder_user);
-                    chmod($folder_user, 0777);
+            if (Input::hasFile('image_url')) {
+                if(Input::file('image_url')){ // not change image_url
+                    $folder_name = $this->getUserId();
+                    $folder_user = public_path() . '/files/'.$folder_name;
+                    if(!is_dir($folder_user)){
+                        mkdir($folder_user);
+                        chmod($folder_user, 0777);
+                    }
+    
+                    //$filename = $image->getClientOriginalName();
+                    $extension = Input::file('image_url')->getClientOriginalExtension();
+                    $filename = time().'.'.$extension;
+                    $upload = Input::file('image_url')->move($folder_user, $filename);
                 }
-
-                $filename = $image->getClientOriginalName();
-                $upload = Input::file('image_url')->move($folder_user, $filename);
             }
 
             if(empty($user_profile)){ //user haven't profile
                 $profile = new UserProfile();
                 $profile->name = $username;
                 $profile->user_id = $user['id'];
-                $profile->image_url = $filename;
+                $profile->image_url = isset($filename) ? $filename : '';
                 $profile->save();
             }else{
-                if(isset($filename))
-                    $image_url = 'files/'.$folder_name['USER_NAME'].'/'.$filename;
-                else
+                if(isset($filename)) {
+                    $image_url = $filename;
+                }else {
                     $image_url = $user_profile->image_url;
+                }
 
                 UserProfile::where('id', $user_profile['id'])
                     ->update(array('name' => $username, 'image_url' => $image_url));
             }
-            return Redirect::to('/account_setting');
+            return Redirect::to('/account_setting')->withInput()->with('success', 'Cập nhật hồ sơ thành công!');
         }else{
             return Redirect::to('/account_setting')->withErrors($v)->withInput(Input::except('name'));
         }

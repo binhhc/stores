@@ -58,11 +58,22 @@ class OrderController  extends BaseController {
     }
     
     public function sendMailOrder($data){
+        $data['domain_sub'] = 'sangpm';
+        $data['store_name'] = 'Sang Ga';
        
         $new_email = 'sang.pham.minh@leverages.jp';$data['customer']['email'];
         Mail::send('emails.order_success', $data, function($message) use($new_email) {
             $message->to($new_email, 'Đặt hàng')->subject('Đặt hàng thành công');
         });
       
+    }
+    
+    public function formatTime(){
+        $arr = array(
+            'Mon' => 'Thứ Hai','Tue' => 'Thứ Ba','Wed' => 'Thứ Tư',
+            'Thu' => 'Thứ Năm','Fri' => 'Thứ Sáu','Sat' => 'Thứ Bảy',
+            'Sun' => 'Chủ Nhật');
+        
+        strtr(date($format,  strtotime($time)),$arr);
     }
 }

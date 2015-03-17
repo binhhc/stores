@@ -560,8 +560,14 @@ class StoreController extends BaseController {
         return View::make('store.favorite_item_button');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout
+     */
     public function checkout($id) {
-        return View::make('store.checkout', array('data' => 'test'));
+        return View::make('store.checkout');
     }
 
     public function payment_maintenance($id) {
@@ -644,10 +650,22 @@ class StoreController extends BaseController {
         exit;
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return checkout_confirm
+     */
     public function checkout_confirm($id) {
-        return View::make('store.checkout_confirm', array('data' => 'test'));
+        return View::make('store.checkout_confirm');
     }
 
+    /**
+     * @author          Le Nhan Hau
+     * @since           2015/03/04
+     * 
+     * return tokushoho
+     */
     public function tokushoho($id) {
         $store_main_menu = $this->setLanguageForMenu($id);
 

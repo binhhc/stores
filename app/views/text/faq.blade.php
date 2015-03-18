@@ -113,11 +113,11 @@
   </div>
     <!-- Contact/ -->
     <div id="faq_contact">
-      <div class="heading_faq">Lorem ipsum dolor sit amet,</div>
+      <div class="heading_faq">Nhân viên toàn thời gian vui lòng hỗ trợ</div>
       <ul>
         <li class="mail">
           <a href="/contact">
-            <p>Lorem ipsum dolor,</p>
+            <p>Liên hệ qua email</p>
           </a>
         </li>
       </ul>

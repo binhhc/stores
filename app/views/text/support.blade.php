@@ -13,7 +13,7 @@
 		</div>
 		<ul id="support_list">
 			<li>
-				<a target="_blank" href="/support/photo">
+				<a href="#photo">
 				<p class="image">
 				 {{HTML::image('img/main_page/photo.png', '', array('width' => '252', 'height' => '180'))}}
 				</p>
@@ -29,7 +29,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" href="/support/card">
+				<a href="#card">
 				<p class="image">
 				{{HTML::image('img/main_page/card.png')}}
 				</p>
@@ -45,7 +45,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" href="/support/storage">
+				<a href="#storage">
 				<p class="image">
 				{{HTML::image('img/main_page/storage.png')}}
 				</p>
@@ -61,7 +61,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" href="/support/pickup">
+				<a href="#pickup">
 				<p class="image">
 				{{HTML::image('img/main_page/pickup.png')}}
 				</p>
@@ -77,7 +77,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" href="/support/box">
+				<a href="#box">
 				<p class="image">
 				{{HTML::image('img/main_page/box.png')}}
 				</p>
@@ -93,7 +93,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" href="http://topics.stores.jp/support/virtual">
+				<a href="http://topics.stores.jp/support/virtual">
 				<p class="image">
 				{{HTML::image('img/main_page/virtual.png')}}
 				</p>

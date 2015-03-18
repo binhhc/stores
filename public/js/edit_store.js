@@ -8051,7 +8051,8 @@ angular.module("StoresJp::EditStore").controller("StylesController", ["$scope", 
             },
             preset: {
                 fonts: {
-                    en: editStore_Fonts
+                    en: editStore_Fonts,
+                    ja: editStore_FontsVn
                 },
                 layouts: editStore_Layouts,
                 background_patterns: editStore_BackgroundPatterns,

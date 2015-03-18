@@ -709,7 +709,8 @@ class StoreController extends BaseController {
     public function edit() {
         return View::make('store.edit', array(
             'fontFamily' => Config::get('constants.sys_css'),
-            'fontDefaults' => Config::get('constants.fonts'),
+            'fontDefaults' => Config::get('constants.fonts_en'),
+            'fontDefaultsVn' => Config::get('constants.fonts_vi'),
             'itemSample' => UserItem::getItemSample(),
             'userInfos' => array('USER_NAME' => $this->getUserId()),
             'sysLayouts' => SysLayout::getSysLayouts(),

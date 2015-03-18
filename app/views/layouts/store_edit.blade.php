@@ -8,6 +8,7 @@
         {{HTML::style('css/application.css')}}
         <script type="text/javascript">
         var editStore_Fonts = <?php echo json_encode($fontDefaults);?>;
+        var editStore_FontsVn = <?php echo json_encode($fontDefaultsVn);?>;
         var editStoreItemSample = <?php echo json_encode($itemSample);?>;
         var editStore_Layouts = <?php echo json_encode($sysLayouts);?>;
         var editStore_TextColor = <?php echo json_encode($sysTextColor);?>;

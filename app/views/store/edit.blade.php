@@ -12,12 +12,17 @@
             <div class="opened_icon"></div>
             <h3 class="panel_btn"><span class="about">Giới thiệu</span></h3>
             <div class="store_font" ng-mouseover="font_change_mouseover()" ng-mouseleave="font_change_mouseleave()">
+                <ul class="language_switch">
+                    <li><a class="english" ng-class="{active: font_language_show=='en'}" ng-click="store.change_store_font_language('en')" href="">Tiếng anh</a></li>
+                    <li><a class="jp" ng-class="{active: font_language_show=='ja'}" ng-click="store.change_store_font_language('ja')" href="">Tiếng việt</a></li>
+                </ul>
                 <div class="slider_wrapper">
                     <div id="slider"></div>
                 </div>
                 <div id="font_scroll">
                     <ul class="font">
                         <li ng-repeat="font in preset.fonts.en" ng-class="{deactive: store_name_ja_only, active: select_font_name==font.name}" ng-show="font_language_show=='en'" ng-click="store.change_store_font(font.name, font.type, font.font_family2, font.font_weight)" ng-style="{ 'font-family': font.name, 'font-weight': font.font_weight }">MyStore</li>
+                        <li ng-repeat="font in preset.fonts.ja" ng-class="{active: select_font_name==font.name}" ng-show="font_language_show=='ja'" ng-click="store.change_store_font(font.name, font.type, font.font_family2, font.font_weight)" ng-style="{ 'font-family': font.name }">Cửa hàng của tôi</li>
                     </ul>
                 </div>
             </div>

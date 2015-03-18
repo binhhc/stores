@@ -1,7 +1,7 @@
 @include('text.header_simple')
 	  <div id="content">
   <div id="faq_list" class="wrapper">
-    <h2 class="heading"><a href="/faq/">Lorem ipsum dolor sit amet,</a></h2>
+    <h2 class="heading"><a href="#">Lorem ipsum dolor sit amet,</a></h2>
     <div id="faq_search">
       <form method="GET" action="/faq/search" ng-submit="search(event)">
         <input type="text" placeholder="Lorem ipsum dolor sit amet," name="q" ng-model="search_word">
@@ -10,7 +10,7 @@
     </div>
     <ul>
       <li>
-        <a href="/faq/about">
+        <a href="#about">
           <p class="icon"> {{HTML::image('img/main_page/icon_about.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_about_sp.png', ' Lorem ipsum dolor sit amet,')}}
           <div class="title">
@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/premium">
+        <a href="#premium">
           <p class="icon"> {{HTML::image('img/main_page/icon_premium_faq.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_premium_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -30,7 +30,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/store">
+        <a href="#store">
           <p class="icon"> {{HTML::image('img/main_page/icon_store_faq.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_store_sp.png', ' Lorem ipsum dolor sit amet,')}}
           <div class="title">
@@ -40,7 +40,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/order">
+        <a href="#order">
           <p class="icon"> {{HTML::image('img/main_page/icon_order2.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_order2_sp.png', 'Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -50,7 +50,7 @@
         </a>
       </li>
       <li class="end">
-        <a href="/faq/dashboard">
+        <a href="#dashboard">
           <p class="icon"> {{HTML::image('img/main_page/icon_dashboard.png', ' Lorem ipsum dolor sit amet,')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_dashboard_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -60,7 +60,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/support/photo">
+        <a href="#support/photo">
           <p class="icon"> {{HTML::image('img/main_page/icon_support.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_support_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -70,7 +70,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/payment/cc">
+        <a href="#payment/cc">
           <p class="icon"> {{HTML::image('img/main_page/icon_payment2.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_payment2_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -80,7 +80,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/promotion">
+        <a href="#promotion">
           <p class="icon"> {{HTML::image('img/main_page/icon_promotion.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_promotion_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -90,7 +90,7 @@
         </a>
       </li>
       <li>
-        <a href="/faq/addon">
+        <a href="#addon">
           <p class="icon"> {{HTML::image('img/main_page/icon_addon.png', ' Lorem ipsum dolor sit amet, ')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_addon_sp.png', ' Lorem ipsum dolor sit amet, ')}}
           <div class="title">
@@ -100,7 +100,7 @@
         </a>
       </li>
       <li class="end sp_end">
-        <a href="/faq/follow">
+        <a href="#follow">
           <p class="icon"> {{HTML::image('img/main_page/icon_follow.png', ' Lorem ipsum dolor sit amet,')}}
           <p class="icon_sp"> {{HTML::image('img/main_page/icon_follow_sp.png', ' Lorem ipsum dolor sit amet,')}}
           <div class="title">

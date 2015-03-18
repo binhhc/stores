@@ -79,7 +79,7 @@
                 <tr>
                     <td style="width:30%;font-weight:bold">Địa chỉ</td>
                     <td style="width:70%">
-                        {{$customer['address']}}
+                        {{$customer['address']}} Tp.{{$customer['prefecture']}}
                     </td>
                 </tr>
                 <tr>

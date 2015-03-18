@@ -68,10 +68,10 @@
         <td>
             <table width="570" cellspacing="0" cellpadding="0" border="0" align="center" style="border:solid 1px #ddd;font-size:14px;line-height:1.8;padding:15px;text-align:left">
                 <tbody>
-                <!-- <tr>
+                <tr>
                     <td style="width:30%;font-weight:bold">Đơn hàng số</td>
-                    <td style="width:70%">7393144640</td>
-                </tr> -->
+                    <td style="width:70%">{{$order_id}}</td>
+                </tr> 
                 <tr>
                     <td style="width:30%;font-weight:bold">Tên khách hàng</td>
                     <td style="width:70%">(Anh/Chị) {{$customer['last_name']}} {{$customer['first_name']}}</td>

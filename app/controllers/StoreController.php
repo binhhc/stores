@@ -444,7 +444,7 @@ class StoreController extends BaseController {
                 $userItemQuantity = $tmpUserItems['userItemQuantity'];
 
                 foreach ($userItemQuantity as $key => $value) {
-                    $variations[$value->id] = !empty($value->size_name) ? $value->size_name : null;
+                    $variations[!empty($value->size_name) ? $value->size_name : 'df'] = $value->id;
                     $itemQuantity[]     =  array(
                         'id'            => $value->id,
                         'quantity'      => (int)$value->quantity,

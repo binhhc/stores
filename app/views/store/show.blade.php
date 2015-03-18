@@ -62,11 +62,11 @@
             <td ng-show="quantity.quantity > 0 && I18n.locale == 'en'">Quantity:</td>
             <td ng-show="quantity.quantity > 0">
               <div class="styled_select_thin">
-                <select ng-model="stocks[quantity.id]">
-                  <option ng-if="!item.is_digit" ng-repeat="q in quantity.q_array | limitTo: 100">{[$index + padding]}</option>
-                  <option ng-if="item.is_digit">1</option>
+                <select ng-model="stocks[quantity.variation]">
+                    <option ng-if="!item.is_digit" ng-repeat="q in quantity.q_array | limitTo: 100">{[$index + padding]}</option>
+                    <option ng-if="item.is_digit">1</option>
                 </select>
-                <span>{[stocks[quantity.id]]}</span>
+                <span>{[stocks[quantity.variation]]}</span>
               </div>
               <p ng-show="quantity.quantity > 0 && I18n.locale =='vi'"><?php echo Config::get('constants.item.unit'); ?></p>
             </td>

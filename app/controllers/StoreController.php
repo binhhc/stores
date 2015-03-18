@@ -422,8 +422,8 @@ class StoreController extends BaseController {
     }
 
     /**
-     * @author      Le Nhan Hau
-     * @since       2014/02/05
+     * @author      Sang PM
+     * @since       2014/03/18
      *
      * @param $id   //item_id
      * get item detail
@@ -431,73 +431,10 @@ class StoreController extends BaseController {
     public function itemDetail($id) {
         $this->layout = '';
 
-        //user_items
-        $tmpUserItems = UserItem::getUserItemByItemId($id);
-
-        $userItems    = array();
-        $itemQuantity = array();
-        $variations   = array();
-
-        if (!empty($tmpUserItems)) {
-            //user_item_quantity
-            if (isset($tmpUserItems['userItemQuantity'])) {
-                $userItemQuantity = $tmpUserItems['userItemQuantity'];
-
-                foreach ($userItemQuantity as $key => $value) {
-                    $variations[!empty($value->size_name) ? $value->size_name : 'df'] = $value->id;
-                    $itemQuantity[]     =  array(
-                        'id'            => $value->id,
-                        'quantity'      => (int)$value->quantity,
-                        'variation'     => !empty($value->size_name) ? $value->size_name : null,
-                        'infinite_status' => false
-                    );
-                }
-            }
-
-            //image_url
-            $imageUrl = array();
-            if (!empty($tmpUserItems->image_url)) {
-                $tmpImageUrl = explode(',', $tmpUserItems->image_url);
-                foreach ($tmpImageUrl as $k => $v) {
-                    $imageUrl[] = array('name' => $v);
-                }
-            }
-
-            $user_id = $this->getUserId();
-            $favorite = Favorite::getStatus($id, $user_id);
-            $userItems = array(
-                    'digital_contents'  => null,
-                    'mybook_item'       => false,
-                    'group_id'          => null,
-                    'promotion_category'=> null,
-                    'delivery_method'   => null,
-                    'mall_option_values'=> array(),
-                    'mall_large_category_id'  => '',
-                    'mall_medium_category_id' => '',
-                    'id'        => $tmpUserItems->id,
-                    'name'      => $tmpUserItems->name,
-                    'title'     => $tmpUserItems->name,
-                    'price'     => $tmpUserItems->price,
-                    'description' => $tmpUserItems->introduce,
-                    'images'     => $imageUrl,
-                    'quantities' => $itemQuantity,
-                    'quantity'   => $itemQuantity,
-                    'variations' => $variations,
-                    'sale_flag'  => false,
-                    'review_count'  => 0,
-                    'avg_score'     => null,
-                    'favorite'      => $favorite
-                );
-
-            echo json_encode($userItems);
-        }else {
-            //App::abort(404);
-            if (Request::ajax()) {
-                return Response::make(null, '404');
-            }
-            exit;
-        }
-
+        $userItems              = UserItem::getFullItemInfo($id);
+        $userItems['favorite']  = Favorite::getStatus($id, $this->getUserId());
+        
+        echo json_encode($userItems);
         exit;
     }
 

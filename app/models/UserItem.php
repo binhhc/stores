@@ -117,7 +117,6 @@ class UserItem extends Model{
             ->orderBy('user_items.updated_at', 'desc');
 
         if (Request::get('category_id')){
-            //$userItems =  $userItems->where('category_id', '=', Request::get('category_id'));
             $userItems =  $userItems->where(DB::raw('CONCAT(",",category_id,",")'), 'like', '%,'.Request::get('category_id').',%');
         }
 
@@ -151,5 +150,82 @@ class UserItem extends Model{
                ->where('public_flg','>',0)
                ->where('order','>',$pos)
                ->increment('order');
+   }
+   
+    /**
+     * @author      Sang PM
+     * @since       2015/03/18
+     *
+     * @modified
+     * @modified by
+     **/
+    public static function getFullItemInfo($id){
+        $tmpUserItems = self::getUserItemByItemId($id);
+        
+        $quantities = $variations = $items_ids = $itemQuantity = array();
+
+        if (!empty($tmpUserItems)) {
+            //user_item_quantity
+            if (isset($tmpUserItems['userItemQuantity'])) {
+                $userItemQuantity   = $tmpUserItems['userItemQuantity'];
+                foreach ($userItemQuantity as $key => $value){
+                    $items_ids[]    = $value->id;
+                }
+              
+                if(!empty($items_ids)){
+                    $quantities     = OrderItem::getItemQuantityPayMent($items_ids);
+                }
+
+                foreach ($userItemQuantity as $key => $value) {
+                    $variations[!empty($value->size_name) ? $value->size_name : 'df'] = $value->id;
+                    
+                    $quati = isset($quantities[$value->id]) ? 
+                            (max(($value->quantity - $quantities[$value->id]),0)) : $value->quantity;
+                    
+                    $itemQuantity[]     =  array(
+                        'id'            => $value->id,
+                        'quantity'      => (int)$quati,
+                        'variation'     => !empty($value->size_name) ? $value->size_name : null,
+                        'infinite_status' => false
+                    );
+                }
+            }
+
+            //image_url
+            $imageUrl = array();
+            if (!empty($tmpUserItems->image_url)) {
+                $tmpImageUrl = explode(',', $tmpUserItems->image_url);
+                foreach ($tmpImageUrl as $k => $v) {
+                    $imageUrl[] = array('name' => $v);
+                }
+            }
+            
+        return array(
+                'digital_contents'  => null,
+                'mybook_item'       => false,
+                'group_id'          => null,
+                'promotion_category'=> null,
+                'delivery_method'   => null,
+                'mall_option_values'=> array(),
+            
+                'mall_large_category_id'  => '',
+                'mall_medium_category_id' => '',
+            
+                'id'        => $tmpUserItems->id,
+                'name'      => $tmpUserItems->name,
+                'title'     => $tmpUserItems->name,
+                'price'     => $tmpUserItems->price,
+                'description' => $tmpUserItems->introduce,
+            
+                'images'     => $imageUrl,
+                'quantities' => $itemQuantity,
+                'quantity'   => $itemQuantity,
+                'variations' => $variations,
+            
+                'sale_flag'  => false,
+                'review_count'  => 0,
+                'avg_score'     => null,
+            );
+        }
    }
 }

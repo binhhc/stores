@@ -199,7 +199,7 @@
         	 }
         	 if(login_user == "") {
             	 // Not login
-        		 window.location.href = "/login?store_user_id=" + store_user_id + "&redirect_url=" + window.location.href;
+        		 window.location.href = "http://<?php echo Config::get('constants.domain')?>/login?store_user_id=" + store_user_id + "&redirect_url=" + window.location.href;
         	 } else {
             	 var follow_status = $(btn).attr('follow_status');
             	 $.ajax({

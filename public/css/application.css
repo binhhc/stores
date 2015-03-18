@@ -3382,7 +3382,10 @@ p.download span {
 .layout_h #item_list .items .thumb {
     background-image: url("../img/icon_loading.gif");
     background-repeat: no-repeat;
-    background-position: center
+    background-position: center;
+    /*modified date 2015/03/17*/
+    width: 123px;
+    height: 123px;
 }
 .layout_h #item_list .items .frame_none {
     padding: 10px 20px 10px 0

@@ -33,7 +33,7 @@ class UserController extends BaseController {
      	if(!empty($item_id) && !empty($redirect_url)) {
         	$data = array(
         		'item_id' => $item_id,
-        		'redirect_url' => $redirect_url,
+        		'redirect_url' => $redirect_url. '#!/' . $item_id,
         	);
         }
         return View::make('user.login', $data);
@@ -82,8 +82,9 @@ class UserController extends BaseController {
         	if(!empty($item_id) && !empty($redirect_url)) {
             	// add Follow for user
             	Favorite::addFavorite($item_id, $user_id);
-
-            	return Redirect::to( $redirect_url);
+            	echo "<script>window.location = '". $redirect_url . "'</script>";
+            	exit;
+            	//return Redirect::to( $redirect_url);
             }
             return Redirect::to('/dashboard');
         } else {
@@ -198,8 +199,9 @@ class UserController extends BaseController {
             	// add Follow for user
             	$user_id = Session::get('user.id');
             	Favorite::addFavorite($item_id, $user_id);
-
-            	return Redirect::to( $redirect_url);
+            	echo "<script>window.location = '". $redirect_url . "'</script>";
+            	exit;
+            	//return Redirect::to( $redirect_url);
         }
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
@@ -817,7 +819,7 @@ class UserController extends BaseController {
     public function doLogout(){
         // Auth::logout();
         Session::flush();
-        unset($_SESSION['user_id']);
+        session_destroy();
         return Redirect::to('/');
     }
 

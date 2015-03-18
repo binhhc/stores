@@ -303,7 +303,6 @@ class StoreController extends BaseController {
      *
      */
     public function show($parameters) {
-    	ini_set("session.cookie_domain", Config::get('constants.domain'));
 
         $store_main_menu = $this->setLanguageForMenu($parameters);
 
@@ -438,7 +437,7 @@ class StoreController extends BaseController {
         $userItems    = array();
         $itemQuantity = array();
         $variations   = array();
-        
+
         if (!empty($tmpUserItems)) {
             //user_item_quantity
             if (isset($tmpUserItems['userItemQuantity'])) {
@@ -1492,6 +1491,7 @@ class StoreController extends BaseController {
 	 * @modified date  2015/03/06
 	 */
 	public function dashboard($id=null) {
+		//echo "<script>window.location = 'http://haulenhan.oanhstores.com/#!/items/35'</script>";
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
@@ -1625,9 +1625,9 @@ class StoreController extends BaseController {
 		    $item_id = $input['item_id'];
 		    $action = $input['action'];
 		    $user_id = $this->getUserId();
+
             $user_id = empty($user_id) ?  0 : $user_id;
-            if($action == 1) {
-            	// Favortie
+            if($action == 1 && $user_id != 0) {
             	Favorite::addFavorite($item_id, $user_id);
             }
             $result = Favorite::getStatus($item_id, $user_id);

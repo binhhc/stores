@@ -16,7 +16,7 @@
           <dd class="sz_xs btn_delete_mini"><a href="" ng-click="cart.remove(cart_item)">Delete</a></dd>
           <dd class="sz_i"><img ng-src="{[cart_item.image.src]}" width="50px" height="50px"></dd>
           <dd class="sz_l">{[cart_item.name]}</dd>
-          <dd class="sz_s tl">{[cart_item.variation_name]}</dd>
+          <dd class="sz_s tl">{[cart.null_to_hyphen(cart_item.variation)]}</dd>
           <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?> {[cart_item.price | number:0]}</dd>
           <dd class="sz_s tc">{[cart_item.quantity]}</dd>
           <dd class="sz_s tr"><?php echo Config::get('constants.item.currency'); ?> {[(cart_item.price * cart_item.quantity) | number:0]}</dd>

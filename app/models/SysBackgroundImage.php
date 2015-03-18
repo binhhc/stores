@@ -15,10 +15,11 @@ class SysBackgroundImage extends Model{
      * get sys_background_images
      */
     public static function getSysBackgroundImages() {
-        $sysBackgroundImage = DB::table('sys_background_images')
+        $sysBackgroundImage = 
+            self::select(DB::raw('CONCAT("'.UserStore::getImageUrlEditStore().'", image_url) as image_url2 '))
             ->where('sys_background_images.delete_flg', '=', 0)
             ->orderBy('id', 'desc')
-            ->lists('image_url');
+            ->lists('image_url2');
         return !empty($sysBackgroundImage) ? $sysBackgroundImage : array();
     }
     
@@ -30,7 +31,7 @@ class SysBackgroundImage extends Model{
      * @modified by
      **/
     public static function getFeilds(){
-        return array('id','name','image_url');
+        return array('sys_background_images.id','sys_background_images.name','sys_background_images.image_url');
     }
     
 }

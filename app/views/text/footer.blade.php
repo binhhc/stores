@@ -8,7 +8,7 @@
                 <li><a href="http://leverages.vn/" target="">Công ty vận hành</a></li>
             </ul>
             <ul id="social">
-				<div class="addthis_native_toolbox"></div>
+				
 			</ul>
         </div>
         <!-- /Footer -->

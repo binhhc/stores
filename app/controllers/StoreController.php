@@ -1428,7 +1428,6 @@ class StoreController extends BaseController {
 	 * @modified date  2015/03/06
 	 */
 	public function dashboard($id=null) {
-		//echo "<script>window.location = 'http://haulenhan.oanhstores.com/#!/items/35'</script>";
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}
@@ -1499,7 +1498,7 @@ class StoreController extends BaseController {
 				}
 				Session::put('userStoresDomain', UserStore::getUserStoreDomain());
 				$success =  "Bạn đã chỉnh sửa thành công tên miền";
-				 return Redirect::to('/store_setting')->with('success', $success);
+				return Redirect::to('/store_setting')->with('success', $success);
 			}
 		}
 
@@ -1561,11 +1560,15 @@ class StoreController extends BaseController {
 			$input = Input::all();
 		    $item_id = $input['item_id'];
 		    $action = $input['action'];
-		    $user_id = $this->getUserId();
-
-            $user_id = empty($user_id) ?  0 : $user_id;
-            if($action == 1 && $user_id != 0) {
-            	Favorite::addFavorite($item_id, $user_id);
+            $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+            if($action == 1 ) {
+				if($user_id == 0) {
+					/*$domain = UserStore::getUserStoreDomain(). '.' . Config::get('constants.domain');
+					echo "<script>window.location = '". $domain. "/#!/items/". $item_id."'</script>";
+					exit;*/
+				} else {
+					Favorite::addFavorite($item_id, $user_id);
+				}
             }
             $result = Favorite::getStatus($item_id, $user_id);
             $result['love'] = Lang::get('store.love');

@@ -33,7 +33,7 @@ class UserController extends BaseController {
      	if(!empty($item_id) && !empty($redirect_url)) {
         	$data = array(
         		'item_id' => $item_id,
-        		'redirect_url' => $redirect_url. '#!/' . $item_id,
+        		'redirect_url' => $redirect_url. '#!/items/' . $item_id,
         	);
         }
         return View::make('user.login', $data);

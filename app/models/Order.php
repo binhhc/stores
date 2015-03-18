@@ -24,7 +24,7 @@ class Order extends Model{
     
     /**
      * @author      Sang PM
-     * @since       2015/03/13
+     * @since       2015/03/17
      * 
      * @modified  
      * @modified by
@@ -37,10 +37,13 @@ class Order extends Model{
             if(!empty($data['items']))
                 foreach($data['items'] as $item){
                     $item['order_id'] = $order_id;
+                    $item['item_id'] = $item['variation'];
                     OrderItem::insertNewOrderItem($item);
                 }
+                
+            return $order_id;    
         });
-        return 1;
+        return 0;
     }
     
      /**

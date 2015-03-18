@@ -22,29 +22,30 @@
 
 <table width="570" cellspacing="0" cellpadding="0" border="0" align="center" style="border-top:solid 1px #ddd;text-align:left">
     <tbody>
-    <?php @foreach ($items as $item)?>    
+    @foreach ($items as $item)    
     <tr>
         <td valign="middle" style="padding:15px;border-bottom:solid 1px #ddd" colspan="4">
             <table width="540" cellspacing="0" cellpadding="0" border="0" align="center">
                 <tbody><tr>
                     <td width="70" valign="middle" style="padding:0 15px 0 0">
-                        <a target="_blank" href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['id']}}">
-                            <img width="70" height="70" src="https://ci5.googleusercontent.com/proxy/mlprQsl-ecIjs52k59rpc4tWKMMXYZ5SW2TkIIHaXi08W1btk8boRjGm8U0WGTGTwzOLkYKzgK8A-EIGnGUAXSd_05SONRo5W_6i0Q3e315A-fmck4Hi=s0-d-e1-ft#https://f.stores.jp/_files/sangpm/3a3033b5571bdc5ce44e_70x70.jpeg" alt="{{$item['name']}}" class="CToWUd">
+                        <a target="_blank" href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['variation']}}">
+                            <img width="70" height="70" src=
+                                 "{{$item['image']['thumb_src']}}" alt="{{$item['name']}}" class="CToWUd">
                         </a>
                     </td>
                     <td valign="middle" style="font-size:14px;text-align:left;line-height:1.6">
                         <a target="_blank" style="color:#333;text-decoration:none" 
-                           href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['id']}}">
+                           href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['variation']}}">
                             {{$item['name']}}
                         </a>
                     </td>
                     <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6">Số lượng：{{$item['quantity']}}</td>
-                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6;font-weight:bold">VND {{$item['price']}}</td>
+                    <td width="100" valign="middle" align="right" style="font-size:14px;line-height:1.6;font-weight:bold"><?php echo Config::get('constants.item.currency'); ?> {{$item['show_price']}}</td>
                 </tr>
                 </tbody></table>
         </td>
     </tr>
-    <?php @endforeach?>
+    @endforeach
 </tbody></table>
 
 <table width="220" cellspacing="0" cellpadding="0" border="0" align="right" style="margin-bottom:30px;font-size:14px;line-height:1.6;float:right">
@@ -55,7 +56,7 @@
     </tr> -->
     <tr> 
         <td style="border-bottom:solid 1px #ddd;padding:10px 0 5px 15px;text-align:left">Tổng cộng（Thuế）</td>
-        <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND 7,000</td>
+        <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND {{$total}}</td>
     </tr>
 </tbody></table>
 
@@ -133,7 +134,7 @@
             </tr>
         </tbody></table>
         <p style="margin:0">
-            Thời hạn thanh toán : Ngày 20 tháng 12 năm 2015（Chủ Nhật）trước 15 giờ<br>
+            Thời hạn thanh toán : {{$date_line}}trước 15 giờ<br>
         </wbr>
         </p>
     </td>

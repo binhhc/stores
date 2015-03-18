@@ -40,7 +40,7 @@ class OrderItem extends Model{
      * @modified  
      * @modified by
      **/
-    public static function getItemQuantity($item_ids = array()){
+    public static function getItemQuantityPayMent($item_ids = array()){
         $result = array();
         
         if(!empty($item_ids)){

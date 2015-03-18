@@ -1491,6 +1491,7 @@ class StoreController extends BaseController {
 	 * @modified date  2015/03/06
 	 */
 	public function dashboard($id=null) {
+		//echo "<script>window.location = 'http://haulenhan.oanhstores.com/#!/items/35'</script>";
 		if(!$this->checkLogin()) {
 			return Redirect::to('/');
 		}

@@ -38,7 +38,7 @@ class Order extends Model{
             if(!empty($data['items']))
                 foreach($data['items'] as $item){
                     $item['order_id'] = $order_id;
-                    $item['item_id'] = $item['variation'];
+                    $item['item_id'] = $item['variation_id'];
                     OrderItem::insertNewOrderItem($item);
                 }
                 

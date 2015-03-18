@@ -14,11 +14,9 @@ class SysLayout extends Model{
      * get sys_layouts
      */
     public static function getSysLayouts() {
-        $sysLayouts = DB::table('sys_layouts')
-            ->select('layout_css', 'first', 'other')
+        return self::select('layout_css as name', 'first', 'other')
             ->where('sys_layouts.delete_flg', '=', 0)
-            ->get();
-        return !empty($sysLayouts) ? $sysLayouts : array();
+            ->get()->toArray();
     }
   
     /*

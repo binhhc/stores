@@ -71,8 +71,7 @@ class UserStore extends Model{
      * get image url background sample
      */
     public static function getImageUrlEditStore() {
-        $imgurlSampleBackground = "img/samples/bg2/";
-        return $imgurlSampleBackground;
+        return "img/samples/bg2/";
     }
 
     /*

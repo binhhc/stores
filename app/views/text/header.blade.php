@@ -8,7 +8,7 @@
          {{HTML::style('css/pc_terms.css')}}
         {{HTML::script('js/jquery.min.js')}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54ae02186ebfd008" async="async"></script>
+  
 </head>
 <body>
 <h1 class="summary"><?php echo Config::get('constants.website_name'). ' '. $title_for_layout;?></h1>

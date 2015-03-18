@@ -164,7 +164,7 @@
     z-index: 0;
 }
 .btn_favorite.already button {
-    background: url("../img/main_page/heart.png") no-repeat scroll 20px 9px #f2f2f2;
+    background: url("../img/main_page/icon_heart.png") no-repeat scroll 20px 9px #f2f2f2;
 }
 .btn_favorite .count::after {
     background: url("../img/main_page/icon_heart.png") no-repeat scroll 64px 13px #fff;
@@ -263,9 +263,11 @@
                 	  var text = '<p class="btn_favorite" ><button type="button" >' + response.love + '</button></p>'
                   }
 					div.html(text);
+					return;
               } else {
                   var text = '<p class="btn_favorite already" ><button type="button" >' + response.loved + '</button><span class="count" >' + response.count +'</span></p>'
                   div.html(text);
+                  return;
               }
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {

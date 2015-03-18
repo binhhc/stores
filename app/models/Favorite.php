@@ -51,7 +51,7 @@ class Favorite extends Model{
             return $data->save();
         }
 
-        return self::insert(array('store_id' =>$item_id, 'user_id' => $user_id, 'favorite'=>1));
+        return self::insert(array('item_id' =>$item_id, 'user_id' => $user_id, 'favorite'=>1));
     }
 
     /**

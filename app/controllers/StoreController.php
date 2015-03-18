@@ -303,7 +303,6 @@ class StoreController extends BaseController {
      *
      */
     public function show($parameters) {
-    	ini_set("session.cookie_domain", Config::get('constants.domain'));
 
         $store_main_menu = $this->setLanguageForMenu($parameters);
 
@@ -438,7 +437,7 @@ class StoreController extends BaseController {
         $userItems    = array();
         $itemQuantity = array();
         $variations   = array();
-        
+
         if (!empty($tmpUserItems)) {
             //user_item_quantity
             if (isset($tmpUserItems['userItemQuantity'])) {

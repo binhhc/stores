@@ -68,10 +68,11 @@ class UserController extends BaseController {
             $store_user_id = Input::get('store_user_id');
             $redirect_url = trim(Input::get('redirect_url'));
             $item_id = Input::get('item_id');
+            $user_id = Session::get('user.id');
+            $_SESSION["user_id"] = $user_id;
             if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	$user_id = Session::get('user.id');
             	if(intval($store_user_id) != $user_id) {
 					Follow::addFollow($store['id'], $user_id);
 
@@ -80,7 +81,6 @@ class UserController extends BaseController {
             }
         	if(!empty($item_id) && !empty($redirect_url)) {
             	// add Follow for user
-            	$user_id = Session::get('user.id');
             	Favorite::addFavorite($item_id, $user_id);
 
             	return Redirect::to( $redirect_url);
@@ -185,6 +185,7 @@ class UserController extends BaseController {
         Session::put('userStoresDomain', UserStore::getUserStoreDomain());
         Auth::login($user);
 
+        $_SESSION["user_id"] = $user_id;
      	if(!empty($store_user_id) && !empty($redirect_url)) {
             	// add Follow for user
             	$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
@@ -816,6 +817,7 @@ class UserController extends BaseController {
     public function doLogout(){
         // Auth::logout();
         Session::flush();
+        unset($_SESSION['user_id']);
         return Redirect::to('/');
     }
 

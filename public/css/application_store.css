@@ -7754,6 +7754,9 @@ p.download span {
     background-image: url("/img/icon_loading.gif");
     background-position: center center;
     background-repeat: no-repeat;
+    /*modified date 2015/03/17*/
+    width: 123px;
+    height: 123px;
 }
 .layout_h #item_list .items .frame_none {
     padding: 10px 20px 10px 0;

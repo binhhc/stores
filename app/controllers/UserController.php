@@ -817,7 +817,7 @@ class UserController extends BaseController {
     public function doLogout(){
         // Auth::logout();
         Session::flush();
-        unset($_SESSION['user_id']);
+        session_destroy();
         return Redirect::to('/');
     }
 

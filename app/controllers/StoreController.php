@@ -1624,9 +1624,9 @@ class StoreController extends BaseController {
 		    $item_id = $input['item_id'];
 		    $action = $input['action'];
 		    $user_id = $this->getUserId();
+
             $user_id = empty($user_id) ?  0 : $user_id;
-            if($action == 1) {
-            	// Favortie
+            if($action == 1 && $user_id != 0) {
             	Favorite::addFavorite($item_id, $user_id);
             }
             $result = Favorite::getStatus($item_id, $user_id);

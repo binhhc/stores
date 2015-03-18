@@ -5,7 +5,7 @@ return array(
     'website_name' => 'STOREs.VN',
 	'short_url' => 'http://goo.gl/6PSpfn',
     'admin_email' => 'binhhc@leverages.jp',
-    'domain' => '.oanhstores.com',
+    'domain' => 'stores.dev.srv',
     'contact_email' => 'sangpm@leverages.jp',
 	'clientid'       => '892839076206-e2dshintmn6tg405rrahorl2fv7l0mld.apps.googleusercontent.com',
 	'clientsecret'   => 'vgldIo53SKQEc3nm_06_OYp1',

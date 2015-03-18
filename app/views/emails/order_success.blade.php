@@ -16,8 +16,8 @@
 <div style="text-align:left">
     <p style="margin:30px 0 0 0;line-height:1.8;font-size:20px;font-weight:bold">Cảm ơn bạn đã mua hàng！</p>
     <p style="margin:10px 0 25px 0;line-height:1.8;font-size:16px">
-        Lần này  mua hàng tại "{{$domain_sub}}"<wbr></wbr>
-        Cảm ơn bạn! Nội dung đặt hàng của bạn như sau.。</p>
+        Mua hàng tại 「{{$store_name}}」<wbr></wbr>
+        Nội dung đặt hàng của bạn như sau.。</p>
 </div>
 
 <table width="570" cellspacing="0" cellpadding="0" border="0" align="center" style="border-top:solid 1px #ddd;text-align:left">
@@ -28,14 +28,14 @@
             <table width="540" cellspacing="0" cellpadding="0" border="0" align="center">
                 <tbody><tr>
                     <td width="70" valign="middle" style="padding:0 15px 0 0">
-                        <a target="_blank" href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['variation']}}">
+                        <a target="_blank" href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['item_id']}}">
                             <img width="70" height="70" src=
                                  "{{$item['image']['thumb_src']}}" alt="{{$item['name']}}" class="CToWUd">
                         </a>
                     </td>
                     <td valign="middle" style="font-size:14px;text-align:left;line-height:1.6">
                         <a target="_blank" style="color:#333;text-decoration:none" 
-                           href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['variation']}}">
+                           href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['item_id']}}">
                             {{$item['name']}}
                         </a>
                     </td>
@@ -108,8 +108,8 @@
   <tbody><tr>
     <td>
         <p style="margin:0">
-         Mặt hàng này được mua bởi "chuyển khoản".<br>
-          Theo dõi nhận thanh toán, bạn có thể chuyển số tiền tiền mua hàng của bạn là,<wbr></wbr>Cám ơn.
+            Mặt hàng này được mua bởi "chuyển khoản".<br>
+            Theo dõi nhận thanh toán, bạn có thể chuyển số tiền mua hàng của bạn là<wbr>
         </p>
         <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="margin:20px 0 5px 0;font-size:14px;line-height:1.6;padding:10px 15px;background-color:#f2f2f2">
             <tbody><tr>
@@ -152,7 +152,7 @@
               Liên hệ với hệ thống mua hàng của chúng tôi</a>
     </p>
     <p style="padding-bottom:30px;line-height:1.8;font-size:16px">
-          Khách hàng nên mua sắm tại「{{$domain_sub}}」,<wbr></wbr>
+          Khách hàng nên mua sắm tại「{{$store_name}}」,<wbr></wbr>
           Cảm ơn bạn rất nhiều.<wbr>
     </p>
     <div style="padding-bottom:30px;text-align:right">

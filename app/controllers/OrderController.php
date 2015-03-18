@@ -8,7 +8,7 @@ class OrderController  extends BaseController {
                 'first_name' => 'Ga',
                 'address' => 'Sang ga',
                 'tel'=>'tel',
-                'email'=>'sangpm@leverages.jp',
+                'email'=>'sang.pham.minh@leverages.jp',
                 'note'=>'sangpm@leverages.jp',
                 'prefecture' => 'prefecture'
             ],
@@ -64,7 +64,11 @@ class OrderController  extends BaseController {
         $data['store_name']= $settings->store->name;
         $data['date_line']  = $this->formatTime();
         
-        Order::saveOrder($data);
+        ;
+        print "<pre>";
+        print_r(Order::saveOrder($data));
+        print "<pre>";
+        exit();
         $this->sendMailOrder($data);
         exit();
     }
@@ -74,8 +78,8 @@ class OrderController  extends BaseController {
         
         if($data['items'])
             foreach($data['items'] as $key =>$value){
-                $total += $value['price'];
-                $data['items'][$key]['show_price'] = number_format($value['price']);
+                $total += $value['price']*$value['quantity'];
+                $data['items'][$key]['show_price'] = number_format($value['price']*$value['quantity']);
             }
             
         $data['total']  = number_format($total);

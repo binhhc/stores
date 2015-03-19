@@ -106,20 +106,7 @@ class MainController extends BaseController {
         }
     }
     
-    /**
-     *
-     * Send email to invitation by Gmail friends
-     * @author  Sang PM
-     * @since   2015-03-19
-     */
-    public function getSendMailInfo(){
-        return array(
-                'name'          => '',
-                'domain'        => Config::get('constants.domain'),
-                'website_name'  => Config::get('constants.website_name'),
-                'contact_email' => Config::get('constants.contact_email'),
-            );
-    }
+   
     /**
      *
      * get gmail contact list

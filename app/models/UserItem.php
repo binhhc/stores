@@ -156,8 +156,8 @@ class UserItem extends Model{
      * @author      Sang PM
      * @since       2015/03/18
      *
-     * @modified
-     * @modified by
+     * @modified    2015/03/19
+     * @modified by Sang PM
      **/
     public static function getFullItemInfo($id){
         $tmpUserItems = self::getUserItemByItemId($id);
@@ -191,15 +191,6 @@ class UserItem extends Model{
                 }
             }
 
-            //image_url
-            $imageUrl = array();
-            if (!empty($tmpUserItems->image_url)) {
-                $tmpImageUrl = explode(',', $tmpUserItems->image_url);
-                foreach ($tmpImageUrl as $k => $v) {
-                    $imageUrl[] = array('name' => $v);
-                }
-            }
-            
         return array(
                 'digital_contents'  => null,
                 'mybook_item'       => false,
@@ -217,7 +208,7 @@ class UserItem extends Model{
                 'price'     => $tmpUserItems->price,
                 'description' => $tmpUserItems->introduce,
             
-                'images'     => $imageUrl,
+                'images'     => self::getImages($tmpUserItems->image_url),
                 'quantities' => $itemQuantity,
                 'quantity'   => $itemQuantity,
                 'variations' => $variations,
@@ -227,5 +218,22 @@ class UserItem extends Model{
                 'avg_score'     => null,
             );
         }
+   }
+    /**
+     * @author      Sang PM
+     * @since       2015/03/19
+     *
+     * @modified
+     * @modified by
+     **/
+    public static function getImages($img_url = null) {
+        $result = array();
+        if (!empty($img_url)) {
+                $tmpImageUrl = explode(',', $img_url);
+                foreach ($tmpImageUrl as  $v) {
+                    $result[] = array('name' => $v);
+                }
+            }
+        return $result;
    }
 }

@@ -19,30 +19,21 @@ class StoreController extends BaseController {
      */
     public function ownerStore($parameters) {
         $this->setLang($parameters);
-        //get url domain
         $domain = Request::url();
-        //language popup follow
         
         $languagePopupFollow = Lang::get('store.store_popup_follow');
-        $follow = Lang::get('store.follow');
-        $following = Lang::get('store.following');
-
-        //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
-        preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
-
-        //profile follow box
-        //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-        //get user_profiles
-        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
-
-        $userProfiles = array();
+        $follow     = Lang::get('store.follow');
+        $following  = Lang::get('store.following');
+       
+        $store_user = $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($store_user->user_id);
+       
         if (!empty($tmpUserProfiles)) {
             $userProfiles = array(
                 'name' => $tmpUserProfiles->name,
                 'profile_image' => array(
                     'name' => $tmpUserProfiles->image_url,
-                    'src_url' => '/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                    'src_url' => '/files/'.$store_user->user_id.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {
@@ -55,42 +46,25 @@ class StoreController extends BaseController {
             );
         }
 
-        //user_stores
-        $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
-        //store name
-        $userStores = array(
-            'store' => array(
-                    'name' => ''
-                )
-        );
-        if (!empty($tmpUserStores)) {
-            $tmpUserStores = $tmpUserStores->toArray();
-            $tmpSettings = $tmpUserStores['settings'];
-            if (!empty($tmpSettings)) {
-                $tmpSettings = json_decode($tmpSettings);
-                $userStores['store']['name'] = $tmpSettings->store->name;
-            }
-        }
-
-        $user_id = $this->getUserId();
-        $follow_status = Follow::getStatus($parameters, $user_id);
-        $store_user = UserStore::getUserStoreByDomain($parameters);
+        $user_id        = $this->getUserId();
+        $follow_status  = Follow::getStatus($parameters, $user_id);
+        
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,
             'sub'        => $parameters,
-            'url'        => 'http://'.$url[2].'/store_setting',
+            'url'        => $domain.'/store_setting',
             'prefecture' => json_encode(MsPrefecture::getJsonData()),
             'language'   => UserAddon::getLanguegeByDomain($parameters),
-        	'follow_count' => $follow_status['count'],
+        	'follow_count'  => $follow_status['count'],
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
+        	'follow'        => $follow,
+        	'following'     => $following,
+            'userProfiles'  => $userProfiles,
             'languagePopupFollow' => $languagePopupFollow,
-        	'follow' => $follow,
-        	'following' => $following,
-            'userProfiles' => $userProfiles,
-            'userStores' => $userStores
         );
+        
         return View::make('store.owner_store', $data);
     }
 
@@ -177,11 +151,10 @@ class StoreController extends BaseController {
         if (!empty($tmpUserStores)) {
             $tmpSettings = $tmpUserStores->settings;
             if (!empty($tmpSettings)) {
-                $settings = json_decode($tmpSettings);
-                $stores = $settings->store;
-
+                $settings   = json_decode($tmpSettings);
+                $stores     = $settings->store;
                 $userStores = array(
-                    'name' => $stores->name,
+                    'name'  => $stores->name,
                     'store_font' => array(
                         'style' => $stores->store_style->store_font_style,
                         'type'  => $stores->store_style->store_font_type,
@@ -229,42 +202,26 @@ class StoreController extends BaseController {
         $this->layout = '';
         //get user_id from domain
         $userId       = UserStore::getUserStoreByDomain($parameters)->user_id;
-        //get user_items from user_id
         $tmpUserItems = UserItem::getUserItemByUserId($userId);
-
-        $lastpage = true;
-        if(isset($_GET['page']))
-            $lastpage = (intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
+        $lastpage     = (isset($_GET['page']) && intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
 
         $userItems = array(
             'cnt_items'  => $tmpUserItems->getTotal(),
             'cnt_pages'  => $tmpUserItems->getLastPage(),
             'last_page?' => $lastpage
         );
+        
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
-                //user_items_quatity
-                $objItemQuatity = $value['userItemQuantity'];
-
-                //image_url
-                $imageUrl = array();
-                if (!empty($value->image_url)) {
-                    $tmpImageUrl = explode(',', $value->image_url);
-                    foreach ($tmpImageUrl as $k => $v) {
-                        $imageUrl[] = array('name' => $v);
-                    }
-                }
-
-                //user_items
                 $userItems['items'][] = array(
                     'id'        => $value->id,
                     'name'      => $value->name,
                     'status'    => '',
                     'price'     => $value->price,
                     'sale_flag' => '',
-                    'quantity'  => $objItemQuatity->count(),
+                    'quantity'  => $value['userItemQuantity']->count(),
                     'shared'    => '',
-                    'images'    => $imageUrl,
+                    'images'    => UserItem::getImages($value->image_url),
                     'variations'    => array(),
                     'description'   => $value->introduce,
                     'digital_contents'  => '',

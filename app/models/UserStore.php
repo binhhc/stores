@@ -41,12 +41,11 @@ class UserStore extends Model{
      */
     public static function getUserStoreByUserId() {
         $userId = Session::get('user.id');
-        $userStores = DB::table('user_stores')
+        return DB::table('user_stores')
             ->select('id', 'user_id', 'domain', 'public_flg', 'settings', 'setting_intros')
             ->where('user_stores.user_id', '=', $userId)
             ->orderBy('id', 'desc')
             ->first();
-        return !empty($userStores) ? $userStores : array();
     }
     /**
      * Validate
@@ -82,10 +81,9 @@ class UserStore extends Model{
      */
     public static function getUserStoreDomain() {
         $userId = Session::get('user.id');
-        $userStoresDomain = UserStore::where('user_id', '=', $userId)
+        return UserStore::where('user_id', '=', $userId)
             ->select('domain')
-            ->first();
-        return !empty($userStoresDomain) ? $userStoresDomain->toArray() : array();
+            ->first()->toArray();
     }
 
     /**
@@ -108,10 +106,9 @@ class UserStore extends Model{
      * get user stores from domain
      */
     public static function getUserStoreByDomain($parameter) {
-        $userStores = UserStore::where('domain', '=', $parameter)
+        return UserStore::where('domain', '=', $parameter)
             ->select(self::getFeilds())
             ->first();
-        return !empty($userStores) ? $userStores : array();
     }
 
     /*

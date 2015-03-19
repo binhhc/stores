@@ -196,10 +196,10 @@
             </h1>
             <div id="navi_main" style="display:none;" ng-show="categories.length >0 || hasAbout">
                 <dl style="font-family: Arial; white-space: nowrap;">
-                <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">Trang chủ</a></dd>
-                <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">Giới thiệu</a></dd>
+                <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">TRANG CHỦ</a></dd>
+                <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">GIỚI THIỆU</a></dd>
                 <dd ng-show="categories.length >0" class="btn_dropdown" style="z-index:500;">
-                    <a href="" ng-style="styles.navi_main">Danh mục</a>
+                    <a href="" ng-style="styles.navi_main">DANH MỤC</a>
                     <ul class="dropdown">
                         <li ng-repeat="category in categories"><a href="">[[category.name]]</a></li>
                     </ul>

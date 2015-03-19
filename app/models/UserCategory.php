@@ -52,9 +52,6 @@ class UserCategory extends Model{
      * get user categories by user_id
      */
     public static function getUserCaterogiesByUserId($userId) {
-        $userCategories = DB::table('user_categories')
-            ->select('id', 'name')
-            ->where('user_id', '=', $userId)->get();
-        return !empty($userCategories) ? $userCategories : array();
+        return self::select('id', 'name')->where('user_id', '=', $userId)->get();
     }
 }

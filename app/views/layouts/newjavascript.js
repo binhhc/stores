@@ -5,7 +5,6 @@ function hideNumber(text, offset) {
 }
 
 function updatePageTitle(title) {
-    var STORE_NAME = STORE_NAME_TITLE;
     var s_name = STORE_NAME;
     return title ? (s_name = STORE_NAME ? STORE_NAME : USER_NAME, document.title = title + " | " + decodeURIComponent(s_name), void(document.getElementsByName("twitter:title").length >= 1 && (document.getElementsByName("twitter:title")[0].content = title + " | " + decodeURIComponent(s_name)))) : (s_name = STORE_NAME ? STORE_NAME : USER_NAME, document.title = decodeURIComponent(s_name), void(document.getElementsByName("twitter:title").length >= 1 && (document.getElementsByName("twitter:title")[0].content = decodeURIComponent(s_name))))
 }
@@ -420,6 +419,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     $scope.market_back_url = baseUrl + "/#!/store/" + USER_NAME + "/items/" + $scope.item.id
                 }
             };
+            
             $rootScope.hide_logo = !0, $scope.loading = !0, $scope.user_name = USER_NAME, $scope.item_image_limit = storesJpAddonUtility.isEnableAddon("item_image_limit");
             var origin = location.protocol + "//" + location.hostname;
             FB.init({
@@ -427,6 +427,7 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                 status: !0,
                 cookie: !0
             }), $scope.fb_url = origin + "/#!/items/" + $routeParams.item_id, $scope.tw_url = encodeURIComponent($scope.fb_url), $scope.original_domain = !1, origin.split(".stores.jp").length > 1 || ($scope.original_domain = !0), $scope.show_sticker = storesJpAddonUtility.isEnableAddon("sticker"), setCookiePromotion(location.href, STORES_JP.promotion_enabled), $scope.I18n = I18n, $scope.mall = STORES_JP.mall;
+            
             var extendData = {};
             STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), Item.show(extendData, function(data) {
                 $scope.$root.item = data;
@@ -540,8 +541,13 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     }(jQuery),
                     function() {
                         $scope.total_quantity = 0, $scope.stocks = {}, $scope.item.quantities.length > 1 ? _.each($scope.item.quantities, function(quantity) {
-                            quantity.q_array = new Array(quantity.quantity + 1), $scope.stocks[quantity.variation] = 0, $scope.padding = 0, $scope.total_quantity += quantity.quantity
-                        }) : ($scope.item.quantities[0].q_array = new Array($scope.item.quantities[0].quantity), $scope.stocks[null] = 1, $scope.padding = 1, $scope.total_quantity += $scope.item.quantities[0].quantity), $scope.loading = !1, setViaMarketData()
+                            quantity.q_array = new Array(quantity.quantity + 1), 
+                            $scope.stocks[quantity.id] = 0, 
+                            $scope.padding = 0, $scope.total_quantity += quantity.quantity
+                        }) : ($scope.item.quantities[0].q_array = new Array($scope.item.quantities[0].quantity), 
+                        $scope.stocks[null] = 1, $scope.padding = 1, 
+                        $scope.total_quantity += $scope.item.quantities[0].quantity), 
+                                $scope.loading = !1, setViaMarketData()
                     }()
             }, function() {
                 $scope.not_found = !0
@@ -800,12 +806,14 @@ function OrdersController($scope, $resource, $location, $routeParams, $http, $ro
                 },
                 prefecture: $scope.preset.prefectures[0]
             });
+            
             var addCart = function(order) {
                 for (var length = order.items.length, i = 0; length > i; ++i) {
                     var stocks = {};
                     stocks[order.items[i].ordered_variation] = order.items[i].ordered_quantity, $scope.cart.add(order.items[i], stocks)
                 }
             };
+            
             $http.get("/orders/provisional/" + ORDER_ID).success(function(data) {
                 $scope.shipping_fee ? addCart(data) : $http.get("/store/" + USER_NAME + "/shipping_fee").success(function(shipping_fee) {
                     $scope.shipping_fee = shipping_fee, addCart(data)
@@ -11072,7 +11080,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                     main_url_path = "/files/" + <?php echo $folderUploadId;?> + "/" +url_path_background;
                     is_original_background_image = !0;
                 };
-                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:"+data.store_font.size+";}</style>" ).appendTo("head");
+                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:44px;}</style>" ).appendTo("head");
             })
         }(),
         function() {
@@ -11186,8 +11194,6 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                                 quantity: stock_quantity,
                                 infinite_status: stock_infinite_status,
                                 variation: stock_variation,
-                                variation_id: (stock_variation == null) ?
-                                    item_info.variations['df']:item_info.variations[stock_variation],
                                 image: item_info.images[0],
                                 digital_contents: item_info.digital_contents,
                                 shipping_fee: item_info.shipping_fee,

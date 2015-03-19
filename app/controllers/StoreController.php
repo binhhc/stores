@@ -45,7 +45,23 @@ class StoreController extends BaseController {
                 )
             );
         }
+		
+		$userStores = array(
+            'store' => array(
+                    'name' => ''
+                )
+        );
+        if (!empty($tmpUserStores)) {
+            $tmpUserStores = $tmpUserStores->toArray();
+            $tmpSettings = $tmpUserStores['settings'];
+            if (!empty($tmpSettings)) {
+                $tmpSettings = json_decode($tmpSettings);
+                $userStores['store']['name'] = $tmpSettings->store->name;
+            }
+        }
 
+        //font family
+        $fontFamily = Config::get('constants.sys_css');
         $user_id        = $this->getUserId();
         $follow_status  = Follow::getStatus($parameters, $user_id);
         
@@ -62,6 +78,8 @@ class StoreController extends BaseController {
         	'follow'        => $follow,
         	'following'     => $following,
             'userProfiles'  => $userProfiles,
+			'userStores'    => $userStores,
+            'fontFamily'    => $fontFamily
             'languagePopupFollow' => $languagePopupFollow,
         );
         

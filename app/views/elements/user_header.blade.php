@@ -1,7 +1,9 @@
 <div id="header">
-    <h1 id="store_logo" ng-style="styles.store_logo">
-        <a href="/" ng-show="styles.logo"><span class="mark"><img ng-src="{[logo_src]}" alt="logo" /></span></a>
-        <a href="/" ng-hide="styles.logo"><span class="txt">{[styles.name]}</span></a>
+    <h1 id="store_logo">
+        <a href="/">
+            <span class="mark" ng-show="styles.logo"><img ng-src="{[logo_src]}" alt="{[styles.name]}"></span>
+             <span class="txt" ng-hide="styles.logo">{[styles.name]}</span>
+        </a>    
     </h1>
     <div id="navi_main" style="display:none;" ng-show="categories || hasAbout || showVirtualStore || news_navi">
         <dl style="font-family: Arial">

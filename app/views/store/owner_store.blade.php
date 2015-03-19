@@ -3,7 +3,7 @@
 <div id="fb-root"></div>
 
 <div class="contents_view">
-	<div id="follow" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" >
+	<div id="follow" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 85px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" >
           	<?php if($follow_status == 0) { ?>
           		<p><a href="" class="header"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
             <?php } else {?>

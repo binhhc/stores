@@ -79,7 +79,7 @@ class StoreController extends BaseController {
         	'following'     => $following,
             'userProfiles'  => $userProfiles,
 			'userStores'    => $userStores,
-            'fontFamily'    => $fontFamily
+            'fontFamily'    => $fontFamily,
             'languagePopupFollow' => $languagePopupFollow,
         );
         

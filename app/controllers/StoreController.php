@@ -72,6 +72,9 @@ class StoreController extends BaseController {
             }
         }
 
+        //font family
+        $fontFamily = Config::get('constants.sys_css');
+        
         $user_id = $this->getUserId();
         $follow_status = Follow::getStatus($parameters, $user_id);
         $store_user = UserStore::getUserStoreByDomain($parameters);
@@ -89,7 +92,8 @@ class StoreController extends BaseController {
         	'follow' => $follow,
         	'following' => $following,
             'userProfiles' => $userProfiles,
-            'userStores' => $userStores
+            'userStores' => $userStores,
+            'fontFamily' => $fontFamily
         );
         return View::make('store.owner_store', $data);
     }

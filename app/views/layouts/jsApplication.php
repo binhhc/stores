@@ -11072,7 +11072,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                     main_url_path = "/files/" + <?php echo $folderUploadId;?> + "/" +url_path_background;
                     is_original_background_image = !0;
                 };
-                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:44px;}</style>" ).appendTo("head");
+                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:"+data.store_font.size+";}</style>" ).appendTo("head");
             })
         }(),
         function() {

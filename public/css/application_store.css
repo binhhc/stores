@@ -4713,7 +4713,7 @@ p.error.cc {
     text-align: center;
 }
 #store_form #header_basic h1 {
-    font-family: "Allerta",sans-serif;
+    font-family: Arial;
     font-size: 40px;
     font-weight: normal;
     line-height: 1;
@@ -4729,7 +4729,7 @@ p.error.cc {
     display: block;
 }
 #store_form #header_basic #navi_main {
-    font-family: "Allerta",sans-serif;
+    font-family: "Arial;
     margin-top: 50px;
 }
 #store_form #header_basic #navi_main .dropdown {
@@ -6929,7 +6929,7 @@ p.download span {
     visibility: hidden;
 }
 #header h1 {
-    font-family: "Allerta",sans-serif;
+    font-family: Arial;
     word-break: break-all;
     word-wrap: break-word;
 }

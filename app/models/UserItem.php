@@ -104,7 +104,8 @@ class UserItem extends Model{
      * @author      Le Nhan Hau
      * @since       2015/02/05
      *
-     * @modifed date    2015/03/04
+     * @modified    Sang PM
+     * @modified    2015/03/19
      *
      * @param       $userId
      * get user item from user_id
@@ -120,23 +121,22 @@ class UserItem extends Model{
             $userItems =  $userItems->where(DB::raw('CONCAT(",",category_id,",")'), 'like', '%,'.Request::get('category_id').',%');
         }
 
-        $userItems =  $userItems->paginate(20);
-
-        return !empty($userItems) ? $userItems : array();
+        return  $userItems->paginate(20);
     }
 
     /**
      * @author      Le Nhan Hau
      * @since       2015/02/05
      *
+     * @modified    Sang PM
+     * @modified    2015/03/19
      * @param       $userId
      * get user item from item_id
      */
     public static function getUserItemByItemId($itemId) {
-        $userItems = UserItem::with('userItemQuantity')
+        return self::with('userItemQuantity')
             ->where('user_items.id', '=', $itemId)
             ->first(self::getFeilds());
-        return !empty($userItems) ? $userItems : array();
     }
     /**
      * update order for items

@@ -118,15 +118,12 @@ class UserStore extends Model{
      * @author      Sang PM
      * @since       2015/03/05
      *
+     * @modified    Sang PM
+     * @modified    2015/03/19
      * get user stores from domain
      */
     public static function getNewDomain($domain) {
-        $userStores = UserStore::where('domain', 'LIKE', $domain.'%')->get(array('domain'));
-        $list_dm = array();
-        if($userStores)
-            foreach($userStores->toArray()  as $user){
-                $list_dm[] = $user['domain'];
-            }
+        $list_dm = self::where('domain', 'LIKE', $domain.'%')->lists('domain');
 
         if(!in_array($domain, $list_dm))  return  $domain;
 

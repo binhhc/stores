@@ -11,14 +11,15 @@ class SysBackgroundColor extends Model{
      * @author      Le Nhan Hau
      * @since       2015/01/16
      * 
+     * @modified    Sang PM
+     * @modified    2015/03/19
+     * 
      * get system background color
      */
     public static function getSysBackgroundColor() {
-        $sysBackgroundColor = DB::table('sys_background_colors')
-            ->where('sys_background_colors.delete_flg', '=', 0)
+        return self::where('sys_background_colors.delete_flg', '=', 0)
             ->orderBy('id', 'desc')
             ->lists('color');
-        return !empty($sysBackgroundColor) ? $sysBackgroundColor : array();
     }
 
     
@@ -26,15 +27,18 @@ class SysBackgroundColor extends Model{
      * @author      Le Nhan Hau
      * @since       2015/01/16
      * 
+     * @modified    Sang PM
+     * @modified    2015/03/19
+     * 
      * get system background color id
      */
     public static function getSysBackgroundColorIdByColorCode($colorCode = null) {
-        $sysBackgroundId = DB::table('sys_background_colors')
+        return DB::table('sys_background_colors')
             ->where('sys_background_colors.color', '=', $colorCode)
             ->where('sys_background_colors.delete_flg', '=', 0)
             ->first();
-        return !empty($sysBackgroundId) ? $sysBackgroundId : array();
     }
+    
     /**
      * @author      Sang PM
      * @since       2015/02/05

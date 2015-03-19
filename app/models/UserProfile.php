@@ -44,15 +44,15 @@ class UserProfile extends Model{
     }
     
     /**
-     * @since       2015/02/09
+     * @modified    Sang PM
+     * @modified    2015/03/19
      * 
      * get user_profile by user_id
      */
     public static function getUserProfileByUserId($userId) {
-        $userProfiles = UserProfile::where('user_id', '=', $userId)
+        return UserProfile::where('user_id', '=', $userId)
             ->select('id', 'name', 'image_url')
             ->first();
-        return !empty($userProfiles) ? $userProfiles : array();
     }
     
     /**
@@ -66,6 +66,5 @@ class UserProfile extends Model{
         return self::join('user_stores', 'user_stores.user_id', '=', 'user_profiles.user_id')
                 ->where('user_stores.domain',$domain)
                 ->first();
-       
     }
 }

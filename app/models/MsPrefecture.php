@@ -19,14 +19,14 @@ class MsPrefecture extends Model{
         return array('prefecture_cd','prefecture_name','prefecture_name_kana');
     }
     
+    /**
+     * @author      Sang PM
+     * @since       2015/03/19
+     * 
+     * @modified  
+     * @modified by
+     **/
     public static function getJsonData(){
-        $result = array();
-        $data   =  self::get(self::getFeilds())->toArray();
-        
-        if(!empty($data))
-            foreach($data as $pre)
-                $result[] = $pre['prefecture_name'];
-        
-        return $result;
+        return self::orderBy('prefecture_name', 'asc')->lists('prefecture_name');
     }
 }

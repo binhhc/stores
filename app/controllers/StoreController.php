@@ -814,9 +814,7 @@ class StoreController extends BaseController {
      * @return void
      */
     public function moveCopyImage($file_name) {
-        //get user login
-        //$userInfos = User::getNameStore();
-        //modified date 2015/03/06
+
         $userInfos = array('USER_NAME' => $this->getUserId());
 
         $tmpPath = public_path() . '/_temp_files/'. $file_name;
@@ -1367,7 +1365,6 @@ class StoreController extends BaseController {
             if(!empty($store_user_id) && !empty($login_user)) {
             	// add Follow for user
             	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
-            	//$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);

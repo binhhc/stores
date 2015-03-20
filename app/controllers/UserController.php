@@ -69,8 +69,8 @@ class UserController extends BaseController {
             return Redirect::to('/dashboard');
         } 
 
-        $message = _('Email hoặc mật khẩu không đúng.');
-        return Redirect::to('/login')->withInput(Input::except('password'))->with('message', $message);
+        return Redirect::to('/login')->withInput(Input::except('password'))
+                ->with('message', _('Email hoặc mật khẩu không đúng.'));
     }
 
     /**
@@ -263,7 +263,7 @@ class UserController extends BaseController {
         $result     = 0;
         
         if(!empty($email)){
-            $user   = User::where('email', '=', $email)->first();
+            $user   = User::getByEmail($email);
 
             if (!empty($user)) {
                 $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$user->account_token;
@@ -274,7 +274,8 @@ class UserController extends BaseController {
                 );
 
                 Mail::send('emails.reset_password', $data, function($message) use($email) {
-                    $message->to($email, 'STORES.vn')->subject('【STORES.vn】Cấp lại mật khẩu!');
+                    $message->to($email, Config::get('constants.website_name'))
+                            ->subject('【'.Config::get('constants.website_name').'】Cấp lại mật khẩu!');
                 });
 
                 $result = 1;
@@ -354,7 +355,7 @@ class UserController extends BaseController {
             if(!empty($code[1]))
                 $new_email = Crypt::decrypt($code[1]);
 
-            $user = User::where('email', '=', $old_email)->first();
+            $user = User::getByEmail($old_email);
 
             if(!empty($old_email) && !empty($new_email) && !empty($user)){
                 User::where('id',$user->id)->update(array('email' => $new_email));

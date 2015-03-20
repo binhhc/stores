@@ -3,31 +3,32 @@
 <div id="fb-root"></div>
 
 <div class="contents_view">
-	<div id="follow" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" >
-          	<?php if($follow_status == 0) { ?>
-          		<p><a href="" class="header"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
-            <?php } else {?>
-            <p class="follow_already"><a href="" class="header" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
-            <?php }?>
-		</p>
-      </div>
-    <!-- <iframe src="/iframe/store/follow_header?position=header&follow=<?php echo $follow_status?>&follow_count=<?php echo $follow_count?>&user_store_id={{$user_store_id}}" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe> -->
-
-    <!-- Cart/ -->
-    <div id="cart_button" class="private" style="z-index:1">
-        <a href="#popup_cart">
-            <span>{[cart.quantity]}</span>
-        </a>
-    </div>
-    <!-- /Cart -->
-
-    <!-- Private/ -->
+<!-- Private/ -->
     <?php if(!$public_flg):?>
         <div class="private">
             <p class="text">Cửa hàng chưa được công khai, vui lòng vào<a href="{{$url}}">「cài đặt cửa hàng」</a></p>
         </div>
     <?php endif;?>
     <!-- /Private -->
+    <div style="position: relative;">
+    	<div id="follow" style="top: 20px; right: 90px; position: fixed;position:absolute; width: 120px; height: 40px; z-index:100; background-color:transparent;" >
+              	<?php if($follow_status == 0) { ?>
+              		<p><a href="" class="header"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
+                <?php } else {?>
+                <p class="follow_already"><a href="" class="header" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
+                <?php }?>
+    		</p>
+          </div>
+        <!-- <iframe src="/iframe/store/follow_header?position=header&follow=<?php echo $follow_status?>&follow_count=<?php echo $follow_count?>&user_store_id={{$user_store_id}}" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe> -->
+    
+        <!-- Cart/ -->
+        <div id="cart_button" class="private" style="z-index:1">
+            <a href="#popup_cart">
+                <span>{[cart.quantity]}</span>
+            </a>
+        </div>
+        <!-- /Cart -->
+    </div>
 
     <div ng-view></div>
 

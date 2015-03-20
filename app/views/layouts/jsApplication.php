@@ -274,8 +274,18 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     }]
                 }
             }
+			
+			var UPDATE_PAGE_TITLE_CATEGORY = $routeParams.category;
+			var CATEGORIES = <?php echo $categories;?>;
+			
+			if(!(_.isEmpty(CATEGORIES))) {
+				if($routeParams.category) {
+					var UPDATE_PAGE_TITLE_CATEGORY = CATEGORIES[$routeParams.category]['name'];
+				}
+			}
+
             var extendData = {};
-            STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), $routeParams.category && (extendData.category_id = $routeParams.category, $scope.category = $routeParams.category, updatePageTitle($routeParams.category));
+            STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), $routeParams.category && (extendData.category_id = $routeParams.category, $scope.category = $routeParams.category, updatePageTitle(UPDATE_PAGE_TITLE_CATEGORY));
             //console.log($routeParams)
             var last_page = !1;
             $("#store_footer").hide(), $scope.footerFixed = function(last) {

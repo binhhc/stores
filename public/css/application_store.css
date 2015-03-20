@@ -4698,7 +4698,7 @@ p.error.cc {
 }
 #cart_button.private {
     position: absolute !important;
-    top: 80px;
+    /*top: 80px;*/
 }
 #home_button {
     display: block;

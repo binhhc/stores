@@ -41,12 +41,11 @@ class UserStore extends Model{
      */
     public static function getUserStoreByUserId() {
         $userId = Session::get('user.id');
-        $userStores = DB::table('user_stores')
+        return DB::table('user_stores')
             ->select('id', 'user_id', 'domain', 'public_flg', 'settings', 'setting_intros')
             ->where('user_stores.user_id', '=', $userId)
             ->orderBy('id', 'desc')
             ->first();
-        return !empty($userStores) ? $userStores : array();
     }
     /**
      * Validate
@@ -71,8 +70,7 @@ class UserStore extends Model{
      * get image url background sample
      */
     public static function getImageUrlEditStore() {
-        $imgurlSampleBackground = "img/samples/bg2/";
-        return $imgurlSampleBackground;
+        return "img/samples/bg2/";
     }
 
     /*
@@ -83,10 +81,9 @@ class UserStore extends Model{
      */
     public static function getUserStoreDomain() {
         $userId = Session::get('user.id');
-        $userStoresDomain = UserStore::where('user_id', '=', $userId)
+        return UserStore::where('user_id', '=', $userId)
             ->select('domain')
-            ->first();
-        return !empty($userStoresDomain) ? $userStoresDomain->toArray() : array();
+            ->first()->toArray();
     }
 
     /**
@@ -109,25 +106,21 @@ class UserStore extends Model{
      * get user stores from domain
      */
     public static function getUserStoreByDomain($parameter) {
-        $userStores = UserStore::where('domain', '=', $parameter)
+        return UserStore::where('domain', '=', $parameter)
             ->select(self::getFeilds())
             ->first();
-        return !empty($userStores) ? $userStores : array();
     }
 
     /*
      * @author      Sang PM
      * @since       2015/03/05
      *
+     * @modified    Sang PM
+     * @modified    2015/03/19
      * get user stores from domain
      */
     public static function getNewDomain($domain) {
-        $userStores = UserStore::where('domain', 'LIKE', $domain.'%')->get(array('domain'));
-        $list_dm = array();
-        if($userStores)
-            foreach($userStores->toArray()  as $user){
-                $list_dm[] = $user['domain'];
-            }
+        $list_dm = self::where('domain', 'LIKE', $domain.'%')->lists('domain');
 
         if(!in_array($domain, $list_dm))  return  $domain;
 

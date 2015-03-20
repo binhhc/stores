@@ -2,14 +2,14 @@
 
 class StoreController extends BaseController {
 
-    /**
-     * The layout that should be used for responses.
-     */
-    protected $layout = 'layouts.master';
+    protected   $layout = 'layouts.master';
+    public      $components = array('Store');
+    public      $uses = array();
 
-
-    public $components = array('Store');
-    public $uses = array();
+    public function setLang($parameters){
+        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
+        App::setLocale($typeLanguage);
+    }
 
     /**
      * @author  Le Nhan Hau
@@ -18,31 +18,22 @@ class StoreController extends BaseController {
      * custom store
      */
     public function ownerStore($parameters) {
-        //get url domain
+        $this->setLang($parameters);
         $domain = Request::url();
-        //language popup follow
-        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
-        App::setLocale($typeLanguage);
+
         $languagePopupFollow = Lang::get('store.store_popup_follow');
-        $follow = Lang::get('store.follow');
-        $following = Lang::get('store.following');
+        $follow     = Lang::get('store.follow');
+        $following  = Lang::get('store.following');
 
-        //preg_match('/http:.*'.$parameters.'\.(.+?)$/s', $domain, $url);
-        preg_match('/(http|https):.*'.$parameters.'\.(.+?)$/s', $domain, $url);
+        $store_user = $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
+        $tmpUserProfiles = UserProfile::getUserProfileByUserId($store_user->user_id);
 
-        //profile follow box
-        //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-        //get user_profiles
-        $tmpUserProfiles = UserProfile::getUserProfileByUserId($userId);
-
-        $userProfiles = array();
         if (!empty($tmpUserProfiles)) {
             $userProfiles = array(
                 'name' => $tmpUserProfiles->name,
                 'profile_image' => array(
                     'name' => $tmpUserProfiles->image_url,
-                    'src_url' => '/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                    'src_url' => '/files/'.$store_user->user_id.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {
@@ -55,10 +46,7 @@ class StoreController extends BaseController {
             );
         }
 
-        //user_stores
-        $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
-        //store name
-        $userStores = array(
+		$userStores = array(
             'store' => array(
                     'name' => ''
                 )
@@ -72,25 +60,29 @@ class StoreController extends BaseController {
             }
         }
 
-        $user_id = $this->getUserId();
-        $follow_status = Follow::getStatus($parameters, $user_id);
-        $store_user = UserStore::getUserStoreByDomain($parameters);
+        //font family
+        $fontFamily = Config::get('constants.sys_css');
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+        $follow_status  = Follow::getStatus($parameters, $user_id);
+
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,
             'sub'        => $parameters,
-            'url'        => 'http://'.$url[2].'/store_setting',
+            'url'        => $domain.'/store_setting',
             'prefecture' => json_encode(MsPrefecture::getJsonData()),
             'language'   => UserAddon::getLanguegeByDomain($parameters),
-        	'follow_count' => $follow_status['count'],
+        	'follow_count'  => $follow_status['count'],
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
+        	'follow'        => $follow,
+        	'following'     => $following,
+            'userProfiles'  => $userProfiles,
+			'userStores'    => $userStores,
+            'fontFamily'    => $fontFamily,
             'languagePopupFollow' => $languagePopupFollow,
-        	'follow' => $follow,
-        	'following' => $following,
-            'userProfiles' => $userProfiles,
-            'userStores' => $userStores
         );
+
         return View::make('store.owner_store', $data);
     }
 
@@ -100,26 +92,20 @@ class StoreController extends BaseController {
      * display list item
      */
     public function index($parameters) {
-        $store_main_menu = $this->setLanguageForMenu($parameters);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-
-        return View::make('store.index', $data);
+        return View::make('store.index', $this->getMenu($parameters));
     }
 
     public function inquiries($account) {
         $data = Input::get('data');
         $data['parameters'] = $account;
-        $tmpUserStores = UserStore::getUserStoreByDomain($account);
-        $tmpSettings = $tmpUserStores->settings;
+        $tmpUserStores  = UserStore::getUserStoreByDomain($account);
+        $tmpSettings    = $tmpUserStores->settings;
         if (!empty($tmpSettings)) {
-            $settings = json_decode($tmpSettings);
-             $stores = $settings->store;
+            $settings   = json_decode($tmpSettings);
+            $stores     = $settings->store;
+            $email      = $data['email'];
+            $data['store_name'] = $stores->name;
 
-        $data['store_name'] =    $stores->name;
-        $email = $data['email'];
         Mail::send('emails.contacts', $data, function($message) use($email) {
             $message->to($email, 'Liên hệ thành công')->subject('Cảm ơn bạn đã liên hệ với chúng tôi');
         });
@@ -135,8 +121,7 @@ class StoreController extends BaseController {
 
         if (Request::ajax())
         {
-            $json = json_encode($aboutDetail);
-            echo $json;
+            echo json_encode($aboutDetail);
         }
     }
 
@@ -150,75 +135,66 @@ class StoreController extends BaseController {
         $this->layout = '';
 
         //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-
-        //tmp user stores
-        $tmpUserStores = UserStore::where('user_id', '=', $userId)
-            ->first();
-
-        //default stores style
-        $tmpStyle = Config::get('constants.edit_store_style_sample');
-
-        //default domain
-        $tmpStoresName = UserStore::getUserStoreByDomain($parameters);
-        $storesName = $tmpStoresName->domain;
+        $tmpStoresName  = UserStore::getUserStoreByDomain($parameters);
+        $storesName     = $tmpStoresName->domain;
+        $tmpUserStores  = UserStore::where('user_id', '=', $tmpStoresName->user_id)->first();
+        $tmpStyle       = Config::get('constants.edit_store_style_sample');
 
         //default user stores
         $userStores = array(
-            'name' => $storesName,
-            'store_font' => array(
+            'name'      => $storesName,
+            'store_font'=> array(
                 'style' => $tmpStyle['store_font']['style'],
-                'type' => $tmpStyle['store_font']['type'],
-                'weight' => $tmpStyle['store_font']['weight'],
-                'size' => $tmpStyle['store_font']['size']
+                'type'  => $tmpStyle['store_font']['type'],
+                'weight'=> $tmpStyle['store_font']['weight'],
+                'size'  => $tmpStyle['store_font']['size']
             ),
-            'layout' => 'layout_a',
-            'background' => array(
+            'layout'    => 'layout_a',
+            'background'=> array(
                 'color' => $tmpStyle['background']['color'],
-                'repeat' => '',
+                'repeat'=> '',
                 'image' => ''
             ),
-            'text_color' => array(
-                'item' => $tmpStyle['text_color']['item'],
+            'text_color'=> array(
+                'item'  => $tmpStyle['text_color']['item'],
                 'store' => $tmpStyle['text_color']['store']
             ),
-            'display' => array(
+            'display'   => array(
                 'frame' => $tmpStyle['display']['frame'],
-                'item' => $tmpStyle['display']['item']
+                'item'  => $tmpStyle['display']['item']
             ),
             'shipping_fee' => 0,
-            'logo' => $tmpStyle['logo']
+            'logo'      => $tmpStyle['logo']
         );
         if (!empty($tmpUserStores)) {
             $tmpSettings = $tmpUserStores->settings;
             if (!empty($tmpSettings)) {
-                $settings = json_decode($tmpSettings);
-                $stores = $settings->store;
-
+                $settings   = json_decode($tmpSettings);
+                $stores     = $settings->store;
                 $userStores = array(
-                    'name' => $stores->name,
+                    'name'  => $stores->name,
                     'store_font' => array(
                         'style' => $stores->store_style->store_font_style,
-                        'type' => $stores->store_style->store_font_type,
-                        'weight' => $stores->store_style->store_font_weight,
-                        'size' => $stores->store_style->store_font_size
+                        'type'  => $stores->store_style->store_font_type,
+                        'weight'=> $stores->store_style->store_font_weight,
+                        'size'  => $stores->store_style->store_font_size
                     ),
-                    'layout' => $stores->store_style->layout,
-                    'background' => array(
+                    'layout'    => $stores->store_style->layout,
+                    'background'=> array(
                         'color' => $stores->store_style->background_color,
-                        'repeat' => '',
+                        'repeat'=> '',
                         'image' => $stores->store_style->background_image
                     ),
-                    'text_color' => array(
-                        'item' => $stores->store_style->item_text_color,
+                    'text_color'=> array(
+                        'item'  => $stores->store_style->item_text_color,
                         'store' => $stores->store_style->store_text_color
                     ),
-                    'display' => array(
+                    'display'   => array(
                         'frame' => $stores->store_style->display_frame,
-                        'item' => $stores->store_style->display_item
+                        'item'  => $stores->store_style->display_item
                     ),
                     'shipping_fee' => 0,
-                    'logo' => $stores->store_style->logo_image
+                    'logo'      => $stores->store_style->logo_image
                 );
             }
         }
@@ -229,11 +205,7 @@ class StoreController extends BaseController {
 
     public function current_user() {
         $this->layout = '';
-
-        //if (Request::ajax())
-        //{
-            echo '{"name":"haulenhan","my_store":true,"is_following":false,"store_owner":"haulenhan","store_owner_id":"54c5c1a5391bb34148001feb"}';
-        //}
+        echo '{"name":"haulenhan","my_store":true,"is_following":false,"store_owner":"haulenhan","store_owner_id":"54c5c1a5391bb34148001feb"}';
         exit;
     }
 
@@ -247,46 +219,31 @@ class StoreController extends BaseController {
     public function items_pager($parameters) {
         $this->layout = '';
         //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-        //get user_items from user_id
+        $userId       = UserStore::getUserStoreByDomain($parameters)->user_id;
         $tmpUserItems = UserItem::getUserItemByUserId($userId);
-
-        $lastpage = true;
-        if(isset($_GET['page']))
-            $lastpage = (intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
+        $lastpage     = (isset($_GET['page']) && intval($_GET['page']) >= $tmpUserItems->getLastPage())?true:false;
 
         $userItems = array(
-            'cnt_items' => $tmpUserItems->getTotal(),
-            'cnt_pages' => $tmpUserItems->getLastPage(),
+            'cnt_items'  => $tmpUserItems->getTotal(),
+            'cnt_pages'  => $tmpUserItems->getLastPage(),
             'last_page?' => $lastpage
         );
+
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
-                //user_items_quatity
-                $objItemQuatity = $value['userItemQuantity'];
-
-                //image_url
-                $imageUrl = array();
-                if (!empty($value->image_url)) {
-                    $tmpImageUrl = explode(',', $value->image_url);
-                    foreach ($tmpImageUrl as $k => $v) {
-                        $imageUrl[] = array('name' => $v);
-                    }
-                }
-
-                //user_items
                 $userItems['items'][] = array(
-                    'id' => $value->id,
-                    'name' => $value->name,
-                    'description' => $value->introduce,
-                    'status' => '',
-                    'price' => $value->price,
+                    'id'        => $value->id,
+                    'name'      => $value->name,
+                    'status'    => '',
+                    'price'     => $value->price,
                     'sale_flag' => '',
-                    'digital_contents' => '',
-                    'variations' => array(),
-                    'quantity' => $objItemQuatity->count(),
-                    'shared' => '',
-                    'images' => $imageUrl
+                    'quantity'  => $value['userItemQuantity']->count(),
+                    'shared'    => '',
+                    'images'    => UserItem::getImages($value->image_url),
+                    'variations'    => array(),
+                    'description'   => $value->introduce,
+                    'digital_contents'  => '',
+
                 );
             }
         }
@@ -303,13 +260,7 @@ class StoreController extends BaseController {
      *
      */
     public function show($parameters) {
-
-        $store_main_menu = $this->setLanguageForMenu($parameters);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-        return View::make('store.show', $data);
+        return View::make('store.show', $this->getMenu($parameters));
     }
 
 
@@ -322,20 +273,8 @@ class StoreController extends BaseController {
     public function storeCategories($parameters) {
         $this->layout = '';
 
-        //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-
-        //get user_categories
-        $tmpUserCategories = UserCategory::getUserCaterogiesByUserId($userId);
-        $userCategories = array();
-        if (!empty($tmpUserCategories)) {
-            foreach ($tmpUserCategories as $key => $value) {
-                $userCategories[] = array(
-                    'id' => $value->id,
-                    'name' => $value->name
-                );
-            }
-        }
+        $userId         = UserStore::getUserStoreByDomain($parameters)->user_id;
+        $userCategories = UserCategory::getUserCaterogiesByUserId($userId)->toArray();
 
         echo json_encode($userCategories);
         exit;
@@ -351,23 +290,18 @@ class StoreController extends BaseController {
         $this->layout = '';
 
         //get user_id from domain
-        $userId = UserStore::getUserStoreByDomain($parameters)->user_id;
-
-        //tmp about
-        $tmpAbout = UserStore::where('user_id', '=', $userId)
-            ->first();
-
+        $tmpAbout = UserStore::getUserStoreByDomain($parameters);
         $about = array();
         if (!empty($tmpAbout)) {
             $setting_intros = json_decode($tmpAbout->setting_intros);
 
             $about = array(
-                'detail' => isset($setting_intros->description) ? $setting_intros->description : '',
-                'links' => array(
-                    'twitter' => isset($setting_intros->twitter) ? $setting_intros->twitter : '',
-                    'facebook' => isset($setting_intros->facebook) ? $setting_intros->facebook : '',
-                    'website' => isset($setting_intros->homepage) ? $setting_intros->homepage : '',
-                    'exblog' => null
+                'detail'    => isset($setting_intros->description) ? $setting_intros->description : '',
+                'links'     => array(
+                    'twitter'   => isset($setting_intros->twitter) ? $setting_intros->twitter : '',
+                    'facebook'  => isset($setting_intros->facebook) ? $setting_intros->facebook : '',
+                    'website'   => isset($setting_intros->homepage) ? $setting_intros->homepage : '',
+                    'exblog'    => null
                 )
             );
         }
@@ -397,27 +331,25 @@ class StoreController extends BaseController {
      * about store
      */
     public function aboutDetail($parameters) {
-        //language menu
-        $store_main_menu = $this->setLanguageForMenu($parameters);
-        //language about
-        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
-        App::setLocale($typeLanguage);
-        $store_about = Lang::get('store.store_about');
+        $this->setLang($parameters);
 
-        $follow = Lang::get('store.follow');
-        $following = Lang::get('store.following');
-        $user_id = $this->getUserId();
-        $follow_status = Follow::getStatus($parameters, $user_id);
-        $store_user = UserStore::getUserStoreByDomain($parameters);
+        $store_main_menu    = $this->setLanguageForMenu($parameters);
+        $store_about        = Lang::get('store.store_about');
+        $follow             = Lang::get('store.follow');
+        $following          = Lang::get('store.following');
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+        $follow_status      = Follow::getStatus($parameters,$user_id);
+        $store_user         = UserStore::getUserStoreByDomain($parameters);
+
         $data = array(
             'store_main_menu' => $store_main_menu,
-            'store_about' => $store_about,
-        	//'follow_count' => $follow_status['count'],
+            'store_about'   => $store_about,
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
-        	'follow' => $follow,
-        	'following' => $following
+        	'follow'        => $follow,
+        	'following'     => $following
         );
+
         return View::make('store.about', $data);
     }
 
@@ -445,8 +377,6 @@ class StoreController extends BaseController {
      * get profile
      */
     public function profile($id) {
-        //get domain
-        $url = Request::url();
 
         //get user_id from domain
         $userId = UserStore::getUserStoreByDomain($id)->user_id;
@@ -456,18 +386,18 @@ class StoreController extends BaseController {
         $userProfiles = array();
         if (!empty($tmpUserProfiles)) {
             $userProfiles = array(
-                'name' => $tmpUserProfiles->name,
+                'name'          => $tmpUserProfiles->name,
                 'profile_image' => array(
-                    'name' => $tmpUserProfiles->image_url,
-                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$userId.'/'.$tmpUserProfiles->image_url
+                    'name'      => $tmpUserProfiles->image_url,
+                    'src_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/files/'.$userId.'/'.$tmpUserProfiles->image_url
                 )
             );
         }else {
             $userProfiles = array(
-                'name' => null,
+                'name'          => null,
                 'profile_image' => array(
-                    'name' => '',
-                    'src_url' => 'http://'.$_SERVER['HTTP_HOST'].'/img/user_icon_01.png'
+                    'name'      => '',
+                    'src_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/img/user_icon_01.png'
                 )
             );
         }
@@ -483,13 +413,10 @@ class StoreController extends BaseController {
      * cart_popup
      */
     public function cart_popup($id) {
-        $typeLanguage = UserAddon::getLanguegeByDomain($id);
-        App::setLocale($typeLanguage);
-
-        $cart_popup_button_checkout = Lang::get('store.cart_popup_button_checkout');
+        $this->setLang($id);
 
         $data = array(
-            'cart_popup_button_checkout' => $cart_popup_button_checkout
+            'cart_popup_button_checkout' => Lang::get('store.cart_popup_button_checkout')
         );
         return View::make('store.cart_popup', $data);
     }
@@ -567,10 +494,8 @@ class StoreController extends BaseController {
      */
     public function checkout_shipping($id) {
         App::setLocale('vi');
-        $checkout_label_address = Lang::get('store.checkout_label_address');
-
         $data = array(
-            'checkout_label_address' => $checkout_label_address
+            'checkout_label_address' => Lang::get('store.checkout_label_address')
         );
         return View::make('store.checkout_shipping', $data);
     }
@@ -617,12 +542,7 @@ class StoreController extends BaseController {
      * return tokushoho
      */
     public function tokushoho($id) {
-        $store_main_menu = $this->setLanguageForMenu($id);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-        return View::make('store.tokushoho', $data);
+        return View::make('store.tokushoho', $this->getMenu($id));
     }
 
     /**
@@ -672,36 +592,43 @@ class StoreController extends BaseController {
      * inquiry store
      */
     public function inquiry($id) {
-        $store_main_menu = $this->setLanguageForMenu($id);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-        return View::make('store.inquiry', $data);
+        return View::make('store.inquiry', $this->getMenu($id));
     }
 
     /**
      * @author          Le Nhan Hau
      * @since           2015/03/04
      *
+     * @modified date   2015/03/20
      * generate js application
      */
     public function jsApplication($parameters) {
-        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
-        App::setLocale($typeLanguage);
+        $this->setLang($parameters);
         $language = Lang::get('store.js');
         $language['prefectures'] = MsPrefecture::getJsonData();
 
-        //modified date 2015/03/06
         $userStoreByDomain = UserStore::getUserStoreByDomain($parameters);
-        $folderUploadId = $userStoreByDomain->user_id;
+        $folderUploadId    = $userStoreByDomain->user_id;
+
+        //categories
+        $userId         = UserStore::getUserStoreByDomain($parameters)->user_id;
+        $userCategories = UserCategory::getUserCaterogiesByUserId($userId)->toArray();
+
+        $categories = array();
+        if (!empty($userCategories)) {
+            foreach ($userCategories as $key => $value) {
+                $categories[$value['id']] = $value;
+            }
+        }
 
         $content = View::make('layouts.jsApplication',
-                array(
-                    'prefecture' => json_encode(MsPrefecture::getJsonData()),
-                    'language' => json_encode($language),
-                    'folderUploadId' => $folderUploadId
-                    ));
+            array(
+                'prefecture'    => json_encode(MsPrefecture::getJsonData()),
+                'language'      => json_encode($language),
+                'folderUploadId'=> $folderUploadId,
+                'categories' => json_encode($categories)
+                ));
+
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');
         return $response;
@@ -715,12 +642,7 @@ class StoreController extends BaseController {
      * term
      */
     public function terms($parameters) {
-        $store_main_menu = $this->setLanguageForMenu($parameters);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-        return View::make('store.terms', $data);
+        return View::make('store.terms', $this->getMenu($parameters));
     }
 
     /**
@@ -730,12 +652,7 @@ class StoreController extends BaseController {
      * privacy_policy
      */
     public function privacy_policy($parameters) {
-        $store_main_menu = $this->setLanguageForMenu($parameters);
-
-        $data = array(
-            'store_main_menu' => $store_main_menu
-        );
-        return View::make('store.privacy_policy', $data);
+        return View::make('store.privacy_policy', $this->getMenu($parameters));
     }
 
     /**
@@ -755,12 +672,20 @@ class StoreController extends BaseController {
      * set language for menu store
      */
     public function setLanguageForMenu($parameters) {
-        $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
-        App::setLocale($typeLanguage);
+        $this->setLang($parameters);
+        return Lang::get('store.store_main_menu');
+    }
 
-        $store_main_menu = Lang::get('store.store_main_menu');
-
-        return $store_main_menu;
+    /**
+     * @author          Sang Pm
+     * @since           2015/03/18
+     *
+     * set language for menu store
+     */
+    public function getMenu($parameters){
+        return array(
+            'store_main_menu' => $this->setLanguageForMenu($parameters)
+        );
     }
     /**
      *
@@ -771,88 +696,16 @@ class StoreController extends BaseController {
      * get information store
      */
     public function edit() {
-        //get fonts default
-        $fontDefaults = Config::get('constants.fonts');
-
-        //get font family default
-        $fontFamily = Config::get('constants.sys_css');
-
-        //get item sample
-        $tmpItemSample = UserItem::getItemSample();
-        $itemSample = array();
-        foreach ($tmpItemSample as $item => $sample) {
-            $itemSample[] = array(
-                'name' => $sample->name,
-                'price' => $sample->price,
-                'path' => 'img/samples/products/'.$sample->image_url
-            );
-        }
-
-        //get image url sample
-        $imgurlSampleBackground = UserStore::getImageUrlEditStore();
-
-        //get user login
-        //$userInfos = User::getNameStore();
-        //modified date 2015/03/06
-        $userInfos = array('USER_NAME' => $this->getUserId());
-
-        //sys_colors
-        $sysLayouts = array();
-        $tmpSysLayouts= SysLayout::getSysLayouts();
-        if (!empty($tmpSysLayouts)) {
-            foreach ($tmpSysLayouts as $key => $value) {
-                $sysLayouts[] = array(
-                    'name' => $value->layout_css,
-                    'first' => $value->first,
-                    'other' => $value->other
-                );
-            }
-        }
-
-        //system text color
-        $sysTextColor = SysTextColor::getSysTextColor();
-
-        //system background color
-        $tmp_sysBackgroundColor = SysBackgroundColor::getSysBackgroundColor();
-        $max1 = 14; $sysBackgroundColor = array();
-        $index = 0; $j = 0;
-
-        if (!empty($tmp_sysBackgroundColor)) {
-            foreach ($tmp_sysBackgroundColor as $key => $value) {
-                if($index == $max1) {
-                    $j ++; $index = 0;
-                    $sysBackgroundColor[$j] = array();
-                }
-                $sysBackgroundColor[$j][] = $value;
-                $index++;
-            }
-        }
-
-        //system background image
-        $tmp_sysBackgroundImage = SysBackgroundImage::getSysBackgroundImages();
-        $max = 5; $sysBackgroundImage = array();
-        $index = 0; $j = 0;
-
-        if (!empty($tmp_sysBackgroundImage)) {
-            foreach ($tmp_sysBackgroundImage as $key => $value) {
-                if($index == $max) {
-                    $j ++; $index = 0;
-                    $sysBackgroundImage[$j] = array();
-                }
-                $sysBackgroundImage[$j][] = $imgurlSampleBackground.$value;
-                $index++;
-            }
-        }
-
         return View::make('store.edit', array(
-            'fontFamily' => $fontFamily,
-            'fontDefaults' => $fontDefaults,
-            'itemSample' => $itemSample,
-            'userInfos' => $userInfos,
-            'sysLayouts' => $sysLayouts,
-            'sysTextColor' => $sysTextColor,
-            'sysBackgroundColor' => $sysBackgroundColor,
-            'sysBackgroundImage' => $sysBackgroundImage
+            'fontFamily' => Config::get('constants.sys_css'),
+            'fontDefaults' => Config::get('constants.fonts_en'),
+            'fontDefaultsVn' => Config::get('constants.fonts_vi'),
+            'itemSample' => UserItem::getItemSample(),
+            'userInfos' => array('USER_NAME' => $this->getUserId()),
+            'sysLayouts' => SysLayout::getSysLayouts(),
+            'sysTextColor' => SysTextColor::getSysTextColor(),
+            'sysBackgroundColor' => array_chunk(SysBackgroundColor::getSysBackgroundColor(),14),
+            'sysBackgroundImage' => array_chunk(SysBackgroundImage::getSysBackgroundImages(),5)
         ));
     }
 
@@ -962,9 +815,7 @@ class StoreController extends BaseController {
      * @return void
      */
     public function moveCopyImage($file_name) {
-        //get user login
-        //$userInfos = User::getNameStore();
-        //modified date 2015/03/06
+
         $userInfos = array('USER_NAME' => $this->getUserId());
 
         $tmpPath = public_path() . '/_temp_files/'. $file_name;
@@ -988,15 +839,12 @@ class StoreController extends BaseController {
     public function items($status = '') {
         $this->layout = '';
 
-        //get user_item from user_id
         $items = array();
         $userItems = UserItem::getUserItemFromUserId();
 
         if (!empty($userItems)) {
             foreach ($userItems as $key => $value) {
                 $tmpImageUrl = explode(',', $value->image_url);
-                //$value->images[]['name'] = $value->image_url;
-                //modified date 2015/03/06
                 $value->images[]['name'] = $tmpImageUrl[0];
                 unset($value->image_url);
                 $items[] = $value;
@@ -1030,7 +878,7 @@ class StoreController extends BaseController {
         //get user_stores from user_id
         $userStores = UserStore::getUserStoreByUserId();
         if (Request::ajax()) {
-            $style = array();
+            $style = $tmpStyle;
             if (!empty($userStores)) {
                 $settings = $userStores->settings;
                 if (!empty($settings)) {
@@ -1039,35 +887,30 @@ class StoreController extends BaseController {
                     $style['name'] = !empty($store->name) ? $store->name : $userInfos['USER_NAME'] ;
                     $style['store_font'] = array(
                         'style' => $store->store_style->store_font_style,
-                        'type' => $store->store_style->store_font_type,
-                        'weight' => $store->store_style->store_font_weight,
-                        'size' => $store->store_style->store_font_size
+                        'type'  => $store->store_style->store_font_type,
+                        'weight'=> $store->store_style->store_font_weight,
+                        'size'  => $store->store_style->store_font_size
                     );
                     $style['layout'] = $store->store_style->layout;
                     $style['background'] = array(
                         'color' => $store->store_style->background_color,
-                        'repeat' => '',
+                        'repeat'=> '',
                         'image' => $store->store_style->background_image
                     );
                     $style['text_color'] = array(
-                        'item' => $store->store_style->item_text_color,
+                        'item'  => $store->store_style->item_text_color,
                         'store' => $store->store_style->store_text_color
                     );
                     $style['display'] = array(
                         'frame' => $store->store_style->display_frame,
-                        'item' => $store->store_style->display_item
+                        'item'  => $store->store_style->display_item
                     );
                     $style['shipping_fee'] = 0;
                     $style['logo'] = $store->store_style->logo_image;
-                }else {
-                    $style = $tmpStyle;
                 }
-            }else {
-                $style = $tmpStyle;
             }
 
-            $json = json_encode($style);
-            echo $json;
+            echo json_encode($style);
         }
     }
 
@@ -1080,24 +923,7 @@ class StoreController extends BaseController {
      */
     public function categories() {
         $this->layout = '';
-        //get user_categories from user_id
-        $userCategories = UserCategory::getUserCaterogiesFromUserId();
-
-        $categories = array();
-        if (!empty($userCategories)) {
-            foreach ($userCategories as $key => $value) {
-                $categories[] = array(
-                    'id' => $value->id,
-                    'name' => $value->name
-                );
-            }
-        }
-
-        //if (Request::ajax())
-        //{
-            $json = json_encode($categories);
-            echo $json;
-        //}
+        echo json_encode(UserCategory::getUserCaterogiesFromUserId());
     }
 
     /**
@@ -1110,14 +936,11 @@ class StoreController extends BaseController {
     public function about() {
         $this->layout = '';
         $about = array();
-
-        //get setting_intros of user_stores
         $tmpUserStore = UserStore::getUserStoreByUserId();
 
         if (!empty($tmpUserStore)) {
             $about = $tmpUserStore->setting_intros;
         }
-
         if (Request::ajax())
         {
             echo $about;
@@ -1181,8 +1004,7 @@ class StoreController extends BaseController {
 
 			 $circle = trim(Input::get('circle'));
 	    	 $check_free_ship = trim(Input::get('check_free_ship'));
-	    	 $free_ship = Input::get('free_ship');
-	    	 $free_ship = ($check_free_ship == 0) ? '' : $free_ship;
+	    	 $free_ship = ($check_free_ship == 0) ? '' : Input::get('free_ship');
 	    	 $setting_postage = json_encode(array('circle' => $circle, 'check_free_ship' => $check_free_ship, 'free_ship' => $free_ship));
 	    	 $user_id = $this->getUserId();
 	    	 $user_store = UserStore::where('user_id', $user_id)->first();
@@ -1545,7 +1367,6 @@ class StoreController extends BaseController {
             	// add Follow for user
             	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
             	//$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            	//var_dump($store['id']); echo $login_user;
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);

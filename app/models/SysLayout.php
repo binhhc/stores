@@ -14,26 +14,27 @@ class SysLayout extends Model{
      * get sys_layouts
      */
     public static function getSysLayouts() {
-        $sysLayouts = DB::table('sys_layouts')
-            ->select('layout_css', 'first', 'other')
+        return self::select('layout_css as name', 'first', 'other')
             ->where('sys_layouts.delete_flg', '=', 0)
-            ->get();
-        return !empty($sysLayouts) ? $sysLayouts : array();
+            ->get()->toArray();
     }
   
     /*
      * @author      Le Nhan Hau
      * @since       2015/01/16
      * 
+     * @modified    Sang PM
+     * @modified    2015/03/19
+     * 
      * get sys_layouts
      */
     public static function getSysLayoutsIdByLayout($layout) {
-        $sysLayoutsId = DB::table('sys_layouts')
+        return DB::table('sys_layouts')
             ->where('sys_layouts.delete_flg', '=', 0)
             ->where('sys_layouts.layout_css', '=', $layout)
             ->first();
-        return !empty($sysLayoutsId) ? $sysLayoutsId : array();
     }
+    
     /**
      * @author      Sang PM
      * @since       2015/02/05

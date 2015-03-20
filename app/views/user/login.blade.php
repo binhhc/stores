@@ -40,7 +40,7 @@
                     <div class="social_login">
                         <p class="btn_facebook">
                         <?php if(isset($store_user_id) && isset($redirect_url)) {?>
-                        	 <a href="/login/fb?store_user_id=<?php echo $store_user_id?>&redirect_url=<?php echo $redirect_url?>">
+                        	 <a href="/login/fb?store_user_id=<?php echo md5($store_user_id)?>&redirect_url=<?php echo $redirect_url?>">
                                 Facebook
                             </a>
                         <?php } else { if(isset($item_id) && isset($redirect_url)) {?>

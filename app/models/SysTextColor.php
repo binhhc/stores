@@ -14,10 +14,8 @@ class SysTextColor extends Model{
      * get system text color by
      */
     public static function getSysTextColor() {
-        $sysTextColor = DB::table('sys_text_colors')
-            ->where('sys_text_colors.delete_flg', '=', 0)
+        return self::where('sys_text_colors.delete_flg', '=', 0)
             ->lists('color');
-        return !empty($sysTextColor) ? $sysTextColor : array();
     }
     
     /*
@@ -27,11 +25,10 @@ class SysTextColor extends Model{
      * get system text color id
      */
     public static function getSysTextColorIdByColorCode($colorCode = null) {
-        $sysTextColorId = DB::table('sys_text_colors')
+        return DB::table('sys_text_colors')
             ->where('sys_text_colors.color', '=', $colorCode)
             ->where('sys_text_colors.delete_flg', '=', 0)
             ->first();
-        return !empty($sysTextColorId) ? $sysTextColorId : array();
     }
     /**
      * @author      Sang PM

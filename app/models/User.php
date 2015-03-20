@@ -173,4 +173,46 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return Validator::make($input, $rules);
     }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/
+    public static function getByEmail($email){
+        return self::where('email', '=', $email)->where('delete_flg', '=', 0)->first();
+    } 
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/
+    public static function saveFacebookData($rs){
+        extract($rs);
+        $user    = User::getByEmail($me['email']);
+        if (empty($user)) {
+            $user = new User;
+            $user->email = $me['email'];
+            $user->account_token = User::createAccountToken();
+            $user->save();
+        }    
+        $user_id =  $user->id;
+        $usersns = UserSns::where('sns_id', '=', $uid)->first();
+        
+        if(empty($usersns)){
+            $usersns = new UserSns;
+            $usersns->user_id   = $user_id;
+            $usersns->sns_type  = '1';
+            $usersns->sns_id    = $uid;
+            $usersns->authen_token = $authen_token;
+            $usersns->save();
+        }
+        
+        return $user;
+    }
 }

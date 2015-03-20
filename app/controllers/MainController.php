@@ -15,8 +15,7 @@ class MainController extends BaseController {
     public function main(){
     	if(!$this->checkLogin()) {
     		$data['title_for_layout'] = 'Chào mừng đến với stores.vn';
-    		$item_slides = SysAdver::getData();
-    		$data['item_slides'] = array_chunk($item_slides, 8);
+    		$data['item_slides'] = array_chunk(SysAdver::getData(), 8);
     		return View::make('main.index', $data);
     	} else {
     		 return Redirect::to('/dashboard');
@@ -45,7 +44,7 @@ class MainController extends BaseController {
             return Redirect::to('/');
         }
         $data['title_for_layout'] = '';
-        $data['clientid'] = Config::get('constants.clientid');
+        $data['clientid']    = Config::get('constants.clientid');
         $data['redirecturi'] = Config::get('constants.redirecturi');
 		if($id == 'gmail') {
 			$data['gmail_account']  = Session::get('account_gmail');;
@@ -60,28 +59,19 @@ class MainController extends BaseController {
      * @since 2015-02-06
      */
     public function invitation() {
-      if(Request::ajax())
-        {
-             $email = trim(Input::get('email'));
-             $name = trim(Input::get('name'));
-             $v = User::validate_email_invitation(Input::all());
-
+      if(Request::ajax()){
+            $email  = trim(Input::get('email'));
+            $name   = trim(Input::get('name'));
+            $v      = User::validate_email_invitation(Input::all());
             $status = "success";
             if($v->fails()){
             	$mss = array();
-            	foreach ($v->messages()->getMessages() as $field_name => $messages)
-    			{
-       				 $mss[$field_name] = $messages;// messages are retrieved (publicly)
+            	foreach ($v->messages()->getMessages() as $field_name => $messages){
+                    $mss[$field_name] = $messages;// messages are retrieved (publicly)
    				}
    				$status = $mss;
             } else {
-            	 $data = array(
-		            'domain' => Config::get('constants.domain'),
-		            'name'  => $name,
-		        	'website_name' => Config::get('constants.website_name'),
-		            'contact_email' => Config::get('constants.contact_email'),
-		        );
-            	 $this->send_email($email, $data);
+                $this->send_email($email, $this->getSendMailInfo());
        		 }
        		 return Response::json($status);
    		}
@@ -92,10 +82,11 @@ class MainController extends BaseController {
      * @since 2015-02-06
      */
     public function send_email($email, $data) {
-       $status = Mail::send('emails.referral', $data, function($message) use($email) {
-                $message->to($email, 'Mời tham gia Stores')->subject('Thư mời tham gia Store');
-       });
+        Mail::send('emails.referral', $data, function($message) use($email) {
+            $message->to($email, 'Mời tham gia Stores')->subject('Thư mời tham gia Store');
+        });
     }
+    
     /**
      *
      * Send email to invitation by Gmail friends
@@ -103,24 +94,19 @@ class MainController extends BaseController {
      * @since 2015-02-09
      */
     public function send_email_list(){
-     	if(Request::ajax())
-        {
-
-             $items_array = Input::get('user_emails');
-             $data = array(
-		            'domain' => Config::get('constants.domain'),
-		            'name'  => '',
-		        	'website_name' => Config::get('constants.website_name'),
-		            'contact_email' => Config::get('constants.contact_email'),
-		        );
-             foreach($items_array as $item) {
-             	$this->send_email($item, $data);
-
-             }
-             return Response::json('success');
+     	if(Request::ajax()){
+            $items_array = Input::get('user_emails');
+            $data        = $this->getSendMailInfo();
+            
+            foreach($items_array as $item) {
+               $this->send_email($item, $data);
+            }
+            
+            return Response::json('success');
         }
-
     }
+    
+   
     /**
      *
      * get gmail contact list
@@ -128,83 +114,46 @@ class MainController extends BaseController {
      * @since 2015-02-09
      */
     public function auth_gmail() {
-
-    	/*$output_array = array(
-    			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'binhhc@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'namnb@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht53@gmail.com'),
-    			 array( '0' => 'oanhha', '1' => 'oanhht@leverages.jp'),
-    			 array( '0' => 'oanhha', '1' => 'sangpm@leverages.jp'));*/
-    	$authcode = $_GET["code"];
-
-
-    	$clientid       = Config::get('constants.clientid');
-		$clientsecret   = Config::get('constants.clientsecret');
-		$redirecturi    = Config::get('constants.redirecturi');
-		$maxresults     = Config::get('constants.maxresults'); // Number of mailid you want to display.
+		$maxresults    = Config::get('constants.maxresults'); // Number of mailid you want to display.
+        
 		$fields=array(
-		'code'=> urlencode($authcode),
-		'client_id'=> urlencode($clientid),
-		'client_secret'=> urlencode($clientsecret),
-		'redirect_uri'=> urlencode($redirecturi),
-		'grant_type'=> urlencode('authorization_code') );
+            'code'          => $_GET["code"],
+            'client_id'     => Config::get('constants.clientid'),
+            'client_secret' => Config::get('constants.clientsecret'),
+            'redirect_uri'  => Config::get('constants.redirecturi'),
+            'grant_type'    => 'authorization_code' 
+        );
 
-		$fields_string = '';
-		foreach($fields as $key=>$value){ $fields_string .= $key.'='.$value.'&'; }
-		$fields_string = rtrim($fields_string,'&');
-
+		$fields_string = implode('&', array_map(function ($v, $k) { return $k . '=' . urlencode($v); }, $fields, array_keys($fields)));
+        
 		$ch = curl_init();//open connection
-		curl_setopt($ch,CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
-		curl_setopt($ch,CURLOPT_POST,5);
-		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+		curl_setopt($ch, CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
+		curl_setopt($ch, CURLOPT_POST,5);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$fields_string);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		$result = curl_exec($ch);
-
-		$response = json_decode($result);
+        
+		$result      = curl_exec($ch);
+		$response    = json_decode($result);
 		$accesstoken = $response->access_token;
-		if( $accesstoken!='')
-		$_SESSION['token']= $accesstoken;
+        
+		if( $accesstoken != '')
+            $_SESSION['token'] = $accesstoken;
+        
 		$xmlresponse= file_get_contents('https://www.google.com/m8/feeds/contacts/default/full?max-results='.$maxresults.'&oauth_token='. $_SESSION['token']);
 
 		$xml= new SimpleXMLElement($xmlresponse);
 		$xml->registerXPathNamespace('gd', 'http://schemas.google.com/g/2005');
+        
 		$output_array = array();
 		foreach ($xml->entry as $entry) {
-		  foreach ($entry->xpath('gd:email') as $email) {
-		    $output_array[] = array((string)$entry->title, (string)$email->attributes()->address);
-		  }
+            foreach ($entry->xpath('gd:email') as $email) {
+                $output_array[] = array((string)$entry->title, (string)$email->attributes()->address);
+            }
 		}
 
 		Session::put('account_gmail', $output_array);
     	return Redirect::to('/referral/gmail');
-
 
     }
 }

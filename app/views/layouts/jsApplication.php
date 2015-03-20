@@ -274,8 +274,18 @@ function ItemsController($scope, $resource, $location, $routeParams, $http, $roo
                     }]
                 }
             }
+			
+			var UPDATE_PAGE_TITLE_CATEGORY = $routeParams.category;
+			var CATEGORIES = <?php echo $categories;?>;
+			
+			if(!(_.isEmpty(CATEGORIES))) {
+				if($routeParams.category) {
+					var UPDATE_PAGE_TITLE_CATEGORY = CATEGORIES[$routeParams.category]['name'];
+				}
+			}
+
             var extendData = {};
-            STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), $routeParams.category && (extendData.category_id = $routeParams.category, $scope.category = $routeParams.category, updatePageTitle($routeParams.category));
+            STORES_JP.instead_referer && (extendData.instead_referer = STORES_JP.instead_referer, delete STORES_JP.instead_referer), $routeParams.category && (extendData.category_id = $routeParams.category, $scope.category = $routeParams.category, updatePageTitle(UPDATE_PAGE_TITLE_CATEGORY));
             //console.log($routeParams)
             var last_page = !1;
             $("#store_footer").hide(), $scope.footerFixed = function(last) {
@@ -11072,7 +11082,7 @@ services.factory("DeliveryMethod", ["$resource", function($resource) {
                     main_url_path = "/files/" + <?php echo $folderUploadId;?> + "/" +url_path_background;
                     is_original_background_image = !0;
                 };
-                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:44px;}</style>" ).appendTo("head");
+                $( "<style> body {background-color:"+ data.background.color +"; background-image:url("+main_url_path+");}#store_logo a, #navi_main a, #category_title, .step > p {color:"+data.text_color.store+"; text-decoration:none;}#store_logo a {font-family:"+data.store_font.style+"; font-weight:"+data.store_font.weight+";}.items a {color:"+data.text_color.item+";}#store_logo a {font-size:"+data.store_font.size+";}</style>" ).appendTo("head");
             })
         }(),
         function() {

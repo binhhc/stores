@@ -12,12 +12,17 @@
             <div class="opened_icon"></div>
             <h3 class="panel_btn"><span class="about">Giới thiệu</span></h3>
             <div class="store_font" ng-mouseover="font_change_mouseover()" ng-mouseleave="font_change_mouseleave()">
+                <ul class="language_switch">
+                    <li><a class="english" ng-class="{active: font_language_show=='en'}" ng-click="store.change_store_font_language('en')" href="">Tiếng anh</a></li>
+                    <li><a class="jp" ng-class="{active: font_language_show=='ja'}" ng-click="store.change_store_font_language('ja')" href="">Tiếng việt</a></li>
+                </ul>
                 <div class="slider_wrapper">
                     <div id="slider"></div>
                 </div>
                 <div id="font_scroll">
                     <ul class="font">
                         <li ng-repeat="font in preset.fonts.en" ng-class="{deactive: store_name_ja_only, active: select_font_name==font.name}" ng-show="font_language_show=='en'" ng-click="store.change_store_font(font.name, font.type, font.font_family2, font.font_weight)" ng-style="{ 'font-family': font.name, 'font-weight': font.font_weight }">MyStore</li>
+                        <li ng-repeat="font in preset.fonts.ja" ng-class="{active: select_font_name==font.name}" ng-show="font_language_show=='ja'" ng-click="store.change_store_font(font.name, font.type, font.font_family2, font.font_weight)" ng-style="{ 'font-family': font.name }">Cửa hàng của tôi</li>
                     </ul>
                 </div>
             </div>
@@ -191,10 +196,10 @@
             </h1>
             <div id="navi_main" style="display:none;" ng-show="categories.length >0 || hasAbout">
                 <dl style="font-family: Arial; white-space: nowrap;">
-                <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">Trang chủ</a></dd>
-                <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">Giới thiệu</a></dd>
+                <dd style="z-index:500;"><a href="" ng-style="styles.navi_main">TRANG CHỦ</a></dd>
+                <dd ng-show="hasAbout" style="z-index:500;"><a href="" ng-style="styles.navi_main">GIỚI THIỆU</a></dd>
                 <dd ng-show="categories.length >0" class="btn_dropdown" style="z-index:500;">
-                    <a href="" ng-style="styles.navi_main">Danh mục</a>
+                    <a href="" ng-style="styles.navi_main">DANH MỤC</a>
                     <ul class="dropdown">
                         <li ng-repeat="category in categories"><a href="">[[category.name]]</a></li>
                     </ul>

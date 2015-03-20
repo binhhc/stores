@@ -11,17 +11,13 @@ class UserAddon extends Model{
      * @author      Sang PM
      * @since       2015/01/20
      * 
+     * @modified    Sang PM
+     * @modified    2015/03/19
+     * 
      * get List User Addon
      */
     public static function getAllAddonByUser($ids = null){
-        $result = array();
-        $data = self::where('user_id',$ids)->where('active_flg',1)->get();
-        if(!empty($data)){
-            foreach($data as $da){
-                $result[] = $da['addon_id'];
-            }
-        }
-        return $result;
+        return self::where('user_id',$ids)->where('active_flg',1)->lists('addon_id');
     }
     
     /*

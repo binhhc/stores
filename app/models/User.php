@@ -204,7 +204,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         
         UserStore::registerNew($user->id, $user->email);
         
-        $usersns = UserSns::where('sns_id', '=', $uid)->first();
+        $usersns = UserSns::where('sns_id', '=', $uid)
+                ->where('user_id', '=', $user->id)->first();
         
         if(empty($usersns)){
             $usersns = new UserSns;

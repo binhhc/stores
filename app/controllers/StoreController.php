@@ -608,10 +608,8 @@ class StoreController extends BaseController {
         $language['prefectures'] = MsPrefecture::getJsonData();
 
         $userStoreByDomain = UserStore::getUserStoreByDomain($parameters);
-        $folderUploadId    = $userStoreByDomain->user_id;
-
-        //categories
-        $userId         = UserStore::getUserStoreByDomain($parameters)->user_id;
+        
+        $userId         = $folderUploadId = $userStoreByDomain->user_id;
         $userCategories = UserCategory::getUserCaterogiesByUserId($userId)->toArray();
 
         $categories = array();
@@ -626,7 +624,7 @@ class StoreController extends BaseController {
                 'prefecture'    => json_encode(MsPrefecture::getJsonData()),
                 'language'      => json_encode($language),
                 'folderUploadId'=> $folderUploadId,
-                'categories' => json_encode($categories)
+                'categories'    => json_encode($categories)
                 ));
 
         $response = Response::make($content, 200);

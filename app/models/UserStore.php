@@ -131,4 +131,22 @@ class UserStore extends Model{
 
         return "";
     }
+    
+    /*
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * get user stores from domain
+     */
+    public static function registerNew($user_id , $email){
+        $data = self::getUserStoreByUserId($user_id);
+        if(!empty($data))return $data;
+        
+        $tmpEmail  = explode('@', $email);
+        $userStore          = new UserStore;
+        $userStore->domain  = UserStore::getNewDomain($tmpEmail[0]);
+        $userStore->user_id = $user_id;
+        $userStore->save();
+        return $userStore;
+    }
 }

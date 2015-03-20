@@ -624,15 +624,7 @@ class UserController extends BaseController {
                 $user_data = array('email' => $email, 'password' => $password);
 
                 if( Auth::attempt($user_data) && $user->save()) {
-
-                    $user_data = User::where('email', '=', $email)->first();
-                    $tmpEmail  = explode('@', $email);
-
-                    $userStore          = new UserStore;
-                    $userStore->domain  = UserStore::getNewDomain($tmpEmail[0]);
-                    $userStore->user_id = $user_data->id;
-                    $userStore->save();
-
+                    UserStore::registerNew($user_data->id, $email);
                     $this->regisSession($user_data);
                     Session::put('first_register', 'hello');
 

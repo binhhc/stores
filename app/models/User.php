@@ -201,12 +201,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $user->account_token = User::createAccountToken();
             $user->save();
         }    
-        $user_id =  $user->id;
+        
+        UserStore::registerNew($user->id, $user->email);
+        
         $usersns = UserSns::where('sns_id', '=', $uid)->first();
         
         if(empty($usersns)){
             $usersns = new UserSns;
-            $usersns->user_id   = $user_id;
+            $usersns->user_id   = $user->id;
             $usersns->sns_type  = '1';
             $usersns->sns_id    = $uid;
             $usersns->authen_token = $authen_token;

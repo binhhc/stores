@@ -1,4 +1,9 @@
 <?php
+if ( !function_exists('_') ) {
+  function _($string) {
+    return $string;
+  }
+}
 
 class BaseController extends Controller {
 
@@ -60,5 +65,16 @@ class BaseController extends Controller {
                 'website_name'  => Config::get('constants.website_name'),
                 'contact_email' => Config::get('constants.contact_email'),
             );
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/
+    public function implodeKeyValue($fields = array()){
+       return implode('&', array_map(function ($v, $k) { return $k . '=' . $v; }, $fields, array_keys($fields)));
     }
 }

@@ -32,12 +32,14 @@ class UserController extends BaseController {
         		'redirect_url'  => $redirect_url,
         	);
         }
+        
      	if(!empty($item_id) && !empty($redirect_url)) {
         	$data = array(
         		'item_id'       => $item_id,
         		'redirect_url'  => $redirect_url. '#!/items/' . $item_id,
         	);
         }
+        
         return View::make('user.login', $data);
     }
 
@@ -46,8 +48,8 @@ class UserController extends BaseController {
      *
      * @param  null
      * @return Response
-     * @author Binh Hoang
-     * @since 2015.01.14
+     * @author Sang PM
+     * @since 2015/03/20
      */
     public function doLogin(){
         $v = User::validate(Input::all());
@@ -56,47 +58,19 @@ class UserController extends BaseController {
             return Redirect::to('/login')->withErrors($v)->withInput(Input::except('password'));
 
         $userdata = array(
-            'email' => trim(Input::get('email')),
-            'password' => trim(Input::get('password'))
+            'email'     => trim(Input::get('email')),
+            'password'  => trim(Input::get('password'))
         );
 
         if (Auth::attempt($userdata)) {
-            // validation successful!
-            $user = User::where('email', '=', $userdata['email'])
-                    ->where('delete_flg', '=', 0)->first()->toArray();
-
-            Session::put('user',$user );
-            Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-            
-            $store_user_id  = Input::get('store_user_id');
-            $redirect_url   = trim(Input::get('redirect_url'));
-            $item_id        = Input::get('item_id');
-            $user_id        = Session::get('user.id');
-            $_SESSION["user_id"] = $user_id;
-            
-            if(!empty($store_user_id) && !empty($redirect_url)) {
-                // add Follow for user
-                $store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-                if(intval($store_user_id) != $user_id) {
-					Follow::addFollow($store['id'], $user_id);
-
-            	}
-            	return Redirect::to( $redirect_url);
-            }
-            
-        	if(!empty($item_id) && !empty($redirect_url)) {
-            	// add Follow for user
-            	Favorite::addFavorite($item_id, $user_id);
-            	echo "<script>window.location = '". $redirect_url . "'</script>";
-            	exit;
-            }
-            
+            $user = User::getByEmail($userdata['email']);
+            $this->regisSession($user);
+            $this->addFollow();
             return Redirect::to('/dashboard');
-        } else {
-            // validation not successful, send back to form
-            return Redirect::to('/login')->withInput(Input::except('password'))->with('message', _('Email hoặc mật khẩu không đúng.'));
-        }
+        } 
 
+        $message = _('Email hoặc mật khẩu không đúng.');
+        return Redirect::to('/login')->withInput(Input::except('password'))->with('message', $message);
     }
 
     /**
@@ -118,7 +92,8 @@ class UserController extends BaseController {
         	$store_user_id  =  $store['user_id'];
         }
         
-        $data       = '?store_user_id=' . $store_user_id . '&redirect_url=' . $redirect_url . '&item_id=' . $item_id;
+        $data       = '?'.$this->implodeKeyValue(compact(array('store_user_id','redirect_url','item_id')));
+        
         $facebook   = new Facebook(Config::get('facebook'));
         $params     = array(
             'redirect_uri'  => url('/login/fb/callback'. $data),
@@ -133,84 +108,17 @@ class UserController extends BaseController {
      *
      * @param  null
      * @return Response
-     * @author Binh Hoang
-     * @since 2015.01.19
+     * @author Sang PM
+     * @since 2015/03/20
      */
     public function facebookCallback(){
-        $code           = Input::get('code');
-        $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
-        $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
-        $item_id        = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
+        $rs  = $this->getFaceData();
+        if (isset($rs['message']))
+            return Redirect::to('/')->with('message', $rs['message']);
         
-        if (strlen($code) == 0)
-            return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
-
-        $facebook = new Facebook(Config::get('facebook'));
-        $uid = $facebook->getUser();
-
-        if ($uid == 0)
-            return Redirect::to('/')->with('message', 'Lỗi kết nối!');
-
-        $me      = $facebook->api('/me');
-
-        $usersns = UserSns::where('sns_id', '=', $uid)->first();
-
-        $user   = User::where('email', '=', $me['email'])->first();
-
-        $user_id = 0;
-        //check email exist in database
-        if (empty($user)) {
-            $user = new User;
-            $user->email = $me['email'];
-            $user->account_token = User::createAccountToken();
-            $user->save();
-
-            //get last insert id
-            $user_id = $user->id;
-
-            $usersns = new UserSns();
-            $usersns->user_id = $user_id;
-            $usersns->sns_type = '1';
-            $usersns->sns_id = $uid;
-            $usersns = $user->usersns()->save($usersns);
-        }else{ //user exist
-            if(empty($usersns)){
-                $usersns = new UserSns();
-                $user_id = $usersns->user_id = $user['id'];
-                $usersns->sns_type = '1';
-                $usersns->sns_id = $uid;
-                $usersns->save();
-            }
-        }
-
-        $usersns->authen_token = $facebook->getAccessToken();
-
-        $usersns->save();
-
-        $user = $usersns->user;
-        $session_user = $user->toArray();
-        //save to session
-        Session::put('user', $session_user);
-        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-        Auth::login($user);
-
-        $_SESSION["user_id"] = $user_id;
-        
-     	if(!empty($store_user_id) && !empty($redirect_url)) {
-            $store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            if(intval($store_user_id) !== $user_id) {
-                Follow::addFollow($store['id'], $user_id);
-            }
-            return Redirect::to( $redirect_url);
-        }
-        
-    	if(!empty($item_id) && !empty($redirect_url)) {
-            $user_id = Session::get('user.id');
-            Favorite::addFavorite($item_id, $user_id);
-            echo "<script>window.location = '". $redirect_url . "'</script>";
-            exit;
-        }
-        
+        $user = User::saveFacebookData($rs);
+        $this->regisSession($user);
+        $this->addFollow();
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
 
@@ -241,50 +149,81 @@ class UserController extends BaseController {
      * @since 2015.01.19
      */
     public function facebookRegister(){
-        $code = Input::get('code');
+        $rs  = $this->getFaceData();
+        if (isset($rs['message']))
+            return Redirect::to('/')->with('message', $rs['message']);
+        
+        $user = User::saveFacebookData($rs);
+        $this->regisSession($user);
+        $this->addFollow();
+        
+        return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/    
+    public function getFaceData(){
+        $code   = Input::get('code');
         if (strlen($code) == 0)
-            return Redirect::to('/')->with('message', 'Không thể kết nối với Facebook.');
+            return array('message', 'Không thể kết nối với Facebook.');
 
-        $facebook   = new Facebook(Config::get('facebook'));
-        $uid        = $facebook->getUser();
+        $facebook = new Facebook(Config::get('facebook'));
+        $uid      = $facebook->getUser();
 
         if ($uid == 0)
-            return Redirect::to('/')->with('message', 'Lỗi kết nối!');
-
-        $me         = $facebook->api('/me');
-        $usersns    = UserSns::where('sns_id', '=', $uid)->first();
-        $user       = User::where('email', '=', $me['email'])->first();
-
-        //check email exist in database
-        if (empty($user)) {
-            $user = new User;
-            $user->email         = $me['email'];
-            $user->account_token = User::createAccountToken();
-            $user->save();
-
-            //get last insert id
-            $lastInsertId = $user->id;
-
-            $usersns            = new UserSns();
-            $usersns->user_id   = $lastInsertId;
-            $usersns->sns_type  = '1';
-            $usersns->sns_id    = $uid;
-            $usersns = $user->usersns()->save($usersns);
-
-            $usersns->authen_token = $facebook->getAccessToken();
-
-            $usersns->save();
-
-            $user = $usersns->user;
-            $session_user = $user->toArray();
-            //save to session
-            Session::put('user', $session_user);
-            Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-            Auth::login($user);
-
-            return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
-        }else{ //user exist
-            return Redirect::to('/')->with('message', 'Đăng nhập bằng Facebook');
+            return array('message', 'Lỗi kết nối!');
+        
+        $me = $facebook->api('/me');
+        $authen_token = $facebook->getAccessToken();
+        
+        return compact(array('me','uid','authen_token'));
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/    
+    public function regisSession($user = null){
+        Auth::login($user);
+        $session_user = $user->toArray();
+        Session::put('user', $session_user);
+        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
+        $_SESSION["user_id"] = $user->id;
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/    
+    public function addFollow(){
+        $user_id        = Session::get('user.id');
+        $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
+        $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
+        $item_id        = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
+        
+     	if(!empty($store_user_id) && !empty($redirect_url)) {
+            $store = UserStore::where('user_id', $store_user_id)->first()->toArray();
+            if(intval($store_user_id) !== $user_id) 
+                Follow::addFollow($store['id'], $user_id);
+            
+            echo "<script>window.location = '". $redirect_url . "'</script>";exit;
+        }
+        
+    	if(!empty($item_id) && !empty($redirect_url)) {
+            Favorite::addFavorite($item_id, $user_id);
+            
+            echo "<script>window.location = '". $redirect_url . "'</script>";exit;
         }
     }
 
@@ -363,20 +302,16 @@ class UserController extends BaseController {
             return Redirect::to('/');
 
         if(empty($password)){
-            //Save to session
-            Session::put('user', $user->toArray());
-            Auth::login($user);
+            $this->regisSession($user);
             return Redirect::to('/dashboard');
         }else{
             $new_token   = User::createAccountToken();
             //update new account_token
             User::where('id',$user->id)
                 ->update(array('account_token' => $new_token, 'password' => Hash::make($password)));
-
-            $user = User::where('email', '=', $input['email'])->first();
+            
             if(!empty($user)){
-                Session::put('user', $user->toArray());
-                Auth::login($user);
+                $this->regisSession($user);
                 return Redirect::to('/dashboard');
             }else{
                  return Redirect::to('/');
@@ -446,17 +381,15 @@ class UserController extends BaseController {
 
         if(!empty($new_email)){
             $user = Session::get('user');
-            $encrypt_new_email = Crypt::encrypt($new_email);
-            $encrypt_old_email = Crypt::encrypt($user['email']);
-
-            $link_reset = URL::to('/update_email').'?code='. $encrypt_old_email.'-m1-'. $encrypt_new_email;
+            $link_reset = URL::to('/update_email').'?code='. Crypt::encrypt($user['email']).'-m1-'. Crypt::encrypt($new_email);
 
             $data = array(
                 'link_reset' => $link_reset,
             );
 
             Mail::send('emails.update_email', $data, function($message) use($new_email) {
-                $message->to($new_email, 'STORES.vn')->subject('【STORES.vn】 Thay đổi địa chỉ email!');
+                $message->to($new_email, Config::get('constants.website_name'))
+                        ->subject('【'.Config::get('constants.website_name').'】 Thay đổi địa chỉ email!');
             });
         }
         
@@ -607,32 +540,19 @@ class UserController extends BaseController {
      *
      * @param  null
      * @return Response
-     * @author Binh Hoang
-     * @since 2015.01.20
+     * @author Sang PM
+     * @since 2015/03/20
      */
     public function changeMailNotificationSetting(){
-        $user_id = $this->getUserId();
-        $info = UserNotification::where('user_id', $user_id)->first();
-
-        $follow = $notice = 0;
-        if(!empty($info)){
-            $email_noti = decbin($info->mail_notify);
-            if($email_noti == 0){
-                $follow = 0;
-                $notice = 0;
-            }elseif($email_noti == 1){
-                $email_noti = '01';
-                $email_noti = str_split((string)$email_noti);
-                $follow = $email_noti[0];
-                $notice = $email_noti[1];
-            }else{
-                $email_noti = str_split((string)$email_noti);
-                $follow = $email_noti[0];
-                $notice = $email_noti[1];
-            }
-        }
-
-        return View::make('user.change_mail_notification_setting')->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email', 'mail_follow' => $follow, 'mail_notice' => $notice));
+        $info   = UserNotification::where('user_id', $this->getUserId())->first();
+        $notify = (empty($info)) ? 0 : decbin($info->mail_notify);
+        
+        $email_noti = str_split((string)(sprintf("%02d",$notify)));
+        $follow = $email_noti[0];
+        $notice = $email_noti[1];
+       
+        return View::make('user.change_mail_notification_setting')
+                ->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email', 'mail_follow' => $follow, 'mail_notice' => $notice));
     }
 
     /**
@@ -651,18 +571,16 @@ class UserController extends BaseController {
             $info    = UserNotification::where('user_id', $user_id)->first();
 
             if(empty($info)){
-                $user_noti          = new UserNotification();
+                $user_noti          = new UserNotification;
                 $user_noti->user_id = $user_id;
                 $user_noti->mail_notify = bindec($follow.$notice);
-
                 $user_noti->save();
             }else{
                 UserNotification::where('user_id', $user_id)
                     ->update(array('mail_notify' => bindec($follow.$notice)));
             }
 
-            $success =  "1";
-            return Response::json($success);
+            return Response::json(1);
         }
     }
 
@@ -686,7 +604,6 @@ class UserController extends BaseController {
      */
     public function register() {
         if(Request::ajax()){
-            $input      = Input::all();
             $email      = trim(Input::get('email'));
             $password   = trim(Input::get('password'));
             $v          = User::validate_register(Input::all());
@@ -705,23 +622,21 @@ class UserController extends BaseController {
                 $user->account_token = User::createAccountToken();
                 $user_data = array('email' => $email, 'password' => $password);
                 
-                if($user->save()) {
-                    if (Auth::attempt($user_data)) {
-                        $user_data = User::where('email', '=', $email)->first()->toArray();
-                	    $tmpEmail  = explode('@', $email);
-                        
-        			    $userStore          = new UserStore;
-        			    $userStore->domain  = UserStore::getNewDomain($tmpEmail[0]);
-        			    $userStore->user_id = $user_data['id'];
-        			    $userStore->save();
-                        
-                        Session::put('user', $user_data);
-                        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-                        Session::put('first_register', 'hello');
-                        //$this->send_email();
-                        $status = "success";
-                        $mss    = 'Success';
-                    } 
+                if( Auth::attempt($user_data) && $user->save()) {
+                    
+                    $user_data = User::where('email', '=', $email)->first();
+                    $tmpEmail  = explode('@', $email);
+
+                    $userStore          = new UserStore;
+                    $userStore->domain  = UserStore::getNewDomain($tmpEmail[0]);
+                    $userStore->user_id = $user_data->id;
+                    $userStore->save();
+
+                    $this->regisSession($user_data);
+                    Session::put('first_register', 'hello');
+
+                    $status = "success";
+                    $mss    = 'Success';
                 } 
             }
             
@@ -770,8 +685,7 @@ class UserController extends BaseController {
             $user_info->account_token  = User::createAccountToken();
             $user_info->account_active = 1;
             $user_info->save();
-            $user = $user_info->toArray();
-            Session::put('user', $user);
+            $this->regisSession($user_info);
             $active =  "1";
         } 
         

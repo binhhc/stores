@@ -103,7 +103,6 @@ class UserController extends BaseController {
      * @since 2015.01.16
      */
     public function loginFacebook(){
-
         $store_user_id = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $item_id = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;

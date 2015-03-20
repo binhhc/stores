@@ -433,7 +433,7 @@ class StoreController extends BaseController {
 
         $userItems              = UserItem::getFullItemInfo($id);
         $userItems['favorite']  = Favorite::getStatus($id, $this->getUserId());
-        
+
         echo json_encode($userItems);
         exit;
     }
@@ -1545,6 +1545,7 @@ class StoreController extends BaseController {
             	// add Follow for user
             	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
             	//$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
+            	//var_dump($store['id']); echo $login_user;
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);

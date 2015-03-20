@@ -19,11 +19,11 @@ class UserController extends BaseController {
         if(Session::has('user')){
             return Redirect::to('/dashboard');
         }
-        
+
         $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $item_id        = isset($_GET['item_id']) ?  $_GET['item_id'] : '';
-        
+
         $data       = array();
         if(!empty($store_user_id) && !empty($redirect_url)) {
         	$store  = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
@@ -32,14 +32,14 @@ class UserController extends BaseController {
         		'redirect_url'  => $redirect_url,
         	);
         }
-        
+
      	if(!empty($item_id) && !empty($redirect_url)) {
         	$data = array(
         		'item_id'       => $item_id,
         		'redirect_url'  => $redirect_url. '#!/items/' . $item_id,
         	);
         }
-        
+
         return View::make('user.login', $data);
     }
 
@@ -67,7 +67,7 @@ class UserController extends BaseController {
             $this->regisSession($user);
             $this->addFollow();
             return Redirect::to('/dashboard');
-        } 
+        }
 
         return Redirect::to('/login')->withInput(Input::except('password'))
                 ->with('message', _('Email hoặc mật khẩu không đúng.'));
@@ -86,14 +86,14 @@ class UserController extends BaseController {
         $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $item_id        = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
-        
+
      	if(!empty($store_user_id) && !empty($redirect_url)) {
         	$store          = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
         	$store_user_id  =  $store['user_id'];
         }
-        
+
         $data       = '?'.$this->implodeKeyValue(compact(array('store_user_id','redirect_url','item_id')));
-        
+
         $facebook   = new Facebook(Config::get('facebook'));
         $params     = array(
             'redirect_uri'  => url('/login/fb/callback'. $data),
@@ -115,7 +115,7 @@ class UserController extends BaseController {
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
             return Redirect::to('/')->with('message', $rs['message']);
-        
+
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
         $this->addFollow();
@@ -152,21 +152,21 @@ class UserController extends BaseController {
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
             return Redirect::to('/')->with('message', $rs['message']);
-        
+
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
         $this->addFollow();
-        
+
         return Redirect::to('/dashboard')->with('message', 'Đăng nhập bằng Facebook');
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
      *
      * @modified
      * @modified by
-     **/    
+     **/
     public function getFaceData(){
         $code   = Input::get('code');
         if (strlen($code) == 0)
@@ -177,20 +177,20 @@ class UserController extends BaseController {
 
         if ($uid == 0)
             return array('message', 'Lỗi kết nối!');
-        
+
         $me = $facebook->api('/me');
         $authen_token = $facebook->getAccessToken();
-        
+
         return compact(array('me','uid','authen_token'));
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
      *
      * @modified
      * @modified by
-     **/    
+     **/
     public function regisSession($user = null){
         Auth::login($user);
         $session_user = $user->toArray();
@@ -198,31 +198,31 @@ class UserController extends BaseController {
         Session::put('userStoresDomain', UserStore::getUserStoreDomain());
         $_SESSION["user_id"] = $user->id;
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
      *
      * @modified
      * @modified by
-     **/    
+     **/
     public function addFollow(){
         $user_id        = Session::get('user.id');
         $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
         $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
         $item_id        = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
-        
+
      	if(!empty($store_user_id) && !empty($redirect_url)) {
             $store = UserStore::where('user_id', $store_user_id)->first()->toArray();
-            if(intval($store_user_id) !== $user_id) 
+            if(intval($store_user_id) !== $user_id)
                 Follow::addFollow($store['id'], $user_id);
-            
+
             echo "<script>window.location = '". $redirect_url . "'</script>";exit;
         }
-        
+
     	if(!empty($item_id) && !empty($redirect_url)) {
             Favorite::addFavorite($item_id, $user_id);
-            
+
             echo "<script>window.location = '". $redirect_url . "'</script>";exit;
         }
     }
@@ -244,7 +244,7 @@ class UserController extends BaseController {
                     ->where('account_token', '=', $input['token'])
                     ->first();
 
-            return (empty($user)) ? Redirect::to('/') : 
+            return (empty($user)) ? Redirect::to('/') :
                 View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$input['token']));
         }
         return View::make('user.forgot_password');
@@ -261,7 +261,7 @@ class UserController extends BaseController {
     public function doForgetPassword(){
         $email      = Input::get('email');
         $result     = 0;
-        
+
         if(!empty($email)){
             $user   = User::getByEmail($email);
 
@@ -310,7 +310,7 @@ class UserController extends BaseController {
             //update new account_token
             User::where('id',$user->id)
                 ->update(array('account_token' => $new_token, 'password' => Hash::make($password)));
-            
+
             if(!empty($user)){
                 $this->regisSession($user);
                 return Redirect::to('/dashboard');
@@ -393,7 +393,7 @@ class UserController extends BaseController {
                         ->subject('【'.Config::get('constants.website_name').'】 Thay đổi địa chỉ email!');
             });
         }
-        
+
         return Redirect::to('/account_setting');
     }
 
@@ -426,9 +426,9 @@ class UserController extends BaseController {
             User::where('id', $user['id'])
                 ->update(array('password' => Hash::make($input['password'])));
         }
-        
+
         return Redirect::to('/account_setting');
-       
+
     }
 
     /**
@@ -442,7 +442,7 @@ class UserController extends BaseController {
     public function registerProfile(){
         $user           = Session::get('user');
         $user_profile   = (empty($user)) ? '' : UserProfile::where('user_id', $user['id'])->first();
-        
+
         return View::make('user.change_profile')->with(array('title_for_layout' => 'Thay đổi hồ sơ', 'user_profile' => $user_profile ));
     }
 
@@ -462,7 +462,7 @@ class UserController extends BaseController {
         $username   = Input::get('name');
         $image      = Input::file('image_url');
         $v          = UserProfile::validate_input($input);
-        
+
         if($v->passes()){
             $user         = Session::get('user');
             $user_profile = UserProfile::where('user_id', $user['id'])->first();
@@ -496,7 +496,7 @@ class UserController extends BaseController {
             }
             return Redirect::to('/account_setting')->withInput()->with('success', 'Cập nhật hồ sơ thành công!');
         }
-            
+
         return Redirect::to('/account_setting')->withErrors($v)->withInput(Input::except('name'));
     }
 
@@ -547,11 +547,11 @@ class UserController extends BaseController {
     public function changeMailNotificationSetting(){
         $info   = UserNotification::where('user_id', $this->getUserId())->first();
         $notify = (empty($info)) ? 0 : decbin($info->mail_notify);
-        
+
         $email_noti = str_split((string)(sprintf("%02d",$notify)));
         $follow = $email_noti[0];
         $notice = $email_noti[1];
-       
+
         return View::make('user.change_mail_notification_setting')
                 ->with(array('title_for_layout' => 'Thay đổi thiết lập thông báo email', 'mail_follow' => $follow, 'mail_notice' => $notice));
     }
@@ -622,9 +622,9 @@ class UserController extends BaseController {
                 $user->password  = Hash::make($password);
                 $user->account_token = User::createAccountToken();
                 $user_data = array('email' => $email, 'password' => $password);
-                
+
                 if( Auth::attempt($user_data) && $user->save()) {
-                    
+
                     $user_data = User::where('email', '=', $email)->first();
                     $tmpEmail  = explode('@', $email);
 
@@ -638,9 +638,9 @@ class UserController extends BaseController {
 
                     $status = "success";
                     $mss    = 'Success';
-                } 
+                }
             }
-            
+
             return Response::json( array('status' => $status,'msg' => $mss,) );
         }
     }
@@ -665,7 +665,7 @@ class UserController extends BaseController {
             });
             $response = array('sucess' => $status);
         }
-        
+
         return Response::json( $response );
 
     }
@@ -680,7 +680,7 @@ class UserController extends BaseController {
      */
     public function active($token = null){
         $user_info = User::where('account_token',$token)->first();
-        
+
         $active = "2";
         if(User::checkExpiredTime($user_info) == true){
             $user_info->account_token  = User::createAccountToken();
@@ -688,8 +688,8 @@ class UserController extends BaseController {
             $user_info->save();
             $this->regisSession($user_info);
             $active =  "1";
-        } 
-        
+        }
+
         return Redirect::to('/dashboard')->with('active',  $active);
 
     }

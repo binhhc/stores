@@ -20,7 +20,7 @@
     		</p>
           </div>
         <!-- <iframe src="/iframe/store/follow_header?position=header&follow=<?php echo $follow_status?>&follow_count=<?php echo $follow_count?>&user_store_id={{$user_store_id}}" style="top: 20px; right: 90px; position: fixed;position:absolute; top: 80px !important; width: 120px; height: 40px; z-index:100; background-color:transparent;" scrolling="no" frameborder="0" sp-if="follow"></iframe> -->
-    
+
         <!-- Cart/ -->
         <div id="cart_button" class="private" style="z-index:1">
             <a href="#popup_cart">
@@ -193,7 +193,6 @@
         	 e.preventDefault();
         	 var btn=$(this);
         	 var store_user_id = $(btn).attr("user_store_id");
-
         	 if(login_user_md5 == store_user_id) {
         		 $('#modal-win').show();
         		 return;

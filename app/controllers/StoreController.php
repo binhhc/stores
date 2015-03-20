@@ -10,7 +10,7 @@ class StoreController extends BaseController {
         $typeLanguage = UserAddon::getLanguegeByDomain($parameters);
         App::setLocale($typeLanguage);
     }
-    
+
     /**
      * @author  Le Nhan Hau
      * @since   2015/02/03
@@ -20,14 +20,14 @@ class StoreController extends BaseController {
     public function ownerStore($parameters) {
         $this->setLang($parameters);
         $domain = Request::url();
-        
+
         $languagePopupFollow = Lang::get('store.store_popup_follow');
         $follow     = Lang::get('store.follow');
         $following  = Lang::get('store.following');
-       
+
         $store_user = $tmpUserStores = UserStore::getUserStoreByDomain($parameters);
         $tmpUserProfiles = UserProfile::getUserProfileByUserId($store_user->user_id);
-       
+
         if (!empty($tmpUserProfiles)) {
             $userProfiles = array(
                 'name' => $tmpUserProfiles->name,
@@ -45,7 +45,7 @@ class StoreController extends BaseController {
                 )
             );
         }
-		
+
 		$userStores = array(
             'store' => array(
                     'name' => ''
@@ -62,9 +62,9 @@ class StoreController extends BaseController {
 
         //font family
         $fontFamily = Config::get('constants.sys_css');
-        $user_id        = $this->getUserId();
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
         $follow_status  = Follow::getStatus($parameters, $user_id);
-        
+
         $data = array(
             'public_flg' => 1,
             'domain'     => $domain,
@@ -82,7 +82,7 @@ class StoreController extends BaseController {
             'fontFamily'    => $fontFamily,
             'languagePopupFollow' => $languagePopupFollow,
         );
-        
+
         return View::make('store.owner_store', $data);
     }
 
@@ -105,7 +105,7 @@ class StoreController extends BaseController {
             $stores     = $settings->store;
             $email      = $data['email'];
             $data['store_name'] = $stores->name;
-       
+
         Mail::send('emails.contacts', $data, function($message) use($email) {
             $message->to($email, 'Liên hệ thành công')->subject('Cảm ơn bạn đã liên hệ với chúng tôi');
         });
@@ -228,7 +228,7 @@ class StoreController extends BaseController {
             'cnt_pages'  => $tmpUserItems->getLastPage(),
             'last_page?' => $lastpage
         );
-        
+
         if (!empty($tmpUserItems)) {
             foreach ($tmpUserItems as $key => $value) {
                 $userItems['items'][] = array(
@@ -243,7 +243,7 @@ class StoreController extends BaseController {
                     'variations'    => array(),
                     'description'   => $value->introduce,
                     'digital_contents'  => '',
-                    
+
                 );
             }
         }
@@ -332,14 +332,15 @@ class StoreController extends BaseController {
      */
     public function aboutDetail($parameters) {
         $this->setLang($parameters);
-        
+
         $store_main_menu    = $this->setLanguageForMenu($parameters);
         $store_about        = Lang::get('store.store_about');
         $follow             = Lang::get('store.follow');
         $following          = Lang::get('store.following');
-        $follow_status      = Follow::getStatus($parameters, $this->getUserId());
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+        $follow_status      = Follow::getStatus($parameters,$user_id);
         $store_user         = UserStore::getUserStoreByDomain($parameters);
-        
+
         $data = array(
             'store_main_menu' => $store_main_menu,
             'store_about'   => $store_about,
@@ -348,7 +349,7 @@ class StoreController extends BaseController {
         	'follow'        => $follow,
         	'following'     => $following
         );
-        
+
         return View::make('store.about', $data);
     }
 
@@ -364,7 +365,7 @@ class StoreController extends BaseController {
 
         $userItems              = UserItem::getFullItemInfo($id);
         $userItems['favorite']  = Favorite::getStatus($id, $this->getUserId());
-        
+
         echo json_encode($userItems);
         exit;
     }
@@ -610,14 +611,14 @@ class StoreController extends BaseController {
         
         $userId         = $folderUploadId = $userStoreByDomain->user_id;
         $userCategories = UserCategory::getUserCaterogiesByUserId($userId)->toArray();
-        
+
         $categories = array();
         if (!empty($userCategories)) {
             foreach ($userCategories as $key => $value) {
                 $categories[$value['id']] = $value;
             }
         }
-        
+
         $content = View::make('layouts.jsApplication',
             array(
                 'prefecture'    => json_encode(MsPrefecture::getJsonData()),
@@ -625,7 +626,7 @@ class StoreController extends BaseController {
                 'folderUploadId'=> $folderUploadId,
                 'categories'    => json_encode($categories)
                 ));
-        
+
         $response = Response::make($content, 200);
         $response->header('Content-Type', 'application/javascript');
         return $response;
@@ -672,7 +673,7 @@ class StoreController extends BaseController {
         $this->setLang($parameters);
         return Lang::get('store.store_main_menu');
     }
-    
+
     /**
      * @author          Sang Pm
      * @since           2015/03/18
@@ -906,7 +907,7 @@ class StoreController extends BaseController {
                     $style['logo'] = $store->store_style->logo_image;
                 }
             }
-            
+
             echo json_encode($style);
         }
     }
@@ -1363,6 +1364,7 @@ class StoreController extends BaseController {
             if(!empty($store_user_id) && !empty($login_user)) {
             	// add Follow for user
             	$store = UserStore::whereRaw('md5(user_stores.user_id) = "'.$store_user_id.'"')->first()->toArray();
+            	//$store = UserStore::where('user_id', $store_user_id)->first()->toArray();
             	Follow::addFollow($store['id'], $login_user);
             }
 			return Response::json(1);

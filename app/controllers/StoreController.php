@@ -598,6 +598,7 @@ class StoreController extends BaseController {
      * @author          Le Nhan Hau
      * @since           2015/03/04
      *
+     * @modified date   2015/03/20
      * generate js application
      */
     public function jsApplication($parameters) {
@@ -608,11 +609,23 @@ class StoreController extends BaseController {
         $userStoreByDomain = UserStore::getUserStoreByDomain($parameters);
         $folderUploadId    = $userStoreByDomain->user_id;
 
+        //categories
+        $userId         = UserStore::getUserStoreByDomain($parameters)->user_id;
+        $userCategories = UserCategory::getUserCaterogiesByUserId($userId)->toArray();
+        
+        $categories = array();
+        if (!empty($userCategories)) {
+            foreach ($userCategories as $key => $value) {
+                $categories[$value['id']] = $value;
+            }
+        }
+        
         $content = View::make('layouts.jsApplication',
             array(
                 'prefecture'    => json_encode(MsPrefecture::getJsonData()),
                 'language'      => json_encode($language),
-                'folderUploadId'=> $folderUploadId
+                'folderUploadId'=> $folderUploadId,
+                'categories' => json_encode($categories)
                 ));
         
         $response = Response::make($content, 200);

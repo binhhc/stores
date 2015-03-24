@@ -28,7 +28,7 @@ class UserItem extends Model{
         $rules = array(
             'name' => 'required',
             'price' => 'required|numeric|min:100',
-            'image_url' => 'required',
+            'image_name' => 'required',
         );
         return Validator::make($input, $rules);
     }
@@ -151,7 +151,7 @@ class UserItem extends Model{
                ->where('order','>',$pos)
                ->increment('order');
    }
-   
+
     /**
      * @author      Sang PM
      * @since       2015/03/18
@@ -161,7 +161,7 @@ class UserItem extends Model{
      **/
     public static function getFullItemInfo($id){
         $tmpUserItems = self::getUserItemByItemId($id);
-        
+
         $quantities = $variations = $items_ids = $itemQuantity = array();
 
         if (!empty($tmpUserItems)) {
@@ -171,17 +171,17 @@ class UserItem extends Model{
                 foreach ($userItemQuantity as $key => $value){
                     $items_ids[]    = $value->id;
                 }
-              
+
                 if(!empty($items_ids)){
                     $quantities     = OrderItem::getItemQuantityPayMent($items_ids);
                 }
 
                 foreach ($userItemQuantity as $key => $value) {
                     $variations[!empty($value->size_name) ? $value->size_name : 'df'] = $value->id;
-                    
-                    $quati = isset($quantities[$value->id]) ? 
+
+                    $quati = isset($quantities[$value->id]) ?
                             (max(($value->quantity - $quantities[$value->id]),0)) : $value->quantity;
-                    
+
                     $itemQuantity[]     =  array(
                         'id'            => $value->id,
                         'quantity'      => (int)$quati,
@@ -198,21 +198,21 @@ class UserItem extends Model{
                 'promotion_category'=> null,
                 'delivery_method'   => null,
                 'mall_option_values'=> array(),
-            
+
                 'mall_large_category_id'  => '',
                 'mall_medium_category_id' => '',
-            
+
                 'id'        => $tmpUserItems->id,
                 'name'      => $tmpUserItems->name,
                 'title'     => $tmpUserItems->name,
                 'price'     => $tmpUserItems->price,
                 'description' => $tmpUserItems->introduce,
-            
+
                 'images'     => self::getImages($tmpUserItems->image_url),
                 'quantities' => $itemQuantity,
                 'quantity'   => $itemQuantity,
                 'variations' => $variations,
-            
+
                 'sale_flag'  => false,
                 'review_count'  => 0,
                 'avg_score'     => null,

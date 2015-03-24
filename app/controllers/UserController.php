@@ -208,9 +208,10 @@ class UserController extends BaseController {
      **/
     public function addFollow(){
         $user_id        = Session::get('user.id');
-        $store_user_id  = isset($_GET['store_user_id']) ?  $_GET['store_user_id'] : '';
-        $redirect_url   = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '' ;
-        $item_id        = isset($_GET['item_id']) ? $_GET['item_id'] : '' ;
+        $input          = Input::all();
+        $store_user_id  = isset($input['store_user_id']) ?  $input['store_user_id'] : '';
+        $redirect_url   = isset($input['redirect_url']) ? $input['redirect_url'] : '' ;
+        $item_id        = isset($input['item_id']) ? $input['item_id'] : '' ;
 
      	if(!empty($store_user_id) && !empty($redirect_url)) {
             $store = UserStore::where('user_id', $store_user_id)->first()->toArray();

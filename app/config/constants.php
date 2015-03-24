@@ -1,7 +1,6 @@
 <?php
 return array(
     'ENCRYPTION_KEY'=> 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-	'facebook_app_id' => '768173419944914',
     'website_name'  => 'HAYAMISE.COM',
 	'short_url'     => 'http://goo.gl/6PSpfn',
     'admin_email'   => 'binhhc@leverages.jp',

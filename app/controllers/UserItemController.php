@@ -17,7 +17,7 @@ class UserItemController extends BaseController {
         }
 
         $data['items'] = $this->getItemList();
-        $data['app_id'] = Config::get('constants.facebook_app_id');
+        $data['app_id'] = Config::get('facebook.appId');
         $user_id = Session::get('user.id');
         $data['title_for_layout'] = "Quản lý sản phẩm của cửa hàng";
         $data['count_public_items'] = UserItem::where('user_id',$user_id)->where('public_flg', '1')->count();

@@ -126,7 +126,7 @@
 </div>
 @include('elements.footer')
 <div id="fb-root"></div>
-<input type="hidden" name="facebook_id" class="facebook_app_id" value="<?php echo Config::get('constants.facebook_app_id'); ?>"/>
+<input type="hidden" name="facebook_id" class="facebook_app_id" value="<?php echo Config::get('facebook.appId'); ?>"/>
 <script>
 var app_id = $('.facebook_app_id').val();
 window.fbAsyncInit = function() {

@@ -65,10 +65,10 @@
 			</p>
 			<div id="send_list">
 				<h4>Bạn bè bạn đã mở một cửa hàng từ lời mời của bạn</h4>
-				<div ng-show="referrals.length == 0" style="">まだお申込をいただいたお友達はいません。</div>
+				<div ng-show="referrals.length == 0" style=""></div>
 			</div>
 			<ul class="note">
-				<li>※招待後、ご登録されているメールアドレス宛にプレミアムサービスチケットを送付いたします。</li>
+				<li>※Sau lời mời, chúng tôi sẽ gửi thẻ dịch vụ cao cấp cho các địa chỉ email bạn đã đăng ký của bạn.</li>
 			</ul>
 			<p class="panel" style="display: none;">
 				<span>Đã gửi lời mời thành công!</span>

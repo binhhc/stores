@@ -3,6 +3,6 @@
 
 // Facebook app Config
 return array(
-        'appId' => '1416153332024070',
-        'secret' => 'b13b28fc06a220342c39e3029150505b'
+        'appId' => '768173419944914',
+        'secret' => '392bbd02e640624c5c5ac8a4e1e75557'
 	);

@@ -170,13 +170,13 @@ class UserController extends BaseController {
     public function getFaceData(){
         $code   = Input::get('code');
         if (strlen($code) == 0)
-            return array('message', 'Không thể kết nối với Facebook.');
+            return array('message' => 'Không thể kết nối với Facebook.');
 
         $facebook = new Facebook(Config::get('facebook'));
         $uid      = $facebook->getUser();
 
         if ($uid == 0)
-            return array('message', 'Lỗi kết nối!');
+            return array('message' => 'Lỗi kết nối!');
 
         $me = $facebook->api('/me');
         $authen_token = $facebook->getAccessToken();

@@ -133,7 +133,7 @@ $(document).ready(function(){
         $(document).on('click', '.share_facebook', function(e){
         	var item_name = $(this).attr('item_name');
         	var img_url = $(this).attr('image_url');
-        	url = $('.website_url').val();
+        	url = $('.sub_domain').val() + '.'+ $('.website_url').val() + '/!#/items/' + $(this).attr('item_id');
         	img_url =   url + img_url;
         	e.preventDefault();
         	FB.ui({

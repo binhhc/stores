@@ -1,17 +1,17 @@
 <?php
 return array(
     'ENCRYPTION_KEY'=> 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-	'facebook_app_id' => '824780770915269',
-    'website_name'  => 'STOREs.VN',
+	'facebook_app_id' => '768173419944914',
+    'website_name'  => 'HAYAMISE.COM',
 	'short_url'     => 'http://goo.gl/6PSpfn',
     'admin_email'   => 'binhhc@leverages.jp',
-    'domain'        => 'stores.dev.srv',
-    'contact_email' => 'sangpm@leverages.jp',
-	'clientid'      => '892839076206-e2dshintmn6tg405rrahorl2fv7l0mld.apps.googleusercontent.com',
-	'clientsecret'  => 'vgldIo53SKQEc3nm_06_OYp1',
-	'redirecturi'   => 'http://oanhstores.com/auth_gmail',
+    'domain'        => 'hayamise.com',
+    'contact_email' => 'sang.pham.minh@leverages.jp',
+	'clientid'      => '984470148602-1flbui83qn74b99ubar3rhs1cb2jl9k2.apps.googleusercontent.com',
+	'clientsecret'  => 'f1Z0eHROsMTJd5XcjkIkdNH7',
+	'redirecturi'   => 'http://hayamise.com/auth_gmail',
 	'maxresults'    => 50, // Number of mailid you want to display.
-    'item'=>array(
+        'item'=>array(
         'unit'      => 'Cái',
         'currency'  => 'VND',
     ),

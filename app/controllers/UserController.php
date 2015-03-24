@@ -222,6 +222,7 @@ class UserController extends BaseController {
 
     	if(!empty($item_id) && !empty($redirect_url)) {
             Favorite::addFavorite($item_id, $user_id);
+            $redirect_url .= '#!/items/'. $item_id;
 
             echo "<script>window.location = '". $redirect_url . "'</script>";exit;
         }

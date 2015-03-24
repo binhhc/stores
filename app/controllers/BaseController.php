@@ -31,8 +31,29 @@ class BaseController extends Controller {
      * @since 2015/01/16
      */
     public function checkLogin() {
+        if(empty(Session::get('user')) && isset($_SESSION["user_id"])){
+            $user_temp = User::getById($_SESSION["user_id"]);
+            if(!empty($user_temp))
+                $this->regisSession ($user_temp);
+        }
+        
         $user = Session::get('user');
         return !empty($user) ? true : false;
+    }
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/
+    public function regisSession($user = null){
+        Auth::login($user);
+        $session_user = $user->toArray();
+        Session::put('user', $session_user);
+        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
+        $_SESSION["user_id"] = $user->id;
     }
     /**
      * Get id of login user

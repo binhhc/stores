@@ -192,6 +192,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @modified
      * @modified by
      **/
+    public static function getById($id){
+        return self::where('id', '=', $id)->where('delete_flg', '=', 0)->first();
+    } 
+    
+    /**
+     * @author      Sang PM
+     * @since       2015/03/20
+     *
+     * @modified
+     * @modified by
+     **/
     public static function saveFacebookData($rs){
         extract($rs);
         $user    = User::getByEmail($me['email']);

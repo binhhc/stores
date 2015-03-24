@@ -191,21 +191,6 @@ class UserController extends BaseController {
      * @modified
      * @modified by
      **/
-    public function regisSession($user = null){
-        Auth::login($user);
-        $session_user = $user->toArray();
-        Session::put('user', $session_user);
-        Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-        $_SESSION["user_id"] = $user->id;
-    }
-
-    /**
-     * @author      Sang PM
-     * @since       2015/03/20
-     *
-     * @modified
-     * @modified by
-     **/
     public function addFollow(){
         $user_id        = Session::get('user.id');
         $input          = Input::all();

@@ -92,7 +92,7 @@
 												<div class="fb-share-button" data-layout="icon_link"><a ng-click="postToFeedItem(item)" class="share_facebook" href="" item_name="{{$item['name']}}" item_id="{{$item['id']}}" image_url="{{$item['image_url']}}">Chia sẻ</a></div>
 											</li>
 											<li class="navi_share_tw" >
-												<a ng-click="share_sns(item)" class="twitter popup" item_id="{{$item['id']}}" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2F<?php echo $d_a['domain'].'.'.  Config::get('constants.domain') ; ?>%2F%28883!%2Fitems%2F<?php echo $item['id']?> @<?php echo Config::get('constants.domain') ?>" target="_blank">Tweet</a>
+												<a ng-click="share_sns(item)" class="twitter popup" item_id="{{$item['id']}}" href="http://twitter.com/intent/tweet?ount=none&lang='vi'&text={{$item['name']}} / https%3A%2F%2F<?php echo $d_a['domain'].'.'.  Config::get('constants.domain') ; ?>%2F%28!%2Fitems%2F<?php echo $item['id']?> @<?php echo Config::get('constants.domain') ?>" target="_blank">Tweet</a>
 											</li>
 										</ul>
 										@endif
@@ -110,7 +110,7 @@
 </div>
 <div class="loading ng-scope" ng-show="state == 'wait'" style="display: none;"></div>
 @include('elements.footer')
-<input type="hidden" name="facebook_id" class="facebook_app_id" value="{{$app_id}}"/>
+<input type="hidden" name="facebook_id" class="facebook_app_id" value="<?php echo Config::get('facebook.appId')?>"/>
 <?php $sub_d = Session::get('userStoresDomain');?>
 <input type="hidden" name="sub_domain" class="sub_domain" value="<?php echo $sub_d['domain']; ?>" />
 <input type="hidden" name="website_url" class="website_url" value="<?php echo Config::get('constants.domain');?>"/>

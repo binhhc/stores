@@ -48,7 +48,14 @@ $(document).ready(function(){
                     },
                 });
     });
-
+        var app_id = $('.facebook_app_id').val();
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : app_id,
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
         $(document).on('click', '.share_facebook', function(e){
         	var url_store = 'http://' + $(this).attr('url_store');
         	e.preventDefault();

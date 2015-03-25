@@ -129,12 +129,20 @@ $(document).ready(function(){
                 return;
             }
     });
+        var app_id = $('.facebook_app_id').val();
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : app_id,
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
 
         $(document).on('click', '.share_facebook', function(e){
         	var item_name = $(this).attr('item_name');
         	var img_url = $(this).attr('image_url');
         	url = $('.sub_domain').val() + '.'+ $('.website_url').val() + '/!#/items/' + $(this).attr('item_id');
-        	img_url =   url + img_url;
+        	img_url =   $('.website_url').val() +  img_url;
         	e.preventDefault();
         	FB.ui({
         		  method: 'feed',

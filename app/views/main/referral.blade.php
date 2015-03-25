@@ -127,16 +127,6 @@
 @include('elements.footer')
 <div id="fb-root"></div>
 <input type="hidden" name="facebook_id" class="facebook_app_id" value="<?php echo Config::get('facebook.appId'); ?>"/>
-<script>
-var app_id = $('.facebook_app_id').val();
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : app_id,
-      xfbml      : true,
-      version    : 'v2.2'
-    });
-  };
-</script>
 <style>
 	.radio, .checkbox {
     margin-top: 0px!important;

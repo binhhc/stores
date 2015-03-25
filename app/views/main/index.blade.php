@@ -9,10 +9,15 @@
             {{HTML::image('img/main_page/icon_close.png', 'Đóng')}}
         </p>
     </div>
+    <div id="panel_label_introduce">
+        <h2><strong>DỄ DÀNG MỞ MỘT CỬA HÀNG TRỰC TUYẾN VỚI</strong></h2>
+        <br>
+        <p>Hayamise</p>
+    </div>
     <div class="social_login">
         <h1>
-            Vô cùng đơn giản, trong vòng 2 phút
-            <br />Tôi có thể tạo cửa hàng của mình
+            CHỈ 1 BƯỚC ĐƠN GIẢN
+            <br />Bạn có thể tạo cửa hàng của riêng mình
         </h1>
         <div class="form">
         {{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
@@ -43,13 +48,17 @@
             </div>
             {{ Form::close() }}
         </div>
+        <?php /*?>
         <p class="store_num">
             {{HTML::image('img/main_page/badge_num_l.png', 'Huy chương')}}
         </p>
+        <?php */?>
     </div>
+    <?php /*?>
     <p class="pv pc">
         <a class="fancybox-media" href="https://vimeo.com/47070682">Xem</a>
     </p>
+    <?php */?>
 </div>
 <div id="stores" class="contents">
     <div class="wrapper">
@@ -97,10 +106,14 @@
             </ul>
         </div>
 </div>
+<?php /*?>
 <p class="medias pc">
     {{HTML::image('img/main_page/media_marks.png', 'Media marks')}}
 </p>
+<?php */?>
+<?php /*?>
 <p id="footer_copy">
     <strong>Dễ dàng mở một cửa hàng trực tuyến với stores</strong>
 </p>
+<?php */?>
 @include('main.footer')

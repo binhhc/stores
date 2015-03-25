@@ -21,7 +21,7 @@
             {{HTML::image('img/main_page/btn_menu.png')}}
 		</p>
 		<p class="login">
-			<a href="{{URL::asset('/login')}}">Đăng nhập</a>
+			<a href="{{URL::asset('/login')}}">ĐĂNG NHẬP</a>
 		</p>
 		<div class="header_social">
 			<div class="addthis_native_toolbox"></div>

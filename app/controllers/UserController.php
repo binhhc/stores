@@ -596,6 +596,7 @@ class UserController extends BaseController {
             $password   = trim(Input::get('password'));
             $v          = User::validate_register(Input::all());
 
+
             $status = 'faila';
             $mss    = 'Có lỗi xảy ra! Vui lòng đăng ký lại.';
             if($v->fails()){
@@ -610,9 +611,10 @@ class UserController extends BaseController {
                 $user->account_token = User::createAccountToken();
                 $user_data = array('email' => $email, 'password' => $password);
 
-                if( Auth::attempt($user_data) && $user->save()) {
-                    UserStore::registerNew($user_data->id, $email);
-                    $this->regisSession($user_data);
+                $user->save();
+                if(Auth::attempt($user_data)) {
+                    UserStore::registerNew($user->id, $email);
+                    $this->regisSession($user);
                     Session::put('first_register', 'hello');
 
                     $status = "success";

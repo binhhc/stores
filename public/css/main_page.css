@@ -561,7 +561,8 @@ h3.heading {
     margin-left: -266px;
     padding: 10px 15px 8px;
     position: absolute;
-    top: 212px;
+    /*top: 212px;*/
+    top: 700px;
     width: 503px;
     z-index: 10;
 }

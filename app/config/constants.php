@@ -2,7 +2,7 @@
 return array(
     'ENCRYPTION_KEY'=> 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     'website_name'  => 'HAYAMISE.COM',
-	'short_url'     => 'http://goo.gl/6PSpfn',
+	'short_url'     => 'http://goo.gl/nWqJGX',
     'admin_email'   => 'binhhc@leverages.jp',
     'domain'        => 'hayamise.com',
     'contact_email' => 'sang.pham.minh@leverages.jp',

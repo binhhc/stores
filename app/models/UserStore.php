@@ -7,28 +7,18 @@
 class UserStore extends Model{
     protected $table  = 'user_stores';
 
-     /**
-     * Validate
-     *	@author OanhHa
-     * @return boolean
-     */
-    public static function validate_domain($input){
-        $rules = array(
-            'domain' => 'required|url',
-        );
-
-        return Validator::make($input, $rules);
-    }
 	/**
      * Validate unique
-     *	@author OanhHa
+     * @author          Sang PM
+     * @modified date   2015/03/26
+     * 
      * @return boolean
      */
-    public static function validate_unique_domain($input){
-        $rules = array(
-            'domain' => 'unique:user_stores|not_in:www,admin,user,master,db,shop,select',
-        );
-
+    public static function validate_unique_domain($input,$id = 0){
+            $rules = [
+                'domain_url' => 'required|url',
+                'domain'     => 'not_in:www,admin,user,master,db,shop,select|unique:user_stores,domain,'.$id];
+            
         return Validator::make($input, $rules);
     }
 

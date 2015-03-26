@@ -96,12 +96,16 @@ return array(
 			'min' => 'Mật khẩu chứa ít nhất 6 kí tự.',
 			'max' => 'Mật khẩu chứa nhiều nhất 30 kí tự.'
 		),
+        'domain_url' =>array(
+            'required'  => 'Vui lòng nhập tên miền.',
+            'url'       => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
+        ),
 		'domain' => array(
-			'required' => 'Vui lòng nhập tên miền.',
 			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.',
+            'exists' => 'Tên miền của bạn đã tồn tại trong hệ thống.',
+            'regex'  => 'Nhập vào đúng định dạng tên miền.',
             'not_in' => 'Tên miền không hợp lệ.',
-			'url' => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
-
+			'url'    => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
 		),
 		 'price' => array(
 		 	'required' => 'Vui lòng nhập giá của sản phẩm.',

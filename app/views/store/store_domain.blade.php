@@ -11,7 +11,7 @@
 						<span class="first">https://</span>
 						 {{Form::text('domain', $domain, array('class' => ''))}}
 						<span class="second"><?php echo '.'. Config::get('constants.domain')?></span>
-						<div class="message_error">{{ $errors->first('domain') }}</div>
+						<div class="message_error">{{ $errors->first('domain_url') }}{{ $errors->first('domain') }}</div>
 					</div>
 				</dd>
 			</dl>

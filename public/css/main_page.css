@@ -130,11 +130,12 @@ img {
     font-size: 0;
     letter-spacing: -0.4em;
     list-style-type: none;
-    padding: 60px 0;
+    padding: 40px 0;
     text-align: center;
     word-spacing: -0.4em;
     margin: 0 auto;
-    width: 980px
+    width: 980px;
+    float: right;
 }
 #footer #foot_navi_main li a.login {
     border: 1px solid #d3d3d3;
@@ -225,18 +226,24 @@ img {
     font-size: 28px;
     font-weight: normal;
     height: 70px;
+    padding: 20px 0 20px;
 }
 .main .social_login h1 {
     text-align: center;
 }
+.main .social_login h1 strong {
+    font-weight: normal;
+    text-align: center;
+    color: #F7F7F7;
+}
 .main h1 {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    font-size: 40px;
+    font-size: 30px;
     font-weight: normal;
     line-height: 1.4;
-    padding: 35px 0 20px;
     text-align: left;
-    padding: 10px 0 20px;
+    padding: 40px 0 10px;
+    color: #FF6868;
 }
 
 .main .social_login .form {
@@ -246,10 +253,11 @@ img {
 }
 
 .main .social_login h2 {
-    color: #999;
+    /*color: #999;*/
+    color: #F7F7F7;
     font-size: 22px;
     font-weight: normal;
-    margin: 30px 0 35px;
+    margin: 10px 0 20px;
     text-align: center;
 }
 .main .social_login .form .email, .main .social_login .form .password {
@@ -258,6 +266,7 @@ img {
     margin-right: 6px;
     position: relative;
     width: 210px;
+    padding-top: 20px;
 }
 
 .main .social_login .form input {
@@ -285,7 +294,8 @@ img {
     background: url("../img/main_page/btn_pink_110_50.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #fff;
     float: left;
-    font-size: 16px;
+    /*font-size: 16px;*/
+    font-size: 12px;
     height: 50px;
     width: 110px;
 }
@@ -298,9 +308,11 @@ button {
     padding: 0;
 }
 .main .social_login .form .text {
+	background: url("../img/main_page/btn_or.png") no-repeat scroll center top rgba(0, 0, 0, 0);
     color: #999;
     float: left;
-    font-size: 14px;
+    /*font-size: 14px;*/
+    font-size: 12px;
     line-height: 50px;
     padding-left: 10px;
 }
@@ -312,12 +324,16 @@ button {
     border-radius: 3px;
     color: #fff;
     display: block;
-    font-size: 16px;
-    height: 50px;
-    line-height: 50px;
+    /*font-size: 16px;*/
+    font-size: 12px;
+    /*height: 50px;*/
+    height: 90px;
+    /*line-height: 50px;*/
+    line-height: 90px;
     text-align: center;
     width: 215px;
-    padding-left: 20px;
+    /*padding-left: 20px;*/
+    padding-left: 40px;
 }
 .main .social_login .form .facebook_help .box {
     clear: both;
@@ -562,7 +578,7 @@ h3.heading {
     padding: 10px 15px 8px;
     position: absolute;
     /*top: 212px;*/
-    top: 700px;
+    top: 670px;
     width: 503px;
     z-index: 10;
 }
@@ -8044,9 +8060,129 @@ h1.summary {
 }
 
 }
+#alert_panel.success {
+    background-color: #217fbe;
+    color: #fff;
+}
+#alert_panel.fail {
+    background-color: #FF9966;
+    color: #FF0033;
+}
+#alert_panel {
+    display: none;
+    height: 60px;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    text-align: center;
+    top: -10px;
+    width: 100%;
+    z-index: 100;
+}
 
+#alert_panel p {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 60px;
+}
 @media screen and (min-width: 1024px) {
 	#header #mobile_nav {
     	display: none !important;
     }
 }
+
+#home_sign{
+	display: block;
+	margin: 0 auto;
+	width: 960px;
+	height: 90px;
+	padding: 20px;
+	background-color: rgba(255,255,255,0.2);
+	position: relative;
+}
+
+#home_sign div{
+    display: inline-block;
+}
+
+#home_sign .home_email input{
+	width: 260px;
+    height: 50px;
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0.2) !important;
+    color: #F7F7F7;
+    padding-left:5px;
+}
+
+#home_sign .home_password, #home_sign .home_submit{
+    padding-left:10px;
+}
+
+#home_sign .home_password input{
+	width: 260px;
+    height: 50px;
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0.2) !important;
+    color: white;
+    padding-left:5px;
+}
+
+#home_sign .home_submit button{
+	background: url("../img/main_page/btn_pink_110_50.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    height: 50px;
+    background-color: rgba(255,255,255,0.2) !important;
+    color: white;
+    padding:10px;
+    width: 125px;
+}
+
+#home_sign .home_btn_facebook{
+	top: 0;
+	right: 0;
+	position: absolute;
+}
+#home_sign .home_btn_facebook .home_btn_facebook_inner{
+    height: 90px;
+    width: 230px;
+    padding: 38px 20px 32px 35px;
+    text-align: right;
+    font-size: 0.9em;
+    background: url("../img/main_page/btn_fb_196_50.png") no-repeat scroll center top #3B5999;
+}
+#home_sign .home_btn_facebook .home_btn_facebook_inner:hover, #home_sign .home_btn_facebook .home_btn_facebook_inner:focus{
+    background-color: rgba(59,89,153,0.7);
+    cursor: pointer;
+}
+#home_sign .home_btn_facebook a{
+    color: white;
+}
+#home_sign .home_or{
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    z-index: 3;
+    padding-top: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 12px;
+}
+#home_sign .home_submit p{
+    height: 50px;
+    background-color: rgba(255,255,255,0.2) !important;
+    color: white;
+    padding:10px;
+    text-align: center;
+}
+.wapper_heading{
+    display: block;
+    height: 120px;
+    text-align: center;
+}
+.wapper_heading .wapper_heading_label{
+	background: url("../img/main_page/icon_heading_stores_gray.png") no-repeat scroll center top;
+	height: 90px;
+    padding: 45px;
+}
+

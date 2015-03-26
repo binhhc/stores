@@ -240,14 +240,12 @@ class UserController extends BaseController {
 		        if(User::checkExpiredTime($user) == true){
 	                return View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$user->account_token));
 		        } else {
-		        	return Redirect::to('/dashboard')->with('forgetPassword',  1);
+		        	return Redirect::to('/')->with('forgetPassword',  1);
 		        }
             } else {
-            	return Redirect::to('/dashboard')->with('forgetPassword',  1);
+            	return Redirect::to('/')->with('forgetPassword',  1);
 
             }
-
-
         }
         return View::make('user.forgot_password');
     }
@@ -266,11 +264,11 @@ class UserController extends BaseController {
 
         if(!empty($email)){
             $token   = User::createAccountToken();
-        	User::where('email',$email)->update(array('account_token' => $token));
+        	User::where('email', '=',$email)->update(array('account_token' => $token));
 
 			$user   = User::getByEmail($email);
             if (!empty($user)) {
-                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$user->account_token;
+                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$token;
 
                 $data = array(
                     'link_reset' => $link_reset,
@@ -304,11 +302,9 @@ class UserController extends BaseController {
         $v      = User::validate_forget_password($input);
 
         if( !empty($v) && $v->passes()){
-            User::where('email', $input['email'])
+            User::where('email', '=' ,$input['email'])
                 ->update(array('password' => Hash::make($input['password']), 'account_token' => User::createAccountToken()));
            return Redirect::to('/');
-        } else {
-        	return Redirect::to('/forgetPassword')->withErrors($v)->withInput(Input::except('password'));
         }
     }
 

@@ -69,7 +69,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public static function validate_forget_password($input){
         $rules = array(
-            'email' => 'required|email|unique:users',
+            'password' => 'required|between:6,30',
         );
 
         return Validator::make($input, $rules);
@@ -84,7 +84,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public static function validate_update_password($input){
         $rules = array(
-            'password' => 'required|alphaNum|between:6,30',
+            'password' => 'required|between:6,30',
             'confirm_password' => 'required|same:password',
         );
 
@@ -109,7 +109,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public static function validate_register($input){
         $rules = array(
             'email' => 'required|email|unique:users',
-            'password' => 'required|AlphaNum|min:6|max:32'
+            'password' => 'required|min:6|max:32'
         );
 
         return Validator::make($input, $rules);

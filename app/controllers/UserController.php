@@ -179,10 +179,10 @@ class UserController extends BaseController {
             return array('message' => 'Lỗi kết nối!');
 
         $me = $facebook->api('/me');
-        
+
         if (empty($me['email']))
             return array('message' => 'Facebook không chia sẻ email !');
-        
+
         $authen_token = $facebook->getAccessToken();
 
         return compact(array('me','uid','authen_token'));
@@ -308,7 +308,7 @@ class UserController extends BaseController {
                 ->update(array('password' => Hash::make($input['password']), 'account_token' => User::createAccountToken()));
            return Redirect::to('/');
         } else {
-        	return Redirect::to('/showForgetPassword')->withErrors($v)->withInput(Input::except('password'));
+        	return Redirect::to('/forgetPassword')->withErrors($v)->withInput(Input::except('password'));
         }
     }
 

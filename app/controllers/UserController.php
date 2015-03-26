@@ -264,8 +264,6 @@ class UserController extends BaseController {
 
         if(!empty($email)){
             $token   = User::createAccountToken();
-            echo $token;
-        	var_dump(User::where('email', '=',$email)->update(array('account_token' => $token)));
 
 			$user   = User::getByEmail($email);
             if (!empty($user)) {

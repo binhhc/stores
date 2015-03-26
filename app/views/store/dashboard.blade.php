@@ -8,6 +8,11 @@
 	<p>Mã kích hoạt tài khoản của bạn đã hết hạn. Hãy đăng ký để hệ thống gửi lại email kích hoạt khác.</p>
 </div>
 <?php } } ?>
+<?php if(Session::has('forgetPassword') && (Session::get('forgetPassword') == 1)) {?>
+	<div id="alert_panel" class="fail" style="display: block; opacity: 1.0; top: -10px;">
+		<p>Mã đổi mật khẩu tài khoản của bạn đã hết hạn. Hãy đăng ký để hệ thống gửi lại email đổi mật khẩu khác.</p>
+	</div>
+<?php Session::forget('forgetPassword');}?>
 <?php $user= Session::get('user'); $email = $user['email'];
 	if(Session::has('first_register'))
       $str="display:block";

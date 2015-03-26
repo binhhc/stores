@@ -264,11 +264,12 @@ class UserController extends BaseController {
 
         if(!empty($email)){
             $token   = User::createAccountToken();
-        	User::where('email', '=',$email)->update(array('account_token' => $token));
+            echo $token;
+        	var_dump(User::where('email', '=',$email)->update(array('account_token' => $token)));
 
 			$user   = User::getByEmail($email);
             if (!empty($user)) {
-                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$user->account_token;
+                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$token;
 
                 $data = array(
                     'link_reset' => $link_reset,

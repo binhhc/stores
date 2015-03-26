@@ -4,36 +4,38 @@
 			<a href="{{URL::asset('/')}}">STORES</a>
 		</li>
 		<li>
-			<a href="/feature">Chức năng</a>
+			<a href="/feature">CHỨC NĂNG</a>
 		</li>
 		<li>
-			<a href="/price">Giá cả</a>
+			<a href="/price">GIÁ CẢ</a>
 		</li>
 		<li>
-			<a href="/support_stores">Hỗ trợ</a>
+			<a href="/support_stores">HỖ TRỢ</a>
 		</li>
 		<li>
 			<a href="/faq">FAQ</a>
 		</li>
-		<li>
-			<a href="/login">Đăng nhập</a>
+		<li style="float: right;">
+			<a href="/login" class="login">ĐĂNG NHẬP</a>
 		</li>
 	</ul>
 	<ul id="foot_navi">
 		<li>
-			<a target="_blank" href="http://leverages.vn">Công ty vận hành</a>
+			<a target="_blank" href="http://leverages.vn">CÔNG TY VẬN HÀNH</a>
 		</li>
 		<li>
-			<a href="/contact">Liên hệ</a>
+			<a href="/contact">LIÊN HỆ</a>
 		</li>
 		<li>
-			<a href="/terms">Điều khoản sử dụng</a>
+			<a href="/terms">ĐIỀU KHOẢN SỬ DỤNG</a>
 		</li>
 		<li>
-			<a href="/privacy_policy">Chính sách bảo mật</a>
+			<a href="/privacy_policy">CHÍNH SÁCH BẢO MẬT</a>
 		</li>
 	</ul>
+	<?php /*?>
 	<ul id="social">
 		
 	</ul>
+	<?php */?>
 </div>

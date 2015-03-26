@@ -114,7 +114,7 @@ class UserController extends BaseController {
     public function facebookCallback(){
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
-            return Redirect::to('/')->with('message', $rs['message']);
+            return Redirect::to('/login')->with('message', $rs['message']);
 
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
@@ -151,7 +151,7 @@ class UserController extends BaseController {
     public function facebookRegister(){
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
-            return Redirect::to('/')->with('message', $rs['message']);
+            return Redirect::to('/login')->with('message', $rs['message']);
 
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
@@ -179,6 +179,10 @@ class UserController extends BaseController {
             return array('message' => 'Lỗi kết nối!');
 
         $me = $facebook->api('/me');
+        
+        if (empty($me['email']))
+            return array('message' => 'Facebook không chia sẻ email !');
+        
         $authen_token = $facebook->getAccessToken();
 
         return compact(array('me','uid','authen_token'));

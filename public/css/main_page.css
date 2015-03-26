@@ -10,7 +10,7 @@ p {
     line-height: 1.5;
 }
 body {
-    background: url("../img/main_page/bg_footer.gif") repeat scroll center center #2e3740;
+    background-color: #2e3740;
     width: 100%;
 }
 
@@ -46,7 +46,6 @@ img {
 	text-align: right;
 }
 #header {
-	background: url("../img/main_page/bar.png") repeat-x scroll center top #f5f5f5;
     height: 92px;
     width: 100%;
 }
@@ -61,7 +60,7 @@ img {
 }
 #header .contents .logo {
     padding-top: 27px;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-size: 30px;
 }
@@ -84,17 +83,16 @@ img {
 	line-height: 50px;
 }
 #header .contents .login a {
-    background-color: #ebebeb;
     border: 1px solid #d3d3d3;
-    border-radius: 3px;
-    color: #888;
+    color: #FF6868;
     display: block;
     font-size: 14px;
     height: 36px;
     line-height: 35px;
     text-align: center;
-    width: 100px;
+    width: 150px;
     text-decoration: none;
+    border-color: #5ED9E8;
 }
 #header .contents .header_social {
     left: 0;
@@ -106,10 +104,11 @@ img {
 }
 
 #footer #foot_navi_main {
-    background: url("../img/main_page/bg_footer_nav.png") repeat-x scroll center bottom #2e3740;
+    color: #2e3740;
     list-style-type: none;
     padding: 35px 0;
-    text-align: center;
+    width: 980px;
+    margin: 0 auto;
 }
 
 #footer #foot_navi_main li {
@@ -122,7 +121,6 @@ img {
 }
 
 #footer #foot_navi_main li a {
-    background: url("../img/main_page/icon_arrow_footer_nav.png") no-repeat scroll center left 1px rgba(0, 0, 0, 0);
     color: #fff;
     display: block;
     padding-left: 13px;
@@ -136,6 +134,19 @@ img {
     text-align: center;
     word-spacing: -0.4em;
     margin: 0 auto;
+    width: 980px
+}
+#footer #foot_navi_main li a.login {
+    border: 1px solid #d3d3d3;
+    color: #FF6868;
+    display: block;
+    font-size: 14px;
+    height: 36px;
+    line-height: 35px;
+    text-align: center;
+    width: 150px;
+    text-decoration: none;
+    border-color: #5ED9E8;
 }
 .contact ul {
 	margin-bottom: 0px !important;
@@ -194,22 +205,26 @@ img {
     width: 240px;
 }
 .main {
-    background: url("../img/main_page/bg.png") no-repeat scroll center bottom #fafafa;
+    background: url("../img/main_page/bg.png") no-repeat scroll center top #fafafa;
     border-top: 1px solid #e7e7e7;
     height: 800px;
     position: relative;
 }
 .main .social_login {
+	background: url("../img/main_page/bg_created.png") no-repeat scroll center bottom #fafafa;
     color: #666;
     height: 390px;
     margin: 0 auto;
-    position: relative;
-    width: 790px;
+    margin-top: 550px;
+    max-height: 300px;
+    /*position: relative;*/
+    /*width: 790px;*/
 }
 .main .social_login h2 strong {
     color: #d36361;
     font-size: 28px;
     font-weight: normal;
+    height: 70px;
 }
 .main .social_login h1 {
     text-align: center;
@@ -221,6 +236,7 @@ img {
     line-height: 1.4;
     padding: 35px 0 20px;
     text-align: left;
+    padding: 10px 0 20px;
 }
 
 .main .social_login .form {
@@ -545,7 +561,8 @@ h3.heading {
     margin-left: -266px;
     padding: 10px 15px 8px;
     position: absolute;
-    top: 212px;
+    /*top: 212px;*/
+    top: 700px;
     width: 503px;
     z-index: 10;
 }
@@ -572,6 +589,27 @@ h3.heading {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+#panel_label_introduce {
+    left: 50%;
+    margin-left: -266px;
+    padding: 10px 15px 8px;
+    position: absolute;
+    top: 212px;
+    width: 503px;
+    z-index: 10;
+    text-align: center;
+}
+
+#panel_label_introduce h2 strong{
+    text-align: center;
+    font-size: 20px;
+}
+
+#panel_label_introduce p{
+    text-align: center;
+    font-size: 20px;
+    color: #FF6868;
 }
 
 @media screen and (max-width: 1024px) {
@@ -5958,6 +5996,12 @@ h1.summary {
     display: none;
 }
 
+#foot_navi_main li a.login {
+  color: #fff;
+  display: block;
+  padding-left: 13px;
+  white-space: nowrap;
+}
 #header .wrapper.pc {
     display: none;
 }

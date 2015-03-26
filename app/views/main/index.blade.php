@@ -1,4 +1,9 @@
 @include('main.header')
+<?php if(Session::has('forgetPassword') && (Session::get('forgetPassword') == 1)) {?>
+	<div id="alert_panel" class="fail" style="display: block; opacity: 1.0; top: -10px;">
+		<p>Mã đổi mật khẩu tài khoản của bạn đã hết hạn. Hãy đăng ký để hệ thống gửi lại email đổi mật khẩu khác.</p>
+	</div>
+<?php Session::forget('forgetPassword');}?>
 <div class="main social_login">
     <div id="panel_error" ng-show="invalid()" style="display:none">
         <p class="email_pass_error"  style="display:none">Vui lòng nhập địa chỉ email, password của bạn</p>
@@ -117,3 +122,10 @@
 </p>
 <?php */?>
 @include('main.footer')
+<script>
+$(document).ready(function(){
+	setTimeout(function() {
+	       $('#alert_panel').fadeOut();
+	   }, 5000);
+});
+</script>

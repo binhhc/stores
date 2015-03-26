@@ -240,10 +240,10 @@ class UserController extends BaseController {
 		        if(User::checkExpiredTime($user) == true){
 	                return View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$user->account_token));
 		        } else {
-		        	return Redirect::to('/dashboard')->with('forgetPassword',  1);
+		        	return Redirect::to('/')->with('forgetPassword',  1);
 		        }
             } else {
-            	return Redirect::to('/dashboard')->with('forgetPassword',  1);
+            	return Redirect::to('/')->with('forgetPassword',  1);
 
             }
         }

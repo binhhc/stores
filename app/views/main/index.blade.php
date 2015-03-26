@@ -17,36 +17,28 @@
     <div class="social_login">
         <h1>
             CHỈ 1 BƯỚC ĐƠN GIẢN
-            <br />Bạn có thể tạo cửa hàng của riêng mình
+            <br /><strong>Bạn có thể tạo cửa hàng của riêng mình</strong>
         </h1>
-        <div class="form">
+        <h2><strong>MIỄN PHÍ</strong> tạo cửa hàng!</h2>
+        <div id="home_sign">
         {{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
-            <h2><strong>Miễn phí</strong> tạo cửa hàng!</h2>
-            <div class="email">
+            <div class="home_email">
                 {{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
             </div>
-            <div class="password">
+            <div class="home_password">
                 <input type="password" name="password" placeholder="Mật khẩu" />
             </div>
-                <button class="btn_submit" type="button">Tạo cửa hàng</button>
+            <div class="home_submit">
+                <button class="btn_submit" type="button">TẠO CỬA HÀNG</button>
                 <p class="btn_wait" style="display: none">Đang tạo...</p>
-            <p class="text">
-                <span>Hoặc</span>
-            </p>
-            <p class="btn_facebook">
-                <a href="{{url('register/fb')}}">Đăng nhập Facebook</a>
-            </p>
-            <div class="facebook_help">
-                <div class="box">
-                    <p class="left">Để xác nhận, đăng nhập qua Facebook</p>
-                    <p class="right">
-                        <a data-toggle="tooltip" data-placement="top" data-html="true" data-template='<div class="abc">Hồ sơ của bạn, tôi sẽ sử dụng danh sách bạn bè, địa chỉ e-mail. Hãy yên tâm rằng nó không được đăng trên Timeline.</div>' title="Hồ sơ của bạn, tôi sẽ sử dụng danh sách bạn bè, địa chỉ e-mail. Hãy yên tâm rằng nó không được đăng trên Timeline." href="#">
-                            {{HTML::image('img/main_page/icon_help.png', 'Help')}}
-                        </a>
-                    </p>
-                </div>
+            </div>    
+            <div class="home_or">
+                <span>hoặc</span>
             </div>
-            {{ Form::close() }}
+            <div class="home_btn_facebook">
+                <a href="{{url('register/fb')}}"><div class="home_btn_facebook_inner">ĐĂNG NHẬP FACEBOOK</div></a>
+            </div>
+        {{ Form::close() }}
         </div>
         <?php /*?>
         <p class="store_num">
@@ -62,7 +54,14 @@
 </div>
 <div id="stores" class="contents">
     <div class="wrapper">
-        <h3 class="heading">Miễn phí lưu trữ hàng hoá trực tuyến</h3>
+        <div class="wapper_heading">
+            <p class="wapper_heading_label">
+                MIỄN PHÍ
+            </p>
+            <p>
+                Lưu trữ hàng hóa trực tuyến
+            </p>
+        </div>
         <div class="slide">
             <ul class="slide_navi">
                 <li class="prev">Trước</li>

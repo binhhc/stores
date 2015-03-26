@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	setTimeout(function() {
 	       $('#alert_panel').fadeOut();
-	   }, 3000);
+	   }, 5000);
 
     $('#start_with_store').on('click', function(e) {
         e.preventDefault();

@@ -15,11 +15,12 @@
                 </a>
             </h1>
             <div class="box">
-                {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass', 'class'=>'form_submit'))}}
+                {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass', 'class'=>'form_submit form_basic'))}}
                     <dl class="set">
                         <dt>Vui lòng điền email bạn đã đăng kí</dt>
                         <dd>
                             {{Form::text('email', null, array('class' => 'email_pass'))}}
+                            <p class="error" id="error_email" style="display: none;"></p>
                         </dd>
                     </dl>
                     <p class="btn_submit">
@@ -48,7 +49,13 @@
         $('#forgetPass').submit(function(event){
             event.preventDefault();
             var email = $('.email_pass').val();
+            if(email == '') {
+                $('#error_email').text('Vui lòng nhập địa chỉ email.');
+                $('#error_email').show();
+                return;
+            }
             if (validateEmail(email)) {
+                $('#error_email').hide();
                 $.ajax({
                     url : "{{URL::asset('/forgetPassword')}}",
                     type: "POST",
@@ -60,7 +67,6 @@
                     success: function(data, textStatus, jqXHR){
                         if (data == '1') {
                             $('.finish').show();
-                            $('.form_submit').hide();
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown){
@@ -69,8 +75,9 @@
                     }
                 });
             } else {
-                $(".btn_submit_1").hide();
-                $(".btn_wait_1").show();
+            	$('#error_email').text('Vui lòng nhập địa chỉ email hợp lệ.');
+                $('#error_email').show();
+                return;
             }
         });
     });

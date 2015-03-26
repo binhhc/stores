@@ -21,6 +21,7 @@
                         <dt>Vui lòng nhập mật khẩu mới</dt>
                         <dd>
                             {{Form::password('password')}}
+                            <font class="message_error">{{ $errors->first('password') }}</font>
                         </dd>
                     </dl>
                     <p class="btn_submit">

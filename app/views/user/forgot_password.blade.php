@@ -66,7 +66,9 @@
                     },
                     success: function(data, textStatus, jqXHR){
                         if (data == '1') {
+                        	$('.form_submit').hide();
                             $('.finish').show();
+
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown){

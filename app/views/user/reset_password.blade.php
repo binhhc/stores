@@ -14,14 +14,14 @@
                 </a>
             </h1>
             <div class="box">
-                {{Form::open(array('url' => 'resetPassword', 'method' => 'post', 'class'=>'form_submit'))}}
+                {{Form::open(array('url' => 'resetPassword', 'method' => 'post', 'class'=>'form_submit form_basic'))}}
                     <dl class="set">
                         {{Form::text('email', $email, array('class'=>'display_none'))}}
                         {{Form::text('account_token', $account_token, array('class'=>'display_none'))}}
                         <dt>Vui lòng nhập mật khẩu mới</dt>
                         <dd>
                             {{Form::password('password')}}
-                            <font class="message_error">{{ $errors->first('password') }}</font>
+                            <p class="error" id="error_password" style="display: none;"></p>
                         </dd>
                     </dl>
                     <p class="btn_submit">
@@ -37,9 +37,21 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.form_submit').submit(function(event){
-            $(".btn_submit_1").hide();
-            $(".btn_wait_1").show();
-        });
+        $(document).on('click', '.btn_submit_1', function(event){
+			event.preventDefault();
+        	var password = $('input[name="password"]').val();
+        	letterNumber = /^[0-9a-zA-Z]+$/;
+			if(password.length  <= 5 || (password.match(letterNumber) === false)) {
+				$('#error_password').text('Vui lòng nhập mật khẩu mới hợp lệ từ 6-30 ký tự.');
+				$('#error_password').show();
+				return;
+			} else {
+				$('#error_password').hide();
+				$('.form_submit').submit();
+	        	 $(".btn_submit_1").hide();
+	             $(".btn_wait_1").show();
+			}
+
+        })
     });
 </script>

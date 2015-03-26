@@ -69,7 +69,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public static function validate_forget_password($input){
         $rules = array(
-            'email' => 'required|email|unique:users',
+            'password' => 'required|alphaNum|between:6,30',
         );
 
         return Validator::make($input, $rules);

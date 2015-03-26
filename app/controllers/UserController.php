@@ -246,8 +246,6 @@ class UserController extends BaseController {
             	return Redirect::to('/dashboard')->with('forgetPassword',  1);
 
             }
-
-
         }
         return View::make('user.forgot_password');
     }
@@ -307,8 +305,6 @@ class UserController extends BaseController {
             User::where('email', $input['email'])
                 ->update(array('password' => Hash::make($input['password']), 'account_token' => User::createAccountToken()));
            return Redirect::to('/');
-        } else {
-        	return Redirect::to('/forgetPassword')->withErrors($v)->withInput(Input::except('password'));
         }
     }
 

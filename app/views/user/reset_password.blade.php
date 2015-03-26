@@ -40,8 +40,8 @@
         $(document).on('click', '.btn_submit_1', function(event){
 			event.preventDefault();
         	var password = $('input[name="password"]').val();
-        	letterNumber = /^[0-9a-zA-Z]+$/;
-			if(password.length  <= 5 || (password.match(letterNumber) === false)) {
+        	//letterNumber = /^[0-9a-zA-Z]+$/;
+			if(password.length  <= 5) {
 				$('#error_password').text('Vui lòng nhập mật khẩu mới hợp lệ từ 6-30 ký tự.');
 				$('#error_password').show();
 				return;

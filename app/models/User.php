@@ -148,7 +148,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     /**
      * @author      Le Nhan Hau
      * @since       2015/01/19
-     *
+     * 
+     * @modified    Sang PM
+     * @modified    2015/03/26
      * get name store
      */
     public static function getNameStore() {
@@ -157,7 +159,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $email = $userLogin['email'];
         $tmpEmail = explode('@', $email);
 
-        $userInfos['USER_NAME'] = $tmpEmail[0];
+        $userInfos['USER_NAME'] = str_replace('.','',$tmpEmail[0]);
         return $userInfos;
     }
 	/**

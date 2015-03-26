@@ -26,7 +26,7 @@ class UserStore extends Model{
      */
     public static function validate_unique_domain($input){
         $rules = array(
-            'domain' => 'unique:user_stores',
+            'domain' => 'unique:user_stores|not_in:www,admin,user,master,db,shop,select',
         );
 
         return Validator::make($input, $rules);
@@ -55,9 +55,8 @@ class UserStore extends Model{
     public static function validate_about($input){
         $rules = array(
             'facebook' => 'url',
-        	'twitter' => 'url',
+        	'twitter'  => 'url',
         	'homepage' => 'url',
-
         );
 
         return Validator::make($input, $rules);
@@ -116,10 +115,12 @@ class UserStore extends Model{
      * @since       2015/03/05
      *
      * @modified    Sang PM
-     * @modified    2015/03/19
+     * @modified    2015/03/26
      * get user stores from domain
      */
     public static function getNewDomain($domain) {
+        $domain  = str_replace('.','',$domain);
+        
         $list_dm = self::where('domain', 'LIKE', $domain.'%')->lists('domain');
 
         if(!in_array($domain, $list_dm))  return  $domain;

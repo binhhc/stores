@@ -99,6 +99,7 @@ return array(
 		'domain' => array(
 			'required' => 'Vui lòng nhập tên miền.',
 			'unique' => 'Tên miền của bạn đã tồn tại trong hệ thống.',
+            'not_in' => 'Tên miền không hợp lệ.',
 			'url' => 'Vui lòng nhập một địa chỉ trang web đúng định dạng.'
 
 		),

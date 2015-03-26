@@ -69,7 +69,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public static function validate_forget_password($input){
         $rules = array(
-            'email' => 'required|email|unique:users',
+            'password' => 'required|alphaNum|between:6,30',
         );
 
         return Validator::make($input, $rules);
@@ -173,7 +173,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return Validator::make($input, $rules);
     }
-    
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
@@ -183,8 +183,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      **/
     public static function getByEmail($email){
         return self::where('email', '=', $email)->where('delete_flg', '=', 0)->first();
-    } 
-    
+    }
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
@@ -194,8 +194,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      **/
     public static function getById($id){
         return self::where('id', '=', $id)->where('delete_flg', '=', 0)->first();
-    } 
-    
+    }
+
     /**
      * @author      Sang PM
      * @since       2015/03/20
@@ -211,13 +211,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $user->email = $me['email'];
             $user->account_token = User::createAccountToken();
             $user->save();
-        }    
-        
+        }
+
         UserStore::registerNew($user->id, $user->email);
-        
+
         $usersns = UserSns::where('sns_id', '=', $uid)
                 ->where('user_id', '=', $user->id)->first();
-        
+
         if(empty($usersns)){
             $usersns = new UserSns;
             $usersns->user_id   = $user->id;
@@ -226,7 +226,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $usersns->authen_token = $authen_token;
             $usersns->save();
         }
-        
+
         return $user;
     }
 }

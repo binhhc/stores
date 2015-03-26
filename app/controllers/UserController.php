@@ -114,7 +114,7 @@ class UserController extends BaseController {
     public function facebookCallback(){
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
-            return Redirect::to('/')->with('message', $rs['message']);
+            return Redirect::to('/login')->with('message', $rs['message']);
 
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
@@ -151,7 +151,7 @@ class UserController extends BaseController {
     public function facebookRegister(){
         $rs  = $this->getFaceData();
         if (isset($rs['message']))
-            return Redirect::to('/')->with('message', $rs['message']);
+            return Redirect::to('/login')->with('message', $rs['message']);
 
         $user = User::saveFacebookData($rs);
         $this->regisSession($user);
@@ -179,6 +179,10 @@ class UserController extends BaseController {
             return array('message' => 'Lỗi kết nối!');
 
         $me = $facebook->api('/me');
+
+        if (empty($me['email']))
+            return array('message' => 'Facebook không chia sẻ email !');
+
         $authen_token = $facebook->getAccessToken();
 
         return compact(array('me','uid','authen_token'));
@@ -231,8 +235,17 @@ class UserController extends BaseController {
                     ->where('account_token', '=', $input['token'])
                     ->first();
 
-            return (empty($user)) ? Redirect::to('/') :
-                View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$input['token']));
+            if(!empty($user))  {
+             // Check expire account token
+		        if(User::checkExpiredTime($user) == true){
+	                return View::make('user.reset_password')->with(array('email'=>$input['email'], 'account_token'=>$user->account_token));
+		        } else {
+		        	return Redirect::to('/')->with('forgetPassword',  1);
+		        }
+            } else {
+            	return Redirect::to('/')->with('forgetPassword',  1);
+
+            }
         }
         return View::make('user.forgot_password');
     }
@@ -250,10 +263,12 @@ class UserController extends BaseController {
         $result     = 0;
 
         if(!empty($email)){
-            $user   = User::getByEmail($email);
+            $token   = User::createAccountToken();
+        	User::where('email', '=',$email)->update(array('account_token' => $token));
 
+			$user   = User::getByEmail($email);
             if (!empty($user)) {
-                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$user->account_token;
+                $link_reset      = URL::to('/').'/forgetPassword?email='.$email.'&token='.$token;
 
                 $data = array(
                     'link_reset' => $link_reset,
@@ -283,27 +298,13 @@ class UserController extends BaseController {
         $input      = Input::all();
         $password   = Input::get('password');
 
-        $user       = User::where('email', '=', $input['email'])
-                    ->where('account_token', '=', $input['account_token'])->first();
+     	$input  = Input::all();
+        $v      = User::validate_forget_password($input);
 
-        if(empty($user))
-            return Redirect::to('/');
-
-        if(empty($password)){
-            $this->regisSession($user);
-            return Redirect::to('/dashboard');
-        }else{
-            $new_token   = User::createAccountToken();
-            //update new account_token
-            User::where('id',$user->id)
-                ->update(array('account_token' => $new_token, 'password' => Hash::make($password)));
-
-            if(!empty($user)){
-                $this->regisSession($user);
-                return Redirect::to('/dashboard');
-            }else{
-                 return Redirect::to('/');
-            }
+        if( !empty($v) && $v->passes()){
+            User::where('email', '=' ,$input['email'])
+                ->update(array('password' => Hash::make($input['password']), 'account_token' => User::createAccountToken()));
+           return Redirect::to('/');
         }
     }
 
@@ -405,7 +406,7 @@ class UserController extends BaseController {
      * @since 2015.01.22
      */
     public function doChangePassword(){
-        $input  = Input::all();
+		$input  = Input::all();
         $user   = Session::get('user');
         $v      = User::validate_update_password($input);
 
@@ -415,7 +416,6 @@ class UserController extends BaseController {
         }
 
         return Redirect::to('/account_setting');
-
     }
 
     /**

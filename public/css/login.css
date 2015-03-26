@@ -40,7 +40,11 @@
     color: #d2615e;
     margin-top:5px;
 }
-
+.form_basic .error {
+	color: #ff0000;
+	display: block;
+	padding: 10px 0 0;
+}
 .message_login{
     text-align: center;
     padding-top: 15px;

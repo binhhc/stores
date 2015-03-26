@@ -159,8 +159,7 @@ $(document).ready(function(){
 		          global: true,
 		          dataType: 'json',
 		          beforeSend: function() {
-		        	  $('button.btn_submit').hide();
-		        	  $('.btn_wait').show();
+		        	  $("button.btn_submit").text('Đang tạo...');
 		          },
 		          success: function(response) {
 		        	  if(response.status == 'fail validate') {
@@ -182,8 +181,7 @@ $(document).ready(function(){
 		          error: function(XMLHttpRequest, textStatus, errorThrown) {
 		          },
 		          complete: function() {
-		        	  $('button.btn_submit').show();
-		        	  $('.btn_wait').hide();
+		        	  $('button.btn_submit').text('TẠO CỬA HÀNG');
 		          },
 		      });
 		  } else {

@@ -302,7 +302,7 @@ class UserController extends BaseController {
         $v      = User::validate_forget_password($input);
 
         if( !empty($v) && $v->passes()){
-            User::where('email', '=s' ,$input['email'])
+            User::where('email', '=' ,$input['email'])
                 ->update(array('password' => Hash::make($input['password']), 'account_token' => User::createAccountToken()));
            return Redirect::to('/');
         }

@@ -10,17 +10,19 @@
         <div id="store_info" style="display:table-cell; vertical-align:middle;">
           <h3>{[styles.name]}</h3>
           <p>{[profile.name]}</p>
-          <div id="follow" class="follow_about">
-	      <?php if($follow_status == 0) { ?>
-	        <p class="follow_btn">
-	        	<a href="" class="about"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
-	        </p>
-	       <?php }else {?>
-	        <p class="follow_btn follow_already" >
-				<a href="" class="about" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
-			</p>
-			<?php }?>
-	      </div>
+            <?php if($on_off_follow == 1) {?>
+	          <div id="follow" class="follow_about">
+		      <?php if($follow_status == 0) { ?>
+		        <p class="follow_btn">
+		        	<a href="" class="about"  user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}" >{{$follow}}</a>
+		        </p>
+		       <?php }else {?>
+		        <p class="follow_btn follow_already" >
+					<a href="" class="about" user_store_id="{{md5($user_store_id)}}" follow_status="{{$follow_status}}">{{$following}}</a>
+				</p>
+				<?php }?>
+		      </div>
+		      <?php }?>
           <!-- <iframe ng-src="{[ stores_domain ]}/iframe/store/follow_about" width="145" height="40" scrolling="no" frameborder="0" sp-if="follow"></iframe> -->
         </div>
       </div>

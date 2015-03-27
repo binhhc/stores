@@ -75,6 +75,7 @@ class StoreController extends BaseController {
         	'follow_count'  => $follow_status['count'],
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
+        	'on_off_follow' => $store_user->follow,
         	'follow'        => $follow,
         	'following'     => $following,
             'userProfiles'  => $userProfiles,
@@ -347,7 +348,8 @@ class StoreController extends BaseController {
         	'follow_status' => $follow_status['follow'],
         	'user_store_id' => $store_user->user_id,
         	'follow'        => $follow,
-        	'following'     => $following
+        	'following'     => $following,
+        	'on_off_follow' => $store_user->follow,
         );
 
         return View::make('store.about', $data);
@@ -1282,36 +1284,36 @@ class StoreController extends BaseController {
 	 * Save change domain
 	 * @author      OanhHa
 	 * @since       2015-01-19
-     * 
+     *
      * @modified by Sang PM
      * @modified    2015/03/26
 	 */
 	public function save_domain(){
 		$input = Input::all();
         $domain = Input::get('domain');
-        
+
         $input['domain']     = $domain;
         $input['domain_url'] = empty($domain) ? '' : 'http://'. Input::get('domain'). '.'. Config::get('constants.domain');
-        
+
 		$user_id = $this->getUserId();
 		$user    = UserStore::where('user_id', $user_id)->first();
         $id_store= empty($user) ? 0 : $user->id;
 		$user    = empty($user) ? new UserStore :$user;
-        
+
         $validate= UserStore::validate_unique_domain($input,$id_store);
         if($validate->fails()) {
             return Redirect::to('/store_domain')->withErrors($validate)->withInput();
         }
-        
-        
+
+
         $user->user_id      = $user_id;
         $user->domain       = $domain;
         $user->created_user = $user_id;
         $user->updated_user = $user_id;
         $user->save();
-        
+
         Session::put('userStoresDomain', UserStore::getUserStoreDomain());
-        
+
         return Redirect::to('/store_setting')->with('success', "Bạn đã chỉnh sửa thành công tên miền");
 	}
 	/**

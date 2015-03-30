@@ -100,10 +100,12 @@ img {
     top: 40px;
 }
 #footer {
-    height: 300px;
+    /*height: 300px;*/
+    height: 370px;
 }
 
 #footer #foot_navi_main {
+	background: url("/img/main_page/bg_footer_nav.png") repeat-x bottom #2e3740;
     color: #2e3740;
     list-style-type: none;
     padding: 35px 0;
@@ -207,7 +209,7 @@ img {
 }
 .main {
     background: url("../img/main_page/bg.png") no-repeat scroll center top #fafafa;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid;
     height: 800px;
     position: relative;
 }
@@ -222,7 +224,7 @@ img {
     /*width: 790px;*/
 }
 .main .social_login h2 strong {
-    color: #d36361;
+    color: #FF6868;
     font-size: 28px;
     font-weight: normal;
     height: 70px;
@@ -612,7 +614,7 @@ h3.heading {
     padding: 10px 15px 8px;
     position: absolute;
     top: 212px;
-    width: 503px;
+    width: 510px;
     z-index: 10;
     text-align: center;
 }
@@ -8185,4 +8187,95 @@ h1.summary {
 	height: 90px;
     padding: 45px;
 }
+#footer .parentBoxInner{
+    background-color: #37332E;
+    height: 200px;
+}
+#footer .boxInner{
+    position: relative;
+    width: 980px;
+    height: 150px;
+    margin: auto;
+    padding: 24px 0 20px;
+}
+#footer .boxInner .clearfix {
+    min-height: 1px;
+    clear: both;
+    display: block;
+}
+#footer .boxInner .leftCol {
+	color: red;
+    width: 568px;
+    float: left;
+}
+#footer #footer_navi_main{
+    color: #2e3740;
+    list-style-type: none;
+    padding: 35px 0;
+    /*width: 980px;*/
+    margin: 0 auto;
+}
+#footer #footer_navi_main li{
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: normal;
+    margin: 0 10px;
+    vertical-align: middle;
+    word-spacing: normal;
+}
+#footer #footer_navi_main li a{
+    color: #fff;
+}
+#footer .boxInner .rightColLogin {
+    color: red;
+    width: 400px;
+    float: right;
+}
+#footer .footer_navi_main_login{
+    float: right;
+    padding: 35px 0;
+    margin: 0 auto;
+}
+#footer .footer_navi_main_login li a{
+    border: 1px solid #d3d3d3;
+    color: #FF6868;
+    display: block;
+    font-size: 14px;
+    height: 36px;
+    line-height: 35px;
+    text-align: center;
+    width: 150px;
+    text-decoration: none;
+    border-color: #5ED9E8;
+}
+#footer .boxBackTop{
+    color: red;
+    width: 980px;
+    margin: auto;
+    padding: 24px 0 20px;
+}
+#footer .boxBackTop .bntBackTop{
+    color: red;
+    margin: auto;
+    float: right;
+}
 
+#footer .boxBackTop .hrefBackTop{
+    background: url("../img/main_page/icon_back_top.png") no-repeat scroll center top;
+    color: red;
+    margin: auto;
+    float: right;
+    display: block;
+    width: 72px;
+    height: 40px;
+    padding-top: 22px;
+    padding-bottom: 8px;
+}
+#footer .boxCompanyInfor{
+	background-color: #2B2824;
+	color: red;
+    position: relative;
+    width: 980px;
+    margin: auto;
+    /*padding: 24px 0 20px;*/
+}

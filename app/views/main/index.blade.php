@@ -15,9 +15,8 @@
         </p>
     </div>
     <div id="panel_label_introduce">
-        <h2><strong>DỄ DÀNG MỞ MỘT CỬA HÀNG TRỰC TUYẾN VỚI</strong></h2>
-        <br>
-        <p>Hayamise</p>
+        <div><h2><strong>DỄ DÀNG MỞ MỘT CỬA HÀNG TRỰC TUYẾN VỚI</strong></h2></div>
+        <div><p>Hayamise</p></div>
     </div>
     <div class="social_login">
         <h1>

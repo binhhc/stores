@@ -24,30 +24,35 @@
 	<ul class="dashboard">
 		<li>
 			<a class="dashboard_design"  href="{{URL::asset('/edit')}}">
-				<h2>Thiết kế cửa hàng</h2>
+			     {{HTML::image('img/main_page/line_ic_main_big.png')}}
+				<h2>THIẾT KẾ CỬA HÀNG</h2>
 				<span>Tuỳ chỉnh thiết kế cửa hàng</span>
 			</a>
 		</li>
 		<li>
 			<a class="dashboard_items"  href="{{URL::asset('/item_management')}}">
-			<h2>Quản lý sản phẩm</h2>
+			{{HTML::image('img/main_page/line_ic_main_big.png')}}
+			<h2>QUẢN LÝ SẢN PHẨM</h2>
 			<span>Thêm / Chỉnh sửa sản phẩm</span>
 			</a>
 		</li>
 		<li>
 			<a class="dashboard_store"  href="{{URL::asset('/store_setting')}}">
-			<h2>Cài đặt cửa hàng</h2>
+			{{HTML::image('img/main_page/line_ic_main_big.png')}}
+			<h2>CÀI ĐẶT CỬA HÀNG</h2>
 			<span>Thêm / Chỉnh sửa thông tin cửa hàng</span>
 			</a>
 		</li>
 		<li>
 			<a class="dashboard_account"  href="{{URL::asset('/account_setting')}}">
-			<h2>Cài đặt tài khoản</h2>
+			{{HTML::image('img/main_page/line_ic_main_big.png')}}
+			<h2>CÀI ĐẶT TÀI KHOẢN</h2>
 			<span>Sửa thông tin cá nhân</span>
 			</a>
 		</li>
         <li class="special">
             <a class="dashboard_addon" href="{{URL::asset('/addon')}}">
+            {{HTML::image('img/main_page/line_ic_main_big.png')}}
               <h2>Addon</h2>
               <span>Cập nhật tính năng mới</span>
             </a>

@@ -11,20 +11,21 @@
         <div class="sign_up">
             <h1>
                 <a href="{{URL::asset('/')}}">
-                    {{HTML::image('img/login/logo_white.png', 'STORES.vn')}}
+                    {{HTML::image('img/login/logo_hayamise_login.png', 'STORES.vn')}}
                 </a>
             </h1>
+            <div class="login_separator">{{HTML::image('img/login/colorful-separator.png', 'STORES.vn')}}</div>
             <div class="box">
                 {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass', 'class'=>'form_submit form_basic'))}}
                     <dl class="set">
-                        <dt>Vui lòng điền email bạn đã đăng kí</dt>
+                        <dt>VUI LÒNG NHẬP ĐỊA CHỈ EMAIL BẠN ĐÃ ĐĂNG KÝ</dt>
                         <dd>
-                            {{Form::text('email', null, array('class' => 'email_pass'))}}
+                            {{Form::text('email', null, array('class' => 'email_pass', 'placeholder'=>'Email'))}}
                             <p class="error" id="error_email" style="display: none;"></p>
                         </dd>
                     </dl>
                     <p class="btn_submit">
-                        <button type="submit" class="btn_submit_1">Lấy lại mật khẩu</button>
+                        <button type="submit" class="btn_submit_1">ĐẶT LẠI MẬT KHẨU</button>
                     </p>
                     <p class="btn_wait display_none btn_wait_1">Đang gởi</p>
                 {{Form::close()}}

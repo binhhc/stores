@@ -36,12 +36,12 @@
 }
 
 .message_error{
-    color: #d2615e;
+    color: #FF6769;
     margin-top:5px;
 }
 
 .form_basic .error {
-	color: #ff0000;
+	color: #FF6769;
 	display: block;
 	padding: 10px 0 0;
 }
@@ -71,7 +71,7 @@
 }
 
 .sign_up dt {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     margin-bottom: 15px;
     line-height: 1;
@@ -118,12 +118,16 @@
     line-height: 45px;
     font-size: 14px;
     color: #fff;
-    border: 1px solid #4e473f;
+    border: 2px solid #4e473f;
     background: url("../img/login/ic_username.png") no-repeat scroll right #37332E;
 }
 
 .sign_up .set input[name=password] {
     background: url("../img/login/ic_pass.png") no-repeat scroll right #37332E;
+}
+
+.sign_up .set input[class=email_pass] {
+    background: url("../img/login/ic_mail.png") no-repeat scroll right #37332E;
 }
 /* submit button */
 
@@ -213,8 +217,8 @@
 .sign_up .login_separator img{
     text-align: center;
     width: 100%;
-    max-width: 440px;
     vertical-align: bottom;
+    height: 2px;
 }
 
 .sign_up .box .social_login_or{
@@ -721,7 +725,7 @@
         text-decoration:none;
     }
     
-    .sign_up .login_separator{
+    /*.sign_up .login_separator{
         text-align: center;
         padding-bottom: 0px;
     }
@@ -731,6 +735,6 @@
         width: 100%;
         max-width: 440px;
         vertical-align: bottom;
-    }
+    }*/
     
 }

@@ -168,6 +168,11 @@
     text-decoration:none;
 }
 
+/*Remove blue border from css custom-styled button in Chrome*/
+.sign_up .btn_submit button:focus{
+	outline:0;
+}
+
 .sign_up .social_login {
     width: 380px;
     margin: 23px auto 0 auto;
@@ -724,17 +729,4 @@
         background-position:bottom;
         text-decoration:none;
     }
-    
-    /*.sign_up .login_separator{
-        text-align: center;
-        padding-bottom: 0px;
-    }
-    
-    .sign_up .login_separator img{
-        text-align: center;
-        width: 100%;
-        max-width: 440px;
-        vertical-align: bottom;
-    }*/
-    
 }

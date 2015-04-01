@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Đăng nhập</title>
         <meta charset="UTF-8">
         {{HTML::style('css/bootstrap.min.css')}}
         {{HTML::style('css/login.css')}}

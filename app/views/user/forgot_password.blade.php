@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Quên mật khẩu</title>
         {{HTML::script('js/jquery.min.js')}}
         {{HTML::script('js/common.js')}}
         {{HTML::style('css/bootstrap.min.css')}}

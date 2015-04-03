@@ -1,4 +1,5 @@
         <div id="footer">
+            <div class="footer_separator"></div>
             <div class="footer_upper">
                 <div class="footer_upper_wrap">
                     <div class="foot_navi_support"><a href="{{URL::asset('/support')}}">HẠN CHẾ HỖ TRỢ HOẠT ĐỘNG</a></div>

@@ -111,7 +111,8 @@
 	</div>
 @include('elements.footer')
 <style>
+/*
 *, *:before, *:after {
     box-sizing: content-box;
-}
+}*/
 </style>

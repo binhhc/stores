@@ -1998,7 +1998,12 @@ background-position: bottom;
 #footer .footer_under .foot_navi_company_info ul span{
     color: #FFFFFF;
 }   
-
+#footer .footer_separator{
+    background: url("../img/main_page/ic_footer_colorful-separator.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    background-size: 100%;
+    padding-bottom: 0px;
+    height: 2px;
+} 
 @media only screen  and (max-width: 1024px) {
     .dashboard_wrapper .dashboard li {
         margin: 40px 40px 40px 40px;

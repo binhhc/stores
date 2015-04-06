@@ -23,6 +23,7 @@
             CHỈ 1 BƯỚC ĐƠN GIẢN
             <br /><strong>Bạn có thể tạo cửa hàng của riêng mình</strong>
         </h1>
+        <hr>
         <h2><strong>MIỄN PHÍ</strong> tạo cửa hàng!</h2>
         <div id="home_sign">
         {{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
@@ -62,8 +63,10 @@
             <p class="wapper_heading_label">
                 MIỄN PHÍ
             </p>
-            <p>
+            <p class="wapper_heading_label_under">
+                <span>// </span>
                 Lưu trữ hàng hóa trực tuyến
+                <span> //</span>
             </p>
         </div>
         <div class="slide">
@@ -98,16 +101,25 @@
             </div>
         </div>
     </div>
+    
     <div class="contact">
-        <div class="heading_contact">Nhân viên toàn thời gian vui lòng hỗ trợ</div>
+        <div class="heading_contact">
+            <div class="text_support">
+                VUI LÒNG HỖ TRỢ 24/24    
+            </div>
+            <div class="img_close">
+                <a href="#">{{HTML::image('img/main_page/ic_close.png')}}</a></div>    
+            </div>
+
             <ul>
                 <li class="mail">
                     <a href="/contact">
-                        <p>Liên hệ qua email</p>
+                        <p>LIÊN HỆ QUA EMAIL</p>
                     </a>
                 </li>
             </ul>
         </div>
+        
 </div>
 <?php /*?>
 <p class="medias pc">

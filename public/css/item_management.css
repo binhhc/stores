@@ -1873,11 +1873,9 @@ background-position: bottom;
 #header_store_edit .nav .nav_design{
     background: url("../img/main_page/icon_main_nav_design.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
-/*
 #header_store_edit .nav .nav_design:hover  {
     background: url("../img/main_page/icon_main_nav_design_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
-*/
 #header_store_edit .nav li{
     width: 60px;
     display: inline-block;

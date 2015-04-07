@@ -27,6 +27,7 @@
         <h2><strong>MIỄN PHÍ</strong> tạo cửa hàng!</h2>
         <div id="home_sign">
         {{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
+        <input type="password" style="display:none">
             <div class="home_email">
                 {{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
             </div>
@@ -108,7 +109,7 @@
                 VUI LÒNG HỖ TRỢ 24/24    
             </div>
             <div class="img_close">
-                <a href="#">{{HTML::image('img/main_page/ic_close.png')}}</a></div>    
+                <a href="javascript:;">{{HTML::image('img/main_page/ic_close.png')}}</a></div>    
             </div>
 
             <ul>
@@ -134,6 +135,13 @@
 @include('main.footer')
 <script>
 $(document).ready(function(){
+    $('.img_close').click(function(){
+        $(".contact").hide();
+    });
+    $('a[href^=#].js-scroll').on('click', function(){
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        return false;
+    });
 	setTimeout(function() {
 	       $('#alert_panel').fadeOut();
 	   }, 5000);

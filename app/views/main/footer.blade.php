@@ -30,7 +30,7 @@
                 </ul>
             </div>
             <div class="footer_back_top">
-    			<a href="/">{{HTML::image('img/main_page/icon_back_top.png', 'Top')}}</a>
+    			<a href="#container" class="js-scroll">{{HTML::image('img/main_page/icon_back_top.png', 'Top')}}</a>
     		</div>    
         </div>
     </div>

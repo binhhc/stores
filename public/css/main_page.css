@@ -417,13 +417,14 @@ h3.heading {
 }
 
 #stores .slide {
-    height: 540px;
+    height: 516px;
     margin: 0 auto;
     position: relative;
     width: 100%;
 }
 #stores .wrapper {
     position: relative;
+    padding-top: 30px;
 }
 .wrapper {
     margin: 0 auto;

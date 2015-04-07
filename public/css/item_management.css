@@ -1872,6 +1872,7 @@ background-position: bottom;
 }
 #header_store_edit .nav .nav_design{
     background: url("../img/main_page/icon_main_nav_design.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_design:hover  {
     background: url("../img/main_page/icon_main_nav_design_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
@@ -1882,35 +1883,40 @@ background-position: bottom;
 }
 #header_store_edit .nav li a{
     padding: 20px 15px;
-    width: 30px;
+    /*width: 30px;*/
     display: block;
 }
 #header_store_edit .nav .nav_items{
     background: url("../img/main_page/icon_main_nav_items.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_items:hover{
     background: url("../img/main_page/icon_main_nav_items_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 #header_store_edit .nav .nav_store{
     background: url("../img/main_page/icon_main_nav_store.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_store:hover{
     background: url("../img/main_page/icon_main_nav_store_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 #header_store_edit .nav .nav_account{
     background: url("../img/main_page/icon_main_nav_account.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_account:hover{
     background: url("../img/main_page/icon_main_nav_account_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 #header_store_edit .nav .nav_addon{
     background: url("../img/main_page/icon_main_nav_addon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_addon:hover{
     background: url("../img/main_page/icon_main_nav_addon_act.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 }
 #header_store_edit .nav .nav_faq{
     background: url("../img/main_page/icon_main_nav_faq.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 #header_store_edit .nav .nav_faq:hover{
     background: url("../img/main_page/icon_main_nav_faq.png") no-repeat scroll center center rgba(0, 0, 0, 0);

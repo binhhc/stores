@@ -8253,6 +8253,10 @@ h1.summary {
     padding-left:5px;
 }
 
+#home_sign .home_email input:focus{
+    outline: 0;
+}
+
 #home_sign .home_password, #home_sign .home_submit{
     padding-left:10px;
 }
@@ -8264,6 +8268,10 @@ h1.summary {
     background-color: rgba(255,255,255,0.2) !important;
     color: white;
     padding-left:5px;
+}
+
+#home_sign .home_password input:focus{
+    outline: 0;
 }
 
 #home_sign .home_submit button{

@@ -15,7 +15,7 @@
   <!-- Header/ -->
   <div id="header">
     <div class="wrapper pc">
-      <p id="logo"><a href="/">{{HTML::image('img/main_page/logo.png')}}</a></p>
+      <p id="logo"><a href="/">{{HTML::image('img/main_page/logo_gray.png')}}</a></p>
     </div>
     <!-- Mobile/ -->
     <div class="wrapper sp">

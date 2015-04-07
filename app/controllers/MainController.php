@@ -86,7 +86,7 @@ class MainController extends BaseController {
             $message->to($email, 'Mời tham gia Stores')->subject('Thư mời tham gia Store');
         });
     }
-    
+
     /**
      *
      * Send email to invitation by Gmail friends
@@ -97,16 +97,16 @@ class MainController extends BaseController {
      	if(Request::ajax()){
             $items_array = Input::get('user_emails');
             $data        = $this->getSendMailInfo();
-            
+
             foreach($items_array as $item) {
                $this->send_email($item, $data);
             }
-            
+
             return Response::json('success');
         }
     }
-    
-   
+
+
     /**
      *
      * get gmail contact list
@@ -115,36 +115,36 @@ class MainController extends BaseController {
      */
     public function auth_gmail() {
 		$maxresults    = Config::get('constants.maxresults'); // Number of mailid you want to display.
-        
+
 		$fields=array(
             'code'          => $_GET["code"],
             'client_id'     => Config::get('constants.clientid'),
             'client_secret' => Config::get('constants.clientsecret'),
             'redirect_uri'  => Config::get('constants.redirecturi'),
-            'grant_type'    => 'authorization_code' 
+            'grant_type'    => 'authorization_code'
         );
 
 		$fields_string = implode('&', array_map(function ($v, $k) { return $k . '=' . urlencode($v); }, $fields, array_keys($fields)));
-        
+
 		$ch = curl_init();//open connection
 		curl_setopt($ch, CURLOPT_URL,'https://accounts.google.com/o/oauth2/token');
 		curl_setopt($ch, CURLOPT_POST,5);
 		curl_setopt($ch, CURLOPT_POSTFIELDS,$fields_string);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
+
 		$result      = curl_exec($ch);
 		$response    = json_decode($result);
 		$accesstoken = $response->access_token;
-        
+
 		if( $accesstoken != '')
             $_SESSION['token'] = $accesstoken;
-        
+
 		$xmlresponse= file_get_contents('https://www.google.com/m8/feeds/contacts/default/full?max-results='.$maxresults.'&oauth_token='. $_SESSION['token']);
 
 		$xml= new SimpleXMLElement($xmlresponse);
 		$xml->registerXPathNamespace('gd', 'http://schemas.google.com/g/2005');
-        
+
 		$output_array = array();
 		foreach ($xml->entry as $entry) {
             foreach ($entry->xpath('gd:email') as $email) {

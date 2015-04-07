@@ -392,9 +392,9 @@ button {
     background-position: 0 -168px;
 }
 #stores {
-    background-color: #f0f0f0;
+    background-color: #f6f6f6;
     border-top: 1px solid #e7e7e7;
-    padding: 45px 0;
+    padding: 13px 0 45px;
 }
 .contents {
     color: #666;
@@ -417,20 +417,20 @@ h3.heading {
 }
 
 #stores .slide {
-    height: 440px;
+    height: 540px;
     margin: 0 auto;
     position: relative;
-    width: 880px;
+    width: 100%;
 }
 #stores .wrapper {
     position: relative;
 }
 .wrapper {
     margin: 0 auto;
-    width: 960px;
+    width: 100%;
 }
 
-#stores .slide_navi li.prev {
+/**#stores .slide_navi li.prev {
     background: url("../img/main_page/btn_slide_left.gif") no-repeat scroll left center rgba(0, 0, 0, 0);
     left: -40px;
 }
@@ -449,17 +449,17 @@ h3.heading {
     top: 10px;
     width: 40px;
 }
-
+**/
 #stores .slide_mask {
-    height: 440px;
-    width: 880px;
+    height: 510px;
+    width: 100%;
 }
 .slide_mask {
     overflow: hidden;
     position: relative;
 }
 #stores .slide_mask .slide_cols {
-    width: 880px;
+    width: 100%;
 }
 .slide_mask .slide_wrap .slide_cols {
     position: absolute;
@@ -469,12 +469,23 @@ h3.heading {
     padding: 0px
 }
 .col4 .cols {
-    margin: 10px;
-    width: 200px;
+    margin: 2px;
+    width: 332px;
+    height: 230px;
+    overflow: hidden;
 }
 .cols {
     float: left;
     margin: 0 10px;
+}
+.modal_footer {
+    margin: 40px auto;
+    text-align: center;
+    width: 100%;
+}
+.modal_page > li {
+    display: inline;
+    padding: 10px;
 }
 
 .contact {
@@ -661,7 +672,7 @@ h3.heading {
     background-size: 100%;
     padding-bottom: 0px;
     height: 2px;
-} 
+}
 
 #footer .footer_upper{
     background-color: #37342F;
@@ -8305,7 +8316,7 @@ h1.summary {
 }
 .wapper_heading{
     display: block;
-    height: 120px;
+    height: 150px;
     text-align: center;
 }
 .wapper_heading .wapper_heading_label{

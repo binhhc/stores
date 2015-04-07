@@ -23,11 +23,9 @@
             CHỈ 1 BƯỚC ĐƠN GIẢN
             <br /><strong>Bạn có thể tạo cửa hàng của riêng mình</strong>
         </h1>
-        <hr>
         <h2><strong>MIỄN PHÍ</strong> tạo cửa hàng!</h2>
         <div id="home_sign">
         {{Form::open(array('url' => 'register', 'method' => 'post', 'name' => 'myForm'))}}
-        <input type="password" style="display:none">
             <div class="home_email">
                 {{Form::text('email', '', array('placeholder' => 'Email', 'name' => 'email'))}}
             </div>
@@ -37,7 +35,7 @@
             <div class="home_submit">
                 <button class="btn_submit" type="button">TẠO CỬA HÀNG</button>
                 <p class="btn_wait" style="display: none">Đang tạo...</p>
-            </div>    
+            </div>
             <div class="home_or">
                 <span>hoặc</span>
             </div>
@@ -64,13 +62,70 @@
             <p class="wapper_heading_label">
                 MIỄN PHÍ
             </p>
-            <p class="wapper_heading_label_under">
-                <span>// </span>
-                Lưu trữ hàng hóa trực tuyến
-                <span> //</span>
-            </p>
+           <p class="wapper_heading_label_under">
+				<span>// </span>
+				Lưu trữ hàng hóa trực tuyến
+				<span> //</span>
+			</p>
         </div>
+        <!-- Slide for main page -->
+        <?php if(!empty($item_slides)) {?>
         <div class="slide">
+        	  <div class="slide_wrap">
+                <?php $i = 0;?>
+                <?php foreach($item_slides as $item) {?>
+                <?php $i ++ ; $style= ($i != 1) ? "display: none" : ''; ?>
+                    <div class="slide_cols" style="<?php echo $style?>" id="promotion_modal<?php echo $i?>">
+                     <ul class="col4">
+                      <?php foreach ($item as $key => $value) {?>
+                        <li class="cols">
+                          <a href="{{$value['href']}}" target="_blank">{{HTML::image($value['url'], $value['name'])}}</a>
+                        </li>
+                        <?php }?>
+                      </ul>
+                      <?php if(count($item_slides) > 1) {
+                      	$slide1 = "img/main_page/slide_act.png";
+                      	$slide3 = $slide2 = "img/main_page/slide_normal.png";
+                      	switch ($i){
+	                      	case 2 :
+	                      		$slide2 = "img/main_page/slide_act.png" ;
+	                      		$slide1 = $slide3 = "img/main_page/slide_normal.png";
+	                      		break;
+	                      	case 3:
+	                      		$slide3 = "img/main_page/slide_act.png";
+	                      		$slide1 = $slide2 = "img/main_page/slide_normal.png";
+	                      	default:
+	                      		break;
+                      	}
+                      	?>
+                        <div class="modal_footer">
+							<ul class="modal_page">
+								<li>
+									<a class="modal-move" href="#promotion_modal1">
+										{{HTML::image($slide1, 'Information') }}
+									</a>
+								</li>
+								<li>
+									<a class="modal-move" href="#promotion_modal2">
+										{{HTML::image($slide2, 'Information') }}
+									</a>
+								</li>
+								<?php if(count($item_slides) > 2) {?>
+								<li>
+									<a class="modal-move" href="#promotion_modal3">
+										{{HTML::image($slide3, 'Information') }}
+									</a>
+								</li>
+								<?php }?>
+							</ul>
+						</div>
+						<?php }?>
+                    </div>
+                    <?php }?>
+                </div>
+        </div>
+        <?php }?>
+        <!-- <div class="slide">
             <ul class="slide_navi">
                 <li class="prev">Trước</li>
                 <li class="next">Sau<li>
@@ -100,27 +155,18 @@
                     <a href="">Phân loại</a>
                 </p>
             </div>
-        </div>
+        </div> -->
     </div>
-    
     <div class="contact">
-        <div class="heading_contact">
-            <div class="text_support">
-                VUI LÒNG HỖ TRỢ 24/24    
-            </div>
-            <div class="img_close">
-                <a href="javascript:;">{{HTML::image('img/main_page/ic_close.png')}}</a></div>    
-            </div>
-
+        <div class="heading_contact">Nhân viên toàn thời gian vui lòng hỗ trợ</div>
             <ul>
                 <li class="mail">
                     <a href="/contact">
-                        <p>LIÊN HỆ QUA EMAIL</p>
+                        <p>Liên hệ qua email</p>
                     </a>
                 </li>
             </ul>
         </div>
-        
 </div>
 <?php /*?>
 <p class="medias pc">
@@ -135,15 +181,15 @@
 @include('main.footer')
 <script>
 $(document).ready(function(){
-    $('.img_close').click(function(){
-        $(".contact").hide();
-    });
-    $('a[href^=#].js-scroll').on('click', function(){
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
-        return false;
-    });
 	setTimeout(function() {
 	       $('#alert_panel').fadeOut();
 	   }, 5000);
+
+	$('a.modal-move').on('click', function() {
+		var modal = $(this).attr('href');
+		//$('#modal-win-inner').hide();
+		$('.slide_cols').hide();
+		$(modal).show();
+	});
 });
 </script>

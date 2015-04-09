@@ -72,7 +72,7 @@
         </div>
         <!-- Slide for main page -->
         <?php if(!empty($item_slides)) {?>
-        <div class="slide" style="<?php echo (count($item_slides) == 1 && count($item_slides[0] <= 4)) ? "height: 255px!important" : ''?>">
+        <div class="slide">
         	  <div class="slide_wrap">
                 <?php $i = 0;?>
                 <?php foreach($item_slides as $item) {?>

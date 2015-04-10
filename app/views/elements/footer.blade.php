@@ -9,7 +9,7 @@
                 </div>
             <div class="footer_under">
                 <div class="footer_under_wrap">
-                    <div class="foot_navi_company">COPYRIGHT @ 2015 <span>HAYAMISE</span></div>
+                    <div class="foot_navi_company">COPYRIGHT &copy; 2015 <span>HAYAMISE</span></div>
                     <div class="foot_navi_company_info">
                         <ul>
                             <li><a href="/contact" target="_blank">LIÊN HỆ</a></li><span> | </span>

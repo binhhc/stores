@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../fonts/Pacifico.ttf');
+}
 ul {
     list-style: none outside none;
 }
@@ -521,9 +525,9 @@ h3.heading {
 }
 
 .contact ul {
-    background: url("../img/main_page/img_box_mail_contact.png") no-repeat scroll 14px center #fff;
+    background: url("../img/main_page/img_box_mail_contact.png") no-repeat scroll center center #fff;
     background-color: #fafafa;
-    border-left: 1px solid #ccc;
+    /*border-left: 1px solid #ccc;*/
     padding: 55px 15px;
 }
 
@@ -592,7 +596,7 @@ h3.heading {
 .contact ul li.mail a p {
     font-size: 18px;
     font-weight: bold;
-    left: 58px;
+    /*left: 58px;*/
 }
 
 /*
@@ -666,6 +670,7 @@ h3.heading {
     text-align: center;
     font-size: 20px;
     color: #FF6868;
+    font-family: Pacifico;
 }
 
 #footer .footer_separator{

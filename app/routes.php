@@ -1,6 +1,6 @@
 <?php
 
-Route::group(array('domain' => '{account}.hayamise.com'), function()
+Route::group(array('domain' => '{account}.stores.vn'), function()
 {
     Route::get('/', function($account)
     {

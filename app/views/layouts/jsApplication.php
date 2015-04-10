@@ -9831,7 +9831,8 @@ I18n.translations = {
             },
             IE = navigator.userAgent.match(/msie/i),
             didUpdate = null,
-            isTouch = document.createTouch !== undefined,
+            //isTouch = document.createTouch !== undefined,
+			isTouch = true,
             isQuery = function(obj) {
                 return obj && obj.hasOwnProperty && obj instanceof $
             },

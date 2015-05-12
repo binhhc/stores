@@ -1,0 +1,80 @@
+@media only screen  and (max-width: 1024px) {
+    .dashboard_wrapper .dashboard li {
+        margin: 40px 40px 40px 40px;
+    }
+    #footer .footer_upper{
+        background-color: #37342F;
+        width: 100%;
+        margin: 0 auto;
+    }
+    #footer .footer_upper .footer_upper_wrap{
+        width: 100%;
+        /*margin: 0 auto;*/
+        padding-top: 60px;
+        padding-bottom: 300px;
+    }
+    #footer .footer_upper .foot_navi_support{
+        display: inline-block;
+        margin: 20px 40px 5px 20px;
+        padding: 20px;
+        border: 2px solid #FFFFFF;
+        font-size: 14px;
+        height: 60px;
+        float: left;
+        width: 350px;
+    }
+    #footer .footer_upper .foot_navi_referral{
+        display: inline-block;
+        margin: 20px 20px 5px 20px;
+        padding: 20px;
+        border: 2px solid #FFFFFF;
+        font-size: 14px;
+        height: 60px;
+        float: left;
+        width: 350px;
+    }
+    #footer .footer_upper .foot_navi_logout{
+        display: inline-block;
+        margin: 20px 20px 5px 20px;
+        padding: 20px;
+        border: 2px solid #5ED9E8;
+        font-size: 14px;
+        height: 60px;
+        float: left;
+        width: 350px;
+    }
+    #footer .footer_under{
+        clear: both;
+        width: 100%;
+        background-color: #2C2825;
+        font-size: 14px;
+    }
+    #footer .footer_under .footer_under_wrap{
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+        height: 90px;
+        padding-top: 40px;
+        color: red;
+    }
+    #footer .footer_under .foot_navi_company{
+        display: inline-block;
+        width: 100%;
+    }
+    #footer .footer_under .foot_navi_company_info{
+        width: 100%;
+        display: inline-block;
+    }
+    #footer .footer_under .foot_navi_company_info .footer_under_wrap ul li a{
+        color: #673937;
+    }
+    #footer .footer_upper .foot_navi_support a{
+        color: #B1544F;
+    }
+    #footer .footer_upper .foot_navi_referral a{
+        color: #62D7E9;
+    }
+    #footer .footer_upper .foot_navi_logout a{
+        color: #B1544F;
+    }
+}

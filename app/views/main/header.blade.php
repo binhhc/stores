@@ -6,10 +6,11 @@
     <meta http-equiv="Content-Language" content="vi-vn" />
 		{{HTML::style('css/bootstrap.min.css')}}
         {{HTML::style('css/main_page.css')}}
+        {{HTML::style('css/main_mobile.css')}}
         {{HTML::script('js/jquery.min.js')}}
         {{HTML::script('js/main_page.js')}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-  
+
 </head>
 <body>
 <div id="header">

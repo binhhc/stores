@@ -131,10 +131,10 @@
     <div class="contact">
         <div class="heading_contact">
             <div class="text_support">
-                VUI LÒNG HỖ TRỢ 24/24    
+                VUI LÒNG HỖ TRỢ 24/24
             </div>
             <div class="img_close">
-                <a href="javascript:;">{{HTML::image('img/main_page/ic_close.png')}}</a></div>    
+                <a href="javascript:;">{{HTML::image('img/main_page/ic_close.png')}}</a></div>
             </div>
 
             <ul>
@@ -167,13 +167,16 @@ $(document).ready(function(){
         return false;
     });
 	setTimeout(function() {
-	       $('#alert_panel').fadeOut();
-	   }, 5000);
+	   $('#alert_panel').fadeOut();
+	}, 5000);
 
-	$('a.modal-move').on('click', function() {
+	$('a.modal-move').on('click', function(e) {
 		var modal = $(this).attr('href');
-		$('.slide_cols').hide();
-		$(modal).show();
+		$('.slide_cols').fadeOut();
+        setTimeout(function() {
+            $(modal).fadeIn();
+        }, 300);
+        e.preventDefault();
 	});
 });
 </script>

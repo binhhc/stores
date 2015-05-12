@@ -1,6 +1,4 @@
-Order deny,allow
-Deny from all
-Allow from 113.161.67.190
+
 
 php_value memory_limit 30M
 php_value post_max_size 100M

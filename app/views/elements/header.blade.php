@@ -10,16 +10,6 @@
     {{HTML::style('css/item_management.css')}}
     {{HTML::script('/js/jquery.min.js')}}
     {{HTML::script('/js/common.js')}}
-    <script type="text/javascript">
-        //<![CDATA[
-        // AUTH_TOKEN = "6SgmvqjCJG7kEq2cCrNmOOyXphgScKwTHYqtDe1uJB8="; STORE_ID = '54b5c9fd3bcba95608004832'; USER_NAME = 'kids0407';
-        //]]>
-    </script>
-    <script type="text/javascript">
-        //<![CDATA[
-        // STORES_JP = {"plan":"free","is_activate":true,"signup_email_activate_done":null,"FILE_SERVER_URL":"https://f.stores.jp","enable_addons":["follow"]};
-        //]]>
-    </script>
     <script>
     //viewport
     if ((navigator.userAgent.indexOf('iPhone') > 0) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
@@ -43,7 +33,7 @@
             <p class="btn" id="sending_email" ng-show="pending" style="display: none;">Đang gửi</p>
         </div>
     </div>
-    
+
     <div id="header_store_introduce">
         <div class="wrap">
             <a href="/">{{HTML::image('img/main_page/logo_gray.png')}}</a>
@@ -51,14 +41,14 @@
             <p class="btn_store"><a href="http://{{$domain}}.{{Request::server ("SERVER_NAME")}}" target="_blank">CỬA HÀNG CỦA TÔI</a></p>
         </div>
     </div>
-    
+
     <div id="header_store_edit">
         <div class="wrap">
-            <ul class="nav"">
+            <ul class="nav">
                 <li class="nav_design"><a href="{{URL::asset('/edit')}}" id="mn_store_design" original-title="Thiết kế cửa hàng"></a></li>
                 <li class="nav_items"><a href="{{URL::asset('/item_management')}}" id="mn_add_item" original-title="Thêm mặt hàng"></a></li>
                 <li class="nav_store"><a href="{{URL::asset('/store_setting')}}" id="mn_store_setting" original-title="Cài đặt cửa hàng"></a></li>
-    
+
                 <!-- TODO -->
                 <li class="nav_account"><a href="{{URL::asset('/account_setting')}}" id="mn_account_setting" original-title="Cài đặt tài khoản"></a></li>
                 <li class="nav_addon"><a href="{{URL::asset('/addon')}}" original-title="Addon" id="mn_addon"></a></li>
@@ -67,18 +57,3 @@
             <div style="clear: both;"></div>
         </div>
     </div>
-    
-      <!-- <p class="newsbox"><a href="#!/referral">ご紹介キャンペーンでプレミアム料金無料！</a></p> -->
-    <script>
-        // add by Binh Hoang 2015.01.15
-        <?php /*?>
-        $(function() {
-           $('#mn_store_design').tipsy({fade: true, gravity: 'n'});
-           $('#mn_add_item').tipsy({fade: true, gravity: 'n'});
-           $('#mn_store_setting').tipsy({fade: true, gravity: 'n'});
-           $('#mn_account_setting').tipsy({fade: true, gravity: 'n'});
-           $('#mn_faq').tipsy({fade: true, gravity: 'n'});
-           $('#mn_addon').tipsy({fade: true, gravity: 'n'});
-        });
-        <?php */?>
-    </script>

@@ -68,7 +68,7 @@
 					<div class="fancybox-inner" style="overflow: auto; width: 416px; height: auto;">
 						<div id="popup_activate_finish" style="display: block;">
 							<p class="icon">
-								{{HTML::image('img/main_page/icon_store.png', 'STORES.vn')}}
+								{{HTML::image('img/main_page/icon_store.png', 'Hayamise.com')}}
 							</p>
 							<p class="text">
 								Chào mừng bạn đến với Stores

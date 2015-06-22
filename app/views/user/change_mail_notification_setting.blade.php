@@ -8,7 +8,7 @@
     </div>
     <div class="form_basic border_bottom">
         <dl class="cols">
-            <dt>Tin tức mới từ STORES.vn</dt>
+            <dt>Tin tức mới từ Hayamise.com</dt>
             <dd>
                 @if(!empty($mail_follow))
                     <div class="switch_open switch">

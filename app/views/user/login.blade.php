@@ -10,10 +10,10 @@
         <div class="sign_up">
             <h1>
                 <a href="#">
-                    {{HTML::image('img/login/logo_hayamise_login.png', 'STORES.vn')}}
+                    {{HTML::image('img/login/logo_hayamise_login.png', 'Hayamise.com')}}
                 </a>
             </h1>
-            <div class="login_separator">{{HTML::image('img/login/colorful-separator.png', 'STORES.vn')}}</div>
+            <div class="login_separator">{{HTML::image('img/login/colorful-separator.png', 'Hayamise.com')}}</div>
             <div class="box">
                 {{Form::open(array('url' => 'login', 'method' => 'post'))}}
                     <input type="password" style="display:none">
@@ -42,7 +42,7 @@
                         <div class="hight_line"></div>
                         <div class="or_text">hoặc</div>
                     </div>
-                    
+
                     <div class="social_login">
                         <p class="btn_facebook">
                         <?php if(isset($store_user_id) && isset($redirect_url)) {?>
@@ -61,7 +61,7 @@
                         </p>
                     </div>
                 {{ Form::close() }}
-                
+
                 <div class="login_link">
                     <div class="login_link_back_home"><a href="{{URL::asset('/')}}">Quay lại trang chủ</a></div>
                     <div class="login_link_forgot_password">{{HTML::link('/forgetPassword', 'Quên mật khẩu?', array('class' => ''))}}</div>

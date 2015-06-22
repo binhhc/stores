@@ -249,7 +249,7 @@ return array(
                 "registration" => "Membership registration",
                 "aggree_terms_html" => 'Agree to the <a href="#!/terms">terms</a> & conditions',
                 "registration_note_html1" => "If you register to the membership,<br>you will not need to fill-in address and payment information from your next purchase.",
-                "registration_note_html2" => '*Your membership ID will be able to use at all of the stores powered by <a href="https://store.vn" target="_blank">STORES.vn',
+                "registration_note_html2" => '*Your membership ID will be able to use at all of the stores powered by <a href="https://hayamise.com" target="_blank">Hayamise.com',
                 "password" => "Password",
                 "error" => array(
                     "registration_failed" => "Your memberhip registration has failed",

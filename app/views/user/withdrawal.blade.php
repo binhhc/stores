@@ -2,7 +2,7 @@
     <div class="fancybox-outer">
         <div class="fancybox-inner" style="overflow: auto; width: 454px; height: 313px;">
             <div id="popup_quit_form_message" style="display: block;">
-                <h2>STORES.jpを本当に退会してもよろしいですか？</h2>
+                <h2>Hayamise.comを本当に退会してもよろしいですか？</h2>
                 <h3>退会後は下記のデータが消滅されます</h3>
                 <ul class="delete_list">
                     <li class="memo">登録済みのアイテムデータ消滅</li>

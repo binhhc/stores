@@ -10,7 +10,7 @@
         <div class="sign_up">
             <h1>
                 <a href="{{URL::asset('/')}}">
-                    {{HTML::image('img/login/logo_white.png', 'STORES.vn')}}
+                    {{HTML::image('img/login/logo_white.png', 'Hayamise.com')}}
                 </a>
             </h1>
             <div class="box">

@@ -224,7 +224,7 @@
 				<p class="modal_text">
 					Đơn giản chỉ cần chuyển sang ON
 					<br>
-					STORES.jpが提携する大手有名サイトへ
+					HAYAMISE.comが提携する大手有名サイトへ
 					<br>
 					商品を掲載することのできる告知・集客機能となります。
 				</p>
@@ -280,7 +280,7 @@
 				<p style="padding-bottom:10px;">以下のメディアに商品が掲載されます。提携メディアは随時増える予定です。</p>
 				<div ng-hide="data.via == 'toranoana'">
 					<p class="promotion_logo_special">
-						<a target="_blank" href="http://market.zozo.jp/">
+						<a target="_blank" href="#">
 							{{HTML::image('img/main_page/store_setting/logo_zozomarket.png', 'Information', array('height' => 26)) }}
 						</a>
 						<a target="_blank" href="http://market.pass-the-baton.com/">
@@ -288,18 +288,18 @@
 						</a>
 					</p>
 					<p class="promotion_logo_special">
-						<a target="_blank" href="http://market.stores.jp/yuzawaya">
+						<a target="_blank" href="#">
 							{{HTML::image('img/main_page/store_setting/logo_yuzawaya.png', 'Information', array('height' => 26, 'style' => 'padding:10px 10px 0 0;')) }}
 						</a>
-						<a target="_blank" href="http://exmarket.exblog.jp">
+						<a target="_blank" href="#">
 						{{HTML::image('img/main_page/store_setting/logo_exblog.png', 'Information', array('height' => 40)) }}
 						</a>
 					</p>
 					<p class="promotion_logo_special">
-						<a target="_blank" href="http://market.village-v.co.jp/">
+						<a target="_blank" href="#">
 						{{HTML::image('img/main_page/store_setting/logo_village.png', 'Information', array('width' => 270, 'style' => 'padding:0px 10px 0 0;')) }}
 						</a>
-						<a target="_blank" href="http://www.mbok.jp">
+						<a target="_blank" href="#">
 							{{HTML::image('img/main_page/store_setting/logo_mbok.png', 'Information', array('height' => 26)) }}
 						</a>
 					</p>
@@ -307,34 +307,34 @@
 						<tbody>
 							<tr>
 								<td>
-									<a target="_blank" href="http://www.itempost.jp/">
+									<a target="_blank" href="#">
 										{{HTML::image('img/main_page/store_setting/logo_itempost.png', 'Information') }}
 									</a>
 								</td>
 								<td>
-									<a target="_blank" href="http://ecnavi.jp/">
+									<a target="_blank" href="#">
 										{{HTML::image('img/main_page/store_setting/logo_ecnavi.png', 'Information') }}
 									</a>
 								</td>
 								<td>
-									<a target="_blank" href="http://market.amifa.jp/">
+									<a target="_blank" href="#">
 									{{HTML::image('img/main_page/store_setting/logo_amifa.png', 'Information') }}
 									</a>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<a target="_blank" href="https://www.valuecommerce.ne.jp/index.cfm">
+									<a target="_blank" href="#">
 									{{HTML::image('img/main_page/store_setting/logo_valuecommerce.png', 'Information') }}
 									</a>
 									</td>
 									<td>
-										<a target="_blank" href="http://www.coneco.net/">
+										<a target="_blank" href="#">
 											{{HTML::image('img/main_page/store_setting/logo_coneco.png', 'Information') }}
 										</a>
 									</td>
 									<td>
-										<a target="_blank" href="http://park.jp/">
+										<a target="_blank" href="#">
 										{{HTML::image('img/main_page/store_setting/logo_park.png', 'Information') }}
 										</a>
 								</td>

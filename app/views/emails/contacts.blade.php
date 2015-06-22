@@ -11,7 +11,7 @@
                 <h1 style="margin-top:30px">
                     {{$store_name}}
                 </h1>
-                
+
             <div style="text-align:left">
                 <p style="margin:40px 0 0 0;line-height:2;font-size:20px;font-weight:bold">Cảm ơn bạn đã liên hệ！</p>
                 <p style="margin:10px 0 30px 0;line-height:2;font-size:16px">
@@ -52,12 +52,12 @@
                 <div>
                     <p style="margin-top:10px">
                         <a target="_blank" href="https://{{$parameters}}.{{Config::get('constants.domain')}}">
-                        <img alt="{{Config::get('constants.domain')}}" 
-                            src="https://ci6.googleusercontent.com/proxy/iXG2XAsYr74ov2aHgkmaF5n4mQKg4v01Gf4ssyjPuCSBAYKiqLJ0QEy1Ioveakv_WIDfs5jTRhlWU5vdkdzMVSBMTCqXnhRixRo=s0-d-e1-ft#https://stores.jp/images/mail/common/logo_footer.gif" 
+                        <img alt="{{Config::get('constants.domain')}}"
+                            src="hinh_contact.jpg"
                             class="CToWUd">
                         </a>
                     </p>
-                  
+
                 </div>
               </td>
             </tr>

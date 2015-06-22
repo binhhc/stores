@@ -4,7 +4,7 @@
 {{HTML::script('js/main_page.js')}}
 <div ng-view=""><div class="addon ng-scope">
   <div class="header">
-    <h2><img alt="STORES.jpアドオン あなたのストアを、進化させる。" src="/img/addon/title.png"></h2>
+    <h2><img alt="Hayamise.comアドオン あなたのストアを、進化させる。" src="/img/addon/title.png"></h2>
   </div>
   <div class="wrapper">
     <ul class="addon_list">

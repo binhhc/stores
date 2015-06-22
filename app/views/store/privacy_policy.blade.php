@@ -29,7 +29,7 @@
             </tr>
             <tr>
               <th>Phạm vi của người được sử dụng kết hợp</th>
-              <td>Bracket, Inc (công ty điều hành STORES.vn)</td>
+              <td>Bracket, Inc (công ty điều hành Hayamise.com)</td>
             </tr>
             <tr>
               <th>Mục đích của việc sử dụng cho những người</th>
@@ -39,7 +39,7 @@
                   <li>Để hướng dẫn bạn thông qua các dịch vụ đặc biệt và các sản phẩm mới, vv để khách hàng của chúng tôi</li>
                   <li>Đối với việc thực hiện các dịch vụ sau bán hàng cho khách hàng</li>
                   <li>Đối với việc truyền tải các thông báo của tạp chí e-mail như vậy</li>
-                  <li>Đối với các hoạt động của STORES.vn khác</li>
+                  <li>Đối với các hoạt động của Hayamise.com khác</li>
                 </ul>
               </td>
             </tr>

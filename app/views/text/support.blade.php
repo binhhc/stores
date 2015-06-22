@@ -93,7 +93,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="http://topics.stores.jp/support/virtual">
+				<a href="#">
 				<p class="image">
 				{{HTML::image('img/main_page/virtual.png')}}
 				</p>

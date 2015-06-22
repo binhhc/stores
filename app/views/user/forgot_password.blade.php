@@ -12,10 +12,10 @@
         <div class="sign_up">
             <h1>
                 <a href="{{URL::asset('/')}}">
-                    {{HTML::image('img/login/logo_hayamise_login.png', 'STORES.vn')}}
+                    {{HTML::image('img/login/logo_hayamise_login.png', 'Hayamise.com')}}
                 </a>
             </h1>
-            <div class="login_separator">{{HTML::image('img/login/colorful-separator.png', 'STORES.vn')}}</div>
+            <div class="login_separator">{{HTML::image('img/login/colorful-separator.png', 'Hayamise.com')}}</div>
             <div class="box">
                 {{Form::open(array('url' => 'forgetPassword', 'method' => 'post', 'id' => 'forgetPass', 'class'=>'form_submit form_basic'))}}
                     <dl class="set">

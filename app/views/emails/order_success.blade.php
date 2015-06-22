@@ -12,7 +12,7 @@
                             <h1 style="margin-top:30px">
                                 {{$store_name}}
                             </h1>
-                
+
 <div style="text-align:left">
     <p style="margin:30px 0 0 0;line-height:1.8;font-size:20px;font-weight:bold">Cảm ơn bạn đã mua hàng！</p>
     <p style="margin:10px 0 25px 0;line-height:1.8;font-size:16px">
@@ -22,7 +22,7 @@
 
 <table width="570" cellspacing="0" cellpadding="0" border="0" align="center" style="border-top:solid 1px #ddd;text-align:left">
     <tbody>
-    @foreach ($items as $item)    
+    @foreach ($items as $item)
     <tr>
         <td valign="middle" style="padding:15px;border-bottom:solid 1px #ddd" colspan="4">
             <table width="540" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -34,7 +34,7 @@
                         </a>
                     </td>
                     <td valign="middle" style="font-size:14px;text-align:left;line-height:1.6">
-                        <a target="_blank" style="color:#333;text-decoration:none" 
+                        <a target="_blank" style="color:#333;text-decoration:none"
                            href="https://{{$domain_sub}}.{{Config::get('constants.domain')}}/#!/items/{{$item['item_id']}}">
                             {{$item['name']}}
                         </a>
@@ -54,7 +54,7 @@
         <td style="border-bottom:solid 1px #ddd;padding:10px 0 5px 15px;text-align:left">Phí vận chuyển</td>
         <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND 0</td>
     </tr> -->
-    <tr> 
+    <tr>
         <td style="border-bottom:solid 1px #ddd;padding:10px 0 5px 15px;text-align:left">Tổng cộng（Thuế）</td>
         <td style="border-bottom:solid 1px #ddd;text-align:right;font-weight:bold;padding:10px 15px 5px 0">VND {{$total}}</td>
     </tr>
@@ -71,7 +71,7 @@
                 <tr>
                     <td style="width:30%;font-weight:bold">Đơn hàng số</td>
                     <td style="width:70%">{{$order_id}}</td>
-                </tr> 
+                </tr>
                 <tr>
                     <td style="width:30%;font-weight:bold">Tên khách hàng</td>
                     <td style="width:70%">(Anh/Chị) {{$customer['last_name']}} {{$customer['first_name']}}</td>
@@ -165,9 +165,9 @@
 
 
                 <div>
-                  <p style="margin-top:10px"><a target="_blank" href="https://stores.jp/?utm_source=%E8%B3%BC%E5%85%A5%E8%80%85%E5%90%91%E3%81%91%E3%83%A1%E3%83%BC%E3%83%AB&amp;utm_medium=email&amp;utm_campaign=%E8%B3%BC%E5%85%A5%E8%80%85%E5%90%91%E3%81%91%E3%83%A1%E3%83%BC%E3%83%AB">
-                          <img alt="STORES.jp" src="https://ci6.googleusercontent.com/proxy/iXG2XAsYr74ov2aHgkmaF5n4mQKg4v01Gf4ssyjPuCSBAYKiqLJ0QEy1Ioveakv_WIDfs5jTRhlWU5vdkdzMVSBMTCqXnhRixRo=s0-d-e1-ft#https://stores.jp/images/mail/common/logo_footer.gif" class="CToWUd"></a></p>
-                  
+                  <p style="margin-top:10px"><a target="_blank" href="http://hayamise.com">
+                          <img alt="hayamise.com" src="hinh_footer.jpg" class="CToWUd"></a></p>
+
                 </div>
               </td>
             </tr>

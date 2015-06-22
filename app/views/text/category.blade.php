@@ -50,7 +50,7 @@ Lorem ipsum dolor sit amet
       <div id="category_item">
         <div class="wrapper" itemscope itemtype="http://schema.org/Product">
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://anduamet.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img01.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img01.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">andu amet</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>
@@ -58,7 +58,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://ironwork_mk.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img02.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img02.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">mk</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -66,7 +66,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="http://shippostore.com/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img03.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img03.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">ShippoSTORE</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet。</p>
@@ -74,7 +74,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://fleeceleeve.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img04.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img04.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">orem ipsum dolor sit amet</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -82,7 +82,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://chill-garden.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img05.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img05.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">ChillGarden</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>
@@ -90,7 +90,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="https://3355.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img06.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img06.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">3355</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -98,7 +98,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://nakedhorse.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img07.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img07.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">NAKED HORSE</p>
               <p class="text" itemprop="description">http://www.nakedhorse.net<br>http://nakedhorse-blog.tumblr.com</p>
@@ -106,7 +106,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://tla.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img08.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img08.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">T/L/A</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>
@@ -114,7 +114,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="https://quaela.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img09.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img09.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">qua e là</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -122,7 +122,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="http://papierlabo-store.com/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img10.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img10.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">papierlabo</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -130,15 +130,15 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://nohmask.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img11.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img11.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">orem ipsum dolor sit amet</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
               <p class="btn" itemprop="name"><a href="#" target="_blank" itemprop="url">orem ipsum dolor sit amet</a></p>
             </dd>
           </dl>
-          <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="https://shoesofprey.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img12.png ')}}</a></dt>
+          <dl class="items_top_clear fade">
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img12.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">shoesofprey</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -146,7 +146,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://specialfresh.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img13.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img13.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">SpecialFRESH</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -154,7 +154,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://kanvas.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img14.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img14.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">kanvas</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet</p>
@@ -162,7 +162,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="https://arcobaleno.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img15.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img15.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">arcobaleno</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>
@@ -170,7 +170,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://sowxp.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img16.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img16.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">sowxp</p>
               <p class="text" itemprop="description">orem ipsum dolor sit amet。</p>
@@ -178,7 +178,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top fade">
-            <dt class="backdrop" style="display: block;"><a href="https://vectculture.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img17.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img17.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">Vectculture</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>
@@ -186,7 +186,7 @@ Lorem ipsum dolor sit amet
             </dd>
           </dl>
           <dl class="items_top_clear fade"><!--clear追加-->
-            <dt class="backdrop" style="display: block;"><a href="https://amani.stores.jp/#!/" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img18.png ')}}</a></dt>
+            <dt class="backdrop" style="display: block;"><a href="#" target="_blank" itemprop="url"> {{HTML::image('img/main_page/img18.png ')}}</a></dt>
             <dd class="overlay" style="opacity: 0; display: block">
               <p class="brand" itemprop="brand">amani</p>
               <p class="text" itemprop="description">orem ipsum dolor sit ametorem ipsum dolor sit amet</p>

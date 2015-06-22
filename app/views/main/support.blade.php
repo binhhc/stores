@@ -91,7 +91,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="http://topics.stores.jp#virtual">
+				<a href="http://hayamise.com/#virtual">
 				<p class="image">
 				{{HTML::image('img/main_page/virtual.png')}}
 				</p>

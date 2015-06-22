@@ -14,7 +14,7 @@ class MainController extends BaseController {
      */
     public function main(){
     	if(!$this->checkLogin()) {
-    		$data['title_for_layout'] = 'Chào mừng đến với stores.vn';
+    		$data['title_for_layout'] = 'Chào mừng đến với Hayamise.com';
     		$data['item_slides'] = array_chunk(SysAdver::getData(), 8);
     		return View::make('main.index', $data);
     	} else {

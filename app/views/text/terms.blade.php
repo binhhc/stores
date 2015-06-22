@@ -14,7 +14,7 @@
         <dt>（1）Lorem ipsum dolor sit amet</dt>
         <dd>Lorem ipsum dolor sit amet</dd>
         <dt>（2）Lorem ipsum dolor sit amet</dt>
-        <dd>STORES.jp</dd>
+        <dd>Hayamise.com</dd>
         <dt>（3）Lorem ipsum dolor sit amet</dt>
         <dd>Lorem ipsum dolor sit amet</dd>
         <dt>（4）Lorem ipsum dolor sit amet</dt>

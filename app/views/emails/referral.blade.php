@@ -12,14 +12,14 @@
 <tbody>
 <tr>
 <td style="padding:10px;text-align:center;background-color:#2e3740" colspan="2">
-<a target="_blank" href="https://stores.jp/">
-<img class="CToWUd" alt="STORES.jp" src="https://ci3.googleusercontent.com/proxy/-RvWs-rJ2bjuZBTKRdl1j4zmpSfmxs1HP24OvorTq9fTH2OmZXqwJOlU56NxY6JGp6R2eHY1DlfoBVCmsue2dEOv_g=s0-d-e1-ft#https://stores.jp/images/mail/common/logo.png">
+<a target="_blank" href="https://hayamise.com/">
+<img class="CToWUd" alt="hayamise.com" src="hinh_logo.jpg">
 </a>
 </td>
 </tr>
 <tr>
 <td colspan="2">
-<img class="CToWUd a6T" width="630" height="234" alt="オンラインストアを無料で作ってみませんか？" src="https://ci5.googleusercontent.com/proxy/jSRL2NMfMgS_PCBZknpiE6iCZUelMSWkICNO86tw6ezitlmH_AX5euDEXCF1ZHNDTsZ1B0b6DWW6YPOuuu6z28Myc0S6OwAXxtyYbg=s0-d-e1-ft#https://stores.jp/images/mail/store/referral/title.gif" tabindex="0">
+<img class="CToWUd a6T" width="630" height="234" alt="Bạn có muốn thử làm 1 shop online miễn phí ?" src="tieu_de.jpg" tabindex="0">
 <div class="a6S" dir="ltr" style="opacity: 0.01; left: 661.5px; top: 323.9px;">
 <div id=":105" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" aria-label="Tải xuống tệp đính kèm " tabindex="0" role="button" data-tooltip-class="a1V" data-tooltip="Tải xuống">
 <div class="aSK J-J5-Ji aYr"></div>
@@ -47,7 +47,7 @@ Dù bạn là bất kỳ ai bạn cũng có thể sở hữu cửa hàng trực 
 </p>
 <p style="margin-bottom:40px">
 <a target="_blank" href="{{$website_name}}">
-<img class="CToWUd" width="344" height="64" alt="ストアを作る" src="https://ci4.googleusercontent.com/proxy/hZ7kn2xH3f_QarDSf0hM5WLTuuAm1GVSqSz1N-Zon_Cx9QMXPdQzqsAzOEQdEhCqGt7qpV_IgibHmSZmspsttnvxxM6DJeE9EyE=s0-d-e1-ft#https://stores.jp/images/mail/store/referral/btn.png">
+<img class="CToWUd" width="344" height="64" alt="Tạo Shop" src="nut_bam.jpg">
 </a>
 </p>
 <div style="border-top:double 3px #cccccc;border-bottom:double 3px #cccccc;padding:5px">

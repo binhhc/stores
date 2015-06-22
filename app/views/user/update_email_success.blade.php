@@ -8,7 +8,7 @@
     <body class="body-login">
         <div class="sign_up">
             <h1>
-                {{HTML::image('img/login/logo_white.png', 'STORE.vn')}}
+                {{HTML::image('img/login/logo_white.png', 'Hayamise.com')}}
             </h1>
             <div class="box">
                 <div class="mail_finish">

@@ -127,7 +127,7 @@
                     <div class="fancybox-outer">
                         <div class="fancybox-inner" style="overflow: auto; width: 437px; height: auto;">
                             <div id="popup_quit_form_message" style="display: block;">
-                                <h2>Bạn có chắc là bạn muốn hủy đăng ký tại STORES.vn?</h2>
+                                <h2>Bạn có chắc là bạn muốn hủy đăng ký tại Hayamise.com?</h2>
                                 <h3>Xóa toàn bộ dữ liệu sao khi tài khoản bị hủy</h3>
                                 <ul class="delete_list">
                                     <li class="memo">Xóa đăng kí lưu trữ</li>
@@ -162,7 +162,7 @@
                     <div class="fancybox-outer">
                         <div class="fancybox-inner" style="overflow: auto; height: 391px;">
                             <div id="popup_quit_form">
-                                <h2>Hãy cho chúng tôi biết lý do tại sao bạn muốn hủy đăng ký các STORES.vn?</h2>
+                                <h2>Hãy cho chúng tôi biết lý do tại sao bạn muốn hủy đăng ký các Hayamise.com?</h2>
                                 <div id="bg_premium_form">
                                     <ul>
                                         <li>
@@ -223,7 +223,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <textarea placeholder="Các chức năng mà bạn muốn, vui lòng viết ý kiến và yêu cầu liên quan đến STORE.vn" ng-model="quit_check.box" class="ng-pristine ng-valid"></textarea>
+                                <textarea placeholder="Các chức năng mà bạn muốn, vui lòng viết ý kiến và yêu cầu liên quan đến Hayamise.com" ng-model="quit_check.box" class="ng-pristine ng-valid"></textarea>
                                 <ul class="btn_pair">
                                     <li class="btn_low" style="margin-top:20px;"><a class="close_fancybox" href="">Trở lại</a></li>
                                     <li class="btn_high"><a href="" ng-hide="pending">Hủy đăng kí</a></li>

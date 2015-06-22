@@ -9,7 +9,7 @@
                             <tr>
                                 <td colspan="2" style="padding:10px;text-align:center;background-color:#2e3740">
                                     <a href="#" target="_blank">
-                                        <img src="http://i.imgur.com/li5SAhC.png" alt="STORES.vn">
+                                        <img src="http://i.imgur.com/li5SAhC.png" alt="Hayamise.com">
                                     </a>
                                 </td>
                             </tr>

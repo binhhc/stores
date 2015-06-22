@@ -13,19 +13,19 @@
 <tr>
     <td style="padding:10px;text-align:center;background-color:#2e3740" colspan="2">
         <a target="_blank" href="http://{{$domain}}/">
-            <img alt="{{$domain}}" src="https://ci3.googleusercontent.com/proxy/-RvWs-rJ2bjuZBTKRdl1j4zmpSfmxs1HP24OvorTq9fTH2OmZXqwJOlU56NxY6JGp6R2eHY1DlfoBVCmsue2dEOv_g=s0-d-e1-ft#https://stores.jp/images/mail/common/logo.png" class="CToWUd">
+            <img alt="{{$domain}}" src="hinh_logo.jpg" class="CToWUd">
         </a>
     </td>
 </tr>
 <tr>
     <td colspan="2">
-        <img alt="Đăng ký thành công" src="https://ci5.googleusercontent.com/proxy/Brn54EiceCd_aeCWDCt656u-HROC86bJV5k831ncgIAJCfaKVYX5B-cShVJEFSWhWS5FT8oBcpHi_2taSDEUr6Y2QYq_a0sPCw=s0-d-e1-ft#https://stores.jp/images/mail/user/signup/title.gif" class="CToWUd">
+        <img alt="Đăng ký thành công" src="hinh_tieu_de.jpg" class="CToWUd">
     </td>
 </tr>
 <tr>
 <td style="padding:10px 30px 20px 30px;text-align:center" colspan="2">
     <p style="margin-top:20px">
-        <img width="90" height="90" alt="" src="https://ci4.googleusercontent.com/proxy/p8a472SgCSmOkC5SxTW9I8pu9ixgTklvi_Pgx3L4Mb609k2S_zC6CS0YijOW6BEkjvX27PgHFwpGl9X7Z-RX7mL4hO0qaWWyJQ=s0-d-e1-ft#https://stores.jp/images/mail/user/signup/image.gif" class="CToWUd">
+        <img width="90" height="90" alt="" src="hinh_tieu_de.jpg" class="CToWUd">
     </p>
     <div>
         <p style="font-weight:bold;line-height:1.8;font-size:16px;margin:30px 0 20px 0">
@@ -35,7 +35,7 @@
         </p>
         <p style="margin-bottom:30px">
             <a target="_blank" href="http://{{$domain}}/active/{{$token}}">
-                <img width="255" height="40" src="https://ci4.googleusercontent.com/proxy/zwNQ6xSgVQBLDYdcX3Ig_QmhS5AS_bHb9UBB7A1PYWdV_2OuPvmd4_wm6PgYBVZ_k953R7SvYQhdijzSZP3J0WiuirWpt94=s0-d-e1-ft#https://stores.jp/images/mail/user/signup/btn.jpg" class="CToWUd">
+                <img width="255" height="40" src="hinh_nut.jpg" class="CToWUd">
             </a>
         </p>
         <p style="margin-bottom:20px;line-height:1.8;font-size:14px">

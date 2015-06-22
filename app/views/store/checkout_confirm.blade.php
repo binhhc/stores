@@ -27,14 +27,6 @@
               <dd>{[customer.last_name]}&nbsp;{[customer.first_name]}</dd>
             </dl>
           </dd>
-          <?php /*?>
-          <dd>
-            <dl class="cols">
-              <dt>{[I18n.store.checkout.postalCode]}</dt>
-              <dd>{[customer.zip]}</dd>
-            </dl>
-          </dd>
-          <?php */?>
           <dd>
             <dl class="cols">
               <dt>{[I18n.store.checkout.country]}</dt>
@@ -128,94 +120,12 @@
       <!-- /Gift -->
       <!-- Card/ -->
       <div class="box_wht">
-      <?php /*?>
-        <h2><span class="icon_card">{[I18n.store.checkout.credit.title]}</span></h2>
-        <dl class="form_basic border_bottom spb">
-          <dd>
-            <dl class="cols no_border">
-              <dt>{[I18n.store.checkout.credit.title]}</dt>
-              <dd class="select_m">
-                {[customer.payment_method[1]]}
-              </dd>
-            </dl>
-          </dd>
-          <dd ng-show="customer.payment_method[0] == 'credit' && customer.use_registered_cc">
-            <dl class="cols">
-              <dt ng-bind="I18n.follow.credit_card.registered"></dt>
-              <dd class="card_confirm"  style="width:500px;">
-                <dl>
-                  <dt style="width: 100px;" ng-bind="I18n.store.checkout.credit.num"></dt>
-                  <dd style="width: 160px;">{[customer.cc_info.number]}</dd>
-                  <dt style="width: 90px;" ng-bind="I18n.store.checkout.credit.until"></dt>
-                  <dd>{[customer.cc_info.expires.month]}/{[customer.cc_info.expires.year]}</dd>
-                </dl>
-              </dd>
-            </dl>
-          </dd>
-          <dd ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
-            <dl class="cols">
-              <dt>{[I18n.store.checkout.credit.num]}</dt>
-              <dd>{[customer.cc.number | hideNumber:4]}</dd>
-            </dl>
-          </dd>
-          <dd ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
-            <dl class="cols">
-              <dt>{[I18n.store.checkout.credit.holder]}</dt>
-              <dd>{[customer.cc.name]}</dd>
-            </dl>
-          </dd>
-          <dd ng-show="customer.payment_method[0] == 'credit' && !customer.use_registered_cc">
-            <dl class="cols">
-              <dt>{[I18n.store.checkout.credit.until]}</dt>
-              <dd>{[customer.cc.expires.month]}{[I18n.store.checkout.credit.month]}/{[customer.cc.expires.year]}{[I18n.store.checkout.credit.year]}</dd>
-            </dl>
-          </dd>
-          <dd ng-show="customer.payment_method[0] == 'credit'">
-            <dl class="cols">
-              <dt>{[I18n.store.checkout.credit.cardId]}</dt>
-              <dd>{[customer.cc.security_code | hideNumber]}</dd>
-            </dl>
-          </dd>
-          <!-- ConvenienceStore/ -->
-          <dd ng-show="customer.payment_method[0] == 'convenience_store_payment'">
-            <dl class="cols">
-              <dt>コンビニの種類</dt>
-              <dd>
-                <p><img src="/img/icon_convenience_store.png" alt="コンビニ"></p>
-                <p>※上記のコンビニでお支払い頂けます。</p>
-              </dd>
-            </dl>
-          </dd>
-          <!-- /ConvenienceStore -->
-        </dl>
-        <?php */?>
         <dl class="btn_pair" sp-hide="receive_method">
           <dd class="btn_low"><button type="button" onclick="history.back()">{[I18n.store.checkout.credit.back]}</button></dd>
           <dd class="btn_high"><button type="submit">{[I18n.store.inquiry.checkout]}</button></dd>
         </dl>
       </div>
       <!-- /Card -->
-      <!-- ReceiveMethod/ -->
-      <?php /*?>
-      <div class="box_wht" sp-show="receive_method">
-        <h2><span class="icon_card">{[I18n.store.checkout.receiveMehtod.title]}</span></h2>
-        <dl class="form_basic border_bottom spb">
-          <dd>
-            <dl class="cols no_border">
-              <dt>{[I18n.store.checkout.receiveMehtod.title]}</dt>
-              <dd class="select_m">
-                {[customer.receive_method.value]}
-              </dd>
-            </dl>
-          </dd>
-        </dl>
-        <dl class="btn_pair">
-          <dd class="btn_low"><button type="button" onclick="history.back()">{[I18n.store.checkout.credit.back]}</button></dd>
-          <dd class="btn_high"><button type="submit">{[I18n.store.inquiry.checkout]}</button></dd>
-        </dl>
-      </div>
-      <?php */?>
-      <!-- /ReceiveMethod -->
     </form>
     <!-- Loading/ -->
     <div class="loading" ng-show="state == 'wait'"></div>
@@ -245,7 +155,7 @@
         <p><img src="/img/icon_convenience_store.png" alt="ファミリーマート ローソン ミニストップ サークルKサンクス セイコーマート"></p>
         <p>
           ※上記のコンビニでお支払い頂けます。<br>
-          ※各コンビ二での端末の操作方法は、お控えのメール、または<a href="https://stores.jp/faq/payment/convenience#convenience_list" target="_blank">よくある質問</a>をご参照ください。
+          ※各コンビ二での端末の操作方法は、お控えのメール、または<a href="http://hayamise.com/#convenience_list" target="_blank">よくある質問</a>をご参照ください。
         </p>
       </div>
       <!-- /ConvenienceStore -->
@@ -284,7 +194,7 @@
         <p style="color: #ff0000;" ng-show="register_user_results.errors.email">そのメールアドレスは既に使用されています。</p>
         <p>大変お手数お掛けいたしますが、<a href="/signup" style="color: #217fbe;">こちら</a>から再度会員登録をお願いいたします。</p>
       </div>
-      <p class="order_logo nopopup" style="margin: 40px 0; text-align: center;"> <a href="https://stores.jp/?via=shop&id={[store_name]}" target="_blank"><img src="/img/logo_footer.png" alt="ネットショップの開業ならSTORES.jp"></a></p>
+      <p class="order_logo nopopup" style="margin: 40px 0; text-align: center;"> <a href="http://hayamise.com/?via=shop&id={[store_name]}" target="_blank"><img src="/img/logo_footer.png" alt="ネットショップの開業ならHayamise"></a></p>
       <p class="btn_low" style=""><a href="/" style="margin: 0 auto;">{[I18n.store.top.back]}</a></p>
     </div>
     <div id="promotion_tag"></div>

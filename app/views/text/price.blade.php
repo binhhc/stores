@@ -71,7 +71,7 @@
             <dt>Lorem ipsum dolor sit amet</dt>
             <dd>
               <p class="main second">5<span>%</span></p>
-              <p class="sub second">STORES.jpLorem ipsum dolor sit ametて<br>Lorem ipsum dolor sit amet</p>
+              <p class="sub second">Hayamise.com Lorem ipsum dolor sit ametて<br>Lorem ipsum dolor sit amet</p>
             </dd>
           </dl>
         </div>
